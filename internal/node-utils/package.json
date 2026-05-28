@@ -22,6 +22,7 @@
   "dependencies": {
     "@manypkg/get-packages": "catalog:",
     "consola": "catalog:",
-    "execa": "catalog:"
+    "execa": "catalog:",
+    "pkg-types": "catalog:"
   }
 }

@@ -33,8 +33,10 @@
     "version": "pnpm exec changeset version && pnpm install --no-frozen-lockfile"
   },
   "devDependencies": {
+    "@stylistic/stylelint-plugin": "catalog:",
     "@taman/tsconfig": "workspace:*",
     "@taman/turbo-run": "workspace:*",
+    "@taman/vite-config": "workspace:*",
     "@types/node": "catalog:",
     "@vinicunca/eslint-config": "catalog:",
     "@vitejs/plugin-vue": "catalog:",
@@ -42,8 +44,20 @@
     "eslint": "catalog:",
     "is-ci": "catalog:",
     "lefthook": "catalog:",
+    "postcss": "catalog:",
+    "postcss-html": "catalog:",
+    "postcss-scss": "catalog:",
+    "stylelint": "catalog:",
+    "stylelint-config-recess-order": "catalog:",
+    "stylelint-config-recommended": "catalog:",
+    "stylelint-config-recommended-scss": "catalog:",
+    "stylelint-config-recommended-vue": "catalog:",
+    "stylelint-config-standard": "catalog:",
+    "stylelint-order": "catalog:",
+    "stylelint-scss": "catalog:",
     "tsdown": "catalog:",
     "typescript": "catalog:",
+    "vite": "catalog:",
     "vitest": "catalog:"
   }
 }
