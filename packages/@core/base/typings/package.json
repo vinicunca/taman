@@ -1,0 +1,16 @@
+{
+  "name": "@vinicunca/taman-core-typings",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "dependencies": {
+    "vue": "catalog:",
+    "vue-router": "catalog:"
+  }
+}
