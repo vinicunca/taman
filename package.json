@@ -33,13 +33,16 @@
     "version": "pnpm exec changeset version && pnpm install --no-frozen-lockfile"
   },
   "devDependencies": {
+    "@taman/tsconfig": "workspace:*",
+    "@taman/turbo-run": "workspace:*",
+    "@types/node": "catalog:",
     "@vinicunca/eslint-config": "catalog:",
-    "@vinicunca/taman-tsconfig": "workspace:*",
     "@vitejs/plugin-vue": "catalog:",
     "@vitejs/plugin-vue-jsx": "catalog:",
     "eslint": "catalog:",
     "is-ci": "catalog:",
     "lefthook": "catalog:",
+    "tsdown": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
   }

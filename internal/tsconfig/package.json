@@ -1,8 +1,8 @@
 {
-  "name": "@vinicunca/taman-tsconfig",
+  "name": "@taman/tsconfig",
+  "type": "module",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
   "files": [
     "base.json",
     "library.json",
@@ -11,7 +11,7 @@
     "web.json"
   ],
   "dependencies": {
-    "@vinicunca/taman-types": "workspace:*",
+    "@taman/types": "workspace:*",
     "vite": "catalog:"
   }
 }

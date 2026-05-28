@@ -19,16 +19,23 @@ packages:
   - packages/*
   - packages/@core/base/*
   - apps/*
+  - scripts/*
 
 overrides:
   pinia: 'catalog:'
   vue: 'catalog:'
 
 catalog:
+  '@clack/prompts': ^1.4.0
+  '@manypkg/get-packages': ^3.1.0
+  '@types/node': ^25.9.1
   '@vinicunca/eslint-config': 5.1.0
   '@vitejs/plugin-vue': ^6.0.7
   '@vitejs/plugin-vue-jsx': ^5.1.5
+  cac: ^7.0.0
+  consola: ^3.4.2
   eslint: ^10.4.0
+  execa: ^9.6.1
   is-ci: ^4.1.0
   lefthook: ^2.1.8
   pinia: ^3.0.4
@@ -42,6 +49,7 @@ catalog:
   stylelint-config-standard: ^40.0.0
   stylelint-order: ^8.1.1
   stylelint-scss: ^7.1.1
+  tsdown: ^0.22.0
   turbo: ^2.9.14
   typescript: ^6.0.3
   vite: 8.0.10

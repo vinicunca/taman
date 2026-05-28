@@ -1,5 +1,5 @@
 {
-  "name": "@vinicunca/taman-types",
+  "name": "@taman/types",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -13,7 +13,7 @@
     }
   },
   "dependencies": {
-    "@vinicunca/taman-core-typings": "workspace:*",
+    "@taman/core-typings": "workspace:*",
     "vue": "catalog:",
     "vue-router": "catalog:"
   }

@@ -1,0 +1,27 @@
+{
+  "name": "@taman/node-utils",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "stub": "node ./scripts/build.mjs"
+  },
+  "dependencies": {
+    "@manypkg/get-packages": "catalog:",
+    "consola": "catalog:",
+    "execa": "catalog:"
+  }
+}
