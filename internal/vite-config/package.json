@@ -19,13 +19,28 @@
     "stub": "pnpm exec tsdown"
   },
   "dependencies": {
+    "@internationalized/date": "catalog:",
+    "@intlify/unplugin-vue-i18n": "catalog:",
+    "@jspm/generator": "catalog:",
     "@taman/node-utils": "workspace:*",
+    "archiver": "catalog:",
+    "cheerio": "catalog:",
+    "get-port": "catalog:",
     "html-minifier-terser": "catalog:",
-    "vite-plugin-pwa": "catalog:"
+    "nitropack": "catalog:",
+    "vite-plugin-pwa": "catalog:",
+    "vite-plugin-vue-devtools": "catalog:"
   },
   "devDependencies": {
+    "@pnpm/workspace.read-manifest": "catalog:",
+    "@types/archiver": "catalog:",
     "@types/html-minifier-terser": "catalog:",
+    "@vitejs/plugin-vue": "catalog:",
+    "@vitejs/plugin-vue-jsx": "catalog:",
+    "dotenv": "catalog:",
     "rollup-plugin-visualizer": "catalog:",
-    "unplugin-dts": "catalog:"
+    "unocss": "catalog:",
+    "unplugin-dts": "catalog:",
+    "vite-plugin-compression": "catalog:"
   }
 }

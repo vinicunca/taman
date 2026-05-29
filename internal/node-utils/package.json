@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@manypkg/get-packages": "catalog:",
+    "chalk": "catalog:",
     "consola": "catalog:",
     "execa": "catalog:",
     "pkg-types": "catalog:"

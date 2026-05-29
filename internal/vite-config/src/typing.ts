@@ -215,11 +215,6 @@ interface ApplicationPluginOptions extends CommonPluginOptions {
    */
   compressTypes?: Array<'brotli' | 'gzip'>;
   /**
-   * Whether to enable dayjs plugin
-   * @default true
-   */
-  dayjs?: boolean;
-  /**
    * Whether to extract configuration file
    * @default false
    * @description Extract configuration file during build
@@ -249,11 +244,6 @@ interface ApplicationPluginOptions extends CommonPluginOptions {
    * @default true
    */
   injectAppLoading?: boolean;
-  /**
-   * Whether to inject global SCSS
-   * @default true
-   */
-  injectGlobalScss?: boolean;
   /**
    * Whether to inject copyright information
    * @default true

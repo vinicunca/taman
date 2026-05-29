@@ -28,16 +28,8 @@ export default {
         ],
       },
     },
-    {
-      customSyntax: 'postcss-scss',
-      extends: [
-        'stylelint-config-recommended-scss',
-        'stylelint-config-recommended-vue/scss',
-      ],
-      files: ['*.scss', '**/*.scss'],
-    },
   ],
-  plugins: ['stylelint-order', '@stylistic/stylelint-plugin', 'stylelint-scss'],
+  plugins: ['stylelint-order', '@stylistic/stylelint-plugin'],
   rules: {
     'at-rule-no-deprecated': null,
     'at-rule-no-unknown': [
@@ -108,39 +100,7 @@ export default {
         ignore: ['after-comment', 'first-nested'],
       },
     ],
-    'scss/at-rule-no-unknown': [
-      true,
-      {
-        ignoreAtRules: [
-          'extends',
-          'ignores',
-          'include',
-          'mixin',
-          'if',
-          'else',
-          'media',
-          'for',
-          'at-root',
-          'tailwind',
-          'apply',
-          'variants',
-          'responsive',
-          'screen',
-          'function',
-          'each',
-          'use',
-          'forward',
-          'return',
-          'reference',
-          'plugin',
-          'source',
-          'theme',
-          'utility',
-          'custom-variant',
-        ],
-      },
-    ],
-    'scss/operator-no-newline-after': null,
+
     'selector-class-pattern':
       '^-?(?:(?:o|c|u|t|s|is|has|_|js|qa)-)?[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*(?:__[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:[.+])?$',
 
