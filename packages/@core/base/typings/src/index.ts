@@ -1,1 +1,1 @@
-const itu = '';
+export * from './app';

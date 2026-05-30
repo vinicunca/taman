@@ -1,20 +1,15 @@
 {
-  "name": "@taman/types",
+  "name": "@taman/preferences",
   "type": "module",
-  "version": "1.0.0",
-  "private": true,
   "exports": {
     ".": {
       "types": "./src/index.ts",
       "default": "./src/index.ts"
-    },
-    "./global": {
-      "types": "./global.d.ts"
     }
   },
   "dependencies": {
+    "@taman-core/preferences": "workspace:*",
     "@taman-core/typings": "workspace:*",
-    "vue": "catalog:",
-    "vue-router": "catalog:"
+    "@vinicunca/perkakas": "catalog:"
   }
 }

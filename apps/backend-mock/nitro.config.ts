@@ -1,6 +1,8 @@
 import errorHandler from './error';
 
+// eslint-disable-next-line node/prefer-global/process
 process.env.COMPATIBILITY_DATE = new Date().toISOString();
+
 export default defineNitroConfig({
   devErrorHandler: errorHandler,
   errorHandler: '~/error',

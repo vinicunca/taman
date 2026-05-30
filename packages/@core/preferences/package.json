@@ -1,0 +1,39 @@
+{
+  "name": "@taman-core/preferences",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "development": "./src/index.ts",
+      "production": "./src/index.ts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "#build": "pnpm exec tsdown"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      }
+    }
+  },
+  "dependencies": {
+    "@taman-core/shared": "workspace:*",
+    "@taman-core/typings": "workspace:*",
+    "@vinicunca/perkakas": "catalog:",
+    "@vueuse/core": "catalog:",
+    "vue": "catalog:"
+  }
+}

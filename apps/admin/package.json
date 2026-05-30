@@ -16,5 +16,7 @@
     "test:e2e-ui": "playwright test --ui",
     "test:e2e-codegen": "playwright codegen"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@taman/preferences": "workspace:*"
+  }
 }
