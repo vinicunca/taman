@@ -1,0 +1,15 @@
+{
+  "name": "@taman/common-ui",
+  "type": "module",
+  "version": "1.0.0",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "dependencies": {
+    "@taman-core/pohon-ui": "workspace:*",
+    "vue": "catalog:"
+  }
+}

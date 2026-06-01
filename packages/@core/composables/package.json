@@ -1,0 +1,25 @@
+{
+  "name": "@taman-core/composables",
+  "type": "module",
+  "version": "1.0.0",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "development": "./src/index.ts",
+      "production": "./src/index.ts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "pnpm exec tsdown"
+  },
+  "dependencies": {
+    "@vueuse/core": "catalog:",
+    "vue": "catalog:"
+  }
+}

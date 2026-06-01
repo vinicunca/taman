@@ -1,0 +1,17 @@
+{
+  "name": "@taman/locales",
+  "type": "module",
+  "version": "1.0.0",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "dependencies": {
+    "@intlify/core-base": "catalog:",
+    "@taman-core/composables": "workspace:*",
+    "vue": "catalog:",
+    "vue-i18n": "catalog:"
+  }
+}

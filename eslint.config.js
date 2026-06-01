@@ -2,6 +2,9 @@ import { vinicuncaESLint } from '@vinicunca/eslint-config';
 
 export default vinicuncaESLint(
   {
+    vue: true,
+  },
+  {
     rules: {
       'pnpm/yaml-enforce-settings': 'off',
     },
