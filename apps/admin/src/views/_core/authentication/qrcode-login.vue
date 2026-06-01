@@ -1,10 +1,9 @@
 <script lang="ts" setup>
-import { AuthenticationQrCodeLogin } from '@vben/common-ui';
-import { LOGIN_PATH } from '@vben/constants';
+import { AuthenticationQrCodeLogin } from '@taman/common-ui';
 
 defineOptions({ name: 'QrCodeLogin' });
 </script>
 
 <template>
-  <AuthenticationQrCodeLogin :login-path="LOGIN_PATH" />
+  <AuthenticationQrCodeLogin login-path="/auth/login" />
 </template>

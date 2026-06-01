@@ -2,10 +2,7 @@
 import type { VbenFormProps } from '#/adapter/form';
 import type { VxeTableGridOptions } from '#/adapter/vxe-table';
 
-import { Page } from '@vben/common-ui';
-
-import { message } from 'antdv-next';
-import dayjs from 'dayjs';
+import { Page } from '@taman/common-ui';
 
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
 import { getExampleTableApi } from '#/api';

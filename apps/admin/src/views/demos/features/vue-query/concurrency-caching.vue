@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Recordable } from '@vben/types';
+import type { Recordable } from '@taman/types';
 
 import { useQuery } from '@tanstack/vue-query';
 

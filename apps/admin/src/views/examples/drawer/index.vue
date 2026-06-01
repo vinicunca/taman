@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { DrawerPlacement, DrawerState } from '@vben/common-ui';
+import type { DrawerPlacement, DrawerState } from '@taman/common-ui';
 
-import { Page, useVbenDrawer } from '@vben/common-ui';
+import { Page, useVbenDrawer } from '@taman/common-ui';
 
-import { Button, Card } from 'antdv-next';
+ 
 
 import DocButton from '../doc-button.vue';
 import AutoHeightDemo from './auto-height-demo.vue';

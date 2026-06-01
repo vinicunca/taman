@@ -1,17 +1,14 @@
 <script lang="ts" setup>
-import type { Recordable } from '@vben/types';
-
-import { reactive, ref } from 'vue';
+import type { Recordable } from '@taman/types';
 
 import {
   Page,
   VbenButton,
   VbenButtonGroup,
   VbenCheckButtonGroup,
-} from '@vben/common-ui';
-import { LoaderCircle, Square, SquareCheckBig } from '@vben/icons';
-
-import { Button, Card, message } from 'antdv-next';
+} from '@taman/common-ui';
+import { LoaderCircle, Square, SquareCheckBig } from '@taman/icons';
+import { reactive, ref } from 'vue';
 
 import { useVbenForm } from '#/adapter/form';
 
@@ -140,6 +137,7 @@ function onBtnClick(value: any) {
   }
 }
 </script>
+
 <template>
   <Page
     title="VbenButtonGroup 按钮组"
@@ -147,11 +145,21 @@ function onBtnClick(value: any) {
   >
     <Card title="基本用法">
       <template #extra>
-        <Button type="primary" @click="resetValues">清空值</Button>
+        <Button
+          type="primary"
+          @click="resetValues"
+        >
+          清空值
+        </Button>
       </template>
-      <p class="mt-4">按钮组：</p>
+      <p class="mt-4">
+        按钮组：
+      </p>
       <div class="mt-2 flex flex-col gap-2">
-        <VbenButtonGroup v-bind="compProps" border>
+        <VbenButtonGroup
+          v-bind="compProps"
+          border
+        >
           <VbenButton
             v-for="btn in options"
             :key="btn.value"
@@ -161,7 +169,10 @@ function onBtnClick(value: any) {
             {{ btn.label }}
           </VbenButton>
         </VbenButtonGroup>
-        <VbenButtonGroup v-bind="compProps" border>
+        <VbenButtonGroup
+          v-bind="compProps"
+          border
+        >
           <VbenButton
             v-for="btn in options"
             :key="btn.value"
@@ -172,7 +183,9 @@ function onBtnClick(value: any) {
           </VbenButton>
         </VbenButtonGroup>
       </div>
-      <p class="mt-4">单选：{{ radioValue }}</p>
+      <p class="mt-4">
+        单选：{{ radioValue }}
+      </p>
       <div class="mt-2 flex flex-col gap-2">
         <VbenCheckButtonGroup
           v-model="radioValue"
@@ -180,7 +193,9 @@ function onBtnClick(value: any) {
           v-bind="compProps"
         />
       </div>
-      <p class="mt-4">单选插槽：{{ radioValue }}</p>
+      <p class="mt-4">
+        单选插槽：{{ radioValue }}
+      </p>
       <div class="mt-2 flex flex-col gap-2">
         <VbenCheckButtonGroup
           v-model="radioValue"
@@ -191,12 +206,17 @@ function onBtnClick(value: any) {
             <div class="flex items-center">
               <span>{{ label }}</span>
               <span class="ml-2 text-gray-400">{{ value }}</span>
-              <span v-if="data.num" class="white ml-2">{{ data.num }}</span>
+              <span
+                v-if="data.num"
+                class="white ml-2"
+              >{{ data.num }}</span>
             </div>
           </template>
         </VbenCheckButtonGroup>
       </div>
-      <p class="mt-4">多选{{ checkValue }}</p>
+      <p class="mt-4">
+        多选{{ checkValue }}
+      </p>
       <div class="mt-2 flex flex-col gap-2">
         <VbenCheckButtonGroup
           v-model="checkValue"
@@ -205,7 +225,9 @@ function onBtnClick(value: any) {
           v-bind="compProps"
         />
       </div>
-      <p class="mt-4">自定义图标{{ checkValue }}</p>
+      <p class="mt-4">
+        自定义图标{{ checkValue }}
+      </p>
       <div class="mt-2 flex flex-col gap-2">
         <VbenCheckButtonGroup
           v-model="checkValue"
@@ -214,7 +236,10 @@ function onBtnClick(value: any) {
           v-bind="compProps"
         >
           <template #icon="{ loading, checked }">
-            <LoaderCircle class="animate-spin" v-if="loading" />
+            <LoaderCircle
+              v-if="loading"
+              class="animate-spin"
+            />
             <SquareCheckBig v-else-if="checked" />
             <Square v-else />
           </template>
@@ -222,7 +247,10 @@ function onBtnClick(value: any) {
       </div>
     </Card>
 
-    <Card title="设置" class="mt-4">
+    <Card
+      title="设置"
+      class="mt-4"
+    >
       <Form />
     </Card>
   </Page>

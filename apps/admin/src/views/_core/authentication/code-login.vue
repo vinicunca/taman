@@ -1,20 +1,17 @@
 <script lang="ts" setup>
-import type { VbenFormSchema } from '@vben/common-ui';
-import type { Recordable } from '@vben/types';
+import type { VbenFormSchema } from '@taman/common-ui';
+import type { Recordable } from '@taman/types';
 
+import { AuthenticationCodeLogin, z } from '@taman/common-ui';
+import { $t } from '@taman/locales';
 import { computed, ref, useTemplateRef } from 'vue';
-
-import { AuthenticationCodeLogin, z } from '@vben/common-ui';
-import { $t } from '@vben/locales';
-
-import { message } from 'antdv-next';
 
 defineOptions({ name: 'CodeLogin' });
 
 const loading = ref(false);
 const CODE_LENGTH = 6;
-const loginRef =
-  useTemplateRef<InstanceType<typeof AuthenticationCodeLogin>>('loginRef');
+const loginRef
+  = useTemplateRef<InstanceType<typeof AuthenticationCodeLogin>>('loginRef');
 function sendCodeApi(phoneNumber: string) {
   message.loading({
     content: $t('page.auth.sendingCode'),
@@ -32,7 +29,7 @@ function sendCodeApi(phoneNumber: string) {
     }, 3000);
   });
 }
-const formSchema = computed((): VbenFormSchema[] => {
+const formSchema = computed((): Array<VbenFormSchema> => {
   return [
     {
       component: 'VbenInput',
@@ -53,8 +50,8 @@ const formSchema = computed((): VbenFormSchema[] => {
       componentProps: {
         codeLength: CODE_LENGTH,
         createText: (countdown: number) => {
-          const text =
-            countdown > 0
+          const text
+            = countdown > 0
               ? $t('authentication.sendText', [countdown])
               : $t('authentication.sendCode');
           return text;

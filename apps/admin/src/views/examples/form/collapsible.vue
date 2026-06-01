@@ -1,13 +1,8 @@
 <script lang="ts" setup>
-import type { RadioGroupProps } from 'antdv-next';
+import type { CollapsibleParamSchema, FormLayout } from '@taman/common-ui';
 
-import type { CollapsibleParamSchema, FormLayout } from '@vben/common-ui';
-
+import { Page, VbenCollapsibleParams } from '@taman/common-ui';
 import { h, ref } from 'vue';
-
-import { Page, VbenCollapsibleParams } from '@vben/common-ui';
-
-import { Button, Card, message, RadioGroup } from 'antdv-next';
 
 import { useVbenForm, z } from '#/adapter/form';
 
@@ -42,7 +37,7 @@ function getNumberValidator(key: string, limit?: [number?, number?]) {
   return validator.optional();
 }
 
-const paramsSchema: CollapsibleParamSchema[] = [
+const paramsSchema: Array<CollapsibleParamSchema> = [
   {
     key: 'micro_batch_size',
     description: `批次大小，代表模型训练过程中，模型更新模型参数的数据步长，可理解为模型每看多少数据即更新一次模型参数，
@@ -84,7 +79,7 @@ const paramsSchema: CollapsibleParamSchema[] = [
   },
   {
     key: 'max_length',
-    description: `序列长度，单个训练数据样本的最大长度，超出配置长度将丢弃`,
+    description: '序列长度，单个训练数据样本的最大长度，超出配置长度将丢弃',
     option: {
       min: 500,
       max: 131_072,
@@ -167,7 +162,7 @@ const [BaseForm, baseFormApi] = useVbenForm({
               ? [
                   {
                     key: 'calib_steps',
-                    description: `校准步数；校准的数据集大小 = 校准步数 * 训练的batch_size`,
+                    description: '校准步数；校准的数据集大小 = 校准步数 * 训练的batch_size',
                     option: {
                       min: 1,
                     },
@@ -179,8 +174,8 @@ const [BaseForm, baseFormApi] = useVbenForm({
         },
         trigger(values, __, controller) {
           // 访问 form 内 VbenCollapsibleParams 的实例
-          const paramsRef =
-            controller.getFieldComponentRef<typeof VbenCollapsibleParams>(
+          const paramsRef
+            = controller.getFieldComponentRef<typeof VbenCollapsibleParams>(
               'params',
             );
           if (values.qat) {
@@ -281,24 +276,36 @@ async function handleSubmitFormValue() {
       </div>
     </template>
     <template #extra>
-      <DocButton class="mb-2" path="/components/common-ui/vben-form" />
+      <DocButton
+        class="mb-2"
+        path="/components/common-ui/vben-form"
+      />
     </template>
     <Card title="基础示例">
       <template #extra>
         <div class="inline-flex items-center gap-4!">
           <RadioGroup
+            v-model:value="layout"
             :options="layouts"
             option-type="button"
-            v-model:value="layout"
             @change="onLayoutChange"
           />
-          <Button type="primary" @click="handleSetFormValue">
+          <Button
+            type="primary"
+            @click="handleSetFormValue"
+          >
             设置表单值
           </Button>
-          <Button type="primary" @click="handleSubmitFormValue">
+          <Button
+            type="primary"
+            @click="handleSubmitFormValue"
+          >
             提交表单
           </Button>
-          <Button type="primary" @click="handleResetFormValue">
+          <Button
+            type="primary"
+            @click="handleResetFormValue"
+          >
             重置表单
           </Button>
         </div>

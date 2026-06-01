@@ -1,11 +1,8 @@
 <script lang="ts" setup>
-import type { TippyProps } from '@vben/common-ui';
+import type { TippyProps } from '@taman/common-ui';
 
+import { Page, Tippy } from '@taman/common-ui';
 import { reactive } from 'vue';
-
-import { Page, Tippy } from '@vben/common-ui';
-
-import { Button, Card, Flex } from 'antdv-next';
 
 import { useVbenForm } from '#/adapter/form';
 
@@ -239,6 +236,7 @@ function goDoc() {
   window.open('https://atomiks.github.io/tippyjs/v6/all-props/');
 }
 </script>
+
 <template>
   <Page title="Tippy">
     <template #description>
@@ -247,15 +245,27 @@ function goDoc() {
           Tippy
           是一个轻量级的提示工具库，它可以用来创建各种交互式提示，如工具提示、引导提示等。
         </p>
-        <Button type="link" size="small" @click="goDoc">查看文档</Button>
+        <Button
+          type="link"
+          size="small"
+          @click="goDoc"
+        >
+          查看文档
+        </Button>
       </div>
     </template>
     <Card title="指令形式使用">
       <p class="mb-4">
         指令形式使用比较简洁，直接在需要展示tooltip的组件上用v-tippy传递配置，适用于固定内容的工具提示。
       </p>
-      <Flex warp="warp" gap="20" align="center">
-        <Button v-tippy="'这是一个提示，使用了默认的配置'">默认配置</Button>
+      <Flex
+        warp="warp"
+        gap="20"
+        align="center"
+      >
+        <Button v-tippy="'这是一个提示，使用了默认的配置'">
+          默认配置
+        </Button>
 
         <Button
           v-tippy="{ theme: 'light', content: '这是一个提示，总是light主题' }"
@@ -281,7 +291,10 @@ function goDoc() {
         </Button>
       </Flex>
     </Card>
-    <Card title="组件形式使用" class="mt-4">
+    <Card
+      title="组件形式使用"
+      class="mt-4"
+    >
       <div class="flex w-full justify-center">
         <Tippy v-bind="tippyProps">
           <Button>鼠标移到这个组件上来体验效果</Button>
@@ -294,7 +307,13 @@ function goDoc() {
           class="cursor-default text-secondary-foreground hover:text-secondary-foreground"
         >
           更多配置请
-          <Button type="link" size="small" @click="goDoc">查看文档</Button>
+          <Button
+            type="link"
+            size="small"
+            @click="goDoc"
+          >
+            查看文档
+          </Button>
           ，这里只列出了一些常用的配置
         </p>
       </template>

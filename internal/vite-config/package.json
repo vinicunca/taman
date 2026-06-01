@@ -28,6 +28,7 @@
     "get-port": "catalog:",
     "html-minifier-terser": "catalog:",
     "nitropack": "catalog:",
+    "pohon-ui": "catalog:",
     "vite-plugin-pwa": "catalog:",
     "vite-plugin-vue-devtools": "catalog:"
   },

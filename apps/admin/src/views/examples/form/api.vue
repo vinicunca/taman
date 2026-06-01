@@ -1,9 +1,6 @@
 <script lang="ts" setup>
+import { Page } from '@taman/common-ui';
 import { ref } from 'vue';
-
-import { Page } from '@vben/common-ui';
-
-import { Button, Card, message, Space } from 'antdv-next';
 
 import { useVbenForm } from '#/adapter/form';
 
@@ -111,7 +108,7 @@ function handleClick(
               placeholder: '请输入',
             },
             fieldName: `field${i}${Date.now()}`,
-            label: `field+`,
+            label: 'field+',
           });
         }
         return {
@@ -240,32 +237,65 @@ function handleClick(
 </script>
 
 <template>
-  <Page description="表单组件api操作示例。" title="表单组件">
+  <Page
+    description="表单组件api操作示例。"
+    title="表单组件"
+  >
     <Space class="mb-5 flex-wrap">
-      <Button @click="handleClick('updateSchema')">updateSchema</Button>
-      <Button @click="handleClick('labelWidth')">更改labelWidth</Button>
-      <Button @click="handleClick('resetLabelWidth')">还原labelWidth</Button>
-      <Button @click="handleClick('disabled')">禁用表单</Button>
-      <Button @click="handleClick('resetDisabled')">解除禁用</Button>
+      <Button @click="handleClick('updateSchema')">
+        updateSchema
+      </Button>
+      <Button @click="handleClick('labelWidth')">
+        更改labelWidth
+      </Button>
+      <Button @click="handleClick('resetLabelWidth')">
+        还原labelWidth
+      </Button>
+      <Button @click="handleClick('disabled')">
+        禁用表单
+      </Button>
+      <Button @click="handleClick('resetDisabled')">
+        解除禁用
+      </Button>
       <Button @click="handleClick('reverseActionButtons')">
         翻转操作按钮位置
       </Button>
-      <Button @click="handleClick('hiddenAction')">隐藏操作按钮</Button>
-      <Button @click="handleClick('showAction')">显示操作按钮</Button>
-      <Button @click="handleClick('hiddenResetButton')">隐藏重置按钮</Button>
-      <Button @click="handleClick('showResetButton')">显示重置按钮</Button>
-      <Button @click="handleClick('hiddenSubmitButton')">隐藏提交按钮</Button>
-      <Button @click="handleClick('showSubmitButton')">显示提交按钮</Button>
-      <Button @click="handleClick('updateResetButton')">修改重置按钮</Button>
-      <Button @click="handleClick('updateSubmitButton')">修改提交按钮</Button>
+      <Button @click="handleClick('hiddenAction')">
+        隐藏操作按钮
+      </Button>
+      <Button @click="handleClick('showAction')">
+        显示操作按钮
+      </Button>
+      <Button @click="handleClick('hiddenResetButton')">
+        隐藏重置按钮
+      </Button>
+      <Button @click="handleClick('showResetButton')">
+        显示重置按钮
+      </Button>
+      <Button @click="handleClick('hiddenSubmitButton')">
+        隐藏提交按钮
+      </Button>
+      <Button @click="handleClick('showSubmitButton')">
+        显示提交按钮
+      </Button>
+      <Button @click="handleClick('updateResetButton')">
+        修改重置按钮
+      </Button>
+      <Button @click="handleClick('updateSubmitButton')">
+        修改提交按钮
+      </Button>
       <Button @click="handleClick('updateActionAlign')">
         调整操作按钮位置
       </Button>
-      <Button @click="handleClick('batchAddSchema')"> 批量添加表单项 </Button>
+      <Button @click="handleClick('batchAddSchema')">
+        批量添加表单项
+      </Button>
       <Button @click="handleClick('batchDeleteSchema')">
         批量删除表单项
       </Button>
-      <Button @click="handleClick('componentRef')">下拉组件获取焦点</Button>
+      <Button @click="handleClick('componentRef')">
+        下拉组件获取焦点
+      </Button>
     </Space>
     <Card title="操作示例">
       <BaseForm />

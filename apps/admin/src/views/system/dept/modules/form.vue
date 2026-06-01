@@ -3,9 +3,9 @@ import type { SystemDeptApi } from '#/api/system/dept';
 
 import { computed, ref } from 'vue';
 
-import { useVbenModal } from '@vben/common-ui';
+import { useVbenModal } from '@taman/common-ui';
 
-import { Button } from 'antdv-next';
+ 
 
 import { useVbenForm } from '#/adapter/form';
 import { createDept, updateDept } from '#/api/system/dept';

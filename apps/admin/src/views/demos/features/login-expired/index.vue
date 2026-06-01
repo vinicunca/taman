@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import type { LoginExpiredModeType } from '@vben/types';
+import type { LoginExpiredModeType } from '@taman/types';
 
-import { Page } from '@vben/common-ui';
-import { preferences, updatePreferences } from '@vben/preferences';
+import { Page } from '@taman/common-ui';
+import { preferences, updatePreferences } from '@taman/preferences';
 
-import { Button, Card } from 'antdv-next';
+ 
 
 import { getMockStatusApi } from '#/api';
 

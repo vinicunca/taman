@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { Page } from '@vben/common-ui';
-import { useWatermark } from '@vben/hooks';
+import { Page } from '@taman/common-ui';
+import { useWatermark } from '@taman/composables';
 
-import { Button, Card } from 'antdv-next';
+ 
 
 const { destroyWatermark, updateWatermark, watermark } = useWatermark();
 

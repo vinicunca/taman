@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-import { useVbenDrawer } from '@vben/common-ui';
+import { useVbenDrawer } from '@taman/common-ui';
 
-import { Button, message } from 'antdv-next';
+ 
 
 const list = ref<number[]>([]);
 

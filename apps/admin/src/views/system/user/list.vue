@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Recordable } from '@vben/types';
+import type { Recordable } from '@taman/types';
 
 import type {
   OnActionClickParams,
@@ -7,12 +7,9 @@ import type {
 } from '#/adapter/vxe-table';
 import type { SystemDeptApi, SystemUserApi } from '#/api';
 
+import { Page, Tree, useVbenDrawer } from '@taman/common-ui';
+import { Plus } from '@taman/icons';
 import { onMounted, ref, watch } from 'vue';
-
-import { Page, Tree, useVbenDrawer } from '@vben/common-ui';
-import { Plus } from '@vben/icons';
-
-import { Button, Card, InputSearch, message, Modal } from 'antdv-next';
 
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
 import { deleteUser, getDeptList, getUserList, updateUser } from '#/api';
@@ -21,7 +18,7 @@ import { $t } from '#/locales';
 import { useColumns, useGridFormSchema } from './data';
 import Form from './modules/form.vue';
 
-const deptList = ref<SystemDeptApi.SystemDept[]>([]);
+const deptList = ref<Array<SystemDeptApi.SystemDept>>([]);
 const inputSearchValue = ref('');
 const selectedDeptId = ref<string>('');
 
@@ -116,7 +113,7 @@ async function onStatusChange(
   try {
     await confirm(
       `你要将${row.name}的状态切换为 【${status[newStatus.toString()]}】 吗？`,
-      `切换状态`,
+      '切换状态',
     );
     await updateUser(row.id, { status: newStatus });
     return true;
@@ -189,6 +186,7 @@ watch(inputSearchValue, (value) => {
   searchDept(value);
 });
 </script>
+
 <template>
   <Page auto-content-height>
     <FormDrawer @success="onRefresh" />
@@ -210,7 +208,10 @@ watch(inputSearchValue, (value) => {
       <div class="w-5/6 ml-4">
         <Grid :table-title="$t('system.user.list')">
           <template #toolbar-tools>
-            <Button type="primary" @click="onCreate">
+            <Button
+              type="primary"
+              @click="onCreate"
+            >
               <Plus class="size-5" />
               {{ $t('ui.actionTitle.create', [$t('system.user.name')]) }}
             </Button>

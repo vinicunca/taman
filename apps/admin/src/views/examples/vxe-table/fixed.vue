@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { VxeGridProps } from '#/adapter/vxe-table';
 
-import { Page } from '@vben/common-ui';
+import { Page } from '@taman/common-ui';
 
-import { Button } from 'antdv-next';
+ 
 
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
 import { getExampleTableApi } from '#/api';

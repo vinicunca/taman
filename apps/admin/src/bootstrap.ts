@@ -3,9 +3,10 @@ import { registerLoadingDirective } from '@taman/common-ui';
 import { preferences } from '@taman/preferences';
 import { initStores } from '@taman/stores';
 import { useTitle } from '@vueuse/core';
+import pohon from 'pohon-ui/vue-plugin';
 import { createApp, watchEffect } from 'vue';
-import { $t, setupI18n } from '~~/locales';
-import { router } from '~~/router';
+import { $t, setupI18n } from '#/locales';
+import { router } from '#/router';
 
 import App from './app.vue';
 
@@ -35,7 +36,7 @@ async function bootstrap(namespace: string) {
   // app.use(VueQueryPlugin);
 
   // Configure Motion plugin
-  // const { MotionPlugin } = await import('@vben/plugins/motion');
+  // const { MotionPlugin } = await import('@taman/plugins/motion');
   // app.use(MotionPlugin);
 
   // Dynamic update title
@@ -47,6 +48,9 @@ async function bootstrap(namespace: string) {
       useTitle(pageTitle);
     }
   });
+
+  // Install pohon-ui
+  app.use(pohon);
 
   app.mount('#app');
 }

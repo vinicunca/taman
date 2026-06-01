@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { Fallback } from '@vben/common-ui';
+import { TamanFallback } from '@taman/common-ui';
 
 defineOptions({ name: 'FallbackOfflineDemo' });
 </script>
 
 <template>
-  <Fallback status="offline" />
+  <TamanFallback status="offline" />
 </template>

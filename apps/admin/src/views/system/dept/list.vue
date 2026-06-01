@@ -5,10 +5,10 @@ import type {
 } from '#/adapter/vxe-table';
 import type { SystemDeptApi } from '#/api/system/dept';
 
-import { Page, useVbenModal } from '@vben/common-ui';
-import { Plus } from '@vben/icons';
+import { Page, useVbenModal } from '@taman/common-ui';
+import { Plus } from '@taman/icons';
 
-import { Button, message } from 'antdv-next';
+ 
 
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
 import { deleteDept, getDeptList } from '#/api/system/dept';

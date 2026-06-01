@@ -1,0 +1,22 @@
+{
+  "name": "@taman/composables",
+  "type": "module",
+  "version": "1.0.0",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "dependencies": {
+    "@taman-core/composables": "workspace:*",
+    "@taman/preferences": "workspace:*",
+    "@taman/stores": "workspace:*",
+    "@taman/types": "workspace:*",
+    "@taman/utils": "workspace:*",
+    "@vueuse/core": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:",
+    "watermark-js-plus": "catalog:"
+  }
+}

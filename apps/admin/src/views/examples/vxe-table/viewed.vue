@@ -1,12 +1,9 @@
 <script lang="ts" setup>
 import type { OnActionClickParams, VxeGridProps } from '#/adapter/vxe-table';
 
+import { Page, useVbenModal } from '@taman/common-ui';
+import { $t } from '@taman/locales';
 import { ref } from 'vue';
-
-import { Page, useVbenModal } from '@vben/common-ui';
-import { $t } from '@vben/locales';
-
-import { Button, message } from 'antdv-next';
 
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
 import { getExampleTableApi } from '#/api';
@@ -190,19 +187,44 @@ function onClearViewed() {
     clearViewedRows()/getViewedKeys()/isRowViewed()/markKeysAsViewed()/markRowAsViewed()/removeViewedKeys()"
     title="表格行标记示例"
   >
-    <Modal class="w-150" title="数据修改"> 数据修改完成后设置行标记</Modal>
-    <Grid table-title="已查看行标记" table-title-help="提示">
+    <Modal
+      class="w-150"
+      title="数据修改"
+    >
+      数据修改完成后设置行标记
+    </Modal>
+    <Grid
+      table-title="已查看行标记"
+      table-title-help="提示"
+    >
       <template #toolbar-tools>
-        <Button class="mr-2" type="primary" @click="onCustomSet">
+        <Button
+          class="mr-2"
+          type="primary"
+          @click="onCustomSet"
+        >
           手动标记
         </Button>
-        <Button class="mr-2" type="primary" @click="onStyleSet">
+        <Button
+          class="mr-2"
+          type="primary"
+          @click="onStyleSet"
+        >
           设置Style
         </Button>
-        <Button class="mr-2" type="primary" @click="onClassNameSet">
+        <Button
+          class="mr-2"
+          type="primary"
+          @click="onClassNameSet"
+        >
           设置ClassName
         </Button>
-        <Button type="primary" @click="onClearViewed"> 清空缓存</Button>
+        <Button
+          type="primary"
+          @click="onClearViewed"
+        >
+          清空缓存
+        </Button>
       </template>
     </Grid>
   </Page>

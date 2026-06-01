@@ -1,9 +1,6 @@
 <script lang="ts" setup>
+import { Page } from '@taman/common-ui';
 import { ref } from 'vue';
-
-import { Page } from '@vben/common-ui';
-
-import { Button, Card, Switch } from 'antdv-next';
 
 import { useVbenForm } from '#/adapter/form';
 
@@ -142,7 +139,9 @@ async function fillPartialData() {
 
       <div class="space-y-4">
         <div class="rounded-sm bg-blue-50 p-4">
-          <h3 class="mb-2 font-medium">测试说明：</h3>
+          <h3 class="mb-2 font-medium">
+            测试说明：
+          </h3>
           <ul class="list-inside list-disc space-y-1 text-sm">
             <li>所有验证方法在验证失败时都会自动滚动到第一个错误字段</li>
             <li>可以通过右上角的开关控制是否启用自动滚动功能</li>
@@ -150,13 +149,22 @@ async function fillPartialData() {
         </div>
 
         <div class="rounded-sm border p-4">
-          <h4 class="mb-3 font-medium">验证方法测试：</h4>
+          <h4 class="mb-3 font-medium">
+            验证方法测试：
+          </h4>
           <div class="flex flex-wrap gap-2">
-            <Button type="primary" @click="testValidateAndSubmit">
+            <Button
+              type="primary"
+              @click="testValidateAndSubmit"
+            >
               测试 validateAndSubmitForm()
             </Button>
-            <Button @click="testValidate"> 测试 validate() </Button>
-            <Button @click="testValidateField"> 测试 validateField() </Button>
+            <Button @click="testValidate">
+              测试 validate()
+            </Button>
+            <Button @click="testValidateField">
+              测试 validateField()
+            </Button>
           </div>
           <div class="mt-2 text-xs text-gray-500">
             <p>• validateAndSubmitForm(): 验证表单并提交</p>
@@ -166,10 +174,16 @@ async function fillPartialData() {
         </div>
 
         <div class="rounded-sm border p-4">
-          <h4 class="mb-3 font-medium">数据填充测试：</h4>
+          <h4 class="mb-3 font-medium">
+            数据填充测试：
+          </h4>
           <div class="flex flex-wrap gap-2">
-            <Button @click="fillPartialData"> 填充部分数据 </Button>
-            <Button @click="() => formApi.resetForm()"> 清空表单 </Button>
+            <Button @click="fillPartialData">
+              填充部分数据
+            </Button>
+            <Button @click="() => formApi.resetForm()">
+              清空表单
+            </Button>
           </div>
           <div class="mt-2 text-xs text-gray-500">
             <p>• 填充部分数据后验证，会滚动到第一个错误字段</p>

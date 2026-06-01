@@ -9,6 +9,7 @@ import type {
 import viteVueI18nPlugin from '@intlify/unplugin-vue-i18n/vite';
 import viteVue from '@vitejs/plugin-vue';
 import viteVueJsx from '@vitejs/plugin-vue-jsx';
+import vitePohon from 'pohon-ui/vite';
 import { visualizer as viteVisualizerPlugin } from 'rollup-plugin-visualizer';
 import viteUnoCss from 'unocss/vite';
 import viteDtsPlugin from 'unplugin-dts/vite';
@@ -24,7 +25,6 @@ import { viteMetadataPlugin } from './inject-metadata';
 import { viteLicensePlugin } from './license';
 import { viteNitroMockPlugin } from './nitro-mock';
 import { vitePrintPlugin } from './print';
-
 /**
  * Get the vite plugins that meet the conditions
  * @param conditionPlugins
@@ -59,6 +59,7 @@ async function loadCommonPlugins(
         }),
         viteVueJsx(),
         viteUnoCss(),
+        vitePohon(),
       ],
     },
 

@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { Page } from '@vben/common-ui';
-
+import { Page } from '@taman/common-ui';
 import { refAutoReset } from '@vueuse/core';
-import { Button, Card, Empty } from 'antdv-next';
 
 import ConcurrencyCaching from './concurrency-caching.vue';
 import InfiniteQueries from './infinite-queries.vue';
@@ -25,15 +23,20 @@ const showCaching = refAutoReset(true, 1000);
         <QueryRetries />
       </Card>
       <Card
-        title="并发和缓存"
         v-spinning="!showCaching"
+        title="并发和缓存"
         :styles="{ body: { minHeight: '330px' } }"
       >
         <template #extra>
-          <Button @click="showCaching = false">重新加载</Button>
+          <Button @click="showCaching = false">
+            重新加载
+          </Button>
         </template>
         <ConcurrencyCaching v-if="showCaching" />
-        <Empty v-else description="正在加载..." />
+        <Empty
+          v-else
+          description="正在加载..."
+        />
       </Card>
     </div>
   </Page>

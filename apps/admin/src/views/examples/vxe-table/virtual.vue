@@ -3,7 +3,7 @@ import type { VxeGridProps } from '#/adapter/vxe-table';
 
 import { onMounted } from 'vue';
 
-import { Page } from '@vben/common-ui';
+import { Page } from '@taman/common-ui';
 
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
 

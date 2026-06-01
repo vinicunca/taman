@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-import { useVbenModal } from '@vben/common-ui';
-
-import { message } from 'antdv-next';
+import { useVbenModal } from '@taman/common-ui';
 
 import { useVbenForm } from '#/adapter/form';
 
@@ -84,6 +82,7 @@ function onSubmit(values: Record<string, any>) {
   }, 3000);
 }
 </script>
+
 <template>
   <Modal>
     <Form />

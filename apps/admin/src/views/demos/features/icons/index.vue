@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-import { h, ref } from 'vue';
-
-import { IconPicker, Page } from '@vben/common-ui';
+import { IconPicker, Page } from '@taman/common-ui';
 import {
   MdiKeyboardEsc,
   SvgAvatar1Icon,
@@ -16,9 +14,8 @@ import {
   SvgGoogleIcon,
   SvgQQChatIcon,
   SvgWeChatIcon,
-} from '@vben/icons';
-
-import { Card, Input } from 'antdv-next';
+} from '@taman/icons';
+import { h, ref } from 'vue';
 
 const iconValue1 = ref('ant-design:trademark-outlined');
 const iconValue2 = ref('svg:avatar-1');
@@ -44,7 +41,10 @@ const inputComponent = h(Input);
       </div>
     </template>
 
-    <Card class="mb-5" title="Iconify">
+    <Card
+      class="mb-5"
+      title="Iconify"
+    >
       <div class="flex items-center gap-5">
         <SvgGithubIcon class="size-8" />
         <SvgGoogleIcon class="size-8" />
@@ -54,7 +54,10 @@ const inputComponent = h(Input);
       </div>
     </Card>
 
-    <Card class="mb-5" title="Svg Icons">
+    <Card
+      class="mb-5"
+      title="Svg Icons"
+    >
       <div class="flex items-center gap-5">
         <SvgAvatar1Icon class="size-8" />
         <SvgAvatar2Icon class="size-8 text-red-500" />
@@ -67,31 +70,44 @@ const inputComponent = h(Input);
       </div>
     </Card>
 
-    <Card class="mb-5" title="Tailwind CSS">
+    <Card
+      class="mb-5"
+      title="Tailwind CSS"
+    >
       <div class="flex items-center gap-5 text-3xl">
-        <span class="icon-[ant-design--alipay-circle-outlined]"></span>
-        <span class="icon-[ant-design--account-book-filled]"></span>
-        <span class="icon-[ant-design--container-outlined]"></span>
-        <span class="icon-[svg-spinners--wind-toy]"></span>
-        <span class="icon-[svg-spinners--blocks-wave]"></span>
-        <span class="icon-[line-md--compass-filled-loop]"></span>
+        <span class="icon-[ant-design--alipay-circle-outlined]" />
+        <span class="icon-[ant-design--account-book-filled]" />
+        <span class="icon-[ant-design--container-outlined]" />
+        <span class="icon-[svg-spinners--wind-toy]" />
+        <span class="icon-[svg-spinners--blocks-wave]" />
+        <span class="icon-[line-md--compass-filled-loop]" />
       </div>
     </Card>
 
-    <Card class="mb-5" title="图标选择器">
+    <Card
+      class="mb-5"
+      title="图标选择器"
+    >
       <div class="mb-5 flex items-center gap-5">
         <span>原始样式(Iconify):</span>
-        <IconPicker v-model="iconValue1" class="w-50" />
+        <IconPicker
+          v-model="iconValue1"
+          class="w-50"
+        />
       </div>
       <div class="mb-5 flex items-center gap-5">
         <span>原始样式(svg):</span>
-        <IconPicker v-model="iconValue2" class="w-50" prefix="svg" />
+        <IconPicker
+          v-model="iconValue2"
+          class="w-50"
+          prefix="svg"
+        />
       </div>
       <div class="mb-5 flex items-center gap-5">
         <span>自定义Input:</span>
         <IconPicker
-          :input-component="inputComponent"
           v-model="iconValue3"
+          :input-component="inputComponent"
           icon-slot="addonAfter"
           model-value-prop="value"
           prefix="mdi"
@@ -106,7 +122,11 @@ const inputComponent = h(Input);
           class="w-75"
         >
           <template #addonAfter>
-            <IconPicker v-model="iconValue4" prefix="mdi-light" type="icon" />
+            <IconPicker
+              v-model="iconValue4"
+              prefix="mdi-light"
+              type="icon"
+            />
           </template>
         </Input>
       </div>

@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import { Page } from '@vben/common-ui';
-
-import { Button, Card, message } from 'antdv-next';
+import { Page } from '@taman/common-ui';
+import { ref } from 'vue';
 
 import { useVbenForm, z } from '#/adapter/form';
 
@@ -231,11 +230,19 @@ function onSubmit(values: Record<string, any>) {
 </script>
 
 <template>
-  <Page description="表单校验示例" title="表单组件">
+  <Page
+    description="表单校验示例"
+    title="表单组件"
+  >
     <Card title="基础组件校验示例">
       <template #extra>
-        <Button @click="() => formApi.validate()">校验表单</Button>
-        <Button class="mx-2" @click="() => formApi.resetValidate()">
+        <Button @click="() => formApi.validate()">
+          校验表单
+        </Button>
+        <Button
+          class="mx-2"
+          @click="() => formApi.resetValidate()"
+        >
           清空校验信息
         </Button>
       </template>

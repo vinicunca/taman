@@ -1,13 +1,12 @@
 import type { RouteRecordRaw } from 'vue-router';
 
-import { LOGIN_PATH } from '@vben/constants';
-import { preferences } from '@vben/preferences';
+import { preferences } from '@taman/preferences';
 
 import { $t } from '#/locales';
 
-const BasicLayout = () => import('#/layouts/basic.vue');
-const AuthPageLayout = () => import('#/layouts/auth.vue');
-/** 全局404页面 */
+const LayoutCore = () => import('#/layouts/core.vue');
+const LayoutAuth = () => import('#/layouts/auth.vue');
+/** Global 404 page */
 const fallbackNotFoundRoute: RouteRecordRaw = {
   component: () => import('#/views/_core/fallback/not-found.vue'),
   meta: {
@@ -20,15 +19,15 @@ const fallbackNotFoundRoute: RouteRecordRaw = {
   path: '/:path(.*)*',
 };
 
-/** 基本路由，这些路由是必须存在的 */
-const coreRoutes: RouteRecordRaw[] = [
+/** Basic routes, these routes must exist */
+const coreRoutes: Array<RouteRecordRaw> = [
   /**
-   * 根路由
-   * 使用基础布局，作为所有页面的父级容器，子级就不必配置BasicLayout。
-   * 此路由必须存在，且不应修改
+   * Root route
+   * Use basic layout, as the parent container of all pages, the child does not need to configure BasicLayout.
+   * This route must exist and should not be modified
    */
   {
-    component: BasicLayout,
+    component: LayoutCore,
     meta: {
       hideInBreadcrumb: true,
       title: 'Root',
@@ -39,14 +38,14 @@ const coreRoutes: RouteRecordRaw[] = [
     children: [],
   },
   {
-    component: AuthPageLayout,
+    component: LayoutAuth,
     meta: {
       hideInTab: true,
       title: 'Authentication',
     },
     name: 'Authentication',
     path: '/auth',
-    redirect: LOGIN_PATH,
+    redirect: '/auth/login',
     children: [
       {
         name: 'Login',

@@ -1,9 +1,6 @@
 <script lang="ts" setup>
+import { useVbenDrawer } from '@taman/common-ui';
 import { ref } from 'vue';
-
-import { useVbenDrawer } from '@vben/common-ui';
-
-import { Input, message } from 'antdv-next';
 
 import { useVbenForm } from '#/adapter/form';
 
@@ -35,9 +32,16 @@ const [Drawer, drawerApi] = useVbenDrawer({
   },
 });
 </script>
+
 <template>
-  <Drawer append-to-main title="基础抽屉示例" title-tooltip="标题提示内容">
-    <template #extra> extra </template>
+  <Drawer
+    append-to-main
+    title="基础抽屉示例"
+    title-tooltip="标题提示内容"
+  >
+    <template #extra>
+      extra
+    </template>
     此弹窗指定在内容区域打开，并且在关闭之后弹窗内容不会被销毁
     <Input
       v-model:value="value"

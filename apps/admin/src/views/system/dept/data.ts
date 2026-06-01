@@ -1,4 +1,4 @@
-import type { VxeTableGridColumns } from '@vben/plugins/vxe-table';
+import type { VxeTableGridColumns } from '@taman/plugins/vxe-table';
 
 import type { VbenFormSchema } from '#/adapter/form';
 import type { OnActionClickFn } from '#/adapter/vxe-table';

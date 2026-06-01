@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import type { Recordable } from '@vben/types';
+import type { Recordable } from '@taman/types';
 
 import type { VbenFormSchema } from '#/adapter/form';
 
 import { computed, h, ref } from 'vue';
 
-import { useVbenDrawer } from '@vben/common-ui';
-import { IconifyIcon } from '@vben/icons';
-import { $te } from '@vben/locales';
-import { getPopupContainer } from '@vben/utils';
+import { useVbenDrawer } from '@taman/common-ui';
+import { IconifyIcon } from '@taman/icons';
+import { $te } from '@taman/locales';
+import { getPopupContainer } from '@taman/utils';
 
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 

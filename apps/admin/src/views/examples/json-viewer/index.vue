@@ -1,9 +1,7 @@
 <script lang="ts" setup>
-import type { JsonViewerAction, JsonViewerValue } from '@vben/common-ui';
+import type { JsonViewerAction, JsonViewerValue } from '@taman/common-ui';
 
-import { JsonViewer, Page } from '@vben/common-ui';
-
-import { Card, message } from 'antdv-next';
+import { JsonViewer, Page } from '@taman/common-ui';
 
 import { json1, json2 } from './data';
 
@@ -19,6 +17,7 @@ function handleCopied(_event: JsonViewerAction) {
   message.success('已复制JSON');
 }
 </script>
+
 <template>
   <Page
     title="Json Viewer"
@@ -27,19 +26,25 @@ function handleCopied(_event: JsonViewerAction) {
     <Card title="默认配置">
       <JsonViewer :value="json1" />
     </Card>
-    <Card title="可复制、默认展开3层、显示边框、事件处理" class="mt-4">
+    <Card
+      title="可复制、默认展开3层、显示边框、事件处理"
+      class="mt-4"
+    >
       <JsonViewer
         :value="json2"
         :expand-depth="3"
         copyable
         :sort="false"
+        boxed
         @key-click="handleKeyClick"
         @value-click="handleValueClick"
         @copied="handleCopied"
-        boxed
       />
     </Card>
-    <Card title="预览模式" class="mt-4">
+    <Card
+      title="预览模式"
+      class="mt-4"
+    >
       <JsonViewer
         :value="json2"
         copyable

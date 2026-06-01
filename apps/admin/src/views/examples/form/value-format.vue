@@ -1,10 +1,6 @@
 <script lang="ts" setup>
+import { Page } from '@taman/common-ui';
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
-
-import { Page } from '@vben/common-ui';
-
-import { Button, Card, message, Space, Tag } from 'antdv-next';
-import dayjs from 'dayjs';
 
 import { useVbenForm } from '#/adapter/form';
 
@@ -123,9 +119,15 @@ onMounted(async () => {
           提交时会按 <code>schema.valueFormat</code> 输出转换后的 payload。
         </p>
         <div class="flex flex-wrap gap-2">
-          <Tag color="processing">return 值：回写当前字段</Tag>
-          <Tag color="success">setValue：拆分写入其他字段</Tag>
-          <Tag color="warning">return undefined：保持原字段删除</Tag>
+          <Tag color="processing">
+            return 值：回写当前字段
+          </Tag>
+          <Tag color="success">
+            setValue：拆分写入其他字段
+          </Tag>
+          <Tag color="warning">
+            return undefined：保持原字段删除
+          </Tag>
         </div>
       </div>
     </template>
@@ -136,8 +138,13 @@ onMounted(async () => {
     <Card title="valueFormat 示例">
       <template #extra>
         <Space wrap>
-          <Button @click="handleSetExampleValue">填充示例数据</Button>
-          <Button type="primary" @click="handleInspectValues">
+          <Button @click="handleSetExampleValue">
+            填充示例数据
+          </Button>
+          <Button
+            type="primary"
+            @click="handleInspectValues"
+          >
             查看 getValues 输出
           </Button>
         </Space>

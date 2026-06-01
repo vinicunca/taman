@@ -1,11 +1,6 @@
 <script lang="ts" setup>
-import type { StepItem } from 'antdv-next';
-
+import { Page } from '@taman/common-ui';
 import { ref } from 'vue';
-
-import { Page } from '@vben/common-ui';
-
-import { Button, Card, message, Steps, Switch } from 'antdv-next';
 
 import { useVbenForm } from '#/adapter/form';
 
@@ -77,7 +72,7 @@ const [SecondForm, secondFormApi] = useVbenForm({
   ],
   wrapperClass: 'grid-cols-1 md:grid-cols-1 lg:grid-cols-1',
 });
-const stepsItems: StepItem[] = [{ title: '表单1' }, { title: '表单2' }];
+const stepsItems: Array<StepItem> = [{ title: '表单1' }, { title: '表单2' }];
 const needMerge = ref(true);
 async function handleMergeSubmit() {
   const values = await firstFormApi
@@ -102,10 +97,19 @@ async function handleMergeSubmit() {
           class="mr-4"
           un-checked-children="关闭字段合并"
         />
-        <Button type="primary" @click="handleMergeSubmit">合并提交</Button>
+        <Button
+          type="primary"
+          @click="handleMergeSubmit"
+        >
+          合并提交
+        </Button>
       </template>
       <div class="mx-auto max-w-lg">
-        <Steps :current="currentTab" :items="stepsItems" class="steps" />
+        <Steps
+          :current="currentTab"
+          :items="stepsItems"
+          class="steps"
+        />
         <div class="p-20">
           <FirstForm v-show="currentTab === 0" />
           <SecondForm v-show="currentTab === 1" />

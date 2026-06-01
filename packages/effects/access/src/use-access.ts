@@ -1,11 +1,11 @@
 import { TAMAN_ACCESS_MODE_TYPE } from '@taman-core/typings';
 import { preferences, updatePreferences } from '@taman/preferences';
-import { useAccessStore, useUserStore } from '@taman/stores';
+import { useAccessStore } from '@taman/stores';
 import { computed } from 'vue';
 
 function useAccess() {
   const accessStore = useAccessStore();
-  const userStore = useUserStore();
+  // const userStore = useUserStore();
   const accessMode = computed(() => {
     return preferences.app.accessMode;
   });

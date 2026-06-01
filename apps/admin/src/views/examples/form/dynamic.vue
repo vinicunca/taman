@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-import { Page } from '@vben/common-ui';
-
-import { Button, Card, message } from 'antdv-next';
+import { Page } from '@taman/common-ui';
 
 import { useVbenForm } from '#/adapter/form';
 
@@ -248,14 +246,29 @@ function handleUpdate() {
   >
     <Card title="表单动态联动示例">
       <template #extra>
-        <Button class="mr-2" @click="handleUpdate">修改字段3</Button>
-        <Button class="mr-2" @click="handleDelete">删除字段7</Button>
-        <Button @click="handleAdd">添加字段</Button>
+        <Button
+          class="mr-2"
+          @click="handleUpdate"
+        >
+          修改字段3
+        </Button>
+        <Button
+          class="mr-2"
+          @click="handleDelete"
+        >
+          删除字段7
+        </Button>
+        <Button @click="handleAdd">
+          添加字段
+        </Button>
       </template>
       <Form />
     </Card>
 
-    <Card class="mt-5" title="字段同步，字段1数据与字段2数据同步">
+    <Card
+      class="mt-5"
+      title="字段同步，字段1数据与字段2数据同步"
+    >
       <SyncForm />
     </Card>
   </Page>

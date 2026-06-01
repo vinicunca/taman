@@ -1,3 +1,5 @@
+import { fileURLToPath } from 'node:url';
+
 import { defineConfig } from '@taman/vite-config';
 
 export default defineConfig(async () => {
@@ -5,6 +7,11 @@ export default defineConfig(async () => {
     application: {},
 
     vite: {
+      resolve: {
+        alias: {
+          '~~': fileURLToPath(new URL('./src', import.meta.url)),
+        },
+      },
       server: {
         proxy: {
           '/api': {

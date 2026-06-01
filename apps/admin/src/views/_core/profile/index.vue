@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import { Profile } from '@vben/common-ui';
-import { useUserStore } from '@vben/stores';
+import { Profile } from '@taman/common-ui';
+import { useUserStore } from '@taman/stores';
 
 import ProfileBase from './base-setting.vue';
 import ProfileNotificationSetting from './notification-setting.vue';

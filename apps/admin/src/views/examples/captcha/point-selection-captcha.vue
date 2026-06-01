@@ -1,21 +1,18 @@
 <script lang="ts" setup>
-import type { CaptchaPoint } from '@vben/common-ui';
+import type { CaptchaPoint } from '@taman/common-ui';
 
+import { Page, PointSelectionCaptcha } from '@taman/common-ui';
 import { reactive, ref } from 'vue';
-
-import { Page, PointSelectionCaptcha } from '@vben/common-ui';
-
-import { Card, Input, InputNumber, message, Switch } from 'antdv-next';
 
 import { $t } from '#/locales';
 
-const DEFAULT_CAPTCHA_IMAGE =
-  'https://unpkg.com/@vbenjs/static-source@0.1.7/source/default-captcha-image.jpeg';
+const DEFAULT_CAPTCHA_IMAGE
+  = 'https://unpkg.com/@vbenjs/static-source@0.1.7/source/default-captcha-image.jpeg';
 
-const DEFAULT_HINT_IMAGE =
-  'https://unpkg.com/@vbenjs/static-source@0.1.7/source/default-hint-image.png';
+const DEFAULT_HINT_IMAGE
+  = 'https://unpkg.com/@vbenjs/static-source@0.1.7/source/default-hint-image.png';
 
-const selectedPoints = ref<CaptchaPoint[]>([]);
+const selectedPoints = ref<Array<CaptchaPoint>>([]);
 const params = reactive({
   captchaImage: '',
   captchaImageUrl: DEFAULT_CAPTCHA_IMAGE,
@@ -30,19 +27,19 @@ const params = reactive({
   title: '',
   width: undefined,
 });
-const handleConfirm = (points: CaptchaPoint[], clear: () => void) => {
+function handleConfirm(points: Array<CaptchaPoint>, clear: () => void) {
   message.success({
     content: `captcha points: ${JSON.stringify(points)}`,
   });
   clear();
   selectedPoints.value = [];
-};
-const handleRefresh = () => {
+}
+function handleRefresh() {
   selectedPoints.value = [];
-};
-const handleClick = (point: CaptchaPoint) => {
+}
+function handleClick(point: CaptchaPoint) {
   selectedPoints.value.push(point);
-};
+}
 </script>
 
 <template>
@@ -50,7 +47,10 @@ const handleClick = (point: CaptchaPoint) => {
     :description="$t('examples.captcha.pageDescription')"
     :title="$t('examples.captcha.pageTitle')"
   >
-    <Card :title="$t('examples.captcha.basic')" class="mb-4 overflow-x-auto">
+    <Card
+      :title="$t('examples.captcha.basic')"
+      class="mb-4 overflow-x-auto"
+    >
       <div class="mb-3 flex items-center justify-start">
         <Input
           v-model:value="params.title"
@@ -98,7 +98,9 @@ const handleClick = (point: CaptchaPoint) => {
             :step="1"
             class="w-64"
           >
-            <template #addonAfter>px</template>
+            <template #addonAfter>
+              px
+            </template>
           </InputNumber>
         </div>
         <div class="ml-8">
@@ -110,7 +112,9 @@ const handleClick = (point: CaptchaPoint) => {
             :step="1"
             class="w-64"
           >
-            <template #addonAfter>px</template>
+            <template #addonAfter>
+              px
+            </template>
           </InputNumber>
         </div>
         <div class="ml-8">
@@ -122,7 +126,9 @@ const handleClick = (point: CaptchaPoint) => {
             :step="1"
             class="w-64"
           >
-            <template #addonAfter>px</template>
+            <template #addonAfter>
+              px
+            </template>
           </InputNumber>
         </div>
         <div class="ml-8">
@@ -134,7 +140,9 @@ const handleClick = (point: CaptchaPoint) => {
             :step="1"
             class="w-64"
           >
-            <template #addonAfter>px</template>
+            <template #addonAfter>
+              px
+            </template>
           </InputNumber>
         </div>
       </div>
@@ -161,7 +169,11 @@ const handleClick = (point: CaptchaPoint) => {
       </PointSelectionCaptcha>
 
       <ol class="float-left p-5">
-        <li v-for="point in selectedPoints" :key="point.i" class="flex">
+        <li
+          v-for="point in selectedPoints"
+          :key="point.i"
+          class="flex"
+        >
           <span class="mr-3 w-16">{{
             $t('examples.captcha.index') + point.i
           }}</span>

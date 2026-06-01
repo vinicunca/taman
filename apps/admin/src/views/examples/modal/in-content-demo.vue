@@ -1,9 +1,6 @@
 <script lang="ts" setup>
+import { useVbenModal } from '@taman/common-ui';
 import { ref } from 'vue';
-
-import { useVbenModal } from '@vben/common-ui';
-
-import { Input, message } from 'antdv-next';
 
 const [Modal, modalApi] = useVbenModal({
   destroyOnClose: false,
@@ -17,6 +14,7 @@ const [Modal, modalApi] = useVbenModal({
 });
 const value = ref();
 </script>
+
 <template>
   <Modal
     append-to-main
@@ -25,6 +23,9 @@ const value = ref();
     title-tooltip="标题提示内容"
   >
     此弹窗指定在内容区域打开，并且在关闭之后弹窗内容不会被销毁
-    <Input v-model:value="value" placeholder="KeepAlive测试" />
+    <Input
+      v-model:value="value"
+      placeholder="KeepAlive测试"
+    />
   </Modal>
 </template>

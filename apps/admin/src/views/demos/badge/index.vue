@@ -1,13 +1,8 @@
 <script lang="ts" setup>
+import { Page } from '@taman/common-ui';
+import { useAccessStore } from '@taman/stores';
 import { reactive } from 'vue';
 import { useRoute } from 'vue-router';
-
-import { Page } from '@vben/common-ui';
-import { useAccessStore } from '@vben/stores';
-
-import { MenuBadge } from '@vben-core/menu-ui';
-
-import { Button, Card, Radio, RadioGroup } from 'antdv-next';
 
 import { useVbenForm } from '#/adapter/form';
 
@@ -109,7 +104,12 @@ function updateMenuBadge() {
           </RadioGroup>
         </template>
         <template #action>
-          <Button type="primary" @click="updateMenuBadge">更新徽标</Button>
+          <Button
+            type="primary"
+            @click="updateMenuBadge"
+          >
+            更新徽标
+          </Button>
         </template>
       </Form>
     </Card>

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-import { useVbenDrawer } from '@vben/common-ui';
+import { useVbenDrawer } from '@taman/common-ui';
 
-import { message } from 'antdv-next';
+ 
 
 const data = ref();
 

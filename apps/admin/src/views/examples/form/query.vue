@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-import { Page } from '@vben/common-ui';
-
-import { Card, message } from 'antdv-next';
+import { Page } from '@taman/common-ui';
 
 import { useVbenForm } from '#/adapter/form';
 
@@ -257,15 +255,24 @@ function onSubmit(values: Record<string, any>) {
     description="查询表单，常用语和表格组合使用，可进行收缩展开。"
     title="表单组件"
   >
-    <Card class="mb-5" title="查询表单，默认展开">
+    <Card
+      class="mb-5"
+      title="查询表单，默认展开"
+    >
       <QueryForm />
     </Card>
 
-    <Card class="mb-5" title="查询表单，单行表单">
+    <Card
+      class="mb-5"
+      title="查询表单，单行表单"
+    >
       <InlineForm />
     </Card>
 
-    <Card class="mb-5" title="查询表单，默认展开，垂直布局">
+    <Card
+      class="mb-5"
+      title="查询表单，默认展开，垂直布局"
+    >
       <QueryForm2 />
     </Card>
 

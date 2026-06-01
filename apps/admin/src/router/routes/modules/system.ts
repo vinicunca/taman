@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router';
 
-import { $t } from '~~/locales';
+import { $t } from '#/locales';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -19,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
           icon: 'mdi:user',
           title: $t('system.user.title'),
         },
-        component: () => import('~~/views/system/user/list.vue'),
+        component: () => import('#/views/system/user/list.vue'),
       },
       {
         path: '/system/role',
@@ -28,7 +28,7 @@ const routes: Array<RouteRecordRaw> = [
           icon: 'mdi:account-group',
           title: $t('system.role.title'),
         },
-        component: () => import('~~/views/system/role/list.vue'),
+        component: () => import('#/views/system/role/list.vue'),
       },
       {
         path: '/system/menu',
@@ -37,7 +37,7 @@ const routes: Array<RouteRecordRaw> = [
           icon: 'mdi:menu',
           title: $t('system.menu.title'),
         },
-        component: () => import('~~/views/system/menu/list.vue'),
+        component: () => import('#/views/system/menu/list.vue'),
       },
       {
         path: '/system/dept',
@@ -46,7 +46,7 @@ const routes: Array<RouteRecordRaw> = [
           icon: 'charm:organisation',
           title: $t('system.dept.title'),
         },
-        component: () => import('~~/views/system/dept/list.vue'),
+        component: () => import('#/views/system/dept/list.vue'),
       },
     ],
   },

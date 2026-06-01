@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useVbenDrawer } from '@vben/common-ui';
+import { useVbenDrawer } from '@taman/common-ui';
 
 import { useVbenForm } from '#/adapter/form';
 

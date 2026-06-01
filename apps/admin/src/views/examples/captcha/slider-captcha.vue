@@ -2,14 +2,14 @@
 import type {
   CaptchaVerifyPassingData,
   SliderCaptchaActionType,
-} from '@vben/common-ui';
+} from '@taman/common-ui';
 
 import { ref } from 'vue';
 
-import { Page, SliderCaptcha } from '@vben/common-ui';
-import { Bell, Sun } from '@vben/icons';
+import { Page, SliderCaptcha } from '@taman/common-ui';
+import { Bell, Sun } from '@taman/icons';
 
-import { Button, Card, message } from 'antdv-next';
+ 
 
 function handleSuccess(data: CaptchaVerifyPassingData) {
   const { time } = data;

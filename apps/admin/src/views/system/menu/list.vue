@@ -3,17 +3,13 @@ import type {
   OnActionClickParams,
   VxeTableGridOptions,
 } from '#/adapter/vxe-table';
-
-import { Page, useVbenDrawer } from '@vben/common-ui';
-import { IconifyIcon, Plus } from '@vben/icons';
-import { $t } from '@vben/locales';
-
-import { MenuBadge } from '@vben-core/menu-ui';
-
-import { Button, message } from 'antdv-next';
-
+import type { SystemMenuApi } from '#/api/system/menu';
+import { Page, useVbenDrawer } from '@taman/common-ui';
+import { IconifyIcon, Plus } from '@taman/icons';
+import { $t } from '@taman/locales';
+ 
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
-import { deleteMenu, getMenuList, SystemMenuApi } from '#/api/system/menu';
+import { deleteMenu, getMenuList } from '#/api/system/menu';
 
 import { useColumns } from './data';
 import Form from './modules/form.vue';
@@ -110,12 +106,16 @@ function onDelete(row: SystemMenuApi.SystemMenu) {
     });
 }
 </script>
+
 <template>
   <Page auto-content-height>
     <FormDrawer @success="onRefresh" />
     <Grid>
       <template #toolbar-tools>
-        <Button type="primary" @click="onCreate">
+        <Button
+          type="primary"
+          @click="onCreate"
+        >
           <Plus class="size-5" />
           {{ $t('ui.actionTitle.create', [$t('system.menu.name')]) }}
         </Button>
@@ -135,7 +135,7 @@ function onDelete(row: SystemMenuApi.SystemMenu) {
             />
           </div>
           <span class="flex-auto">{{ $t(row.meta?.title) }}</span>
-          <div class="items-center justify-end"></div>
+          <div class="items-center justify-end" />
         </div>
         <MenuBadge
           v-if="row.meta?.badgeType"
@@ -148,6 +148,7 @@ function onDelete(row: SystemMenuApi.SystemMenu) {
     </Grid>
   </Page>
 </template>
+
 <style lang="scss" scoped>
 .menu-badge {
   top: 50%;

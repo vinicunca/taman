@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { Fallback } from '@vben/common-ui';
+import { TamanFallback } from '@taman/common-ui';
 </script>
 
 <template>
-  <Fallback
+  <TamanFallback
     :description="`当前路由：${String($route.name)}，子菜单不可见`"
     status="coming-soon"
     title="隐藏子菜单"
@@ -13,5 +13,5 @@ import { Fallback } from '@vben/common-ui';
         打开子路由
       </RouterLink>
     </template>
-  </Fallback>
+  </TamanFallback>
 </template>

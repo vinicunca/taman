@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { Page, SliderTranslateCaptcha } from '@vben/common-ui';
-
-import { Card, message } from 'antdv-next';
+import { Page, SliderTranslateCaptcha } from '@taman/common-ui';
 
 function handleSuccess() {
   message.success('success!');
@@ -13,7 +11,10 @@ function handleSuccess() {
     description="用于前端简单的拼图滑块水平拖动校验场景"
     title="拼图滑块校验"
   >
-    <Card class="mb-5" title="基本示例">
+    <Card
+      class="mb-5"
+      title="基本示例"
+    >
       <div class="flex-center p-4">
         <SliderTranslateCaptcha
           src="https://unpkg.com/@vbenjs/static-source@0.1.7/source/pro-avatar.webp"

@@ -1,0 +1,21 @@
+{
+  "name": "@taman/plugins",
+  "type": "module",
+  "version": "1.0.0",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./echarts": {
+      "types": "./src/echarts/index.ts",
+      "default": "./src/echarts/index.ts"
+    }
+  },
+  "dependencies": {
+    "@taman/preferences": "workspace:*",
+    "@vueuse/core": "catalog:",
+    "echarts": "catalog:",
+    "vue": "catalog:"
+  }
+}

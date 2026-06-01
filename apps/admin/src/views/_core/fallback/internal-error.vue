@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { Fallback } from '@vben/common-ui';
+import { TamanFallback } from '@taman/common-ui';
 
 defineOptions({ name: 'Fallback500Demo' });
 </script>
 
 <template>
-  <Fallback status="500" />
+  <TamanFallback status="500" />
 </template>

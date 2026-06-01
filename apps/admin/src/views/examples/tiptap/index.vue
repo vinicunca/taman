@@ -1,16 +1,11 @@
 <script lang="ts" setup>
-import type { ImageUploadOptions } from '@vben/plugins/tiptap';
-
+import { Page } from '@taman/common-ui';
 import { computed, ref } from 'vue';
 
-import { Page } from '@vben/common-ui';
-import { VbenTiptap, VbenTiptapPreview } from '@vben/plugins/tiptap';
-
-import { Card, Switch } from 'antdv-next';
 const content = ref(`
   <h1>Vben Tiptap</h1>
   <p>这个编辑器已经被封装在 <code>packages/effects/plugins/src/tiptap</code> 中。</p>
-  <p>你可以直接在各个 app 里通过 <code>@vben/plugins/tiptap</code> 引入。</p>
+  <p>你可以直接在各个 app 里通过 <code>@taman/plugins/tiptap</code> 引入。</p>
   <blockquote>默认内置 StarterKit、Underline、TextAlign、Placeholder。</blockquote>
 `);
 const previewContent = computed(() => content.value);
@@ -53,7 +48,10 @@ const imageUpload: ImageUploadOptions = {
       </div>
     </template>
 
-    <Card class="mb-5" title="编辑器">
+    <Card
+      class="mb-5"
+      title="编辑器"
+    >
       <div class="mb-3 flex items-center gap-3">
         <span class="text-sm">启用图片上传：</span>
         <Switch v-model:checked="enableUpload" />
@@ -64,7 +62,10 @@ const imageUpload: ImageUploadOptions = {
       />
     </Card>
 
-    <Card class="mb-5" title="富文本预览">
+    <Card
+      class="mb-5"
+      title="富文本预览"
+    >
       <VbenTiptapPreview :content="previewContent" />
     </Card>
 

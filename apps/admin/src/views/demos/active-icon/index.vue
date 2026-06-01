@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { Fallback } from '@vben/common-ui';
+import { TamanFallback } from '@taman/common-ui';
 </script>
 
 <template>
-  <Fallback
+  <TamanFallback
     description="用于菜单激活显示不同的图标"
     status="coming-soon"
     title="激活图标示例"

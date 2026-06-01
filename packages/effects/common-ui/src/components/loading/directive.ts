@@ -1,4 +1,6 @@
 import type { App, Directive, DirectiveBinding } from 'vue';
+import { PohonLoading, PohonSpinner } from '@taman-core/pohon-ui';
+import { isString } from '@vinicunca/perkakas';
 import { h, render } from 'vue';
 
 const LOADING_INSTANCE_KEY = Symbol('loading');
@@ -18,7 +20,7 @@ function getOptions(binding: DirectiveBinding) {
 
 const loadingDirective: Directive = {
   mounted(el, binding) {
-    const instance = h(VbenLoading, getOptions(binding));
+    const instance = h(PohonLoading, getOptions(binding));
     render(instance, el);
 
     el.classList.add(CLASS_NAME_RELATIVE);
@@ -52,16 +54,57 @@ const loadingDirective: Directive = {
   },
 };
 
+const spinningDirective: Directive = {
+  mounted(el, binding) {
+    const instance = h(PohonSpinner, getOptions(binding));
+    render(instance, el);
+
+    el.classList.add(CLASS_NAME_RELATIVE);
+    el[SPINNER_INSTANCE_KEY] = instance;
+  },
+  unmounted(el) {
+    const instance = el[SPINNER_INSTANCE_KEY];
+    el.classList.remove(CLASS_NAME_RELATIVE);
+    render(null, el);
+    instance.el.remove();
+
+    el[SPINNER_INSTANCE_KEY] = null;
+  },
+
+  updated(el, binding) {
+    const instance = el[SPINNER_INSTANCE_KEY];
+    const options = getOptions(binding);
+    if (options && instance?.component) {
+      try {
+        Object.keys(options).forEach((key) => {
+          instance.component.props[key] = options[key];
+        });
+        instance.component.update();
+      } catch (error) {
+        console.error(
+          'Failed to update spinner component in directive:',
+          error,
+        );
+      }
+    }
+  },
+};
+
+interface LoadingDirectiveParams {
+  /** Whether to register the loading directive. If a string is provided, the directive will be registered as the specified name */
+  loading?: boolean | string;
+  /** Whether to register the spinning directive. If a string is provided, the directive will be registered as the specified name */
+  spinning?: boolean | string;
+}
+
 /**
  * Register loading directive
- * @param app
- * @param params
  */
 export function registerLoadingDirective(
   app: App,
-  params?: loadingDirectiveParams,
+  params?: LoadingDirectiveParams,
 ) {
-  // 注入一个样式供指令使用，确保容器是相对定位
+  // Inject a style for the directive to use, ensuring the container is relative positioning
   const style = document.createElement('style');
   style.id = CLASS_NAME_RELATIVE;
   style.innerHTML = `

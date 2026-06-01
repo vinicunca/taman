@@ -1,11 +1,6 @@
 <script lang="ts" setup>
-import type { UploadChangeParam } from 'antdv-next';
-
+import { Page, VCropper } from '@taman/common-ui';
 import { ref } from 'vue';
-
-import { Page, VCropper } from '@vben/common-ui';
-
-import { Button, Card, Select, Upload } from 'antdv-next';
 
 const options = [
   { label: '1:1', value: '1:1' },
@@ -20,9 +15,11 @@ const validAspectRatio = ref<string | undefined>('1:1');
 const imgUrl = ref('');
 const cropperImg = ref();
 
-const selectImgFile = (event: UploadChangeParam) => {
+function selectImgFile(event: UploadChangeParam) {
   const file = event.fileList[0]?.originFileObj;
-  if (!file) return;
+  if (!file) {
+    return;
+  }
 
   if (!file.type.startsWith('image/')) {
     console.error('请上传图片文件');
@@ -38,10 +35,12 @@ const selectImgFile = (event: UploadChangeParam) => {
   });
 
   reader.readAsDataURL(file);
-};
+}
 
-const cropImage = async () => {
-  if (!cropperRef.value) return;
+async function cropImage() {
+  if (!cropperRef.value) {
+    return;
+  }
   cropLoading.value = true;
   try {
     cropperImg.value = await cropperRef.value.getCropImage(
@@ -54,20 +53,23 @@ const cropImage = async () => {
   } finally {
     cropLoading.value = false;
   }
-};
+}
 
 /**
  * 下载图片
  */
-const downloadImage = () => {
-  if (!cropperImg.value) return;
+function downloadImage() {
+  if (!cropperImg.value) {
+    return;
+  }
 
   const link = document.createElement('a');
   link.download = `cropped-image-${Date.now()}.png`;
   link.href = cropperImg.value;
   link.click();
-};
+}
 </script>
+
 <template>
   <Page
     title="VCropper 图片裁剪"
@@ -78,8 +80,8 @@ const downloadImage = () => {
         <div class="cropper-ratio-display">
           <label class="ratio-label">当前裁剪比例：</label>
           <Select
-            class="w-24"
             v-model:value="validAspectRatio"
+            class="w-24"
             :options="options"
           />
           <Upload
@@ -92,7 +94,10 @@ const downloadImage = () => {
           </Upload>
         </div>
 
-        <div v-if="imgUrl" class="cropper-main-wrapper">
+        <div
+          v-if="imgUrl"
+          class="cropper-main-wrapper"
+        >
           <VCropper
             ref="cropperRef"
             :img="imgUrl"
@@ -103,10 +108,18 @@ const downloadImage = () => {
 
           <!-- 操作按钮组 -->
           <div class="cropper-btn-group">
-            <Button :loading="cropLoading" @click="cropImage" type="primary">
+            <Button
+              :loading="cropLoading"
+              type="primary"
+              @click="cropImage"
+            >
               裁剪
             </Button>
-            <Button v-if="cropperImg" @click="downloadImage" danger>
+            <Button
+              v-if="cropperImg"
+              danger
+              @click="downloadImage"
+            >
               下载图片
             </Button>
           </div>
@@ -117,12 +130,13 @@ const downloadImage = () => {
             class="h-full w-80"
             :src="cropperImg"
             alt="裁剪预览"
-          />
+          >
         </div>
       </div>
     </Card>
   </Page>
 </template>
+
 <style scoped>
 /* 比例展示区域 */
 .cropper-ratio-display {

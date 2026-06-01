@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import type { VxeGridProps } from '#/adapter/vxe-table';
 
-import { Page } from '@vben/common-ui';
-
-import { Button, Image, Switch, Tag } from 'antdv-next';
+import { Page } from '@taman/common-ui';
 
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
 import { getExampleTableApi } from '#/api';
@@ -92,16 +90,24 @@ const [Grid] = useVbenVxeGrid({ gridOptions });
   <Page auto-content-height>
     <Grid>
       <template #image-url="{ row }">
-        <Image :src="row.imageUrl" height="30" width="30" />
+        <Image
+          :src="row.imageUrl"
+          height="30"
+          width="30"
+        />
       </template>
       <template #open="{ row }">
         <Switch v-model="row.open" />
       </template>
       <template #status="{ row }">
-        <Tag :color="row.color">{{ row.status }}</Tag>
+        <Tag :color="row.color">
+          {{ row.status }}
+        </Tag>
       </template>
       <template #action>
-        <Button type="link">编辑</Button>
+        <Button type="link">
+          编辑
+        </Button>
       </template>
     </Grid>
   </Page>

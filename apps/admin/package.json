@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "imports": {
-    "~~/*": "./src/*"
+    "#/*": "./src/*"
   },
   "scripts": {
     "build": "pnpm vite build --mode production",
@@ -19,13 +19,18 @@
   "dependencies": {
     "@taman/access": "workspace:*",
     "@taman/common-ui": "workspace:*",
+    "@taman/composables": "workspace:*",
+    "@taman/icons": "workspace:*",
     "@taman/layouts": "workspace:*",
     "@taman/locales": "workspace:*",
+    "@taman/plugins": "workspace:*",
     "@taman/preferences": "workspace:*",
     "@taman/stores": "workspace:*",
     "@taman/types": "workspace:*",
     "@taman/utils": "workspace:*",
+    "@tanstack/vue-query": "catalog:",
     "@vueuse/core": "catalog:",
+    "pohon-ui": "catalog:",
     "vue": "catalog:",
     "vue-router": "catalog:"
   }
