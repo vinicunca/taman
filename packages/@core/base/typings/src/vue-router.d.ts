@@ -106,9 +106,9 @@ interface RouteMeta {
    */
   menuVisibleWithForbidden?: boolean;
   /**
-   * Do not use the basic layout (only effective at the top level)
+   * Do not use the default layout (only effective at the top level)
    */
-  noCoreLayout?: boolean;
+  noDefaultLayout?: boolean;
   /**
    * Open in a new window
    */

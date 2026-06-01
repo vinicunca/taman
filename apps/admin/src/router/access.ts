@@ -5,7 +5,7 @@ import type {
 
 import { generateAccessible } from '@taman/access';
 import { preferences } from '@taman/preferences';
-import { IFrameView, LayoutCore } from '#/layouts';
+import { IFrameView, LayoutDefault } from '#/layouts';
 
 const forbiddenComponent = () => import('#/views/_core/fallback/forbidden.vue');
 
@@ -13,7 +13,7 @@ async function generateAccess(options: GenerateMenuAndRoutesOptions) {
   const pageMap: ComponentRecordType = import.meta.glob('../views/**/*.vue');
 
   const layoutMap: ComponentRecordType = {
-    LayoutCore,
+    LayoutDefault,
     IFrameView,
   };
 

@@ -6,6 +6,7 @@ export default vinicuncaESLint(
     formatters: {
       css: true,
     },
+    unocss: true,
   },
   {
     rules: {

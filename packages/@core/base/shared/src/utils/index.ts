@@ -1,4 +1,5 @@
 export * from './diff';
+export * from './dom';
 export * from './inference';
 export * from './merge';
 export * from './nprogress';

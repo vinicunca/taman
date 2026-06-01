@@ -72,7 +72,7 @@ function useEcharts(chartRef: Ref<EchartsUIType>) {
     return el.offsetHeight === 0 || el.offsetWidth === 0;
   }
 
-  const getOptions = computed((): EChartsOption => {
+  const getOptions = computed<EChartsOption>(() => {
     if (!isDark.value) {
       return {};
     }

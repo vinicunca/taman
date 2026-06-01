@@ -5,5 +5,7 @@ defineOptions({ name: 'Fallback404Demo' });
 </script>
 
 <template>
-  <TamanFallback status="404" />
+  <TamanFallback
+    status="404"
+  />
 </template>

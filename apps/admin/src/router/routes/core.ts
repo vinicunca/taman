@@ -4,7 +4,7 @@ import { preferences } from '@taman/preferences';
 
 import { $t } from '#/locales';
 
-const LayoutCore = () => import('#/layouts/core.vue');
+const LayoutDefault = () => import('#/layouts/default.vue');
 const LayoutAuth = () => import('#/layouts/auth.vue');
 /** Global 404 page */
 const fallbackNotFoundRoute: RouteRecordRaw = {
@@ -27,7 +27,7 @@ const coreRoutes: Array<RouteRecordRaw> = [
    * This route must exist and should not be modified
    */
   {
-    component: LayoutCore,
+    component: LayoutDefault,
     meta: {
       hideInBreadcrumb: true,
       title: 'Root',

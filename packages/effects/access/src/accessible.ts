@@ -27,9 +27,9 @@ async function generateAccessible(
 
   // Dynamically add to the router instance
   accessibleRoutes.forEach((route) => {
-    if (root && !route.meta?.noCoreLayout) {
-      // To be compatible with the previous version usage, if it contains child routes, the component is removed to avoid multiple CoreLayout layers
-      // If your project has followed this modification, removed all custom menu first-level CoreLayout, you can delete this if code
+    if (root && !route.meta?.noDefaultLayout) {
+      // To be compatible with the previous version usage, if it contains child routes, the component is removed to avoid multiple LayoutDefault layers
+      // If your project has followed this modification, removed all custom menu first-level LayoutDefault, you can delete this if code
       if (route.children && route.children.length > 0) {
         delete route.component;
       }
