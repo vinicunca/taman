@@ -159,5 +159,9 @@
   "i18n-ally.enabledFrameworks": ["vue", "react"],
   "i18n-ally.keystyle": "nested",
   "i18n-ally.sortKeys": true,
-  "i18n-ally.namespace": true
+  "i18n-ally.namespace": true,
+
+  "unocss.root": [
+    "apps/admin"
+  ]
 }

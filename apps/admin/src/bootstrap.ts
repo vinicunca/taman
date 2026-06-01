@@ -10,6 +10,8 @@ import { router } from '#/router';
 
 import App from './app.vue';
 
+import '@taman/designs/styles';
+
 async function bootstrap(namespace: string) {
   const app = createApp(App);
 

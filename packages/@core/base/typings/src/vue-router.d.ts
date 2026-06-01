@@ -108,7 +108,7 @@ interface RouteMeta {
   /**
    * Do not use the basic layout (only effective at the top level)
    */
-  noBasicLayout?: boolean;
+  noCoreLayout?: boolean;
   /**
    * Open in a new window
    */

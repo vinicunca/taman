@@ -59,7 +59,11 @@ async function loadCommonPlugins(
         }),
         viteVueJsx(),
         viteUnoCss(),
-        vitePohon(),
+        vitePohon({
+          autoImport: {
+            imports: ['vue'],
+          },
+        }),
       ],
     },
 

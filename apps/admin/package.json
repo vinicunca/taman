@@ -20,6 +20,7 @@
     "@taman/access": "workspace:*",
     "@taman/common-ui": "workspace:*",
     "@taman/composables": "workspace:*",
+    "@taman/designs": "workspace:*",
     "@taman/icons": "workspace:*",
     "@taman/layouts": "workspace:*",
     "@taman/locales": "workspace:*",
@@ -31,6 +32,7 @@
     "@tanstack/vue-query": "catalog:",
     "@vueuse/core": "catalog:",
     "pohon-ui": "catalog:",
+    "unocss": "catalog:",
     "vue": "catalog:",
     "vue-router": "catalog:"
   }

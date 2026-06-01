@@ -60,3 +60,6 @@ vite.config.ts.*
 skills-lock.json
 .atomcode
 datalog
+
+apps/admin/auto-imports.d.ts
+apps/admin/components.d.ts

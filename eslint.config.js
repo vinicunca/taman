@@ -3,6 +3,9 @@ import { vinicuncaESLint } from '@vinicunca/eslint-config';
 export default vinicuncaESLint(
   {
     vue: true,
+    formatters: {
+      css: true,
+    },
   },
   {
     rules: {

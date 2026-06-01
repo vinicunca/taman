@@ -1,0 +1,13 @@
+html {
+  scroll-behavior: smooth;
+}
+
+#app,
+body,
+html {
+  @apply size-full;
+}
+
+body {
+  @apply min-h-screen;
+}

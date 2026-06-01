@@ -12,7 +12,9 @@
     "@taman-core/typings": "workspace:*",
     "@taman/preferences": "workspace:*",
     "@taman/stores": "workspace:*",
+    "@taman/types": "workspace:*",
     "@taman/utils": "workspace:*",
+    "@vinicunca/perkakas": "catalog:",
     "vue": "catalog:"
   }
 }

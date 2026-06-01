@@ -1,3 +1,4 @@
+/* eslint-disable sonar/no-commented-code */
 import type { RouteRecordRaw } from 'vue-router';
 
 import { mergeRouteModules, traverseTreeValues } from '@taman/utils';
