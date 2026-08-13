@@ -1,0 +1,27 @@
+{
+  "name": "@taman/better-auth-back",
+  "type": "module",
+  "imports": {
+    "#*": "./server/*"
+  },
+  "scripts": {
+  },
+  "dependencies": {
+    "@taman/constants": "workspace:*",
+    "@taman/db-pg": "workspace:*",
+    "@taman/rbac": "workspace:*",
+    "@vinicunca/perkakas": "catalog:",
+    "better-auth": "catalog:",
+    "consola": "catalog:",
+    "csv": "catalog:",
+    "drizzle-orm": "catalog:",
+    "uuid": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "nitro": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "better-auth-front",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/better-auth-front",
+  "projectType": "application",
+  "targets": {
+    "dev": {
+      "command": "pnpm vite --mode development",
+      "options": {
+        "cwd": "apps/better-auth-front"
+      },
+      "cache": false
+    }
+  },
+  "tags": []
+}

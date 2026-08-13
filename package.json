@@ -21,9 +21,9 @@
     "clean": "node ./scripts/clean.mjs",
     "commit": "czg",
     "dev": "pnpm --filter @ngibur/director dev",
-    "dev:director": "pnpm nx run director:dev",
+    "dev:better-auth-back": "pnpm nx run better-auth-back:dev",
     "dev:backstage": "pnpm nx run backstage:dev",
-    "dev:db:studio": "pnpm nx run db:studio:dev",
+    "dev:db-pg:studio": "pnpm nx run db-pg:studio:dev",
     "format": "pnpm nx run tooling:lint:format",
     "lint": "pnpm nx run tooling:lint",
     "nx": "nx",
@@ -41,7 +41,6 @@
     "db:migrate:dev": "pnpm nx run db:migrate",
     "db:migrate:uat": "pnpm nx run db:migrate:uat",
     "db:migrate:prod": "pnpm nx run db:migrate:prod",
-    "director:types": "pnpm --filter @ngibur/director wrangler:types",
     "catalog": "pnpm dlx codemod pnpm/catalog"
   },
   "devDependencies": {

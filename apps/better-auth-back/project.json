@@ -1,0 +1,27 @@
+{
+  "name": "better-auth-back",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/better-auth-back",
+  "projectType": "application",
+  "targets": {
+    "dev": {
+      "command": "nitro dev",
+      "options": {
+        "cwd": "apps/better-auth-back",
+        "env": {
+          "NODE_OPTIONS": "--no-deprecation"
+        }
+      },
+      "cache": false
+    },
+
+    "build": {
+      "command": "nitro build",
+      "options": {
+        "cwd": "apps/better-auth-back"
+      },
+      "cache": false
+    }
+  },
+  "tags": []
+}

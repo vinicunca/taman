@@ -16,6 +16,7 @@ export default vinicuncaESLint(
     files: [
       '**/scripts/**',
       '**/db/**',
+      '**/db-pg/**',
       '**/playwright.config.ts',
       '**/internal/**/*.ts',
       './apps/**/server/**/*.ts',
