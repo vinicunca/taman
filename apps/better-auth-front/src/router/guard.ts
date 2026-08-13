@@ -1,9 +1,8 @@
 import type { AuthRoleNames } from '@taman/rbac';
 import type { Router } from 'vue-router';
 
-import { LOGIN_PATH, ONBOARDING_PATH } from '@taman/constants';
+import { LOGIN_PATH } from '@taman/constants';
 import { preferences } from '@taman/preferences';
-import { USER_ROLES } from '@taman/rbac';
 import { useAccessStore } from '@taman/stores';
 import { startProgress, stopProgress } from '@taman/utils';
 import { ensureSession } from '#/auth';
@@ -59,21 +58,15 @@ function setupAccessGuard(router: Router) {
     // them here can see the pre-navigation value for one guard pass.
     const session = await ensureSession();
     const isAuthenticated = Boolean(session?.user);
-    const needsOnboarding = isAuthenticated
-      && session?.user?.role !== USER_ROLES.ADMIN
-      && !session?.session?.activeOrganizationId;
 
     const decision = resolveAuthDecision({
       authMeta: resolveAuthMetaFromMatched(to.matched),
 
       isAuthenticated,
 
-      needsOnboarding,
-
       defaults: {
         guestTarget: LOGIN_PATH,
         userTarget: preferences.app.defaultHomePath,
-        onboardingTarget: ONBOARDING_PATH,
       },
     });
 
@@ -102,15 +95,6 @@ function setupAccessGuard(router: Router) {
 
         // TODO: Implement redirect to user's selected home path
       );
-    }
-
-    if (decision.type === 'redirectToOnboarding') {
-      // Defensive: unreachable under correct route config (the onboarding
-      // route itself is `only: 'onboarding'`, never falls into this branch).
-      if (to.fullPath === decision.target) {
-        return true;
-      }
-      return decision.target;
     }
 
     if (decision.type === 'allow') {

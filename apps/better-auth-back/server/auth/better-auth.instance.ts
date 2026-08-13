@@ -20,6 +20,7 @@ import {
 import { useRuntimeConfig } from 'nitro/runtime-config';
 import { v7 as uuidv7 } from 'uuid';
 import { resolveActiveOrganizationId } from '#auth/auth.active-organization.ts';
+import { resolveTrustedOrigins } from '#lib/cors.ts';
 
 export type DirectorAuth = ReturnType<typeof createBetterAuth>;
 export type DirectorAuthPayload = DirectorAuth['$Infer']['Session'];
@@ -49,6 +50,8 @@ export function createBetterAuth() {
     baseURL: baseUrl,
 
     secret: betterAuthSecret,
+
+    trustedOrigins: resolveTrustedOrigins(),
 
     database: drizzleAdapter(
       db,
@@ -135,6 +138,7 @@ export function createBetterAuth() {
 
     socialProviders: {
       google: {
+        prompt: 'select_account',
         clientId: googleClientId,
         clientSecret: googleClientSecret,
       },

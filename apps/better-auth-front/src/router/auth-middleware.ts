@@ -41,40 +41,34 @@ export function resolveAuthMetaFromMatched(
  *
  * `AuthAllowDecisionType` covers outcomes that don't redirect: `allow`
  * covers routes that don't participate in role-based access generation
- * (guest pages, `auth: false`, mid-onboarding); `generateAccess` is the one
- * case that does — a protected route visited by an authenticated, fully
- * onboarded user.
+ * (guest pages, `auth: false`); `generateAccess` is the one case that
+ * does — a protected route visited by an authenticated user.
  *
- * `AuthRedirectDecisionType` covers the three redirect outcomes, split from
+ * `AuthRedirectDecisionType` covers the two redirect outcomes, split from
  * each other because they're different query-string operations in the
  * guard: `redirectToLogin` attaches a `?redirect=` so the login page can
  * send the user back; `redirectAuthenticated` consumes one if present.
- * `redirectToOnboarding` never carries one — wherever the user was headed
- * isn't reachable without an org yet, so onboarding always lands on the
- * app's home path afterward instead of resuming it.
  */
 type AuthAllowDecisionType = 'allow' | 'generateAccess';
-type AuthRedirectDecisionType = 'redirectAuthenticated' | 'redirectToLogin' | 'redirectToOnboarding';
+type AuthRedirectDecisionType = 'redirectAuthenticated' | 'redirectToLogin';
 
 export type AuthDecision
   = | { type: AuthAllowDecisionType }
     | { type: AuthRedirectDecisionType; target: string };
 
 /**
- * Pure decision function: given a route's auth meta, whether the visitor
- * is authenticated, and whether they still need onboarding (non-admin,
- * no active organization), decide whether to allow the navigation and
- * whether it should participate in role-based access generation, or where
- * to redirect. Takes no imports beyond types — callers supply `defaults`
- * so this stays testable with plain strings.
+ * Pure decision function: given a route's auth meta and whether the visitor
+ * is authenticated, decide whether to allow the navigation and whether it
+ * should participate in role-based access generation, or where to redirect.
+ * Takes no imports beyond types — callers supply `defaults` so this stays
+ * testable with plain strings.
  */
 export function resolveAuthDecision(
-  { authMeta, isAuthenticated, needsOnboarding = false, defaults }:
+  { authMeta, isAuthenticated, defaults }:
   {
     authMeta: AuthMiddlewareOptions | undefined;
     isAuthenticated: boolean;
-    needsOnboarding?: boolean;
-    defaults: { guestTarget: string; userTarget: string; onboardingTarget: string };
+    defaults: { guestTarget: string; userTarget: string };
   },
 ): AuthDecision {
   if (authMeta === false) {
@@ -94,35 +88,10 @@ export function resolveAuthDecision(
     return { type: 'allow' };
   }
 
-  if (only === 'onboarding') {
-    if (!isAuthenticated) {
-      return {
-        type: 'redirectToLogin',
-        target: authMeta?.redirectGuestTo ?? defaults.guestTarget,
-      };
-    }
-
-    if (needsOnboarding) {
-      return { type: 'allow' };
-    }
-
-    return {
-      type: 'redirectAuthenticated',
-      target: authMeta?.redirectUserTo ?? defaults.userTarget,
-    };
-  }
-
   if (!isAuthenticated) {
     return {
       type: 'redirectToLogin',
       target: authMeta?.redirectGuestTo ?? defaults.guestTarget,
-    };
-  }
-
-  if (needsOnboarding) {
-    return {
-      type: 'redirectToOnboarding',
-      target: defaults.onboardingTarget,
     };
   }
 

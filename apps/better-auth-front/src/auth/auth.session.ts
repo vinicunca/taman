@@ -6,7 +6,6 @@ import { queryClient } from '#/query-client';
 
 import { authClient } from './auth.client';
 import { AUTH_QUERY_KEY } from './auth.constant';
-import { ensureActiveOrganization } from './auth.organization';
 
 /**
  * Single source of truth for the current Better Auth session on the client:
@@ -26,10 +25,7 @@ export const sessionQueryOptions = queryOptions({
     // boolean-simple and the query out of error state.
     try {
       const { data } = await authClient.getSession();
-      let session = (data as AppSession | null) ?? null;
-      session = await ensureActiveOrganization(session);
-
-      return session;
+      return (data as AppSession | null) ?? null;
     } catch {
       return null;
     }
@@ -68,8 +64,7 @@ export function refreshSession(): Promise<AppSession | null> {
 }
 
 /**
- * Logout: drop every user-scoped cache entry (the `[AUTH_QUERY_KEY]` prefix also
- * covers future organization/team queries) and clear the store projection.
+ * Logout: drop every user-scoped cache entry and clear the store projection.
  */
 export function clearAuthCache(): void {
   queryClient.removeQueries({ queryKey: [AUTH_QUERY_KEY] });

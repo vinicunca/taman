@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router';
 
-import { LOGIN_PATH, ONBOARDING_PATH } from '@taman/constants';
+import { LOGIN_PATH } from '@taman/constants';
 import { preferences } from '@taman/preferences';
 
 import { $t } from '#/locales';
@@ -101,26 +101,6 @@ const coreRoutes: Array<RouteRecordRaw> = [
         meta: {
           auth: { only: 'guest' },
           title: $t('page.auth.register'),
-        },
-      },
-    ],
-  },
-  {
-    component: AuthPageLayout,
-    meta: {
-      hideInTab: true,
-      title: 'Onboarding',
-    },
-    name: 'Onboarding',
-    path: ONBOARDING_PATH,
-    children: [
-      {
-        name: 'OnboardingIndex',
-        path: '',
-        component: () => import('#/views/_core/onboarding/index.vue'),
-        meta: {
-          auth: { only: 'onboarding' },
-          title: $t('page.onboarding.title'),
         },
       },
     ],

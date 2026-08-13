@@ -17,8 +17,5 @@
   "talents": {
     "root": "Talents",
     "list": "Talent List"
-  },
-  "onboarding": {
-    "title": "Onboarding"
   }
 }

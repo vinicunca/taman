@@ -1,6 +1,6 @@
 import { useAppTamanConfig } from '@taman/composables';
-import { adminAc, adminRoles, organizationAc, organizationRoles } from '@taman/rbac';
-import { adminClient, organizationClient } from 'better-auth/client/plugins';
+import { adminAc, adminRoles } from '@taman/rbac';
+import { adminClient } from 'better-auth/client/plugins';
 import { createAuthClient } from 'better-auth/vue';
 
 const { directorUrl } = useAppTamanConfig(import.meta.env, import.meta.env.PROD);
@@ -8,8 +8,8 @@ const { directorUrl } = useAppTamanConfig(import.meta.env, import.meta.env.PROD)
 /**
  * Better Auth client singleton.
  *
- * Plugins mirror the director backend (`apps/director/lib/auth.ts`) so that
- * `session.user.role` and organization helpers are available and typed.
+ * Plugins mirror the backend (`apps/better-auth-back`) so that
+ * `session.user.role` and admin helpers are available and typed.
  */
 export const authClient = createAuthClient({
   baseURL: directorUrl,
@@ -18,11 +18,6 @@ export const authClient = createAuthClient({
     adminClient({
       ac: adminAc,
       roles: adminRoles,
-    }),
-
-    organizationClient({
-      ac: organizationAc,
-      roles: organizationRoles,
     }),
   ],
 });
