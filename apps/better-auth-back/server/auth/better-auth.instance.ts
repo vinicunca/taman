@@ -1,5 +1,3 @@
-import type { NgiburEnv } from '@taman/constants';
-import type { H3Event } from 'nitro';
 import {
   accountTable,
   getDrizzleClient,
@@ -19,6 +17,7 @@ import {
   admin as adminPlugin,
   organization as organizationPlugin,
 } from 'better-auth/plugins';
+import { useRuntimeConfig } from 'nitro/runtime-config';
 import { v7 as uuidv7 } from 'uuid';
 import { resolveActiveOrganizationId } from '#auth/auth.active-organization.ts';
 
@@ -35,26 +34,21 @@ export type DirectorAuthPayload = DirectorAuth['$Infer']['Session'];
  */
 let authInstance: DirectorAuth | null = null;
 
-export function createBetterAuth(env: Cloudflare.Env) {
+export function createBetterAuth() {
   const {
-    DATABASE_URL,
-    BETTER_AUTH_SECRET,
-    GOOGLE_CLIENT_ID,
-    GOOGLE_CLIENT_SECRET,
-    BASE_URL,
-    APP_ENV,
-    COOKIE_DOMAIN,
-  } = env;
+    databaseUrl,
+    baseUrl,
+    betterAuthSecret,
+    googleClientId,
+    googleClientSecret,
+  } = useRuntimeConfig();
 
-  const db = getDrizzleClient({
-    databaseUrl: DATABASE_URL,
-    ngiburEnv: APP_ENV as NgiburEnv,
-  });
+  const db = getDrizzleClient(databaseUrl);
 
   return betterAuth({
-    baseURL: BASE_URL,
+    baseURL: baseUrl,
 
-    secret: BETTER_AUTH_SECRET,
+    secret: betterAuthSecret,
 
     database: drizzleAdapter(
       db,
@@ -81,11 +75,6 @@ export function createBetterAuth(env: Cloudflare.Env) {
         generateId: () => {
           return uuidv7();
         },
-      },
-
-      crossSubDomainCookies: {
-        domain: COOKIE_DOMAIN,
-        enabled: APP_ENV !== 'development',
       },
     },
 
@@ -146,8 +135,8 @@ export function createBetterAuth(env: Cloudflare.Env) {
 
     socialProviders: {
       google: {
-        clientId: GOOGLE_CLIENT_ID,
-        clientSecret: GOOGLE_CLIENT_SECRET,
+        clientId: googleClientId,
+        clientSecret: googleClientSecret,
       },
     },
 
@@ -159,16 +148,14 @@ export function createBetterAuth(env: Cloudflare.Env) {
   });
 }
 
-export function useBetterAuth(event: H3Event) {
+export function useBetterAuth() {
   // If it already exists, return the cached instance
   if (authInstance) {
     return authInstance;
   }
 
-  const cloudflareEnv = getCloudflareEnv(event);
-
   // Otherwise, create it once and cache it
-  authInstance = createBetterAuth(cloudflareEnv);
+  authInstance = createBetterAuth();
 
   return authInstance;
 }

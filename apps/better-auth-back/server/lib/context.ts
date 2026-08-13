@@ -1,4 +1,3 @@
-import type { NgiburEnv } from '@taman/constants';
 import type { DrizzleClient } from '@taman/db-pg';
 import type { OrganizationRoleNames } from '@taman/rbac';
 import type { H3Event } from 'nitro';
@@ -6,6 +5,7 @@ import type { DirectorAuthPayload } from '#auth/better-auth.instance.ts';
 import { getDrizzleClient, memberTable } from '@taman/db-pg';
 import { ORGANIZATION_ROLES } from '@taman/rbac';
 import { and, eq } from 'drizzle-orm';
+import { useRuntimeConfig } from 'nitro/runtime-config';
 import { getAuthAccess } from '#auth/auth.access.ts';
 
 export interface DirectorMember {
@@ -88,7 +88,7 @@ export async function resolveContext(event: H3Event): Promise<TamanContext> {
   /**
    * Second, we need to get the database client.
    */
-  const db = getDrizzleClient();
+  const db = getDrizzleClient(useRuntimeConfig().databaseUrl);
 
   /**
    * Third, resolve the caller's role in their active organization. The session

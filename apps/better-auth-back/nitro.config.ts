@@ -14,6 +14,11 @@ export default defineConfig({
 
   runtimeConfig: {
     databaseUrl: '',
+    trustedOrigins: '',
+    googleClientId: '',
+    googleClientSecret: '',
+    betterAuthSecret: '',
+    baseUrl: '',
   },
 
   serverDir: './server',

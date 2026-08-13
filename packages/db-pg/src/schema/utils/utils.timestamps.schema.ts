@@ -1,13 +1,6 @@
 import { timestamp } from 'drizzle-orm/pg-core';
 
-export function generateTimestampColumns(
-  {
-    softDelete = true,
-  }:
-  {
-    softDelete?: boolean;
-  },
-) {
+export function generateTimestampColumns() {
   return {
     createdAt: timestamp({ withTimezone: true })
       .defaultNow()
@@ -16,12 +9,5 @@ export function generateTimestampColumns(
       .defaultNow()
       .$onUpdate(() => /* @__PURE__ */ new Date())
       .notNull(),
-    ...(softDelete
-      ? {
-          deletedAt: timestamp({ withTimezone: true })
-            .defaultNow()
-            .notNull(),
-        }
-      : {}),
   };
 }

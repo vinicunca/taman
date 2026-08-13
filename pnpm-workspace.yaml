@@ -46,7 +46,6 @@ catalog:
   '@jspm/generator': ^2.16.3
   '@lucide/vue': ^1.31.0
   '@manypkg/get-packages': ^3.1.0
-  '@neondatabase/serverless': ^1.1.0
   '@playwright/test': ^1.62.1
   '@pnpm/workspace.read-manifest': ^1000.3.1
   '@stylistic/stylelint-plugin': ^5.3.0

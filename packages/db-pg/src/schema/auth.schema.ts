@@ -24,9 +24,7 @@ const userTable = pgTable(
     banExpires: timestamp('ban_expires'),
     phoneNumber: text('phone_number'),
 
-    ...generateTimestampColumns({
-      softDelete: false,
-    }),
+    ...generateTimestampColumns(),
   },
 );
 
@@ -44,9 +42,7 @@ const sessionTable = pgTable(
     impersonatedBy: text('impersonated_by'),
     activeOrganizationId: text('active_organization_id'),
 
-    ...generateTimestampColumns({
-      softDelete: false,
-    }),
+    ...generateTimestampColumns(),
   },
   (table) => [index('session_userId_idx').on(table.userId)],
 );
@@ -67,9 +63,7 @@ const accountTable = pgTable(
     refreshTokenExpiresAt: timestamp('refresh_token_expires_at', { withTimezone: true }),
     scope: text('scope'),
     password: text('password'),
-    ...generateTimestampColumns({
-      softDelete: false,
-    }),
+    ...generateTimestampColumns(),
   },
   (table) => [index('account_userId_idx').on(table.userId)],
 );
@@ -81,9 +75,7 @@ const verificationTable = pgTable(
     identifier: text('identifier').notNull(),
     value: text('value').notNull(),
     expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
-    ...generateTimestampColumns({
-      softDelete: false,
-    }),
+    ...generateTimestampColumns(),
   },
   (table) => [index('verification_identifier_idx').on(table.identifier)],
 );
@@ -96,9 +88,7 @@ const organizationTable = pgTable(
     slug: text('slug').notNull().unique(),
     logo: text('logo'),
     metadata: text('metadata'),
-    ...generateTimestampColumns({
-      softDelete: false,
-    }),
+    ...generateTimestampColumns(),
   },
   (table) => [uniqueIndex('organization_slug_uidx').on(table.slug)],
 );
@@ -111,9 +101,7 @@ const teamTable = pgTable(
     organizationId: uuid('organization_id')
       .notNull()
       .references(() => organizationTable.id, { onDelete: 'cascade' }),
-    ...generateTimestampColumns({
-      softDelete: false,
-    }),
+    ...generateTimestampColumns(),
   },
   (table) => [index('team_organizationId_idx').on(table.organizationId)],
 );
@@ -128,9 +116,7 @@ const teamMemberTable = pgTable(
     userId: uuid('user_id')
       .notNull()
       .references(() => userTable.id, { onDelete: 'cascade' }),
-    ...generateTimestampColumns({
-      softDelete: false,
-    }),
+    ...generateTimestampColumns(),
   },
   (table) => [
     index('teamMember_teamId_idx').on(table.teamId),
@@ -149,9 +135,7 @@ const memberTable = pgTable(
       .notNull()
       .references(() => userTable.id, { onDelete: 'cascade' }),
     role: text('role').default('member').notNull(),
-    ...generateTimestampColumns({
-      softDelete: false,
-    }),
+    ...generateTimestampColumns(),
   },
   (table) => [
     index('member_organizationId_idx').on(table.organizationId),
@@ -174,9 +158,7 @@ const invitationTable = pgTable(
       .notNull()
       .references(() => userTable.id, { onDelete: 'cascade' }),
     teamId: uuid('team_id').references(() => teamTable.id, { onDelete: 'cascade' }),
-    ...generateTimestampColumns({
-      softDelete: false,
-    }),
+    ...generateTimestampColumns(),
   },
   (table) => [
     index('invitation_organizationId_idx').on(table.organizationId),

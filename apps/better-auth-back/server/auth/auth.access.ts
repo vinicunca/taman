@@ -6,7 +6,7 @@ import { httpError } from '#lib/http.ts';
 export async function getAuthAccess(event: H3Event) {
   const { headers } = event.req;
 
-  const tamanAuth = useBetterAuth(event);
+  const tamanAuth = useBetterAuth();
 
   const auth = await isLoggedIn(tamanAuth, headers);
 
