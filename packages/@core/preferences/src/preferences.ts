@@ -1,4 +1,5 @@
-import type { DeepPartial } from '@vinicunca/perkakas';
+import type { DeepPartial } from '@taman-core/shared/utils';
+
 import type {
   CustomPreferencesField,
   CustomPreferencesRecord,
@@ -6,22 +7,22 @@ import type {
   Preferences,
   PreferencesExtension,
 } from './types';
+
 import { StorageManager } from '@taman-core/shared/cache';
-import { isMacOs, merge } from '@taman-core/shared/utils';
+import { defu, isMacOs } from '@taman-core/shared/utils';
 import {
   breakpointsTailwind,
   useBreakpoints,
   useDebounceFn,
 } from '@vueuse/core';
 import { markRaw, reactive, readonly, watch } from 'vue';
+
 import { defaultPreferences } from './config';
 import { updateCSSVariables } from './update-css-variables';
 
 const STORAGE_KEYS = {
   CUSTOM: 'preferences-custom',
   MAIN: 'preferences',
-  LOCALE: 'preferences-locale',
-  THEME: 'preferences-theme',
 } as const;
 
 class PreferenceManager {
@@ -36,33 +37,26 @@ class PreferenceManager {
 
   constructor() {
     this.cache = new StorageManager();
-    // The constructor no longer reads the cache synchronously; it initializes using default values.
-    // The actual cache loading is done in initPreferences (which is already async).
+    // Constructor uses defaults only; cache is loaded asynchronously in initPreferences
     this.state = reactive<Preferences>({ ...defaultPreferences });
     this.debouncedSave = useDebounceFn(() => this.saveToCache(), 150);
   }
 
-  /**
-   * Clear all cached preferences
-   */
+  /** Clears all cached preferences. */
   clearCache = async () => {
     await Promise.all(
       Object.values(STORAGE_KEYS).map((key) => this.cache.removeItem(key)),
     );
   };
 
-  /**
-   * Get extended preferences
-   */
+  /** Returns custom (extension) preferences. */
   getCustomPreferences = <
     TCustomPreferences extends object = CustomPreferencesRecord,
   >() => {
     return readonly(this.customState) as Readonly<TCustomPreferences>;
   };
 
-  /**
-   * Get initial extended preferences
-   */
+  /** Returns initial custom preferences snapshot. */
   getInitialCustomPreferences = <
     TCustomPreferences extends object = CustomPreferencesRecord,
   >() => {
@@ -71,23 +65,17 @@ class PreferenceManager {
     ) as Readonly<TCustomPreferences>;
   };
 
-  /**
-   * Get initial preferences
-   */
+  /** Returns initial preferences snapshot. */
   getInitialPreferences = () => {
     return this.initialPreferences;
   };
 
-  /**
-   * Get current preferences (read-only)
-   */
+  /** Returns current preferences (readonly). */
   getPreferences = () => {
     return readonly(this.state);
   };
 
-  /**
-   * Get extended preferences configuration
-   */
+  /** Returns custom preferences extension schema. */
   getPreferencesExtension = <
     TCustomPreferences extends object = CustomPreferencesRecord,
   >() => {
@@ -99,10 +87,10 @@ class PreferenceManager {
   };
 
   /**
-   * Initialize preferences
-   * @param options - Initialization configuration
-   * @param options.namespace - Namespace, used to isolate different application configurations
-   * @param options.overrides - Preferences to override
+   * Initializes preferences from defaults, overrides, and cache.
+   * @param options - Initialization options
+   * @param options.namespace - Storage namespace to isolate app instances
+   * @param options.overrides - Preference overrides applied at init
    */
   initPreferences = async <
     TCustomPreferences extends object = CustomPreferencesRecord,
@@ -111,35 +99,35 @@ class PreferenceManager {
     overrides,
     extension,
   }: InitialOptions<TCustomPreferences>) => {
-    // Prevent duplicate initialization
+    // Prevent double initialization
     if (this.isInitialized) {
       return;
     }
 
-    // Initialize storage manager with namespace
+    // Namespace-scoped storage
     this.cache = new StorageManager({ prefix: namespace });
 
-    // Merge initial preferences: the first object takes precedence, the second object only fills in missing fields
-    this.initialPreferences = merge({}, overrides, defaultPreferences);
+    // Merge init: earlier sources win; later sources fill missing fields only
+    this.initialPreferences = defu({}, overrides, defaultPreferences);
     this.customPreferencesExtension = extension ?? null;
     this.initialCustomPreferences = this.resolveCustomPreferencesDefaults(
       this.customPreferencesExtension,
     );
 
-    // Load cached preferences, and only fill in the fields that are not explicitly set in the initialization configuration
+    // Load cache; cached values override only unset init fields
     const cachedPreferences = (await this.loadFromCache()) || {};
-    const mergedPreference = merge(
+    const mergedPreference = defu(
       {},
-      cachedPreferences, // User cached settings take precedence
-      this.initialPreferences, // Initial settings only fill in missing fields
+      cachedPreferences, // user cache takes precedence
+      this.initialPreferences, // init fills gaps only
     );
 
-    // Update preferences
+    // Apply merged preferences
     this.updatePreferences(mergedPreference);
 
     const cachedCustom = (await this.loadCustomFromCache()) || {};
     this.replaceCustomPreferences(
-      merge(
+      defu(
         {},
         this.sanitizeCustomPreferences(cachedCustom),
         this.initialCustomPreferences,
@@ -147,33 +135,29 @@ class PreferenceManager {
     );
     await this.saveToCache();
 
-    // Set listener
+    // Watch breakpoints and system theme
     this.setupWatcher();
 
-    // Initialize platform identifier
+    // Platform dataset on documentElement
     this.initPlatform();
 
     this.isInitialized = true;
   };
 
-  /**
-   * Reset preferences to initial state
-   */
+  /** Resets preferences to the initial snapshot. */
   resetPreferences = async () => {
-    // Reset state to initial preferences
     Object.assign(this.state, this.initialPreferences);
     this.replaceCustomPreferences(this.initialCustomPreferences);
 
-    // Save preferences to cache
     await this.saveToCache();
 
-    // Trigger UI update
+    // Trigger UI updates immediately
     this.handleUpdates(this.state);
   };
 
   /**
-   * Update extended preferences
-   * @param updates - Extended preferences to update
+   * Updates custom (extension) preferences.
+   * @param updates - Partial custom preference values
    */
   updateCustomPreferences = (updates: DeepPartial<object>) => {
     if (!this.customPreferencesExtension) {
@@ -189,26 +173,29 @@ class PreferenceManager {
     }
 
     this.replaceCustomPreferences(
-      merge({}, sanitizedUpdates, markRaw(this.customState)),
+      defu({}, sanitizedUpdates, markRaw(this.customState)),
     );
     this.debouncedSave();
   };
 
   /**
-   * Update preferences
-   * @param updates - Preferences to update
+   * Updates preferences.
+   * @param updates - Partial preference values
    */
   updatePreferences = (updates: DeepPartial<Preferences>) => {
-    // Deep merge update content and current state
-    const mergedState = merge({}, updates, markRaw(this.state));
+    // Deep-merge updates into reactive state
+    const mergedState = defu({}, updates, markRaw(this.state));
     Object.assign(this.state, mergedState);
 
-    // Execute update based on the updated values
     this.handleUpdates(updates);
 
-    // Save to cache (fire-and-forget, controlled by debounce)
+    // Persist to cache (debounced, fire-and-forget)
     this.debouncedSave();
   };
+
+  getFullKey(key: string): string {
+    return this.cache.getFullKey(key);
+  }
 
   private cloneValue<T>(value: T): T {
     if (Array.isArray(value)) {
@@ -227,8 +214,8 @@ class PreferenceManager {
   }
 
   /**
-   * Handle updates
-   * @param updates - Updated preferences
+   * Applies side effects for preference updates.
+   * @param updates - Updated preference fields
    */
   private handleUpdates(updates: DeepPartial<Preferences>) {
     const { theme, app } = updates;
@@ -248,9 +235,7 @@ class PreferenceManager {
     }
   }
 
-  /**
-   * Initialize platform identifier
-   */
+  /** Sets platform identifier on documentElement. */
   private initPlatform() {
     document.documentElement.dataset.platform = isMacOs() ? 'macOs' : 'window';
   }
@@ -312,16 +297,16 @@ class PreferenceManager {
   }
 
   /**
-   * Load extended preferences from cache
-   * @returns Cached extended preferences, or null if not found
+   * Loads custom preferences from cache.
+   * @returns Cached custom preferences, or null if missing
    */
   private async loadCustomFromCache(): Promise<CustomPreferencesRecord | null> {
     return this.cache.getItem<CustomPreferencesRecord>(STORAGE_KEYS.CUSTOM);
   }
 
   /**
-   * Load preferences from cache
-   * @returns Cached preferences, or null if not found
+   * Loads preferences from cache.
+   * @returns Cached preferences, or null if missing
    */
   private async loadFromCache(): Promise<null | Preferences> {
     return this.cache.getItem<Preferences>(STORAGE_KEYS.MAIN);
@@ -379,14 +364,10 @@ class PreferenceManager {
     return result;
   }
 
-  /**
-   * Save preferences to cache
-   */
+  /** Persists preferences to cache. */
   private async saveToCache() {
     try {
       await this.cache.setItem(STORAGE_KEYS.MAIN, this.state);
-      await this.cache.setItem(STORAGE_KEYS.LOCALE, this.state.app.locale);
-      await this.cache.setItem(STORAGE_KEYS.THEME, this.state.theme.mode);
 
       if (this.customPreferencesExtension) {
         await this.cache.setItem(STORAGE_KEYS.CUSTOM, {
@@ -401,15 +382,13 @@ class PreferenceManager {
     }
   }
 
-  /**
-   * Watch state and system preferences changes
-   */
+  /** Watches viewport and system color scheme. */
   private setupWatcher() {
     if (this.isInitialized) {
       return;
     }
 
-    // Watch breakpoints, check if mobile
+    // Sync isMobile from breakpoints
     const breakpoints = useBreakpoints(breakpointsTailwind);
     const isMobile = breakpoints.smaller('md');
 
@@ -422,28 +401,11 @@ class PreferenceManager {
       },
       { immediate: true },
     );
-
-    // Watch system theme preferences changes
-    window
-      .matchMedia('(prefers-color-scheme: dark)')
-      .addEventListener('change', ({ matches: isDark }) => {
-        // Only follow system theme in automatic mode
-        if (this.state.theme.mode === 'auto') {
-          // Apply actual theme first
-          this.updatePreferences({
-            theme: { mode: isDark ? 'dark' : 'light' },
-          });
-          // Then restore to auto mode, keep following system state
-          this.updatePreferences({
-            theme: { mode: 'auto' },
-          });
-        }
-      });
   }
 
   /**
-   * Update page color mode (gray, weak)
-   * @param preference - Preferences
+   * Updates grayscale and color-weak modes on the document.
+   * @param preference - Current preferences
    */
   private updateColorMode(preference: Preferences) {
     const { colorGrayMode, colorWeakMode } = preference.app;
@@ -453,6 +415,7 @@ class PreferenceManager {
     dom.classList.toggle('grayscale-mode', colorGrayMode);
   }
 }
+
 const preferencesManager = new PreferenceManager();
 
-export { preferencesManager };
+export { PreferenceManager, preferencesManager };

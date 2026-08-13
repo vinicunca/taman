@@ -3,15 +3,15 @@ import type { Router, RouteRecordName, RouteRecordRaw } from 'vue-router';
 import { traverseTreeValues } from '@taman-core/shared/utils';
 
 /**
- * Reset all routes, except for the specified whitelist.
+ * Resets all routes except those in the static route whitelist.
  */
 export function resetStaticRoutes(router: Router, routes: Array<RouteRecordRaw>) {
-  // Get the name of all nodes in the static route including the child nodes, and exclude the routes that do not have the name field.
+  // Collect route names from the static tree (including children); skip routes without a name
   const staticRouteNames = traverseTreeValues<
     RouteRecordRaw,
     RouteRecordName | undefined
   >(routes, (route) => {
-    // These routes need to specify name, to prevent the routes that do not have the name field from being deleted when the routes are reset.
+    // Routes must define `name` so they can be removed during reset
     if (!route.name) {
       console.warn(
         `The route with the path ${route.path} needs to have the field name specified.`,
@@ -23,7 +23,7 @@ export function resetStaticRoutes(router: Router, routes: Array<RouteRecordRaw>)
   const { getRoutes, hasRoute, removeRoute } = router;
   const allRoutes = getRoutes();
   allRoutes.forEach(({ name }) => {
-    // Only routes that exist in the route table and are not in the whitelist need to be deleted.
+    // Remove only routes that exist and are not in the static whitelist
     if (name && !staticRouteNames.includes(name) && hasRoute(name)) {
       removeRoute(name);
     }

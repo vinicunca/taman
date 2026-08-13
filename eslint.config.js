@@ -2,22 +2,32 @@ import { vinicuncaESLint } from '@vinicunca/eslint-config';
 
 export default vinicuncaESLint(
   {
-    vue: true,
-  },
-  {
-    rules: {
-      'pnpm/yaml-enforce-settings': 'off',
+    formatters: {
+      html: true,
     },
+    typescript: true,
+    unocss: {
+      configPath: './apps/backstage/uno.config.ts',
+    },
+    vue: true,
   },
 
   {
     files: [
-      '**/scripts/**/*.ts',
+      '**/scripts/**',
+      '**/db/**',
+      '**/playwright.config.ts',
       '**/internal/**/*.ts',
+      './apps/**/server/**/*.ts',
     ],
     rules: {
-      'no-console': 'off',
       'node/prefer-global/process': 'off',
+    },
+  },
+
+  {
+    rules: {
+      'pnpm/yaml-enforce-settings': 'off',
     },
   },
 );

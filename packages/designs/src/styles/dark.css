@@ -1,0 +1,12 @@
+.dark,
+.dark[data-theme="default"] {
+  --taman-color-text: oklch(0.9619 0 0);
+
+  --taman-color-sidebar: oklch(0.2347 0.0093 267.6);
+  --taman-color-border: oklch(33.44% 0.0069 286.02);
+
+  --taman-color-accent: oklch(0.3082 0.0059 258.35);
+  --taman-color-elevate: oklch(0.279 0.041 260.031);
+  --taman-color-background-deep: oklch(0.1996 0.0086 264.36);
+  --taman-color-header: oklch(0.2347 0.0093 267.6);
+}

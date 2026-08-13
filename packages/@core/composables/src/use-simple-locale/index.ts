@@ -6,7 +6,7 @@ import { computed, ref } from 'vue';
 import { getMessages } from './messages';
 
 export const useSimpleLocale = createSharedComposable(() => {
-  const currentLocale = ref<Locale>('id-ID');
+  const currentLocale = ref<Locale>('en-US');
 
   const setSimpleLocale = (locale: Locale) => {
     currentLocale.value = locale;

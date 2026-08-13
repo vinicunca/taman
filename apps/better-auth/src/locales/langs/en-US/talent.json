@@ -1,0 +1,10 @@
+{
+  "title": "Talent",
+  "fields": {
+    "legalName": "Legal name",
+    "stageName": "Stage name",
+    "bio": "Bio",
+    "stageIntro": "Stage intro",
+    "headshotUrls": "Headshots"
+  }
+}

@@ -1,8 +1,7 @@
 import { diff } from '@taman-core/shared/utils';
-import { TAMAN_AUTH_PAGE_LAYOUT_TYPE, TAMAN_LAYOUT_TYPE, TAMAN_PREFERENCES_BUTTON_POSITION_TYPE, TAMAN_THEME_MODE_TYPE } from '@taman-core/typings';
+import { useColorMode } from '@vueuse/core';
 import { computed } from 'vue';
 import { preferencesManager } from './preferences';
-import { isDarkTheme } from './update-css-variables';
 
 function usePreferences() {
   const preferences = preferencesManager.getPreferences();
@@ -13,9 +12,7 @@ function usePreferences() {
   const preferencesExtension = computed(() =>
     preferencesManager.getPreferencesExtension(),
   );
-  /**
-   * Calculate the changes in the preferences
-   */
+  /** Computes preference changes from the initial snapshot. */
   const diffPreference = computed(() => {
     return diff(initialPreferences, preferences);
   });
@@ -28,13 +25,15 @@ function usePreferences() {
 
   const shortcutKeysPreferences = computed(() => preferences.shortcutKeys);
 
+  const colorMode = useColorMode({
+    storageKey: preferencesManager.getFullKey('theme'),
+  });
+
   /**
-   * Check if the theme is dark mode
-   * @param  preferences - The current preference setting object, its theme value will be used to check if it is dark mode.
-   * @returns If the theme is dark mode, returns true, otherwise returns false.
+   * Whether dark mode is active based on the current theme mode.
    */
   const isDark = computed(() => {
-    return isDarkTheme(preferences.theme.mode);
+    return colorMode.value === 'dark';
   });
 
   const locale = computed(() => {
@@ -46,75 +45,57 @@ function usePreferences() {
   });
 
   const theme = computed(() => {
-    return isDark.value ? TAMAN_THEME_MODE_TYPE.DARK : TAMAN_THEME_MODE_TYPE.LIGHT;
+    return isDark.value ? 'dark' : 'light';
   });
 
-  /**
-   * Layout mode
-   */
+  /** Effective layout (sidebar on mobile). */
   const layout = computed(() =>
-    isMobile.value ? TAMAN_LAYOUT_TYPE.SIDEBAR_NAV : appPreferences.value.layout,
+    isMobile.value ? 'sidebar-nav' : appPreferences.value.layout,
   );
 
-  /**
-   * Whether to show the top bar
-   */
+  /** Whether the header navigation is shown. */
   const isShowHeaderNav = computed(() => {
     return preferences.header.enable;
   });
 
   /**
-   * Whether to display the content in full screen, without the side, bottom, top, and tab areas
+   * Whether content is full-screen (no sidebar, footer, header, or tabs).
    */
   const isFullContent = computed(
-    () => appPreferences.value.layout === TAMAN_LAYOUT_TYPE.FULL_CONTENT,
+    () => appPreferences.value.layout === 'full-content',
   );
 
-  /**
-   * Whether to display the side navigation mode
-   */
+  /** Whether layout is sidebar navigation. */
   const isSideNav = computed(
-    () => appPreferences.value.layout === TAMAN_LAYOUT_TYPE.SIDEBAR_NAV,
+    () => appPreferences.value.layout === 'sidebar-nav',
   );
 
-  /**
-   * Whether to display the side mixed navigation mode
-   */
+  /** Whether layout is sidebar mixed navigation. */
   const isSideMixedNav = computed(
-    () => appPreferences.value.layout === TAMAN_LAYOUT_TYPE.SIDEBAR_MIXED_NAV,
+    () => appPreferences.value.layout === 'sidebar-mixed-nav',
   );
 
-  /**
-   * Whether to display the header navigation mode
-   */
+  /** Whether layout is header navigation. */
   const isHeaderNav = computed(
-    () => appPreferences.value.layout === TAMAN_LAYOUT_TYPE.HEADER_NAV,
+    () => appPreferences.value.layout === 'header-nav',
   );
 
-  /**
-   * Whether to display the header mixed navigation mode
-   */
+  /** Whether layout is header mixed navigation. */
   const isHeaderMixedNav = computed(
-    () => appPreferences.value.layout === TAMAN_LAYOUT_TYPE.HEADER_MIXED_NAV,
+    () => appPreferences.value.layout === 'header-mixed-nav',
   );
 
-  /**
-   * Whether to display the top header + side navigation mode
-   */
+  /** Whether layout is header + sidebar navigation. */
   const isHeaderSidebarNav = computed(
-    () => appPreferences.value.layout === TAMAN_LAYOUT_TYPE.HEADER_SIDEBAR_NAV,
+    () => appPreferences.value.layout === 'header-sidebar-nav',
   );
 
-  /**
-   * Whether to display the mixed navigation mode
-   */
+  /** Whether layout is mixed navigation. */
   const isMixedNav = computed(
-    () => appPreferences.value.layout === TAMAN_LAYOUT_TYPE.MIXED_NAV,
+    () => appPreferences.value.layout === 'mixed-nav',
   );
 
-  /**
-   * Whether to contain the side navigation mode
-   */
+  /** Whether layout includes a sidebar. */
   const isSideMode = computed(() => {
     return (
       isMixedNav.value
@@ -130,37 +111,30 @@ function usePreferences() {
   });
 
   /**
-   * Whether to enable keep-alive
-   * Only enable when the tabs are visible and keep-alive is enabled
+   * Whether keep-alive is enabled (requires tabs and keepAlive).
    */
   const keepAlive = computed(
     () => preferences.tabbar.enable && preferences.tabbar.keepAlive,
   );
 
-  /**
-   * Whether the login registration page layout is on the left
-   */
+  /** Whether auth page layout is panel-left. */
   const authPanelLeft = computed(() => {
-    return appPreferences.value.authPageLayout === TAMAN_AUTH_PAGE_LAYOUT_TYPE.PANEL_LEFT;
+    return appPreferences.value.authPageLayout === 'panel-left';
   });
 
-  /**
-   * Whether the login registration page layout is on the right
-   */
+  /** Whether auth page layout is panel-right. */
   const authPanelRight = computed(() => {
-    return appPreferences.value.authPageLayout === TAMAN_AUTH_PAGE_LAYOUT_TYPE.PANEL_RIGHT;
+    return appPreferences.value.authPageLayout === 'panel-right';
   });
 
-  /**
-   * Whether the login registration page layout is in the center
-   */
+  /** Whether auth page layout is panel-center. */
   const authPanelCenter = computed(() => {
-    return appPreferences.value.authPageLayout === TAMAN_AUTH_PAGE_LAYOUT_TYPE.PANEL_CENTER;
+    return appPreferences.value.authPageLayout === 'panel-center';
   });
 
   /**
-   * Whether the content is already maximized
-   * Exclude full-content mode
+   * Whether content is maximized (header and sidebar hidden).
+   * Excludes full-content layout.
    */
   const contentIsMaximize = computed(() => {
     const headerIsHidden = preferences.header.hidden;
@@ -168,28 +142,16 @@ function usePreferences() {
     return headerIsHidden && sidebarIsHidden && !isFullContent.value;
   });
 
-  /**
-   * Whether to enable the global search shortcut key
-   */
+  /** Whether global search shortcut is enabled. */
   const globalSearchShortcutKey = computed(() => {
     const { enable, globalSearch } = shortcutKeysPreferences.value;
     return enable && globalSearch;
   });
 
-  /**
-   * Whether to enable the global logout shortcut key
-   */
+  /** Whether global logout shortcut is enabled. */
   const globalLogoutShortcutKey = computed(() => {
     const { enable, globalLogout } = shortcutKeysPreferences.value;
     return enable && globalLogout;
-  });
-
-  /**
-   * Whether to enable the global escape shortcut key
-   */
-  const globalEscapeShortcutKey = computed(() => {
-    const { enable, globalEscape } = shortcutKeysPreferences.value;
-    return enable && globalEscape;
   });
 
   const globalLockScreenShortcutKey = computed(() => {
@@ -197,12 +159,10 @@ function usePreferences() {
     return enable && globalLockScreen;
   });
 
-  /**
-   * The position of the preferences button
-   */
+  /** Resolved preferences button placement. */
   const preferencesButtonPosition = computed(() => {
     const { enablePreferences, preferencesButtonPosition } = preferences.app;
-    // If the preferences button is not enabled
+    // Preferences button disabled
     if (!enablePreferences) {
       return {
         fixed: false,
@@ -217,19 +177,20 @@ function usePreferences() {
 
     const contentIsMaximize = headerHidden && sidebarHidden;
 
-    const isHeaderPosition = preferencesButtonPosition === TAMAN_PREFERENCES_BUTTON_POSITION_TYPE.HEADER;
-    const isUserDropdownPosition = preferencesButtonPosition === TAMAN_PREFERENCES_BUTTON_POSITION_TYPE.USER_DROPDOWN;
+    const isHeaderPosition = preferencesButtonPosition === 'header';
+    const isUserDropdownPosition
+      = preferencesButtonPosition === 'user-dropdown';
 
-    // If the fixed position is set
-    if (preferencesButtonPosition !== TAMAN_PREFERENCES_BUTTON_POSITION_TYPE.AUTO) {
+    // Explicit fixed position
+    if (preferencesButtonPosition !== 'auto') {
       return {
-        fixed: preferencesButtonPosition === TAMAN_PREFERENCES_BUTTON_POSITION_TYPE.FIXED,
+        fixed: preferencesButtonPosition === 'fixed',
         header: isHeaderPosition,
         userDropdown: isUserDropdownPosition,
       };
     }
 
-    // If it is full screen mode or not fixed at the top,
+    // Full-screen, mobile, or header hidden — pin to fixed
     const fixed
       = contentIsMaximize
         || isFullContent.value
@@ -253,8 +214,8 @@ function usePreferences() {
     diffCustomPreference,
     globalLockScreenShortcutKey,
     globalLogoutShortcutKey,
-    globalEscapeShortcutKey,
     globalSearchShortcutKey,
+    colorMode,
     isDark,
     isFullContent,
     isHeaderMixedNav,

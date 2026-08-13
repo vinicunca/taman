@@ -10,5 +10,8 @@
   },
   "dependencies": {
     "@taman-core/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "vitest": "catalog:"
   }
 }

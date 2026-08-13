@@ -1,4 +1,5 @@
 import type { Preferences } from './types';
+
 import { preferencesManager } from './preferences';
 
 export const {

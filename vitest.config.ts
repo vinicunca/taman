@@ -3,7 +3,10 @@ import VueJsx from '@vitejs/plugin-vue-jsx';
 import { configDefaults, defineConfig } from 'vitest/config';
 
 export default defineConfig({
-  plugins: [Vue(), VueJsx()],
+  plugins: [
+    Vue(),
+    VueJsx(),
+  ],
   test: {
     environment: 'happy-dom',
     environmentOptions: {
@@ -22,7 +25,6 @@ export default defineConfig({
       '**/.{idea,git,cache,output,temp}/**',
       '**/node_modules/**',
       '**/{stylelint,eslint}.config.*',
-      '**/{oxfmt,oxlint}.config.*',
     ],
   },
 });

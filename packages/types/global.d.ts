@@ -6,16 +6,16 @@ declare module 'vue-router' {
   interface RouteMeta extends IRouteMeta {}
 }
 
-export interface TamanAdminProdAppConfigRaw {
-  VITE_GLOB_API_URL: string;
+export interface TamanAdminDevConfigRaw {
+  VITE_DIRECTOR_URL: string;
 }
 
 export interface ApplicationConfig {
-  apiURL: string;
+  directorUrl: string;
 }
 
 declare global {
   interface Window {
-    _TAMAN_ADMIN_PROD_APP_CONF_: TamanAdminProdAppConfigRaw;
+    _TAMAN_ADMIN_DEV_CONFIG_: TamanAdminDevConfigRaw;
   }
 }

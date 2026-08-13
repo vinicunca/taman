@@ -1,8 +1,8 @@
 import type { RouteLocationNormalized } from 'vue-router';
 
-export interface TabDefinition extends RouteLocationNormalized {
+export interface TamanTabDefinition extends RouteLocationNormalized {
   /**
-   * The key of the tab
+   * Tab key
    */
   key?: string;
 }

@@ -1,29 +1,28 @@
-/* eslint-disable ts/method-signature-style */
 /**
- * Storage driver interface (core abstract strategy pattern)
- * All storage implementations (localStorage, IndexedDB, Memory, etc.) need to implement this interface
- * The driver layer only handles pure KV access, without knowing TTL and prefix
+ * Storage driver interface (core abstraction for the strategy pattern).
+ * All storage implementations (localStorage, IndexedDB, Memory, etc.) must implement this interface.
+ * The driver layer handles pure key-value access only and is unaware of TTL and prefixes.
  */
 interface IStorageDriver {
-  /** Clear all storage items */
+  /** Clear all stored items */
   clear(): Promise<void>;
 
-  /** Get storage item */
+  /** Get a stored item */
   getItem<T>(key: string): Promise<null | T>;
 
   /** Get all keys */
-  keys(): Promise<Array<string>>;
+  keys(): Promise<string[]>;
 
-  /** Remove storage item */
+  /** Remove a stored item */
   removeItem(key: string): Promise<void>;
 
-  /** Set storage item */
+  /** Set a stored item */
   setItem(key: string, value: unknown): Promise<void>;
 }
 
 /**
- * Storage item wrapper structure with TTL
- * TTL logic is managed by StorageManager, the driver layer does not know
+ * Storage item wrapper with optional TTL.
+ * TTL logic is managed by StorageManager; the driver layer is unaware of it.
  */
 interface StorageItem<T> {
   expiry?: number;
@@ -33,7 +32,7 @@ interface StorageItem<T> {
 interface StorageManagerOptions {
   /** Storage driver instance */
   driver?: IStorageDriver;
-  /** Key prefix, used for namespace isolation */
+  /** Key prefix for namespace isolation */
   prefix?: string;
 }
 

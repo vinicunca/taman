@@ -1,7 +1,15 @@
 {
-  "name": "@taman/icons",
+  "name": "@vben/icons",
   "type": "module",
   "version": "1.0.0",
+  "license": "MIT",
+  "homepage": "https://github.com/vbenjs/vue-vben-admin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vbenjs/vue-vben-admin.git",
+    "directory": "packages/icons"
+  },
+  "bugs": "https://github.com/vbenjs/vue-vben-admin/issues",
   "exports": {
     ".": {
       "types": "./src/index.ts",

@@ -1,8 +1,8 @@
 import type { IStorageDriver } from './types';
 
 /**
- * Memory storage driver
- * Suitable for test and SSR scenarios, data is not persisted
+ * In-memory storage driver.
+ * Suitable for tests and SSR; data is not persisted.
  */
 class MemoryStorageDriver implements IStorageDriver {
   private store = new Map<string, unknown>();
@@ -16,7 +16,7 @@ class MemoryStorageDriver implements IStorageDriver {
     return (value as T) ?? null;
   }
 
-  async keys(): Promise<Array<string>> {
+  async keys(): Promise<string[]> {
     return [...this.store.keys()];
   }
 

@@ -11,6 +11,7 @@
   "dependencies": {
     "@taman-core/shared": "workspace:*",
     "@taman-core/typings": "workspace:*",
+    "@taman/rbac": "workspace:*",
     "vue-router": "catalog:"
   }
 }

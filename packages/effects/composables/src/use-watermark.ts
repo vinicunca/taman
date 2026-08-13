@@ -68,7 +68,7 @@ export function useWatermark() {
     }
   }
 
-  // Only register the unmount hook the first time it is called to prevent repeated registration so that the watermark is destroyed when the route is switched
+  // Register unmount hook only once to avoid destroying watermark on route changes
   if (!unmountedHooked.value) {
     unmountedHooked.value = true;
     onUnmounted(() => {

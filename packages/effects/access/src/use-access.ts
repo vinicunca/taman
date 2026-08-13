@@ -1,43 +1,49 @@
-import { TAMAN_ACCESS_MODE_TYPE } from '@taman-core/typings';
+import type { MaybeRefOrGetter } from 'vue';
+
 import { preferences, updatePreferences } from '@taman/preferences';
 import { useAccessStore } from '@taman/stores';
-import { computed } from 'vue';
+import { computed, inject, toValue } from 'vue';
+
+import { ACCESS_ROLES_KEY } from './directive';
+import { matchesAnyRole } from './matches-any-role';
 
 function useAccess() {
   const accessStore = useAccessStore();
-  // const userStore = useUserStore();
+  const injectedRoles = inject(ACCESS_ROLES_KEY);
+  if (!injectedRoles) {
+    throw new Error(
+      'useAccess() requires registerAccessDirective(app, roles) to have been called first.',
+    );
+  }
+  const rolesSource: MaybeRefOrGetter<Array<string>> = injectedRoles;
+
   const accessMode = computed(() => {
     return preferences.app.accessMode;
   });
 
   /**
-   * Determine permission based on role.
-   * @description: Determine whether there is permission，The role is judged by the user's role
+   * Check access by user roles.
+   * @description Determine whether there is permission; access is granted when any role matches.
    * @param roles
    */
   function hasAccessByRoles(roles: Array<string>) {
-    const userRoleSet = new Set(userStore.userRoles);
-    const intersection = roles.filter((item) => userRoleSet.has(item));
-    return intersection.length > 0;
+    return matchesAnyRole(toValue(rolesSource), roles);
   }
 
   /**
-   * Determine whether there is permission based on permission code
-   * @description: Determine whether there is permission，The permission code is judged by the user's permission code
+   * Check access by permission codes.
+   * @description Determine whether there is permission; access is granted when any code matches.
    * @param codes
    */
   function hasAccessByCodes(codes: Array<string>) {
-    const userCodesSet = new Set(accessStore.accessCodes);
-
-    const intersection = codes.filter((item) => userCodesSet.has(item));
-    return intersection.length > 0;
+    return matchesAnyRole(accessStore.accessCodes, codes);
   }
 
   async function toggleAccessMode() {
     updatePreferences({
       app: {
         accessMode:
-          preferences.app.accessMode === TAMAN_ACCESS_MODE_TYPE.FRONTEND ? TAMAN_ACCESS_MODE_TYPE.BACKEND : TAMAN_ACCESS_MODE_TYPE.FRONTEND,
+          preferences.app.accessMode === 'frontend' ? 'backend' : 'frontend',
       },
     });
   }

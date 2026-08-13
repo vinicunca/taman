@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@taman/tsconfig/web-app.json",
+  "compilerOptions": {
+    "paths": {
+      "#/*": ["./src/*"],
+      "#build/ui/*": [
+        "./node_modules/.pohon-ui/ui/*"
+      ]
+    },
+    "allowArbitraryExtensions": true
+  },
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "auto-imports.d.ts",
+    "components.d.ts",
+    "pohon-theme.d.ts"
+  ]
+}

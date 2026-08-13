@@ -2,13 +2,15 @@ import type { Package } from '@manypkg/get-packages';
 
 import { existsSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
+
 import * as manypkg from '@manypkg/get-packages';
+const { getPackages: getPackagesFunc, getPackagesSync: getPackagesSyncFunc } =
+  manypkg;
 
-const {
-  getPackages: getPackagesFunc,
-  getPackagesSync: getPackagesSyncFunc,
-} = manypkg;
-
+/**
+ * Find the monorepo root directory
+ * @param cwd
+ */
 function findMonorepoRoot(cwd: string = process.cwd()) {
   let currentDir = resolve(cwd);
 
@@ -26,11 +28,17 @@ function findMonorepoRoot(cwd: string = process.cwd()) {
   }
 }
 
+/**
+ * Get all packages in the monorepo (sync)
+ */
 function getPackagesSync() {
   const root = findMonorepoRoot();
   return getPackagesSyncFunc(root);
 }
 
+/**
+ * Get all packages in the monorepo
+ */
 async function getPackages() {
   const root = findMonorepoRoot();
 
@@ -38,16 +46,11 @@ async function getPackages() {
 }
 
 /**
- * Get the specified package in the monorepo
+ * Get a specific package in the monorepo by name
  */
 async function getPackage(pkgName: string) {
   const { packages } = await getPackages();
   return packages.find((pkg: Package) => pkg.packageJson.name === pkgName);
 }
 
-export {
-  findMonorepoRoot,
-  getPackage,
-  getPackages,
-  getPackagesSync,
-};
+export { findMonorepoRoot, getPackage, getPackages, getPackagesSync };

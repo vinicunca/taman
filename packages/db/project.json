@@ -1,0 +1,92 @@
+{
+  "name": "db",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/db",
+  "projectType": "library",
+  "targets": {
+    "studio": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bash ./scripts/run-studio.sh",
+        "cwd": "packages/db"
+      },
+      "defaultConfiguration": "dev",
+      "configurations": {
+        "dev": {
+          "envFile": "packages/db/.env",
+          "env": {
+            "MODE_ENV": "dev"
+          }
+        },
+        "uat": {
+          "envFile": "packages/db/.env.uat",
+          "env": {
+            "MODE_ENV": "uat"
+          }
+        },
+        "prod": {
+          "envFile": "packages/db/.env.prod",
+          "env": {
+            "MODE_ENV": "prod"
+          }
+        }
+      },
+      "cache": false
+    },
+    "generate": {
+      "command": "pnpm drizzle-kit generate",
+      "options": {
+        "cwd": "packages/db"
+      },
+      "cache": false
+    },
+    "generate:auth": {
+      "command": "pnpx @better-auth/cli generate --config ./gen-auth-schema.ts --output ./src/schema/auth.schema.ts -y",
+      "options": {
+        "cwd": "packages/db"
+      },
+      "cache": false
+    },
+
+    "migrate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "parallel": false,
+        "cwd": "packages/db"
+      },
+      "defaultConfiguration": "dev",
+      "configurations": {
+        "dev": {
+          "envFile": "packages/db/.env",
+          "commands": [
+            "drizzle-kit push"
+          ]
+        },
+        "uat": {
+          "envFile": "packages/db/.env.uat",
+          "commands": [
+            "drizzle-kit migrate"
+          ]
+        },
+        "prod": {
+          "envFile": "packages/db/.env.prod",
+          "commands": [
+            "drizzle-kit migrate"
+          ]
+        }
+      },
+      "cache": false
+    },
+
+    "seed": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bun run ./src/seed/seed.ts",
+        "cwd": "packages/db",
+        "envFile": "packages/db/.env"
+      },
+      "cache": false
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,1615 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "shim-pinia.d.ts",
+      "file_type": "code",
+      "source_file": "shim-pinia.d.ts",
+      "source_location": "L1",
+      "id": "shim_pinia_d_ts",
+      "community": 9,
+      "norm_label": "shim-pinia.d.ts"
+    },
+    {
+      "label": "package.json",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L1",
+      "id": "package_json",
+      "community": 0,
+      "norm_label": "package.json"
+    },
+    {
+      "label": "name",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "id": "stores_package_name",
+      "community": 0,
+      "norm_label": "name"
+    },
+    {
+      "label": "version",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "id": "stores_package_version",
+      "community": 0,
+      "norm_label": "version"
+    },
+    {
+      "label": "homepage",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "id": "stores_package_homepage",
+      "community": 0,
+      "norm_label": "homepage"
+    },
+    {
+      "label": "bugs",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L5",
+      "id": "stores_package_bugs",
+      "community": 0,
+      "norm_label": "bugs"
+    },
+    {
+      "label": "repository",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L6",
+      "id": "stores_package_repository",
+      "community": 0,
+      "norm_label": "repository"
+    },
+    {
+      "label": "type",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L7",
+      "id": "stores_package_repository_type",
+      "community": 0,
+      "norm_label": "type"
+    },
+    {
+      "label": "url",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L8",
+      "id": "stores_package_repository_url",
+      "community": 0,
+      "norm_label": "url"
+    },
+    {
+      "label": "directory",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L9",
+      "id": "stores_package_repository_directory",
+      "community": 0,
+      "norm_label": "directory"
+    },
+    {
+      "label": "license",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L11",
+      "id": "stores_package_license",
+      "community": 0,
+      "norm_label": "license"
+    },
+    {
+      "label": "type",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L12",
+      "id": "stores_package_type",
+      "community": 0,
+      "norm_label": "type"
+    },
+    {
+      "label": "sideEffects",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L13",
+      "id": "stores_package_sideeffects",
+      "community": 0,
+      "norm_label": "sideeffects"
+    },
+    {
+      "label": "exports",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L16",
+      "id": "stores_package_exports",
+      "community": 0,
+      "norm_label": "exports"
+    },
+    {
+      "label": "types",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L18",
+      "id": "stores_package_types",
+      "community": 0,
+      "norm_label": "types"
+    },
+    {
+      "label": "default",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L19",
+      "id": "stores_package_default",
+      "community": 0,
+      "norm_label": "default"
+    },
+    {
+      "label": "dependencies",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L22",
+      "id": "stores_package_dependencies",
+      "community": 4,
+      "norm_label": "dependencies"
+    },
+    {
+      "label": "@vben-core/preferences",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L23",
+      "id": "stores_package_dependencies_vben_core_preferences",
+      "community": 4,
+      "norm_label": "@vben-core/preferences"
+    },
+    {
+      "label": "@vben-core/shared",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L24",
+      "id": "stores_package_dependencies_vben_core_shared",
+      "community": 4,
+      "norm_label": "@vben-core/shared"
+    },
+    {
+      "label": "@vben-core/typings",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L25",
+      "id": "stores_package_dependencies_vben_core_typings",
+      "community": 4,
+      "norm_label": "@vben-core/typings"
+    },
+    {
+      "label": "pinia",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L26",
+      "id": "stores_package_dependencies_pinia",
+      "community": 4,
+      "norm_label": "pinia"
+    },
+    {
+      "label": "pinia-plugin-persistedstate",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L27",
+      "id": "stores_package_dependencies_pinia_plugin_persistedstate",
+      "community": 4,
+      "norm_label": "pinia-plugin-persistedstate"
+    },
+    {
+      "label": "secure-ls",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L28",
+      "id": "stores_package_dependencies_secure_ls",
+      "community": 4,
+      "norm_label": "secure-ls"
+    },
+    {
+      "label": "vue",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L29",
+      "id": "stores_package_dependencies_vue",
+      "community": 4,
+      "norm_label": "vue"
+    },
+    {
+      "label": "vue-router",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L30",
+      "id": "stores_package_dependencies_vue_router",
+      "community": 4,
+      "norm_label": "vue-router"
+    },
+    {
+      "label": "tsconfig.json",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L1",
+      "id": "tsconfig_json",
+      "community": 8,
+      "norm_label": "tsconfig.json"
+    },
+    {
+      "label": "$schema",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L2",
+      "id": "stores_tsconfig_schema",
+      "community": 8,
+      "norm_label": "$schema"
+    },
+    {
+      "label": "extends",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L3",
+      "id": "stores_tsconfig_extends",
+      "community": 8,
+      "norm_label": "extends"
+    },
+    {
+      "label": "include",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L4",
+      "id": "stores_tsconfig_include",
+      "community": 8,
+      "norm_label": "include"
+    },
+    {
+      "label": "setup.ts",
+      "file_type": "code",
+      "source_file": "src/setup.ts",
+      "source_location": "L1",
+      "id": "src_setup_ts",
+      "community": 3,
+      "norm_label": "setup.ts"
+    },
+    {
+      "label": "SecureLSStorage",
+      "file_type": "code",
+      "source_file": "src/setup.ts",
+      "source_location": "L10",
+      "id": "src_setup_securelsstorage",
+      "community": 3,
+      "norm_label": "securelsstorage"
+    },
+    {
+      "label": "SecureLSCtor",
+      "file_type": "code",
+      "source_file": "src/setup.ts",
+      "source_location": "L15",
+      "id": "src_setup_securelsctor",
+      "community": 3,
+      "norm_label": "securelsctor"
+    },
+    {
+      "label": "secureLSModule",
+      "file_type": "code",
+      "source_file": "src/setup.ts",
+      "source_location": "L22",
+      "id": "src_setup_securelsmodule",
+      "community": 3,
+      "norm_label": "securelsmodule"
+    },
+    {
+      "label": "InitStoreOptions",
+      "file_type": "code",
+      "source_file": "src/setup.ts",
+      "source_location": "L32",
+      "id": "src_setup_initstoreoptions",
+      "community": 3,
+      "norm_label": "initstoreoptions"
+    },
+    {
+      "label": "initStores()",
+      "file_type": "code",
+      "source_file": "src/setup.ts",
+      "source_location": "L44",
+      "id": "src_setup_initstores",
+      "community": 3,
+      "norm_label": "initstores()"
+    },
+    {
+      "label": "resetAllStores()",
+      "file_type": "code",
+      "source_file": "src/setup.ts",
+      "source_location": "L74",
+      "id": "src_setup_resetallstores",
+      "community": 3,
+      "norm_label": "resetallstores()"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "src/index.ts",
+      "source_location": "L1",
+      "id": "src_index_ts",
+      "community": 3,
+      "norm_label": "index.ts"
+    },
+    {
+      "label": "tabbar.test.ts",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L1",
+      "id": "src_modules_tabbar_test_ts",
+      "community": 1,
+      "norm_label": "tabbar.test.ts"
+    },
+    {
+      "label": "router",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L9",
+      "id": "modules_tabbar_test_router",
+      "community": 1,
+      "norm_label": "router"
+    },
+    {
+      "label": "store",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L21",
+      "id": "modules_tabbar_test_store",
+      "community": 1,
+      "norm_label": "store"
+    },
+    {
+      "label": "tab",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L22",
+      "id": "modules_tabbar_test_tab",
+      "community": 1,
+      "norm_label": "tab"
+    },
+    {
+      "label": "addNewTab",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L29",
+      "id": "modules_tabbar_test_addnewtab",
+      "community": 1,
+      "norm_label": "addnewtab"
+    },
+    {
+      "label": "newTab",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L36",
+      "id": "modules_tabbar_test_newtab",
+      "community": 1,
+      "norm_label": "newtab"
+    },
+    {
+      "label": "initialTab",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L48",
+      "id": "modules_tabbar_test_initialtab",
+      "community": 1,
+      "norm_label": "initialtab"
+    },
+    {
+      "label": "updatedTab",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L58",
+      "id": "modules_tabbar_test_updatedtab",
+      "community": 1,
+      "norm_label": "updatedtab"
+    },
+    {
+      "label": "affixTab",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L94",
+      "id": "modules_tabbar_test_affixtab",
+      "community": 1,
+      "norm_label": "affixtab"
+    },
+    {
+      "label": "normalTab",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L114",
+      "id": "modules_tabbar_test_normaltab",
+      "community": 1,
+      "norm_label": "normaltab"
+    },
+    {
+      "label": "targetTab",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L186",
+      "id": "modules_tabbar_test_targettab",
+      "community": 1,
+      "norm_label": "targettab"
+    },
+    {
+      "label": "addTargetTab",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L192",
+      "id": "modules_tabbar_test_addtargettab",
+      "community": 1,
+      "norm_label": "addtargettab"
+    },
+    {
+      "label": "currentTab",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L287",
+      "id": "modules_tabbar_test_currenttab",
+      "community": 1,
+      "norm_label": "currenttab"
+    },
+    {
+      "label": "access.test.ts",
+      "file_type": "code",
+      "source_file": "src/modules/access.test.ts",
+      "source_location": "L1",
+      "id": "src_modules_access_test_ts",
+      "community": 6,
+      "norm_label": "access.test.ts"
+    },
+    {
+      "label": "store",
+      "file_type": "code",
+      "source_file": "src/modules/access.test.ts",
+      "source_location": "L12",
+      "id": "modules_access_test_store",
+      "community": 6,
+      "norm_label": "store"
+    },
+    {
+      "label": "timezone.ts",
+      "file_type": "code",
+      "source_file": "src/modules/timezone.ts",
+      "source_location": "L1",
+      "id": "src_modules_timezone_ts",
+      "community": 7,
+      "norm_label": "timezone.ts"
+    },
+    {
+      "label": "TimezoneHandler",
+      "file_type": "code",
+      "source_file": "src/modules/timezone.ts",
+      "source_location": "L11",
+      "id": "modules_timezone_timezonehandler",
+      "community": 7,
+      "norm_label": "timezonehandler"
+    },
+    {
+      "label": "getDefaultTimezoneHandler()",
+      "file_type": "code",
+      "source_file": "src/modules/timezone.ts",
+      "source_location": "L26",
+      "id": "modules_timezone_getdefaulttimezonehandler",
+      "community": 7,
+      "norm_label": "getdefaulttimezonehandler()"
+    },
+    {
+      "label": "setTimezoneHandler()",
+      "file_type": "code",
+      "source_file": "src/modules/timezone.ts",
+      "source_location": "L45",
+      "id": "modules_timezone_settimezonehandler",
+      "community": 7,
+      "norm_label": "settimezonehandler()"
+    },
+    {
+      "label": "getTimezoneHandler()",
+      "file_type": "code",
+      "source_file": "src/modules/timezone.ts",
+      "source_location": "L52",
+      "id": "modules_timezone_gettimezonehandler",
+      "community": 7,
+      "norm_label": "gettimezonehandler()"
+    },
+    {
+      "label": "useTimezoneStore",
+      "file_type": "code",
+      "source_file": "src/modules/timezone.ts",
+      "source_location": "L62",
+      "id": "modules_timezone_usetimezonestore",
+      "community": 7,
+      "norm_label": "usetimezonestore"
+    },
+    {
+      "label": "user.test.ts",
+      "file_type": "code",
+      "source_file": "src/modules/user.test.ts",
+      "source_location": "L1",
+      "id": "src_modules_user_test_ts",
+      "community": 5,
+      "norm_label": "user.test.ts"
+    },
+    {
+      "label": "store",
+      "file_type": "code",
+      "source_file": "src/modules/user.test.ts",
+      "source_location": "L12",
+      "id": "modules_user_test_store",
+      "community": 5,
+      "norm_label": "store"
+    },
+    {
+      "label": "userInfo",
+      "file_type": "code",
+      "source_file": "src/modules/user.test.ts",
+      "source_location": "L13",
+      "id": "modules_user_test_userinfo",
+      "community": 5,
+      "norm_label": "userinfo"
+    },
+    {
+      "label": "tabbar.ts",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L1",
+      "id": "src_modules_tabbar_ts",
+      "community": 2,
+      "norm_label": "tabbar.ts"
+    },
+    {
+      "label": "RouteCached",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L25",
+      "id": "modules_tabbar_routecached",
+      "community": 2,
+      "norm_label": "routecached"
+    },
+    {
+      "label": "TabbarState",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L31",
+      "id": "modules_tabbar_tabbarstate",
+      "community": 2,
+      "norm_label": "tabbarstate"
+    },
+    {
+      "label": "useTabbarStore",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L75",
+      "id": "modules_tabbar_usetabbarstore",
+      "community": 1,
+      "norm_label": "usetabbarstore"
+    },
+    {
+      "label": "cloneTab()",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L664",
+      "id": "modules_tabbar_clonetab",
+      "community": 2,
+      "norm_label": "clonetab()"
+    },
+    {
+      "label": "isAffixTab()",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L689",
+      "id": "modules_tabbar_isaffixtab",
+      "community": 2,
+      "norm_label": "isaffixtab()"
+    },
+    {
+      "label": "isTabShown()",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L697",
+      "id": "modules_tabbar_istabshown",
+      "community": 2,
+      "norm_label": "istabshown()"
+    },
+    {
+      "label": "getTabKey()",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L706",
+      "id": "modules_tabbar_gettabkey",
+      "community": 2,
+      "norm_label": "gettabkey()"
+    },
+    {
+      "label": "isVisitHistory()",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L733",
+      "id": "modules_tabbar_isvisithistory",
+      "community": 2,
+      "norm_label": "isvisithistory()"
+    },
+    {
+      "label": "getTabKeyFromTab()",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L741",
+      "id": "modules_tabbar_gettabkeyfromtab",
+      "community": 2,
+      "norm_label": "gettabkeyfromtab()"
+    },
+    {
+      "label": "equalTab()",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L750",
+      "id": "modules_tabbar_equaltab",
+      "community": 2,
+      "norm_label": "equaltab()"
+    },
+    {
+      "label": "routeToTab()",
+      "file_type": "code",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L754",
+      "id": "modules_tabbar_routetotab",
+      "community": 2,
+      "norm_label": "routetotab()"
+    },
+    {
+      "label": "access.ts",
+      "file_type": "code",
+      "source_file": "src/modules/access.ts",
+      "source_location": "L1",
+      "id": "src_modules_access_ts",
+      "community": 6,
+      "norm_label": "access.ts"
+    },
+    {
+      "label": "AccessToken",
+      "file_type": "code",
+      "source_file": "src/modules/access.ts",
+      "source_location": "L7",
+      "id": "modules_access_accesstoken",
+      "community": 6,
+      "norm_label": "accesstoken"
+    },
+    {
+      "label": "AccessState",
+      "file_type": "code",
+      "source_file": "src/modules/access.ts",
+      "source_location": "L9",
+      "id": "modules_access_accessstate",
+      "community": 6,
+      "norm_label": "accessstate"
+    },
+    {
+      "label": "useAccessStore",
+      "file_type": "code",
+      "source_file": "src/modules/access.ts",
+      "source_location": "L51",
+      "id": "modules_access_useaccessstore",
+      "community": 6,
+      "norm_label": "useaccessstore"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "src/modules/index.ts",
+      "source_location": "L1",
+      "id": "src_modules_index_ts",
+      "community": 3,
+      "norm_label": "index.ts"
+    },
+    {
+      "label": "user.ts",
+      "file_type": "code",
+      "source_file": "src/modules/user.ts",
+      "source_location": "L1",
+      "id": "src_modules_user_ts",
+      "community": 5,
+      "norm_label": "user.ts"
+    },
+    {
+      "label": "BasicUserInfo",
+      "file_type": "code",
+      "source_file": "src/modules/user.ts",
+      "source_location": "L3",
+      "id": "modules_user_basicuserinfo",
+      "community": 5,
+      "norm_label": "basicuserinfo"
+    },
+    {
+      "label": "AccessState",
+      "file_type": "code",
+      "source_file": "src/modules/user.ts",
+      "source_location": "L27",
+      "id": "modules_user_accessstate",
+      "community": 5,
+      "norm_label": "accessstate"
+    },
+    {
+      "label": "useUserStore",
+      "file_type": "code",
+      "source_file": "src/modules/user.ts",
+      "source_location": "L41",
+      "id": "modules_user_useuserstore",
+      "community": 5,
+      "norm_label": "useuserstore"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "stores_package_bugs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "stores_package_dependencies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "stores_package_exports",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "stores_package_homepage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "stores_package_license",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "stores_package_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "stores_package_repository",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "stores_package_sideeffects",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "stores_package_type",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "stores_package_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "stores_package_repository",
+      "target": "stores_package_repository_directory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "stores_package_repository",
+      "target": "stores_package_repository_type",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "stores_package_repository",
+      "target": "stores_package_repository_url",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "stores_package_exports",
+      "target": "stores_package_default",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "stores_package_exports",
+      "target": "stores_package_types",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "stores_package_dependencies",
+      "target": "stores_package_dependencies_pinia",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "stores_package_dependencies",
+      "target": "stores_package_dependencies_pinia_plugin_persistedstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "stores_package_dependencies",
+      "target": "stores_package_dependencies_secure_ls",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "stores_package_dependencies",
+      "target": "stores_package_dependencies_vben_core_preferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "stores_package_dependencies",
+      "target": "stores_package_dependencies_vben_core_shared",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "stores_package_dependencies",
+      "target": "stores_package_dependencies_vben_core_typings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "stores_package_dependencies",
+      "target": "stores_package_dependencies_vue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "stores_package_dependencies",
+      "target": "stores_package_dependencies_vue_router",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tsconfig_json",
+      "target": "stores_tsconfig_extends",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tsconfig_json",
+      "target": "stores_tsconfig_include",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tsconfig_json",
+      "target": "stores_tsconfig_schema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_index_ts",
+      "target": "src_setup_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/setup.ts",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "src_setup_ts",
+      "target": "src_setup_initstoreoptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/setup.ts",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "src_setup_ts",
+      "target": "src_setup_initstores",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/setup.ts",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "src_setup_ts",
+      "target": "src_setup_resetallstores",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/setup.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "src_setup_ts",
+      "target": "src_setup_securelsctor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/setup.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "src_setup_ts",
+      "target": "src_setup_securelsmodule",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/setup.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_setup_ts",
+      "target": "src_setup_securelsstorage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_index_ts",
+      "target": "src_modules_index_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_test_ts",
+      "target": "modules_tabbar_test_addnewtab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L235",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_test_ts",
+      "target": "modules_tabbar_test_addtargettab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L120",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_test_ts",
+      "target": "modules_tabbar_test_affixtab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L287",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_test_ts",
+      "target": "modules_tabbar_test_currenttab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_test_ts",
+      "target": "modules_tabbar_test_initialtab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_test_ts",
+      "target": "modules_tabbar_test_newtab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L114",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_test_ts",
+      "target": "modules_tabbar_test_normaltab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_test_ts",
+      "target": "modules_tabbar_test_router",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L286",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_test_ts",
+      "target": "modules_tabbar_test_store",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L134",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_test_ts",
+      "target": "modules_tabbar_test_tab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L229",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_test_ts",
+      "target": "modules_tabbar_test_targettab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_test_ts",
+      "target": "modules_tabbar_test_updatedtab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_test_ts",
+      "target": "modules_tabbar_usetabbarstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.test.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_test_ts",
+      "target": "src_modules_tabbar_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/access.test.ts",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "src_modules_access_test_ts",
+      "target": "modules_access_test_store",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/access.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_modules_access_test_ts",
+      "target": "modules_access_useaccessstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/access.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_modules_access_test_ts",
+      "target": "src_modules_access_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/index.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_modules_index_ts",
+      "target": "src_modules_timezone_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/timezone.ts",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_modules_timezone_ts",
+      "target": "modules_timezone_getdefaulttimezonehandler",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/timezone.ts",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "src_modules_timezone_ts",
+      "target": "modules_timezone_gettimezonehandler",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/timezone.ts",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "src_modules_timezone_ts",
+      "target": "modules_timezone_settimezonehandler",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/timezone.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_modules_timezone_ts",
+      "target": "modules_timezone_timezonehandler",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/timezone.ts",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "src_modules_timezone_ts",
+      "target": "modules_timezone_usetimezonestore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/timezone.ts",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "modules_timezone_gettimezonehandler",
+      "target": "modules_timezone_getdefaulttimezonehandler",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/user.test.ts",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "src_modules_user_test_ts",
+      "target": "modules_user_test_store",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/user.test.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_modules_user_test_ts",
+      "target": "modules_user_test_userinfo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/user.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_modules_user_test_ts",
+      "target": "modules_user_useuserstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/user.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_modules_user_test_ts",
+      "target": "src_modules_user_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/index.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_modules_index_ts",
+      "target": "src_modules_tabbar_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L664",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_ts",
+      "target": "modules_tabbar_clonetab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L750",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_ts",
+      "target": "modules_tabbar_equaltab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L706",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_ts",
+      "target": "modules_tabbar_gettabkey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L741",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_ts",
+      "target": "modules_tabbar_gettabkeyfromtab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L689",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_ts",
+      "target": "modules_tabbar_isaffixtab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L697",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_ts",
+      "target": "modules_tabbar_istabshown",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L733",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_ts",
+      "target": "modules_tabbar_isvisithistory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_ts",
+      "target": "modules_tabbar_routecached",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L754",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_ts",
+      "target": "modules_tabbar_routetotab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_ts",
+      "target": "modules_tabbar_tabbarstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "src_modules_tabbar_ts",
+      "target": "modules_tabbar_usetabbarstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L742",
+      "weight": 1.0,
+      "source": "modules_tabbar_gettabkeyfromtab",
+      "target": "modules_tabbar_gettabkey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L759",
+      "weight": 1.0,
+      "source": "modules_tabbar_routetotab",
+      "target": "modules_tabbar_gettabkey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/tabbar.ts",
+      "source_location": "L751",
+      "weight": 1.0,
+      "source": "modules_tabbar_equaltab",
+      "target": "modules_tabbar_gettabkeyfromtab",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/access.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_modules_access_ts",
+      "target": "modules_access_accessstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/access.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_modules_access_ts",
+      "target": "modules_access_accesstoken",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/access.ts",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "src_modules_access_ts",
+      "target": "modules_access_useaccessstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/index.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_modules_index_ts",
+      "target": "src_modules_access_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/index.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_modules_index_ts",
+      "target": "src_modules_user_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/user.ts",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "src_modules_user_ts",
+      "target": "modules_user_accessstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/user.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_modules_user_ts",
+      "target": "modules_user_basicuserinfo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modules/user.ts",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "src_modules_user_ts",
+      "target": "modules_user_useuserstore",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "c4852f32fc48953efe3322568ef47473a459e755"
+}

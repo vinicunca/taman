@@ -1,6 +1,7 @@
 {
   "name": "@taman/preferences",
   "type": "module",
+  "version": "1.0.0",
   "exports": {
     ".": {
       "types": "./src/index.ts",
@@ -9,7 +10,7 @@
   },
   "dependencies": {
     "@taman-core/preferences": "workspace:*",
-    "@taman-core/typings": "workspace:*",
-    "@vinicunca/perkakas": "catalog:"
+    "@taman-core/shared": "workspace:*",
+    "@taman-core/typings": "workspace:*"
   }
 }

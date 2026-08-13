@@ -4,13 +4,14 @@ import { generatorColorVariables } from '@taman-core/shared/color';
 import { updateCSSVariables as executeUpdateCSSVariables } from '@taman-core/shared/utils';
 
 import { BUILT_IN_THEME_PRESETS } from './constants';
+import { usePreferences } from './use-preferences';
 
 /**
- * Update the CSS variables of the theme and other CSS variables
- * @param preferences - The current preference setting object, its theme value will be used to set the theme of the document.
+ * Updates theme and related CSS variables on the document root.
+ * @param preferences - Current preferences; theme values drive document theme.
  */
 function updateCSSVariables(preferences: Preferences) {
-  // When the color variable is modified, update the css variable
+  // Update CSS variables when color-related theme fields change
   const root = document.documentElement;
   if (!root) {
     return;
@@ -18,15 +19,10 @@ function updateCSSVariables(preferences: Preferences) {
 
   const theme = preferences?.theme ?? {};
 
-  const { builtinType, mode, radius } = theme;
+  const { builtinType, radius } = theme;
+  const { isDark } = usePreferences();
 
-  // Set the dark class on the html element
-  if (Reflect.has(theme, 'mode')) {
-    const dark = isDarkTheme(mode);
-    root.classList.toggle('dark', dark);
-  }
-
-  // Set the data-theme=[builtinType] on the html element
+  // Set data-theme=[builtinType] on html
   if (Reflect.has(theme, 'builtinType')) {
     const rootTheme = root.dataset.theme;
     if (rootTheme !== builtinType) {
@@ -34,7 +30,7 @@ function updateCSSVariables(preferences: Preferences) {
     }
   }
 
-  // Get the current built-in theme
+  // Resolve built-in theme preset
   const currentBuiltType = [...BUILT_IN_THEME_PRESETS].find(
     (item) => item.type === builtinType,
   );
@@ -42,31 +38,34 @@ function updateCSSVariables(preferences: Preferences) {
   let builtinTypeColorPrimary: string | undefined = '';
 
   if (currentBuiltType) {
-    const isDark = isDarkTheme(preferences.theme.mode);
-    // Set the main color for different themes
-    const color = isDark
+    // Primary color for the active built-in theme
+    const color = isDark.value
       ? currentBuiltType.darkPrimaryColor || currentBuiltType.primaryColor
       : currentBuiltType.primaryColor;
     builtinTypeColorPrimary = color || currentBuiltType.color;
   }
 
-  // If the built-in theme color and custom color do not exist, do not update the theme color
+  const brands = theme.brands;
+
+  // Skip theme color update if no built-in or custom brand colors are set
   if (
     builtinTypeColorPrimary
-    || Reflect.has(theme, 'colorPrimary')
-    || Reflect.has(theme, 'colorDestructive')
-    || Reflect.has(theme, 'colorSuccess')
-    || Reflect.has(theme, 'colorWarning')
+    || (brands !== undefined && (
+      Reflect.has(brands, 'primary')
+      || Reflect.has(brands, 'error')
+      || Reflect.has(brands, 'success')
+      || Reflect.has(brands, 'warning')
+    ))
   ) {
     updateMainColorVariables(preferences);
   }
 
-  // Update the corner radius
+  // Update border radius
   if (Reflect.has(theme, 'radius')) {
     document.documentElement.style.setProperty('--radius', `${radius}rem`);
   }
 
-  // Update the font size
+  // Update font size
   if (Reflect.has(theme, 'fontSize')) {
     const fontSize = theme.fontSize;
     document.documentElement.style.setProperty(
@@ -81,32 +80,36 @@ function updateCSSVariables(preferences: Preferences) {
 }
 
 /**
- * Update the main CSS variables
- * @param  preference - The current preference setting object, its color value will be converted to HSL format and set as CSS variables.
+ * Updates primary semantic color CSS variables.
+ * @param preference - Current preferences; colors are converted to HSL CSS variables.
  */
 function updateMainColorVariables(preference: Preferences) {
   if (!preference.theme) {
     return;
   }
-  const { colorDestructive, colorPrimary, colorSuccess, colorWarning }
-    = preference.theme;
+
+  const { brands } = preference.theme;
+
+  if (!brands) {
+    return;
+  }
 
   const colorVariables = generatorColorVariables([
-    { color: colorPrimary, name: 'primary' },
-    { alias: 'warning', color: colorWarning, name: 'yellow' },
-    { alias: 'success', color: colorSuccess, name: 'green' },
-    { alias: 'destructive', color: colorDestructive, name: 'red' },
+    { color: brands.primary, name: 'primary' },
+    { alias: 'warning', color: brands.warning, name: 'yellow' },
+    { alias: 'success', color: brands.success, name: 'green' },
+    { alias: 'error', color: brands.error, name: 'red' },
   ]);
 
-  // The CSS variables to be set mapping
+  // Map generated variables to semantic CSS variable names
   const colorMappings = {
-    '--green-500': '--success',
-    '--primary-500': '--primary',
-    '--red-500': '--destructive',
-    '--yellow-500': '--warning',
+    '--taman-color-green-500': '--taman-brand-success',
+    '--taman-color-primary-500': '--taman-brand-primary',
+    '--taman-color-red-500': '--taman-brand-error',
+    '--taman-color-yellow-500': '--taman-brand-warning',
   };
 
-  // Update the color variables uniformly
+  // Apply color variable updates
   Object.entries(colorMappings).forEach(([sourceVar, targetVar]) => {
     const colorValue = colorVariables[sourceVar];
     if (colorValue) {
@@ -117,12 +120,4 @@ function updateMainColorVariables(preference: Preferences) {
   executeUpdateCSSVariables(colorVariables);
 }
 
-function isDarkTheme(theme: string) {
-  let dark = theme === 'dark';
-  if (theme === 'auto') {
-    dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  }
-  return dark;
-}
-
-export { isDarkTheme, updateCSSVariables };
+export { updateCSSVariables };

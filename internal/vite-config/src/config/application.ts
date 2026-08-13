@@ -1,7 +1,11 @@
-import type { UserConfig } from 'vite';
+import type { CSSOptions, UserConfig } from 'vite';
 
 import type { DefineApplicationOptions } from '../typing';
 
+import path, { relative } from 'node:path';
+
+import { findMonorepoRoot } from '@taman/node-utils';
+import { NodePackageImporter } from 'sass-embedded';
 import { defineConfig, loadEnv, mergeConfig } from 'vite';
 
 import { defaultImportmapOptions, getDefaultPwaOptions } from '../options';
@@ -12,8 +16,9 @@ import { getCommonConfig } from './common';
 function defineApplicationConfig(userConfigPromise?: DefineApplicationOptions) {
   return defineConfig(async (config) => {
     const options = await userConfigPromise?.(config);
-    const { appTitle, base, port, ...envConfig } = await loadAndConvertEnv();
+
     const { command, mode } = config;
+    const { appTitle, base, port, ...envConfig } = await loadAndConvertEnv(mode);
     const { application = {}, vite = {} } = options || {};
     const root = process.cwd();
     const isBuild = command === 'build';
@@ -36,20 +41,23 @@ function defineApplicationConfig(userConfigPromise?: DefineApplicationOptions) {
       license: true,
       mode,
       nitroMock: !isBuild,
-      nitroMockOptions: {},
       print: !isBuild,
       printInfoMap: {
-        'Taman Admin Docs': 'https://taman.vinicunca.dev',
+        'Vben Admin Docs': 'https://doc.vben.pro',
       },
       pwa: true,
       pwaOptions: getDefaultPwaOptions(appTitle),
+      vxeTableLazyImport: true,
       ...envConfig,
       ...application,
     });
 
+    const { injectGlobalScss = true } = application;
+
     const applicationConfig: UserConfig = {
       base,
       build: {
+        cssMinify: 'esbuild',
         rolldownOptions: {
           output: {
             assetFileNames: '[ext]/[name]-[hash].[ext]',
@@ -66,6 +74,7 @@ function defineApplicationConfig(userConfigPromise?: DefineApplicationOptions) {
         },
         target: 'es2015',
       },
+      css: createCssOptions(injectGlobalScss),
       plugins,
       server: {
         host: true,
@@ -75,7 +84,7 @@ function defineApplicationConfig(userConfigPromise?: DefineApplicationOptions) {
           clientFiles: [
             './index.html',
             './src/bootstrap.ts',
-            './src/{pages,layouts,router,store,api,adapter}/*',
+            './src/{views,layouts,router,store,api,adapter}/*',
           ],
         },
       },
@@ -85,8 +94,31 @@ function defineApplicationConfig(userConfigPromise?: DefineApplicationOptions) {
       await getCommonConfig(),
       applicationConfig,
     );
+
     return mergeConfig(mergedCommonConfig, vite);
   });
+}
+
+function createCssOptions(injectGlobalScss = true): CSSOptions {
+  const root = findMonorepoRoot();
+  return {
+    preprocessorOptions: injectGlobalScss
+      ? {
+          scss: {
+            additionalData: (content: string, filepath: string) => {
+              const relativePath = relative(root, filepath);
+              // Inject global styles for packages under apps/
+              if (relativePath.startsWith(`apps${path.sep}`)) {
+                return `@use "@vben/styles/global" as *;\n${content}`;
+              }
+              return content;
+            },
+            // api: 'modern',
+            importers: [new NodePackageImporter()],
+          },
+        }
+      : {},
+  };
 }
 
 export { defineApplicationConfig };

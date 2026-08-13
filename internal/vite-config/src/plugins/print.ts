@@ -4,7 +4,9 @@ import type { PrintPluginOptions } from '../typing';
 
 import { colors } from '@taman/node-utils';
 
-export function vitePrintPlugin(options: PrintPluginOptions = {}): PluginOption {
+export const vitePrintPlugin = (
+  options: PrintPluginOptions = {},
+): PluginOption => {
   const { infoMap = {} } = options;
 
   return {
@@ -23,4 +25,4 @@ export function vitePrintPlugin(options: PrintPluginOptions = {}): PluginOption 
     enforce: 'pre',
     name: 'vite:print-info',
   };
-}
+};

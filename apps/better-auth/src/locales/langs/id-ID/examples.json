@@ -1,0 +1,89 @@
+{
+  "title": "Contoh",
+  "modal": {
+    "title": "Modal"
+  },
+  "drawer": {
+    "title": "Laci"
+  },
+  "ellipsis": {
+    "title": "TeksElipsis"
+  },
+  "form": {
+    "title": "Formulir",
+    "basic": "Formulir Dasar",
+    "layout": "Tata Letak Kustom",
+    "query": "Formulir Pencarian",
+    "valueFormat": "Format Nilai",
+    "rules": "Aturan Formulir",
+    "dynamic": "Formulir Dinamis",
+    "custom": "Komponen Kustom",
+    "api": "Api",
+    "merge": "Gabung Formulir",
+    "scrollToError": "Gulir ke Field Error",
+    "upload-error": "Sebagian unggahan file gagal",
+    "upload-urls": "URL setelah unggah file",
+    "file": "file",
+    "crop-image": "Pangkas gambar",
+    "upload-image": "Klik untuk mengunggah gambar",
+    "collapsible": "Field Formulir yang Dapat Diciutkan"
+  },
+  "vxeTable": {
+    "title": "Tabel Vxe",
+    "basic": "Tabel Dasar",
+    "remote": "Muat Jarak Jauh",
+    "tree": "Tabel Pohon",
+    "fixed": "Header/Kolom Tetap",
+    "virtual": "Gulir Virtual",
+    "editCell": "Edit Sel",
+    "editRow": "Edit Baris",
+    "custom-cell": "Sel Kustom",
+    "form": "Tabel Formulir",
+    "viewed": "Penanda Baris"
+  },
+  "captcha": {
+    "title": "Captcha",
+    "pointSelection": "Captcha Pilih Titik",
+    "sliderCaptcha": "Captcha Geser",
+    "sliderRotateCaptcha": "Captcha Putar",
+    "sliderTranslateCaptcha": "Captcha Geser Terjemahan",
+    "captchaCardTitle": "Harap selesaikan verifikasi keamanan",
+    "pageDescription": "Verifikasi identitas pengguna dengan mengklik lokasi tertentu pada gambar.",
+    "pageTitle": "Contoh Komponen Captcha",
+    "basic": "Penggunaan Dasar",
+    "titlePlaceholder": "Teks Judul Captcha",
+    "captchaImageUrlPlaceholder": "Gambar Captcha (mendukung nilai atribut src tag img)",
+    "hintImage": "Gambar Petunjuk",
+    "hintText": "Teks Petunjuk",
+    "hintImagePlaceholder": "Gambar Petunjuk (mendukung nilai atribut src tag img)",
+    "hintTextPlaceholder": "Teks Petunjuk",
+    "showConfirm": "Tampilkan Konfirmasi",
+    "hideConfirm": "Sembunyikan Konfirmasi",
+    "widthPlaceholder": "Lebar Gambar Captcha Default 300px",
+    "heightPlaceholder": "Tinggi Gambar Captcha Default 220px",
+    "paddingXPlaceholder": "Padding Horizontal Default 12px",
+    "paddingYPlaceholder": "Padding Vertikal Default 16px",
+    "index": "Indeks:",
+    "timestamp": "Stempel Waktu:",
+    "x": "x:",
+    "y": "y:"
+  },
+  "resize": {
+    "title": "Ubah Ukuran"
+  },
+  "layout": {
+    "col-page": "Tata Letak ColPage"
+  },
+  "button-group": {
+    "title": "Grup Tombol"
+  },
+  "function": {
+    "contentMenu": "Menu Konten"
+  },
+  "cropper": {
+    "title": "Pemangkas"
+  },
+  "tiptap": {
+    "title": "Editor Teks Kaya"
+  }
+}

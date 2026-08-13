@@ -7,10 +7,8 @@
     "build": "nitro build",
     "start": "nitro dev"
   },
-  "dependencies": {
-    "nitropack": "catalog:"
-  },
   "devDependencies": {
-    "h3": "catalog:"
+    "nitro": "catalog:",
+    "typescript": "catalog:"
   }
 }

@@ -1,0 +1,52 @@
+{
+  "name": "@vben-core/shadcn-ui",
+  "type": "module",
+  "version": "1.0.0",
+  "license": "MIT",
+  "homepage": "https://github.com/vbenjs/vue-vben-admin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vbenjs/vue-vben-admin.git",
+    "directory": "packages/@vben-core/uikit/shadcn-ui"
+  },
+  "bugs": "https://github.com/vbenjs/vue-vben-admin/issues",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "development": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "files": [
+    "components.json",
+    "src"
+  ],
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "types": "./src/index.ts",
+        "development": "./src/index.ts",
+        "default": "./src/index.ts"
+      }
+    }
+  },
+  "dependencies": {
+    "@lucide/vue": "catalog:",
+    "@taman-core/composables": "workspace:*",
+    "@taman-core/icons": "workspace:*",
+    "@taman-core/shared": "workspace:*",
+    "@taman-core/typings": "workspace:*",
+    "@vben-core/design": "workspace:*",
+    "@vueuse/core": "catalog:",
+    "class-variance-authority": "catalog:",
+    "reka-ui": "catalog:",
+    "vee-validate": "catalog:",
+    "vue": "catalog:"
+  }
+}

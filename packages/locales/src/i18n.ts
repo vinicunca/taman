@@ -37,6 +37,7 @@ function loadLocalesMap(modules: Record<string, () => Promise<unknown>>) {
   const localesMap: Record<Locale, ImportLocaleFn> = {};
 
   for (const [path, loadLocale] of Object.entries(modules)) {
+    // eslint-disable-next-line sonar/super-linear-regex
     const key = path.match(/([\w-]*)\.(json)/)?.[1];
     if (key) {
       localesMap[key] = loadLocale as ImportLocaleFn;
@@ -101,12 +102,13 @@ function setI18nLanguage(locale: Locale) {
 }
 
 async function setupI18n(app: App, options: LocaleSetupOptions = {}) {
-  const { defaultLocale = 'id-ID' } = options;
+  const { defaultLocale = 'en-US' } = options;
+  // Apps may extend third-party / component library locales via loadMessages
   loadMessages = options.loadMessages || (async () => ({}));
   app.use(i18n);
   await loadLocaleMessages(defaultLocale);
 
-  // print warning in console
+  // Log missing translation keys to the console
   i18n.global.setMissingHandler((locale, key) => {
     if (options.missingWarn && key.includes('.')) {
       console.warn(

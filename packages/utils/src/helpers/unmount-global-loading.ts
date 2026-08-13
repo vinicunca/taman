@@ -1,33 +1,31 @@
 /**
- * Remove and destroy the loading
- * It is not placed in the app tag in index.html because it is not too hard, and the rendering may be too fast and may cause flickering
- * By adding a css animation to hide first, and then removing the loading node after the animation ends, the experience can be improved
- * The bad thing is that it会增加一些代码量
- * The custom loading can be seen: https://doc.vben.pro/guide/in-depth/loading.html
+ * Removes and tears down the global loading overlay.
+ * Lives here instead of inside the app tag in index.html to avoid a harsh cut-off
+ * when paint is fast (which can flash). Hides via CSS transition first, then
+ * removes the node after the animation ends. Adds a bit of code; see
+ * https://doc.vben.pro/guide/in-depth/loading.html for custom loading.
  */
 export function unmountGlobalLoading() {
   // Find the global loading element
   const loadingElement = document.querySelector('#__app-loading__');
 
   if (loadingElement) {
-    // Add the hidden class, trigger the transition animation
+    // Add hide class to run the transition
     loadingElement.classList.add('hidden');
 
-    // Find all the injection loading elements that need to be removed
+    // Find injected loading elements to remove
     const injectLoadingElements = document.querySelectorAll(
       '[data-app-loading^="inject"]',
     );
 
-    // When the transition animation ends, remove the loading element and all the injected loading elements
+    // After the transition, remove loading and injected loading nodes
     loadingElement.addEventListener(
       'transitionend',
       () => {
-        loadingElement.remove(); // Remove the loading element
-        injectLoadingElements.forEach((el) => {
-          el.remove();
-        }); // Remove all the injected loading elements
+        loadingElement.remove();
+        injectLoadingElements.forEach((el) => el.remove());
       },
       { once: true },
-    ); // Ensure the event is only triggered once
+    );
   }
 }

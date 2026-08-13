@@ -1,7 +1,7 @@
+import type { DeepPartial } from '@taman-core/shared/utils';
 import type {
   TamanAccessModeType,
   TamanAuthPageLayoutType,
-  TamanBreadcrumbStyleType,
   TamanBuiltinThemeType,
   TamanContentCompactType,
   TamanLayoutHeaderMenuAlignType,
@@ -12,15 +12,10 @@ import type {
   TamanPageTransitionType,
   TamanPreferencesButtonPositionType,
   TamanTabsStyleType,
-  TamanThemeModeType,
 } from '@taman-core/typings';
-import type { DeepPartial } from '@vinicunca/perkakas';
 
-type TamanSupportedLanguagesType = 'en-US' | 'id-ID';
-
+type SupportedLanguagesType = 'en-US' | 'id-ID';
 type CustomPreferencesValue = boolean | number | string;
-
-type CustomPreferencesRecord = Record<string, CustomPreferencesValue>;
 
 interface CustomPreferencesOption<TValue extends string = string> {
   label: string;
@@ -65,6 +60,8 @@ interface CustomPreferencesSwitchField<
   component: 'switch';
 }
 
+type CustomPreferencesRecord = Record<string, CustomPreferencesValue>;
+
 type AnyCustomPreferencesField
   = | CustomPreferencesInputField
     | CustomPreferencesNumberField
@@ -98,19 +95,19 @@ interface PreferencesExtension<
 }
 
 interface AppPreferences {
-  /** Access mode */
+  /** Access control mode */
   accessMode: TamanAccessModeType;
-  /** Login registration page layout */
+  /** Auth page layout */
   authPageLayout: TamanAuthPageLayoutType;
-  /** Check update polling time */
+  /** Check-for-updates polling interval */
   checkUpdatesInterval: number;
-  /** Whether to enable gray mode */
+  /** Whether grayscale mode is enabled */
   colorGrayMode: boolean;
-  /** Whether to enable color weak mode */
+  /** Whether color-weak mode is enabled */
   colorWeakMode: boolean;
-  /** Whether to enable compact mode */
+  /** Whether compact mode is enabled */
   compact: boolean;
-  /** Whether to enable content compact mode */
+  /** Whether content compact mode is enabled */
   contentCompact: TamanContentCompactType;
   /** Content compact width */
   contentCompactWidth: number;
@@ -124,29 +121,29 @@ interface AppPreferences {
   contentPaddingRight: number;
   /** Content top padding */
   contentPaddingTop: number;
-  /** Application default avatar */
+  // /** Default app avatar */
   defaultAvatar: string;
-  /** Default home address */
+  /** Default home page path */
   defaultHomePath: string;
-  /** Enable dynamic title */
+  // /** Whether dynamic title is enabled */
   dynamicTitle: boolean;
-  /** Whether to enable check updates */
+  /** Whether check-for-updates is enabled */
   enableCheckUpdates: boolean;
-  /** Whether to display copy preferences button */
+  /** Whether the copy-preferences button is shown */
   enableCopyPreferences: boolean;
-  /** Whether to display preferences */
+  /** Whether the preferences panel is shown */
   enablePreferences: boolean;
-  /** Whether to enable refreshToken */
+  /** Whether refresh token is enabled */
   enableRefreshToken: boolean;
-  /** Whether to enable sticky preferences navigation bar */
+  /** Whether the preferences navigation bar sticky effect is enabled */
   enableStickyPreferencesNavigationBar: boolean;
-  /** Whether to enable mobile */
+  /** Whether the app is in mobile layout */
   isMobile: boolean;
-  /** Layout mode */
+  /** Layout type */
   layout: TamanLayoutType;
-  /** Supported languages */
-  locale: TamanSupportedLanguagesType;
-  /** Login expired mode */
+  /** Supported locales */
+  locale: SupportedLanguagesType;
+  /** Login expired handling mode */
   loginExpiredMode: TamanLoginExpiredModeType;
   /** Application name */
   name: string;
@@ -154,110 +151,108 @@ interface AppPreferences {
   preferencesButtonPosition: TamanPreferencesButtonPositionType;
   /** Application timezone */
   timezone: string;
-  /** Whether to enable watermark */
+  /** Whether watermark is enabled */
   watermark: boolean;
-  /** Watermark content */
+  /** Watermark text */
   watermarkContent: string;
   /** z-index */
   zIndex: number;
 }
 
 interface BreadcrumbPreferences {
-  /** Whether to enable breadcrumb */
+  /** Whether breadcrumb is enabled */
   enable: boolean;
-  /** Whether to hide breadcrumb when there is only one */
+  /** Hide breadcrumb when there is only one item */
   hideOnlyOne: boolean;
-  /** Whether to show home icon */
+  /** Whether the home icon is shown in breadcrumb */
   showHome: boolean;
-  /** Whether to show icon */
+  /** Whether breadcrumb icons are shown */
   showIcon: boolean;
-  /** Breadcrumb style */
-  styleType: TamanBreadcrumbStyleType;
 }
 
 interface CopyrightPreferences {
   /** Copyright company name */
   companyName: string;
-  /** Copyright company name link */
+  /** Copyright company site link */
   companySiteLink: string;
   /** Copyright date */
   date: string;
-  /** Whether to show copyright */
+  /** Whether copyright footer is visible */
   enable: boolean;
-  /** ICP number */
+  /** ICP filing number */
   icp: string;
-  /** ICP number link */
+  /** ICP filing link */
   icpLink: string;
-  /** Whether to show setting panel */
+  /** Whether the settings panel is shown */
   settingShow?: boolean;
 }
 
 interface FooterPreferences {
-  /** Whether to show footer */
+  /** Whether footer is visible */
   enable: boolean;
-  /** Whether to fix footer */
+  /** Whether footer is fixed */
   fixed: boolean;
   /** Footer height */
   height: number;
 }
 
 interface HeaderPreferences {
-  /** Whether to enable header */
+  /** Whether header is enabled */
   enable: boolean;
   /** Header height */
   height: number;
-  /** Whether to hide header, css-hidden */
+  /** Whether header is hidden (CSS) */
   hidden: boolean;
-  /** Header menu position */
+  /** Header menu alignment */
   menuAlign: TamanLayoutHeaderMenuAlignType;
   /** Header display mode */
   mode: TamanLayoutHeaderModeType;
 }
 
 interface LogoPreferences {
-  /** Whether to show logo */
+  /** Whether logo is visible */
   enable: boolean;
-  /** Logo image fit mode */
+  /** Logo image object-fit */
   fit: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
-  /** Logo source */
+  /** Logo image URL */
   source: string;
-  /** Dark theme logo source (optional, if not set, use source) */
+  /** Dark theme logo URL (optional; falls back to source) */
   sourceDark?: string;
 }
 
 interface NavigationPreferences {
   /** Navigation menu accordion mode */
   accordion: boolean;
-  /** Whether to split navigation menu, only effective when layout=mixed-nav */
+  /** Whether navigation menu is split (only when layout=mixed-nav) */
   split: boolean;
   /** Navigation menu style */
   styleType: TamanNavigationStyleType;
 }
 
 interface SidebarPreferences {
-  /** Whether to automatically activate child menu when clicking on the directory */
+  /** Auto-activate child menu when clicking a directory */
   autoActivateChild: boolean;
-  /** Whether to collapse sidebar */
+  /** Whether sidebar is collapsed */
   collapsed: boolean;
-  /** Whether to show collapsed button */
+  /** Whether sidebar collapse button is visible */
   collapsedButton: boolean;
-  /** Whether to show title when collapsed */
+  /** Whether title is shown when sidebar is collapsed */
   collapsedShowTitle: boolean;
   /** Sidebar collapsed width */
   collapseWidth: number;
-  /** Whether to drag sidebar menu */
+  /** Whether sidebar menu is draggable */
   draggable: boolean;
-  /** Whether to show sidebar */
+  /** Whether sidebar is enabled */
   enable: boolean;
-  /** Whether to expand menu automatically */
+  /** Expand menu on hover */
   expandOnHover: boolean;
-  /** Whether to collapse sidebar extended area */
+  /** Whether sidebar extra area is collapsed */
   extraCollapse: boolean;
-  /** Sidebar extended area collapsed width */
+  /** Sidebar extra area collapsed width */
   extraCollapsedWidth: number;
-  /** Whether to show fixed button */
+  /** Whether sidebar pin button is visible */
   fixedButton: boolean;
-  /** Whether to hide sidebar - css */
+  /** Whether sidebar is hidden (CSS) */
   hidden: boolean;
   /** Mixed sidebar width */
   mixedWidth: number;
@@ -266,110 +261,111 @@ interface SidebarPreferences {
 }
 
 interface ShortcutKeyPreferences {
-  /** Whether to enable shortcut key - global */
+  /** Whether global shortcut keys are enabled */
   enable: boolean;
-  /** Whether to enable global close window shortcut key */
-  globalEscape: boolean;
-  /** Whether to enable global lock screen shortcut key */
+  /** Whether global lock-screen shortcut is enabled */
   globalLockScreen: boolean;
-  /** Whether to enable global logout shortcut key */
+  /** Whether global logout shortcut is enabled */
   globalLogout: boolean;
-  /** Whether to enable global preferences shortcut key */
+  /** Whether global preferences shortcut is enabled */
   globalPreferences: boolean;
-  /** Whether to enable global search shortcut key */
+  /** Whether global search shortcut is enabled */
   globalSearch: boolean;
 }
 
 interface TabbarPreferences {
-  /** Whether to enable draggable tabs */
+  /** Whether tab bar drag is enabled */
   draggable: boolean;
-  /** Whether to enable tabs */
+  /** Whether tab bar is enabled */
   enable: boolean;
-  /** Tab height */
+  /** Tab bar height */
   height: number;
-  /** Whether to enable tab cache */
+  /** Whether tab keep-alive is enabled */
   keepAlive: boolean;
   /** Maximum number of tabs */
   maxCount: number;
-  /** Whether to close tab when clicking middle key */
+  /** Close tab on middle mouse click */
   middleClickToClose: boolean;
-  /** Whether to persist tab */
+  /** Whether tabs are persisted */
   persist: boolean;
-  /** Whether to enable tab icons */
+  /** Whether tab icons are shown */
   showIcon: boolean;
-  /** Whether to show maximize button */
+  /** Whether maximize button is shown */
   showMaximize: boolean;
-  /** Whether to show more button */
+  /** Whether more-actions button is shown */
   showMore: boolean;
-  /** Whether to show refresh button */
+  /** Whether refresh button is shown */
   showRefresh: boolean;
-  /** Tab style */
+  /** Tab bar style */
   styleType: TamanTabsStyleType;
-  /** Whether to enable visit history */
+  /** Whether visit history is enabled */
   visitHistory: boolean;
-  /** Whether to enable mouse wheel response */
+  /** Whether mouse wheel scrolling is enabled */
   wheelable: boolean;
 }
 
+interface ThemeBrandColors {
+  /** Error/danger brand color */
+  error: string;
+  /** Primary brand color */
+  primary: string;
+  /** Success brand color */
+  success: string;
+  /** Warning brand color */
+  warning: string;
+}
+
 interface ThemePreferences {
-  /** Builtin theme name */
+  /** Built-in theme name */
   builtinType: TamanBuiltinThemeType;
-  /** Destructive color */
-  colorDestructive: string;
-  /** Primary color */
-  colorPrimary: string;
-  /** Success color */
-  colorSuccess: string;
-  /** Warning color */
-  colorWarning: string;
-  /** Font size (unit: px) */
+  /** Custom brand colors */
+  brands: ThemeBrandColors;
+  /** Font size (px) */
   fontSize: number;
-  /** Current theme */
-  mode: TamanThemeModeType;
-  /** Corner radius */
+  /** Border radius */
   radius: string;
-  /** Whether to enable semi-dark header (only effective when theme='light') */
+  /** Semi-dark header (only when theme='light') */
   semiDarkHeader: boolean;
-  /** Whether to enable semi-dark menu (only effective when theme='light') */
+  /** Semi-dark sidebar (only when theme='light') */
   semiDarkSidebar: boolean;
-  /** Whether to enable semi-dark submenu (only effective when theme='light') */
+  /** Semi-dark sidebar sub-menu (only when theme='light') */
   semiDarkSidebarSub: boolean;
 }
 
 interface TransitionPreferences {
-  /** Whether to enable page transition animation */
+  /** Whether page transition animation is enabled */
   enable: boolean;
-  /** Whether to enable page loading */
+  // /** Whether page loading indicator is enabled */
   loading: boolean;
-  /** Page transition animation */
+  /** Page transition animation name */
   name: TamanPageTransitionType | string;
-  /** Whether to enable page loading progress animation */
+  /** Whether page loading progress bar is enabled */
   progress: boolean;
 }
 
 interface WidgetPreferences {
-  /** Whether to enable full screen widget */
+  /** Whether fullscreen widget is enabled */
   fullscreen: boolean;
-  /** Whether to enable global search widget */
+  /** Whether global search widget is enabled */
   globalSearch: boolean;
-  /** Whether to enable language switch widget */
+  /** Whether language toggle widget is enabled */
   languageToggle: boolean;
-  /** Whether to enable lock screen */
+  /** Whether lock screen is enabled */
   lockScreen: boolean;
-  /** Whether to show notification widget */
+  /** Whether notification widget is shown */
   notification: boolean;
-  /** Whether to show refresh button */
+  /** Whether refresh widget is shown */
   refresh: boolean;
-  /** Whether to show sidebar toggle widget */
+  /** Whether sidebar toggle widget is shown */
   sidebarToggle: boolean;
-  /** Whether to show theme toggle widget */
+  /** Whether theme toggle widget is shown */
   themeToggle: boolean;
-  /** Whether to show timezone widget */
+  /** Whether timezone widget is shown */
   timezone: boolean;
 }
 
 interface Preferences {
-  /** Global configuration */
+  /** App configuration */
   app: AppPreferences;
   /** Breadcrumb configuration */
   breadcrumb: BreadcrumbPreferences;
@@ -383,11 +379,11 @@ interface Preferences {
   logo: LogoPreferences;
   /** Navigation configuration */
   navigation: NavigationPreferences;
-  /** Shortcut keys configuration */
+  /** Shortcut key configuration */
   shortcutKeys: ShortcutKeyPreferences;
   /** Sidebar configuration */
   sidebar: SidebarPreferences;
-  /** Tabbar configuration */
+  /** Tab bar configuration */
   tabbar: TabbarPreferences;
   /** Theme configuration */
   theme: ThemePreferences;
@@ -397,6 +393,8 @@ interface Preferences {
   widget: WidgetPreferences;
 }
 
+type PreferencesKeys = keyof Preferences;
+
 interface InitialOptions<
   TCustomPreferences extends object = CustomPreferencesRecord,
 > {
@@ -404,10 +402,11 @@ interface InitialOptions<
   namespace: string;
   overrides?: DeepPartial<Preferences>;
 }
-
 export type {
   AnyCustomPreferencesField,
+  AppPreferences,
   BaseCustomPreferencesField,
+  BreadcrumbPreferences,
   CustomPreferencesField,
   CustomPreferencesInputField,
   CustomPreferencesNumberField,
@@ -416,7 +415,20 @@ export type {
   CustomPreferencesSelectField,
   CustomPreferencesSwitchField,
   CustomPreferencesValue,
+  FooterPreferences,
+  HeaderPreferences,
   InitialOptions,
+  LogoPreferences,
+  NavigationPreferences,
   Preferences,
   PreferencesExtension,
+  PreferencesKeys,
+  ShortcutKeyPreferences,
+  SidebarPreferences,
+  SupportedLanguagesType,
+  TabbarPreferences,
+  ThemeBrandColors,
+  ThemePreferences,
+  TransitionPreferences,
+  WidgetPreferences,
 };

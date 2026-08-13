@@ -1,4 +1,5 @@
 import type { PluginOption } from 'vite';
+
 import type {
   ApplicationPluginOptions,
   CommonPluginOptions,
@@ -9,24 +10,26 @@ import type {
 import viteVueI18nPlugin from '@intlify/unplugin-vue-i18n/vite';
 import viteVue from '@vitejs/plugin-vue';
 import viteVueJsx from '@vitejs/plugin-vue-jsx';
-import vitePohon from 'pohon-ui/vite';
 import { visualizer as viteVisualizerPlugin } from 'rollup-plugin-visualizer';
 import viteUnoCss from 'unocss/vite';
 import viteDtsPlugin from 'unplugin-dts/vite';
 import viteCompressPlugin from 'vite-plugin-compression';
 import { VitePWA } from 'vite-plugin-pwa';
 import viteVueDevTools from 'vite-plugin-vue-devtools';
+
 import { viteArchiverPlugin } from './archiver';
+import { viteDayjsPlugin } from './dayjs';
 import { viteExtraAppConfigPlugin } from './extra-app-config';
 import { viteHtmlPlugin } from './html';
 import { viteImportMapPlugin } from './importmap';
 import { viteInjectAppLoadingPlugin } from './inject-app-loading';
 import { viteMetadataPlugin } from './inject-metadata';
 import { viteLicensePlugin } from './license';
-import { viteNitroMockPlugin } from './nitro-mock';
 import { vitePrintPlugin } from './print';
+import { viteVxeTableImportsPlugin } from './vxe-table';
+
 /**
- * Get the vite plugins that meet the conditions
+ * Load Vite plugins whose conditions are satisfied
  * @param conditionPlugins
  */
 async function loadConditionPlugins(conditionPlugins: Array<ConditionPlugin>) {
@@ -42,12 +45,18 @@ async function loadConditionPlugins(conditionPlugins: Array<ConditionPlugin>) {
 }
 
 /**
- * Get the common vite plugins that meet the conditions
+ * Load common Vite plugins based on options
  */
 async function loadCommonPlugins(
   options: CommonPluginOptions,
 ): Promise<Array<ConditionPlugin>> {
-  const { devtools, injectMetadata, isBuild, visualizer } = options;
+  const {
+    devtools,
+    injectMetadata,
+    isBuild,
+    visualizer,
+  } = options;
+
   return [
     {
       condition: true,
@@ -59,7 +68,6 @@ async function loadCommonPlugins(
         }),
         viteVueJsx(),
         viteUnoCss(),
-        vitePohon(),
       ],
     },
 
@@ -85,12 +93,12 @@ async function loadCommonPlugins(
 }
 
 /**
- * Get the vite plugins for the application type based on conditions
+ * Load application Vite plugins based on options
  */
 async function loadApplicationPlugins(
   options: ApplicationPluginOptions,
 ): Promise<Array<PluginOption>> {
-  // Separate to get, otherwise commonOptions cannot be obtained
+  // Destructure separately so these are not passed into commonOptions
   const isBuild = options.isBuild;
   const env = options.env;
 
@@ -101,17 +109,18 @@ async function loadApplicationPlugins(
     compressTypes,
     extraAppConfig,
     html,
+    dayjs,
     i18n,
     importmap,
     importmapOptions,
     injectAppLoading,
     license,
     nitroMock,
-    nitroMockOptions,
     print,
     printInfoMap,
     pwa,
     pwaOptions,
+    vxeTableLazyImport,
     ...commonOptions
   } = options;
 
@@ -131,16 +140,18 @@ async function loadApplicationPlugins(
         ];
       },
     },
+
     {
       condition: print,
       plugins: async () => {
         return [await vitePrintPlugin({ infoMap: printInfoMap })];
       },
     },
+
     {
-      condition: nitroMock,
+      condition: vxeTableLazyImport,
       plugins: async () => {
-        return [await viteNitroMockPlugin(nitroMockOptions)];
+        return [await viteVxeTableImportsPlugin()];
       },
     },
 
@@ -148,10 +159,12 @@ async function loadApplicationPlugins(
       condition: injectAppLoading,
       plugins: async () => [await viteInjectAppLoadingPlugin(!!isBuild, env)],
     },
+
     {
       condition: license,
       plugins: async () => [await viteLicensePlugin()],
     },
+
     {
       condition: pwa,
       plugins: () =>
@@ -169,6 +182,7 @@ async function loadApplicationPlugins(
           },
         }),
     },
+
     {
       condition: isBuild && !!compress,
       plugins: () => {
@@ -186,38 +200,47 @@ async function loadApplicationPlugins(
         return compressPlugins;
       },
     },
+
     {
       condition: !!html,
       plugins: () => [viteHtmlPlugin(typeof html === 'object' ? html : {})],
     },
+
     {
       condition: isBuild && importmap,
       plugins: () => {
         return [viteImportMapPlugin(importmapOptions)];
       },
     },
+
     {
       condition: isBuild && extraAppConfig,
       plugins: async () => [
         await viteExtraAppConfigPlugin({ isBuild: true, root: process.cwd() }),
       ],
     },
+
     {
       condition: archiver,
       plugins: async () => {
         return [await viteArchiverPlugin(archiverPluginOptions)];
       },
     },
+
+    {
+      condition: dayjs,
+      plugins: () => [viteDayjsPlugin()],
+    },
   ]);
 }
 
 /**
- * Get the vite plugins for the library type based on conditions
+ * Load library Vite plugins based on options
  */
 async function loadLibraryPlugins(
   options: LibraryPluginOptions,
 ): Promise<Array<PluginOption>> {
-  // 单独取，否则commonOptions拿不到
+  // Destructure separately so these are not passed into commonOptions
   const isBuild = options.isBuild;
   const { dts, ...commonOptions } = options;
   const dtsOptions = typeof dts === 'object' ? dts : undefined;
@@ -234,4 +257,11 @@ async function loadLibraryPlugins(
 export {
   loadApplicationPlugins,
   loadLibraryPlugins,
+  viteArchiverPlugin,
+  viteCompressPlugin,
+  viteDayjsPlugin,
+  viteDtsPlugin,
+  viteHtmlPlugin,
+  viteVisualizerPlugin,
+  viteVxeTableImportsPlugin,
 };

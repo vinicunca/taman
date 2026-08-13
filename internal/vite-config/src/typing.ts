@@ -11,7 +11,7 @@ import type { Options as PwaPluginOptions } from 'vite-plugin-pwa';
 
 /**
  * ImportMap configuration interface
- * @description Used to configure module import mapping, supports custom import paths and ranges
+ * @description Configures module import maps with custom import paths and scopes
  * @example
  * ```typescript
  * {
@@ -27,22 +27,22 @@ import type { Options as PwaPluginOptions } from 'vite-plugin-pwa';
  * ```
  */
 interface IImportMap {
-  /** Module import mapping */
+  /** Module import map */
   imports?: Record<string, string>;
-  /** Scope-specific import mapping */
+  /** Scope-specific import maps */
   scopes?: {
     [scope: string]: Record<string, string>;
   };
 }
 
 /**
- * Print plugin configuration options
- * @description Used to configure console printing information
+ * Print plugin options
+ * @description Configures console print output
  */
 interface PrintPluginOptions {
   /**
-   * Data mapping for printing
-   * @description Key-value data, will be printed in the console
+   * Data map to print
+   * @description Key-value pairs printed to the console
    * @example
    * ```typescript
    * {
@@ -55,32 +55,8 @@ interface PrintPluginOptions {
 }
 
 /**
- * Nitro Mock plugin configuration options
- * @description Used to configure the behavior of Nitro Mock server
- */
-interface NitroMockPluginOptions {
-  /**
-   * Mock server package name
-   * @default '@taman/nitro-mock'
-   */
-  mockServerPackage?: string;
-
-  /**
-   * Mock server port
-   * @default 3000
-   */
-  port?: number;
-
-  /**
-   * Whether to print Mock logs
-   * @default false
-   */
-  verbose?: boolean;
-}
-
-/**
- * Archiver plugin configuration options
- * @description Used to configure compression archive of build artifacts
+ * Archiver plugin options
+ * @description Configures compression/archiving of build output
  */
 interface ArchiverPluginOptions {
   /**
@@ -96,25 +72,25 @@ interface ArchiverPluginOptions {
 }
 
 /**
- * HTML plugin configuration
- * @description Used to configure HTML compression behavior based on transformIndexHtml
+ * HTML plugin options
+ * @description Configures HTML minification via transformIndexHtml
  */
 type HtmlPluginOptions = HtmlMinifierOptions;
 
 /**
- * ImportMap plugin configuration
- * @description Used to configure CDN import of modules
+ * ImportMap plugin options
+ * @description Configures CDN imports for modules
  */
 interface ImportmapPluginOptions {
   /**
    * CDN provider
    * @default 'jspm.io'
-   * @description Support esm.sh and jspm.io two CDN providers
+   * @description Supports esm.sh and jspm.io
    */
   defaultProvider?: 'esm.sh' | 'jspm.io';
   /**
-   * ImportMap configuration array
-   * @description Configure packages to import from CDN
+   * ImportMap package list
+   * @description Packages to load from CDN
    * @example
    * ```typescript
    * [
@@ -125,201 +101,222 @@ interface ImportmapPluginOptions {
    */
   importmap?: Array<{ name: string; range?: string }>;
   /**
-   * Manually configure ImportMap
-   * @description Custom ImportMap configuration
+   * Manual ImportMap configuration
+   * @description Custom ImportMap config
    */
   inputMap?: IImportMap;
 }
 
 /**
- * Condition plugin configuration
- * @description Used to dynamically load plugins based on conditions
+ * Conditional plugin configuration
+ * @description Loads plugins dynamically based on conditions
  */
 interface ConditionPlugin {
   /**
-   * Condition
-   * @description Load plugins when the condition is true
+   * Condition predicate
+   * @description Plugins load when this is true
    */
   condition?: boolean;
   /**
-   * Plugin object
-   * @description Return plugin array or Promise
+   * Plugin factory
+   * @description Returns plugin array or Promise
    */
   plugins: () => Array<PluginOption> | PromiseLike<Array<PluginOption>>;
 }
 
 /**
- * Common plugin configuration options
- * @description Used to configure base options for all plugins
+ * Common plugin options
+ * @description Base options shared by all plugins
  */
 interface CommonPluginOptions {
   /**
-   * Whether to enable development tools
+   * Enable devtools
    * @default false
    */
   devtools?: boolean;
   /**
    * Environment variables
-   * @description Custom environment variables
+   * @description Custom env vars
    */
   env?: Record<string, any>;
   /**
-   * Whether to inject metadata
+   * Inject metadata
    * @default true
    */
   injectMetadata?: boolean;
   /**
-   * Whether to enable build mode
+   * Build mode flag
    * @default false
    */
   isBuild?: boolean;
   /**
-   * Build mode
+   * Vite mode
    * @default 'development'
    */
   mode?: string;
   /**
-   * Whether to enable dependency analysis
+   * Enable dependency analysis
    * @default false
-   * @description Use rollup-plugin-visualizer to analyze dependencies
+   * @description Uses rollup-plugin-visualizer
    */
   visualizer?: boolean | PluginVisualizerOptions;
 }
 
 /**
- * Application plugin configuration options
- * @description Used to configure plugin options for application build
+ * Application plugin options
+ * @description Plugin options for application builds
  */
 interface ApplicationPluginOptions extends CommonPluginOptions {
   /**
-   * Whether to enable compression archive
+   * Enable archive compression
    * @default false
-   * @description Enable compression archive will generate zip file in the build directory
+   * @description Creates a zip file in the output directory when enabled
    */
   archiver?: boolean;
   /**
-   * Compression archive plugin configuration
-   * @description Configure the behavior of compression archive
+   * Archiver plugin options
+   * @description Configures archive behavior
    */
   archiverPluginOptions?: ArchiverPluginOptions;
   /**
-   * Whether to enable compression
+   * Enable compression
    * @default false
-   * @description Support gzip and brotli compression
+   * @description Supports gzip and brotli
    */
   compress?: boolean;
   /**
-   * Compression type
+   * Compression types
    * @default ['gzip']
-   * @description Optional compression types
+   * @description Available compression algorithms
    */
   compressTypes?: Array<'brotli' | 'gzip'>;
   /**
-   * Whether to extract configuration file
+   * Enable dayjs plugin
+   * @default true
+   */
+  dayjs?: boolean;
+  /**
+   * Extract app config file
    * @default false
-   * @description Extract configuration file during build
+   * @description Extracts config at build time
    */
   extraAppConfig?: boolean;
   /**
-   * Whether to enable HTML plugin
+   * Enable HTML plugin
    * @default true
    */
   html?: boolean | HtmlPluginOptions;
   /**
-   * Whether to enable internationalization
+   * Enable i18n
    * @default false
    */
   i18n?: boolean;
   /**
-   * Whether to enable ImportMap CDN
+   * Enable ImportMap CDN
    * @default false
    */
   importmap?: boolean;
   /**
-   * ImportMap plugin configuration
+   * ImportMap plugin options
    */
   importmapOptions?: ImportmapPluginOptions;
   /**
-   * Whether to inject application loading animation
+   * Inject app loading animation
    * @default true
    */
   injectAppLoading?: boolean;
   /**
-   * Whether to inject copyright information
+   * Inject global SCSS
+   * @default true
+   */
+  injectGlobalScss?: boolean;
+  /**
+   * Inject license banner
    * @default true
    */
   license?: boolean;
   /**
-   * Whether to enable Nitro Mock
+   * Enable Nitro Mock
    * @default false
    */
   nitroMock?: boolean;
   /**
-   * Nitro Mock plugin configuration
-   */
-  nitroMockOptions?: NitroMockPluginOptions;
-  /**
-   * Whether to enable console printing
+   * Enable console print plugin
    * @default false
    */
   print?: boolean;
   /**
-   * Print plugin configuration
+   * Print plugin info map
    */
   printInfoMap?: PrintPluginOptions['infoMap'];
   /**
-   * Whether to enable PWA
+   * Enable PWA
    * @default false
    */
   pwa?: boolean;
   /**
-   * PWA plugin configuration
+   * PWA plugin options
    */
   pwaOptions?: Partial<PwaPluginOptions>;
+  /**
+   * Enable VXE Table lazy import
+   * @default false
+   */
+  vxeTableLazyImport?: boolean;
 }
 
 /**
- * Library plugin configuration options
- * @description Used to configure plugin options for library build
+ * Library plugin options
+ * @description Plugin options for library builds
  */
 interface LibraryPluginOptions extends CommonPluginOptions {
   /**
-   * Whether to enable DTS output
+   * Enable DTS output
    * @default true
-   * @description Generate TypeScript type declaration files
+   * @description Generates TypeScript declaration files
    */
   dts?: boolean | PluginOptions;
 }
 
 /**
- * Application configuration definition function type
- * @description Used to define application build configuration
+ * Application config options type
+ */
+type ApplicationOptions = ApplicationPluginOptions;
+
+/**
+ * Library config options type
+ */
+type LibraryOptions = LibraryPluginOptions;
+
+/**
+ * Application config define function type
+ * @description Defines application build configuration
  */
 type DefineApplicationOptions = (config?: ConfigEnv) => Promise<{
-  /** Application plugin configuration */
-  application?: ApplicationPluginOptions;
-  /** Vite configuration */
+  /** Application plugin options */
+  application?: ApplicationOptions;
+  /** Vite config */
   vite?: UserConfig;
 }>;
 
 /**
- * Library configuration definition function type
- * @description Used to define library build configuration
+ * Library config define function type
+ * @description Defines library build configuration
  */
 type DefineLibraryOptions = (config?: ConfigEnv) => Promise<{
-  /** Library plugin configuration */
-  library?: LibraryPluginOptions;
-  /** Vite configuration */
+  /** Library plugin options */
+  library?: LibraryOptions;
+  /** Vite config */
   vite?: UserConfig;
 }>;
 
 /**
- * Configuration definition type
- * @description Application or library configuration definition
+ * Config define type
+ * @description Application or library config definition
  */
 type DefineConfig = DefineApplicationOptions | DefineLibraryOptions;
 
-type TamanViteConfig = Promise<UserConfig> | UserConfig | UserConfigFnPromise;
+type VbenViteConfig = Promise<UserConfig> | UserConfig | UserConfigFnPromise;
 
 export type {
   ApplicationPluginOptions,
@@ -333,7 +330,6 @@ export type {
   IImportMap,
   ImportmapPluginOptions,
   LibraryPluginOptions,
-  NitroMockPluginOptions,
   PrintPluginOptions,
-  TamanViteConfig,
+  VbenViteConfig,
 };

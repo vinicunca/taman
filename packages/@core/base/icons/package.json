@@ -2,6 +2,14 @@
   "name": "@taman-core/icons",
   "type": "module",
   "version": "1.0.0",
+  "license": "MIT",
+  "homepage": "https://github.com/vbenjs/vue-vben-admin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vbenjs/vue-vben-admin.git",
+    "directory": "packages/@vben-core/base/icons"
+  },
+  "bugs": "https://github.com/vbenjs/vue-vben-admin/issues",
   "exports": {
     ".": {
       "types": "./src/index.ts",
@@ -18,8 +26,17 @@
   "scripts": {
     "build": "pnpm exec tsdown"
   },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      }
+    }
+  },
   "dependencies": {
     "@iconify/vue": "catalog:",
+    "@lucide/vue": "catalog:",
     "vue": "catalog:"
   }
 }

@@ -1,0 +1,19 @@
+{
+  "name": "@taman/designs",
+  "type": "module",
+  "version": "1.0.0",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./styles": {
+      "types": "./src/styles/style-exports.d.ts",
+      "default": "./src/styles/index.css"
+    }
+  },
+  "devDependencies": {
+    "@vinicunca/unocss-preset": "catalog:",
+    "unocss": "catalog:"
+  }
+}

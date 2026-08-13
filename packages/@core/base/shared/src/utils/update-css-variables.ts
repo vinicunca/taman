@@ -1,26 +1,31 @@
 /**
- * Update the CSS variables
- * @param variables The mapping of the CSS variables to be updated and their new values
+ * Updates CSS variables.
+ * @param variables Map of CSS variable names to new values
  */
 function updateCSSVariables(
   variables: { [key: string]: string },
-  id = '__taman-styles__',
+  id = 'taman-styles__',
 ): void {
-  // Get or create the inline style element
+  // Get or create the inline stylesheet element
   const styleElement
     = document.querySelector(`#${id}`) || document.createElement('style');
 
   styleElement.id = id;
 
-  // Build the style text of the CSS variables to be updated
-  const cssText = `:root {${Object.entries(variables)
-    .map(([key, value]) => `${key}: ${value};`)
-    .join('')}}`;
+  // Build CSS text for the variables to update
+  let cssText = ':root {';
+  // eslint-disable-next-line no-restricted-syntax
+  for (const key in variables) {
+    if (Object.hasOwn(variables, key)) {
+      cssText += `${key}: ${variables[key]};`;
+    }
+  }
+  cssText += '}';
 
-  // Assign the style text to the inline style element
+  // Assign the CSS text to the inline stylesheet
   styleElement.textContent = cssText;
 
-  // Add the inline style element to the document head
+  // Append the inline stylesheet to the document head
   if (!document.querySelector(`#${id}`)) {
     setTimeout(() => {
       document.head.append(styleElement);

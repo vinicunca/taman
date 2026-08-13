@@ -14,10 +14,10 @@ interface PluginOptions {
 }
 
 const GLOBAL_CONFIG_FILE_NAME = '_app-config';
-const TAMAN_ADMIN_PROD_APP_CONF = '_TAMAN_ADMIN_PROD_APP_CONF_';
+const TAMAN_ADMIN_DEV_CONFIG = '_TAMAN_ADMIN_DEV_CONFIG_';
 
 /**
- * Used to extract the configuration file and inject it into the project
+ * Extracts app config into a separate file and injects it into the build
  * @returns
  */
 
@@ -38,7 +38,7 @@ async function viteExtraAppConfigPlugin({
   return {
     async configResolved(config) {
       publicPath = ensureTrailingSlash(config.base);
-      source = await getConfigSource();
+      source = await getConfigSource(config.mode);
       hash = generatorContentHash(source, 8);
     },
     async generateBundle() {
@@ -70,14 +70,14 @@ async function viteExtraAppConfigPlugin({
   };
 }
 
-async function getConfigSource() {
-  const config = await loadEnv();
-  const windowVariable = `window.${TAMAN_ADMIN_PROD_APP_CONF}`;
-  // Ensure the variable is not modified
+async function getConfigSource(mode: string) {
+  const config = await loadEnv('VITE_GLOB_', mode);
+  const windowVariable = `window.${TAMAN_ADMIN_DEV_CONFIG}`;
+  // Prevent the config object from being mutated
   let source = `${windowVariable}=${JSON.stringify(config)};`;
   source += `
     Object.freeze(${windowVariable});
-    Object.defineProperty(window, "${TAMAN_ADMIN_PROD_APP_CONF}", {
+    Object.defineProperty(window, "${TAMAN_ADMIN_DEV_CONFIG}", {
       configurable: false,
       writable: false,
     });

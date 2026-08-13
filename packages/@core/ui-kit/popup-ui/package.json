@@ -1,0 +1,29 @@
+{
+  "name": "@taman-core/popup-ui",
+  "type": "module",
+  "version": "1.0.0",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "development": "./src/index.ts",
+      "production": "./src/index.ts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "dependencies": {
+    "@taman-core/composables": "workspace:*",
+    "@taman-core/icons": "workspace:*",
+    "@taman-core/preferences": "workspace:*",
+    "@taman-core/shared": "workspace:*",
+    "@taman-core/taman-ui": "workspace:*",
+    "@taman-core/typings": "workspace:*",
+    "@vben-core/shadcn-ui": "workspace:*",
+    "@vueuse/core": "catalog:",
+    "pohon-ui": "catalog:",
+    "vue": "catalog:"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "catalog:",
+    "unplugin-vue": "catalog:"
+  }
+}

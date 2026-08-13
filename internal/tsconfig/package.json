@@ -9,9 +9,5 @@
     "node.json",
     "web-app.json",
     "web.json"
-  ],
-  "dependencies": {
-    "@taman/types": "workspace:*",
-    "vite": "catalog:"
-  }
+  ]
 }

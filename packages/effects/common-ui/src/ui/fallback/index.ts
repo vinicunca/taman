@@ -1,1 +1,2 @@
-export { default as TamanFallback } from './fallback.vue';
+export type * from './fallback';
+export { default as Fallback } from './fallback.vue';

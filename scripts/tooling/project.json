@@ -1,0 +1,33 @@
+{
+  "name": "tooling",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "scripts/tooling/src",
+  "projectType": "library",
+  "targets": {
+    "check-circular": {
+      "command": "bun scripts/tooling/src/check-circular.ts",
+      "cache": false
+    },
+    "check-dep": {
+      "command": "bun scripts/tooling/src/check-dep.ts",
+      "cache": false
+    },
+    "publint": {
+      "command": "bun scripts/tooling/src/publint.ts",
+      "cache": false
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bun scripts/tooling/src/lint.ts"
+      },
+      "configurations": {
+        "format": {
+          "command": "bun scripts/tooling/src/lint.ts --format"
+        }
+      },
+      "cache": false
+    }
+  },
+  "tags": []
+}

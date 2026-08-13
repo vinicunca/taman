@@ -9,10 +9,10 @@ import { LocalStorageDriver } from './local-storage-driver';
 import { MemoryStorageDriver } from './memory-storage-driver';
 
 /**
- * Storage manager (strategy pattern)
+ * Storage manager (strategy pattern).
  * - prefix (namespace isolation) is handled at this layer
- * - TTL (expiration mechanism) is handled at this layer
- * - Driver only handles pure KV access
+ * - TTL (expiration) is handled at this layer
+ * - drivers handle pure key-value access only
  */
 class StorageManager {
   private driver: IStorageDriver;
@@ -29,7 +29,7 @@ class StorageManager {
   }
 
   /**
-   * Clear all storage items with prefix
+   * Clear all stored items with the current prefix.
    */
   async clear(): Promise<void> {
     const allKeys = await this.driver.keys();
@@ -39,7 +39,7 @@ class StorageManager {
   }
 
   /**
-   * Clear all expired storage items
+   * Clear all expired stored items.
    */
   async clearExpiredItems(): Promise<void> {
     const allKeys = await this.driver.keys();
@@ -55,10 +55,10 @@ class StorageManager {
   }
 
   /**
-   * Get storage item
-   * @param key The key
-   * @param defaultValue The default value to return if the item does not exist or is expired
-   * @returns The value, if the item is expired, return the default value
+   * Get a stored item.
+   * @param key Key
+   * @param defaultValue Default value when the item is missing or expired
+   * @returns The value, or the default value if the item has expired
    */
   async getItem<T>(
     key: string,
@@ -81,7 +81,7 @@ class StorageManager {
   }
 
   /**
-   * Get all storage keys with prefix (without prefix part)
+   * Get all storage keys under the current prefix (prefix stripped).
    */
   async keys(): Promise<Array<string>> {
     const allKeys = await this.driver.keys();
@@ -95,8 +95,8 @@ class StorageManager {
   }
 
   /**
-   * Remove storage item
-   * @param key The key
+   * Remove a stored item.
+   * @param key Key
    */
   async removeItem(key: string): Promise<void> {
     const fullKey = this.getFullKey(key);
@@ -104,10 +104,10 @@ class StorageManager {
   }
 
   /**
-   * Set storage item
-   * @param key The key
-   * @param value The value
-   * @param ttl The TTL (milliseconds)
+   * Set a stored item.
+   * @param key Key
+   * @param value Value
+   * @param ttl Time to live in milliseconds
    */
   async setItem(key: string, value: unknown, ttl?: number): Promise<void> {
     const fullKey = this.getFullKey(key);
@@ -117,9 +117,18 @@ class StorageManager {
   }
 
   /**
-   * Create default driver based on the runtime environment:
-   * - Browser environment (window.localStorage available) → LocalStorageDriver
-   * - SSR / Node environment → MemoryStorageDriver
+   * Get the full storage key (with prefix).
+   * @param key Original key
+   * @returns Full key with prefix
+   */
+  getFullKey(key: string): string {
+    return this.prefix ? `${this.prefix}-${key}` : key;
+  }
+
+  /**
+   * Create the default driver based on the runtime environment:
+   * - Browser (window.localStorage available) → LocalStorageDriver
+   * - SSR / Node → MemoryStorageDriver
    */
   private createDefaultDriver(): IStorageDriver {
     try {
@@ -134,15 +143,6 @@ class StorageManager {
       );
     }
     return new MemoryStorageDriver();
-  }
-
-  /**
-   * Get the full storage key (with prefix)
-   * @param key The original key
-   * @returns The full key with prefix
-   */
-  private getFullKey(key: string): string {
-    return this.prefix ? `${this.prefix}-${key}` : key;
   }
 }
 

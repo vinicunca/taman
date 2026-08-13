@@ -8,8 +8,8 @@ import { fileURLToPath } from 'node:url';
 import { readPackageJSON } from '@taman/node-utils';
 
 /**
- * Used to generate loading styles and inject them into the project
- * Provide loading styles for multiple apps, no need to introduce them separately in each app -> index.html
+ * Injects app loading markup/styles into index.html
+ * Shared across apps so each app need not duplicate loading markup
  */
 async function viteInjectAppLoadingPlugin(
   isBuild: boolean,
@@ -21,8 +21,7 @@ async function viteInjectAppLoadingPlugin(
   const envRaw = isBuild ? 'prod' : 'dev';
   const cacheName = `'${env.VITE_APP_NAMESPACE}-${version}-${envRaw}-preferences-theme'`;
 
-  // Get the cached theme
-  // Ensure that under the dark theme, when the page is refreshed, the loading is also dark theme
+  // Read cached theme so loading screen matches dark mode on refresh
   const injectScript = `
   <script data-app-loading="inject-js">
   var theme = localStorage.getItem(${cacheName});
@@ -49,10 +48,10 @@ async function viteInjectAppLoadingPlugin(
 }
 
 /**
- * Used to get the html template of loading
+ * Load the loading screen HTML template
  */
 async function getLoadingRawByHtmlTemplate(loadingTemplate: string) {
-  // Support custom loading templates in the app, the template reference default-loading.html
+  // Apps may override with a custom template (see default-loading.html)
   let appLoadingPath = join(process.cwd(), loadingTemplate);
 
   if (!fs.existsSync(appLoadingPath)) {

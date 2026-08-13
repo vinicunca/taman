@@ -1,0 +1,135 @@
+<script lang="ts" setup>
+import { IconPicker, Page } from '@taman/common-ui';
+import {
+  MdiKeyboardEsc,
+  SvgAvatar1Icon,
+  SvgAvatar2Icon,
+  SvgAvatar3Icon,
+  SvgAvatar4Icon,
+  SvgBellIcon,
+  SvgCakeIcon,
+  SvgCardIcon,
+  SvgDownloadIcon,
+  SvgGithubIcon,
+  SvgGoogleIcon,
+  SvgQQChatIcon,
+  SvgWeChatIcon,
+} from '@vben/icons';
+import { h, ref } from 'vue';
+
+const iconValue1 = ref('ant-design:trademark-outlined');
+const iconValue2 = ref('svg:avatar-1');
+const iconValue3 = ref('mdi:alien-outline');
+const iconValue4 = ref('mdi-light:book-multiple');
+
+const inputComponent = h('');
+</script>
+
+<template>
+  <Page title="图标">
+    <template #description>
+      <div class="color-text/80 mt-2">
+        图标可在
+        <a
+          class="text-primary"
+          href="https://icon-sets.iconify.design/"
+          target="_blank"
+        >
+          Iconify
+        </a>
+        中查找，支持多种图标库，如 Material Design, Font Awesome, Jam Icons 等。
+      </div>
+    </template>
+
+    <Card
+      class="mb-5"
+      title="Iconify"
+    >
+      <div class="flex gap-5 items-center">
+        <SvgGithubIcon class="size-8" />
+        <SvgGoogleIcon class="size-8" />
+        <SvgQQChatIcon class="size-8" />
+        <SvgWeChatIcon class="size-8" />
+        <MdiKeyboardEsc class="size-8" />
+      </div>
+    </Card>
+
+    <Card
+      class="mb-5"
+      title="Svg Icons"
+    >
+      <div class="flex gap-5 items-center">
+        <SvgAvatar1Icon class="size-8" />
+        <SvgAvatar2Icon class="text-red-500 size-8" />
+        <SvgAvatar3Icon class="text-green-500 size-8" />
+        <SvgAvatar4Icon class="size-8" />
+        <SvgCakeIcon class="size-8" />
+        <SvgBellIcon class="size-8" />
+        <SvgCardIcon class="size-8" />
+        <SvgDownloadIcon class="size-8" />
+      </div>
+    </Card>
+
+    <Card
+      class="mb-5"
+      title="Tailwind CSS"
+    >
+      <div class="text-3xl flex gap-5 items-center">
+        <span class="icon-[ant-design--alipay-circle-outlined]" />
+        <span class="icon-[ant-design--account-book-filled]" />
+        <span class="icon-[ant-design--container-outlined]" />
+        <span class="icon-[svg-spinners--wind-toy]" />
+        <span class="icon-[svg-spinners--blocks-wave]" />
+        <span class="icon-[line-md--compass-filled-loop]" />
+      </div>
+    </Card>
+
+    <Card
+      class="mb-5"
+      title="图标选择器"
+    >
+      <div class="mb-5 flex gap-5 items-center">
+        <span>原始样式(Iconify):</span>
+        <IconPicker
+          v-model="iconValue1"
+          class="w-50"
+        />
+      </div>
+      <div class="mb-5 flex gap-5 items-center">
+        <span>原始样式(svg):</span>
+        <IconPicker
+          v-model="iconValue2"
+          class="w-50"
+          prefix="svg"
+        />
+      </div>
+      <div class="mb-5 flex gap-5 items-center">
+        <span>自定义Input:</span>
+        <IconPicker
+          v-model="iconValue3"
+          :input-component="inputComponent"
+          icon-slot="addonAfter"
+          model-value-prop="value"
+          prefix="mdi"
+        />
+      </div>
+      <div class="flex gap-5 items-center">
+        <span>显示为一个Icon:</span>
+        <Input
+          v-model:value="iconValue4"
+          allow-clear
+          placeholder="点击这里选择图标"
+          class="w-75"
+        >
+          <template #addonAfter>
+            <IconPicker
+              v-model="iconValue4"
+              prefix="mdi-light"
+              type="icon"
+            />
+          </template>
+        </Input>
+      </div>
+    </Card>
+  </Page>
+</template>

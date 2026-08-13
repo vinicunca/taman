@@ -1,0 +1,21 @@
+{
+  "name": "@taman-core/form-builder",
+  "type": "module",
+  "version": "1.0.0",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "development": "./src/index.ts",
+      "production": "./src/index.ts"
+    }
+  },
+  "dependencies": {
+    "@taman-core/shared": "workspace:*",
+    "@vue/test-utils": "catalog:",
+    "@vueuse/core": "catalog:",
+    "akar": "catalog:",
+    "pohon-ui": "catalog:",
+    "vue": "catalog:",
+    "zod": "catalog:"
+  }
+}

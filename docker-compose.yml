@@ -1,0 +1,21 @@
+services:
+  # Local database
+  db:
+    image: postgres:18
+    container_name: ngibur-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ngibur_db
+    ports:
+      - '5437:5432'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d ngibur_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - ngibur_data:/var/lib/postgresql
+
+volumes:
+  ngibur_data:

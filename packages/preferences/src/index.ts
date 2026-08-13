@@ -3,12 +3,15 @@ import type {
   Preferences,
   PreferencesExtension,
 } from '@taman-core/preferences';
-import type { DeepPartial } from '@vinicunca/perkakas';
+import type { DeepPartial } from '@taman-core/shared/utils';
 
 /**
- * If you want all apps to use the same default preferences, you can define it here
- * instead of modifying the default preferences in @taman-core/preferences
+ * Define shared default preferences for all apps here
+ * instead of editing defaults in @taman-core/preferences
+ * @param preferences
+ * @returns
  */
+
 function defineOverridesPreferences(preferences: DeepPartial<Preferences>) {
   return preferences;
 }

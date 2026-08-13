@@ -1,9 +1,7 @@
-/* eslint-disable sonar/no-nested-functions */
+import type { Nullable } from '@taman/types';
 import type { EChartsOption } from 'echarts';
 import type { Ref } from 'vue';
-
 import type EchartsUI from './echarts-ui.vue';
-
 import { usePreferences } from '@taman/preferences';
 import {
   tryOnUnmounted,
@@ -33,14 +31,14 @@ type EchartsThemeType = 'dark' | 'light' | null;
 function useEcharts(chartRef: Ref<EchartsUIType>) {
   let chartInstance: echarts.ECharts | null = null;
   let cacheOptions: EChartsOption = {};
-  // Whether echarts is active
+  // Whether echarts is in an active (mounted/activated) state
   const isActiveRef = ref(false);
 
   const { isDark } = usePreferences();
   const { height, width } = useWindowSize();
   const resizeHandler: () => void = useDebounceFn(resize, 200);
 
-  function getChartEl(): HTMLElement | null {
+  const getChartEl = (): HTMLElement | null => {
     const refValue = chartRef?.value as unknown;
     if (!refValue) {
       return null;
@@ -50,27 +48,19 @@ function useEcharts(chartRef: Ref<EchartsUIType>) {
     }
     const maybeComponent = refValue as { $el?: HTMLElement };
     return maybeComponent.$el ?? null;
-  }
+  };
 
-  onMounted(() => {
-    isActiveRef.value = true;
-  });
-  onActivated(() => {
-    isActiveRef.value = true;
-  });
-  onDeactivated(() => {
-    isActiveRef.value = false;
-  });
-  onBeforeUnmount(() => {
-    isActiveRef.value = false;
-  });
+  onMounted(() => (isActiveRef.value = true));
+  onActivated(() => (isActiveRef.value = true));
+  onDeactivated(() => (isActiveRef.value = false));
+  onBeforeUnmount(() => (isActiveRef.value = false));
 
-  function isElHidden(el: HTMLElement | null): boolean {
+  const isElHidden = (el: HTMLElement | null): boolean => {
     if (!el) {
       return true;
     }
     return el.offsetHeight === 0 || el.offsetWidth === 0;
-  }
+  };
 
   const getOptions = computed((): EChartsOption => {
     if (!isDark.value) {
@@ -82,7 +72,7 @@ function useEcharts(chartRef: Ref<EchartsUIType>) {
     };
   });
 
-  function initCharts(t?: EchartsThemeType) {
+  const initCharts = (t?: EchartsThemeType) => {
     const el = chartRef?.value?.$el;
     if (!el) {
       return;
@@ -90,9 +80,12 @@ function useEcharts(chartRef: Ref<EchartsUIType>) {
     chartInstance = echarts.init(el, t || isDark.value ? 'dark' : null);
 
     return chartInstance;
-  }
+  };
 
-  function renderEcharts(options: EChartsOption, clear = true): Promise<null | echarts.ECharts> {
+  const renderEcharts = (
+    options: EChartsOption,
+    clear = true,
+  ): Promise<Nullable<echarts.ECharts>> => {
     if (!unref(isActiveRef)) {
       return Promise.resolve(null);
     }
@@ -131,22 +124,22 @@ function useEcharts(chartRef: Ref<EchartsUIType>) {
         }, 30);
       });
     });
-  }
+  };
 
-  function updateData(
+  const updateData = (
     option: EChartsOption,
-    notMerge = false, // `false` = merge (preserve animation), `true` = complete replacement
-    lazyUpdate = false, // `true` prevents immediate redrawing, suitable for multiple calls within a short period.
-  ): Promise<echarts.ECharts | null> {
+    notMerge = false, // false = merge (keep animation), true = full replace
+    lazyUpdate = false, // true = defer redraw; useful for rapid successive updates
+  ): Promise<echarts.ECharts | null> => {
     return new Promise((resolve) => {
       nextTick(() => {
         if (!chartInstance) {
-          // Not initialized yet → Treat as first render
+          // Not initialized yet — treat as first render
           renderEcharts(option).then(resolve);
           return;
         }
 
-        // Merge your existing global configuration (e.g. backgroundColor)
+        // Merge existing global options (e.g. backgroundColor)
         const finalOption = {
           ...option,
           ...getOptions.value,
@@ -155,13 +148,13 @@ function useEcharts(chartRef: Ref<EchartsUIType>) {
         chartInstance.setOption(finalOption, {
           notMerge,
           lazyUpdate,
-          // silent: true,     // If you want to achieve the ultimate performance, you can enable it (disable all events)
+          // silent: true,     // Enable for max performance (disables all events)
         });
 
         resolve(chartInstance);
       });
     });
-  }
+  };
 
   function resize() {
     const el = getChartEl();
@@ -192,7 +185,7 @@ function useEcharts(chartRef: Ref<EchartsUIType>) {
   });
 
   tryOnUnmounted(() => {
-    // Destroy instance, release resources
+    // Dispose instance and free resources
     chartInstance?.dispose();
   });
   return {

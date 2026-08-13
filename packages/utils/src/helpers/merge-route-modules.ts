@@ -1,13 +1,14 @@
 import type { RouteRecordRaw } from 'vue-router';
 
+// Route module shape from dynamic import
 interface RouteModuleType {
   default: Array<RouteRecordRaw>;
 }
 
 /**
- * Merge the default export of the dynamic route modules
- * @param routeModules The dynamic import route module object
- * @returns The merged route configuration array
+ * Merges default exports from dynamically imported route modules.
+ * @param routeModules Object of dynamically imported route modules
+ * @returns Merged route configuration array
  */
 function mergeRouteModules(
   routeModules: Record<string, unknown>,

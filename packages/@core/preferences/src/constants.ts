@@ -78,9 +78,7 @@ const BUILT_IN_THEME_PRESETS: Array<BuiltinThemePreset> = [
   },
 ];
 
-/**
- * Timezone options
- */
+/** Timezone options */
 const DEFAULT_TIME_ZONE_OPTIONS: Array<TamanTimezoneOption> = [
   {
     offset: -5,

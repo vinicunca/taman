@@ -1,26 +1,18 @@
 import type { App, Directive, DirectiveBinding } from 'vue';
-import { PohonLoading, PohonSpinner } from '@taman-core/pohon-ui';
-import { isString } from '@vinicunca/perkakas';
+
 import { h, render } from 'vue';
+
+import { VbenLoading, VbenSpinner } from '@vben-core/shadcn-ui';
+import { isString } from '@taman-core/shared/utils';
 
 const LOADING_INSTANCE_KEY = Symbol('loading');
 const SPINNER_INSTANCE_KEY = Symbol('spinner');
 
 const CLASS_NAME_RELATIVE = 'spinner-parent--relative';
 
-function getOptions(binding: DirectiveBinding) {
-  if (binding.value === undefined) {
-    return { spinning: true };
-  } else if (typeof binding.value === 'boolean') {
-    return { spinning: binding.value };
-  } else {
-    return { ...binding.value };
-  }
-}
-
 const loadingDirective: Directive = {
   mounted(el, binding) {
-    const instance = h(PohonLoading, getOptions(binding));
+    const instance = h(VbenLoading, getOptions(binding));
     render(instance, el);
 
     el.classList.add(CLASS_NAME_RELATIVE);
@@ -54,9 +46,19 @@ const loadingDirective: Directive = {
   },
 };
 
+function getOptions(binding: DirectiveBinding) {
+  if (binding.value === undefined) {
+    return { spinning: true };
+  } else if (typeof binding.value === 'boolean') {
+    return { spinning: binding.value };
+  } else {
+    return { ...binding.value };
+  }
+}
+
 const spinningDirective: Directive = {
   mounted(el, binding) {
-    const instance = h(PohonSpinner, getOptions(binding));
+    const instance = h(VbenSpinner, getOptions(binding));
     render(instance, el);
 
     el.classList.add(CLASS_NAME_RELATIVE);
@@ -90,21 +92,23 @@ const spinningDirective: Directive = {
   },
 };
 
-interface LoadingDirectiveParams {
-  /** Whether to register the loading directive. If a string is provided, the directive will be registered as the specified name */
+type loadingDirectiveParams = {
+  /** Register loading directive; string value sets the directive name */
   loading?: boolean | string;
-  /** Whether to register the spinning directive. If a string is provided, the directive will be registered as the specified name */
+  /** Register spinning directive; string value sets the directive name */
   spinning?: boolean | string;
-}
+};
 
 /**
- * Register loading directive
+ * Register loading directives
+ * @param app
+ * @param params
  */
 export function registerLoadingDirective(
   app: App,
-  params?: LoadingDirectiveParams,
+  params?: loadingDirectiveParams,
 ) {
-  // Inject a style for the directive to use, ensuring the container is relative positioning
+  // Inject relative positioning style for directive targets
   const style = document.createElement('style');
   style.id = CLASS_NAME_RELATIVE;
   style.innerHTML = `

@@ -1,5 +1,5 @@
 /**
- * Reference https://github.com/jspm/vite-plugin-jspm, adjusted to the required functionality
+ * Based on https://github.com/jspm/vite-plugin-jspm, adapted for this project
  */
 import type { GeneratorOptions } from '@jspm/generator';
 import type { Plugin } from 'vite';
@@ -16,7 +16,14 @@ type pluginOptions = GeneratorOptions & {
   importmap?: Array<{ name: string; range?: string }>;
 };
 
+// async function getLatestVersionOfShims() {
+//   const result = await fetch('https://ga.jspm.io/npm:es-module-shims');
+//   const version = result.text();
+//   return version;
+// }
+
 async function getShimsUrl(provide: string) {
+  // const version = await getLatestVersionOfShims();
   const version = '1.10.0';
 
   const shimsSubpath = 'dist/es-module-shims.js';
@@ -25,7 +32,7 @@ async function getShimsUrl(provide: string) {
     // unpkg: `https://unpkg.com/es-module-shims@${version}/${shimsSubpath}`,
     'jsdelivr': `https://cdn.jsdelivr.net/npm/es-module-shims@${version}/${shimsSubpath}`,
 
-    // The following two CDNs are unstable, so they are not used temporarily
+    // These two CDNs are unstable; not used by default
     'jspm.io': `https://ga.jspm.io/npm:es-module-shims@${version}/${shimsSubpath}`,
   };
 
@@ -111,7 +118,6 @@ async function viteImportMapPlugin(
     {
       enforce: 'post',
       name: 'importmap:install',
-      // eslint-disable-next-line sonar/no-invariant-returns
       async resolveId() {
         if (isSSR || !isBuild || installed) {
           return null;
@@ -130,7 +136,7 @@ async function viteImportMapPlugin(
     },
     {
       buildEnd() {
-        // If the importmap is not generated, throw an error to prevent being cached by turbo
+        // Fail if importmap was not generated (avoids stale nx cache)
         if (!installed && !isSSR) {
           installError && console.error(installError);
           throw new Error('Importmap installation failed.');

@@ -2,29 +2,18 @@
   "name": "@taman-core/typings",
   "type": "module",
   "version": "1.0.0",
-  "private": true,
   "exports": {
     ".": {
       "types": "./src/index.ts",
       "development": "./src/index.ts",
-      "production": "./src/index.ts",
-      "default": "./dist/index.mjs"
+      "default": "./src/index.ts"
     },
     "./vue-router": {
-      "types": "./vue-router.d.ts"
+      "types": "./src/vue-router.d.ts"
     }
   },
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist",
-    "vue-router.d.ts"
-  ],
-  "scripts": {
-    "build": "pnpm exec tsdown"
-  },
   "dependencies": {
+    "@taman/rbac": "workspace:*",
     "vue": "catalog:",
     "vue-router": "catalog:"
   }

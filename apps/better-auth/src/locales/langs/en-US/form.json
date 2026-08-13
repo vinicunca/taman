@@ -1,0 +1,8 @@
+{
+  "uploadImages": {
+    "label": "Drop your images here",
+    "buttonUpload": "Select images",
+    "addMore": "Add more",
+    "files": "Files"
+  }
+}

@@ -1,0 +1,3456 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "package.json",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L1",
+      "id": "package_json",
+      "community": 1,
+      "norm_label": "package.json"
+    },
+    {
+      "label": "name",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "id": "popup_ui_package_name",
+      "community": 1,
+      "norm_label": "name"
+    },
+    {
+      "label": "version",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "id": "popup_ui_package_version",
+      "community": 1,
+      "norm_label": "version"
+    },
+    {
+      "label": "homepage",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "id": "popup_ui_package_homepage",
+      "community": 1,
+      "norm_label": "homepage"
+    },
+    {
+      "label": "bugs",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L5",
+      "id": "popup_ui_package_bugs",
+      "community": 1,
+      "norm_label": "bugs"
+    },
+    {
+      "label": "repository",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L6",
+      "id": "popup_ui_package_repository",
+      "community": 1,
+      "norm_label": "repository"
+    },
+    {
+      "label": "type",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L7",
+      "id": "popup_ui_package_repository_type",
+      "community": 1,
+      "norm_label": "type"
+    },
+    {
+      "label": "url",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L8",
+      "id": "popup_ui_package_repository_url",
+      "community": 1,
+      "norm_label": "url"
+    },
+    {
+      "label": "directory",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L9",
+      "id": "popup_ui_package_repository_directory",
+      "community": 1,
+      "norm_label": "directory"
+    },
+    {
+      "label": "license",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L11",
+      "id": "popup_ui_package_license",
+      "community": 1,
+      "norm_label": "license"
+    },
+    {
+      "label": "type",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L12",
+      "id": "popup_ui_package_type",
+      "community": 1,
+      "norm_label": "type"
+    },
+    {
+      "label": "scripts",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L13",
+      "id": "popup_ui_package_scripts",
+      "community": 1,
+      "norm_label": "scripts"
+    },
+    {
+      "label": "build",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L14",
+      "id": "popup_ui_package_scripts_build",
+      "community": 1,
+      "norm_label": "build"
+    },
+    {
+      "label": "prepublishOnly",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L15",
+      "id": "popup_ui_package_scripts_prepublishonly",
+      "community": 1,
+      "norm_label": "prepublishonly"
+    },
+    {
+      "label": "files",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L17",
+      "id": "popup_ui_package_files",
+      "community": 1,
+      "norm_label": "files"
+    },
+    {
+      "label": "sideEffects",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L20",
+      "id": "popup_ui_package_sideeffects",
+      "community": 1,
+      "norm_label": "sideeffects"
+    },
+    {
+      "label": "main",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L23",
+      "id": "popup_ui_package_main",
+      "community": 1,
+      "norm_label": "main"
+    },
+    {
+      "label": "module",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L24",
+      "id": "popup_ui_package_module",
+      "community": 1,
+      "norm_label": "module"
+    },
+    {
+      "label": "types",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L25",
+      "id": "popup_ui_package_types",
+      "community": 1,
+      "norm_label": "types"
+    },
+    {
+      "label": "exports",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L26",
+      "id": "popup_ui_package_exports",
+      "community": 1,
+      "norm_label": "exports"
+    },
+    {
+      "label": "development",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L29",
+      "id": "popup_ui_package_development",
+      "community": 1,
+      "norm_label": "development"
+    },
+    {
+      "label": "production",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L30",
+      "id": "popup_ui_package_production",
+      "community": 1,
+      "norm_label": "production"
+    },
+    {
+      "label": "default",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L31",
+      "id": "popup_ui_package_default",
+      "community": 1,
+      "norm_label": "default"
+    },
+    {
+      "label": "publishConfig",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L34",
+      "id": "popup_ui_package_publishconfig",
+      "community": 1,
+      "norm_label": "publishconfig"
+    },
+    {
+      "label": "exports",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L35",
+      "id": "popup_ui_package_publishconfig_exports",
+      "community": 1,
+      "norm_label": "exports"
+    },
+    {
+      "label": "dependencies",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L42",
+      "id": "popup_ui_package_dependencies",
+      "community": 7,
+      "norm_label": "dependencies"
+    },
+    {
+      "label": "@vben-core/composables",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L43",
+      "id": "popup_ui_package_dependencies_vben_core_composables",
+      "community": 7,
+      "norm_label": "@vben-core/composables"
+    },
+    {
+      "label": "@vben-core/icons",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L44",
+      "id": "popup_ui_package_dependencies_vben_core_icons",
+      "community": 7,
+      "norm_label": "@vben-core/icons"
+    },
+    {
+      "label": "@vben-core/preferences",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L45",
+      "id": "popup_ui_package_dependencies_vben_core_preferences",
+      "community": 7,
+      "norm_label": "@vben-core/preferences"
+    },
+    {
+      "label": "@vben-core/shadcn-ui",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L46",
+      "id": "popup_ui_package_dependencies_vben_core_shadcn_ui",
+      "community": 7,
+      "norm_label": "@vben-core/shadcn-ui"
+    },
+    {
+      "label": "@vben-core/shared",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L47",
+      "id": "popup_ui_package_dependencies_vben_core_shared",
+      "community": 7,
+      "norm_label": "@vben-core/shared"
+    },
+    {
+      "label": "@vben-core/typings",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L48",
+      "id": "popup_ui_package_dependencies_vben_core_typings",
+      "community": 7,
+      "norm_label": "@vben-core/typings"
+    },
+    {
+      "label": "@vueuse/core",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L49",
+      "id": "popup_ui_package_dependencies_vueuse_core",
+      "community": 7,
+      "norm_label": "@vueuse/core"
+    },
+    {
+      "label": "vue",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L50",
+      "id": "popup_ui_package_dependencies_vue",
+      "community": 7,
+      "norm_label": "vue"
+    },
+    {
+      "label": "devDependencies",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L52",
+      "id": "popup_ui_package_devdependencies",
+      "community": 1,
+      "norm_label": "devdependencies"
+    },
+    {
+      "label": "unplugin-vue",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L53",
+      "id": "popup_ui_package_devdependencies_unplugin_vue",
+      "community": 1,
+      "norm_label": "unplugin-vue"
+    },
+    {
+      "label": "tsconfig.json",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L1",
+      "id": "tsconfig_json",
+      "community": 8,
+      "norm_label": "tsconfig.json"
+    },
+    {
+      "label": "$schema",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L2",
+      "id": "popup_ui_tsconfig_schema",
+      "community": 8,
+      "norm_label": "$schema"
+    },
+    {
+      "label": "extends",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L3",
+      "id": "popup_ui_tsconfig_extends",
+      "community": 8,
+      "norm_label": "extends"
+    },
+    {
+      "label": "include",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L4",
+      "id": "popup_ui_tsconfig_include",
+      "community": 8,
+      "norm_label": "include"
+    },
+    {
+      "label": "exclude",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L5",
+      "id": "popup_ui_tsconfig_exclude",
+      "community": 8,
+      "norm_label": "exclude"
+    },
+    {
+      "label": "tsdown.config.ts",
+      "file_type": "code",
+      "source_file": "tsdown.config.ts",
+      "source_location": "L1",
+      "id": "tsdown_config_ts",
+      "community": 10,
+      "norm_label": "tsdown.config.ts"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "src/index.ts",
+      "source_location": "L1",
+      "id": "src_index_ts",
+      "community": 4,
+      "norm_label": "index.ts"
+    },
+    {
+      "label": "use-drawer.ts",
+      "file_type": "code",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L1",
+      "id": "src_drawer_use_drawer_ts",
+      "community": 4,
+      "norm_label": "use-drawer.ts"
+    },
+    {
+      "label": "USER_DRAWER_INJECT_KEY",
+      "file_type": "code",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L23",
+      "id": "drawer_use_drawer_user_drawer_inject_key",
+      "community": 4,
+      "norm_label": "user_drawer_inject_key"
+    },
+    {
+      "label": "{ globalEscapeShortcutKey }",
+      "file_type": "code",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L25",
+      "id": "drawer_use_drawer_globalescapeshortcutkey",
+      "community": 4,
+      "norm_label": "{ globalescapeshortcutkey }"
+    },
+    {
+      "label": "DEFAULT_DRAWER_PROPS",
+      "file_type": "code",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L30",
+      "id": "drawer_use_drawer_default_drawer_props",
+      "community": 4,
+      "norm_label": "default_drawer_props"
+    },
+    {
+      "label": "setDefaultDrawerProps()",
+      "file_type": "code",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L32",
+      "id": "drawer_use_drawer_setdefaultdrawerprops",
+      "community": 4,
+      "norm_label": "setdefaultdrawerprops()"
+    },
+    {
+      "label": "useVbenDrawer()",
+      "file_type": "code",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L36",
+      "id": "drawer_use_drawer_usevbendrawer",
+      "community": 4,
+      "norm_label": "usevbendrawer()"
+    },
+    {
+      "label": "checkProps()",
+      "file_type": "code",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L130",
+      "id": "drawer_use_drawer_checkprops",
+      "community": 4,
+      "norm_label": "checkprops()"
+    },
+    {
+      "label": "drawer.vue",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer.vue",
+      "source_location": "L1",
+      "id": "src_drawer_drawer_vue",
+      "community": 4,
+      "norm_label": "drawer.vue"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "src/drawer/index.ts",
+      "source_location": "L1",
+      "id": "src_drawer_index_ts",
+      "community": 4,
+      "norm_label": "index.ts"
+    },
+    {
+      "label": "drawer-api.ts",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L1",
+      "id": "src_drawer_drawer_api_ts",
+      "community": 3,
+      "norm_label": "drawer-api.ts"
+    },
+    {
+      "label": "DrawerApi",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L6",
+      "id": "drawer_drawer_api_drawerapi",
+      "community": 3,
+      "norm_label": "drawerapi"
+    },
+    {
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L26",
+      "id": "drawer_drawer_api_drawerapi_constructor",
+      "community": 3,
+      "norm_label": ".constructor()"
+    },
+    {
+      "label": ".close()",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L87",
+      "id": "drawer_drawer_api_drawerapi_close",
+      "community": 3,
+      "norm_label": ".close()"
+    },
+    {
+      "label": ".getData()",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L100",
+      "id": "drawer_drawer_api_drawerapi_getdata",
+      "community": 3,
+      "norm_label": ".getdata()"
+    },
+    {
+      "label": ".lock()",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L109",
+      "id": "drawer_drawer_api_drawerapi_lock",
+      "community": 3,
+      "norm_label": ".lock()"
+    },
+    {
+      "label": ".onCancel()",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L116",
+      "id": "drawer_drawer_api_drawerapi_oncancel",
+      "community": 3,
+      "norm_label": ".oncancel()"
+    },
+    {
+      "label": ".onClosed()",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L127",
+      "id": "drawer_drawer_api_drawerapi_onclosed",
+      "community": 3,
+      "norm_label": ".onclosed()"
+    },
+    {
+      "label": ".onConfirm()",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L136",
+      "id": "drawer_drawer_api_drawerapi_onconfirm",
+      "community": 3,
+      "norm_label": ".onconfirm()"
+    },
+    {
+      "label": ".onOpened()",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L143",
+      "id": "drawer_drawer_api_drawerapi_onopened",
+      "community": 3,
+      "norm_label": ".onopened()"
+    },
+    {
+      "label": ".open()",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L149",
+      "id": "drawer_drawer_api_drawerapi_open",
+      "community": 3,
+      "norm_label": ".open()"
+    },
+    {
+      "label": ".setData()",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L153",
+      "id": "drawer_drawer_api_drawerapi_setdata",
+      "community": 3,
+      "norm_label": ".setdata()"
+    },
+    {
+      "label": ".setState()",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L158",
+      "id": "drawer_drawer_api_drawerapi_setstate",
+      "community": 3,
+      "norm_label": ".setstate()"
+    },
+    {
+      "label": ".unlock()",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L175",
+      "id": "drawer_drawer_api_drawerapi_unlock",
+      "community": 3,
+      "norm_label": ".unlock()"
+    },
+    {
+      "label": "drawer.ts",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer.ts",
+      "source_location": "L1",
+      "id": "src_drawer_drawer_ts",
+      "community": 4,
+      "norm_label": "drawer.ts"
+    },
+    {
+      "label": "DrawerPlacement",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer.ts",
+      "source_location": "L7",
+      "id": "drawer_drawer_drawerplacement",
+      "community": 4,
+      "norm_label": "drawerplacement"
+    },
+    {
+      "label": "CloseIconPlacement",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer.ts",
+      "source_location": "L9",
+      "id": "drawer_drawer_closeiconplacement",
+      "community": 4,
+      "norm_label": "closeiconplacement"
+    },
+    {
+      "label": "DrawerProps",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer.ts",
+      "source_location": "L11",
+      "id": "drawer_drawer_drawerprops",
+      "community": 4,
+      "norm_label": "drawerprops"
+    },
+    {
+      "label": "DrawerState",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer.ts",
+      "source_location": "L130",
+      "id": "drawer_drawer_drawerstate",
+      "community": 3,
+      "norm_label": "drawerstate"
+    },
+    {
+      "label": "ExtendedDrawerApi",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer.ts",
+      "source_location": "L139",
+      "id": "drawer_drawer_extendeddrawerapi",
+      "community": 4,
+      "norm_label": "extendeddrawerapi"
+    },
+    {
+      "label": "DrawerApiOptions",
+      "file_type": "code",
+      "source_file": "src/drawer/drawer.ts",
+      "source_location": "L145",
+      "id": "drawer_drawer_drawerapioptions",
+      "community": 3,
+      "norm_label": "drawerapioptions"
+    },
+    {
+      "label": "drawer-api.test.ts",
+      "file_type": "code",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L1",
+      "id": "src_drawer_tests_drawer_api_test_ts",
+      "community": 5,
+      "norm_label": "drawer-api.test.ts"
+    },
+    {
+      "label": "state()",
+      "file_type": "code",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L12",
+      "id": "tests_drawer_api_test_state",
+      "community": 5,
+      "norm_label": "state()"
+    },
+    {
+      "label": "constructor()",
+      "file_type": "code",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L18",
+      "id": "tests_drawer_api_test_constructor",
+      "community": 5,
+      "norm_label": "constructor()"
+    },
+    {
+      "label": "setState()",
+      "file_type": "code",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L22",
+      "id": "tests_drawer_api_test_setstate",
+      "community": 5,
+      "norm_label": "setstate()"
+    },
+    {
+      "label": "subscribe()",
+      "file_type": "code",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L27",
+      "id": "tests_drawer_api_test_subscribe",
+      "community": 5,
+      "norm_label": "subscribe()"
+    },
+    {
+      "label": "onBeforeClose",
+      "file_type": "code",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L61",
+      "id": "tests_drawer_api_test_onbeforeclose",
+      "community": 5,
+      "norm_label": "onbeforeclose"
+    },
+    {
+      "label": "drawerApiWithHook",
+      "file_type": "code",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L62",
+      "id": "tests_drawer_api_test_drawerapiwithhook",
+      "community": 5,
+      "norm_label": "drawerapiwithhook"
+    },
+    {
+      "label": "onCancel",
+      "file_type": "code",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L70",
+      "id": "tests_drawer_api_test_oncancel",
+      "community": 5,
+      "norm_label": "oncancel"
+    },
+    {
+      "label": "testData",
+      "file_type": "code",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L79",
+      "id": "tests_drawer_api_test_testdata",
+      "community": 5,
+      "norm_label": "testdata"
+    },
+    {
+      "label": "onOpenChange",
+      "file_type": "code",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L95",
+      "id": "tests_drawer_api_test_onopenchange",
+      "community": 5,
+      "norm_label": "onopenchange"
+    },
+    {
+      "label": "onClosed",
+      "file_type": "code",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L102",
+      "id": "tests_drawer_api_test_onclosed",
+      "community": 5,
+      "norm_label": "onclosed"
+    },
+    {
+      "label": "onOpened",
+      "file_type": "code",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L109",
+      "id": "tests_drawer_api_test_onopened",
+      "community": 5,
+      "norm_label": "onopened"
+    },
+    {
+      "label": "alert.ts",
+      "file_type": "code",
+      "source_file": "src/alert/alert.ts",
+      "source_location": "L1",
+      "id": "src_alert_alert_ts",
+      "community": 2,
+      "norm_label": "alert.ts"
+    },
+    {
+      "label": "IconType",
+      "file_type": "code",
+      "source_file": "src/alert/alert.ts",
+      "source_location": "L7",
+      "id": "alert_alert_icontype",
+      "community": 2,
+      "norm_label": "icontype"
+    },
+    {
+      "label": "BeforeCloseScope",
+      "file_type": "code",
+      "source_file": "src/alert/alert.ts",
+      "source_location": "L9",
+      "id": "alert_alert_beforeclosescope",
+      "community": 2,
+      "norm_label": "beforeclosescope"
+    },
+    {
+      "label": "AlertProps",
+      "file_type": "code",
+      "source_file": "src/alert/alert.ts",
+      "source_location": "L13",
+      "id": "alert_alert_alertprops",
+      "community": 2,
+      "norm_label": "alertprops"
+    },
+    {
+      "label": "PromptProps",
+      "file_type": "code",
+      "source_file": "src/alert/alert.ts",
+      "source_location": "L56",
+      "id": "alert_alert_promptprops",
+      "community": 2,
+      "norm_label": "promptprops"
+    },
+    {
+      "label": "AlertContext",
+      "file_type": "code",
+      "source_file": "src/alert/alert.ts",
+      "source_location": "L81",
+      "id": "alert_alert_alertcontext",
+      "community": 2,
+      "norm_label": "alertcontext"
+    },
+    {
+      "label": "[injectAlertContext, provideAlertContext]",
+      "file_type": "code",
+      "source_file": "src/alert/alert.ts",
+      "source_location": "L88",
+      "id": "alert_alert_injectalertcontext_providealertcontext",
+      "community": 2,
+      "norm_label": "[injectalertcontext, providealertcontext]"
+    },
+    {
+      "label": "useAlertContext()",
+      "file_type": "code",
+      "source_file": "src/alert/alert.ts",
+      "source_location": "L95",
+      "id": "alert_alert_usealertcontext",
+      "community": 2,
+      "norm_label": "usealertcontext()"
+    },
+    {
+      "label": "alert.vue",
+      "file_type": "code",
+      "source_file": "src/alert/alert.vue",
+      "source_location": "L1",
+      "id": "src_alert_alert_vue",
+      "community": 2,
+      "norm_label": "alert.vue"
+    },
+    {
+      "label": "if()",
+      "file_type": "code",
+      "source_file": "src/alert/alert.vue",
+      "source_location": "L65",
+      "id": "alert_alert_if",
+      "community": 2,
+      "norm_label": "if()"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "src/alert/index.ts",
+      "source_location": "L1",
+      "id": "src_alert_index_ts",
+      "community": 2,
+      "norm_label": "index.ts"
+    },
+    {
+      "label": "AlertBuilder.ts",
+      "file_type": "code",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L1",
+      "id": "src_alert_alertbuilder_ts",
+      "community": 2,
+      "norm_label": "alertbuilder.ts"
+    },
+    {
+      "label": "alerts",
+      "file_type": "code",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L15",
+      "id": "alert_alertbuilder_alerts",
+      "community": 2,
+      "norm_label": "alerts"
+    },
+    {
+      "label": "{ $t }",
+      "file_type": "code",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L17",
+      "id": "alert_alertbuilder_t",
+      "community": 2,
+      "norm_label": "{ $t }"
+    },
+    {
+      "label": "vbenAlert()",
+      "file_type": "code",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L30",
+      "id": "alert_alertbuilder_vbenalert",
+      "community": 2,
+      "norm_label": "vbenalert()"
+    },
+    {
+      "label": "vbenConfirm()",
+      "file_type": "code",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L109",
+      "id": "alert_alertbuilder_vbenconfirm",
+      "community": 2,
+      "norm_label": "vbenconfirm()"
+    },
+    {
+      "label": "vbenPrompt()",
+      "file_type": "code",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L132",
+      "id": "alert_alertbuilder_vbenprompt",
+      "community": 2,
+      "norm_label": "vbenprompt()"
+    },
+    {
+      "label": "clearAllAlerts()",
+      "file_type": "code",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L237",
+      "id": "alert_alertbuilder_clearallalerts",
+      "community": 2,
+      "norm_label": "clearallalerts()"
+    },
+    {
+      "label": "modal-api.ts",
+      "file_type": "code",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L1",
+      "id": "src_modal_modal_api_ts",
+      "community": 0,
+      "norm_label": "modal-api.ts"
+    },
+    {
+      "label": "ModalApi",
+      "file_type": "code",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L6",
+      "id": "modal_modal_api_modalapi",
+      "community": 0,
+      "norm_label": "modalapi"
+    },
+    {
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L26",
+      "id": "modal_modal_api_modalapi_constructor",
+      "community": 0,
+      "norm_label": ".constructor()"
+    },
+    {
+      "label": ".close()",
+      "file_type": "code",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L97",
+      "id": "modal_modal_api_modalapi_close",
+      "community": 0,
+      "norm_label": ".close()"
+    },
+    {
+      "label": ".getData()",
+      "file_type": "code",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L109",
+      "id": "modal_modal_api_modalapi_getdata",
+      "community": 0,
+      "norm_label": ".getdata()"
+    },
+    {
+      "label": ".lock()",
+      "file_type": "code",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L118",
+      "id": "modal_modal_api_modalapi_lock",
+      "community": 0,
+      "norm_label": ".lock()"
+    },
+    {
+      "label": ".onCancel()",
+      "file_type": "code",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L125",
+      "id": "modal_modal_api_modalapi_oncancel",
+      "community": 0,
+      "norm_label": ".oncancel()"
+    },
+    {
+      "label": ".onClosed()",
+      "file_type": "code",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L136",
+      "id": "modal_modal_api_modalapi_onclosed",
+      "community": 0,
+      "norm_label": ".onclosed()"
+    },
+    {
+      "label": ".onConfirm()",
+      "file_type": "code",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L145",
+      "id": "modal_modal_api_modalapi_onconfirm",
+      "community": 0,
+      "norm_label": ".onconfirm()"
+    },
+    {
+      "label": ".onOpened()",
+      "file_type": "code",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L152",
+      "id": "modal_modal_api_modalapi_onopened",
+      "community": 0,
+      "norm_label": ".onopened()"
+    },
+    {
+      "label": ".open()",
+      "file_type": "code",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L158",
+      "id": "modal_modal_api_modalapi_open",
+      "community": 0,
+      "norm_label": ".open()"
+    },
+    {
+      "label": ".setData()",
+      "file_type": "code",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L166",
+      "id": "modal_modal_api_modalapi_setdata",
+      "community": 0,
+      "norm_label": ".setdata()"
+    },
+    {
+      "label": ".setState()",
+      "file_type": "code",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L171",
+      "id": "modal_modal_api_modalapi_setstate",
+      "community": 0,
+      "norm_label": ".setstate()"
+    },
+    {
+      "label": ".unlock()",
+      "file_type": "code",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L188",
+      "id": "modal_modal_api_modalapi_unlock",
+      "community": 0,
+      "norm_label": ".unlock()"
+    },
+    {
+      "label": "modal.ts",
+      "file_type": "code",
+      "source_file": "src/modal/modal.ts",
+      "source_location": "L1",
+      "id": "src_modal_modal_ts",
+      "community": 0,
+      "norm_label": "modal.ts"
+    },
+    {
+      "label": "ModalProps",
+      "file_type": "code",
+      "source_file": "src/modal/modal.ts",
+      "source_location": "L7",
+      "id": "modal_modal_modalprops",
+      "community": 0,
+      "norm_label": "modalprops"
+    },
+    {
+      "label": "ModalState",
+      "file_type": "code",
+      "source_file": "src/modal/modal.ts",
+      "source_location": "L150",
+      "id": "modal_modal_modalstate",
+      "community": 0,
+      "norm_label": "modalstate"
+    },
+    {
+      "label": "ExtendedModalApi",
+      "file_type": "code",
+      "source_file": "src/modal/modal.ts",
+      "source_location": "L159",
+      "id": "modal_modal_extendedmodalapi",
+      "community": 0,
+      "norm_label": "extendedmodalapi"
+    },
+    {
+      "label": "ModalApiOptions",
+      "file_type": "code",
+      "source_file": "src/modal/modal.ts",
+      "source_location": "L165",
+      "id": "modal_modal_modalapioptions",
+      "community": 0,
+      "norm_label": "modalapioptions"
+    },
+    {
+      "label": "use-modal.ts",
+      "file_type": "code",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L1",
+      "id": "src_modal_use_modal_ts",
+      "community": 0,
+      "norm_label": "use-modal.ts"
+    },
+    {
+      "label": "USER_MODAL_INJECT_KEY",
+      "file_type": "code",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L19",
+      "id": "modal_use_modal_user_modal_inject_key",
+      "community": 0,
+      "norm_label": "user_modal_inject_key"
+    },
+    {
+      "label": "{ globalEscapeShortcutKey }",
+      "file_type": "code",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L21",
+      "id": "modal_use_modal_globalescapeshortcutkey",
+      "community": 0,
+      "norm_label": "{ globalescapeshortcutkey }"
+    },
+    {
+      "label": "DEFAULT_MODAL_PROPS",
+      "file_type": "code",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L25",
+      "id": "modal_use_modal_default_modal_props",
+      "community": 0,
+      "norm_label": "default_modal_props"
+    },
+    {
+      "label": "setDefaultModalProps()",
+      "file_type": "code",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L27",
+      "id": "modal_use_modal_setdefaultmodalprops",
+      "community": 0,
+      "norm_label": "setdefaultmodalprops()"
+    },
+    {
+      "label": "useVbenModal()",
+      "file_type": "code",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L31",
+      "id": "modal_use_modal_usevbenmodal",
+      "community": 0,
+      "norm_label": "usevbenmodal()"
+    },
+    {
+      "label": "checkProps()",
+      "file_type": "code",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L146",
+      "id": "modal_use_modal_checkprops",
+      "community": 0,
+      "norm_label": "checkprops()"
+    },
+    {
+      "label": "use-modal-draggable.ts",
+      "file_type": "code",
+      "source_file": "src/modal/use-modal-draggable.ts",
+      "source_location": "L1",
+      "id": "src_modal_use_modal_draggable_ts",
+      "community": 9,
+      "norm_label": "use-modal-draggable.ts"
+    },
+    {
+      "label": "useModalDraggable()",
+      "file_type": "code",
+      "source_file": "src/modal/use-modal-draggable.ts",
+      "source_location": "L12",
+      "id": "modal_use_modal_draggable_usemodaldraggable",
+      "community": 9,
+      "norm_label": "usemodaldraggable()"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "src/modal/index.ts",
+      "source_location": "L1",
+      "id": "src_modal_index_ts",
+      "community": 0,
+      "norm_label": "index.ts"
+    },
+    {
+      "label": "modal.vue",
+      "file_type": "code",
+      "source_file": "src/modal/modal.vue",
+      "source_location": "L1",
+      "id": "src_modal_modal_vue",
+      "community": 0,
+      "norm_label": "modal.vue"
+    },
+    {
+      "label": "modal-api.test.ts",
+      "file_type": "code",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L1",
+      "id": "src_modal_tests_modal_api_test_ts",
+      "community": 6,
+      "norm_label": "modal-api.test.ts"
+    },
+    {
+      "label": "state()",
+      "file_type": "code",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L11",
+      "id": "tests_modal_api_test_state",
+      "community": 6,
+      "norm_label": "state()"
+    },
+    {
+      "label": "constructor()",
+      "file_type": "code",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L17",
+      "id": "tests_modal_api_test_constructor",
+      "community": 6,
+      "norm_label": "constructor()"
+    },
+    {
+      "label": "setState()",
+      "file_type": "code",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L21",
+      "id": "tests_modal_api_test_setstate",
+      "community": 6,
+      "norm_label": "setstate()"
+    },
+    {
+      "label": "subscribe()",
+      "file_type": "code",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L26",
+      "id": "tests_modal_api_test_subscribe",
+      "community": 6,
+      "norm_label": "subscribe()"
+    },
+    {
+      "label": "onBeforeClose",
+      "file_type": "code",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L62",
+      "id": "tests_modal_api_test_onbeforeclose",
+      "community": 6,
+      "norm_label": "onbeforeclose"
+    },
+    {
+      "label": "modalApiWithHook",
+      "file_type": "code",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L63",
+      "id": "tests_modal_api_test_modalapiwithhook",
+      "community": 6,
+      "norm_label": "modalapiwithhook"
+    },
+    {
+      "label": "onCancel",
+      "file_type": "code",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L71",
+      "id": "tests_modal_api_test_oncancel",
+      "community": 6,
+      "norm_label": "oncancel"
+    },
+    {
+      "label": "testData",
+      "file_type": "code",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L80",
+      "id": "tests_modal_api_test_testdata",
+      "community": 6,
+      "norm_label": "testdata"
+    },
+    {
+      "label": "onOpenChange",
+      "file_type": "code",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L96",
+      "id": "tests_modal_api_test_onopenchange",
+      "community": 6,
+      "norm_label": "onopenchange"
+    },
+    {
+      "label": "onClosed",
+      "file_type": "code",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L103",
+      "id": "tests_modal_api_test_onclosed",
+      "community": 6,
+      "norm_label": "onclosed"
+    },
+    {
+      "label": "onOpened",
+      "file_type": "code",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L110",
+      "id": "tests_modal_api_test_onopened",
+      "community": 6,
+      "norm_label": "onopened"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "popup_ui_package_bugs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "popup_ui_package_dependencies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "popup_ui_package_devdependencies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "popup_ui_package_exports",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "popup_ui_package_files",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "popup_ui_package_homepage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "popup_ui_package_license",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "popup_ui_package_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "popup_ui_package_module",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "popup_ui_package_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "popup_ui_package_publishconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "popup_ui_package_repository",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "popup_ui_package_scripts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "popup_ui_package_sideeffects",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "popup_ui_package_type",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "popup_ui_package_types",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "popup_ui_package_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "popup_ui_package_repository",
+      "target": "popup_ui_package_repository_directory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "popup_ui_package_repository",
+      "target": "popup_ui_package_repository_type",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "popup_ui_package_repository",
+      "target": "popup_ui_package_repository_url",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "popup_ui_package_scripts",
+      "target": "popup_ui_package_scripts_build",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "popup_ui_package_scripts",
+      "target": "popup_ui_package_scripts_prepublishonly",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "popup_ui_package_exports",
+      "target": "popup_ui_package_types",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "popup_ui_package_exports",
+      "target": "popup_ui_package_default",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "popup_ui_package_exports",
+      "target": "popup_ui_package_development",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "popup_ui_package_exports",
+      "target": "popup_ui_package_production",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "popup_ui_package_publishconfig_exports",
+      "target": "popup_ui_package_exports",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "popup_ui_package_publishconfig",
+      "target": "popup_ui_package_publishconfig_exports",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "popup_ui_package_dependencies",
+      "target": "popup_ui_package_dependencies_vben_core_composables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "popup_ui_package_dependencies",
+      "target": "popup_ui_package_dependencies_vben_core_icons",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "popup_ui_package_dependencies",
+      "target": "popup_ui_package_dependencies_vben_core_preferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "popup_ui_package_dependencies",
+      "target": "popup_ui_package_dependencies_vben_core_shadcn_ui",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "popup_ui_package_dependencies",
+      "target": "popup_ui_package_dependencies_vben_core_shared",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "popup_ui_package_dependencies",
+      "target": "popup_ui_package_dependencies_vben_core_typings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "popup_ui_package_dependencies",
+      "target": "popup_ui_package_dependencies_vue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "popup_ui_package_dependencies",
+      "target": "popup_ui_package_dependencies_vueuse_core",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "popup_ui_package_devdependencies",
+      "target": "popup_ui_package_devdependencies_unplugin_vue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tsconfig_json",
+      "target": "popup_ui_tsconfig_exclude",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tsconfig_json",
+      "target": "popup_ui_tsconfig_extends",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tsconfig_json",
+      "target": "popup_ui_tsconfig_include",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tsconfig_json",
+      "target": "popup_ui_tsconfig_schema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_index_ts",
+      "target": "src_alert_index_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_index_ts",
+      "target": "src_drawer_index_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_index_ts",
+      "target": "src_modal_index_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/index.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_drawer_index_ts",
+      "target": "src_drawer_use_drawer_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_drawer_use_drawer_ts",
+      "target": "drawer_drawer_api_drawerapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_drawer_use_drawer_ts",
+      "target": "drawer_drawer_drawerapioptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_drawer_use_drawer_ts",
+      "target": "drawer_drawer_drawerprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_drawer_use_drawer_ts",
+      "target": "drawer_drawer_extendeddrawerapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L130",
+      "weight": 1.0,
+      "source": "src_drawer_use_drawer_ts",
+      "target": "drawer_use_drawer_checkprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "src_drawer_use_drawer_ts",
+      "target": "drawer_use_drawer_default_drawer_props",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "src_drawer_use_drawer_ts",
+      "target": "drawer_use_drawer_globalescapeshortcutkey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "src_drawer_use_drawer_ts",
+      "target": "drawer_use_drawer_setdefaultdrawerprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "src_drawer_use_drawer_ts",
+      "target": "drawer_use_drawer_user_drawer_inject_key",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "src_drawer_use_drawer_ts",
+      "target": "drawer_use_drawer_usevbendrawer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_drawer_use_drawer_ts",
+      "target": "src_drawer_drawer_api_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_drawer_use_drawer_ts",
+      "target": "src_drawer_drawer_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/use-drawer.ts",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "src_drawer_use_drawer_ts",
+      "target": "src_drawer_drawer_vue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/index.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_drawer_index_ts",
+      "target": "drawer_use_drawer_setdefaultdrawerprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/index.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_drawer_index_ts",
+      "target": "drawer_use_drawer_usevbendrawer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/index.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_drawer_index_ts",
+      "target": "src_drawer_drawer_vue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/index.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_drawer_index_ts",
+      "target": "src_drawer_drawer_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_drawer_drawer_api_ts",
+      "target": "drawer_drawer_api_drawerapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_drawer_drawer_api_ts",
+      "target": "drawer_drawer_drawerapioptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_drawer_drawer_api_ts",
+      "target": "drawer_drawer_drawerstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_drawer_drawer_api_ts",
+      "target": "src_drawer_drawer_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_drawer_tests_drawer_api_test_ts",
+      "target": "src_drawer_drawer_api_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi",
+      "target": "drawer_drawer_api_drawerapi_close",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi",
+      "target": "drawer_drawer_api_drawerapi_constructor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L100",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi",
+      "target": "drawer_drawer_api_drawerapi_getdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi",
+      "target": "drawer_drawer_api_drawerapi_lock",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L116",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi",
+      "target": "drawer_drawer_api_drawerapi_oncancel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L127",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi",
+      "target": "drawer_drawer_api_drawerapi_onclosed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L136",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi",
+      "target": "drawer_drawer_api_drawerapi_onconfirm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L143",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi",
+      "target": "drawer_drawer_api_drawerapi_onopened",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L149",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi",
+      "target": "drawer_drawer_api_drawerapi_open",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L153",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi",
+      "target": "drawer_drawer_api_drawerapi_setdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L158",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi",
+      "target": "drawer_drawer_api_drawerapi_setstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L175",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi",
+      "target": "drawer_drawer_api_drawerapi_unlock",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi",
+      "target": "drawer_drawer_drawerapioptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "field",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi",
+      "target": "drawer_drawer_drawerstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_drawer_drawer_ts",
+      "target": "drawer_drawer_api_drawerapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_drawer_tests_drawer_api_test_ts",
+      "target": "drawer_drawer_api_drawerapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi_constructor",
+      "target": "drawer_drawer_drawerapioptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L92",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi_close",
+      "target": "drawer_drawer_api_drawerapi_setstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L120",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi_oncancel",
+      "target": "drawer_drawer_api_drawerapi_close",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L110",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi_lock",
+      "target": "drawer_drawer_api_drawerapi_setstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L176",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi_unlock",
+      "target": "drawer_drawer_api_drawerapi_lock",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L150",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi_open",
+      "target": "drawer_drawer_api_drawerapi_setstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer-api.ts",
+      "source_location": "L158",
+      "weight": 1.0,
+      "source": "drawer_drawer_api_drawerapi_setstate",
+      "target": "drawer_drawer_drawerstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_drawer_drawer_ts",
+      "target": "drawer_drawer_closeiconplacement",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer.ts",
+      "source_location": "L145",
+      "weight": 1.0,
+      "source": "src_drawer_drawer_ts",
+      "target": "drawer_drawer_drawerapioptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_drawer_drawer_ts",
+      "target": "drawer_drawer_drawerplacement",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_drawer_drawer_ts",
+      "target": "drawer_drawer_drawerprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer.ts",
+      "source_location": "L130",
+      "weight": 1.0,
+      "source": "src_drawer_drawer_ts",
+      "target": "drawer_drawer_drawerstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/drawer.ts",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "src_drawer_drawer_ts",
+      "target": "drawer_drawer_extendeddrawerapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_drawer_tests_drawer_api_test_ts",
+      "target": "src_drawer_drawer_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_drawer_tests_drawer_api_test_ts",
+      "target": "drawer_drawer_drawerstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_drawer_tests_drawer_api_test_ts",
+      "target": "tests_drawer_api_test_constructor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L110",
+      "weight": 1.0,
+      "source": "src_drawer_tests_drawer_api_test_ts",
+      "target": "tests_drawer_api_test_drawerapiwithhook",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "src_drawer_tests_drawer_api_test_ts",
+      "target": "tests_drawer_api_test_onbeforeclose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L70",
+      "weight": 1.0,
+      "source": "src_drawer_tests_drawer_api_test_ts",
+      "target": "tests_drawer_api_test_oncancel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "src_drawer_tests_drawer_api_test_ts",
+      "target": "tests_drawer_api_test_onclosed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L95",
+      "weight": 1.0,
+      "source": "src_drawer_tests_drawer_api_test_ts",
+      "target": "tests_drawer_api_test_onopenchange",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "src_drawer_tests_drawer_api_test_ts",
+      "target": "tests_drawer_api_test_onopened",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "src_drawer_tests_drawer_api_test_ts",
+      "target": "tests_drawer_api_test_setstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_drawer_tests_drawer_api_test_ts",
+      "target": "tests_drawer_api_test_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "src_drawer_tests_drawer_api_test_ts",
+      "target": "tests_drawer_api_test_subscribe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/drawer/__tests__/drawer-api.test.ts",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "src_drawer_tests_drawer_api_test_ts",
+      "target": "tests_drawer_api_test_testdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/alert.ts",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "src_alert_alert_ts",
+      "target": "alert_alert_alertcontext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/alert.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_alert_alert_ts",
+      "target": "alert_alert_alertprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/alert.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_alert_alert_ts",
+      "target": "alert_alert_beforeclosescope",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/alert.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_alert_alert_ts",
+      "target": "alert_alert_icontype",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/alert.ts",
+      "source_location": "L88",
+      "weight": 1.0,
+      "source": "src_alert_alert_ts",
+      "target": "alert_alert_injectalertcontext_providealertcontext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/alert.ts",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "src_alert_alert_ts",
+      "target": "alert_alert_promptprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/alert.ts",
+      "source_location": "L95",
+      "weight": 1.0,
+      "source": "src_alert_alert_ts",
+      "target": "alert_alert_usealertcontext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_alert_alertbuilder_ts",
+      "target": "src_alert_alert_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/index.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_alert_index_ts",
+      "target": "src_alert_alert_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/index.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_alert_index_ts",
+      "target": "alert_alert_icontype",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_alert_alertbuilder_ts",
+      "target": "alert_alert_beforeclosescope",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/index.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_alert_index_ts",
+      "target": "alert_alert_beforeclosescope",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_alert_alertbuilder_ts",
+      "target": "alert_alert_alertprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/index.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_alert_index_ts",
+      "target": "alert_alert_alertprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_alert_alertbuilder_ts",
+      "target": "alert_alert_promptprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/index.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_alert_index_ts",
+      "target": "alert_alert_promptprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/index.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_alert_index_ts",
+      "target": "alert_alert_usealertcontext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/alert.vue",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "src_alert_alert_vue",
+      "target": "alert_alert_if",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_alert_alertbuilder_ts",
+      "target": "src_alert_alert_vue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/index.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_alert_index_ts",
+      "target": "src_alert_alert_vue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/index.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_alert_index_ts",
+      "target": "alert_alertbuilder_clearallalerts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/index.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_alert_index_ts",
+      "target": "alert_alertbuilder_vbenalert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/index.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_alert_index_ts",
+      "target": "alert_alertbuilder_vbenconfirm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/index.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_alert_index_ts",
+      "target": "alert_alertbuilder_vbenprompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/index.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_alert_index_ts",
+      "target": "src_alert_alertbuilder_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "src_alert_alertbuilder_ts",
+      "target": "alert_alertbuilder_alerts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L237",
+      "weight": 1.0,
+      "source": "src_alert_alertbuilder_ts",
+      "target": "alert_alertbuilder_clearallalerts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_alert_alertbuilder_ts",
+      "target": "alert_alertbuilder_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "src_alert_alertbuilder_ts",
+      "target": "alert_alertbuilder_vbenalert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "src_alert_alertbuilder_ts",
+      "target": "alert_alertbuilder_vbenconfirm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L132",
+      "weight": 1.0,
+      "source": "src_alert_alertbuilder_ts",
+      "target": "alert_alertbuilder_vbenprompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L119",
+      "weight": 1.0,
+      "source": "alert_alertbuilder_vbenconfirm",
+      "target": "alert_alertbuilder_vbenalert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/alert/AlertBuilder.ts",
+      "source_location": "L233",
+      "weight": 1.0,
+      "source": "alert_alertbuilder_vbenprompt",
+      "target": "alert_alertbuilder_vbenconfirm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_modal_modal_api_ts",
+      "target": "modal_modal_api_modalapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_modal_modal_api_ts",
+      "target": "modal_modal_modalapioptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_modal_modal_api_ts",
+      "target": "modal_modal_modalstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_modal_modal_api_ts",
+      "target": "src_modal_modal_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_modal_tests_modal_api_test_ts",
+      "target": "src_modal_modal_api_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_modal_use_modal_ts",
+      "target": "src_modal_modal_api_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L97",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi",
+      "target": "modal_modal_api_modalapi_close",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi",
+      "target": "modal_modal_api_modalapi_constructor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi",
+      "target": "modal_modal_api_modalapi_getdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L118",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi",
+      "target": "modal_modal_api_modalapi_lock",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L125",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi",
+      "target": "modal_modal_api_modalapi_oncancel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L136",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi",
+      "target": "modal_modal_api_modalapi_onclosed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L145",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi",
+      "target": "modal_modal_api_modalapi_onconfirm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L152",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi",
+      "target": "modal_modal_api_modalapi_onopened",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L158",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi",
+      "target": "modal_modal_api_modalapi_open",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L166",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi",
+      "target": "modal_modal_api_modalapi_setdata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L171",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi",
+      "target": "modal_modal_api_modalapi_setstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L188",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi",
+      "target": "modal_modal_api_modalapi_unlock",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi",
+      "target": "modal_modal_modalapioptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "field",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi",
+      "target": "modal_modal_modalstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_modal_modal_ts",
+      "target": "modal_modal_api_modalapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_modal_tests_modal_api_test_ts",
+      "target": "modal_modal_api_modalapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_modal_use_modal_ts",
+      "target": "modal_modal_api_modalapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi_constructor",
+      "target": "modal_modal_modalapioptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi_close",
+      "target": "modal_modal_api_modalapi_setstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L129",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi_oncancel",
+      "target": "modal_modal_api_modalapi_close",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L119",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi_lock",
+      "target": "modal_modal_api_modalapi_setstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L189",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi_unlock",
+      "target": "modal_modal_api_modalapi_lock",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L159",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi_open",
+      "target": "modal_modal_api_modalapi_setstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal-api.ts",
+      "source_location": "L171",
+      "weight": 1.0,
+      "source": "modal_modal_api_modalapi_setstate",
+      "target": "modal_modal_modalstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/index.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_modal_index_ts",
+      "target": "src_modal_modal_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal.ts",
+      "source_location": "L159",
+      "weight": 1.0,
+      "source": "src_modal_modal_ts",
+      "target": "modal_modal_extendedmodalapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal.ts",
+      "source_location": "L165",
+      "weight": 1.0,
+      "source": "src_modal_modal_ts",
+      "target": "modal_modal_modalapioptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_modal_modal_ts",
+      "target": "modal_modal_modalprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/modal.ts",
+      "source_location": "L150",
+      "weight": 1.0,
+      "source": "src_modal_modal_ts",
+      "target": "modal_modal_modalstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_modal_tests_modal_api_test_ts",
+      "target": "src_modal_modal_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_modal_use_modal_ts",
+      "target": "src_modal_modal_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_modal_use_modal_ts",
+      "target": "modal_modal_modalprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_modal_tests_modal_api_test_ts",
+      "target": "modal_modal_modalstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_modal_use_modal_ts",
+      "target": "modal_modal_extendedmodalapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_modal_use_modal_ts",
+      "target": "modal_modal_modalapioptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/index.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_modal_index_ts",
+      "target": "src_modal_use_modal_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L146",
+      "weight": 1.0,
+      "source": "src_modal_use_modal_ts",
+      "target": "modal_use_modal_checkprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "src_modal_use_modal_ts",
+      "target": "modal_use_modal_default_modal_props",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "src_modal_use_modal_ts",
+      "target": "modal_use_modal_globalescapeshortcutkey",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "src_modal_use_modal_ts",
+      "target": "modal_use_modal_setdefaultmodalprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "src_modal_use_modal_ts",
+      "target": "modal_use_modal_user_modal_inject_key",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "src_modal_use_modal_ts",
+      "target": "modal_use_modal_usevbenmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/use-modal.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_modal_use_modal_ts",
+      "target": "src_modal_modal_vue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/index.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_modal_index_ts",
+      "target": "modal_use_modal_setdefaultmodalprops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/index.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_modal_index_ts",
+      "target": "modal_use_modal_usevbenmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/use-modal-draggable.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_modal_use_modal_draggable_ts",
+      "target": "modal_use_modal_draggable_usemodaldraggable",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/index.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_modal_index_ts",
+      "target": "src_modal_modal_vue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_modal_tests_modal_api_test_ts",
+      "target": "tests_modal_api_test_constructor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L111",
+      "weight": 1.0,
+      "source": "src_modal_tests_modal_api_test_ts",
+      "target": "tests_modal_api_test_modalapiwithhook",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "src_modal_tests_modal_api_test_ts",
+      "target": "tests_modal_api_test_onbeforeclose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "src_modal_tests_modal_api_test_ts",
+      "target": "tests_modal_api_test_oncancel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L103",
+      "weight": 1.0,
+      "source": "src_modal_tests_modal_api_test_ts",
+      "target": "tests_modal_api_test_onclosed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L96",
+      "weight": 1.0,
+      "source": "src_modal_tests_modal_api_test_ts",
+      "target": "tests_modal_api_test_onopenchange",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L110",
+      "weight": 1.0,
+      "source": "src_modal_tests_modal_api_test_ts",
+      "target": "tests_modal_api_test_onopened",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "src_modal_tests_modal_api_test_ts",
+      "target": "tests_modal_api_test_setstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_modal_tests_modal_api_test_ts",
+      "target": "tests_modal_api_test_state",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_modal_tests_modal_api_test_ts",
+      "target": "tests_modal_api_test_subscribe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/modal/__tests__/modal-api.test.ts",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "src_modal_tests_modal_api_test_ts",
+      "target": "tests_modal_api_test_testdata",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "5d654b8c8a799f47ed7d38daa3e7b2396f9d9d87"
+}

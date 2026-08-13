@@ -24,9 +24,9 @@ function generatorColorVariables(colorItems: Array<ColorItem>) {
 
         if (colorValue) {
           const hslColor = convertToHslCssVar(colorValue);
-          colorVariables[`--${name}-${key}`] = hslColor;
+          colorVariables[`--taman-color-${name}-${key}`] = hslColor;
           if (alias) {
-            colorVariables[`--${alias}-${key}`] = hslColor;
+            colorVariables[`--taman-color-${alias}-${key}`] = hslColor;
           }
 
           if (key === '500') {
@@ -35,7 +35,7 @@ function generatorColorVariables(colorItems: Array<ColorItem>) {
         }
       });
       if (alias && mainColor) {
-        colorVariables[`--${alias}`] = mainColor;
+        colorVariables[`--taman-color-${alias}`] = mainColor;
       }
     }
   });

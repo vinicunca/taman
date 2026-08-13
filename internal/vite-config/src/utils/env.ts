@@ -7,38 +7,24 @@ import { fs } from '@taman/node-utils';
 import dotenv from 'dotenv';
 
 const getBoolean = (value: string | undefined) => value === 'true';
-
-function getString(value: string | undefined, fallback: string) {
-  return value ?? fallback;
-}
-
-function getNumber(value: string | undefined, fallback: number) {
-  return Number(value) || fallback;
-}
-
-/**
- * Get the configuration file name that takes effect in the current environment
- */
-function getConfFiles() {
-  const script = process.env.npm_lifecycle_script as string;
-  const reg = /--mode ([\d_a-z]+)/;
-  const result = reg.exec(script);
-  let mode = 'production';
-  if (result) {
-    mode = result[1] as string;
-  }
-  return ['.env', '.env.local', `.env.${mode}`, `.env.${mode}.local`];
-}
+const getString = (value: string | undefined, fallback: string) => value ?? fallback;
+const getNumber = (value: string | undefined, fallback: number) => Number(value) || fallback;
 
 /**
  * Get the environment variables starting with the specified prefix
  * @param match prefix
- * @param confFiles ext
+ * @param mode Vite mode
  */
 async function loadEnv<T = Record<string, string>>(
   match = 'VITE_GLOB_',
-  confFiles = getConfFiles(),
+  mode: string,
 ) {
+  const confFiles = [
+    '.env',
+    '.env.local',
+    `.env.${mode}`,
+    `.env.${mode}.local`,
+  ];
   let envConfig = {};
 
   for (const confFile of confFiles) {
@@ -66,8 +52,8 @@ async function loadEnv<T = Record<string, string>>(
 }
 
 async function loadAndConvertEnv(
+  mode: string,
   match = 'VITE_',
-  confFiles = getConfFiles(),
 ): Promise<
   Partial<ApplicationPluginOptions> & {
     appTitle: string;
@@ -75,7 +61,7 @@ async function loadAndConvertEnv(
     port: number;
   }
 > {
-  const envConfig = await loadEnv(match, confFiles);
+  const envConfig = await loadEnv(match, mode);
 
   const {
     VITE_APP_TITLE,
@@ -95,7 +81,7 @@ async function loadAndConvertEnv(
     .filter((item) => item === 'brotli' || item === 'gzip');
 
   return {
-    appTitle: getString(VITE_APP_TITLE, 'Taman Admin'),
+    appTitle: getString(VITE_APP_TITLE, 'Ngibur Admin'),
     archiver: getBoolean(VITE_ARCHIVER),
     base: getString(VITE_BASE, '/'),
     compress: compressTypes.length > 0,

@@ -1,0 +1,13 @@
+{
+  "name": "@taman/tooling",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@taman/node-utils": "workspace:*",
+    "circular-dependency-scanner": "catalog:",
+    "knip": "catalog:",
+    "publint": "catalog:"
+  }
+}

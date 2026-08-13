@@ -1,0 +1,23 @@
+{
+  "name": "@taman-core/taman-ui",
+  "type": "module",
+  "version": "1.0.0",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "development": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@taman-core/composables": "workspace:*",
+    "@taman-core/shared": "workspace:*",
+    "@vueuse/core": "catalog:",
+    "akar": "catalog:",
+    "pohon-ui": "catalog:",
+    "unocss-variants": "catalog:"
+  }
+}

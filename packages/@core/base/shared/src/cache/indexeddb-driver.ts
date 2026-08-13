@@ -10,8 +10,8 @@ interface IndexedDBDriverOptions {
 }
 
 /**
- * IndexedDB driver
- * Use lazy initialization mode, automatically open the database when the first operation is performed
+ * IndexedDB driver.
+ * Uses lazy initialization; the database is opened automatically on the first operation.
  */
 class IndexedDBDriver implements IStorageDriver {
   private dbName: string;
@@ -20,7 +20,7 @@ class IndexedDBDriver implements IStorageDriver {
   private storeName: string;
 
   constructor({
-    dbName = 'taman-storage',
+    dbName = 'vben-storage',
     dbVersion = 1,
     storeName = 'kv-store',
   }: IndexedDBDriverOptions = {}) {
@@ -39,7 +39,8 @@ class IndexedDBDriver implements IStorageDriver {
       tx.addEventListener('complete', () => resolve());
       tx.addEventListener('error', () => reject(tx.error));
       tx.addEventListener('abort', () =>
-        reject(tx.error ?? new Error('Transaction aborted')));
+        reject(tx.error ?? new Error('Transaction aborted')),
+      );
     });
   }
 
@@ -51,12 +52,13 @@ class IndexedDBDriver implements IStorageDriver {
       const request = store.get(key);
 
       request.addEventListener('success', () =>
-        resolve(request.result ?? null));
+        resolve(request.result ?? null),
+      );
       request.addEventListener('error', () => reject(request.error));
     });
   }
 
-  async keys(): Promise<Array<string>> {
+  async keys(): Promise<string[]> {
     const db = await this.getDB();
     return new Promise((resolve, reject) => {
       const tx = db.transaction(this.storeName, 'readonly');
@@ -64,7 +66,8 @@ class IndexedDBDriver implements IStorageDriver {
       const request = store.getAllKeys();
 
       request.addEventListener('success', () =>
-        resolve(request.result.map(String)));
+        resolve(request.result.map(String)),
+      );
       request.addEventListener('error', () => reject(request.error));
     });
   }
@@ -79,7 +82,8 @@ class IndexedDBDriver implements IStorageDriver {
       tx.addEventListener('complete', () => resolve());
       tx.addEventListener('error', () => reject(tx.error));
       tx.addEventListener('abort', () =>
-        reject(tx.error ?? new Error('Transaction aborted')));
+        reject(tx.error ?? new Error('Transaction aborted')),
+      );
     });
   }
 
@@ -93,17 +97,18 @@ class IndexedDBDriver implements IStorageDriver {
       tx.addEventListener('complete', () => resolve());
       tx.addEventListener('error', () => reject(tx.error));
       tx.addEventListener('abort', () =>
-        reject(tx.error ?? new Error('Transaction aborted')));
+        reject(tx.error ?? new Error('Transaction aborted')),
+      );
     });
   }
 
   /**
-   * Lazy initialization: open the database when the first call is made, and reuse the same Promise thereafter
+   * Lazy initialization: open the database on first call and reuse the same Promise afterward.
    */
   private getDB(): Promise<IDBDatabase> {
     if (!this.dbPromise) {
       this.dbPromise = this.openDB().catch((error) => {
-        // allow retry on the next call
+        // allow retry on next call
         this.dbPromise = null;
         throw error;
       });

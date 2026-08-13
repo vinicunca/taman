@@ -1,32 +1,73 @@
+import type { AuthRoleNames } from '@taman/rbac';
 import type { Component } from 'vue';
 import type { Router, RouteRecordRaw } from 'vue-router';
 
-interface RouteMeta {
+import 'vue-router';
+
+/**
+ * Declarative auth gate for a route.
+ *
+ * - `false`: no auth check, no redirect, and the route is excluded from
+ *   `generateAccess` menu/route generation entirely.
+ * - `{ only: 'guest' }`: visible to unauthenticated visitors; an
+ *   authenticated visitor is redirected to `redirectUserTo` (or the
+ *   caller's default). Excluded from `generateAccess`.
+ * - `{ only: 'onboarding' }`: visible only to authenticated visitors who
+ *   still need onboarding (non-admin, no active organization); a visitor
+ *   who no longer needs it is redirected to `redirectUserTo` (or the
+ *   caller's default), same as `only: 'guest'`'s symmetric case. An
+ *   unauthenticated visitor is redirected to `redirectGuestTo` like any
+ *   other protected route. Excluded from `generateAccess`.
+ * - `{ only: 'user' }`, `{}`, or omitted entirely: the default — requires
+ *   auth. An unauthenticated visitor is redirected to `redirectGuestTo`
+ *   (or the caller's default). An authenticated visitor who still needs
+ *   onboarding is redirected to the onboarding route instead of being
+ *   allowed through. Participates in `generateAccess`.
+ */
+type AuthMiddlewareOptions
+  = | false
+    | {
+      only?: 'guest' | 'onboarding' | 'user';
+      redirectUserTo?: string;
+      redirectGuestTo?: string;
+    };
+interface AppRouteMeta {
   /**
-   * The active icon (menu/tab)
+   * Active icon (menu/tab)
    */
   activeIcon?: string;
   /**
-   * The currently active menu, sometimes you don't want to activate the existing menu, you need to activate the parent menu when using
+   * Active menu path; use when the parent menu should be active instead of the current one
    */
   activePath?: string;
   /**
-   * Whether to fix the tab
+   * Whether the tab is affixed
    * @default false
    */
   affixTab?: boolean;
   /**
-   * The order of the fixed tab
+   * Affixed tab order
    * @default 0
    */
   affixTabOrder?: number;
   /**
-   * The specific role identifier is required to access
+   * Roles required to access a route.
+   *
+   * - `Array<AuthRoleNames>`: the user needs at least one of these roles (existing
+   *   behavior — intersected against the user's roles).
+   * - Callback: for checks a role list can't express, e.g. better-auth's
+   *   `authClient.admin.checkRolePermission()`. Receives the user's roles and
+   *   returns whether they may access the route.
    * @default []
    */
-  authority?: Array<string>;
+  authority?: Array<AuthRoleNames> | ((roles: Array<AuthRoleNames>) => boolean);
   /**
-   * Badge
+   * Declarative auth gate. See `AuthMiddlewareOptions`.
+   * @default undefined (equivalent to `{ only: 'user' }` — protected)
+   */
+  auth?: AuthMiddlewareOptions;
+  /**
+   * Badge text
    */
   badge?: string;
   /**
@@ -34,7 +75,7 @@ interface RouteMeta {
    */
   badgeType?: 'dot' | 'normal';
   /**
-   * Badge color
+   * Badge color variant
    */
   badgeVariants?:
     | 'default'
@@ -44,30 +85,30 @@ interface RouteMeta {
     | 'warning'
     | string;
   /**
-   * Whether the dom of the route is cached
+   * Whether the route DOM should be cached
    */
   domCached?: boolean;
   /**
-   * The full path of the route as the key (default true)
+   * Use the route full path as the cache key (default true)
    */
   fullPathKey?: boolean;
   /**
-   * The children of the current route are not displayed in the menu
+   * Hide child routes in the menu
    * @default false
    */
   hideChildrenInMenu?: boolean;
   /**
-   * The current route is not displayed in the breadcrumb
+   * Hide this route in the breadcrumb
    * @default false
    */
   hideInBreadcrumb?: boolean;
   /**
-   * The current route is not displayed in the menu
+   * Hide this route in the menu
    * @default false
    */
   hideInMenu?: boolean;
   /**
-   * The current route is not displayed in the tab
+   * Hide this route in tabs
    * @default false
    */
   hideInTab?: boolean;
@@ -76,58 +117,59 @@ interface RouteMeta {
    */
   icon?: Component | string;
   /**
-   * Iframe address
+   * iframe URL
    */
   iframeSrc?: string;
   /**
-   * Ignore permissions, directly accessible
-   * @default false
-   */
-  ignoreAccess?: boolean;
-  /**
-   * Enable KeepAlive cache
+   * Enable KeepAlive caching
    */
   keepAlive?: boolean;
   /**
-   * External link - jump path
+   * External link URL
    */
   link?: string;
   /**
-   * Whether the route has been loaded
+   * Whether the route has already been loaded
    */
   loaded?: boolean;
   /**
-   * The maximum number of tabs opened
+   * Maximum number of open tabs
    * @default -1
    */
   maxNumOfOpenTab?: number;
   /**
-   * The menu can be seen, but access will be redirected to 403
+   * Visible in the menu, but access redirects to 403
    */
   menuVisibleWithForbidden?: boolean;
   /**
-   * Do not use the basic layout (only effective at the top level)
+   * Do not use the basic layout (top-level only)
    */
-  noBasicLayout?: boolean;
+  noCoreLayout?: boolean;
   /**
    * Open in a new window
    */
   openInNewWindow?: boolean;
   /**
-   * Used for route -> menu sorting
+   * Sort order for route-to-menu conversion
    */
   order?: number;
   /**
-   * The parameters carried by the menu
+   * Query parameters carried by the menu
    */
   query?: Recordable;
   /**
-   * Title name
+   * Title
    */
   title: string;
 }
 
-// Define a recursive type to change the component property of RouteRecordRaw to string
+declare module 'vue-router' {
+  interface RouteMeta extends AppRouteMeta {}
+}
+
+type RouteMeta = AppRouteMeta;
+
+// Recursive type that changes RouteRecordRaw.component to string
 type RouteRecordStringComponent<T = string> = Omit<
   RouteRecordRaw,
   'children' | 'component'
@@ -143,12 +185,13 @@ interface GenerateMenuAndRoutesOptions {
   forbiddenComponent?: RouteRecordRaw['component'];
   layoutMap?: ComponentRecordType;
   pageMap?: ComponentRecordType;
-  roles?: Array<string>;
+  roles?: Array<AuthRoleNames>;
   router: Router;
   routes: Array<RouteRecordRaw>;
 }
 
 export type {
+  AuthMiddlewareOptions,
   ComponentRecordType,
   GenerateMenuAndRoutesOptions,
   RouteMeta,

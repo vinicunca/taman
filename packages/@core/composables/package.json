@@ -6,20 +6,17 @@
     ".": {
       "types": "./src/index.ts",
       "development": "./src/index.ts",
-      "production": "./src/index.ts",
-      "default": "./dist/index.mjs"
+      "production": "./src/index.ts"
     }
   },
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "pnpm exec tsdown"
-  },
   "dependencies": {
+    "@taman-core/shared": "workspace:*",
     "@vueuse/core": "catalog:",
+    "akar": "catalog:",
+    "sortablejs": "catalog:",
     "vue": "catalog:"
+  },
+  "devDependencies": {
+    "@types/sortablejs": "catalog:"
   }
 }

@@ -1,0 +1,2590 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "package.json",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L1",
+      "id": "package_json",
+      "community": 2,
+      "norm_label": "package.json"
+    },
+    {
+      "label": "name",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "id": "preferences_package_name",
+      "community": 2,
+      "norm_label": "name"
+    },
+    {
+      "label": "version",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "id": "preferences_package_version",
+      "community": 2,
+      "norm_label": "version"
+    },
+    {
+      "label": "homepage",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "id": "preferences_package_homepage",
+      "community": 2,
+      "norm_label": "homepage"
+    },
+    {
+      "label": "bugs",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L5",
+      "id": "preferences_package_bugs",
+      "community": 2,
+      "norm_label": "bugs"
+    },
+    {
+      "label": "repository",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L6",
+      "id": "preferences_package_repository",
+      "community": 7,
+      "norm_label": "repository"
+    },
+    {
+      "label": "type",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L7",
+      "id": "preferences_package_repository_type",
+      "community": 7,
+      "norm_label": "type"
+    },
+    {
+      "label": "url",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L8",
+      "id": "preferences_package_repository_url",
+      "community": 7,
+      "norm_label": "url"
+    },
+    {
+      "label": "directory",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L9",
+      "id": "preferences_package_repository_directory",
+      "community": 7,
+      "norm_label": "directory"
+    },
+    {
+      "label": "license",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L11",
+      "id": "preferences_package_license",
+      "community": 2,
+      "norm_label": "license"
+    },
+    {
+      "label": "type",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L12",
+      "id": "preferences_package_type",
+      "community": 2,
+      "norm_label": "type"
+    },
+    {
+      "label": "scripts",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L13",
+      "id": "preferences_package_scripts",
+      "community": 2,
+      "norm_label": "scripts"
+    },
+    {
+      "label": "#build",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L14",
+      "id": "preferences_package_scripts_build",
+      "community": 2,
+      "norm_label": "#build"
+    },
+    {
+      "label": "files",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L16",
+      "id": "preferences_package_files",
+      "community": 2,
+      "norm_label": "files"
+    },
+    {
+      "label": "sideEffects",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L20",
+      "id": "preferences_package_sideeffects",
+      "community": 2,
+      "norm_label": "sideeffects"
+    },
+    {
+      "label": "main",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L23",
+      "id": "preferences_package_main",
+      "community": 2,
+      "norm_label": "main"
+    },
+    {
+      "label": "module",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L24",
+      "id": "preferences_package_module",
+      "community": 2,
+      "norm_label": "module"
+    },
+    {
+      "label": "types",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L25",
+      "id": "preferences_package_types",
+      "community": 2,
+      "norm_label": "types"
+    },
+    {
+      "label": "exports",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L26",
+      "id": "preferences_package_exports",
+      "community": 2,
+      "norm_label": "exports"
+    },
+    {
+      "label": "development",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L29",
+      "id": "preferences_package_development",
+      "community": 2,
+      "norm_label": "development"
+    },
+    {
+      "label": "production",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L30",
+      "id": "preferences_package_production",
+      "community": 2,
+      "norm_label": "production"
+    },
+    {
+      "label": "default",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L31",
+      "id": "preferences_package_default",
+      "community": 2,
+      "norm_label": "default"
+    },
+    {
+      "label": "publishConfig",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L34",
+      "id": "preferences_package_publishconfig",
+      "community": 2,
+      "norm_label": "publishconfig"
+    },
+    {
+      "label": "exports",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L35",
+      "id": "preferences_package_publishconfig_exports",
+      "community": 2,
+      "norm_label": "exports"
+    },
+    {
+      "label": "dependencies",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L42",
+      "id": "preferences_package_dependencies",
+      "community": 5,
+      "norm_label": "dependencies"
+    },
+    {
+      "label": "@vben-core/shared",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L43",
+      "id": "preferences_package_dependencies_vben_core_shared",
+      "community": 5,
+      "norm_label": "@vben-core/shared"
+    },
+    {
+      "label": "@vben-core/typings",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L44",
+      "id": "preferences_package_dependencies_vben_core_typings",
+      "community": 5,
+      "norm_label": "@vben-core/typings"
+    },
+    {
+      "label": "@vueuse/core",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L45",
+      "id": "preferences_package_dependencies_vueuse_core",
+      "community": 5,
+      "norm_label": "@vueuse/core"
+    },
+    {
+      "label": "vue",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L46",
+      "id": "preferences_package_dependencies_vue",
+      "community": 5,
+      "norm_label": "vue"
+    },
+    {
+      "label": "tsconfig.json",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L1",
+      "id": "tsconfig_json",
+      "community": 6,
+      "norm_label": "tsconfig.json"
+    },
+    {
+      "label": "$schema",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L2",
+      "id": "preferences_tsconfig_schema",
+      "community": 6,
+      "norm_label": "$schema"
+    },
+    {
+      "label": "extends",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L3",
+      "id": "preferences_tsconfig_extends",
+      "community": 6,
+      "norm_label": "extends"
+    },
+    {
+      "label": "include",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L4",
+      "id": "preferences_tsconfig_include",
+      "community": 6,
+      "norm_label": "include"
+    },
+    {
+      "label": "exclude",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L5",
+      "id": "preferences_tsconfig_exclude",
+      "community": 6,
+      "norm_label": "exclude"
+    },
+    {
+      "label": "tsdown.config.ts",
+      "file_type": "code",
+      "source_file": "tsdown.config.ts",
+      "source_location": "L1",
+      "id": "tsdown_config_ts",
+      "community": 8,
+      "norm_label": "tsdown.config.ts"
+    },
+    {
+      "label": "preferences.test.ts",
+      "file_type": "code",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L1",
+      "id": "tests_preferences_test_ts",
+      "community": 4,
+      "norm_label": "preferences.test.ts"
+    },
+    {
+      "label": "preferences",
+      "file_type": "code",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L60",
+      "id": "tests_preferences_test_preferences",
+      "community": 4,
+      "norm_label": "preferences"
+    },
+    {
+      "label": "overrides",
+      "file_type": "code",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L65",
+      "id": "tests_preferences_test_overrides",
+      "community": 4,
+      "norm_label": "overrides"
+    },
+    {
+      "label": "expected",
+      "file_type": "code",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L78",
+      "id": "tests_preferences_test_expected",
+      "community": 4,
+      "norm_label": "expected"
+    },
+    {
+      "label": "originalPreferences",
+      "file_type": "code",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L194",
+      "id": "tests_preferences_test_originalpreferences",
+      "community": 4,
+      "norm_label": "originalpreferences"
+    },
+    {
+      "label": "extension",
+      "file_type": "code",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L261",
+      "id": "tests_preferences_test_extension",
+      "community": 4,
+      "norm_label": "extension"
+    },
+    {
+      "label": "initialCustomPreferences",
+      "file_type": "code",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L320",
+      "id": "tests_preferences_test_initialcustompreferences",
+      "community": 4,
+      "norm_label": "initialcustompreferences"
+    },
+    {
+      "label": "preferencesExtension",
+      "file_type": "code",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L324",
+      "id": "tests_preferences_test_preferencesextension",
+      "community": 4,
+      "norm_label": "preferencesextension"
+    },
+    {
+      "label": "originalCustomPreferences",
+      "file_type": "code",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L414",
+      "id": "tests_preferences_test_originalcustompreferences",
+      "community": 4,
+      "norm_label": "originalcustompreferences"
+    },
+    {
+      "label": "config.test.ts",
+      "file_type": "code",
+      "source_file": "__tests__/config.test.ts",
+      "source_location": "L1",
+      "id": "tests_config_test_ts",
+      "community": 4,
+      "norm_label": "config.test.ts"
+    },
+    {
+      "label": "update-css-variables.ts",
+      "file_type": "code",
+      "source_file": "src/update-css-variables.ts",
+      "source_location": "L1",
+      "id": "src_update_css_variables_ts",
+      "community": 1,
+      "norm_label": "update-css-variables.ts"
+    },
+    {
+      "label": "updateCSSVariables()",
+      "file_type": "code",
+      "source_file": "src/update-css-variables.ts",
+      "source_location": "L12",
+      "id": "src_update_css_variables_updatecssvariables",
+      "community": 1,
+      "norm_label": "updatecssvariables()"
+    },
+    {
+      "label": "updateMainColorVariables()",
+      "file_type": "code",
+      "source_file": "src/update-css-variables.ts",
+      "source_location": "L88",
+      "id": "src_update_css_variables_updatemaincolorvariables",
+      "community": 1,
+      "norm_label": "updatemaincolorvariables()"
+    },
+    {
+      "label": "isDarkTheme()",
+      "file_type": "code",
+      "source_file": "src/update-css-variables.ts",
+      "source_location": "L121",
+      "id": "src_update_css_variables_isdarktheme",
+      "community": 1,
+      "norm_label": "isdarktheme()"
+    },
+    {
+      "label": "types.ts",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L1",
+      "id": "src_types_ts",
+      "community": 0,
+      "norm_label": "types.ts"
+    },
+    {
+      "label": "SupportedLanguagesType",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L19",
+      "id": "src_types_supportedlanguagestype",
+      "community": 0,
+      "norm_label": "supportedlanguagestype"
+    },
+    {
+      "label": "CustomPreferencesValue",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L20",
+      "id": "src_types_custompreferencesvalue",
+      "community": 0,
+      "norm_label": "custompreferencesvalue"
+    },
+    {
+      "label": "CustomPreferencesOption",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L22",
+      "id": "src_types_custompreferencesoption",
+      "community": 0,
+      "norm_label": "custompreferencesoption"
+    },
+    {
+      "label": "BaseCustomPreferencesField",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L27",
+      "id": "src_types_basecustompreferencesfield",
+      "community": 0,
+      "norm_label": "basecustompreferencesfield"
+    },
+    {
+      "label": "CustomPreferencesInputField",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L40",
+      "id": "src_types_custompreferencesinputfield",
+      "community": 0,
+      "norm_label": "custompreferencesinputfield"
+    },
+    {
+      "label": "CustomPreferencesNumberField",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L46",
+      "id": "src_types_custompreferencesnumberfield",
+      "community": 0,
+      "norm_label": "custompreferencesnumberfield"
+    },
+    {
+      "label": "CustomPreferencesSelectField",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L52",
+      "id": "src_types_custompreferencesselectfield",
+      "community": 0,
+      "norm_label": "custompreferencesselectfield"
+    },
+    {
+      "label": "CustomPreferencesSwitchField",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L59",
+      "id": "src_types_custompreferencesswitchfield",
+      "community": 0,
+      "norm_label": "custompreferencesswitchfield"
+    },
+    {
+      "label": "CustomPreferencesRecord",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L65",
+      "id": "src_types_custompreferencesrecord",
+      "community": 3,
+      "norm_label": "custompreferencesrecord"
+    },
+    {
+      "label": "AnyCustomPreferencesField",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L67",
+      "id": "src_types_anycustompreferencesfield",
+      "community": 0,
+      "norm_label": "anycustompreferencesfield"
+    },
+    {
+      "label": "CustomPreferencesField",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L73",
+      "id": "src_types_custompreferencesfield",
+      "community": 1,
+      "norm_label": "custompreferencesfield"
+    },
+    {
+      "label": "PreferencesExtension",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L91",
+      "id": "src_types_preferencesextension",
+      "community": 3,
+      "norm_label": "preferencesextension"
+    },
+    {
+      "label": "AppPreferences",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L99",
+      "id": "src_types_apppreferences",
+      "community": 0,
+      "norm_label": "apppreferences"
+    },
+    {
+      "label": "BreadcrumbPreferences",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L164",
+      "id": "src_types_breadcrumbpreferences",
+      "community": 0,
+      "norm_label": "breadcrumbpreferences"
+    },
+    {
+      "label": "CopyrightPreferences",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L177",
+      "id": "src_types_copyrightpreferences",
+      "community": 0,
+      "norm_label": "copyrightpreferences"
+    },
+    {
+      "label": "FooterPreferences",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L194",
+      "id": "src_types_footerpreferences",
+      "community": 0,
+      "norm_label": "footerpreferences"
+    },
+    {
+      "label": "HeaderPreferences",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L203",
+      "id": "src_types_headerpreferences",
+      "community": 0,
+      "norm_label": "headerpreferences"
+    },
+    {
+      "label": "LogoPreferences",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L216",
+      "id": "src_types_logopreferences",
+      "community": 0,
+      "norm_label": "logopreferences"
+    },
+    {
+      "label": "NavigationPreferences",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L227",
+      "id": "src_types_navigationpreferences",
+      "community": 0,
+      "norm_label": "navigationpreferences"
+    },
+    {
+      "label": "SidebarPreferences",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L236",
+      "id": "src_types_sidebarpreferences",
+      "community": 0,
+      "norm_label": "sidebarpreferences"
+    },
+    {
+      "label": "ShortcutKeyPreferences",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L267",
+      "id": "src_types_shortcutkeypreferences",
+      "community": 0,
+      "norm_label": "shortcutkeypreferences"
+    },
+    {
+      "label": "TabbarPreferences",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L282",
+      "id": "src_types_tabbarpreferences",
+      "community": 0,
+      "norm_label": "tabbarpreferences"
+    },
+    {
+      "label": "ThemePreferences",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L313",
+      "id": "src_types_themepreferences",
+      "community": 0,
+      "norm_label": "themepreferences"
+    },
+    {
+      "label": "TransitionPreferences",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L338",
+      "id": "src_types_transitionpreferences",
+      "community": 0,
+      "norm_label": "transitionpreferences"
+    },
+    {
+      "label": "WidgetPreferences",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L349",
+      "id": "src_types_widgetpreferences",
+      "community": 0,
+      "norm_label": "widgetpreferences"
+    },
+    {
+      "label": "Preferences",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L370",
+      "id": "src_types_preferences",
+      "community": 3,
+      "norm_label": "preferences"
+    },
+    {
+      "label": "PreferencesKeys",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L399",
+      "id": "src_types_preferenceskeys",
+      "community": 0,
+      "norm_label": "preferenceskeys"
+    },
+    {
+      "label": "InitialOptions",
+      "file_type": "code",
+      "source_file": "src/types.ts",
+      "source_location": "L401",
+      "id": "src_types_initialoptions",
+      "community": 1,
+      "norm_label": "initialoptions"
+    },
+    {
+      "label": "preferences.ts",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L1",
+      "id": "src_preferences_ts",
+      "community": 1,
+      "norm_label": "preferences.ts"
+    },
+    {
+      "label": "STORAGE_KEYS",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L25",
+      "id": "src_preferences_storage_keys",
+      "community": 1,
+      "norm_label": "storage_keys"
+    },
+    {
+      "label": "PreferenceManager",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L32",
+      "id": "src_preferences_preferencemanager",
+      "community": 3,
+      "norm_label": "preferencemanager"
+    },
+    {
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L42",
+      "id": "src_preferences_preferencemanager_constructor",
+      "community": 3,
+      "norm_label": ".constructor()"
+    },
+    {
+      "label": "mergedPreference",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L123",
+      "id": "src_preferences_mergedpreference",
+      "community": 1,
+      "norm_label": "mergedpreference"
+    },
+    {
+      "label": "sanitizedUpdates",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L171",
+      "id": "src_preferences_sanitizedupdates",
+      "community": 1,
+      "norm_label": "sanitizedupdates"
+    },
+    {
+      "label": "mergedState",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L191",
+      "id": "src_preferences_mergedstate",
+      "community": 1,
+      "norm_label": "mergedstate"
+    },
+    {
+      "label": ".cloneValue()",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L200",
+      "id": "src_preferences_preferencemanager_clonevalue",
+      "community": 3,
+      "norm_label": ".clonevalue()"
+    },
+    {
+      "label": ".handleUpdates()",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L220",
+      "id": "src_preferences_preferencemanager_handleupdates",
+      "community": 3,
+      "norm_label": ".handleupdates()"
+    },
+    {
+      "label": ".initPlatform()",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L239",
+      "id": "src_preferences_preferencemanager_initplatform",
+      "community": 3,
+      "norm_label": ".initplatform()"
+    },
+    {
+      "label": ".isAlmostInteger()",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L243",
+      "id": "src_preferences_preferencemanager_isalmostinteger",
+      "community": 3,
+      "norm_label": ".isalmostinteger()"
+    },
+    {
+      "label": ".isValidCustomPreferenceValue()",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L247",
+      "id": "src_preferences_preferencemanager_isvalidcustompreferencevalue",
+      "community": 3,
+      "norm_label": ".isvalidcustompreferencevalue()"
+    },
+    {
+      "label": ".loadCustomFromCache()",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L303",
+      "id": "src_preferences_preferencemanager_loadcustomfromcache",
+      "community": 3,
+      "norm_label": ".loadcustomfromcache()"
+    },
+    {
+      "label": ".loadFromCache()",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L311",
+      "id": "src_preferences_preferencemanager_loadfromcache",
+      "community": 3,
+      "norm_label": ".loadfromcache()"
+    },
+    {
+      "label": ".replaceCustomPreferences()",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L315",
+      "id": "src_preferences_preferencemanager_replacecustompreferences",
+      "community": 3,
+      "norm_label": ".replacecustompreferences()"
+    },
+    {
+      "label": ".resolveCustomPreferencesDefaults()",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L322",
+      "id": "src_preferences_preferencemanager_resolvecustompreferencesdefaults",
+      "community": 3,
+      "norm_label": ".resolvecustompreferencesdefaults()"
+    },
+    {
+      "label": ".resolveNumericConstraint()",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L338",
+      "id": "src_preferences_preferencemanager_resolvenumericconstraint",
+      "community": 3,
+      "norm_label": ".resolvenumericconstraint()"
+    },
+    {
+      "label": ".sanitizeCustomPreferences()",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L344",
+      "id": "src_preferences_preferencemanager_sanitizecustompreferences",
+      "community": 3,
+      "norm_label": ".sanitizecustompreferences()"
+    },
+    {
+      "label": ".saveToCache()",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L368",
+      "id": "src_preferences_preferencemanager_savetocache",
+      "community": 3,
+      "norm_label": ".savetocache()"
+    },
+    {
+      "label": ".setupWatcher()",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L388",
+      "id": "src_preferences_preferencemanager_setupwatcher",
+      "community": 3,
+      "norm_label": ".setupwatcher()"
+    },
+    {
+      "label": ".updateColorMode()",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L428",
+      "id": "src_preferences_preferencemanager_updatecolormode",
+      "community": 3,
+      "norm_label": ".updatecolormode()"
+    },
+    {
+      "label": "preferencesManager",
+      "file_type": "code",
+      "source_file": "src/preferences.ts",
+      "source_location": "L437",
+      "id": "src_preferences_preferencesmanager",
+      "community": 1,
+      "norm_label": "preferencesmanager"
+    },
+    {
+      "label": "constants.ts",
+      "file_type": "code",
+      "source_file": "src/constants.ts",
+      "source_location": "L1",
+      "id": "src_constants_ts",
+      "community": 1,
+      "norm_label": "constants.ts"
+    },
+    {
+      "label": "BuiltinThemePreset",
+      "file_type": "code",
+      "source_file": "src/constants.ts",
+      "source_location": "L3",
+      "id": "src_constants_builtinthemepreset",
+      "community": 1,
+      "norm_label": "builtinthemepreset"
+    },
+    {
+      "label": "BUILT_IN_THEME_PRESETS",
+      "file_type": "code",
+      "source_file": "src/constants.ts",
+      "source_location": "L10",
+      "id": "src_constants_built_in_theme_presets",
+      "community": 1,
+      "norm_label": "built_in_theme_presets"
+    },
+    {
+      "label": "DEFAULT_TIME_ZONE_OPTIONS",
+      "file_type": "code",
+      "source_file": "src/constants.ts",
+      "source_location": "L82",
+      "id": "src_constants_default_time_zone_options",
+      "community": 1,
+      "norm_label": "default_time_zone_options"
+    },
+    {
+      "label": "COLOR_PRESETS",
+      "file_type": "code",
+      "source_file": "src/constants.ts",
+      "source_location": "L110",
+      "id": "src_constants_color_presets",
+      "community": 1,
+      "norm_label": "color_presets"
+    },
+    {
+      "label": "use-preferences.ts",
+      "file_type": "code",
+      "source_file": "src/use-preferences.ts",
+      "source_location": "L1",
+      "id": "src_use_preferences_ts",
+      "community": 1,
+      "norm_label": "use-preferences.ts"
+    },
+    {
+      "label": "usePreferences()",
+      "file_type": "code",
+      "source_file": "src/use-preferences.ts",
+      "source_location": "L8",
+      "id": "src_use_preferences_usepreferences",
+      "community": 1,
+      "norm_label": "usepreferences()"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "src/index.ts",
+      "source_location": "L1",
+      "id": "src_index_ts",
+      "community": 1,
+      "norm_label": "index.ts"
+    },
+    {
+      "label": "preferences",
+      "file_type": "code",
+      "source_file": "src/index.ts",
+      "source_location": "L17",
+      "id": "src_index_preferences",
+      "community": 1,
+      "norm_label": "preferences"
+    },
+    {
+      "label": "config.ts",
+      "file_type": "code",
+      "source_file": "src/config.ts",
+      "source_location": "L1",
+      "id": "src_config_ts",
+      "community": 4,
+      "norm_label": "config.ts"
+    },
+    {
+      "label": "defaultPreferences",
+      "file_type": "code",
+      "source_file": "src/config.ts",
+      "source_location": "L3",
+      "id": "src_config_defaultpreferences",
+      "community": 4,
+      "norm_label": "defaultpreferences"
+    },
+    {
+      "label": "{\n  getPreferences,\n  getCustomPreferences,\n  getInitialCustomPreferences,\n  getPreferencesExtension,\n  updatePreferences,\n  updateCustomPreferences,\n  resetPreferences,\n  clearCache,\n  initPreferences,\n}",
+      "file_type": "code",
+      "source_file": "src/index.ts",
+      "source_location": "L5",
+      "id": "src_index_getpreferences_getcustompreferences_getinitialcustompreferences_getpreferencesextension_updatepreferences_updatecustompreferences_resetpreferences_clearcache_initpreferences",
+      "community": 9,
+      "norm_label": "{\n  getpreferences,\n  getcustompreferences,\n  getinitialcustompreferences,\n  getpreferencesextension,\n  updatepreferences,\n  updatecustompreferences,\n  resetpreferences,\n  clearcache,\n  initpreferences,\n}"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "preferences_package_bugs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "preferences_package_dependencies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "preferences_package_exports",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "preferences_package_files",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "preferences_package_homepage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "preferences_package_license",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "preferences_package_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "preferences_package_module",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "preferences_package_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "preferences_package_publishconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "preferences_package_repository",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "preferences_package_scripts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "preferences_package_sideeffects",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "preferences_package_type",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "preferences_package_types",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "package_json",
+      "target": "preferences_package_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "preferences_package_repository",
+      "target": "preferences_package_repository_directory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "preferences_package_repository",
+      "target": "preferences_package_repository_type",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "preferences_package_repository",
+      "target": "preferences_package_repository_url",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "preferences_package_scripts",
+      "target": "preferences_package_scripts_build",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "preferences_package_exports",
+      "target": "preferences_package_types",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "preferences_package_exports",
+      "target": "preferences_package_default",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "preferences_package_exports",
+      "target": "preferences_package_development",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "preferences_package_exports",
+      "target": "preferences_package_production",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "preferences_package_publishconfig_exports",
+      "target": "preferences_package_exports",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "preferences_package_publishconfig",
+      "target": "preferences_package_publishconfig_exports",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "preferences_package_dependencies",
+      "target": "preferences_package_dependencies_vben_core_shared",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "preferences_package_dependencies",
+      "target": "preferences_package_dependencies_vben_core_typings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "preferences_package_dependencies",
+      "target": "preferences_package_dependencies_vue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "preferences_package_dependencies",
+      "target": "preferences_package_dependencies_vueuse_core",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tsconfig_json",
+      "target": "preferences_tsconfig_exclude",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tsconfig_json",
+      "target": "preferences_tsconfig_extends",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tsconfig_json",
+      "target": "preferences_tsconfig_include",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tsconfig_json",
+      "target": "preferences_tsconfig_schema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_preferences_test_ts",
+      "target": "src_config_defaultpreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_preferences_test_ts",
+      "target": "src_config_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_preferences_test_ts",
+      "target": "src_update_css_variables_isdarktheme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "tests_preferences_test_ts",
+      "target": "src_update_css_variables_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L230",
+      "weight": 1.0,
+      "source": "tests_preferences_test_ts",
+      "target": "tests_preferences_test_expected",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L297",
+      "weight": 1.0,
+      "source": "tests_preferences_test_ts",
+      "target": "tests_preferences_test_extension",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L320",
+      "weight": 1.0,
+      "source": "tests_preferences_test_ts",
+      "target": "tests_preferences_test_initialcustompreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L414",
+      "weight": 1.0,
+      "source": "tests_preferences_test_ts",
+      "target": "tests_preferences_test_originalcustompreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L216",
+      "weight": 1.0,
+      "source": "tests_preferences_test_ts",
+      "target": "tests_preferences_test_originalpreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L242",
+      "weight": 1.0,
+      "source": "tests_preferences_test_ts",
+      "target": "tests_preferences_test_overrides",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "tests_preferences_test_ts",
+      "target": "tests_preferences_test_preferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "__tests__/preferences.test.ts",
+      "source_location": "L324",
+      "weight": 1.0,
+      "source": "tests_preferences_test_ts",
+      "target": "tests_preferences_test_preferencesextension",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "__tests__/config.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_config_test_ts",
+      "target": "src_config_defaultpreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "__tests__/config.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_config_test_ts",
+      "target": "src_config_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "src_preferences_ts",
+      "target": "src_update_css_variables_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/update-css-variables.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_update_css_variables_ts",
+      "target": "src_constants_built_in_theme_presets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/update-css-variables.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_update_css_variables_ts",
+      "target": "src_constants_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/update-css-variables.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_update_css_variables_ts",
+      "target": "src_types_preferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/update-css-variables.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_update_css_variables_ts",
+      "target": "src_types_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/update-css-variables.ts",
+      "source_location": "L121",
+      "weight": 1.0,
+      "source": "src_update_css_variables_ts",
+      "target": "src_update_css_variables_isdarktheme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/update-css-variables.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_update_css_variables_ts",
+      "target": "src_update_css_variables_updatecssvariables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/update-css-variables.ts",
+      "source_location": "L88",
+      "weight": 1.0,
+      "source": "src_update_css_variables_ts",
+      "target": "src_update_css_variables_updatemaincolorvariables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/use-preferences.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_use_preferences_ts",
+      "target": "src_update_css_variables_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/preferences.ts",
+      "source_location": "L227",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager_handleupdates",
+      "target": "src_update_css_variables_updatecssvariables"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "src_preferences_ts",
+      "target": "src_update_css_variables_updatecssvariables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/update-css-variables.ts",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "src_update_css_variables_updatecssvariables",
+      "target": "src_update_css_variables_isdarktheme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/update-css-variables.ts",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "src_update_css_variables_updatecssvariables",
+      "target": "src_update_css_variables_updatemaincolorvariables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/use-preferences.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_use_preferences_ts",
+      "target": "src_update_css_variables_isdarktheme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/use-preferences.ts",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "src_use_preferences_usepreferences",
+      "target": "src_update_css_variables_isdarktheme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/config.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_config_ts",
+      "target": "src_types_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "src_index_ts",
+      "target": "src_types_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_preferences_ts",
+      "target": "src_types_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_anycustompreferencesfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L99",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_apppreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_basecustompreferencesfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L164",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_breadcrumbpreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L177",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_copyrightpreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_custompreferencesfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_custompreferencesinputfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_custompreferencesnumberfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_custompreferencesoption",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_custompreferencesrecord",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_custompreferencesselectfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_custompreferencesswitchfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_custompreferencesvalue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L194",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_footerpreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L203",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_headerpreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L401",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_initialoptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L216",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_logopreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L227",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_navigationpreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L370",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_preferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_preferencesextension",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L399",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_preferenceskeys",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L267",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_shortcutkeypreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L236",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_sidebarpreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_supportedlanguagestype",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L282",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_tabbarpreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L313",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_themepreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L338",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_transitionpreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types.ts",
+      "source_location": "L349",
+      "weight": 1.0,
+      "source": "src_types_ts",
+      "target": "src_types_widgetpreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "field",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager",
+      "target": "src_types_custompreferencesrecord",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L303",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager_loadcustomfromcache",
+      "target": "src_types_custompreferencesrecord",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L315",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager_replacecustompreferences",
+      "target": "src_types_custompreferencesrecord",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L344",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager_sanitizecustompreferences",
+      "target": "src_types_custompreferencesrecord",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_preferences_ts",
+      "target": "src_types_custompreferencesrecord",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L247",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager_isvalidcustompreferencevalue",
+      "target": "src_types_custompreferencesfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_preferences_ts",
+      "target": "src_types_custompreferencesfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "field",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager",
+      "target": "src_types_preferencesextension",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L322",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager_resolvecustompreferencesdefaults",
+      "target": "src_types_preferencesextension",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_preferences_ts",
+      "target": "src_types_preferencesextension",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/config.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_config_ts",
+      "target": "src_types_preferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_index_ts",
+      "target": "src_types_preferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "field",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager",
+      "target": "src_types_preferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L220",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager_handleupdates",
+      "target": "src_types_preferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L311",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager_loadfromcache",
+      "target": "src_types_preferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L428",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager_updatecolormode",
+      "target": "src_types_preferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_preferences_ts",
+      "target": "src_types_preferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_preferences_ts",
+      "target": "src_types_initialoptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_index_ts",
+      "target": "src_preferences_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "src_preferences_ts",
+      "target": "src_config_defaultpreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "src_preferences_ts",
+      "target": "src_config_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L123",
+      "weight": 1.0,
+      "source": "src_preferences_ts",
+      "target": "src_preferences_mergedpreference",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L191",
+      "weight": 1.0,
+      "source": "src_preferences_ts",
+      "target": "src_preferences_mergedstate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "src_preferences_ts",
+      "target": "src_preferences_preferencemanager",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L437",
+      "weight": 1.0,
+      "source": "src_preferences_ts",
+      "target": "src_preferences_preferencesmanager",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L171",
+      "weight": 1.0,
+      "source": "src_preferences_ts",
+      "target": "src_preferences_sanitizedupdates",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "src_preferences_ts",
+      "target": "src_preferences_storage_keys",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/use-preferences.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_use_preferences_ts",
+      "target": "src_preferences_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L200",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager",
+      "target": "src_preferences_preferencemanager_clonevalue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager",
+      "target": "src_preferences_preferencemanager_constructor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L220",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager",
+      "target": "src_preferences_preferencemanager_handleupdates",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L239",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager",
+      "target": "src_preferences_preferencemanager_initplatform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L243",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager",
+      "target": "src_preferences_preferencemanager_isalmostinteger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L247",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager",
+      "target": "src_preferences_preferencemanager_isvalidcustompreferencevalue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L303",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager",
+      "target": "src_preferences_preferencemanager_loadcustomfromcache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L311",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager",
+      "target": "src_preferences_preferencemanager_loadfromcache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L315",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager",
+      "target": "src_preferences_preferencemanager_replacecustompreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L322",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager",
+      "target": "src_preferences_preferencemanager_resolvecustompreferencesdefaults",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L338",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager",
+      "target": "src_preferences_preferencemanager_resolvenumericconstraint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L344",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager",
+      "target": "src_preferences_preferencemanager_sanitizecustompreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L368",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager",
+      "target": "src_preferences_preferencemanager_savetocache",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L388",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager",
+      "target": "src_preferences_preferencemanager_setupwatcher",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L428",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager",
+      "target": "src_preferences_preferencemanager_updatecolormode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L234",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager_handleupdates",
+      "target": "src_preferences_preferencemanager_updatecolormode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L277",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager_isvalidcustompreferencevalue",
+      "target": "src_preferences_preferencemanager_isalmostinteger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L257",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager_isvalidcustompreferencevalue",
+      "target": "src_preferences_preferencemanager_resolvenumericconstraint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/preferences.ts",
+      "source_location": "L358",
+      "weight": 1.0,
+      "source": "src_preferences_preferencemanager_sanitizecustompreferences",
+      "target": "src_preferences_preferencemanager_isvalidcustompreferencevalue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_index_ts",
+      "target": "src_preferences_preferencesmanager",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/use-preferences.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_use_preferences_ts",
+      "target": "src_preferences_preferencesmanager",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/constants.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_constants_ts",
+      "target": "src_constants_built_in_theme_presets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/constants.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_constants_ts",
+      "target": "src_constants_builtinthemepreset",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/constants.ts",
+      "source_location": "L110",
+      "weight": 1.0,
+      "source": "src_constants_ts",
+      "target": "src_constants_color_presets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/constants.ts",
+      "source_location": "L82",
+      "weight": 1.0,
+      "source": "src_constants_ts",
+      "target": "src_constants_default_time_zone_options",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.ts",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "src_index_ts",
+      "target": "src_constants_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "src_index_ts",
+      "target": "src_use_preferences_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/use-preferences.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_use_preferences_ts",
+      "target": "src_use_preferences_usepreferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_index_ts",
+      "target": "src_index_preferences",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/config.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_config_ts",
+      "target": "src_config_defaultpreferences",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "5d654b8c8a799f47ed7d38daa3e7b2396f9d9d87"
+}

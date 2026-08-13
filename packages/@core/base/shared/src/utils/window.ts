@@ -7,14 +7,14 @@ interface OpenWindowOptions {
 /**
  * Open a URL in a new window.
  *
- * @param url - The URL to open.
- * @param options - The options to open the window.
+ * @param url URL to open.
+ * @param options Window open options.
  */
 function openWindow(url: string, options: OpenWindowOptions = {}): void {
-  // Deconstruct and set default values
+  // Destructure with defaults
   const { noopener = true, noreferrer = true, target = '_blank' } = options;
 
-  // Create a feature string based on the options
+  // Build the feature string from options
   const features = [noopener && 'noopener=yes', noreferrer && 'noreferrer=yes']
     .filter(Boolean)
     .join(',');

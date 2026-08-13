@@ -1,0 +1,10 @@
+{
+  "title": "Talent",
+  "fields": {
+    "legalName": "Nama lengkap",
+    "stageName": "Nama panggung",
+    "bio": "Bio",
+    "stageIntro": "Perkenalan panggung",
+    "headshotUrls": "Foto profil"
+  }
+}

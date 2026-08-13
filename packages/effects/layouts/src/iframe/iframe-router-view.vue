@@ -1,15 +1,17 @@
 <script lang="ts" setup>
 import type { RouteLocationNormalized } from 'vue-router';
 
-import { PohonSpinner } from '@taman-core/pohon-ui';
-import { preferences } from '@taman/preferences';
-import { useTabbarStore } from '@taman/stores';
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
+import { preferences } from '@taman/preferences';
+import { useTabbarStore } from '@taman/stores';
+
+import { VbenSpinner } from '@vben-core/shadcn-ui';
+
 defineOptions({ name: 'IFrameRouterView' });
 
-const spinningList = ref<Array<boolean>>([]);
+const spinningList = ref<boolean[]>([]);
 const tabbarStore = useTabbarStore();
 const route = useRoute();
 
@@ -43,11 +45,11 @@ function canRender(tabItem: RouteLocationNormalized) {
     return routeShow(tabItem);
   }
 
-  // Follow the keepAlive state, and keep the same as the other tabs
+  // Follow keepAlive like other tabs
   if (
-    !meta?.keepAlive
-    && tabNames.value.has(name as string)
-    && name !== route.name
+    !meta?.keepAlive &&
+    tabNames.value.has(name as string) &&
+    name !== route.name
   ) {
     return false;
   }
@@ -60,28 +62,24 @@ function hideLoading(index: number) {
 
 function showSpinning(index: number) {
   const curSpinning = spinningList.value[index];
-  // Show loading when the first load
+  // Show loading on first load
   return curSpinning === undefined ? true : curSpinning;
 }
 </script>
-
 <template>
   <template v-if="showIframe">
-    <template
-      v-for="(item, index) in iframeRoutes"
-      :key="item.fullPath"
-    >
+    <template v-for="(item, index) in iframeRoutes" :key="item.fullPath">
       <div
         v-if="canRender(item)"
         v-show="routeShow(item)"
         class="relative size-full"
       >
-        <PohonSpinner :spinning="showSpinning(index)" />
+        <VbenSpinner :spinning="showSpinning(index)" />
         <iframe
           :src="item.meta.iframeSrc as string"
           class="size-full"
           @load="hideLoading(index)"
-        />
+        ></iframe>
       </div>
     </template>
   </template>

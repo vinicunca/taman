@@ -1,0 +1,233 @@
+{
+  "title": "Preferensi",
+  "subtitle": "Sesuaikan Preferensi & Pratinjau Secara Real Time",
+  "enableStickyPreferencesNavigationBar": "Aktifkan bilah navigasi preferensi lengket",
+  "disableStickyPreferencesNavigationBar": "Nonaktifkan bilah navigasi preferensi lengket",
+  "resetTip": "Data telah berubah, klik untuk mengatur ulang",
+  "resetTitle": "Atur Ulang Preferensi",
+  "resetSuccess": "Preferensi berhasil diatur ulang",
+  "appearance": "Tampilan",
+  "layout": "Tata Letak",
+  "content": "Konten",
+  "other": "Lainnya",
+  "wide": "Lebar",
+  "compact": "Tetap",
+  "followSystem": "Ikuti Sistem",
+  "vertical": "Vertikal",
+  "verticalTip": "Mode menu vertikal samping",
+  "horizontal": "Horizontal",
+  "horizontalTip": "Mode menu horizontal, semua menu ditampilkan di atas",
+  "twoColumn": "Dua Kolom",
+  "twoColumnTip": "Mode Menu Dua Kolom Vertikal",
+  "headerSidebarNav": "Header Vertikal",
+  "headerSidebarNavTip": "Header Lebar Penuh, Mode Navigasi Sidebar",
+  "headerTwoColumn": "Header Dua Kolom",
+  "headerTwoColumnTip": "Navigasi Header & Sidebar Dua Kolom bersamaan",
+  "mixedMenu": "Menu Campuran",
+  "mixedMenuTip": "Menu Vertikal & Horizontal bersamaan",
+  "fullContent": "Konten Penuh",
+  "fullContentTip": "Hanya menampilkan isi konten, sembunyikan semua menu",
+  "normal": "Normal",
+  "plain": "Polos",
+  "rounded": "Membulat",
+  "copyPreferences": "Salin Preferensi",
+  "enableCopyPreferences": "Tampilkan tombol salin preferensi",
+  "copyPreferencesSuccessTitle": "Berhasil disalin",
+  "copyPreferencesSuccess": "Berhasil disalin, silakan timpa di `src/preferences.ts` di bawah app",
+  "clearAndLogout": "Bersihkan Cache & Keluar",
+  "mode": "Mode",
+  "general": "Umum",
+  "language": "Bahasa",
+  "timezone": "Zona Waktu",
+  "dynamicTitle": "Judul Dinamis",
+  "watermark": "Watermark",
+  "watermarkContent": "Silakan masukkan konten watermark",
+  "checkUpdates": "Pemeriksaan pembaruan berkala",
+  "position": {
+    "title": "Posisi Preferensi",
+    "header": "Header",
+    "auto": "Otomatis",
+    "fixed": "Tetap",
+    "userDropdown": "Dropdown Pengguna"
+  },
+  "sidebar": {
+    "buttons": "Tampilkan Tombol",
+    "buttonFixed": "Tetap",
+    "buttonCollapsed": "Diciutkan",
+    "title": "Sidebar",
+    "width": "Lebar",
+    "visible": "Tampilkan Sidebar",
+    "draggable": "Seret Menu Sidebar",
+    "collapsed": "Ciutkan Menu",
+    "collapsedShowTitle": "Tampilkan Judul Menu",
+    "autoActivateChild": "Aktifkan SubMenu Otomatis",
+    "autoActivateChildTip": "`Diaktifkan` untuk mengaktifkan submenu secara otomatis saat mengklik menu.",
+    "expandOnHover": "Perluas Saat Hover",
+    "expandOnHoverTip": "Saat mouse di atas menu, \n `Diaktifkan` untuk memperluas submenu \n `Dinonaktifkan` untuk memperluas seluruh sidebar."
+  },
+  "tabbar": {
+    "title": "Tabbar",
+    "enable": "Aktifkan Bilah Tab",
+    "icon": "Tampilkan Ikon Tabbar",
+    "showMore": "Tampilkan Tombol Lainnya",
+    "showMaximize": "Tampilkan Tombol Maksimalkan",
+    "persist": "Simpan Tab",
+    "visitHistory": "Riwayat Kunjungan",
+    "visitHistoryTip": "Saat diaktifkan, tabbar mencatat riwayat kunjungan tab. \nMenutup tab saat ini akan memilih tab terakhir yang dibuka.",
+    "maxCount": "Jumlah Maksimum Tab",
+    "maxCountTip": "Saat jumlah tab melebihi maksimum,\ntab tertua akan ditutup.\n Atur ke 0 untuk menonaktifkan pemeriksaan jumlah.",
+    "draggable": "Aktifkan Urutan Seret",
+    "wheelable": "Dukung Roda Mouse",
+    "middleClickClose": "Tutup Tab saat Klik Tengah Mouse",
+    "wheelableTip": "Saat diaktifkan, area Tabbar merespons guliran vertikal roda scroll.",
+    "styleType": {
+      "title": "Gaya Tab",
+      "chrome": "Chrome",
+      "card": "Kartu",
+      "plain": "Polos",
+      "brisk": "Ringan"
+    },
+    "contextMenu": {
+      "reload": "Muat Ulang",
+      "close": "Tutup",
+      "pin": "Sematkan",
+      "unpin": "Lepas Sematan",
+      "closeLeft": "Tutup Tab Kiri",
+      "closeRight": "Tutup Tab Kanan",
+      "closeOther": "Tutup Tab Lainnya",
+      "closeAll": "Tutup Semua Tab",
+      "openInNewWindow": "Buka di Jendela Baru",
+      "maximize": "Maksimalkan",
+      "restoreMaximize": "Pulihkan"
+    }
+  },
+  "navigationMenu": {
+    "title": "Menu Navigasi",
+    "style": "Gaya Menu Navigasi",
+    "accordion": "Menu Akordeon Sidebar",
+    "split": "Pemisahan Menu Navigasi",
+    "splitTip": "Saat diaktifkan, sidebar menampilkan submenu bilah atas"
+  },
+  "breadcrumb": {
+    "title": "Breadcrumb",
+    "home": "Tampilkan Tombol Beranda",
+    "enable": "Aktifkan Breadcrumb",
+    "icon": "Tampilkan Ikon Breadcrumb",
+    "background": "latar belakang",
+    "style": "Gaya Breadcrumb",
+    "hideOnlyOne": "Sembunyikan jika hanya satu"
+  },
+  "animation": {
+    "title": "Animasi",
+    "loading": "Memuat Halaman",
+    "transition": "Transisi Halaman",
+    "progress": "Progres Halaman"
+  },
+  "theme": {
+    "title": "Tema",
+    "radius": "Radius",
+    "fontSize": "Ukuran Font",
+    "fontSizeTip": "Sesuaikan ukuran font global dengan pratinjau real-time",
+    "light": "Terang",
+    "dark": "Gelap",
+    "darkSidebar": "Sidebar Semi Gelap",
+    "darkSidebarTip": "Dapat diaktifkan saat tema terang, dan tata letak bukan 'Horizontal' maupun 'Konten Penuh'.",
+    "darkSidebarSub": "Sub Sidebar Semi Gelap",
+    "darkSidebarSubTip": "Dapat diaktifkan saat tema terang, sidebar semi gelap diaktifkan, dan tata letak menggunakan mode menu 'Dua Kolom'.",
+    "darkHeader": "Header Semi Gelap",
+    "weakMode": "Mode Lemah",
+    "grayMode": "Mode Abu-abu",
+    "builtin": {
+      "title": "Bawaan",
+      "default": "Default",
+      "violet": "Ungu",
+      "pink": "Merah Muda",
+      "rose": "Mawar",
+      "skyBlue": "Biru Langit",
+      "deepBlue": "Biru Tua",
+      "green": "Hijau",
+      "deepGreen": "Hijau Tua",
+      "orange": "Oranye",
+      "yellow": "Kuning",
+      "zinc": "Seng",
+      "neutral": "Netral",
+      "slate": "Batu Tulis",
+      "gray": "Abu-abu",
+      "custom": "Kustom"
+    }
+  },
+  "header": {
+    "title": "Header",
+    "visible": "Tampilkan Header",
+    "modeStatic": "Statis",
+    "modeFixed": "Tetap",
+    "modeAuto": "Sembunyikan & Tampilkan Otomatis",
+    "modeAutoScroll": "Gulir untuk Sembunyikan & Tampilkan",
+    "menuAlign": "Perataan Menu",
+    "menuAlignStart": "Awal",
+    "menuAlignEnd": "Akhir",
+    "menuAlignCenter": "Tengah"
+  },
+  "footer": {
+    "title": "Footer",
+    "visible": "Tampilkan Footer",
+    "fixed": "Tetap di Bawah"
+  },
+  "copyright": {
+    "title": "Hak Cipta",
+    "enable": "Aktifkan Hak Cipta",
+    "companyName": "Nama Perusahaan",
+    "companySiteLink": "Tautan Situs Perusahaan",
+    "date": "Tanggal",
+    "icp": "Nomor Lisensi ICP",
+    "icpLink": "Tautan Situs ICP"
+  },
+  "shortcutKeys": {
+    "title": "Tombol Pintas",
+    "global": "Global",
+    "search": "Pencarian Global",
+    "logout": "Keluar",
+    "escape": "Tutup Jendela Saat Ini",
+    "preferences": "Preferensi"
+  },
+  "widget": {
+    "title": "Widget",
+    "globalSearch": "Aktifkan Pencarian Global",
+    "fullscreen": "Aktifkan Layar Penuh",
+    "themeToggle": "Aktifkan Alih Tema",
+    "languageToggle": "Aktifkan Alih Bahasa",
+    "notification": "Aktifkan Notifikasi",
+    "sidebarToggle": "Aktifkan Alih Sidebar",
+    "lockScreen": "Aktifkan Kunci Layar",
+    "refresh": "Aktifkan Segarkan",
+    "timezone": "Aktifkan Zona Waktu"
+  },
+  "antd": {
+    "tabLabel": "Ekstensi Antd",
+    "title": "Preferensi Bisnis",
+    "fields": {
+      "enableFormFullscreen": {
+        "label": "Aktifkan Mode Layar Penuh Formulir",
+        "tip": "Subproyek dapat membaca konfigurasi ekstensi ini dalam skenario bisnis mereka."
+      },
+      "tenantMode": {
+        "label": "Mode Penyewa",
+        "options": {
+          "single": {
+            "label": "Penyewa Tunggal"
+          },
+          "multi": {
+            "label": "Multi Penyewa"
+          }
+        }
+      },
+      "defaultTableSize": {
+        "label": "Ukuran Halaman Default"
+      },
+      "reportTitle": {
+        "label": "Judul Laporan Default",
+        "placeholder": "Silakan masukkan judul laporan default"
+      }
+    }
+  }
+}

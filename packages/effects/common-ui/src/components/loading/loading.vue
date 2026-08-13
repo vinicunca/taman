@@ -1,44 +1,32 @@
 <script lang="ts" setup>
-import { PohonLoading } from '@taman-core/pohon-ui';
+import { VbenLoading } from '@vben-core/shadcn-ui';
+import { cn } from '@taman-core/shared/utils';
 
 interface LoadingProps {
   class?: string;
-  /**
-   * Minimum loading time
-   */
+  /** Minimum loading time (ms) */
   minLoadingTime?: number;
 
-  /**
-   * Loading state enabled
-   */
+  /** Whether loading is active */
   spinning?: boolean;
-  /**
-   * Text
-   */
+  /** Loading text */
   text?: string;
 }
 
 defineOptions({ name: 'Loading' });
 const props = defineProps<LoadingProps>();
 </script>
-
 <template>
-  <div
-    class="relative min-h-20"
-    :class="props.class"
-  >
-    <slot />
-    <PohonLoading
+  <div :class="cn('relative min-h-20', props.class)">
+    <slot></slot>
+    <VbenLoading
       :min-loading-time="props.minLoadingTime"
       :spinning="props.spinning"
       :text="props.text"
     >
-      <template
-        v-if="$slots.icon"
-        #icon
-      >
-        <slot name="icon" />
+      <template v-if="$slots.icon" #icon>
+        <slot name="icon"></slot>
       </template>
-    </PohonLoading>
+    </VbenLoading>
   </div>
 </template>

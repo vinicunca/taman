@@ -1,11 +1,12 @@
 import type { PluginOption } from 'vite';
 
 import { EOL } from 'node:os';
-import { DateFormatter, getLocalTimeZone, now } from '@internationalized/date';
-import { readPackageJSON } from '@taman/node-utils';
+
+import { dateUtil, readPackageJSON } from '@taman/node-utils';
 
 /**
- * Used to inject copyright information
+ * Injects a license/copyright banner into build output
+ * @returns
  */
 async function viteLicensePlugin(
   root = process.cwd(),
@@ -16,37 +17,31 @@ async function viteLicensePlugin(
     version = '',
   } = await readPackageJSON(root);
 
-  const buildTimeFormatter = new DateFormatter('sv-SE', {
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-  });
-
   return {
     apply: 'build',
     enforce: 'post',
     generateBundle: {
       handler(_options, bundle) {
-        const dateCreated = buildTimeFormatter.format(now(getLocalTimeZone()).toDate());
+        const date = dateUtil().format('YYYY-MM-DD ');
         const copyrightText = `/*!
-  * Taman Admin
+  * Vben Admin
   * Version: ${version}
-  * Author: Vinicunca
-  * Copyright (C) 2024 Taman
+  * Author: vben
+  * Copyright (C) 2024 Vben
   * License: MIT License
   * Description: ${description}
-  * Date Created: ${dateCreated}
+  * Date Created: ${date}
   * Homepage: ${homepage}
-  * Contact: praburangki@gmail.com
+  * Contact: ann.vben@gmail.com
 */
               `.trim();
 
         for (const [, fileContent] of Object.entries(bundle)) {
           if (fileContent.type === 'chunk' && fileContent.isEntry) {
-            // Insert copyright information
+            // Prepend copyright banner
             const content = fileContent.code;
             const updatedContent = `${copyrightText}${EOL}${content}`;
-            // Update bundle
+            // Update bundle chunk
             fileContent.code = updatedContent;
           }
         }

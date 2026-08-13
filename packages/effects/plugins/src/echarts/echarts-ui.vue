@@ -11,8 +11,5 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div
-    v-bind="$attrs"
-    :style="{ height, width }"
-  />
+  <div v-bind="$attrs" :style="{ height, width }"></div>
 </template>

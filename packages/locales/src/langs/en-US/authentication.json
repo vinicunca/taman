@@ -1,10 +1,22 @@
 {
   "welcomeBack": "Welcome Back",
-  "pageTitle": "Plug-and-play Admin system",
-  "pageDesc": "Efficient, versatile frontend template",
+  "pageTitle": "Run the Show Like a Pro",
+  "pageDesc": "Everything you need to manage lineups, sell tickets, and run the door seamlessly.",
+  "form": {
+    "email": {
+      "label": "Email",
+      "placeholder": "Enter your email",
+      "invalid": "Invalid email"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter your password",
+      "invalid": "Password is required"
+    }
+  },
   "loginSuccess": "Login Successful",
   "loginSuccessDesc": "Welcome Back",
-  "loginSubtitle": "Enter your account details to manage your projects",
+  "loginSubtitle": "Please enter your account details",
   "selectAccount": "Quick Select Account",
   "username": "Username",
   "password": "Password",
@@ -40,7 +52,6 @@
   "qqLogin": "QQ Login",
   "githubLogin": "Github Login",
   "googleLogin": "Google Login",
-  "dingdingLogin": "Dingding Login",
   "codeSubtitle": "Enter your phone number to start managing your project",
   "code": "Security code",
   "codeTip": "Security code required {0} characters",

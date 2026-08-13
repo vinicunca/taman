@@ -48,7 +48,7 @@ async function zipFolder(
   return new Promise((resolve, reject) => {
     const output = fs.createWriteStream(outputPath);
     const archive = archiver('zip', {
-      zlib: { level: 9 }, // Set compression level to 9 to achieve the highest compression rate
+      zlib: { level: 9 }, // Max compression level
     });
 
     output.on('close', () => {
@@ -64,10 +64,10 @@ async function zipFolder(
 
     archive.pipe(output);
 
-    // Use the directory method to compress the folder in a streaming manner, reducing memory consumption
+    // Stream directory into archive to reduce memory use
     archive.directory(folderPath, false);
 
-    // Streaming processing completed
+    // Finalize stream
     archive.finalize();
   });
 }

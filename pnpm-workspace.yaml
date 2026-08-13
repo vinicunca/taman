@@ -1,107 +1,203 @@
+catalogMode: prefer
 strictPeerDependencies: false
 autoInstallPeers: true
 dedupePeerDependents: true
 verifyDepsBeforeRun: false
+engineStrict: true
+ignoreWorkspaceRootCheck: true
 minimumReleaseAge: 0
+includeWorkspaceRoot: true
+nodeVersion: 22.22.2
 
-publicHoistPattern:
-  - lefthook
-  - eslint
-  - oxfmt
-  - oxlint
-  - stylelint
-  - '*postcss*'
-  - '@commitlint/*'
-  - czg
+shellEmulator: true
 
 packages:
   - internal/*
+  - internal/lint-configs/*
   - packages/*
   - packages/@core/base/*
   - packages/@core/ui-kit/*
+  - packages/@core/forward/*
   - packages/@core/*
   - packages/effects/*
+  - packages/business/*
   - apps/*
   - scripts/*
 
 overrides:
+  '@ast-grep/napi': 'catalog:'
   '@ctrl/tinycolor': 'catalog:'
+  clsx: 'catalog:'
   pinia: 'catalog:'
+  pohon-ui: 'catalog:'
+  unocss: 'catalog:'
   vue: 'catalog:'
 
 catalog:
-  '@clack/prompts': ^1.4.0
+  '@ast-grep/napi': ^0.45.1
+  '@commitlint/cli': ^21.2.1
+  '@commitlint/config-conventional': ^21.2.0
   '@ctrl/tinycolor': ^4.2.0
+  '@formkit/auto-animate': ^0.9.0
+  '@iconify/json': ^2.2.514
   '@iconify/vue': ^5.0.1
-  '@internationalized/date': ^3.12.1
-  '@intlify/core-base': ^11.4.4
-  '@intlify/unplugin-vue-i18n': ^11.2.3
-  '@jspm/generator': ^2.15.0
+  '@intlify/core-base': ^11.4.8
+  '@intlify/unplugin-vue-i18n': ^11.2.4
+  '@jspm/generator': ^2.16.3
+  '@lucide/vue': ^1.31.0
   '@manypkg/get-packages': ^3.1.0
+  '@neondatabase/serverless': ^1.1.0
+  '@playwright/test': ^1.62.1
   '@pnpm/workspace.read-manifest': ^1000.3.1
-  '@stylistic/stylelint-plugin': ^5.2.0
-  '@tanstack/vue-query': ^5.100.14
-  '@tanstack/vue-store': ^0.11.0
-  '@types/archiver': ^7.0.0
+  '@stylistic/stylelint-plugin': ^5.3.0
+  '@tanstack/vue-query': ^5.101.4
+  '@tanstack/vue-query-devtools': ^6.1.38
+  '@tanstack/vue-store': ^0.11.1
+  '@tiptap/core': ^3.30.0
+  '@tiptap/extension-document': ^3.30.0
+  '@tiptap/extension-highlight': ^3.30.0
+  '@tiptap/extension-image': ^3.30.0
+  '@tiptap/extension-link': ^3.30.0
+  '@tiptap/extension-placeholder': ^3.30.0
+  '@tiptap/extension-text-align': ^3.30.0
+  '@tiptap/extension-text-style': ^3.30.0
+  '@tiptap/extension-underline': ^3.30.0
+  '@tiptap/pm': ^3.30.0
+  '@tiptap/starter-kit': ^3.30.0
+  '@tiptap/vue-3': ^3.30.0
+  '@types/archiver': ^8.0.0
   '@types/html-minifier-terser': ^7.0.2
-  '@types/node': ^25.9.1
+  '@types/json-bigint': ^1.0.4
+  '@types/node': ^26.2.0
   '@types/nprogress': ^0.2.3
-  '@vinicunca/eslint-config': 5.1.0
-  '@vinicunca/perkakas': ^1.15.0
-  '@vitejs/plugin-vue': ^6.0.7
-  '@vitejs/plugin-vue-jsx': ^5.1.5
-  '@vue/shared': ^3.5.34
-  '@vueuse/core': ^14.3.0
-  archiver: ^7.0.1
-  cac: ^7.0.0
-  chalk: ^5.6.2
+  '@types/pg': ^8.21.0
+  '@types/qrcode': ^1.5.6
+  '@types/qs': ^6.15.1
+  '@types/sortablejs': ^1.15.9
+  '@vee-validate/zod': ^4.15.1
+  '@vinicunca/eslint-config': 5.5.0
+  '@vinicunca/perkakas': 1.16.0
+  '@vinicunca/unocss-preset': 2.0.0
+  '@vitejs/plugin-vue': ^6.0.8
+  '@vitejs/plugin-vue-jsx': ^5.1.6
+  '@vue/shared': ^3.5.41
+  '@vue/test-utils': ^2.4.11
+  '@vueuse/core': ^14.4.0
+  '@vueuse/integrations': ^14.4.0
+  '@vueuse/motion': ^3.0.3
+  add: ^2.0.6
+  ag-grid-community: ^36.1.0
+  ag-grid-vue3: ^36.1.0
+  akar: 2.0.15
+  antdv-next: ^1.3.5
+  archiver: ^8.0.0
+  axios: ^1.16.1
+  axios-mock-adapter: ^2.1.0
+  better-auth: ^1.6.27
+  chalk: ^6.0.0
   cheerio: ^1.2.0
+  circular-dependency-scanner: ^3.1.0
+  class-variance-authority: ^0.7.1
+  clsx: ^2.1.1
+  commitlint-plugin-function-rules: ^5.0.1
   consola: ^3.4.2
+  cross-env: ^10.1.0
+  cspell: ^10.0.1
+  csv: ^6.6.3
+  cz-git: ^1.13.2
+  czg: ^1.13.2
+  dayjs: ^1.11.21
   defu: ^6.1.7
   dotenv: ^17.4.2
+  drizzle-kit: 0.31.10
+  drizzle-orm: 0.45.2
+  drizzle-zod: ^0.8.3
   echarts: ^6.1.0
-  eslint: ^10.4.0
-  execa: ^9.6.1
+  es-toolkit: ^1.50.0
+  eslint: ^10.8.1
+  execa: ^10.0.1
+  find-up: ^8.0.0
   get-port: ^7.2.0
-  h3: ^1.15.11
+  happy-dom: ^20.11.2
   html-minifier-terser: ^7.2.0
   is-ci: ^4.1.0
-  lefthook: ^2.1.8
+  json-bigint: ^1.0.0
+  knip: ^6.32.2
+  lefthook: ^2.1.10
+  nitro: 3.0.260610-beta
   nitropack: ^2.13.4
   nprogress: ^0.2.0
-  pinia: ^3.0.4
+  nx: 23.1.1
+  ofetch: ^1.5.1
+  ora: ^9.4.1
+  pg: ^8.23.0
+  pinia: ^4.0.3
   pinia-plugin-persistedstate: ^4.7.1
   pkg-types: ^2.3.1
-  pohon-ui: 2.0.0-rc4
-  postcss: ^8.5.15
-  postcss-html: ^1.8.1
+  playwright: ^1.62.1
+  pnpm: ^11.10.0
+  pohon-ui: 2.0.0-rc7.6
+  postcss: ^8.5.26
+  postcss-html: ^2.0.0
+  postcss-scss: ^4.0.9
+  publint: ^0.3.23
+  qrcode: ^1.5.4
+  qs: ^6.15.3
+  reka-ui: ^2.9.8
+  resolve.exports: ^2.0.3
+  rimraf: ^6.1.3
   rollup-plugin-visualizer: ^7.0.1
+  sass: ^1.100.0
+  sass-embedded: ^1.100.0
   secure-ls: ^2.0.0
-  stylelint: ^17.12.0
-  stylelint-config-recess-order: ^7.7.0
+  sortablejs: ^1.15.7
+  stylelint: ^17.14.1
+  stylelint-config-recess-order: ^7.8.0
   stylelint-config-recommended: ^18.0.0
-  stylelint-config-recommended-vue: ^1.6.1
+  stylelint-config-recommended-scss: ^17.0.1
+  stylelint-config-recommended-vue: ^2.0.0
   stylelint-config-standard: ^40.0.0
   stylelint-order: ^8.1.1
+  stylelint-scss: ^7.1.1
+  tailwind-merge: ^3.6.0
   theme-colors: ^0.1.0
-  tsdown: ^0.22.0
-  turbo: ^2.9.14
+  tippy.js: ^6.3.7
+  tsdown: ^0.22.14
+  tsx: ^4.23.12
+  turbo: ^2.9.16
   typescript: ^6.0.3
-  unocss: ^66.7.0
-  unplugin-dts: ^1.0.1
-  vite: 8.0.10
+  unocss: 66.7.5
+  unocss-variants: 1.3.3
+  unplugin-dts: ^1.0.3
+  unplugin-vue: ^7.2.0
+  uqr: ^0.1.3
+  uuid: ^14.0.1
+  vee-validate: ^4.15.1
+  vite: 8.2.1
   vite-plugin-compression: ^0.5.1
+  vite-plugin-lazy-import: ^1.0.7
   vite-plugin-pwa: ^1.3.0
-  vite-plugin-vue-devtools: ^8.1.2
-  vitest: ^4.1.7
-  vue: ^3.5.34
-  vue-i18n: ^11.4.4
-  vue-router: ^5.0.7
-  watermark-js-plus: ^1.6.3
+  vite-plugin-vue-devtools: ^8.2.1
+  vitest: ^4.1.10
+  vue: ^3.5.41
+  vue-i18n: ^11.4.8
+  vue-json-pretty: ^2.6.0
+  vue-router: ^5.2.0
+  vue-tippy: ^6.7.1
+  vue-tsc: ^3.3.9
+  vxe-pc-ui: ^4.14.26
+  vxe-table: ^4.19.6
+  watermark-js-plus: ^1.6.6
+  wrangler: ^4.100.0
+  zod: 4.4.3
+  zod-defaults: 0.2.3
 
 allowBuilds:
   '@parcel/watcher': true
   core-js: true
   esbuild: true
   lefthook: true
+  nx: true
+  sharp: true
   vue-demi: true
+  workerd: true

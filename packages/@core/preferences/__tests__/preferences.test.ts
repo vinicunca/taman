@@ -1,7 +1,6 @@
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { defaultPreferences } from '../src/config';
-import { isDarkTheme } from '../src/update-css-variables';
 
 describe('preferences', () => {
   let PreferenceManager: typeof import('../src/preferences').PreferenceManager;
@@ -9,7 +8,7 @@ describe('preferences', () => {
     typeof import('../src/preferences').PreferenceManager
   >;
 
-  // Mock window.matchMedia method
+  // Mock window.matchMedia
   vi.stubGlobal(
     'matchMedia',
     vi.fn().mockImplementation((query) => ({
@@ -72,8 +71,8 @@ describe('preferences', () => {
       overrides,
     });
 
-    // Wait for debounce operation to complete
-    // await new Promise((resolve) => setTimeout(resolve, 300)); // Wait for 100 milliseconds
+    // Wait for debounced save (optional)
+    // await new Promise((resolve) => setTimeout(resolve, 300));
 
     const expected = {
       ...defaultPreferences,
@@ -86,16 +85,6 @@ describe('preferences', () => {
     expect(preferenceManager.getPreferences()).toEqual(expected);
   });
 
-  it('updates theme mode correctly', () => {
-    preferenceManager.updatePreferences({
-      theme: {
-        mode: 'light',
-      },
-    });
-
-    expect(preferenceManager.getPreferences().theme.mode).toBe('light');
-  });
-
   it('updates color modes correctly', () => {
     preferenceManager.updatePreferences({
       app: { colorGrayMode: true, colorWeakMode: true },
@@ -106,21 +95,14 @@ describe('preferences', () => {
   });
 
   it('resets preferences to default', async () => {
-    // Update some preferences first
-    preferenceManager.updatePreferences({
-      theme: {
-        mode: 'light',
-      },
-    });
-
-    // Then reset preferences
+    // Then reset to defaults
     await preferenceManager.resetPreferences();
 
     expect(preferenceManager.getPreferences()).toEqual(defaultPreferences);
   });
 
   it('updates isMobile correctly', () => {
-    // Mock mobile state
+    // Mock mobile viewport
     vi.stubGlobal(
       'matchMedia',
       vi.fn().mockImplementation((query) => ({
@@ -175,16 +157,13 @@ describe('preferences', () => {
   });
 
   it('resets preferences to default correctly', async () => {
-    // Update some preferences first
+    // Update preferences first
     preferenceManager.updatePreferences({
       app: { locale: 'en-US' },
       sidebar: { collapsed: true, width: 200 },
-      theme: {
-        mode: 'light',
-      },
     });
 
-    // Then reset preferences
+    // Then reset to defaults
     await preferenceManager.resetPreferences();
 
     expect(preferenceManager.getPreferences()).toEqual(defaultPreferences);
@@ -216,7 +195,7 @@ describe('preferences', () => {
     const originalPreferences = preferenceManager.getPreferences();
 
     preferenceManager.updatePreferences({
-      app: { isMobile: 'true' as unknown as boolean }, // Invalid type
+      app: { isMobile: 'true' as unknown as boolean }, // invalid type
     });
 
     expect(preferenceManager.getPreferences()).toEqual(originalPreferences);
@@ -249,12 +228,6 @@ describe('preferences', () => {
       namespace: 'apply-updates',
       overrides,
     });
-
-    preferenceManager.updatePreferences({
-      theme: { mode: 'light' },
-    });
-
-    expect(preferenceManager.getPreferences().theme.mode).toBe('light');
   });
 
   it('initializes custom preferences extension with default values', async () => {
@@ -264,21 +237,21 @@ describe('preferences', () => {
           component: 'switch',
           defaultValue: true,
           key: 'enableWorkbench',
-          label: 'Enable workbench',
+          label: '启用工作台',
         },
         {
           component: 'select',
           defaultValue: 'single',
           key: 'tenantMode',
-          label: 'Tenant mode',
+          label: '租户模式',
           options: [
-            { label: 'Single tenant', value: 'single' },
-            { label: 'Multi tenant', value: 'multi' },
+            { label: '单租户', value: 'single' },
+            { label: '多租户', value: 'multi' },
           ],
         },
       ],
-      tabLabel: 'Extensions',
-      title: 'Business preferences',
+      tabLabel: '扩展',
+      title: '业务偏好',
     } as const;
 
     await preferenceManager.initPreferences({
@@ -305,11 +278,11 @@ describe('preferences', () => {
           },
           defaultValue: 4,
           key: 'pageSize',
-          label: 'Page size',
+          label: '分页大小',
         },
       ],
-      tabLabel: 'Extensions',
-      title: 'Business preferences',
+      tabLabel: '扩展',
+      title: '业务偏好',
     } as const;
 
     await preferenceManager.initPreferences({
@@ -336,7 +309,7 @@ describe('preferences', () => {
       return;
     }
 
-    firstField.label = 'Modified';
+    firstField.label = '已修改';
     firstField.componentProps.max = 20;
 
     expect(preferenceManager.getInitialCustomPreferences()).toEqual({
@@ -353,7 +326,7 @@ describe('preferences', () => {
             component: 'number',
             defaultValue: 20,
             key: 'pageSize',
-            label: 'Page size',
+            label: '分页大小',
           },
           {
             component: 'input',
@@ -362,26 +335,26 @@ describe('preferences', () => {
             label: '报表标题',
           },
         ],
-        tabLabel: 'Extensions',
+        tabLabel: '扩展',
       },
       namespace: 'custom-reset',
     });
 
     preferenceManager.updateCustomPreferences({
       pageSize: 50,
-      reportTitle: 'Monthly report',
+      reportTitle: '月报',
     });
 
     expect(preferenceManager.getCustomPreferences()).toEqual({
       pageSize: 50,
-      reportTitle: 'Monthly report',
+      reportTitle: '月报',
     });
 
     await preferenceManager.resetPreferences();
 
     expect(preferenceManager.getCustomPreferences()).toEqual({
       pageSize: 20,
-      reportTitle: 'Daily report',
+      reportTitle: '日报',
     });
   });
 
@@ -393,20 +366,20 @@ describe('preferences', () => {
             component: 'switch',
             defaultValue: true,
             key: 'enableWorkbench',
-            label: 'Enable workbench',
+            label: '启用工作台',
           },
           {
             component: 'select',
             defaultValue: 'single',
             key: 'tenantMode',
-            label: 'Tenant mode',
+            label: '租户模式',
             options: [
-              { label: 'Single tenant', value: 'single' },
-              { label: 'Multi tenant', value: 'multi' },
+              { label: '单租户', value: 'single' },
+              { label: '多租户', value: 'multi' },
             ],
           },
         ],
-        tabLabel: 'Extensions',
+        tabLabel: '扩展',
       },
       namespace: 'custom-invalid',
     });
@@ -437,10 +410,10 @@ describe('preferences', () => {
             },
             defaultValue: 4,
             key: 'pageSize',
-            label: 'Page size',
+            label: '分页大小',
           },
         ],
-        tabLabel: 'Extensions',
+        tabLabel: '扩展',
       },
       namespace: 'custom-number-constraints',
     });
@@ -503,10 +476,10 @@ describe('preferences', () => {
             },
             defaultValue: 4,
             key: 'pageSize',
-            label: 'Page size',
+            label: '分页大小',
           },
         ],
-        tabLabel: 'Extensions',
+        tabLabel: '扩展',
       },
       namespace: 'custom-number-cache',
     });
@@ -514,33 +487,5 @@ describe('preferences', () => {
     expect(preferenceManager.getCustomPreferences()).toEqual({
       pageSize: 4,
     });
-  });
-});
-
-describe('isDarkTheme', () => {
-  it('should return true for dark theme', () => {
-    expect(isDarkTheme('dark')).toBe(true);
-  });
-
-  it('should return false for light theme', () => {
-    expect(isDarkTheme('light')).toBe(false);
-  });
-
-  it('should return system preference for auto theme', () => {
-    vi.spyOn(window, 'matchMedia').mockImplementation((query) => ({
-      addEventListener: vi.fn(),
-      addListener: vi.fn(), // Deprecated
-      dispatchEvent: vi.fn(),
-      matches: query === '(prefers-color-scheme: dark)',
-      media: query,
-      onchange: null,
-      removeEventListener: vi.fn(),
-      removeListener: vi.fn(), // Deprecated
-    }));
-
-    expect(isDarkTheme('auto')).toBe(true);
-    expect(window.matchMedia).toHaveBeenCalledWith(
-      '(prefers-color-scheme: dark)',
-    );
   });
 });

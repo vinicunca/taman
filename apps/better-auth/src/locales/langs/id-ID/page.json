@@ -1,0 +1,17 @@
+{
+  "auth": {
+    "login": "Masuk",
+    "register": "Daftar",
+    "codeLogin": "Login Kode",
+    "qrcodeLogin": "Login Kode QR",
+    "forgetPassword": "Lupa Kata Sandi",
+    "sendingCode": "Kode SMS sedang dikirim...",
+    "codeSentTo": "Kode telah dikirim ke {0}",
+    "profile": "Profil"
+  },
+  "dashboard": {
+    "title": "Dasbor",
+    "analytics": "Analitik",
+    "workspace": "Ruang Kerja"
+  }
+}

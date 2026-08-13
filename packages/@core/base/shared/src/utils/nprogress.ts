@@ -1,14 +1,13 @@
 import type NProgress from 'nprogress';
 
-// Create a variable to store the NProgress instance, initialized to null
+// NProgress instance; null until loaded
 let nProgressInstance: null | typeof NProgress = null;
 
 /**
- * Dynamically load the NProgress library and configure it.
- * This function first checks if the NProgress library has already been loaded, and if it has, it returns the NProgress instance.
- * Otherwise, it dynamically imports the NProgress library, configures it, and then returns the NProgress instance.
+ * Dynamically load and configure the NProgress library.
+ * Returns the cached instance when already loaded; otherwise imports and configures it.
  *
- * @returns The Promise object of the NProgress instance.
+ * @returns Promise that resolves to the NProgress instance.
  */
 async function loadNprogress() {
   if (nProgressInstance) {
@@ -23,8 +22,8 @@ async function loadNprogress() {
 }
 
 /**
- * Start displaying the progress bar.
- * This function first loads the NProgress library, then calls the start method of NProgress to start displaying the progress bar.
+ * Start the progress bar.
+ * Loads NProgress first, then calls start().
  */
 async function startProgress() {
   const nprogress = await loadNprogress();
@@ -32,8 +31,8 @@ async function startProgress() {
 }
 
 /**
- * Stop displaying the progress bar and hide the progress bar.
- * This function first loads the NProgress library, then calls the done method of NProgress to stop and hide the progress bar.
+ * Stop and hide the progress bar.
+ * Loads NProgress first, then calls done().
  */
 async function stopProgress() {
   const nprogress = await loadNprogress();

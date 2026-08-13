@@ -3,13 +3,13 @@ import type { IStorageDriver } from './types';
 type StorageType = 'localStorage' | 'sessionStorage';
 
 interface LocalStorageDriverOptions {
-  /** Use localStorage or sessionStorage */
+  /** Whether to use localStorage or sessionStorage */
   storageType?: StorageType;
 }
 
 /**
- * LocalStorage / SessionStorage driver
- * Use async to wrap synchronous API, keep the interface consistent
+ * LocalStorage / SessionStorage driver.
+ * Wraps synchronous APIs with async to keep the interface consistent.
  */
 class LocalStorageDriver implements IStorageDriver {
   private storage: Storage;
@@ -22,8 +22,8 @@ class LocalStorageDriver implements IStorageDriver {
         'LocalStorageDriver is not available in non-browser environments. Use MemoryStorageDriver instead.',
       );
     }
-    this.storage
-      = storageType === 'localStorage'
+    this.storage =
+      storageType === 'localStorage'
         ? window.localStorage
         : window.sessionStorage;
   }
@@ -40,14 +40,14 @@ class LocalStorageDriver implements IStorageDriver {
     try {
       return JSON.parse(raw) as T;
     } catch {
-      // Data is corrupted, clear and return null
+      // Corrupted data: clear and return null
       this.storage.removeItem(key);
       return null;
     }
   }
 
-  async keys(): Promise<Array<string>> {
-    const result: Array<string> = [];
+  async keys(): Promise<string[]> {
+    const result: string[] = [];
     for (let i = 0; i < this.storage.length; i++) {
       const key = this.storage.key(i);
       if (key !== null) {

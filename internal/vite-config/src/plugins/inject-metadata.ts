@@ -1,12 +1,13 @@
 import type { PluginOption } from 'vite';
 
-import { DateFormatter, getLocalTimeZone, now } from '@internationalized/date';
-import { readWorkspaceManifest } from '@pnpm/workspace.read-manifest';
 import {
+  dateUtil,
   findMonorepoRoot,
   getPackages,
   readPackageJSON,
 } from '@taman/node-utils';
+
+import { readWorkspaceManifest } from '@pnpm/workspace.read-manifest';
 
 function resolvePackageVersion(
   pkgsMeta: Record<string, string>,
@@ -63,36 +64,21 @@ async function resolveMonorepoDependencies() {
   };
 }
 
-const buildTimeFormatter = new DateFormatter('sv-SE', {
-  year: 'numeric',
-  month: 'numeric',
-  day: 'numeric',
-  hour: 'numeric',
-  minute: 'numeric',
-  second: 'numeric',
-  hour12: false,
-});
-
-function formatBuildTime(): string {
-  const date = now(getLocalTimeZone());
-  return buildTimeFormatter.format(date.toDate());
-}
-
 /**
- * Used to inject project information
+ * Injects project metadata into the Vite config
  */
 async function viteMetadataPlugin(
   root = process.cwd(),
 ): Promise<PluginOption | undefined> {
-  const { author, description, homepage, license, version }
-    = await readPackageJSON(root);
+  const { author, description, homepage, license, version } =
+    await readPackageJSON(root);
 
-  const buildTime = formatBuildTime();
+  const buildTime = dateUtil().format('YYYY-MM-DD HH:mm:ss');
 
   return {
     async config() {
-      const { dependencies, devDependencies }
-        = await resolveMonorepoDependencies();
+      const { dependencies, devDependencies } =
+        await resolveMonorepoDependencies();
 
       const isAuthorObject = typeof author === 'object';
       const authorName = isAuthorObject ? author.name : author;
@@ -101,7 +87,7 @@ async function viteMetadataPlugin(
 
       return {
         define: {
-          '__TAMAN_ADMIN_METADATA__': JSON.stringify({
+          __VBEN_ADMIN_METADATA__: JSON.stringify({
             authorEmail,
             authorName,
             authorUrl,

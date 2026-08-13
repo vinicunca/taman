@@ -3,23 +3,23 @@
  */
 export class Stack<T> {
   /**
-   * The number of elements in the stack
+   * Number of items in the stack
    */
   get size() {
     return this.items.length;
   }
 
   /**
-   * Whether to deduplicate
+   * Whether duplicate items are removed on push
    */
   private readonly dedup: boolean;
   /**
-   * The elements in the stack
+   * Items in the stack
    */
   private items: Array<T> = [];
 
   /**
-   * The maximum capacity of the stack
+   * Maximum stack capacity
    */
   private readonly maxSize?: number;
 
@@ -29,31 +29,31 @@ export class Stack<T> {
   }
 
   /**
-   * Clear the elements in the stack
+   * Clear all items in the stack
    */
   clear() {
     this.items.length = 0;
   }
 
   /**
-   * View the top element of the stack
-   * @returns The top element of the stack
+   * View the top item without removing it
+   * @returns Top item
    */
   peek(): T | undefined {
     return this.items[this.items.length - 1];
   }
 
   /**
-   * Pop the top element of the stack
-   * @returns The top element of the stack
+   * Pop the top item
+   * @returns Top item
    */
   pop(): T | undefined {
     return this.items.pop();
   }
 
   /**
-   * Push elements into the stack
-   * @param items The elements to push into the stack
+   * Push items onto the stack
+   * @param items Items to push
    */
   push(...items: Array<T>) {
     items.forEach((item) => {
@@ -72,16 +72,16 @@ export class Stack<T> {
   }
 
   /**
-   * Remove elements from the stack
-   * @param itemList The elements to remove from the stack
+   * Remove items from the stack
+   * @param itemList Items to remove
    */
   remove(...itemList: Array<T>) {
     this.items = this.items.filter((i) => !itemList.includes(i));
   }
 
   /**
-   * Keep the elements in the stack
-   * @param itemList The elements to keep in the stack
+   * Keep only the specified items in the stack
+   * @param itemList Items to retain
    */
   retain(itemList: Array<T>) {
     this.items = this.items.filter((i) => itemList.includes(i));
@@ -89,7 +89,7 @@ export class Stack<T> {
 
   /**
    * Convert the stack to an array
-   * @returns The elements in the stack
+   * @returns Array of stack items
    */
   toArray(): Array<T> {
     return [...this.items];
@@ -98,9 +98,9 @@ export class Stack<T> {
 
 /**
  * Create a stack instance
- * @param dedup Whether to deduplicate
- * @param maxSize The maximum capacity of the stack
- * @returns The stack instance
+ * @param dedup Whether to deduplicate on push
+ * @param maxSize Maximum stack capacity
+ * @returns Stack instance
  */
 export function createStack<T>(dedup = true, maxSize?: number) {
   return new Stack<T>(dedup, maxSize);

@@ -9,10 +9,13 @@
     }
   },
   "dependencies": {
-    "@taman-core/typings": "workspace:*",
     "@taman/preferences": "workspace:*",
     "@taman/stores": "workspace:*",
+    "@taman/types": "workspace:*",
     "@taman/utils": "workspace:*",
     "vue": "catalog:"
+  },
+  "devDependencies": {
+    "pinia": "catalog:"
   }
 }

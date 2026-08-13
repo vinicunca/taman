@@ -1,12 +1,12 @@
 import { TinyColor } from '@ctrl/tinycolor';
 
 /**
- * Convert the color to HSL format.
+ * Convert a color to HSL format.
  *
- * HSL is a color model, including hue, saturation, and lightness.
+ * HSL is a color model with hue, saturation, and lightness components.
  *
- * @param color The input color.
- * @returns The color string in HSL format.
+ * @param {string} color Input color.
+ * @returns {string} HSL color string.
  */
 function convertToHsl(color: string): string {
   const { a, h, l, s } = new TinyColor(color).toHsl();
@@ -15,13 +15,12 @@ function convertToHsl(color: string): string {
 }
 
 /**
- * Convert the color to HSL CSS variable.
+ * Convert a color to an HSL CSS variable value.
  *
- * This function is similar to the convertToHsl function, but the returned string format is slightly different,
- * so it can be used as a CSS variable.
+ * Similar to convertToHsl, but formatted for use as a CSS variable.
  *
- * @param color The input color.
- * @returns The color string in HSL format that can be used as a CSS variable.
+ * @param {string} color Input color.
+ * @returns {string} HSL color string suitable for CSS variables.
  */
 function convertToHslCssVar(color: string): string {
   const { a, h, l, s } = new TinyColor(color).toHsl();
@@ -30,21 +29,21 @@ function convertToHslCssVar(color: string): string {
 }
 
 /**
- * Convert the color to RGB color string
- * TinyColor无法处理hsl内包含'deg'、'grad'、'rad'或'turn'的字符串
- * like hsl(231deg 98% 65%) will be parsed as rgb(0, 0, 0)
- * Here, these units are removed before conversion
- * @param str The string representing the HLS color value
- * @returns If the color value is valid, return the corresponding RGB color string; if invalid, return rgb(0, 0, 0)
+ * Convert a color to an RGB color string.
+ * TinyColor cannot parse HSL strings containing deg, grad, rad, or turn units.
+ * For example, hsl(231deg 98% 65%) would be parsed as rgb(0, 0, 0).
+ * Strip those units before conversion.
+ * @param str HSL color string
+ * @returns RGB color string when valid, otherwise rgb(0, 0, 0)
  */
 function convertToRgb(str: string): string {
   return new TinyColor(str.replaceAll(/deg|grad|rad|turn/g, '')).toRgbString();
 }
 
 /**
- * Check if the color is valid
- * @param color - The color to check
- * If the color is valid, return true; otherwise, return false
+ * Check whether a color value is valid.
+ * @param {string} color Color to validate
+ * Returns true when valid, otherwise false
  */
 function isValidColor(color?: string) {
   if (!color) {

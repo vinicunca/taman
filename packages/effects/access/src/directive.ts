@@ -4,25 +4,37 @@
  * @Example v-access:role="[ROLE_NAME]" or v-access:role="ROLE_NAME"
  * @Example v-access:code="[ROLE_CODE]" or v-access:code="ROLE_CODE"
  */
-import type { App, Directive, DirectiveBinding } from 'vue';
+import type { App, Directive, DirectiveBinding, InjectionKey, MaybeRefOrGetter } from 'vue';
 
-import { useAccess } from './use-access';
+import { preferences } from '@taman/preferences';
+import { useAccessStore } from '@taman/stores';
+import { toValue } from 'vue';
+
+import { matchesAnyRole } from './matches-any-role';
+
+/**
+ * Roles source provided once via `registerAccessDirective`, consumed by
+ * `useAccess()` (real component context, where `inject()` works). The
+ * directive itself gets the same value via closure instead — `inject()`
+ * does not resolve inside a directive's `mounted` hook.
+ */
+export const ACCESS_ROLES_KEY: InjectionKey<MaybeRefOrGetter<Array<string>>>
+  = Symbol('access-roles');
 
 function isAccessible(
   el: Element,
-  binding: DirectiveBinding<string | Array<string>>,
+  binding: DirectiveBinding<string | string[]>,
+  roles: Array<string>,
 ) {
-  const { accessMode, hasAccessByCodes, hasAccessByRoles } = useAccess();
+  const accessStore = useAccessStore(); // Pinia: module-level singleton, safe outside component context
 
   const value = binding.value;
 
-  if (!value) {
-    return;
-  }
+  if (!value) return;
   const authMethod
-    = accessMode.value === 'frontend' && binding.arg === 'role'
-      ? hasAccessByRoles
-      : hasAccessByCodes;
+    = preferences.app.accessMode === 'frontend' && binding.arg === 'role'
+      ? (values: Array<string>) => matchesAnyRole(roles, values)
+      : (values: Array<string>) => matchesAnyRole(accessStore.accessCodes, values);
 
   const values = Array.isArray(value) ? value : [value];
 
@@ -31,14 +43,18 @@ function isAccessible(
   }
 }
 
-function mounted(el: Element, binding: DirectiveBinding<string | Array<string>>) {
-  isAccessible(el, binding);
-}
+export function registerAccessDirective(
+  app: App,
+  roles: MaybeRefOrGetter<Array<string>>,
+): void {
+  const mounted = (el: Element, binding: DirectiveBinding<string | string[]>) => {
+    isAccessible(el, binding, toValue(roles));
+  };
 
-const authDirective: Directive = {
-  mounted,
-};
+  const authDirective: Directive = {
+    mounted,
+  };
 
-export function registerAccessDirective(app: App) {
   app.directive('access', authDirective);
+  app.provide(ACCESS_ROLES_KEY, roles);
 }

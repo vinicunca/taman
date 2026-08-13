@@ -1,0 +1,14 @@
+{
+  "name": "@taman/request",
+  "type": "module",
+  "version": "1.0.0",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "dependencies": {
+    "ofetch": "catalog:"
+  }
+}

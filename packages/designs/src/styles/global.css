@@ -1,0 +1,40 @@
+:root {
+  --taman-radius: 0.5rem;
+}
+
+#app,
+body,
+html {
+  @apply size-full;
+}
+
+body {
+  @apply bg-background color-text scheme-light dark:scheme-dark font-sans min-h-screen;
+}
+
+::view-transition-new(root),
+::view-transition-old(root) {
+  @apply animate-none mix-blend-normal;
+}
+
+::view-transition-old(root) {
+  @apply z-1;
+}
+
+::view-transition-new(root) {
+  @apply z-2147483646;
+}
+
+html.dark::view-transition-old(root) {
+  @apply z-2147483646;
+}
+
+html.dark::view-transition-new(root) {
+  @apply z-1;
+}
+
+*,
+::after,
+::before {
+  border-color: var(--ui-border);
+}

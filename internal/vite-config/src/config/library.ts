@@ -3,6 +3,7 @@ import type { ConfigEnv, UserConfig } from 'vite';
 import type { DefineLibraryOptions } from '../typing';
 
 import { readPackageJSON } from '@taman/node-utils';
+
 import { defineConfig, mergeConfig } from 'vite';
 
 import { loadLibraryPlugins } from '../plugins';
@@ -24,8 +25,8 @@ function defineLibraryConfig(userConfigPromise?: DefineLibraryOptions) {
       ...library,
     });
 
-    const { dependencies = {}, peerDependencies = {} }
-      = await readPackageJSON(root);
+    const { dependencies = {}, peerDependencies = {} } =
+      await readPackageJSON(root);
 
     const externalPackages = [
       ...Object.keys(dependencies),

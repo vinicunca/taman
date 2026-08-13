@@ -1,0 +1,32 @@
+{
+  "name": "backstage",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/backstage",
+  "projectType": "application",
+  "targets": {
+    "dev": {
+      "command": "pnpm vite --mode development",
+      "options": {
+        "cwd": "apps/backstage"
+      },
+      "cache": false
+    },
+
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/backstage"
+      },
+      "cache": false,
+      "configurations": {
+        "uat": {
+          "command": "pnpm run build && wrangler pages deploy dist --project-name=backstage --branch=uat"
+        },
+        "production": {
+          "command": "pnpm run build && wrangler pages deploy dist --project-name=backstage --branch=production"
+        }
+      }
+    }
+  },
+  "tags": []
+}

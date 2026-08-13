@@ -1,0 +1,35 @@
+{
+  "name": "backend-mock",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/backend-mock",
+  "projectType": "application",
+  "targets": {
+    "dev": {
+      "command": "nitro dev",
+      "options": {
+        "cwd": "apps/backend-mock",
+        "env": {
+          "NODE_OPTIONS": "--no-deprecation"
+        }
+      },
+      "cache": false
+    },
+
+    "build": {
+      "command": "nitro build",
+      "options": {
+        "cwd": "apps/backend-mock"
+      },
+      "cache": false
+    },
+
+    "test": {
+      "command": "vitest",
+      "options": {
+        "cwd": "apps/backend-mock"
+      },
+      "cache": false
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@taman-core/layout-ui",
+  "type": "module",
+  "version": "1.0.0",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "development": "./src/index.ts",
+      "production": "./src/index.ts"
+    }
+  },
+  "dependencies": {
+    "@taman-core/composables": "workspace:*",
+    "@taman-core/icons": "workspace:*",
+    "@taman-core/shared": "workspace:*",
+    "@taman-core/taman-ui": "workspace:*",
+    "@taman-core/typings": "workspace:*",
+    "@vben-core/shadcn-ui": "workspace:*",
+    "@vueuse/core": "catalog:",
+    "vue": "catalog:"
+  },
+  "devDependencies": {
+    "unplugin-vue": "catalog:"
+  }
+}

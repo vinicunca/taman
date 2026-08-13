@@ -1,0 +1,24 @@
+{
+  "name": "@taman-core/pohon-ui-theme",
+  "type": "module",
+  "version": "1.0.0",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "development": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "@taman-core/shared": "workspace:*",
+    "defu": "catalog:",
+    "pohon-ui": "catalog:",
+    "unocss": "catalog:"
+  }
+}

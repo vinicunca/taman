@@ -1,0 +1,130 @@
+{
+  "title": "Demo",
+  "access": {
+    "frontendPermissions": "Izin Frontend",
+    "backendPermissions": "Izin Backend",
+    "pageAccess": "Akses Halaman",
+    "buttonControl": "Kontrol Tombol",
+    "menuVisible403": "Menu Terlihat (403)",
+    "superVisible": "Terlihat untuk Super",
+    "adminVisible": "Terlihat untuk Admin",
+    "userVisible": "Terlihat untuk Pengguna"
+  },
+  "nested": {
+    "title": "Menu Bersarang",
+    "menu1": "Menu 1",
+    "menu2": "Menu 2",
+    "menu2_1": "Menu 2-1",
+    "menu3": "Menu 3",
+    "menu3_1": "Menu 3-1",
+    "menu3_2": "Menu 3-2",
+    "menu3_2_1": "Menu 3-2-1"
+  },
+  "outside": {
+    "title": "Halaman Eksternal",
+    "embedded": "Tertanam",
+    "externalLink": "Tautan Eksternal"
+  },
+  "badge": {
+    "title": "Lencana Menu",
+    "dot": "Lencana Titik",
+    "text": "Lencana Teks",
+    "color": "Warna Lencana"
+  },
+  "activeIcon": {
+    "title": "Ikon Menu Aktif",
+    "children": "Ikon Aktif Anak"
+  },
+  "fallback": {
+    "title": "Halaman Cadangan"
+  },
+  "features": {
+    "title": "Fitur",
+    "hideChildrenInMenu": "Sembunyikan Anak Menu",
+    "loginExpired": "Login Kedaluwarsa",
+    "icons": "Ikon",
+    "watermark": "Watermark",
+    "preferencesExtension": "Ekstensi Preferensi",
+    "tabs": "Tab",
+    "tabDetail": "Halaman Detail Tab",
+    "fullScreen": "Layar Penuh",
+    "clipboard": "Papan Klip",
+    "menuWithQuery": "Menu dengan Query",
+    "openInNewWindow": "Buka di Jendela Baru",
+    "fileDownload": "Unduh File"
+  },
+  "preferencesExtensionDemo": {
+    "description": "Halaman ini langsung menggunakan preferensi ekstensi yang didefinisikan di aplikasi playground. Anda dapat mengubahnya di “Preferensi → Ekstensi Playground” di kanan atas, atau klik tombol prasetel di bawah untuk melihat pembaruan halaman secara real time.",
+    "currentConfig": "Preferensi Ekstensi Saat Ini",
+    "currentTitle": "Judul Saat Ini: {title}",
+    "currentDescription": "Menampilkan {count} tugas secara default; tindakan cepat {quickActionText}; nada sorotan saat ini adalah “{tone}”.",
+    "showQuickActions": "ditampilkan",
+    "hideQuickActions": "disembunyikan",
+    "boardDescription": "Ini contoh penggunaan nyata: judul halaman, area tindakan, jumlah baris yang terlihat, dan gaya sorotan semuanya didorong oleh preferensi ekstensi.",
+    "quickActionsEnabled": "Tindakan cepat saat ini dinonaktifkan, sehingga halaman hanya menyimpan tampilan informasi baca-saja.",
+    "quickActions": {
+      "create": "Buat Tugas",
+      "export": "Ekspor Batch",
+      "refresh": "Segarkan Data"
+    },
+    "presetTitle": "Prasetel Cepat (mendemonstrasikan updateCustomPreferences)",
+    "presetButtons": {
+      "default": "Atur Ulang Default",
+      "compact": "Beralih ke Ringkas",
+      "review": "Beralih ke Tinjauan"
+    },
+    "presetTitles": {
+      "compact": "Dasbor Ringkas",
+      "default": "Ringkasan Operasi Mingguan",
+      "review": "Dasbor Tinjauan"
+    },
+    "tones": {
+      "default": "Default",
+      "success": "Sukses",
+      "warning": "Peringatan"
+    },
+    "owner": "Pemilik"
+  },
+  "preferencesExtensionConfig": {
+    "tabLabel": "Ekstensi",
+    "title": "Preferensi Bisnis Playground",
+    "fields": {
+      "reportTitle": {
+        "label": "Judul Laporan",
+        "placeholder": "Silakan masukkan judul laporan"
+      },
+      "defaultVisibleRows": {
+        "label": "Baris Terlihat Default",
+        "tip": "Mengontrol berapa banyak item tugas yang dirender secara default di halaman demo."
+      },
+      "enableQuickActions": {
+        "label": "Tampilkan Tindakan Cepat"
+      },
+      "highlightTone": {
+        "label": "Nada Sorotan",
+        "options": {
+          "default": "Default",
+          "success": "Sukses",
+          "warning": "Peringatan"
+        }
+      }
+    }
+  },
+  "breadcrumb": {
+    "navigation": "Navigasi Breadcrumb",
+    "lateral": "Mode Lateral",
+    "lateralDetail": "Detail Mode Lateral",
+    "level": "Mode Level",
+    "levelDetail": "Detail Mode Level"
+  },
+  "vben": {
+    "title": "Proyek",
+    "about": "Tentang",
+    "document": "Dokumen",
+    "antdv": "Versi Ant Design Vue",
+    "antdv-next": "Versi Antdv Next",
+    "naive-ui": "Versi Naive UI",
+    "element-plus": "Versi Element Plus",
+    "tdesign": "Versi TDesign Vue"
+  }
+}

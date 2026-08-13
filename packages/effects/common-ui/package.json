@@ -6,11 +6,41 @@
     ".": {
       "types": "./src/index.ts",
       "default": "./src/index.ts"
+    },
+    "./es/tippy": {
+      "types": "./src/components/tippy/index.ts",
+      "default": "./src/components/tippy/index.ts"
+    },
+    "./es/loading": {
+      "types": "./src/components/loading/index.ts",
+      "default": "./src/components/loading/index.ts"
     }
   },
   "dependencies": {
-    "@taman-core/pohon-ui": "workspace:*",
-    "@vinicunca/perkakas": "catalog:",
-    "vue": "catalog:"
+    "@taman-core/form-builder": "workspace:*",
+    "@taman-core/popup-ui": "workspace:*",
+    "@taman-core/preferences": "workspace:*",
+    "@taman-core/shared": "workspace:*",
+    "@taman/composables": "workspace:*",
+    "@taman/constants": "workspace:*",
+    "@taman/locales": "workspace:*",
+    "@taman/types": "workspace:*",
+    "@vben-core/form-ui": "workspace:*",
+    "@vben-core/shadcn-ui": "workspace:*",
+    "@vben/icons": "workspace:*",
+    "@vueuse/core": "catalog:",
+    "@vueuse/integrations": "catalog:",
+    "json-bigint": "catalog:",
+    "qrcode": "catalog:",
+    "tippy.js": "catalog:",
+    "vue": "catalog:",
+    "vue-json-pretty": "catalog:",
+    "vue-router": "catalog:",
+    "vue-tippy": "catalog:"
+  },
+  "devDependencies": {
+    "@types/json-bigint": "catalog:",
+    "@types/qrcode": "catalog:",
+    "@vue/test-utils": "catalog:"
   }
 }
