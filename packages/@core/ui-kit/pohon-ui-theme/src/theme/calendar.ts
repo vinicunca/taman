@@ -1,6 +1,6 @@
 // @unocss-include
 import type { PThemeCalendar } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const calendar = {
   slots: {
@@ -20,7 +20,7 @@ export const calendar = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, {
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
         headCell: `color-${color}`,
         cellTrigger: `focus-visible:ring-${color}`,
       }])),
@@ -82,28 +82,28 @@ export const calendar = {
     },
   },
   compoundVariants: [
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'solid',
       class: {
         cellTrigger: `data-[selected]:bg-${color} data-[selected]:color-text-inverted data-today:not-data-[selected]:color-${color} data-[highlighted]:bg-${color}/20 hover:not-data-[selected]:bg-${color}/20`,
       },
     })),
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'outline',
       class: {
         cellTrigger: `data-[selected]:ring data-[selected]:ring-inset data-[selected]:ring-${color}/50 data-[selected]:color-${color} data-today:not-data-[selected]:color-${color} data-[highlighted]:bg-${color}/10 hover:not-data-[selected]:bg-${color}/10`,
       },
     })),
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'soft',
       class: {
         cellTrigger: `data-[selected]:bg-${color}/10 data-[selected]:color-${color} data-today:not-data-[selected]:color-${color} data-[highlighted]:bg-${color}/20 hover:not-data-[selected]:bg-${color}/20`,
       },
     })),
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'subtle',
       class: {

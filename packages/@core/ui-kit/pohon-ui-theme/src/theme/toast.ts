@@ -1,6 +1,6 @@
 import type { PThemeToast } from 'pohon-ui';
 // @unocss-include
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const toast = {
   slots: {
@@ -17,7 +17,7 @@ export const toast = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [
         color,
         {
           root: `outline-${color}/25 focus-visible:outline-3 focus-visible:ring-${color}`,

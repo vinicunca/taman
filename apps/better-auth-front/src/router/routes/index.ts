@@ -1,14 +1,9 @@
 import type { RouteRecordRaw } from 'vue-router';
 
-import { USER_ROLES } from '@taman/rbac';
-import { mapTree, mergeRouteModules } from '@taman/utils';
+import { mergeRouteModules } from '@taman/utils';
 import { coreRoutes } from './core';
 
 const devRouteFiles = import.meta.glob('./modules/dev/**/*.ts', {
-  eager: true,
-});
-
-const userRouteFiles = import.meta.glob('./modules/user/**/*.ts', {
   eager: true,
 });
 
@@ -18,19 +13,6 @@ const userRouteFiles = import.meta.glob('./modules/user/**/*.ts', {
  * These routes only available for admin users for development purposes.
  */
 const devRoutes: Array<RouteRecordRaw> = mergeRouteModules(devRouteFiles);
-const adminOnlyRoutes = mapTree(devRoutes, (route) => {
-  if (route.meta && !route.meta.authority) {
-    route.meta = {
-      ...route.meta,
-      authority: [USER_ROLES.ADMIN],
-    };
-  }
-
-  return route;
-});
-
-/** User routes */
-const userRoutes: Array<RouteRecordRaw> = mergeRouteModules(userRouteFiles);
 
 /** External routes (no layout; for embedding; hidden from menu) */
 // const externalRoutes: RouteRecordRaw[] = mergeRouteModules(externalRouteFiles);
@@ -46,8 +28,7 @@ const routes: Array<RouteRecordRaw> = [
 
 /** Routes subject to permission checks (dynamic + static) */
 const accessRoutes = [
-  ...userRoutes,
-  ...adminOnlyRoutes,
+  ...devRoutes,
   ...staticRoutes,
 ];
 

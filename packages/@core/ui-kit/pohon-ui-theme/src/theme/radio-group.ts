@@ -1,6 +1,6 @@
 // @unocss-include
 import type { PThemeRadioGroup } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const radioGroup = {
   slots: {
@@ -17,7 +17,7 @@ export const radioGroup = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, {
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
         base: `focus-visible:outline-${color}`,
         indicator: `bg-${color}`,
       }])),
@@ -137,7 +137,7 @@ export const radioGroup = {
         fieldset: 'gap-0 -space-y-px',
       },
     },
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'card',
       class: {
@@ -151,7 +151,7 @@ export const radioGroup = {
         item: 'has-data-[state=checked]:border-border-inverted',
       },
     },
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'table',
       class: {
@@ -172,7 +172,7 @@ export const radioGroup = {
         item: 'cursor-not-allowed',
       },
     },
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       highlight: true,
       class: {

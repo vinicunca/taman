@@ -1,6 +1,6 @@
 // @unocss-include
 import type { PThemeSwitch } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const switchTheme = {
   slots: {
@@ -15,7 +15,7 @@ export const switchTheme = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, {
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
         base: `data-[state=checked]:bg-${color} focus-visible:outline-${color}`,
         icon: `group-data-[state=checked]:color-${color}`,
       }])),
@@ -86,7 +86,7 @@ export const switchTheme = {
     },
   },
   compoundVariants: [
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       highlight: true,
       class: {

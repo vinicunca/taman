@@ -1,7 +1,7 @@
 // @unocss-include
 
 import type { PThemeChatMessage } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const chatMessage = {
   slots: {
@@ -101,35 +101,35 @@ export const chatMessage = {
         content: 'w-full',
       },
     },
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'solid',
       class: {
         content: `bg-${color} color-text-inverted`,
       },
     })),
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'outline',
       class: {
         content: `color-${color} ring ring-${color}/25`,
       },
     })),
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'soft',
       class: {
         content: `bg-${color}/10 color-${color}`,
       },
     })),
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'subtle',
       class: {
         content: `bg-${color}/10 text-${color} ring ring-${color}/25`,
       },
     })),
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'naked',
       class: {

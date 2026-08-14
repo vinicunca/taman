@@ -1,6 +1,6 @@
 // @unocss-include
 
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 import { fieldGroupVariantWithRoot } from './field-group.ts';
 
 export const input = {
@@ -68,7 +68,7 @@ export const input = {
       none: 'color-text-highlighted bg-transparent focus:outline-none',
     },
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, ''])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, ''])),
       neutral: '',
     },
     leading: {
@@ -91,17 +91,17 @@ export const input = {
     },
   },
   compoundVariants: [
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: ['outline', 'subtle'],
       class: `outline-${color}/25 focus-visible:outline-3 focus-visible:ring-${color}`,
     })),
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: ['soft', 'ghost'],
       class: `outline-${color}/25 focus-visible:outline-3`,
     })),
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       highlight: true,
       class: `ring ring-inset ring-${color}`,

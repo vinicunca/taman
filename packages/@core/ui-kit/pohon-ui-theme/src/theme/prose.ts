@@ -1,7 +1,7 @@
 // @unocss-include
 
 import type { PThemeProse } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const prose = {
   a: {
@@ -30,7 +30,7 @@ export const prose = {
     },
     variants: {
       color: {
-        ...Object.fromEntries(BRANDS.map((color: string) => [color, {
+        ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
           base: `border border-${color}/25 bg-${color}/10 color-${color}-600 dark:color-${color}-300 [&_a]:color-${color} [&_a]:hover:border-${color} [&_a]:focus-visible:outline-${color} [&_code]:color-${color}-600 dark:[&_code]:color-${color}-300 [&_code]:border-${color}/25 [&_a]:hover:[&>code]:border-${color} [&_a]:hover:[&>code]:color-${color} [&_a]:focus-visible:[&>code]:border-${color} [&_a]:focus-visible:[&>code]:color-${color} [&>ul]:marker:color-${color}/50`,
           icon: `color-${color}`,
           externalIcon: `color-${color}-600 dark:color-${color}-300`,
@@ -46,7 +46,7 @@ export const prose = {
       },
     },
     compoundVariants: [
-      ...BRANDS.map((color: string) => ({
+      ...POHON_THEME_BRANDS.map((color: string) => ({
         color,
         to: true,
         class: {
@@ -74,7 +74,7 @@ export const prose = {
     },
     variants: {
       color: {
-        ...Object.fromEntries(BRANDS.map((color: string) => [color, {
+        ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
           icon: `color-${color}`,
         }])),
         neutral: {
@@ -91,7 +91,7 @@ export const prose = {
       },
     },
     compoundVariants: [
-      ...BRANDS.map((color: string) => ({
+      ...POHON_THEME_BRANDS.map((color: string) => ({
         color,
         to: true,
         class: {
@@ -116,7 +116,7 @@ export const prose = {
     base: 'px-1.5 py-0.5 text-sm font-mono font-medium rounded-md inline-block',
     variants: {
       color: {
-        ...Object.fromEntries(BRANDS.map((color: string) => [color, `border border-${color}/25 bg-${color}/10 color-${color}`])),
+        ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, `border border-${color}/25 bg-${color}/10 color-${color}`])),
         neutral: 'border border-border-muted color-text-highlighted bg-background-muted',
       },
     },

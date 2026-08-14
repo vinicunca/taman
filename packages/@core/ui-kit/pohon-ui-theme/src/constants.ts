@@ -1,4 +1,4 @@
-export const BRANDS = [
+export const POHON_THEME_BRANDS = [
   'primary',
   'secondary',
   'success',

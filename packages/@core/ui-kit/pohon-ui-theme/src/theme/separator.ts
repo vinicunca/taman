@@ -1,6 +1,6 @@
 // @unocss-include
 import type { PThemeSeparator } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const separator = {
   slots: {
@@ -14,7 +14,7 @@ export const separator = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, { border: `border-${color}` }])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, { border: `border-${color}` }])),
       neutral: { border: 'border-border' },
     },
     orientation: {

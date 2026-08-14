@@ -1,7 +1,7 @@
 // @unocss-include
 
 import type { PThemeAvatar } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const avatar = {
   slots: {
@@ -12,7 +12,7 @@ export const avatar = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, {
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
         root: `bg-${color}/10`,
         fallback: `color-${color}`,
         icon: `color-${color}`,

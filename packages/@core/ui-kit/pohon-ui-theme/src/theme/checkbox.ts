@@ -1,7 +1,7 @@
 // @unocss-include
 
 import type { PThemeCheckbox } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const checkbox = {
   slots: {
@@ -16,7 +16,7 @@ export const checkbox = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, {
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
         base: `focus-visible:outline-${color}`,
         indicator: `bg-${color}`,
       }])),
@@ -97,7 +97,7 @@ export const checkbox = {
     { size: 'md', variant: 'card', class: { root: 'p-3.5' } },
     { size: 'lg', variant: 'card', class: { root: 'p-4' } },
     { size: 'xl', variant: 'card', class: { root: 'p-4.5' } },
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'card',
       class: {
@@ -118,7 +118,7 @@ export const checkbox = {
         root: 'cursor-not-allowed',
       },
     },
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       highlight: true,
       class: {

@@ -1,7 +1,7 @@
 // @unocss-include
 
 import type { PThemeInputNumber } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 import { fieldGroupVariantWithRoot } from './field-group.ts';
 import { input } from './input.ts';
 
@@ -57,12 +57,12 @@ export const inputNumber = {
   },
 
   compoundVariants: [
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: ['outline', 'subtle'],
       class: `focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-${color}`,
     })),
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       highlight: true,
       class: `ring ring-inset ring-${color}`,

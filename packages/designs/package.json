@@ -8,11 +8,12 @@
       "default": "./src/index.ts"
     },
     "./styles": {
-      "types": "./src/styles/style-exports.d.ts",
-      "default": "./src/styles/index.css"
+      "types": "./src/styles/index.ts",
+      "default": "./src/styles/index.ts"
     }
   },
   "devDependencies": {
+    "@unocss/preset-wind4": "catalog:",
     "@vinicunca/unocss-preset": "catalog:",
     "unocss": "catalog:"
   }

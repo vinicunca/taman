@@ -1,6 +1,6 @@
 // @unocss-include
 import type { PThemeTabs } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const tabs = {
   slots: {
@@ -18,7 +18,7 @@ export const tabs = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, ''])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, ''])),
       neutral: '',
     },
     variant: {
@@ -105,7 +105,7 @@ export const tabs = {
         indicator: '-start-px w-px',
       },
     },
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'pill',
       class: {
@@ -121,7 +121,7 @@ export const tabs = {
         trigger: 'data-[state=active]:color-text-inverted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-inverted',
       },
     },
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'link',
       class: {

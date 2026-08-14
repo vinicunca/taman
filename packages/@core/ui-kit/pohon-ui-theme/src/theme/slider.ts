@@ -1,6 +1,6 @@
 // @unocss-include
 import type { PThemeSlider } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const slider = {
   slots: {
@@ -11,7 +11,7 @@ export const slider = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, {
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
         range: `bg-${color}`,
         thumb: `ring-${color} focus-visible:outline-${color}/50`,
       }])),

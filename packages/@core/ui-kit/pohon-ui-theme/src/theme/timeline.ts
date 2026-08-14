@@ -1,6 +1,6 @@
 // @unocss-include
 import type { PThemeTimeline } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const timeline = {
   slots: {
@@ -30,7 +30,7 @@ export const timeline = {
     },
 
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, {
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
         indicator: `group-data-[state=completed]:bg-${color} group-data-[state=active]:bg-${color}`,
 
       }])),
@@ -57,14 +57,14 @@ export const timeline = {
   },
 
   compoundVariants: [
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       reverse: false,
       class: {
         separator: `group-data-[state=completed]:bg-${color}`,
       },
     })),
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       reverse: true,
       class: {

@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { BRANDS, presetPohon } from '@taman/designs';
+import { BRANDS, presetCore } from '@taman/designs';
 import { defineConfig } from 'unocss';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -25,7 +25,7 @@ export default defineConfig({
   },
 
   presets: [
-    presetPohon(),
+    presetCore(),
   ],
 
   safelist: [

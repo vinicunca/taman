@@ -1,7 +1,7 @@
 // @unocss-include
 
 import type { PThemeCheckboxGroup } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const checkboxGroup = {
   slots: {
@@ -20,7 +20,7 @@ export const checkboxGroup = {
       },
     },
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, {}])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {}])),
       neutral: {},
     },
     variant: {
@@ -83,7 +83,7 @@ export const checkboxGroup = {
         fieldset: 'gap-0 -space-y-px',
       },
     },
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'table',
       class: {

@@ -1,6 +1,6 @@
 // @unocss-include
 import type { PThemeBanner } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const banner = {
   slots: {
@@ -16,7 +16,7 @@ export const banner = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, {
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
         root: `bg-${color}`,
       }])),
       neutral: {
@@ -28,7 +28,7 @@ export const banner = {
     },
   },
   compoundVariants: [
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       to: true,
       class: {

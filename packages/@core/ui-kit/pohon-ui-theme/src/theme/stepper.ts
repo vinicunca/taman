@@ -1,6 +1,6 @@
 import type { PThemeStepper } from 'pohon-ui';
 // @unocss-include
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const stepper = {
   slots: {
@@ -72,7 +72,7 @@ export const stepper = {
     },
 
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, {
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
         trigger: `group-data-[state=completed]:bg-${color} group-data-[state=active]:bg-${color} focus-visible:outline-${color}`,
         separator: `group-data-[state=completed]:bg-${color}`,
       }])),

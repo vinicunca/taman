@@ -1,6 +1,6 @@
 // @unocss-include
 import type { PThemeBadge } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 import { fieldGroupVariant } from './field-group.ts';
 
 export const badge = {
@@ -15,7 +15,7 @@ export const badge = {
   variants: {
     ...fieldGroupVariant,
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, ''])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, ''])),
       neutral: '',
     },
     variant: {
@@ -61,22 +61,22 @@ export const badge = {
     },
   },
   compoundVariants: [
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'solid',
       class: `bg-${color} color-text-inverted`,
     })),
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'outline',
       class: `color-${color} ring ring-inset ring-${color}/50`,
     })),
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'soft',
       class: `bg-${color}/10 color-${color}`,
     })),
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'subtle',
       class: `bg-${color}/10 color-${color} ring ring-inset ring-${color}/25`,

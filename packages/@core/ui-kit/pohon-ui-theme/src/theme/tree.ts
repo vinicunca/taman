@@ -1,7 +1,7 @@
 // @unocss-include
 
 import type { PThemeTree } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const tree = {
   slots: {
@@ -22,7 +22,7 @@ export const tree = {
       },
     },
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, {
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
         link: `focus-visible:before:ring-${color}`,
       }])),
       neutral: {
@@ -73,7 +73,7 @@ export const tree = {
     },
   },
   compoundVariants: [
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       selected: true,
       class: {

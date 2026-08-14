@@ -37,7 +37,8 @@
     "pcss",
     "postcss"
   ],
-  "typescript.tsdk": "node_modules/typescript/lib",
+
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
 
   // editor
   "editor.codeActionsOnSave": {
@@ -82,7 +83,7 @@
   "files.insertFinalNewline": true,
   "files.simpleDialog.enable": true,
   "files.associations": {
-    "*.css": "tailwindcss",
+    "*.css": "postcss",
     "*.ejs": "html",
     "*.art": "html",
     "**/tsconfig.json": "jsonc",

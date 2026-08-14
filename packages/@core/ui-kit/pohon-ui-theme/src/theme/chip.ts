@@ -1,7 +1,7 @@
 // @unocss-include
 
 import type { PThemeChip } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const chip = {
   slots: {
@@ -10,7 +10,7 @@ export const chip = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, `bg-${color}`])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, `bg-${color}`])),
       neutral: 'bg-background-inverted',
     },
     size: {

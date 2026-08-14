@@ -1,6 +1,6 @@
 // @unocss-include
 import type { PThemePageCard } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const pageCard = {
   slots: {
@@ -72,7 +72,7 @@ export const pageCard = {
       },
     },
     highlightColor: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, ''])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, ''])),
       neutral: '',
     },
     spotlight: {
@@ -81,7 +81,7 @@ export const pageCard = {
       },
     },
     spotlightColor: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, ''])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, ''])),
       neutral: '',
     },
   },
@@ -129,7 +129,7 @@ export const pageCard = {
         root: 'hover:bg-background-elevated/50',
       },
     },
-    ...BRANDS.map((highlightColor: string) => ({
+    ...POHON_THEME_BRANDS.map((highlightColor: string) => ({
       highlightColor,
       highlight: true,
       class: {
@@ -143,7 +143,7 @@ export const pageCard = {
         root: 'ring-ring-inverted',
       },
     },
-    ...BRANDS.map((spotlightColor: string) => ({
+    ...POHON_THEME_BRANDS.map((spotlightColor: string) => ({
       spotlightColor,
       spotlight: true,
       class: {

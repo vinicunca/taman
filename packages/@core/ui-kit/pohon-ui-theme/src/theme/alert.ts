@@ -1,6 +1,6 @@
 // @unocss-include
 import type { PThemeAlert } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const alert = {
   slots: {
@@ -16,7 +16,7 @@ export const alert = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, ''])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, ''])),
       neutral: '',
     },
     variant: {
@@ -42,28 +42,28 @@ export const alert = {
     },
   },
   compoundVariants: [
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'solid',
       class: {
         root: `bg-${color} color-text-inverted`,
       },
     })),
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'outline',
       class: {
         root: `color-${color} ring ring-inset ring-${color}/25`,
       },
     })),
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'soft',
       class: {
         root: `bg-${color}/10 color-${color}`,
       },
     })),
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'subtle',
       class: {

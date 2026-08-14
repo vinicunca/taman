@@ -1,7 +1,7 @@
 // @unocss-include
 
 import type { PThemeContentToc } from 'pohon-ui';
-import { BRANDS } from '../../constants.ts';
+import { POHON_THEME_BRANDS } from '../../constants.ts';
 
 export const contentToc = {
   slots: {
@@ -26,11 +26,11 @@ export const contentToc = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, ''])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, ''])),
       neutral: '',
     },
     highlightColor: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, {
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
         indicatorActive: `bg-${color}`,
       }])),
       neutral: {
@@ -56,7 +56,7 @@ export const contentToc = {
     },
   },
   compoundVariants: [
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       active: true,
       class: {

@@ -1,6 +1,6 @@
 // @unocss-include
 import type { PThemeProgress } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const progress = {
   slots: {
@@ -19,7 +19,7 @@ export const progress = {
       'elastic': '',
     },
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, {
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
         indicator: `bg-${color}`,
         steps: `color-${color}`,
       }])),

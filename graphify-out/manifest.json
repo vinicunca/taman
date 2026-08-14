@@ -1,7 +1,7 @@
 {
   ".vscode/settings.json": {
-    "mtime": 1786587394.4061096,
-    "ast_hash": "ac532201239ff518804e9362bf11c836",
+    "mtime": 1786674566.665712,
+    "ast_hash": "c7c471b20717861c37fcc00eb2cb0f6c",
     "semantic_hash": ""
   },
   "apps/backend-mock/error.ts": {
@@ -185,18 +185,18 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/auto-imports.d.ts": {
-    "mtime": 1786593504.1436431,
-    "ast_hash": "595d60e4c85da899e7fa2018bb1bbb27",
+    "mtime": 1786676278.168168,
+    "ast_hash": "b4e1d3212fafba57d0b476364eaa20ea",
     "semantic_hash": ""
   },
   "apps/better-auth-front/components.d.ts": {
-    "mtime": 1786599057.622199,
-    "ast_hash": "a3668e88a2b9a748344c4a19c4637b08",
+    "mtime": 1786673777.9046876,
+    "ast_hash": "31d27464fd3f5d9ce521b341bfbebea5",
     "semantic_hash": ""
   },
   "apps/better-auth-front/package.json": {
-    "mtime": 1786592648.2171772,
-    "ast_hash": "836d2f6594d342c740cd00732fc28bca",
+    "mtime": 1786621170.4216764,
+    "ast_hash": "93576dac2003afdba90a54f354dbd743",
     "semantic_hash": ""
   },
   "apps/better-auth-front/playwright.config.ts": {
@@ -410,7 +410,7 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/bootstrap.ts": {
-    "mtime": 1786587065.7884712,
+    "mtime": 1786673719.76371,
     "ast_hash": "d563e2a8abbfbac7059d0d6de077d7a4",
     "semantic_hash": ""
   },
@@ -545,8 +545,8 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/router/routes/index.ts": {
-    "mtime": 1786587065.7998755,
-    "ast_hash": "e0fc359f00758514e63cbdf4b19836ed",
+    "mtime": 1786599792.8390527,
+    "ast_hash": "007931cf95d6b06fc9d0b0017a194a24",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/router/routes/modules/dev/dashboard.ts": {
@@ -572,11 +572,6 @@
   "apps/better-auth-front/src/router/routes/modules/dev/vben.ts": {
     "mtime": 1786587065.801903,
     "ast_hash": "c904cdc553de7caa8b37a20e5524b7ae",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/router/routes/modules/user/talent.ts": {
-    "mtime": 1786587065.8022165,
-    "ast_hash": "8f82341fc9038db0366a30f1788dbb72",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/router/routes/routes.constants.ts": {
@@ -1250,13 +1245,13 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/uno.config.ts": {
-    "mtime": 1786587065.8437788,
-    "ast_hash": "ae10cd2385fb01e3fb109c5b0246427e",
+    "mtime": 1786675349.3137057,
+    "ast_hash": "65a4164d7f2871b097440b1cd4f4f14d",
     "semantic_hash": ""
   },
   "apps/better-auth-front/vite.config.ts": {
-    "mtime": 1786593481.6421583,
-    "ast_hash": "5f7414bdc18e8d71e3c70a2af99e849e",
+    "mtime": 1786677899.455745,
+    "ast_hash": "7abdf8fda81269fc519bcfee74324219",
     "semantic_hash": ""
   },
   "apps/better-auth-front/vitest.config.ts": {
@@ -2505,8 +2500,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/constants.ts": {
-    "mtime": 1786586885.2615614,
-    "ast_hash": "3ecf59e13c918dc1fc44258a7556ffaf",
+    "mtime": 1786676444.993563,
+    "ast_hash": "6a73cc2bc388b0adf6140e0c16e8d368",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/index.ts": {
@@ -2525,8 +2520,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/alert.ts": {
-    "mtime": 1786586885.2633994,
-    "ast_hash": "45c13d269bb7fe896cede3e5986f1607",
+    "mtime": 1786676445.076119,
+    "ast_hash": "54dee61c8b2e9e825981acae115ae7fa",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/auth-form.ts": {
@@ -2535,23 +2530,23 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/avatar-group.ts": {
-    "mtime": 1786586885.26376,
-    "ast_hash": "d39f5df781e9ad855bf1b3b180ec20d1",
+    "mtime": 1786676445.076164,
+    "ast_hash": "b4a8339d1605765d051f677f5c657aff",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/avatar.ts": {
-    "mtime": 1786586885.2639484,
-    "ast_hash": "d93592156f799e05fe109fac585d6956",
+    "mtime": 1786676445.0760543,
+    "ast_hash": "860e753c132e1607dccb40c3b6318c52",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/badge.ts": {
-    "mtime": 1786586885.2641218,
-    "ast_hash": "9c4548f30007bed6495984e075fd3153",
+    "mtime": 1786676445.0760248,
+    "ast_hash": "906e0baf26585420464aa9d1cf63a129",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/banner.ts": {
-    "mtime": 1786586885.2642953,
-    "ast_hash": "628d422ded3bb199ac27edf982014561",
+    "mtime": 1786676445.0759795,
+    "ast_hash": "53f322f0e603a6102d2be6833aa89442",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/blog-post.ts": {
@@ -2565,18 +2560,18 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/breadcrumb.ts": {
-    "mtime": 1786586885.26484,
-    "ast_hash": "3121c0219f27433aacc0597d47937d6f",
+    "mtime": 1786676445.0760279,
+    "ast_hash": "db7a957e887a05440b1464f990667e36",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/button.ts": {
-    "mtime": 1786586885.2651644,
-    "ast_hash": "b85a8d3acf08c9d9bdc7175e431ee9a1",
+    "mtime": 1786676445.0759304,
+    "ast_hash": "da0bda064d81f0ce9a9f46be6fed41bd",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/calendar.ts": {
-    "mtime": 1786586885.2655482,
-    "ast_hash": "9db3d46b5ad3167a17096596ee39785b",
+    "mtime": 1786676445.0759175,
+    "ast_hash": "e89493c17955ccc1494c6c73a4412e1c",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/card.ts": {
@@ -2600,8 +2595,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/chat-message.ts": {
-    "mtime": 1786586885.2670057,
-    "ast_hash": "319bbed70055ff8bb9bf3d12252d073f",
+    "mtime": 1786676445.0758533,
+    "ast_hash": "ee29652ca9df98034488ea92f6abcdc4",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/chat-messages.ts": {
@@ -2640,18 +2635,18 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/checkbox-group.ts": {
-    "mtime": 1786586885.2685802,
-    "ast_hash": "2d7813bc1a475a56de15f67a0c7b3eba",
+    "mtime": 1786676445.0758562,
+    "ast_hash": "f0f3bab80afb4043b04cdf3309148e07",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/checkbox.ts": {
-    "mtime": 1786586885.268864,
-    "ast_hash": "d5c0921eb5e6aae7464235e8cd4b38e3",
+    "mtime": 1786676445.071292,
+    "ast_hash": "0d9626ccf956b6577f3d27226de64fd8",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/chip.ts": {
-    "mtime": 1786586885.2699306,
-    "ast_hash": "a6177a6349eaf48510ff113f59e719c9",
+    "mtime": 1786676445.0712664,
+    "ast_hash": "99bd3f2b5055a10dae496b053d824383",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/collapsible.ts": {
@@ -2675,8 +2670,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/content/content-navigation.ts": {
-    "mtime": 1786586885.2715464,
-    "ast_hash": "0f675b2aac9ffb1fc4806565d29a0aa7",
+    "mtime": 1786676444.993459,
+    "ast_hash": "b2d43c8b60aeddd9ea1159ab6712a8b1",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/content/content-search-button.ts": {
@@ -2695,13 +2690,13 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/content/content-toc.ts": {
-    "mtime": 1786586885.2723298,
-    "ast_hash": "8b42d09279c5116cdd15f2941ca41990",
+    "mtime": 1786676444.993734,
+    "ast_hash": "0d7c9d6055abf45de913bda08adbc40e",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/context-menu.ts": {
-    "mtime": 1786586885.2726042,
-    "ast_hash": "c00a2bf0d7004ac088603b44920f3103",
+    "mtime": 1786676445.066404,
+    "ast_hash": "30b8fe0e5b51e9b7d4c0dc313ee92782",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/dashboard-group.ts": {
@@ -2760,8 +2755,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/dropdown-menu.ts": {
-    "mtime": 1786586885.2756042,
-    "ast_hash": "60e98718a210e52055bc97f95cce0561",
+    "mtime": 1786676445.0663,
+    "ast_hash": "fb2426176c70b4cd5e34d4d795e0aed0",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/editor-drag-handle.ts": {
@@ -2810,8 +2805,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/file-upload.ts": {
-    "mtime": 1786586885.2777295,
-    "ast_hash": "b99c8f8f53f4450be46e4ae088753306",
+    "mtime": 1786676445.0760903,
+    "ast_hash": "3c9e5c310f64bf52a7137e5f4fe52fd5",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/footer-columns.ts": {
@@ -2845,13 +2840,13 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/input-menu.ts": {
-    "mtime": 1786586885.2799346,
-    "ast_hash": "cb311e9be09e2e802309107603acecdf",
+    "mtime": 1786676444.9982557,
+    "ast_hash": "3c32f70fa4a5fd1063047d35d8af4b18",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/input-number.ts": {
-    "mtime": 1786586885.280109,
-    "ast_hash": "280f4fdef9252b484a0fc6d817c25239",
+    "mtime": 1786676445.0617745,
+    "ast_hash": "80f9d962488f689f5f421b7866be3631",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/input-tags.ts": {
@@ -2865,13 +2860,13 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/input.ts": {
-    "mtime": 1786586885.280825,
-    "ast_hash": "4f7a289d44a320c52da801acdd53a187",
+    "mtime": 1786676445.0663695,
+    "ast_hash": "9c32e26f42e85c4cfc68f98793030634",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/kbd.ts": {
-    "mtime": 1786586885.281028,
-    "ast_hash": "91a935d8b9e7421e447b64d89c3b7749",
+    "mtime": 1786676445.0712395,
+    "ast_hash": "94bc179ae568d2907e564f53ac8b455d",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/link.ts": {
@@ -2880,8 +2875,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/listbox.ts": {
-    "mtime": 1786586885.2814512,
-    "ast_hash": "5742f957156fc0c74df3712bd14b0d66",
+    "mtime": 1786676444.9982631,
+    "ast_hash": "59ec870a582866f785fb09b2816e7e3c",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/main.ts": {
@@ -2900,8 +2895,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/navigation-menu.ts": {
-    "mtime": 1786586885.282353,
-    "ast_hash": "9a9c480435c72e4ccc431b32790ac355",
+    "mtime": 1786676445.0759177,
+    "ast_hash": "d0370e05cd79847e1510906db2784665",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/page-anchors.ts": {
@@ -2920,8 +2915,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/page-card.ts": {
-    "mtime": 1786586885.2836196,
-    "ast_hash": "d2835af158795da64dd585b1d49fd3f7",
+    "mtime": 1786676445.0761256,
+    "ast_hash": "c1581ce88afc66d441b97a2933c21e19",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/page-columns.ts": {
@@ -2985,8 +2980,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/pin-input.ts": {
-    "mtime": 1786586885.2888846,
-    "ast_hash": "06b1601efb8d5e62e947a7d82c00fce1",
+    "mtime": 1786676444.9982417,
+    "ast_hash": "92fb15b073df5ec8f5bfb0ae4263747a",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/popover.ts": {
@@ -3010,18 +3005,18 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/progress.ts": {
-    "mtime": 1786586885.2901871,
-    "ast_hash": "0167fea5a9192592eda5a1f7300ee466",
+    "mtime": 1786676444.9941404,
+    "ast_hash": "bb84d7163750d00ea26635079161486f",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/prose.ts": {
-    "mtime": 1786586885.2905478,
-    "ast_hash": "269ea5c44672e078bd2ba177a2690a2a",
+    "mtime": 1786676444.9938092,
+    "ast_hash": "9d1fb69b02447948848465220d7b1faa",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/radio-group.ts": {
-    "mtime": 1786586885.2909255,
-    "ast_hash": "fd4f42cb2345c39b3309dd7fa0f9e68a",
+    "mtime": 1786676444.9940917,
+    "ast_hash": "6c167967a0951c454998d56ef2756a96",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/scroll-area.ts": {
@@ -3040,8 +3035,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/separator.ts": {
-    "mtime": 1786586885.2919385,
-    "ast_hash": "99b130dd6cdb1576d4ffe97dfa132ade",
+    "mtime": 1786676445.0760608,
+    "ast_hash": "03d5b157a86b0de19e26708ddba1ba05",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/sidebar.ts": {
@@ -3060,28 +3055,28 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/slider.ts": {
-    "mtime": 1786586885.2927465,
-    "ast_hash": "bb6a95daf55e63bb968f413d49cb029f",
+    "mtime": 1786676444.9949508,
+    "ast_hash": "5f939d58c6bfe99a1825ce17b8692c1f",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/stepper.ts": {
-    "mtime": 1786586885.2929354,
-    "ast_hash": "210e937b8c762f3c18b1d93187a74653",
+    "mtime": 1786676444.9936833,
+    "ast_hash": "52e441d0f298be6c934f41386c1c337b",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/switch.ts": {
-    "mtime": 1786586885.2932498,
-    "ast_hash": "ddf4226d2e3625c0eac381cd6cf999bc",
+    "mtime": 1786676444.9937577,
+    "ast_hash": "130116224bbc8b9a2878a84efb067d7c",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/table.ts": {
-    "mtime": 1786586885.2934518,
-    "ast_hash": "aa0c6dca85300b0430100afe41c4b07d",
+    "mtime": 1786676444.9936879,
+    "ast_hash": "14f054d38bebe9f455470707b3b1d937",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/tabs.ts": {
-    "mtime": 1786586885.2937117,
-    "ast_hash": "8035ee39c7d7b0d93340509f851d11d3",
+    "mtime": 1786676444.994737,
+    "ast_hash": "ec3e58850bc23d0c399797e213e0c154",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/textarea.ts": {
@@ -3090,13 +3085,13 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/timeline.ts": {
-    "mtime": 1786586885.2942948,
-    "ast_hash": "e0ad585dfff90f2e5e33f7f1e53d7a9d",
+    "mtime": 1786676444.993775,
+    "ast_hash": "05c9345c035d87351a5a2c3a30001223",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/toast.ts": {
-    "mtime": 1786586885.2945302,
-    "ast_hash": "97ecaea2723b686f6cc399caeedb636b",
+    "mtime": 1786676444.9937193,
+    "ast_hash": "c6673a4fe105614cc09e44805a2848b3",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/toaster.ts": {
@@ -3110,8 +3105,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/tree.ts": {
-    "mtime": 1786586885.295376,
-    "ast_hash": "9fa4ec4c9d276de8e06d9b921f8c2b18",
+    "mtime": 1786676444.993607,
+    "ast_hash": "2748a7bfee9bbbeea4fe34b5554b3343",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/user.ts": {
@@ -5150,42 +5145,22 @@
     "semantic_hash": ""
   },
   "packages/designs/package.json": {
-    "mtime": 1786587500.6137264,
-    "ast_hash": "05a3345fbe4cf2bdc6b95e75599acaa7",
-    "semantic_hash": ""
-  },
-  "packages/designs/src/animations.ts": {
-    "mtime": 1786586885.4825191,
-    "ast_hash": "6185065b9a03f17f9e7e6b1967683bac",
+    "mtime": 1786676140.1587007,
+    "ast_hash": "94aaa8e6825906cdc0d6a083d769d493",
     "semantic_hash": ""
   },
   "packages/designs/src/constants.ts": {
-    "mtime": 1786586885.4831731,
-    "ast_hash": "2836d425fbcd6739ee08552b1016643d",
+    "mtime": 1786676514.2138608,
+    "ast_hash": "bf14c19436c39ccbfa8d933180fa2be4",
     "semantic_hash": ""
   },
   "packages/designs/src/index.ts": {
-    "mtime": 1786586885.483833,
-    "ast_hash": "894cc9f422bd440fe35125c70f33292a",
-    "semantic_hash": ""
-  },
-  "packages/designs/src/preflights.ts": {
-    "mtime": 1786586885.4844193,
-    "ast_hash": "ae2ae05553f588dc1f9711135d82aee6",
-    "semantic_hash": ""
-  },
-  "packages/designs/src/preset-pohon.ts": {
-    "mtime": 1786586885.4848845,
-    "ast_hash": "d1e89d7163aad8beb5ba0cc9d13dd916",
-    "semantic_hash": ""
-  },
-  "packages/designs/src/styles/style-exports.d.ts": {
-    "mtime": 1786586885.4880826,
-    "ast_hash": "f20285f1f383932f32b4c9281c3c181f",
+    "mtime": 1786678009.01296,
+    "ast_hash": "1e9f88aaac554d0a15c85283188a939c",
     "semantic_hash": ""
   },
   "packages/designs/tsconfig.json": {
-    "mtime": 1786586885.4887621,
+    "mtime": 1786675258.099016,
     "ast_hash": "b7c99ed8df5e07b8f4091689053034a5",
     "semantic_hash": ""
   },
@@ -6925,8 +6900,8 @@
     "semantic_hash": ""
   },
   "unocss.config.ts": {
-    "mtime": 1786586840.4237602,
-    "ast_hash": "f549e9dcfb2ff8bd2d1ac62b07441d0e",
+    "mtime": 1786603628.201735,
+    "ast_hash": "51aa5a68715fb74ef3663514b3f29156",
     "semantic_hash": ""
   },
   "vitest.config.ts": {
@@ -7055,8 +7030,8 @@
     "semantic_hash": ""
   },
   "pnpm-workspace.yaml": {
-    "mtime": 1786593278.0818403,
-    "ast_hash": "c4d0fcd5f66f9f4f4347ac47c4a648fa",
+    "mtime": 1786676150.282058,
+    "ast_hash": "22930fea06108833b4d440672052fbfc",
     "semantic_hash": ""
   },
   "scripts/tooling/README.md": {
@@ -7172,6 +7147,36 @@
   "packages/icons/src/svg/icons/wechat.svg": {
     "mtime": 1786586885.6836495,
     "ast_hash": "3eea7c075c3832f307b297386085b33e",
+    "semantic_hash": ""
+  },
+  "packages/designs/src/styles/index.ts": {
+    "mtime": 1786674959.4640017,
+    "ast_hash": "ed2296a762ebd3746fee3e14e15be3df",
+    "semantic_hash": ""
+  },
+  "packages/designs/src/unocss/index.ts": {
+    "mtime": 1786675301.2133288,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "packages/designs/src/unocss/uno.animations.ts": {
+    "mtime": 1786586885.4825191,
+    "ast_hash": "6185065b9a03f17f9e7e6b1967683bac",
+    "semantic_hash": ""
+  },
+  "packages/designs/src/unocss/uno.colors.ts": {
+    "mtime": 1786678010.1451962,
+    "ast_hash": "71796da5099a76e56b1f77edd7fac65d",
+    "semantic_hash": ""
+  },
+  "packages/designs/src/unocss/uno.preflights.ts": {
+    "mtime": 1786678009.8779685,
+    "ast_hash": "95b1148a53755f21dcd169e3edf783c3",
+    "semantic_hash": ""
+  },
+  "packages/designs/src/unocss/uno.preset.ts": {
+    "mtime": 1786678009.4737298,
+    "ast_hash": "c0fcc3bff458e2b431d49441b1e7926d",
     "semantic_hash": ""
   }
 }

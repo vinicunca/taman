@@ -3,7 +3,7 @@
 import type { PThemeInputMenu } from 'pohon-ui';
 import { omit } from '@taman-core/shared/utils';
 import { defu } from 'defu';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 import { input } from './input.ts';
 
 const inputSlots = omit(input.slots, ['base']);
@@ -135,7 +135,7 @@ export const inputMenu = {
       multiple: true,
       class: 'has-focus:bg-background-elevated',
     },
-    ...BRANDS.map((color) => ({
+    ...POHON_THEME_BRANDS.map((color) => ({
       color,
       multiple: true,
       variant: ['outline', 'subtle'],

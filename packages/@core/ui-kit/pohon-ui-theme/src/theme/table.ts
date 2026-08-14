@@ -1,5 +1,5 @@
 // @unocss-include
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const table = {
   slots: {
@@ -52,12 +52,12 @@ export const table = {
       'elastic': '',
     },
     loadingColor: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, ''])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, ''])),
       neutral: '',
     },
   },
   compoundVariants: [
-    ...BRANDS.map((loadingColor: string) => ({
+    ...POHON_THEME_BRANDS.map((loadingColor: string) => ({
       loading: true,
       loadingColor,
       class: {

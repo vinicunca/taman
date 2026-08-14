@@ -1,7 +1,7 @@
 // @unocss-include
 
 import type { PThemeBreadcrumb } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const breadcrumb = {
   slots: {
@@ -34,7 +34,7 @@ export const breadcrumb = {
       true: '',
     },
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, { link: `focus-visible:outline-${color}` }])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, { link: `focus-visible:outline-${color}` }])),
       neutral: { link: 'focus-visible:outline-inverted' },
     },
   },
@@ -47,7 +47,7 @@ export const breadcrumb = {
         link: 'hover:color-text transition-colors',
       },
     },
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       active: true,
       class: {

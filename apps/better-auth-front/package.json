@@ -16,7 +16,6 @@
     "test:e2e-codegen": "playwright codegen"
   },
   "dependencies": {
-    "@ngibur/db": "workspace:*",
     "@taman-core/menu-ui": "workspace:*",
     "@taman-core/pohon-ui-theme": "workspace:*",
     "@taman/access": "workspace:*",
@@ -24,6 +23,7 @@
     "@taman/common-ui": "workspace:*",
     "@taman/composables": "workspace:*",
     "@taman/constants": "workspace:*",
+    "@taman/db-pg": "workspace:*",
     "@taman/designs": "workspace:*",
     "@taman/layouts": "workspace:*",
     "@taman/locales": "workspace:*",

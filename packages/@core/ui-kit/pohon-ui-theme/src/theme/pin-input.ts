@@ -1,7 +1,7 @@
 // @unocss-include
 
 import type { PThemePinInput } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const pinInput = {
   slots: {
@@ -34,7 +34,7 @@ export const pinInput = {
       none: 'color-text-highlighted bg-transparent',
     },
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, ''])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, ''])),
       neutral: '',
     },
     highlight: {
@@ -45,12 +45,12 @@ export const pinInput = {
     },
   },
   compoundVariants: [
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: ['outline', 'subtle'],
       class: `focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-${color}`,
     })),
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       highlight: true,
       class: `ring ring-inset ring-${color}`,

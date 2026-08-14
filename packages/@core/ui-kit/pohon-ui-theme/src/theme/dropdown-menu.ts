@@ -1,6 +1,6 @@
 // @unocss-include
 
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const dropdownMenu = {
   slots: {
@@ -27,7 +27,7 @@ export const dropdownMenu = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, ''])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, ''])),
       neutral: '',
     },
     active: {
@@ -99,7 +99,7 @@ export const dropdownMenu = {
     },
   },
   compoundVariants: [
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       active: false,
       class: {
@@ -107,7 +107,7 @@ export const dropdownMenu = {
         itemLeadingIcon: `color-${color}/75 group-data-[highlighted]:color-${color} group-data-[state=open]:color-${color}`,
       },
     })),
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       active: true,
       class: {

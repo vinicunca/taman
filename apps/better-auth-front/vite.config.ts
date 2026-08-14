@@ -14,6 +14,7 @@ const pohonOptions: PohonUiOptions = {
       info: 'sky',
       warning: 'yellow',
       error: 'red',
+      neutral: 'gray',
     },
     ...ui,
   },

@@ -1,6 +1,6 @@
 // @unocss-include
 import type { PThemeNavigationMenu } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const navigationMenu = {
   slots: {
@@ -35,7 +35,7 @@ export const navigationMenu = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, {
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
         link: `focus-visible:before:ring-${color}`,
         childLink: `focus-visible:before:ring-${color}`,
       }])),
@@ -45,7 +45,7 @@ export const navigationMenu = {
       },
     },
     highlightColor: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, ''])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, ''])),
       neutral: '',
     },
     variant: {
@@ -194,7 +194,7 @@ export const navigationMenu = {
         link: 'data-[state=open]:before:bg-background-elevated/50',
       },
     },
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'pill',
       active: true,
@@ -248,7 +248,7 @@ export const navigationMenu = {
         linkLeadingIcon: 'group-data-[state=open]:color-text',
       },
     },
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'link',
       active: true,
@@ -266,7 +266,7 @@ export const navigationMenu = {
         linkLeadingIcon: 'color-text-highlighted group-data-[state=open]:color-text-highlighted',
       },
     },
-    ...BRANDS.map((highlightColor: string) => ({
+    ...POHON_THEME_BRANDS.map((highlightColor: string) => ({
       highlightColor,
       highlight: true,
       level: true,

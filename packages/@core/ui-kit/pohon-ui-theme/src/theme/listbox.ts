@@ -1,7 +1,7 @@
 // @unocss-include
 
 import type { PThemeListbox } from 'pohon-ui';
-import { BRANDS } from '../constants.ts';
+import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const listbox = {
   slots: {
@@ -91,7 +91,7 @@ export const listbox = {
       },
     },
     color: {
-      ...Object.fromEntries(BRANDS.map((color: string) => [color, ''])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, ''])),
       neutral: '',
     },
     virtualize: {
@@ -112,7 +112,7 @@ export const listbox = {
     },
   },
   compoundVariants: [
-    ...BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       highlight: true,
       class: {
