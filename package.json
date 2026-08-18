@@ -22,7 +22,6 @@
     "commit": "czg",
     "dev:better-auth-front": "pnpm nx run better-auth-front:dev",
     "dev:better-auth-back": "pnpm nx run better-auth-back:dev",
-    "dev:backstage": "pnpm nx run backstage:dev",
     "dev:db-pg:studio": "pnpm nx run db-pg:studio:dev",
     "format": "pnpm nx run tooling:lint:format",
     "lint": "pnpm nx run tooling:lint",

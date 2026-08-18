@@ -3,8 +3,8 @@
   "extends": "@taman/tsconfig/web.json",
   "include": [
     "src",
-    "../../../../apps/backstage/components.d.ts",
-    "../../../../apps/backstage/auto-imports.d.ts"
+    "../../../../apps/better-auth-front/components.d.ts",
+    "../../../../apps/better-auth-front/auto-imports.d.ts"
   ],
   "exclude": ["node_modules"]
 }

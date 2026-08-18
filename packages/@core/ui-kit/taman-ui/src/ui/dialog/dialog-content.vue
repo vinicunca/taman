@@ -11,6 +11,7 @@ import {
 import { computed, ref } from 'vue';
 
 import DialogOverlay from './dialog-overlay.vue';
+import { useDialogStateEvents } from './use-dialog-state-events';
 
 defineOptions({
   inheritAttrs: false,
@@ -79,16 +80,12 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits);
 
 const contentRef = ref<InstanceType<typeof DialogContent> | null>(null);
 
-function onAnimationEnd(event: AnimationEvent) {
-  // Only trigger opened/closed events when the animation of contentRef is complete.
-  if (event.target === contentRef.value?.$el) {
-    if (props.open) {
-      emits('opened');
-    } else {
-      emits('closed');
-    }
-  }
-}
+const { handleAnimationEvent } = useDialogStateEvents({
+  contentRef,
+  isOpen: () => props.open,
+  onClosed: () => emits('closed'),
+  onOpened: () => emits('opened'),
+});
 
 defineExpose({
   getContentRef: () => contentRef.value,
@@ -128,7 +125,8 @@ defineExpose({
         props.class,
       ]
       "
-      @animationend="onAnimationEnd"
+      @animationend="handleAnimationEvent"
+      @animationcancel="handleAnimationEvent"
     >
       <slot />
 

@@ -9,7 +9,7 @@ export const api = createFetchClient({ baseURL: apiUrl });
 const user = await api.request<User>(`/users/${id}`);
 ```
 
-> Looking for `useApiQuery`/`useApiMutation`? That vue-query layer lives per-app now (e.g. `apps/backstage/src/api/vue-query`), not in this package — see the Gotchas section below for why.
+> Looking for `useApiQuery`/`useApiMutation`? That vue-query layer lives per-app now (e.g. `apps/better-auth-front/src/api/vue-query`), not in this package — see the Gotchas section below for why.
 
 ## Table of contents
 
@@ -137,7 +137,7 @@ export const api = createFetchClient({
 
 ## Gotchas
 
-- **The vue-query layer lives per-app, not here.** `useApiQuery`/`useApiMutation` (URL-first key derivation, body mapper, both bound via a `createApiQueryHelpers(client)` factory) started out as a `./vue-query` subpath of this package, then moved into `apps/backstage/src/api/vue-query` — the composables are 100% generic, but this package is deliberately Vue/TanStack-free so any consumer that doesn't want that dependency isn't forced to carry it. If another app needs the same pattern, copy that folder (imports are just `@taman/request` + `@tanstack/vue-query`) rather than reaching across apps.
+- **The vue-query layer lives per-app, not here.** `useApiQuery`/`useApiMutation` (URL-first key derivation, body mapper, both bound via a `createApiQueryHelpers(client)` factory) started out as a `./vue-query` subpath of this package, then moved into `apps/better-auth-front/src/api/vue-query` — the composables are 100% generic, but this package is deliberately Vue/TanStack-free so any consumer that doesn't want that dependency isn't forced to carry it. If another app needs the same pattern, copy that folder (imports are just `@taman/request` + `@tanstack/vue-query`) rather than reaching across apps.
 - **The envelope shape is fixed.** `{ code, data, message }` with `successCode` defaulting to `0` isn't configurable per instance — this client is built for this project's backend, not a generic wrapper. Endpoints that don't return this shape go through `api.fetch` instead.
 - **`createFetchClient` is not a singleton.** Nothing stops you from calling it twice, but every part of an app should import the _same_ exported instance — two instances mean two auth-hook setups and, if you've also built a vue-query layer on top, two independent caches.
 - **`HEAD` isn't available on `api.request`.** A `HEAD` response has no body, so envelope parsing would always fail; use `api.fetch(url, { method: "HEAD" })` instead.

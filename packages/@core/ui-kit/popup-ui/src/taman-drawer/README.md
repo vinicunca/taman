@@ -30,7 +30,7 @@ if (result) {
 Mount the host **once** at the app root. Every drawer in the app renders through it.
 
 ```vue
-<!-- apps/backstage/src/app.vue (already done for backstage) -->
+<!-- apps/better-auth-front/src/app.vue (already done for better-auth-front) -->
 <script lang="ts" setup>
 import { TamanDrawerProvider } from "@taman/common-ui";
 </script>
@@ -188,13 +188,13 @@ App-wide defaults are set on the provider (lowest merge priority — per-drawer 
 ## DrawerApi reference
 
 | Member            | Signature                                      | Notes                           |
-| ----------------- | ----------------------------------------------- | ------------------------------- |
+| ----------------- | ---------------------------------------------- | ------------------------------- |
 | `open`            | `open<T>(): Promise<T \| undefined>`           | Opens; resolves on close        |
 | `close`           | `close(result?: unknown): Promise<void>`       | Runs `onBeforeClose` veto first |
 | `setData`         | `setData<T>(payload: T): this`                 | Chainable                       |
-| `getData`         | `getData<T>(): T`                              |                                  |
+| `getData`         | `getData<T>(): T`                              |                                 |
 | `setState`        | `setState(partial \| (prev) => partial): this` | Chainable                       |
-| `useStore`        | `useStore(selector?): Readonly<Ref>`           | Reactive selector                |
+| `useStore`        | `useStore(selector?): Readonly<Ref>`           | Reactive selector               |
 | `lock` / `unlock` | `lock(isLocked = true): this`                  | Submit lock                     |
 | `store`           | `Store<TamanDrawerState>`                      | Raw store (prefer `useStore`)   |
 
@@ -228,19 +228,19 @@ Do **not** call the inline (argument-less) form twice in one content component �
 - **`connectedComponent` is required** on the caller side. There is no call-site template, so inline slot content is impossible — every drawer body is its own SFC. Calling `useTamanDrawer()` inline outside a content component throws.
 - **Call it in `setup` (or an `effectScope`)**. The drawer auto-unregisters when the owning scope is disposed (page unmount). Outside any scope it warns and stays registered forever — including duplicates on every HMR reload.
 - **`open()` before the host has rendered** the drawer logs a warning and resolves `undefined`. If you see it, `<TamanDrawerProvider />` is missing from your root App component.
-- **Keep-alive tab switch closes the drawer.** When the calling page is deactivated (tab navigation in the backstage layout), the drawer closes and a pending `open()` promise resolves `undefined`. This includes `appendToMain` drawers (the old drawer kept those open across tab switches).
+- **Keep-alive tab switch closes the drawer.** When the calling page is deactivated (tab navigation in the better-auth-front layout), the drawer closes and a pending `open()` promise resolves `undefined`. This includes `appendToMain` drawers (the old drawer kept those open across tab switches).
 - **Don't mount two hosts** — every drawer would render twice.
 - **`destroyOnClose`** re-creates the content component after each close (fresh state per open). In the tick right after the close animation, calls on the api still target the old instance — avoid `open()` in `onClosed`.
 
 ## Migrating from `useVbenDrawer`
 
-| `useVbenDrawer` (connected)                                                | `useTamanDrawer`                                                                 |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `const [FormDrawer, api] = useVbenDrawer({ connectedComponent: Form })`     | `const api = useTamanDrawer({ connectedComponent: Form })`                        |
-| `<FormDrawer @success="..." />` in the caller template                     | _(delete it — nothing to mount)_                                                  |
-| events emitted to the caller via the mounted tag                           | return a value: `close(result)` → `await api.open()`                              |
-| inner side: `const [Drawer, drawerApi] = useVbenDrawer({...})` + `<Drawer>` | same shape: `const [Drawer, drawerApi] = useTamanDrawer({...})` + `<Drawer>`      |
-| `api.open()` returns `void`                                                 | returns a promise (safe to ignore)                                                |
+| `useVbenDrawer` (connected)                                                 | `useTamanDrawer`                                                             |
+| --------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `const [FormDrawer, api] = useVbenDrawer({ connectedComponent: Form })`     | `const api = useTamanDrawer({ connectedComponent: Form })`                   |
+| `<FormDrawer @success="..." />` in the caller template                      | _(delete it — nothing to mount)_                                             |
+| events emitted to the caller via the mounted tag                            | return a value: `close(result)` → `await api.open()`                         |
+| inner side: `const [Drawer, drawerApi] = useVbenDrawer({...})` + `<Drawer>` | same shape: `const [Drawer, drawerApi] = useTamanDrawer({...})` + `<Drawer>` |
+| `api.open()` returns `void`                                                 | returns a promise (safe to ignore)                                           |
 
 Everything else — `setData`/`getData`, `lock`/`unlock`, `setState`/`useStore`, props, slots, callbacks — carries over unchanged.
 

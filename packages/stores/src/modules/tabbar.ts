@@ -17,7 +17,7 @@ import {
   stopProgress,
 } from '@taman-core/shared/utils';
 import { acceptHMRUpdate, defineStore } from 'pinia';
-import { markRaw, toRaw } from 'vue';
+import { markRaw, nextTick, toRaw } from 'vue';
 
 interface RouteCached {
   component: VNode;
@@ -408,9 +408,7 @@ export const useTabbarStore = defineStore('core-tabbar', {
       this.renderRouteView = false;
       startProgress();
 
-      await new Promise((resolve) => {
-        setTimeout(resolve, 200);
-      });
+      await nextTick();
 
       this.excludeCachedTabs.delete(name as string);
       this.renderRouteView = true;

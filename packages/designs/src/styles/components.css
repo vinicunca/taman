@@ -1,0 +1,21 @@
+@layer theme {
+  .outline-box {
+    @apply relative rounded-md p-1 outline-1 outline-border;
+  }
+
+  .outline-box::after {
+    @apply absolute top-1/2 left-1/2 z-20 h-0 w-px rounded-sm opacity-0 outline-2 outline-transparent transition-all-300 content-empty;
+  }
+
+  .outline-box.outline-box-active {
+    @apply outline-2 outline-primary;
+  }
+
+  .outline-box.outline-box-active::after {
+    @apply hidden;
+  }
+
+  .outline-box:not(.outline-box-active):hover::after {
+    @apply top-0 left-0 h-full w-full p-1 opacity-100 outline-primary;
+  }
+}

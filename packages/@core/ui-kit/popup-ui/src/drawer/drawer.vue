@@ -148,7 +148,7 @@ function handleFocusOutside(e: Event) {
 
 const getAppendTo = computed(() => {
   return appendToMain.value
-    ? `#${ELEMENT_ID_MAIN_CONTENT}>div:not(.absolute)>div`
+    ? `#${ELEMENT_ID_MAIN_CONTENT}`
     : undefined;
 });
 

@@ -77,6 +77,7 @@ defineShortcuts(extractShortcuts(items.value));
     :ui="{
       content: 'min-w-60',
     }"
+    class="ml-4"
   >
     <PButton
       :avatar="{

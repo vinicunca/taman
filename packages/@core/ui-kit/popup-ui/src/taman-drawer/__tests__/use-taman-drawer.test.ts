@@ -10,7 +10,7 @@ import { useTamanDrawer } from '../use-taman-drawer';
 
 // The chrome is not under test here; the stub renders the body only while
 // the api reports isOpen, which exercises the useStore wiring end to end.
-vi.mock('../drawer.vue', () => ({
+vi.mock('../taman-drawer.vue', () => ({
   default: defineComponent({
     name: 'TamanDrawerStub',
     props: { drawerApi: { type: Object, default: undefined } },
@@ -42,7 +42,7 @@ describe('useTamanDrawer', () => {
     let outerApi!: ExtendedTamanDrawerApi;
     const Harness = defineComponent({
       setup() {
-        outerApi = useTamanDrawer({ connectedComponent: Content });
+        [, outerApi] = useTamanDrawer({ connectedComponent: Content });
         return () => h(TamanDrawerProvider);
       },
     });
@@ -69,7 +69,7 @@ describe('useTamanDrawer', () => {
     let outerApi!: ExtendedTamanDrawerApi;
     const Harness = defineComponent({
       setup() {
-        outerApi = useTamanDrawer({ connectedComponent: Content });
+        [, outerApi] = useTamanDrawer({ connectedComponent: Content });
         return () => h(TamanDrawerProvider);
       },
     });
@@ -123,7 +123,7 @@ describe('useTamanDrawer', () => {
 
   it('warns and resolves undefined when open() is called before any host renders the connector', async () => {
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-    const api = useTamanDrawer({
+    const [, api] = useTamanDrawer({
       connectedComponent: defineComponent({ render: () => null }),
     });
     await expect(api.open()).resolves.toBeUndefined();
@@ -147,7 +147,7 @@ describe('useTamanDrawer', () => {
     });
     const Harness = defineComponent({
       setup() {
-        outerApi = useTamanDrawer({ connectedComponent: PlainDiv });
+        [, outerApi] = useTamanDrawer({ connectedComponent: PlainDiv });
         return () => h(TamanDrawerProvider);
       },
     });
@@ -170,7 +170,7 @@ describe('useTamanDrawer', () => {
     const CallerView = defineComponent({
       name: 'CallerView',
       setup() {
-        outerApi = useTamanDrawer({ connectedComponent: Content });
+        [, outerApi] = useTamanDrawer({ connectedComponent: Content });
         return () => h('div', 'caller');
       },
     });
@@ -216,7 +216,7 @@ describe('useTamanDrawer', () => {
       },
     });
 
-    const errors: unknown[] = [];
+    const errors: Array<unknown> = [];
     const Harness = defineComponent({
       setup() {
         useTamanDrawer({ connectedComponent: HmrWrapper });
@@ -251,5 +251,92 @@ describe('useTamanDrawer', () => {
       },
     });
     mount(Harness).unmount();
+  });
+
+  it('forwards attrs, listeners, and slots from the caller <Drawer> to the connected component', async () => {
+    const greet = vi.fn();
+    const label = ref('one');
+
+    const Content = defineComponent({
+      name: 'AttrContent',
+      props: { label: { type: String, default: '' } },
+      emits: ['greet'],
+      setup(props, { emit, slots }) {
+        const [Drawer] = useTamanDrawer();
+        return () =>
+          h(Drawer, null, {
+            default: () => [
+              h('span', { 'data-testid': 'label' }, props.label),
+              h(
+                'button',
+                {
+                  'data-testid': 'greet',
+                  'onClick': () => emit('greet', 'hi'),
+                },
+              ),
+              slots.extra?.(),
+            ],
+          });
+      },
+    });
+
+    let outerApi!: ExtendedTamanDrawerApi;
+    const Harness = defineComponent({
+      setup() {
+        const [Drawer, api] = useTamanDrawer({ connectedComponent: Content });
+        outerApi = api;
+        return () =>
+          h('div', [
+            h(
+              Drawer,
+              { label: label.value, onGreet: greet },
+              { extra: () => h('span', { 'data-testid': 'extra' }, 'extra-slot') },
+            ),
+            h(TamanDrawerProvider),
+          ]);
+      },
+    });
+
+    const wrapper = mount(Harness);
+    outerApi.open();
+    await nextTick();
+
+    expect(wrapper.find('[data-testid="label"]').text()).toBe('one');
+    expect(wrapper.find('[data-testid="extra"]').text()).toBe('extra-slot');
+
+    await wrapper.find('[data-testid="greet"]').trigger('click');
+    expect(greet).toHaveBeenCalledWith('hi');
+
+    label.value = 'two';
+    await nextTick();
+    expect(wrapper.find('[data-testid="label"]').text()).toBe('two');
+    wrapper.unmount();
+  });
+
+  it('warns when drawer chrome props are passed through the caller <Drawer>', async () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const Content = makeContent({});
+    const Harness = defineComponent({
+      setup() {
+        const [Drawer] = useTamanDrawer({ connectedComponent: Content });
+        return () =>
+          h('div', [
+            h(Drawer, { title: 'nope', placement: 'left' }),
+            h(TamanDrawerProvider),
+          ]);
+      },
+    });
+
+    const wrapper = mount(Harness);
+    await nextTick();
+    await nextTick();
+    expect(warnSpy).toHaveBeenCalledWith(
+      expect.stringContaining('do not set props or slots \'title\''),
+    );
+    expect(warnSpy).toHaveBeenCalledWith(
+      expect.stringContaining('do not set props or slots \'placement\''),
+    );
+    warnSpy.mockRestore();
+    wrapper.unmount();
   });
 });

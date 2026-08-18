@@ -1,9 +1,4 @@
 <script lang="ts" setup>
-// pohon-ui's PTooltip requires an ancestor `TooltipProvider` (normally
-// supplied by wrapping the app root in `<PApp>`, as real consumers do — see
-// apps/backstage/src/app.vue). This fixture mounts the form in isolation, so
-// it supplies that same provider directly via pohon-ui's transitive `akar`
-// dependency rather than pulling in the whole `<PApp>` chrome.
 import { TooltipProvider } from 'akar';
 import { z } from 'zod';
 

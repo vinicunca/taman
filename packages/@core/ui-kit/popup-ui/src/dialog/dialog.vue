@@ -98,7 +98,7 @@ const shouldCentered = computed(
 
 const getAppendTo = computed(() => {
   return appendToMain.value
-    ? `#${ELEMENT_ID_MAIN_CONTENT}>div:not(.absolute)>div`
+    ? `#${ELEMENT_ID_MAIN_CONTENT}`
     : undefined;
 });
 

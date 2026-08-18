@@ -1,16 +1,16 @@
-# Graph Report - taman  (2026-08-14)
+# Graph Report - taman  (2026-08-17)
 
 ## Corpus Check
-- 1407 files · ~263,140 words
+- 1412 files · ~264,687 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 4506 nodes · 5366 edges · 638 communities (566 shown, 72 thin omitted)
+- 4513 nodes · 5371 edges · 640 communities (571 shown, 69 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 67 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `31cd70bf`
+- Built from commit: `bfae16ba`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -171,14 +171,12 @@
 - [[_COMMUNITY_Community 163|Community 163]]
 - [[_COMMUNITY_Community 164|Community 164]]
 - [[_COMMUNITY_Community 165|Community 165]]
-- [[_COMMUNITY_Community 166|Community 166]]
 - [[_COMMUNITY_Community 167|Community 167]]
 - [[_COMMUNITY_Community 168|Community 168]]
 - [[_COMMUNITY_Community 169|Community 169]]
 - [[_COMMUNITY_Community 170|Community 170]]
 - [[_COMMUNITY_Community 171|Community 171]]
 - [[_COMMUNITY_Community 172|Community 172]]
-- [[_COMMUNITY_Community 173|Community 173]]
 - [[_COMMUNITY_Community 175|Community 175]]
 - [[_COMMUNITY_Community 176|Community 176]]
 - [[_COMMUNITY_Community 178|Community 178]]
@@ -208,7 +206,6 @@
 - [[_COMMUNITY_Community 208|Community 208]]
 - [[_COMMUNITY_Community 209|Community 209]]
 - [[_COMMUNITY_Community 210|Community 210]]
-- [[_COMMUNITY_Community 211|Community 211]]
 - [[_COMMUNITY_Community 214|Community 214]]
 - [[_COMMUNITY_Community 215|Community 215]]
 - [[_COMMUNITY_Community 216|Community 216]]
@@ -298,6 +295,7 @@
 - [[_COMMUNITY_Community 312|Community 312]]
 - [[_COMMUNITY_Community 313|Community 313]]
 - [[_COMMUNITY_Community 314|Community 314]]
+- [[_COMMUNITY_Community 315|Community 315]]
 - [[_COMMUNITY_Community 316|Community 316]]
 - [[_COMMUNITY_Community 317|Community 317]]
 - [[_COMMUNITY_Community 320|Community 320]]
@@ -330,8 +328,10 @@
 - [[_COMMUNITY_Community 386|Community 386]]
 - [[_COMMUNITY_Community 390|Community 390]]
 - [[_COMMUNITY_Community 392|Community 392]]
+- [[_COMMUNITY_Community 393|Community 393]]
 - [[_COMMUNITY_Community 394|Community 394]]
 - [[_COMMUNITY_Community 395|Community 395]]
+- [[_COMMUNITY_Community 396|Community 396]]
 - [[_COMMUNITY_Community 398|Community 398]]
 - [[_COMMUNITY_Community 399|Community 399]]
 - [[_COMMUNITY_Community 401|Community 401]]
@@ -341,7 +341,7 @@
 1. `FormApi` - 39 edges
 2. `POHON_THEME_BRANDS` - 38 edges
 3. `FormApi` - 34 edges
-4. `scripts` - 32 edges
+4. `scripts` - 31 edges
 5. `PreferenceManager` - 30 edges
 6. `compilerOptions` - 28 edges
 7. `RequestClient` - 22 edges
@@ -370,7 +370,7 @@
 - 1-file cycle: `packages/styles/src/index.ts -> packages/styles/src/index.ts`
 - 1-file cycle: `packages/types/src/index.ts -> packages/types/src/index.ts`
 
-## Communities (638 total, 72 thin omitted)
+## Communities (640 total, 69 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.03
@@ -393,8 +393,8 @@ Cohesion: 0.09
 Nodes (16): DialogApi, dialogDefaults, dialogRegistry, DialogRegistryEntry, registerDialog(), unregisterDialog(), DialogApiOptions, DialogProps (+8 more)
 
 ### Community 5 - "Community 5"
-Cohesion: 0.06
-Nodes (34): COMPONENT_BIND_EVENT_MAP, COMPONENT_MAP, DEFAULT_FORM_COMMON_CONFIG, setupVbenForm(), ArrayToStringFields, BaseFormComponentType, Breakpoints, ComponentProps (+26 more)
+Cohesion: 0.08
+Nodes (24): ArrayToStringFields, Breakpoints, ComponentProps, CustomParamsRenderType, CustomRenderType, FieldMappingTime, FormFieldOptions, FormFieldProps (+16 more)
 
 ### Community 6 - "Community 6"
 Cohesion: 0.05
@@ -405,20 +405,20 @@ Cohesion: 0.05
 Nodes (37): default, dependencies, json-bigint, qrcode, @taman/composables, @taman/constants, @taman-core/form-builder, @taman-core/popup-ui (+29 more)
 
 ### Community 8 - "Community 8"
-Cohesion: 0.09
-Nodes (6): FormApi, FormBuilderState, FormValidationResult, PohonFormRef, Noop, mergeWithArrayOverride
+Cohesion: 0.12
+Nodes (3): FormApi, FormBuilderState, FormValidationResult
 
 ### Community 9 - "Community 9"
 Cohesion: 0.06
 Nodes (36): dependencies, ag-grid-community, ag-grid-vue3, antdv-next, better-auth, dayjs, json-bigint, pinia (+28 more)
 
 ### Community 10 - "Community 10"
-Cohesion: 0.07
+Cohesion: 0.06
 Nodes (18): DrawerApi, CloseIconPlacement, DrawerApiOptions, DrawerPlacement, DrawerProps, DrawerState, ExtendedDrawerApi, DEFAULT_DRAWER_PROPS (+10 more)
 
 ### Community 11 - "Community 11"
-Cohesion: 0.11
-Nodes (16): [Form, formApi], [Form, formApi], createFormBuilder(), defineFieldComponents(), EMPTY_CONFIG, FORM_BUILDER_KEY, resolveFieldComponent(), useFormBuilderConfig() (+8 more)
+Cohesion: 0.08
+Nodes (19): [Form, formApi], [Form, formApi], applySearchPreset(), SubmitOnChangeNotifier, createFormBuilder(), defineFieldComponents(), resolveFieldComponent(), useFormBuilderConfig() (+11 more)
 
 ### Community 12 - "Community 12"
 Cohesion: 0.06
@@ -434,7 +434,7 @@ Nodes (31): default, development, production, bugs, default, dependencies, @icon
 
 ### Community 15 - "Community 15"
 Cohesion: 0.06
-Nodes (32): scripts, bootstrap, build, build:analyze, build:docker, catalog, check, check:circular (+24 more)
+Nodes (31): scripts, bootstrap, build, build:analyze, build:docker, catalog, check, check:circular (+23 more)
 
 ### Community 16 - "Community 16"
 Cohesion: 0.06
@@ -466,11 +466,11 @@ Nodes (17): getLoadingRawByHtmlTemplate(), viteInjectAppLoadingPlugin(), viteDay
 
 ### Community 23 - "Community 23"
 Cohesion: 0.07
-Nodes (27): default, dependencies, @taman/composables, @taman/constants, @taman-core/composables, @taman-core/layout-ui, @taman-core/menu-ui, @taman-core/popup-ui (+19 more)
+Nodes (29): default, dependencies, pohon-ui, @taman/composables, @taman/constants, @taman-core/composables, @taman-core/layout-ui, @taman-core/menu-ui (+21 more)
 
 ### Community 24 - "Community 24"
-Cohesion: 0.13
-Nodes (17): useVbenForm(), SeparatorOptions, SetupVxeTable, ToolbarConfigOptions, ViewedRowOptions, ViewedRowPersistBase, ViewedRowPersistOptions, ViewedRowStorageAdapter (+9 more)
+Cohesion: 0.21
+Nodes (9): ViewedRowOptions, ViewedRowPersistOptions, ViewedRowStorageAdapter, applyViewedRowOptions(), createIndexedDBAdapter(), createStorageAdapter(), createWebStorageAdapter(), useViewedRow() (+1 more)
 
 ### Community 26 - "Community 26"
 Cohesion: 0.08
@@ -481,24 +481,24 @@ Cohesion: 0.08
 Nodes (25): bugs, default, dependencies, @commitlint/cli, @commitlint/config-conventional, commitlint-plugin-function-rules, cz-git, czg (+17 more)
 
 ### Community 28 - "Community 28"
-Cohesion: 0.27
-Nodes (6): generateMenus(), Node, NodeValue, filterTree(), sortTree(), TreeConfigOptions
+Cohesion: 0.21
+Nodes (9): generateMenus(), resetStaticRoutes(), resetRoutes(), Node, NodeValue, filterTree(), sortTree(), traverseTreeValues() (+1 more)
 
 ### Community 29 - "Community 29"
-Cohesion: 0.13
-Nodes (12): logo, AuthPageLayout(), AuthPageLayout(), CoreLayout(), coreRoutes, fallbackNotFoundRoute, accessRoutes, componentKeys (+4 more)
+Cohesion: 0.29
+Nodes (5): CoreLayout(), forbiddenComponent(), generateAccess(), CoreLayout(), generateAccessible()
 
 ### Community 30 - "Community 30"
 Cohesion: 0.08
 Nodes (26): devDependencies, cross-env, cspell, eslint, happy-dom, is-ci, lefthook, nx (+18 more)
 
 ### Community 31 - "Community 31"
-Cohesion: 0.13
-Nodes (5): useIsMobile(), useScrollLock(), getElementVisibleRect(), getScrollbarWidth(), VisibleDomRect
+Cohesion: 0.09
+Nodes (9): useIsMobile(), useScrollLock(), useSimpleLocale, getMessages(), Locale, messages, getElementVisibleRect(), getScrollbarWidth() (+1 more)
 
-### Community 34 - "Community 34"
-Cohesion: 0.08
-Nodes (5): requestClient, PageFetchParams, RequestResponse, SystemRole, SystemUser
+### Community 33 - "Community 33"
+Cohesion: 0.13
+Nodes (5): PreferenceManager, CustomPreferencesField, CustomPreferencesRecord, PreferencesExtension, isMacOs()
 
 ### Community 35 - "Community 35"
 Cohesion: 0.08
@@ -521,8 +521,8 @@ Cohesion: 0.09
 Nodes (23): default, dependencies, chalk, consola, dayjs, execa, find-up, @manypkg/get-packages (+15 more)
 
 ### Community 40 - "Community 40"
-Cohesion: 0.17
-Nodes (18): markFieldsRaw(), AnyRecord, deepAssign(), deletePath(), getPath(), isPlainObject(), setPath(), toSegments() (+10 more)
+Cohesion: 0.27
+Nodes (12): AnyRecord, deepAssign(), deletePath(), getPath(), isPlainObject(), setPath(), toSegments(), applyTransformsIn() (+4 more)
 
 ### Community 41 - "Community 41"
 Cohesion: 0.08
@@ -534,19 +534,19 @@ Nodes (7): BREAKPOINT_PX, DEFAULT_COLUMN_MAP, flattenVNodes(), matchScreen(), pa
 
 ### Community 43 - "Community 43"
 Cohesion: 0.11
-Nodes (21): getDefaultState(), FormBuilderConfig, ResolvedFormBuilderConfig, DEFAULT_MESSAGES, defineFields(), FieldAsyncValidate, FieldComponentRegistry, FieldConfigBody (+13 more)
+Nodes (25): getDefaultState(), EMPTY_CONFIG, FORM_BUILDER_KEY, FormBuilderConfig, ResolvedFormBuilderConfig, DEFAULT_MESSAGES, defineFields(), FieldAsyncValidate (+17 more)
 
 ### Community 44 - "Community 44"
-Cohesion: 0.13
-Nodes (7): getDefaultState(), VxeGridApi, ExtendedVxeGridApi, VxeGridProps, ViewedRowHelper, FilteredSlots, UseVbenVxeGrid
+Cohesion: 0.14
+Nodes (5): mergeWithArrayOverride, getDefaultState(), VxeGridApi, VxeGridProps, ViewedRowHelper
 
 ### Community 45 - "Community 45"
 Cohesion: 0.09
 Nodes (22): default, dependencies, pohon-ui, @taman-core/composables, @taman-core/icons, @taman-core/preferences, @taman-core/shared, @taman-core/taman-ui (+14 more)
 
 ### Community 46 - "Community 46"
-Cohesion: 0.15
-Nodes (10): fieldComponents, FormFieldComponents, useAppForm, applySearchPreset(), SubmitOnChangeNotifier, TamanFormOptions, defineTamanForm(), useTamanForm() (+2 more)
+Cohesion: 0.14
+Nodes (10): COMPONENT_BIND_EVENT_MAP, COMPONENT_MAP, DEFAULT_FORM_COMMON_CONFIG, setupVbenForm(), BaseFormComponentType, ExtendedFormApi, FormCommonConfig, FormLayout (+2 more)
 
 ### Community 47 - "Community 47"
 Cohesion: 0.14
@@ -557,8 +557,8 @@ Cohesion: 0.10
 Nodes (21): cache, command, options, cache, command, options, NODE_OPTIONS, name (+13 more)
 
 ### Community 50 - "Community 50"
-Cohesion: 0.18
-Nodes (9): FetchErrorLike, getErrors(), HTTP_STATUS_MESSAGE_KEYS, AuthClientResult, AuthError, unwrapAuthResult(), useTamanToast(), notifyQueryError() (+1 more)
+Cohesion: 0.20
+Nodes (7): FetchErrorLike, getErrors(), HTTP_STATUS_MESSAGE_KEYS, AuthClientResult, AuthError, unwrapAuthResult(), authQueryKeys
 
 ### Community 51 - "Community 51"
 Cohesion: 0.10
@@ -570,15 +570,15 @@ Nodes (17): { directorUrl }, useRequest(), buildQueryKey(), QueryParams, useBack
 
 ### Community 53 - "Community 53"
 Cohesion: 0.19
-Nodes (10): findMenuByPath(), findRootMenuByPath(), useExtraMenu(), useMixedMenu(), useNavigation(), AccessState, useAccessStore, NormalMenuProps (+2 more)
+Nodes (8): findMenuByPath(), findRootMenuByPath(), useExtraMenu(), useMixedMenu(), useNavigation(), useAccessStore, preferences, menus
 
 ### Community 54 - "Community 54"
 Cohesion: 0.10
 Nodes (19): default, dependencies, qs, @taman-core/composables, @taman-core/shared, @taman-core/taman-ui, @taman-core/typings, vue (+11 more)
 
 ### Community 55 - "Community 55"
-Cohesion: 0.14
-Nodes (12): injectPluginsOptions(), VbenPluginsComponentsOptions, VbenPluginsFormOptions, VbenPluginsMessageOptions, VbenPluginsModalOptions, VbenPluginsOptions, extendsDefaultFormatter(), createVirtualComponent() (+4 more)
+Cohesion: 0.20
+Nodes (5): VbenPluginsComponentsOptions, VbenPluginsFormOptions, VbenPluginsMessageOptions, VbenPluginsModalOptions, VbenPluginsOptions
 
 ### Community 56 - "Community 56"
 Cohesion: 0.11
@@ -593,35 +593,35 @@ Cohesion: 0.16
 Nodes (11): H3EventContext, adminAc, adminRole, statement, userRole, ORGANIZATION_ROLES, USER_ROLES, memberRole (+3 more)
 
 ### Community 59 - "Community 59"
-Cohesion: 0.14
-Nodes (4): DescriptionsItemType, FormSchema, getDeptList(), SystemDept
+Cohesion: 0.27
+Nodes (9): defineApplicationConfig(), getCommonConfig(), defineConfig(), defineLibraryConfig(), defaultImportmapOptions, getDefaultPwaOptions(), DefineApplicationOptions, DefineConfig (+1 more)
 
 ### Community 60 - "Community 60"
 Cohesion: 0.11
 Nodes (18): AnyFunction, AnyNormalFunction, AnyPromiseFunction, DeepReadonly, EmitType, Increment, IntervalHandle, MaybeComputedRef (+10 more)
 
 ### Community 61 - "Community 61"
-Cohesion: 0.27
-Nodes (11): assertUniqueFieldNames(), buildObject(), collisionError(), composeZodSchema(), effectiveRule(), insertRule(), isRequiredRule(), isZodType() (+3 more)
+Cohesion: 0.16
+Nodes (17): markFieldsRaw(), assertUniqueFieldNames(), buildObject(), collisionError(), composeZodSchema(), effectiveRule(), insertRule(), isRequiredRule() (+9 more)
 
 ### Community 62 - "Community 62"
 Cohesion: 0.12
 Nodes (17): cache, command, options, cache, command, options, NODE_OPTIONS, name (+9 more)
 
 ### Community 63 - "Community 63"
-Cohesion: 0.25
-Nodes (5): ACCESS_ROLES_KEY, isAccessible(), preferences, matchesAnyRole(), useAccess()
+Cohesion: 0.26
+Nodes (6): ACCESS_ROLES_KEY, isAccessible(), registerAccessDirective(), mountWithAccessDirective(), matchesAnyRole(), useAccess()
 
 ### Community 64 - "Community 64"
 Cohesion: 0.11
 Nodes (17): dependencies, drizzle-orm, drizzle-zod, pg, uuid, zod, devDependencies, drizzle-kit (+9 more)
 
 ### Community 65 - "Community 65"
-Cohesion: 0.18
-Nodes (9): routes, routes, routes, routes, routes, CoreLayout(), IFrameView(), forbiddenComponent() (+1 more)
+Cohesion: 0.14
+Nodes (15): routes, routes, routes, routes, routes, IFrameView(), loadDayjsLocale(), loadMessages() (+7 more)
 
 ### Community 67 - "Community 67"
-Cohesion: 0.22
+Cohesion: 0.18
 Nodes (7): defaultPreferences, preferencesManager, STORAGE_KEYS, InitialOptions, Preferences, updateCSSVariables(), updateMainColorVariables()
 
 ### Community 68 - "Community 68"
@@ -641,32 +641,32 @@ Cohesion: 0.12
 Nodes (16): default, @taman-core/composables, @taman/preferences, @taman/stores, @taman/types, @taman/utils, vue-router, watermark-js-plus (+8 more)
 
 ### Community 72 - "Community 72"
-Cohesion: 0.29
-Nodes (9): TamanFormBuilderApp(), useSessionStore, registerLoadingDirective(), setupI18n(), bootstrap(), registerAccessDirective(), mountWithAccessDirective(), setQueryClientAppContext() (+1 more)
+Cohesion: 0.39
+Nodes (7): TamanFormBuilderApp(), useSessionStore, registerLoadingDirective(), setupI18n(), bootstrap(), setQueryClientAppContext(), initStores()
 
 ### Community 73 - "Community 73"
 Cohesion: 0.12
 Nodes (16): Async validation, Cross-field dependencies, Custom field content (slots), Error display, Field configuration, FormApi reference, Gotchas, Layout (+8 more)
 
 ### Community 74 - "Community 74"
-Cohesion: 0.12
-Nodes (11): resolveValueByFieldName(), getDefaultState(), resolveFieldNamePath(), FormActions, FormItemDependencies, FormSchemaRuleType, MaybeComponentProps, VbenFormProps (+3 more)
+Cohesion: 0.19
+Nodes (6): renderTableDefault(), resolveValueByFieldName(), resolveFieldNamePath(), FormItemDependencies, FormSchemaRuleType, MaybeComponentProps
 
 ### Community 75 - "Community 75"
 Cohesion: 0.18
 Nodes (8): TabbarState, StrictContextMenuItem, StrictContextMenuItemBase, TamanTabDefinition, TabConfig, TabsEmits, TabsProps, DomElement
 
 ### Community 76 - "Community 76"
-Cohesion: 0.10
-Nodes (16): SvgAntdvLogoIcon, SvgAntdvNextLogoIcon, SvgAvatar1Icon, SvgAvatar2Icon, SvgAvatar3Icon, SvgAvatar4Icon, SvgBellIcon, SvgCakeIcon (+8 more)
+Cohesion: 0.08
+Nodes (15): MdiKeyboardEsc, createIconifyIcon(), SvgAvatar1Icon, SvgAvatar2Icon, SvgAvatar3Icon, SvgAvatar4Icon, SvgBellIcon, SvgCakeIcon (+7 more)
 
 ### Community 77 - "Community 77"
 Cohesion: 0.12
 Nodes (16): default, dependencies, akar, pohon-ui, @taman-core/composables, @taman-core/shared, unocss-variants, @vueuse/core (+8 more)
 
 ### Community 78 - "Community 78"
-Cohesion: 0.21
-Nodes (13): ensureSession(), generateAccess(), AUTH_LAYOUT_ROUTE_NAMES, AuthAllowDecisionType, AuthDecision, AuthRedirectDecisionType, MatchedRouteRecord, resolveAuthDecision() (+5 more)
+Cohesion: 0.19
+Nodes (13): ensureSession(), AUTH_LAYOUT_ROUTE_NAMES, AuthAllowDecisionType, AuthDecision, AuthRedirectDecisionType, MatchedRouteRecord, resolveAuthDecision(), resolveAuthMetaFromMatched() (+5 more)
 
 ### Community 79 - "Community 79"
 Cohesion: 0.12
@@ -681,16 +681,16 @@ Cohesion: 0.12
 Nodes (15): @taman-core/icons, bugs, default, dependencies, exports, homepage, license, name (+7 more)
 
 ### Community 82 - "Community 82"
-Cohesion: 0.16
+Cohesion: 0.17
 Nodes (9): defaultRequestInterceptorConfig, defaultResponseInterceptorConfig, InterceptorManager, ExtendOptions, HttpResponse, MakeErrorMessageFn, RequestContentType, RequestInterceptorConfig (+1 more)
 
 ### Community 83 - "Community 83"
-Cohesion: 0.22
+Cohesion: 0.17
 Nodes (6): useTabbarStore, useAppTamanConfig(), useContentMaximize(), useRefresh(), useTabs(), useTabbar()
 
 ### Community 84 - "Community 84"
-Cohesion: 0.27
-Nodes (9): defineApplicationConfig(), getCommonConfig(), defineConfig(), defineLibraryConfig(), defaultImportmapOptions, getDefaultPwaOptions(), DefineApplicationOptions, DefineConfig (+1 more)
+Cohesion: 0.18
+Nodes (7): getDefaultState(), FormActions, FormSchema, VbenFormProps, ExtendFormProps, [injectComponentRefMap, provideComponentRefMap], [injectFormProps, provideFormProps]
 
 ### Community 85 - "Community 85"
 Cohesion: 0.23
@@ -709,12 +709,12 @@ Cohesion: 0.13
 Nodes (14): default, dependencies, @taman/preferences, @taman/stores, @taman/types, @taman/utils, vue, devDependencies (+6 more)
 
 ### Community 89 - "Community 89"
-Cohesion: 0.36
-Nodes (7): convertRoutes(), generateRoutesByBackend(), normalizeViewPath(), generateAccessible(), generateRoutes(), mergeRoutesByName(), mapTree()
+Cohesion: 0.23
+Nodes (9): convertRoutes(), generateRoutesByBackend(), normalizeViewPath(), generateRoutesByFrontend(), hasAuthority(), generateRoutes(), mergeRoutesByName(), mockRoutes (+1 more)
 
 ### Community 90 - "Community 90"
-Cohesion: 0.21
-Nodes (8): AppSession, AppSessionUser, authClient, { directorUrl }, clearAuthCache(), SESSION_QUERY_KEY, sessionQueryOptions, authQueryKeys
+Cohesion: 0.28
+Nodes (7): AppSession, AppSessionUser, authClient, { directorUrl }, clearAuthCache(), SESSION_QUERY_KEY, sessionQueryOptions
 
 ### Community 92 - "Community 92"
 Cohesion: 0.13
@@ -737,8 +737,8 @@ Cohesion: 0.24
 Nodes (12): downloadFileFromBase64(), downloadFileFromBlob(), downloadFileFromBlobPart(), downloadFileFromImageUrl(), downloadFileFromUrl(), DownloadOptions, resolveFileName(), triggerDownload() (+4 more)
 
 ### Community 98 - "Community 98"
-Cohesion: 0.18
-Nodes (7): OnActionClickFn, OnActionClickParams, renderTableDefault(), VbenTableAction, ComponentType, getMenuTypeOptions(), useColumns()
+Cohesion: 0.08
+Nodes (12): fieldComponents, FormFieldComponents, useAppForm, OnActionClickFn, OnActionClickParams, VbenTableAction, ComponentType, DescriptionsItemType (+4 more)
 
 ### Community 101 - "Community 101"
 Cohesion: 0.16
@@ -814,8 +814,8 @@ Cohesion: 0.27
 Nodes (8): getConfigSource(), PluginOptions, viteExtraAppConfigPlugin(), getBoolean(), getNumber(), getString(), loadAndConvertEnv(), loadEnv()
 
 ### Community 116 - "Community 116"
-Cohesion: 0.18
-Nodes (3): loadScript(), uniqueByField(), updateCSSVariables()
+Cohesion: 0.21
+Nodes (4): loadNprogress(), startProgress(), stopProgress(), updateCSSVariables()
 
 ### Community 118 - "Community 118"
 Cohesion: 0.15
@@ -830,16 +830,16 @@ Cohesion: 0.17
 Nodes (11): cache, command, options, name, cwd, projectType, $schema, sourceRoot (+3 more)
 
 ### Community 121 - "Community 121"
-Cohesion: 0.20
-Nodes (6): menuContextKey, useSubMenuContext(), useMenu(), MenuProvider, SubMenuProvider, findComponentUpward()
+Cohesion: 0.23
+Nodes (4): menuContextKey, useSubMenuContext(), useMenu(), findComponentUpward()
 
 ### Community 122 - "Community 122"
 Cohesion: 0.32
 Nodes (3): HealthRepo, HealthService, getDrizzleClient()
 
 ### Community 123 - "Community 123"
-Cohesion: 0.36
-Nodes (7): createCssOptions(), resolveMonorepoDependencies(), resolvePackageVersion(), findMonorepoRoot(), getPackage(), getPackages(), getPackagesSync()
+Cohesion: 0.17
+Nodes (9): viteArchiverPlugin(), ApplicationOptions, ArchiverPluginOptions, ConditionPlugin, HtmlPluginOptions, IImportMap, ImportmapPluginOptions, LibraryOptions (+1 more)
 
 ### Community 124 - "Community 124"
 Cohesion: 0.17
@@ -858,8 +858,8 @@ Cohesion: 0.17
 Nodes (12): dependencies, clsx, @ctrl/tinycolor, dayjs, defu, es-toolkit, nprogress, tailwind-merge (+4 more)
 
 ### Community 128 - "Community 128"
-Cohesion: 0.17
-Nodes (9): viteArchiverPlugin(), ApplicationOptions, ArchiverPluginOptions, ConditionPlugin, HtmlPluginOptions, IImportMap, ImportmapPluginOptions, LibraryOptions (+1 more)
+Cohesion: 0.18
+Nodes (10): DescriptionsBreakpoint, DescriptionsColumn, DescriptionsItemProps, DescriptionsItemSpan, DescriptionsLayout, DescriptionsProps, DescriptionsRenderNode, DescriptionsSize (+2 more)
 
 ### Community 129 - "Community 129"
 Cohesion: 0.17
@@ -886,8 +886,8 @@ Cohesion: 0.18
 Nodes (10): default, dependencies, @taman-core/shared, devDependencies, vitest, exports, name, type (+2 more)
 
 ### Community 137 - "Community 137"
-Cohesion: 0.18
-Nodes (10): DescriptionsBreakpoint, DescriptionsColumn, DescriptionsItemProps, DescriptionsItemSpan, DescriptionsLayout, DescriptionsProps, DescriptionsRenderNode, DescriptionsSize (+2 more)
+Cohesion: 0.31
+Nodes (3): safeJoinUrl(), SSE, SseRequestOptions
 
 ### Community 140 - "Community 140"
 Cohesion: 0.20
@@ -913,13 +913,17 @@ Nodes (10): dependencies, circular-dependency-scanner, knip, publint, @taman/nod
 Cohesion: 0.18
 Nodes (10): compilerOptions, declaration, jsx, lib, moduleResolution, noEmit, useDefineForClassFields, display (+2 more)
 
+### Community 147 - "Community 147"
+Cohesion: 0.33
+Nodes (7): injectPluginsOptions(), extendsDefaultFormatter(), createVirtualComponent(), initVxeTable(), normalizeVxeLocale(), setupVbenVxeTable(), useTableForm()
+
 ### Community 148 - "Community 148"
 Cohesion: 0.20
 Nodes (9): default, dependencies, @taman-core/shared, vue, exports, name, type, types (+1 more)
 
 ### Community 149 - "Community 149"
-Cohesion: 0.21
-Nodes (8): unmountGlobalLoading(), defineOverridesPreferences(), definePreferencesExtension(), initApplication(), overridesPreferences, PlaygroundPreferencesExtension, preferencesExtension, PreferencesExtension
+Cohesion: 0.25
+Nodes (7): unmountGlobalLoading(), defineOverridesPreferences(), definePreferencesExtension(), initApplication(), overridesPreferences, PlaygroundPreferencesExtension, preferencesExtension
 
 ### Community 150 - "Community 150"
 Cohesion: 0.28
@@ -942,12 +946,12 @@ Cohesion: 0.20
 Nodes (9): Auth headers, retries, and other ofetch options, Calling convention, Errors (`ApiError`), Escape hatch: `fetch`, Gotchas, Setup, Table of contents, `@taman/request` (+1 more)
 
 ### Community 156 - "Community 156"
-Cohesion: 0.33
-Nodes (8): baseRequestClient, createRequestClient(), { directorUrl: apiURL }, PageFetchParams, useAuthStore, authenticateResponseInterceptor(), defaultResponseInterceptor(), errorMessageResponseInterceptor()
+Cohesion: 0.12
+Nodes (11): baseRequestClient, createRequestClient(), { directorUrl: apiURL }, PageFetchParams, requestClient, useAuthStore, PageFetchParams, authenticateResponseInterceptor() (+3 more)
 
 ### Community 157 - "Community 157"
-Cohesion: 0.31
-Nodes (3): safeJoinUrl(), SSE, SseRequestOptions
+Cohesion: 0.33
+Nodes (5): InitStoreOptions, resetAllStores(), SecureLSCtor, secureLSModule, SecureLSStorage
 
 ### Community 158 - "Community 158"
 Cohesion: 0.27
@@ -993,13 +997,17 @@ Nodes (9): scripts, build, build:analyze, dev, preview, test:e2e, test:e2e-codeg
 Cohesion: 0.10
 Nodes (10): __dirname, pohonOptions, BRANDS, POHON_BRANDS, ui, animations, shadeColors, shades (+2 more)
 
+### Community 171 - "Community 171"
+Cohesion: 0.27
+Nodes (8): useVbenForm(), SeparatorOptions, SetupVxeTable, ToolbarConfigOptions, ViewedRowPersistBase, VxePaginationInfo, VxeTableGridColumns, VxeTableGridOptions
+
 ### Community 175 - "Community 175"
 Cohesion: 0.22
 Nodes (8): default, dependencies, ofetch, exports, name, type, types, version
 
 ### Community 176 - "Community 176"
-Cohesion: 0.22
-Nodes (3): generateRoutesByFrontend(), hasAuthority(), mockRoutes
+Cohesion: 0.36
+Nodes (7): createCssOptions(), resolveMonorepoDependencies(), resolvePackageVersion(), findMonorepoRoot(), getPackage(), getPackages(), getPackagesSync()
 
 ### Community 178 - "Community 178"
 Cohesion: 0.11
@@ -1014,8 +1022,8 @@ Cohesion: 0.22
 Nodes (8): default, dependencies, better-auth, exports, name, type, types, version
 
 ### Community 184 - "Community 184"
-Cohesion: 0.38
-Nodes (6): TamanMenuRecordBadgeRaw, MenuItemClicked, MenuItemProps, MenuItemRegistered, MenuProps, SubMenuProps
+Cohesion: 0.28
+Nodes (8): TamanMenuRecordBadgeRaw, MenuItemClicked, MenuItemProps, MenuItemRegistered, MenuProps, MenuProvider, SubMenuProps, SubMenuProvider
 
 ### Community 186 - "Community 186"
 Cohesion: 0.28
@@ -1033,6 +1041,10 @@ Nodes (6): collapseShowTitle, isHttp, isTopLevelMenuItem, menuIcon, MenuItemRegi
 Cohesion: 0.19
 Nodes (7): CoreRepo, CoreService, TamanContext, DrizzleClient, adminRoles, organizationRoles, PermissionRequest
 
+### Community 193 - "Community 193"
+Cohesion: 0.25
+Nodes (3): PohonFormRef, Noop, Noop
+
 ### Community 194 - "Community 194"
 Cohesion: 0.25
 Nodes (7): bugs, homepage, license, name, sideEffects, type, version
@@ -1046,8 +1058,8 @@ Cohesion: 0.36
 Nodes (7): AuthRoleNames, AppRouteMeta, AuthMiddlewareOptions, ComponentRecordType, GenerateMenuAndRoutesOptions, RouteMeta, RouteRecordStringComponent
 
 ### Community 197 - "Community 197"
-Cohesion: 0.40
-Nodes (5): resetStaticRoutes(), resetRoutes(), router, routes, traverseTreeValues()
+Cohesion: 0.14
+Nodes (12): logo, AuthPageLayout(), AuthPageLayout(), coreRoutes, fallbackNotFoundRoute, accessRoutes, componentKeys, devRouteFiles (+4 more)
 
 ### Community 198 - "Community 198"
 Cohesion: 0.29
@@ -1070,8 +1082,8 @@ Cohesion: 0.29
 Nodes (6): ECharts Plugin, 使用, 导出, 类型, 预置图表, 预置组件
 
 ### Community 203 - "Community 203"
-Cohesion: 0.17
-Nodes (8): AccessState, BasicUserInfo, useUserStore, InitStoreOptions, resetAllStores(), SecureLSCtor, secureLSModule, SecureLSStorage
+Cohesion: 0.33
+Nodes (3): AccessState, BasicUserInfo, useUserStore
 
 ### Community 204 - "Community 204"
 Cohesion: 0.29
@@ -1102,8 +1114,8 @@ Cohesion: 0.33
 Nodes (3): CountToProps, TransitionPresets, TransitionPresetsKeys
 
 ### Community 216 - "Community 216"
-Cohesion: 0.47
-Nodes (5): loadDayjsLocale(), loadMessages(), loadThirdPartyMessage(), localesMap, modules
+Cohesion: 0.40
+Nodes (3): useTamanToast(), notifyQueryError(), queryClient
 
 ### Community 219 - "Community 219"
 Cohesion: 0.40
@@ -1269,10 +1281,6 @@ Nodes (4): exclude, extends, include, $schema
 Cohesion: 0.40
 Nodes (4): exclude, extends, include, $schema
 
-### Community 267 - "Community 267"
-Cohesion: 0.47
-Nodes (4): useSimpleLocale, getMessages(), Locale, messages
-
 ### Community 269 - "Community 269"
 Cohesion: 0.40
 Nodes (4): exclude, extends, include, $schema
@@ -1317,10 +1325,6 @@ Nodes (4): exclude, extends, include, $schema
 Cohesion: 0.40
 Nodes (3): FlattenVNodes, RawSlots, VNodeChildAtom
 
-### Community 281 - "Community 281"
-Cohesion: 0.21
-Nodes (3): cachedOptions, unmountedHooked, watermark
-
 ### Community 282 - "Community 282"
 Cohesion: 0.40
 Nodes (4): @vben/styles, 使用, 添加依赖, 用法
@@ -1361,6 +1365,14 @@ Nodes (4): exclude, extends, include, $schema
 Cohesion: 0.40
 Nodes (4): MOCK_TABLE_DATA, MOCK_TREE_TABLE_DATA, roles, TableRowData
 
+### Community 299 - "Community 299"
+Cohesion: 0.40
+Nodes (3): cachedOptions, unmountedHooked, watermark
+
+### Community 303 - "Community 303"
+Cohesion: 0.28
+Nodes (4): AccessState, NormalMenuProps, ExRouteRecordRaw, TamanMenuRecordRaw
+
 ### Community 309 - "Community 309"
 Cohesion: 0.50
 Nodes (4): repository, directory, type, url
@@ -1378,25 +1390,25 @@ Cohesion: 0.67
 Nodes (3): ./tiptap, default, types
 
 ### Community 341 - "Community 341"
-Cohesion: 0.83
-Nodes (3): loadNprogress(), startProgress(), stopProgress()
+Cohesion: 0.67
+Nodes (3): ExtendedVxeGridApi, FilteredSlots, UseVbenVxeGrid
 
 ## Knowledge Gaps
-- **1761 isolated node(s):** `name`, `version`, `private`, `license`, `build` (+1756 more)
+- **1762 isolated node(s):** `name`, `version`, `private`, `license`, `build` (+1757 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **72 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **69 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `bindMethods()` connect `Community 10` to `Community 4`, `Community 68`, `Community 38`, `Community 74`, `Community 43`, `Community 44`, `Community 178`?**
+- **Why does `bindMethods()` connect `Community 10` to `Community 38`, `Community 43`, `Community 44`, `Community 178`, `Community 84`?**
   _High betweenness centrality (0.026) - this node is a cross-community bridge._
-- **Why does `preferences` connect `Community 63` to `Community 65`, `Community 67`, `Community 72`, `Community 78`, `Community 111`, `Community 53`, `Community 149`, `Community 216`, `Community 90`, `Community 156`, `Community 29`, `Community 158`?**
-  _High betweenness centrality (0.020) - this node is a cross-community bridge._
-- **Why does `RequestClient` connect `Community 38` to `Community 82`, `Community 156`, `Community 157`?**
+- **Why does `preferences` connect `Community 53` to `Community 65`, `Community 67`, `Community 197`, `Community 72`, `Community 78`, `Community 111`, `Community 149`, `Community 90`, `Community 156`, `Community 29`, `Community 158`, `Community 63`?**
+  _High betweenness centrality (0.019) - this node is a cross-community bridge._
+- **Why does `RequestClient` connect `Community 38` to `Community 137`, `Community 82`, `Community 156`, `Community 74`?**
   _High betweenness centrality (0.014) - this node is a cross-community bridge._
 - **What connects `name`, `version`, `private` to the rest of the system?**
-  _1761 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1762 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.028070175438596492 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**

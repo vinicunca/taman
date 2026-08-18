@@ -30,7 +30,7 @@ if (result) {
 Mount the host **once** at the app root. Every dialog in the app renders through it.
 
 ```vue
-<!-- apps/backstage/src/app.vue (already done for backstage) -->
+<!-- apps/better-auth-front/src/app.vue (already done for better-auth-front) -->
 <script lang="ts" setup>
 import { TamanDialogProvider } from "@taman/common-ui";
 </script>
@@ -228,7 +228,7 @@ Do **not** call the inline (argument-less) form twice in one content component �
 - **`connectedComponent` is required** on the caller side. There is no call-site template, so inline slot content is impossible — every dialog body is its own SFC. Calling `useTamanDialog()` inline outside a content component throws.
 - **Call it in `setup` (or an `effectScope`)**. The dialog auto-unregisters when the owning scope is disposed (page unmount). Outside any scope it warns and stays registered forever — including duplicates on every HMR reload.
 - **`open()` before the host has rendered** the dialog logs a warning and resolves `undefined`. If you see it, `<TamanDialogProvider />` is missing from your root App component.
-- **Keep-alive tab switch closes the dialog.** When the calling page is deactivated (tab navigation in the backstage layout), the dialog closes and a pending `open()` promise resolves `undefined`. This includes `appendToMain` dialogs (the old modal kept those open across tab switches).
+- **Keep-alive tab switch closes the dialog.** When the calling page is deactivated (tab navigation in the better-auth-front layout), the dialog closes and a pending `open()` promise resolves `undefined`. This includes `appendToMain` dialogs (the old modal kept those open across tab switches).
 - **Don't mount two hosts** — every dialog would render twice.
 - **`destroyOnClose`** re-creates the content component after each close (fresh state per open). In the tick right after the close animation, calls on the api still target the old instance — avoid `open()` in `onClosed`.
 

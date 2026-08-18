@@ -54,10 +54,8 @@ function toggleTheme(event: MouseEvent) {
 <template>
   <PButton
     class="pohon:rounded-full"
-    size="sm"
     variant="ghost"
     color="neutral"
-    aria-live="polite"
     :icon="isDark ? 'ph:sun-bold' : 'ph:moon-bold'"
     @click.stop="toggleTheme"
   />

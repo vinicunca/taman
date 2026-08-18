@@ -5,7 +5,7 @@ import { preferences, usePreferences } from '@taman/preferences';
 import { computed, useSlots } from 'vue';
 import {
   LanguageToggle,
-  PreferencesButton,
+  PreferencesWidget,
   ThemeToggle,
 } from '../../widgets';
 
@@ -192,7 +192,7 @@ function clearPreferencesAndLogout() {
         </template>
 
         <template v-else-if="slot.name === 'preferences'">
-          <PreferencesButton
+          <PreferencesWidget
             @clear-preferences-and-logout="clearPreferencesAndLogout"
           />
         </template>

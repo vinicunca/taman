@@ -10,6 +10,7 @@ import {
 } from 'akar';
 import { ref } from 'vue';
 
+import { useDialogStateEvents } from '../dialog/use-dialog-state-events';
 import AlertDialogOverlay from './alert-dialog-overlay.vue';
 
 defineOptions({
@@ -47,16 +48,12 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits);
 
 const contentRef = ref<InstanceType<typeof AlertDialogContent> | null>(null);
 
-function onAnimationEnd(event: AnimationEvent) {
-  // Only trigger opened/closed events when the animation of contentRef ends.
-  if (event.target === contentRef.value?.$el) {
-    if (props.open) {
-      emits('opened');
-    } else {
-      emits('closed');
-    }
-  }
-}
+const { handleAnimationEvent } = useDialogStateEvents({
+  contentRef,
+  isOpen: () => props.open,
+  onClosed: () => emits('closed'),
+  onOpened: () => emits('opened'),
+});
 
 defineExpose({
   getContentRef: () => contentRef.value,
@@ -99,7 +96,8 @@ defineExpose({
           props.class,
         ]
       "
-      @animationend="onAnimationEnd"
+      @animationend="handleAnimationEvent"
+      @animationcancel="handleAnimationEvent"
     >
       <slot />
     </AlertDialogContent>

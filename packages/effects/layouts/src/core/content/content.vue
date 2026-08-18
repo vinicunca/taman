@@ -30,7 +30,7 @@ function showComponent(route: RouteLocationNormalizedLoadedGeneric) {
 </script>
 
 <template>
-  <div class="h-full relative">
+  <div class="page-route-container h-full relative">
     <IFrameRouterView />
 
     <RouteCachedView />
@@ -46,6 +46,7 @@ function showComponent(route: RouteLocationNormalizedLoadedGeneric) {
         v-if="getEnabledTransition"
         :name="getTransitionName(route)"
         appear
+        :leave-active-class="`${getTransitionName(route)}-leave-active page-route-leave-active`"
       >
         <KeepAlive
           v-if="keepAlive"
@@ -90,3 +91,27 @@ function showComponent(route: RouteLocationNormalizedLoadedGeneric) {
     </RouterView>
   </div>
 </template>
+
+<style lang="postcss">
+/* Optimized router transition animations to resolve the overlap issue. */
+.page-route-leave-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* Remove the horizontal scrollbar during animation transitions. translateX(-30px) */
+.page-route-container:has(> .fade-slide-enter-active),
+.page-route-container:has(> .fade-slide-leave-active) {
+  overflow-x: hidden;
+}
+
+/* Remove the vertical scrollbar during animation transitions. translateY(-30px) */
+.page-route-container:has(> .fade-up-enter-active),
+.page-route-container:has(> .fade-up-leave-active),
+.page-route-container:has(> .fade-down-enter-active),
+.page-route-container:has(> .fade-down-leave-active) {
+  overflow-y: hidden;
+}
+</style>

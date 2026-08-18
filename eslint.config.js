@@ -7,7 +7,7 @@ export default vinicuncaESLint(
     },
     typescript: true,
     unocss: {
-      configPath: './apps/backstage/uno.config.ts',
+      configPath: './apps/better-auth-front/uno.config.ts',
     },
     vue: true,
   },

@@ -1518,9 +1518,15 @@ importers:
       '@vben/icons':
         specifier: workspace:*
         version: link:../../icons
+      '@vinicunca/perkakas':
+        specifier: 'catalog:'
+        version: 1.16.0
       '@vueuse/core':
         specifier: 'catalog:'
         version: 14.4.0(vue@3.5.41(typescript@6.0.3))
+      pohon-ui:
+        specifier: 2.0.0-rc7.7
+        version: 2.0.0-rc7.7(49e5c8297dd244e779740b858f08bccc)
       vue:
         specifier: ^3.5.41
         version: 3.5.41(typescript@6.0.3)

@@ -1,3 +1,4 @@
+import type { VinicuncaTheme } from '@vinicunca/unocss-preset';
 import { presetVinicunca } from '@vinicunca/unocss-preset';
 import { definePreset } from 'unocss';
 import { BRANDS } from '../constants';
@@ -8,7 +9,7 @@ import { preflights } from './uno.preflights';
 const COLOR_PLACEHOLDER = '${color}';
 const TOKEN_PATTERN = /[^\s`]+/g;
 
-export const presetCore = definePreset(() => {
+export const presetCore = definePreset<VinicuncaTheme>(() => {
   // @keep-sorted
   return {
 
@@ -56,6 +57,10 @@ export const presetCore = definePreset(() => {
             sans: [
               'Inter',
             ],
+          },
+          timeouts: {
+            warning: 3000,
+            failure: 10_000,
           },
         },
 

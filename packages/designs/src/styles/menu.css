@@ -392,10 +392,6 @@
   font-size: var(--menu-font-size) !important;
 }
 
-.taman-sub-menu-content * {
-  font-size: inherit !important;
-}
-
 .taman-sub-menu-content__icon-arrow {
   width: inherit;
   flex-shrink: 0;

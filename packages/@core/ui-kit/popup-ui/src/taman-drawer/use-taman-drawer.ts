@@ -1,4 +1,4 @@
-import type { Component } from 'vue';
+import type { Component, Slots } from 'vue';
 
 import type {
   ExtendedTamanDrawerApi,
@@ -18,22 +18,25 @@ import {
   provide,
   reactive,
   ref,
+  shallowRef,
+  watch,
 } from 'vue';
 
 import { TamanDrawerApi } from './drawer.api';
 import { drawerDefaults } from './drawer.defaults';
 import { registerDrawer, unregisterDrawer } from './drawer.registry';
-import TamanDrawerComponent from './drawer.vue';
+import TamanDrawerComponent from './taman-drawer.vue';
 
 const TAMAN_DRAWER_INJECT_KEY = Symbol('TAMAN_DRAWER_INJECT');
 
 /**
  * Caller side: registers `connectedComponent` with the global
- * <TamanDrawerProvider /> and returns the api. No template tag needed.
+ * <TamanDrawerProvider />. Render the returned <Drawer> in this
+ * component's template to forward attrs, listeners, and slots.
  */
 export function useTamanDrawer(
   options: TamanDrawerApiOptions & { connectedComponent: Component },
-): ExtendedTamanDrawerApi;
+): readonly [Component, ExtendedTamanDrawerApi];
 /**
  * Content-component side: returns [Drawer, api]; render <Drawer> in the
  * content component's own template to get the chrome.
@@ -41,11 +44,9 @@ export function useTamanDrawer(
 export function useTamanDrawer(
   options?: Omit<TamanDrawerApiOptions, 'connectedComponent'>,
 ): readonly [Component, ExtendedTamanDrawerApi];
-// The overloads return different shapes depending on `connectedComponent`,
-// and TypeScript requires the implementation's return type to be assignable
-// to every overload's return type — no union satisfies that (TS2394).
-// `any` here is the standard escape hatch; callers never see it, they only
-// resolve against the two overload signatures above.
+// Both overloads return `[Component, api]`. The implementation uses `any`
+// because TypeScript requires the implementation signature to be assignable
+// to every overload, and the two call styles are still documented separately.
 export function useTamanDrawer(options: TamanDrawerApiOptions = {}): any {
   const { connectedComponent } = options;
 
@@ -70,6 +71,9 @@ export function useTamanDrawer(options: TamanDrawerApiOptions = {}): any {
       },
     });
 
+    const forwardedAttrs = shallowRef<Record<string, unknown>>({});
+    const forwardedSlots = shallowRef<Slots>({});
+
     const Connector = defineComponent(
       () => {
         hasRendered.value = true;
@@ -87,10 +91,40 @@ export function useTamanDrawer(options: TamanDrawerApiOptions = {}): any {
             isDrawerReady.value = true;
           },
         });
-        return () => h(isDrawerReady.value ? connectedComponent : 'div');
+        return () =>
+          h(
+            isDrawerReady.value ? connectedComponent : 'div',
+            forwardedAttrs.value,
+            forwardedSlots.value,
+          );
       },
       {
         name: 'TamanDrawerConnector',
+        inheritAttrs: false,
+      },
+    );
+
+    const Drawer = defineComponent(
+      (_, { attrs, slots }) => {
+        watch(
+          () => ({ ...attrs }),
+          (value) => {
+            forwardedAttrs.value = value;
+            void checkDrawerBinderProps(
+              extendedApi as ExtendedTamanDrawerApi,
+              value,
+            );
+          },
+          { deep: true, immediate: true },
+        );
+
+        return () => {
+          forwardedSlots.value = slots;
+          return null;
+        };
+      },
+      {
+        name: 'TamanDrawerBinder',
         inheritAttrs: false,
       },
     );
@@ -107,7 +141,7 @@ export function useTamanDrawer(options: TamanDrawerApiOptions = {}): any {
       );
     }
 
-    return extendedApi as ExtendedTamanDrawerApi;
+    return [Drawer, extendedApi as ExtendedTamanDrawerApi] as const;
   }
 
   const injectData = inject<any>(TAMAN_DRAWER_INJECT_KEY, {});
@@ -177,4 +211,32 @@ export function useTamanDrawer(options: TamanDrawerApiOptions = {}): any {
   injectData.extendApi(extendedApi);
 
   return [Drawer, extendedApi] as const;
+}
+
+async function checkDrawerBinderProps(
+  api: ExtendedTamanDrawerApi,
+  attrs: Record<string, unknown>,
+) {
+  if (Object.keys(attrs).length === 0) {
+    return;
+  }
+  await nextTick();
+
+  const state = api?.store?.state;
+  if (!state) {
+    return;
+  }
+
+  const stateKeys = new Set(Object.keys(state));
+
+  for (const attr of Object.keys(attrs)) {
+    if (attr === 'class' || attr.startsWith('on')) {
+      continue;
+    }
+    if (stateKeys.has(attr)) {
+      console.warn(
+        `[Taman Drawer]: When 'connectedComponent' exists, do not set props or slots '${attr}' on the caller <Drawer>. If you need to modify the drawer chrome, pass them to useTamanDrawer() or api.setState().`,
+      );
+    }
+  }
 }

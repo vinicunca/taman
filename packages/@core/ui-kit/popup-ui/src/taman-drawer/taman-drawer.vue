@@ -130,7 +130,7 @@ function handleFocusOutside(e: Event) {
 
 const getAppendTo = computed(() => {
   return appendToMain.value
-    ? `#${ELEMENT_ID_MAIN_CONTENT}>div:not(.absolute)>div`
+    ? `#${ELEMENT_ID_MAIN_CONTENT}`
     : undefined;
 });
 
@@ -151,6 +151,7 @@ watch(
       hasOpened.value = true;
     }
   },
+  { immediate: true },
 );
 function handleClosed() {
   isClosed.value = true;
@@ -233,37 +234,39 @@ const getForceMount = computed(() => {
             orientation="vertical"
           />
 
-          <SheetTitle
-            v-if="title"
-            class="text-left flex gap-1 items-center"
-          >
-            <slot name="title">
-              {{ title }}
+          <div class="flex flex-col gap-1">
+            <SheetTitle
+              v-if="title"
+              class="text-left flex gap-1 items-center"
+            >
+              <slot name="title">
+                {{ title }}
 
-              <slot
-                name="titleTooltip"
-              >
-                <PTooltip
-                  v-if="titleTooltip"
-                  :text="titleTooltip"
+                <slot
+                  name="titleTooltip"
                 >
-                  <PIcon
-                    name="lucide:circle-help"
-                    class="color-text-muted"
-                  />
-                </PTooltip>
+                  <PTooltip
+                    v-if="titleTooltip"
+                    :text="titleTooltip"
+                  >
+                    <PIcon
+                      name="lucide:circle-help"
+                      class="color-text-muted"
+                    />
+                  </PTooltip>
+                </slot>
               </slot>
-            </slot>
-          </SheetTitle>
+            </SheetTitle>
 
-          <SheetDescription
-            v-if="description"
-            class="text-xs mt-1"
-          >
-            <slot name="description">
-              {{ description }}
-            </slot>
-          </SheetDescription>
+            <SheetDescription
+              v-if="description"
+              class="text-xs"
+            >
+              <slot name="description">
+                {{ description }}
+              </slot>
+            </SheetDescription>
+          </div>
         </div>
 
         <VisuallyHidden v-if="!title || !description">
@@ -273,6 +276,7 @@ const getForceMount = computed(() => {
 
         <div class="flex-center">
           <slot name="extra" />
+
           <SheetClose
             v-if="closable && closeIconPlacement === 'right'"
             as-child
@@ -290,6 +294,7 @@ const getForceMount = computed(() => {
           </SheetClose>
         </div>
       </SheetHeader>
+
       <template v-else>
         <VisuallyHidden>
           <SheetTitle />

@@ -21,6 +21,7 @@ export const tabs = {
       ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, ''])),
       neutral: '',
     },
+
     variant: {
       pill: {
         list: 'bg-background-elevated rounded-lg',
@@ -33,18 +34,20 @@ export const tabs = {
         trigger: 'focus:outline-none',
       },
     },
+
     orientation: {
       horizontal: {
         root: 'flex-col',
         list: 'w-full',
-        indicator: 'left-0 w-(--akar-tabs-indicator-size) translate-x-(--akar-tabs-indicator-position)',
+        indicator: 'left-0 w-$akar-tabs-indicator-size translate-x-$akar-tabs-indicator-position',
         trigger: 'justify-center',
       },
       vertical: {
         list: 'flex-col',
-        indicator: 'top-0 h-(--akar-tabs-indicator-size) translate-y-(--akar-tabs-indicator-position)',
+        indicator: 'top-0 h-$akar-tabs-indicator-size translate-y-$akar-tabs-indicator-position',
       },
     },
+
     size: {
       xs: {
         trigger: 'px-2 py-1 text-xs gap-1',

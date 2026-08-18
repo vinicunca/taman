@@ -3,6 +3,7 @@ import type { DialogContentEmits, DialogContentProps } from 'akar';
 import type { SheetVariants } from './sheet.variants';
 import { DialogContent, DialogPortal, useForwardPropsEmits } from 'akar';
 import { computed, ref } from 'vue';
+import { useDialogStateEvents } from '../dialog/use-dialog-state-events';
 import SheetOverlay from './sheet-overlay.vue';
 import { sheetVariants } from './sheet.variants';
 
@@ -63,19 +64,14 @@ const position = computed(() => {
 // The SheetOverlay component uses v-if to control mounting/unmounting. Its internal useScrollLock automatically unlocks scrolling when the component is unmounted.
 // This avoids the issue of pop-ups (such as Select dropdowns) becoming unclickable when modal=true because the body has pointer-events:none set.
 const forwarded = useForwardPropsEmits(delegatedProps, emits);
-
 const contentRef = ref<InstanceType<typeof DialogContent> | null>(null);
 
-function onAnimationEnd(event: AnimationEvent) {
-  // Only trigger opened/closed events when the animation of contentRef is complete.
-  if (event.target === contentRef.value?.$el) {
-    if (props.open) {
-      emits('opened');
-    } else {
-      emits('closed');
-    }
-  }
-}
+const { handleAnimationEvent } = useDialogStateEvents({
+  contentRef,
+  isOpen: () => props.open,
+  onClosed: () => emits('closed'),
+  onOpened: () => emits('opened'),
+});
 </script>
 
 <template>
@@ -108,7 +104,8 @@ function onAnimationEnd(event: AnimationEvent) {
         props.class,
       ]"
       v-bind="{ ...forwarded, ...$attrs }"
-      @animationend="onAnimationEnd"
+      @animationend="handleAnimationEvent"
+      @animationcancel="handleAnimationEvent"
     >
       <slot />
     </DialogContent>

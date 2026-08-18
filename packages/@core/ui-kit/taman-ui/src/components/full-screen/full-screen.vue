@@ -20,7 +20,6 @@ isFullscreen.value = !!(
 <template>
   <PButton
     class="pohon:rounded-full"
-    size="sm"
     variant="ghost"
     color="neutral"
     :icon="isFullscreen ? 'lucide:minimize' : 'lucide:maximize'"

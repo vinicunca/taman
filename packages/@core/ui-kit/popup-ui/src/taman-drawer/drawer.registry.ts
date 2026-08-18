@@ -9,8 +9,8 @@ export interface DrawerRegistryEntry {
 
 /**
  * Global registry of connector components rendered by <TamanDrawerProvider />.
- * useTamanDrawer registers here instead of returning a component for the
- * caller to mount in a template.
+ * Callers may also render the returned <Drawer> binder to forward
+ * attrs/listeners/slots onto the connected component.
  */
 export const drawerRegistry = shallowReactive<Array<DrawerRegistryEntry>>([]);
 

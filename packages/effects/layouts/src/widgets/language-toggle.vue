@@ -44,7 +44,6 @@ async function handleUpdate(value: string | undefined) {
   >
     <PButton
       class="pohon:rounded-full"
-      size="sm"
       variant="ghost"
       color="neutral"
       icon="lucide:languages"

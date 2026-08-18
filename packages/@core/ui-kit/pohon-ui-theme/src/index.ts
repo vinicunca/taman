@@ -221,7 +221,7 @@ export const ui = parseThemeClasses({
   slideover,
   slider,
   stepper,
-  switchTheme,
+  switch: switchTheme,
   table,
   tabs,
   textarea,
