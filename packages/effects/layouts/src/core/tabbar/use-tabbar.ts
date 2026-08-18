@@ -2,12 +2,12 @@ import type { StrictContextMenuItem } from '@taman-core/tabs-ui';
 import type { TamanTabDefinition } from '@taman/types';
 import type { RouteLocationNormalizedGeneric } from 'vue-router';
 
-import { useContentMaximize, useTabs } from '../../../../composables/src';
 import { $t, useI18n } from '@taman/locales';
 import { getTabKey, useAccessStore, useTabbarStore } from '@taman/stores';
 import { filterTree } from '@taman/utils';
 import { computed, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { useContentMaximize, useTabs } from '../../../../composables/src';
 
 export function useTabbar() {
   const router = useRouter();
@@ -114,7 +114,7 @@ export function useTabbar() {
     const menus: Array<StrictContextMenuItem> = [
       {
         key: 'close',
-        icon: 'i-lucide:x',
+        icon: 'lucide:x',
         label: $t('preferences.tabbar.contextMenu.close'),
         onSelect: async () => {
           await closeCurrentTab(tab);

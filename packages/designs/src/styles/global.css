@@ -32,9 +32,3 @@ html.dark::view-transition-old(root) {
 html.dark::view-transition-new(root) {
   @apply z-1;
 }
-
-*,
-::after,
-::before {
-  border-color: var(--ui-border);
-}

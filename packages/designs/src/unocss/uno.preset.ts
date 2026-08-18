@@ -12,6 +12,7 @@ const TOKEN_PATTERN = /[^\s`]+/g;
 export const presetCore = definePreset<VinicuncaTheme>(() => {
   // @keep-sorted
   return {
+    enforce: 'post',
 
     extractors: [
       /**
@@ -34,6 +35,7 @@ export const presetCore = definePreset<VinicuncaTheme>(() => {
     ],
 
     layers: {
+      'components': 90,
       'pohon': 100,
       'p-variant': 200,
     },
@@ -94,12 +96,15 @@ export const presetCore = definePreset<VinicuncaTheme>(() => {
           inverted: 'var(--ui-text-inverted)',
         },
         background: {
-          DEFAULT: 'var(--ui-bg)',
-          muted: 'var(--ui-bg-muted)',
-          elevated: 'var(--ui-bg-elevated)',
-          accented: 'var(--ui-bg-accented)',
-          inverted: 'var(--ui-bg-inverted)',
-          border: 'var(--ui-border)',
+          'DEFAULT': 'var(--ui-bg)',
+          'muted': 'var(--ui-bg-muted)',
+          'elevated': 'var(--ui-bg-elevated)',
+          'accented': 'var(--ui-bg-accented)',
+          'inverted': 'var(--ui-bg-inverted)',
+          'border': 'var(--ui-border)',
+          'header': 'var(--ui-bg-header)',
+          'sidebar': 'var(--ui-bg-sidebar)',
+          'sidebar-deep': 'var(--ui-bg-sidebar-deep)',
         },
         border: {
           DEFAULT: 'var(--ui-border)',

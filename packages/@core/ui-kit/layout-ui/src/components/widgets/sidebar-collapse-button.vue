@@ -9,7 +9,7 @@ function handleCollapsed() {
 <template>
   <PButton
     class="bottom-2 left-3 absolute z-10"
-    :icon="collapsed ? 'i-lucide-chevrons-right' : 'i-lucide-chevrons-left'"
+    :icon="collapsed ? 'lucide-chevrons-right' : 'lucide-chevrons-left'"
     color="neutral"
     size="sm"
     variant="soft"

@@ -322,7 +322,7 @@ onUnmounted(() => {
       :class="[
         {
           'bg-sidebar-deep': isSidebarMixed,
-          'border-r border-border bg-sidebar': !isSidebarMixed,
+          'border-r border-border bg-background-sidebar': !isSidebarMixed,
         },
       ]"
       :style="{ width: `${width}px` }"
@@ -364,7 +364,7 @@ onUnmounted(() => {
         },
       ]"
       :style="extraStyle"
-      class="border-r border-border bg-sidebar h-full transition-all-200 top-0 fixed overflow-hidden"
+      class="border-r border-border bg-background-sidebar h-full transition-all-200 top-0 fixed overflow-hidden"
     >
       <SidebarCollapseButton
         v-if="isSidebarMixed && expandOnHover"

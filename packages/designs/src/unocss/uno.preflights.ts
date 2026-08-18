@@ -12,13 +12,25 @@ const radius = `
 
 export const preflights: Array<Preflight> = [
   {
-    layer: 'preflights',
+    layer: 'theme',
     getCSS: () => {
       return [
         baseColors,
         brandColors,
         radius,
       ].join('\n');
+    },
+  },
+
+  {
+    layer: 'preflights',
+    getCSS: () => {
+      return `
+*,
+::after,
+::before {
+  border-color: var(--ui-border);
+}`;
     },
   },
 ];

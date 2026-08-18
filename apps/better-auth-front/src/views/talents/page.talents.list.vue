@@ -26,7 +26,7 @@ const columnDefs = ref<Array<ColDef>>([
   },
 ]);
 
-const talentFormDrawer = useTamanDrawer({
+const [, talentFormDrawer] = useTamanDrawer({
   connectedComponent: TalentForm,
   destroyOnClose: true,
 });

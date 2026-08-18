@@ -1,10 +1,10 @@
 .dark,
-.dark[data-theme='custom'],
-.dark[data-theme='default'] {
+.dark[data-theme="custom"],
+.dark[data-theme="default"] {
   /* Default background color of <body />...etc */
   --background: 222.34deg 10.43% 12.27%;
 
-  /* Main content area background color */
+  /* 主体区域背景色 */
   --background-deep: 220deg 13.06% 9%;
   --foreground: 0 0% 95%;
 
@@ -18,7 +18,7 @@
 
   /* --popover: 222.82deg 8.43% 12.27%; */
 
-  /* Popover background is too close to the main theme background */
+  /* 弹出层的背景色与主题区域背景色太过接近  */
   --popover: 0 0% 14.2%;
   --popover-foreground: 210 40% 98%;
 
@@ -31,7 +31,7 @@
   --muted: 240 3.7% 15.9%;
   --muted-foreground: 240 5% 64.9%;
 
-  /* Theme colors */
+  /* 主题颜色 */
 
   /* --primary: 245 82% 67%; */
   --primary-foreground: 0 0% 98%;
@@ -56,7 +56,7 @@
   --warning: 42 84% 61%;
   --warning-foreground: 0 0% 98%;
 
-  /* Secondary colors */
+  /* 颜色次要 */
   --secondary: 240 5% 17%;
   --secondary-foreground: 0 0% 98%;
 
@@ -83,22 +83,23 @@
   /* Used for focus ring */
   --ring: 222.2 84% 4.9%;
 
-  /* Base border radius */
+  /* 基本圆角大小 */
   --radius: 0.5rem;
 
   /* ============= Custom ============= */
 
-  /* Overlay color */
+  /* 遮罩颜色 */
   --overlay: 0deg 0% 0% / 40%;
   --overlay-content: 0deg 0% 0% / 40%;
 
-  /* Base font size */
+  /* 基本文字大小 */
   --font-size-base: 16px;
 
   /* =============component & UI============= */
 
+  --sidebar: 222.34deg 10.43% 12.27%;
   --sidebar-deep: 220deg 13.06% 9%;
-  --menu: var(--taman-color-sidebar);
+  --menu: var(--sidebar);
 
   /* header */
   --header: 222.34deg 10.43% 12.27%;
@@ -106,8 +107,8 @@
   color-scheme: dark;
 }
 
-.dark[data-theme='violet'],
-[data-theme='violet'] .dark {
+.dark[data-theme="violet"],
+[data-theme="violet"] .dark {
   --background: 224 71.4% 4.1%;
   --background-deep: var(--background);
   --foreground: 210 20% 98%;
@@ -132,8 +133,8 @@
   --header: 224 71.4% 4.1%;
 }
 
-.dark[data-theme='pink'],
-[data-theme='pink'] .dark {
+.dark[data-theme="pink"],
+[data-theme="pink"] .dark {
   --background: 20 14.3% 4.1%;
   --background-deep: var(--background);
   --foreground: 0 0% 95%;
@@ -158,8 +159,8 @@
   --header: 20 14.3% 4.1%;
 }
 
-.dark[data-theme='rose'],
-[data-theme='rose'] .dark {
+.dark[data-theme="rose"],
+[data-theme="rose"] .dark {
   --background: 0 0% 3.9%;
   --background-deep: var(--background);
   --foreground: 0 0% 98%;
@@ -184,8 +185,8 @@
   --header: 0 0% 3.9%;
 }
 
-.dark[data-theme='sky-blue'],
-[data-theme='sky-blue'] .dark {
+.dark[data-theme="sky-blue"],
+[data-theme="sky-blue"] .dark {
   --background: 222.2 84% 4.9%;
   --background-deep: var(--background);
   --foreground: 210 40% 98%;
@@ -210,8 +211,8 @@
   --header: 222.2 84% 4.9%;
 }
 
-.dark[data-theme='deep-blue'],
-[data-theme='deep-blue'] .dark {
+.dark[data-theme="deep-blue"],
+[data-theme="deep-blue"] .dark {
   --background: 222.2 84% 4.9%;
   --background-deep: var(--background);
   --foreground: 210 40% 98%;
@@ -236,8 +237,8 @@
   --header: 222.2 84% 4.9%;
 }
 
-.dark[data-theme='green'],
-[data-theme='green'] .dark {
+.dark[data-theme="green"],
+[data-theme="green"] .dark {
   --background: 20 14.3% 4.1%;
   --background-deep: var(--background);
   --foreground: 0 0% 95%;
@@ -262,8 +263,8 @@
   --header: 20 14.3% 4.1%;
 }
 
-.dark[data-theme='deep-green'],
-[data-theme='deep-green'] .dark {
+.dark[data-theme="deep-green"],
+[data-theme="deep-green"] .dark {
   --background: 20 14.3% 4.1%;
   --background-deep: var(--background);
   --foreground: 0 0% 95%;
@@ -288,8 +289,8 @@
   --header: 20 14.3% 4.1%;
 }
 
-.dark[data-theme='orange'],
-[data-theme='orange'] .dark {
+.dark[data-theme="orange"],
+[data-theme="orange"] .dark {
   --background: 20 14.3% 4.1%;
   --background-deep: var(--background);
   --foreground: 60 9.1% 97.8%;
@@ -314,8 +315,8 @@
   --header: 20 14.3% 4.1%;
 }
 
-.dark[data-theme='yellow'],
-[data-theme='yellow'] .dark {
+.dark[data-theme="yellow"],
+[data-theme="yellow"] .dark {
   --background: 20 14.3% 4.1%;
   --background-deep: var(--background);
   --foreground: 60 9.1% 97.8%;
@@ -340,8 +341,8 @@
   --header: 20 14.3% 4.1%;
 }
 
-.dark[data-theme='zinc'],
-[data-theme='zinc'] .dark {
+.dark[data-theme="zinc"],
+[data-theme="zinc"] .dark {
   --background: 240 10% 3.9%;
   --background-deep: var(--background);
   --foreground: 0 0% 98%;
@@ -366,8 +367,8 @@
   --header: 240 10% 3.9%;
 }
 
-.dark[data-theme='neutral'],
-[data-theme='neutral'] .dark {
+.dark[data-theme="neutral"],
+[data-theme="neutral"] .dark {
   --background: 0 0% 3.9%;
   --background-deep: var(--background);
   --foreground: 0 0% 98%;
@@ -392,8 +393,8 @@
   --header: 0 0% 3.9%;
 }
 
-.dark[data-theme='slate'],
-[data-theme='slate'] .dark {
+.dark[data-theme="slate"],
+[data-theme="slate"] .dark {
   --background: 222.2 84% 4.9%;
   --background-deep: var(--background);
   --foreground: 210 40% 98%;
@@ -418,8 +419,8 @@
   --header: 222.2 84% 4.9%;
 }
 
-.dark[data-theme='gray'],
-[data-theme='gray'] .dark {
+.dark[data-theme="gray"],
+[data-theme="gray"] .dark {
   --background: 224 71.4% 4.1%;
   --background-deep: var(--background);
   --foreground: 210 20% 98%;

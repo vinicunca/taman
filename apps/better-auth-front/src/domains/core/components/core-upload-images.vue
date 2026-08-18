@@ -43,7 +43,7 @@ const modelValue = defineModel<Array<File> | null>();
         </p>
 
         <PButton
-          icon="i-lucide-plus"
+          icon="lucide-plus"
           :label="$t('form.uploadImages.addMore')"
           class="-my-2"
           color="neutral"

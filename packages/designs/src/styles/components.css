@@ -1,4 +1,4 @@
-@layer theme {
+@layer components {
   .outline-box {
     @apply relative rounded-md p-1 outline-1 outline-border;
   }

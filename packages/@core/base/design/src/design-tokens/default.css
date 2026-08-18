@@ -1,15 +1,15 @@
 :root {
-  /** Base z-index for popups **/
+  /** 弹出层的基础层级 **/
   --popup-z-index: 2000;
   --font-family:
-    -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue',
-    arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', 'Noto Color Emoji';
+    -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue",
+    arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
 
   /* Default background color of <body />...etc */
   --background: 0 0% 100%;
 
-  /* Main content area background color */
+  /* 主体区域背景色 */
   --background-deep: 216 20.11% 95.47%;
   --foreground: 210 6% 21%;
 
@@ -29,7 +29,7 @@
   --muted: 240 4.8% 95.9%;
   --muted-foreground: 240 3.8% 46.1%;
 
-  /* Theme colors */
+  /* 主题颜色 */
 
   --primary: 212 100% 45%;
   --primary-foreground: 0 0% 98%;
@@ -87,19 +87,20 @@
 
   /* ============= custom ============= */
 
-  /* Overlay color */
+  /* 遮罩颜色 */
   --overlay: 0 0% 0% / 45%;
   --overlay-content: 0 0% 95% / 45%;
 
-  /* Base font size */
+  /* 基本文字大小 */
   --font-size-base: 16px;
   --menu-font-size: calc(var(--font-size-base) * 0.875);
 
   /* =============component & UI============= */
 
   /* menu */
+  --sidebar: 0 0% 100%;
   --sidebar-deep: 0 0% 100%;
-  --menu: var(--taman-color-sidebar);
+  --menu: var(--sidebar);
 
   /* header */
   --header: 0 0% 100%;
@@ -109,12 +110,12 @@
 }
 
 .light,
-.light[data-theme='custom'],
-.light[data-theme='default'] {
+.light[data-theme="custom"],
+.light[data-theme="default"] {
   /* Default background color of <body />...etc */
   --background: 0 0% 100%;
 
-  /* Main content area background color */
+  /* 主体区域背景色 */
   --background-deep: 216 20.11% 95.47%;
   --foreground: 210 6% 21%;
 
@@ -130,7 +131,7 @@
   --muted: 240 4.8% 95.9%;
   --muted-foreground: 240 3.8% 46.1%;
 
-  /* Theme colors */
+  /* 主题颜色 */
   --primary-foreground: 0 0% 98%;
 
   /* Used for destructive actions such as <Button variant="destructive"> */
@@ -172,15 +173,16 @@
 
   /* ============= custom ============= */
 
-  /* Overlay color */
+  /* 遮罩颜色 */
   --overlay: 0 0% 0% / 45%;
   --overlay-content: 0 0% 95% / 45%;
 
   /* =============component & UI============= */
 
   /* menu */
+  --sidebar: 0 0% 100%;
   --sidebar-deep: 0 0% 100%;
-  --menu: var(--taman-color-sidebar);
+  --menu: var(--sidebar);
 
   /* header */
   --header: 0 0% 100%;
@@ -189,9 +191,9 @@
   color-scheme: light;
 }
 
-.light[data-theme='violet'],
-[data-theme='violet'] .light,
-[data-theme='violet'] {
+.light[data-theme="violet"],
+[data-theme="violet"] .light,
+[data-theme="violet"] {
   /* --background: 0 0% 100%; */
   --foreground: 224 71.4% 4.1%;
   --card: 0 0% 100%;
@@ -212,9 +214,9 @@
   --ring: 262.1 83.3% 57.8%;
 }
 
-.light[data-theme='pink'],
-[data-theme='pink'] .light,
-[data-theme='pink'] {
+.light[data-theme="pink"],
+[data-theme="pink"] .light,
+[data-theme="pink"] {
   /* --background: 0 0% 100%; */
   --foreground: 240 10% 3.9%;
   --card: 0 0% 100%;
@@ -235,9 +237,9 @@
   --ring: 346.8 77.2% 49.8%;
 }
 
-.light[data-theme='rose'],
-[data-theme='rose'] .light,
-[data-theme='rose'] {
+.light[data-theme="rose"],
+[data-theme="rose"] .light,
+[data-theme="rose"] {
   /* --background: 0 0% 100%; */
   --foreground: 240 10% 3.9%;
   --card: 0 0% 100%;
@@ -258,9 +260,9 @@
   --ring: 346.8 77.2% 49.8%;
 }
 
-.light[data-theme='sky-blue'],
-[data-theme='sky-blue'] .light,
-[data-theme='sky-blue'] {
+.light[data-theme="sky-blue"],
+[data-theme="sky-blue"] .light,
+[data-theme="sky-blue"] {
   /* --background: 0 0% 100%; */
   --foreground: 222.2 84% 4.9%;
   --card: 0 0% 100%;
@@ -281,9 +283,9 @@
   --ring: 221.2 83.2% 53.3%;
 }
 
-.light[data-theme='deep-blue'],
-[data-theme='deep-blue'] .light,
-[data-theme='deep-blue'] {
+.light[data-theme="deep-blue"],
+[data-theme="deep-blue"] .light,
+[data-theme="deep-blue"] {
   /* --background: 0 0% 100%; */
   --foreground: 222.2 84% 4.9%;
   --card: 0 0% 100%;
@@ -304,9 +306,9 @@
   --ring: 221.2 83.2% 53.3%;
 }
 
-.light[data-theme='green'],
-[data-theme='green'] .light,
-[data-theme='green'] {
+.light[data-theme="green"],
+[data-theme="green"] .light,
+[data-theme="green"] {
   /* --background: 0 0% 100%; */
   --foreground: 240 10% 3.9%;
   --card: 0 0% 100%;
@@ -327,9 +329,9 @@
   --ring: 142.1 76.2% 36.3%;
 }
 
-.light[data-theme='deep-green'],
-[data-theme='deep-green'] .light,
-[data-theme='deep-green'] {
+.light[data-theme="deep-green"],
+[data-theme="deep-green"] .light,
+[data-theme="deep-green"] {
   /* --background: 0 0% 100%; */
   --foreground: 240 10% 3.9%;
   --card: 0 0% 100%;
@@ -350,9 +352,9 @@
   --ring: 142.1 76.2% 36.3%;
 }
 
-.light[data-theme='orange'],
-[data-theme='orange'] .light,
-[data-theme='orange'] {
+.light[data-theme="orange"],
+[data-theme="orange"] .light,
+[data-theme="orange"] {
   /* --background: 0 0% 100%; */
   --foreground: 20 14.3% 4.1%;
   --card: 0 0% 100%;
@@ -373,9 +375,9 @@
   --ring: 24.6 95% 53.1%;
 }
 
-.light[data-theme='yellow'],
-[data-theme='yellow'] .light,
-[data-theme='yellow'] {
+.light[data-theme="yellow"],
+[data-theme="yellow"] .light,
+[data-theme="yellow"] {
   /* --background: 0 0% 100%; */
   --foreground: 20 14.3% 4.1%;
   --card: 0 0% 100%;
@@ -396,9 +398,9 @@
   --ring: 20 14.3% 4.1%;
 }
 
-.light[data-theme='zinc'],
-[data-theme='zinc'] .light,
-[data-theme='zinc'] {
+.light[data-theme="zinc"],
+[data-theme="zinc"] .light,
+[data-theme="zinc"] {
   /* --background: 0 0% 100%; */
   --foreground: 240 10% 3.9%;
   --card: 0 0% 100%;
@@ -419,9 +421,9 @@
   --ring: 240 5.9% 10%;
 }
 
-.light[data-theme='neutral'],
-[data-theme='neutral'] .light,
-[data-theme='neutral'] {
+.light[data-theme="neutral"],
+[data-theme="neutral"] .light,
+[data-theme="neutral"] {
   /* --background: 0 0% 100%; */
   --foreground: 0 0% 3.9%;
   --card: 0 0% 100%;
@@ -442,9 +444,9 @@
   --ring: 0 0% 3.9%;
 }
 
-.light[data-theme='slate'],
-[data-theme='slate'] .light,
-[data-theme='slate'] {
+.light[data-theme="slate"],
+[data-theme="slate"] .light,
+[data-theme="slate"] {
   /* --background: 0 0% 100%; */
   --foreground: 222.2 84% 4.9%;
   --card: 0 0% 100%;
@@ -465,9 +467,9 @@
   --ring: 222.2 84% 4.9%;
 }
 
-.light[data-theme='gray'],
-[data-theme='gray'] .light,
-[data-theme='gray'] {
+.light[data-theme="gray"],
+[data-theme="gray"] .light,
+[data-theme="gray"] {
   /* --background: 0 0% 100%; */
   --foreground: 224 71.4% 4.1%;
   --card: 0 0% 100%;

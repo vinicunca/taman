@@ -19,25 +19,21 @@
   --menu-item-collapse-margin-x: 0px;
   --menu-item-radius: 0px;
   --menu-item-indent: 16px;
-  --menu-background-color: var(--ui-bg);
+  --menu-background-color: var(--ui-bg-sidebar);
   --menu-item-background-color: var(--menu-background-color);
   --menu-submenu-background-color: var(--menu-background-color);
 }
 
 .taman-menu.is-dark,
 .taman-menu__popup-container.is-dark {
-  --menu-item-color: color-mix(
-    in oklch,
-    var(--taman-color-text) 80%,
-    transparent
-  );
-  --menu-item-hover-color: var(--taman-color-accent-foreground);
-  --menu-item-hover-background-color: var(--taman-color-accent);
-  --menu-item-active-color: var(--taman-color-accent-foreground);
-  --menu-item-active-background-color: var(--taman-color-accent);
-  --menu-submenu-hover-color: var(--taman-color-accent-foreground);
-  --menu-submenu-hover-background-color: var(--taman-color-accent);
-  --menu-submenu-active-color: var(--taman-color-accent-foreground);
+  --menu-item-color: color-mix(in oklch, var(--ui-text) 80%, transparent);
+  --menu-item-hover-color: var(--ui-text-highlighted);
+  --menu-item-hover-background-color: var(--ui-bg-accented);
+  --menu-item-active-color: var(--ui-text-highlighted);
+  --menu-item-active-background-color: var(--ui-bg-accented);
+  --menu-submenu-hover-color: var(--ui-text-highlighted);
+  --menu-submenu-hover-background-color: var(--ui-bg-accented);
+  --menu-submenu-active-color: var(--ui-text-highlighted);
   --menu-submenu-active-background-color: transparent;
 }
 
@@ -484,7 +480,7 @@
   justify-content: center;
   padding: var(--menu-item-padding-y) var(--menu-item-padding-x);
   margin: var(--menu-item-margin-y) var(--menu-item-margin-x);
-  color: color-mix(in oklch, var(--taman-color-text) 90%, transparent);
+  color: color-mix(in oklch, var(--ui-text) 90%, transparent);
   cursor: pointer;
   border-radius: var(--menu-item-radius);
   transition:

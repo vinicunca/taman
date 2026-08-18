@@ -130,8 +130,8 @@ catalogs:
       specifier: 1.16.0
       version: 1.16.0
     '@vinicunca/unocss-preset':
-      specifier: 2.0.0
-      version: 2.0.0
+      specifier: 2.1.0
+      version: 2.1.0
     '@vitejs/plugin-vue':
       specifier: ^6.0.8
       version: 6.0.8
@@ -1320,7 +1320,7 @@ importers:
         version: 66.7.5
       '@vinicunca/unocss-preset':
         specifier: 'catalog:'
-        version: 2.0.0(@vinicunca/perkakas@1.16.0)(unocss@66.7.5(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(tsx@4.23.12)(yaml@2.9.0)))
+        version: 2.1.0(@vinicunca/perkakas@1.16.0)(unocss@66.7.5(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(tsx@4.23.12)(yaml@2.9.0)))
       unocss:
         specifier: 66.7.5
         version: 66.7.5(@unocss/webpack@66.7.0(esbuild@0.28.1)(rolldown@1.2.4)(rollup@4.62.2)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(tsx@4.23.12)(yaml@2.9.0))(webpack@5.108.4(clean-css@5.3.3)(esbuild@0.28.1)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(postcss@8.5.26)))(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(tsx@4.23.12)(yaml@2.9.0))
@@ -6338,8 +6338,8 @@ packages:
     resolution: {integrity: sha512-nV7L8LDOzsKrHT/kkblKI6rJuMvJPmsAnUppRTg2xZ1qq7ZW5ekMSX1zMmWgU5xON47XNrzAXInd+dfokgElKA==}
     engines: {node: '>=20.0.0'}
 
-  '@vinicunca/unocss-preset@2.0.0':
-    resolution: {integrity: sha512-rog8Rcfm77t++IN/7cbjWNWdQE1A8hFm7S0NvY07F/2zFOk0wAwVbpNhJjS3GOT3VfHOnPd8Fi7nDrFwEwV01Q==}
+  '@vinicunca/unocss-preset@2.1.0':
+    resolution: {integrity: sha512-jeS4j22M1TozmiiNtxoYMCzq1nySph5I10myFnNbavoz8rr4l1n9QlkA2ZLfm/Sa+xAZgecf3THv7j56HrUEkw==}
     peerDependencies:
       '@vinicunca/perkakas': ^1.16.0
       unocss: 66.7.5
@@ -17659,7 +17659,7 @@ snapshots:
 
   '@vinicunca/perkakas@1.16.0': {}
 
-  '@vinicunca/unocss-preset@2.0.0(@vinicunca/perkakas@1.16.0)(unocss@66.7.5(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(tsx@4.23.12)(yaml@2.9.0)))':
+  '@vinicunca/unocss-preset@2.1.0(@vinicunca/perkakas@1.16.0)(unocss@66.7.5(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(tsx@4.23.12)(yaml@2.9.0)))':
     dependencies:
       '@vinicunca/perkakas': 1.16.0
       unocss: 66.7.5(@unocss/webpack@66.7.0(esbuild@0.28.1)(rolldown@1.2.4)(rollup@4.62.2)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(tsx@4.23.12)(yaml@2.9.0))(webpack@5.108.4(clean-css@5.3.3)(esbuild@0.28.1)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(postcss@8.5.26)))(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(tsx@4.23.12)(yaml@2.9.0))

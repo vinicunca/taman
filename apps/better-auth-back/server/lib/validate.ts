@@ -8,7 +8,7 @@ import { httpError } from '#lib/http.ts';
  * A missing required field surfaces as a type error ("expected string, received
  * undefined") because Zod runs the type check before `.min(1)`, so the field's
  * own message never fires. This maps that one case to the "<Field> is required"
- * wording the backstage forms use.
+ * wording the better-auth forms use.
  *
  * Returning undefined keeps Zod's default message; schema- and check-level
  * messages take precedence over this map, so per-field overrides still win.

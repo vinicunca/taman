@@ -1,24 +1,15 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { TamanThemeModeType } from '@taman/types';
-import type { Component } from 'vue';
-
 import { $t } from '@taman/locales';
 import { usePreferences } from '@taman/preferences';
-import { MoonStar, Sun, SunMoon } from '@vben/icons';
 import { watch } from 'vue';
+import PreferencesSwitchItem from '../preferences-switch-item.vue';
 
-import SwitchItem from '../switch-item.vue';
-
-defineOptions({
-  name: 'PreferenceTheme',
-});
-
-const modelValue = defineModel<string>({ default: 'auto' });
 const themeSemiDarkSidebar = defineModel<boolean>('themeSemiDarkSidebar');
 const themeSemiDarkSidebarSub = defineModel<boolean>('themeSemiDarkSidebarSub');
 const themeSemiDarkHeader = defineModel<boolean>('themeSemiDarkHeader');
 
-const { layout } = usePreferences();
+const { colorMode, layout } = usePreferences();
 
 watch(
   () => themeSemiDarkSidebar.value,
@@ -29,23 +20,23 @@ watch(
   },
 );
 
-const THEME_PRESET: Array<{ icon: Component; name: TamanThemeModeType }> = [
+const THEME_PRESET: Array<{ icon: string; name: TamanThemeModeType }> = [
   {
-    icon: Sun,
+    icon: 'lucide:sun',
     name: 'light',
   },
   {
-    icon: MoonStar,
+    icon: 'lucide:moon-star',
     name: 'dark',
   },
   {
-    icon: SunMoon,
+    icon: 'lucide:sun-moon',
     name: 'auto',
   },
 ];
 
 function activeClass(theme: string): Array<string> {
-  return theme === modelValue.value ? ['outline-box-active'] : [];
+  return theme === colorMode.store.value ? ['outline-box-active'] : [];
 }
 
 function nameView(name: string) {
@@ -61,62 +52,63 @@ function nameView(name: string) {
     }
   }
 }
+
+function handleThemeChange(theme: TamanThemeModeType) {
+  colorMode.store.value = theme;
+}
 </script>
 
 <template>
-  <div class="flex flex-wrap w-full justify-between">
-    <template
-      v-for="theme in THEME_PRESET"
-      :key="theme.name"
-    >
-      <div
-        class="flex flex-col cursor-pointer"
-        @click="modelValue = theme.name"
+  <div class="flex flex-col gap-6">
+    <div class="flex flex-wrap gap-12 w-full justify-between">
+      <button
+        v-for="theme in THEME_PRESET"
+        :key="theme.name"
+        class="flex flex-1 flex-col"
+        @click="handleThemeChange(theme.name)"
       >
         <div
+          class="outline-box flex-center pohon:py-4"
           :class="activeClass(theme.name)"
-          class="outline-box py-4 flex-center"
         >
-          <component
-            :is="theme.icon"
-            class="mx-9 size-5"
+          <PIcon
+            :name="theme.icon"
+            class="size-5"
           />
         </div>
 
-        <div class="text-muted-foreground text-xs mt-2 text-center">
+        <div class="text-xs color-text-muted mt-2 text-center">
           {{ nameView(theme.name) }}
         </div>
-      </div>
-    </template>
+      </button>
+    </div>
 
-    <SwitchItem
+    <PreferencesSwitchItem
       v-model="themeSemiDarkSidebar"
       :disabled="
-        modelValue === 'dark'
+        colorMode === 'dark'
           || layout === 'header-nav'
           || layout === 'full-content'
       "
+      :label="$t('preferences.theme.darkSidebar')"
       :tip="$t('preferences.theme.darkSidebarTip')"
-      class="mt-6"
-    >
-      {{ $t('preferences.theme.darkSidebar') }}
-    </SwitchItem>
-    <SwitchItem
+    />
+
+    <PreferencesSwitchItem
       v-model="themeSemiDarkSidebarSub"
       :disabled="
-        modelValue === 'dark'
+        colorMode === 'dark'
           || (layout !== 'header-mixed-nav' && layout !== 'sidebar-mixed-nav')
           || !themeSemiDarkSidebar
       "
+      :label="$t('preferences.theme.darkSidebarSub')"
       :tip="$t('preferences.theme.darkSidebarSubTip')"
-    >
-      {{ $t('preferences.theme.darkSidebarSub') }}
-    </SwitchItem>
-    <SwitchItem
+    />
+
+    <PreferencesSwitchItem
       v-model="themeSemiDarkHeader"
-      :disabled="modelValue === 'dark'"
-    >
-      {{ $t('preferences.theme.darkHeader') }}
-    </SwitchItem>
+      :disabled="colorMode === 'dark'"
+      :label="$t('preferences.theme.darkHeader')"
+    />
   </div>
 </template>
