@@ -10,6 +10,7 @@
     }
   },
   "dependencies": {
+    "@taman-core/composables": "workspace:*",
     "@taman-core/shared": "workspace:*",
     "@vue/test-utils": "catalog:",
     "@vueuse/core": "catalog:",

@@ -8,13 +8,17 @@ import type {
   PreferencesExtension,
 } from './types';
 
+import { useBreakpoints } from '@taman-core/composables';
 import { StorageManager } from '@taman-core/shared/cache';
-import { defu, isMacOs } from '@taman-core/shared/utils';
 import {
-  breakpointsTailwind,
-  useBreakpoints,
-  useDebounceFn,
-} from '@vueuse/core';
+  defu,
+  isBoolean,
+  isMacOs,
+  isNumber,
+  isString,
+  mergeWithArrayOverride,
+} from '@taman-core/shared/utils';
+import { useDebounceFn } from '@vueuse/core';
 import { markRaw, reactive, readonly, watch } from 'vue';
 
 import { defaultPreferences } from './config';
@@ -37,7 +41,8 @@ class PreferenceManager {
 
   constructor() {
     this.cache = new StorageManager();
-    // Constructor uses defaults only; cache is loaded asynchronously in initPreferences
+    // The constructor no longer reads the cache synchronously; initialization uses default values.
+    // Actual cache loading is performed in initPreferences (which is already async).
     this.state = reactive<Preferences>({ ...defaultPreferences });
     this.debouncedSave = useDebounceFn(() => this.saveToCache(), 150);
   }
@@ -114,9 +119,11 @@ class PreferenceManager {
       this.customPreferencesExtension,
     );
 
-    // Load cache; cached values override only unset init fields
+    // Load cached preferences and use the cache only to fill in fields not explicitly set in the initial configuration.
     const cachedPreferences = (await this.loadFromCache()) || {};
-    const mergedPreference = defu(
+
+    this.sanitizeCachedArray({ cached: cachedPreferences, group: 'widget', field: 'order' });
+    const mergedPreference = mergeWithArrayOverride(
       {},
       cachedPreferences, // user cache takes precedence
       this.initialPreferences, // init fills gaps only
@@ -127,7 +134,7 @@ class PreferenceManager {
 
     const cachedCustom = (await this.loadCustomFromCache()) || {};
     this.replaceCustomPreferences(
-      defu(
+      mergeWithArrayOverride(
         {},
         this.sanitizeCustomPreferences(cachedCustom),
         this.initialCustomPreferences,
@@ -173,7 +180,7 @@ class PreferenceManager {
     }
 
     this.replaceCustomPreferences(
-      defu({}, sanitizedUpdates, markRaw(this.customState)),
+      mergeWithArrayOverride({}, sanitizedUpdates, markRaw(this.customState)),
     );
     this.debouncedSave();
   };
@@ -183,8 +190,16 @@ class PreferenceManager {
    * @param updates - Partial preference values
    */
   updatePreferences = (updates: DeepPartial<Preferences>) => {
-    // Deep-merge updates into reactive state
-    const mergedState = defu({}, updates, markRaw(this.state));
+    // Deeply merge the update content with the current state.
+    // Note: We must use mergeWithArrayOverride instead of defu.
+    // The default merge behavior for arrays is concatenation (appending),
+    // which causes array fields like widget.order to be repeatedly appended
+    // during each updatePreferences call, leading to exponential growth.
+    const mergedState = mergeWithArrayOverride(
+      {},
+      updates,
+      markRaw(this.state),
+    );
     Object.assign(this.state, mergedState);
 
     this.handleUpdates(updates);
@@ -250,7 +265,7 @@ class PreferenceManager {
   ) {
     switch (field.component) {
       case 'number': {
-        if (typeof value !== 'number' || !Number.isFinite(value)) {
+        if (!isNumber(value) || !Number.isFinite(value)) {
           return false;
         }
 
@@ -283,15 +298,15 @@ class PreferenceManager {
       }
       case 'select': {
         return (
-          typeof value === 'string'
+          isString(value)
           && field.options.some((option) => option.value === value)
         );
       }
       case 'switch': {
-        return typeof value === 'boolean';
+        return isBoolean(value);
       }
       default: {
-        return typeof value === 'string';
+        return isString(value);
       }
     }
   }
@@ -336,9 +351,37 @@ class PreferenceManager {
   }
 
   private resolveNumericConstraint(value: unknown) {
-    return typeof value === 'number' && Number.isFinite(value)
+    return isNumber(value) && Number.isFinite(value)
       ? value
       : undefined;
+  }
+
+  /**
+   * Clean up bloated array fields in the cache (preserving only the first occurrence of each element)
+   * Used to fix "dirty data" caused by `concat` appending during array merging in earlier versions of `defu`
+   */
+  private sanitizeCachedArray(
+    { cached, group, field }: {
+      cached: Record<string, any>;
+      group: string;
+      field: string;
+    },
+  ) {
+    const node = cached?.[group]?.[field];
+    if (!Array.isArray(node) || node.length <= 1) {
+      return;
+    }
+    const seen = new Set<unknown>();
+    const deduped = node.filter((item) => {
+      if (seen.has(item)) {
+        return false;
+      }
+      seen.add(item);
+      return true;
+    });
+    if (deduped.length !== node.length) {
+      cached[group][field] = deduped;
+    }
   }
 
   private sanitizeCustomPreferences(
@@ -388,9 +431,7 @@ class PreferenceManager {
       return;
     }
 
-    // Sync isMobile from breakpoints
-    const breakpoints = useBreakpoints(breakpointsTailwind);
-    const isMobile = breakpoints.smaller('md');
+    const { isMobile } = useBreakpoints();
 
     watch(
       () => isMobile.value,

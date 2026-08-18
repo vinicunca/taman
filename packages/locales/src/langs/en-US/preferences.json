@@ -178,9 +178,7 @@
     "enable": "Enable Copyright",
     "companyName": "Company Name",
     "companySiteLink": "Company Site Link",
-    "date": "Date",
-    "icp": "ICP License Number",
-    "icpLink": "ICP Site Link"
+    "date": "Date"
   },
   "shortcutKeys": {
     "title": "Shortcut Keys",

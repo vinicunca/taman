@@ -3,8 +3,6 @@ interface Props {
   companyName?: string;
   companySiteLink?: string;
   date?: string;
-  icp?: string;
-  icpLink?: string;
 }
 
 defineOptions({
@@ -17,24 +15,12 @@ withDefaults(
     companyName: 'Ngibur Admin',
     companySiteLink: '',
     date: '2024',
-    icp: '',
-    icpLink: '',
   },
 );
 </script>
 
 <template>
   <div class="text-base flex-center">
-    <!-- ICP Link -->
-    <a
-      v-if="icp"
-      :href="icpLink || 'javascript:void(0)'"
-      class="mx-1 hover:color-primary"
-      target="_blank"
-    >
-      {{ icp }}
-    </a>
-
     <!-- Copyright Text -->
     Copyright © {{ date }}
 

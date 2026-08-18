@@ -147,6 +147,7 @@ export const presetCore = definePreset<VinicuncaTheme>(() => {
         },
         primary: {
           DEFAULT: 'var(--ui-primary)',
+          foreground: 'var(--ui-primary-foreground)',
           50: 'var(--ui-color-primary-50)',
           100: 'var(--ui-color-primary-100)',
           200: 'var(--ui-color-primary-200)',

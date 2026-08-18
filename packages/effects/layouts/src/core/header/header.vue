@@ -27,94 +27,193 @@ withDefaults(
   },
 );
 
-const emit = defineEmits<{ clearPreferencesAndLogout: [] }>();
+const emit = defineEmits<{
+  clearPreferencesAndLogout: [];
+}>();
 
 const REFERENCE_VALUE = 100;
 
-const { preferencesButtonPosition } = usePreferences();
+const {
+  preferencesButtonPosition,
+  globalLockScreenShortcutKey,
+  globalLogoutShortcutKey,
+} = usePreferences();
 const slots = useSlots();
 const { refresh } = useRefresh();
+
+const showLockInHeader = computed(
+  () =>
+    preferences.widget.lockScreen
+    && preferences.widget.lockScreenButtonPosition === 'header',
+);
+
+const showLogoutInHeader = computed(
+  () => preferences.widget.logoutButtonPosition === 'header',
+);
+
+const enableLockScreenShortcutKey = computed(() => {
+  return showLockInHeader.value && globalLockScreenShortcutKey.value;
+});
+
+const enableLogoutShortcutKey = computed(() => {
+  return showLogoutInHeader.value && globalLogoutShortcutKey.value;
+});
+
+// const [LockModal, lockModalApi] = useVbenModal({
+//   connectedComponent: LockScreenModal,
+// });
+// const [LogoutModal, logoutModalApi] = useVbenModal({
+//   onConfirm() {
+//     handleSubmitLogout();
+//   },
+// });
+
+// function handleOpenLock() {
+//   lockModalApi.open();
+// }
+
+// function handleSubmitLock(lockScreenPassword: string) {
+//   lockModalApi.close();
+//   accessStore.lockScreen(lockScreenPassword);
+// }
+
+// function handleLogout() {
+//   logoutModalApi.open();
+// }
+
+// function handleSubmitLogout() {
+//   emit('logout');
+//   logoutModalApi.close();
+// }
+
+// if (preferences.shortcutKeys.enable) {
+//   const keys = useMagicKeys();
+//   const lockKey = keys['Alt+KeyL'];
+//   const logoutKey = keys['Alt+KeyQ'];
+
+//   if (lockKey) {
+//     whenever(lockKey, () => {
+//       if (enableLockScreenShortcutKey.value) {
+//         handleOpenLock();
+//       }
+//     });
+//   }
+
+//   if (logoutKey) {
+//     whenever(logoutKey, () => {
+//       if (enableLogoutShortcutKey.value) {
+//         handleLogout();
+//       }
+//     });
+//   }
+// }
 
 /**
  * Slot list item type
  */
-interface SlotItem { index: number; name: string }
+interface SlotItem {
+  index: number;
+  name: string;
+}
+type WidgetCheck = Record<string, {
+  slotName: string;
+  visible: boolean;
+}>;
 
 const rightSlots = computed(() => {
   const list: Array<SlotItem> = [];
-  // Global search
-  if (preferences.widget.globalSearch) {
-    list.push({
-      index: REFERENCE_VALUE,
-      name: 'global-search',
-    });
-  }
-  // Preferences shortcut widgets
-  if (preferencesButtonPosition.value.header) {
-    list.push({
-      index: REFERENCE_VALUE + 10,
-      name: 'preferences',
-    });
-    // Group preference sub-widgets under the same button slot ordering
-    if (preferences.widget.themeToggle) {
+
+  // Iterate in the order of widget.order and check if each widget should be displayed in the header.
+  const widgetChecks: WidgetCheck = {
+    globalSearch: {
+      visible:
+        preferences.widget.globalSearch
+        && preferences.widget.globalSearchButtonPosition === 'header',
+      slotName: 'global-search',
+    },
+    preferences: {
+      visible: preferencesButtonPosition.value.header,
+      slotName: 'preferences',
+    },
+    themeToggle: {
+      visible:
+        preferences.widget.themeToggle
+        && preferences.widget.themeToggleButtonPosition === 'header',
+      slotName: 'theme-toggle',
+    },
+    languageToggle: {
+      visible:
+        preferences.widget.languageToggle
+        && preferences.widget.languageToggleButtonPosition === 'header',
+      slotName: 'language-toggle',
+    },
+    timezone: {
+      visible:
+        preferences.widget.timezone
+        && preferences.widget.timezoneButtonPosition === 'header',
+      slotName: 'timezone',
+    },
+    fullscreen: {
+      visible:
+        preferences.widget.fullscreen
+        && preferences.widget.fullscreenButtonPosition === 'header',
+      slotName: 'fullscreen',
+    },
+    refresh: {
+      visible:
+        preferences.widget.refresh
+        && preferences.widget.refreshButtonPosition === 'header',
+      slotName: 'refresh',
+    },
+    notification: {
+      visible:
+        preferences.widget.notification
+        && preferences.widget.notificationButtonPosition === 'header',
+      slotName: 'notification',
+    },
+    lockScreenButton: {
+      visible:
+        preferences.widget.lockScreen
+        && preferences.widget.lockScreenButtonPosition === 'header',
+      slotName: 'lock-screen-btn',
+    },
+    logoutButton: {
+      visible: preferences.widget.logoutButtonPosition === 'header',
+      slotName: 'logout-btn',
+    },
+  };
+
+  console.log('🚀 ~ preferences.widget.order:', preferences.widget.order);
+  for (const key of preferences.widget.order) {
+    const check = widgetChecks[key];
+    if (check?.visible) {
       list.push({
-        index: REFERENCE_VALUE + 20,
-        name: 'theme-toggle',
+        index: REFERENCE_VALUE + list.length,
+        name: check.slotName,
       });
     }
-    if (preferences.widget.languageToggle) {
-      list.push({
-        index: REFERENCE_VALUE + 30,
-        name: 'language-toggle',
-      });
-    }
-    if (preferences.widget.timezone) {
-      list.push({
-        index: REFERENCE_VALUE + 40,
-        name: 'timezone',
-      });
-    }
-  }
-  // Fullscreen
-  if (preferences.widget.fullscreen) {
-    list.push({
-      index: REFERENCE_VALUE + 50,
-      name: 'fullscreen',
-    });
-  }
-  // Notifications
-  if (preferences.widget.notification) {
-    list.push({
-      index: REFERENCE_VALUE + 60,
-      name: 'notification',
-    });
   }
 
-  Object.keys(slots).forEach((key) => {
-    // Match slot names, e.g. first slot: header-right-1
-    if (key.startsWith('header-right')) {
-      // Use the third segment as index; if not numeric, assign the next index
-      const slotIndex = Number(key.split('-')[2]);
-      const index = Number.isNaN(slotIndex) ? nextIndex(list) : slotIndex;
-      list.push({ index, name: key });
-    }
-  });
-  // Append user dropdown last; cap index at 1000 when it would exceed (user button not last)
+  // Object.keys(slots).forEach((key) => {
+  //   // Match slot names, e.g. first slot: header-right-1
+  //   if (key.startsWith('header-right')) {
+  //     // Use the third segment as index; if not numeric, assign the next index
+  //     const slotIndex = Number(key.split('-')[2]);
+  //     const index = Number.isNaN(slotIndex) ? nextIndex(list) : slotIndex;
+  //     list.push({ index, name: key });
+  //   }
+  // });
+
+  // Append the user dropdown; if the index exceeds 1000, cap it at 1000 (to accommodate scenarios where the user button is not at the end).
   const userDropdownIndex = Math.min(1000, nextIndex(list));
   list.push({ index: userDropdownIndex, name: 'user-dropdown' });
-  // Sort by index to preserve slot order
+  console.log('🚀 ~ list:', list);
+
   return list.toSorted((a, b) => a.index - b.index);
 });
 
 const leftSlots = computed(() => {
   const list: Array<SlotItem> = [];
-  // Refresh
-  if (preferences.widget.refresh) {
-    list.push({
-      index: 0,
-      name: 'refresh',
-    });
-  }
 
   Object.keys(slots).forEach((key) => {
     // Match slot names, e.g. first slot: header-left-1
@@ -125,7 +224,7 @@ const leftSlots = computed(() => {
       list.push({ index, name: key });
     }
   });
-  // Sort by index to preserve slot order
+  // Sort by index to ensure slot order
   return list.toSorted((a, b) => a.index - b.index);
 });
 
@@ -156,7 +255,7 @@ function clearPreferencesAndLogout() {
           size="sm"
           variant="ghost"
           color="neutral"
-          class="mr-1"
+          class="mr-1 pohon:rounded-full"
           @click="refresh"
         />
       </template>

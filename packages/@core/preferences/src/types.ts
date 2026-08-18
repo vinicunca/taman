@@ -179,10 +179,6 @@ interface CopyrightPreferences {
   date: string;
   /** Whether copyright footer is visible */
   enable: boolean;
-  /** ICP filing number */
-  icp: string;
-  /** ICP filing link */
-  icpLink: string;
   /** Whether the settings panel is shown */
   settingShow?: boolean;
 }
@@ -343,25 +339,47 @@ interface TransitionPreferences {
   progress: boolean;
 }
 
+type WidgetButtonPositionType = 'header' | 'none' | 'user-dropdown';
+
 interface WidgetPreferences {
   /** Whether fullscreen widget is enabled */
   fullscreen: boolean;
+  /** Fullscreen button position */
+  fullscreenButtonPosition: WidgetButtonPositionType;
   /** Whether global search widget is enabled */
   globalSearch: boolean;
+  /** Global search button position */
+  globalSearchButtonPosition: WidgetButtonPositionType;
   /** Whether language toggle widget is enabled */
   languageToggle: boolean;
+  /** Language toggle button position */
+  languageToggleButtonPosition: WidgetButtonPositionType;
   /** Whether lock screen is enabled */
   lockScreen: boolean;
+  /** Lock screen button position */
+  lockScreenButtonPosition: WidgetButtonPositionType;
+  /** Logout button position */
+  logoutButtonPosition: WidgetButtonPositionType;
   /** Whether notification widget is shown */
   notification: boolean;
+  /** Notification button position */
+  notificationButtonPosition: WidgetButtonPositionType;
   /** Whether refresh widget is shown */
   refresh: boolean;
+  /** Refresh button position */
+  refreshButtonPosition: WidgetButtonPositionType;
   /** Whether sidebar toggle widget is shown */
   sidebarToggle: boolean;
   /** Whether theme toggle widget is shown */
   themeToggle: boolean;
+  /** Theme toggle button position */
+  themeToggleButtonPosition: WidgetButtonPositionType;
   /** Whether timezone widget is shown */
   timezone: boolean;
+  /** Timezone button position */
+  timezoneButtonPosition: WidgetButtonPositionType;
+  /** Widget order */
+  order: ReadonlyArray<string>;
 }
 
 interface Preferences {

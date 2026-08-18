@@ -8,8 +8,6 @@ import type { DeepPartial } from '@taman-core/shared/utils';
 /**
  * Define shared default preferences for all apps here
  * instead of editing defaults in @taman-core/preferences
- * @param preferences
- * @returns
  */
 
 function defineOverridesPreferences(preferences: DeepPartial<Preferences>) {

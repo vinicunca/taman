@@ -432,7 +432,7 @@
   --menu-item-margin-y: 4px;
   --menu-item-margin-x: 0px;
   --menu-item-padding-y: 9px;
-  --menu-item-padding-x: 0px;
+  --menu-item-padding-x: 2px;
   --menu-item-radius: 0px;
 
   height: calc(100% - 4px);
@@ -495,11 +495,11 @@
 
 .taman-normal-menu__item.is-active .taman-normal-menu__name,
 .taman-normal-menu__item.is-active .taman-normal-menu__icon {
-  @apply text-primary-foreground font-semibold;
+  @apply color-primary-foreground font-700;
 }
 
 .taman-normal-menu__item:not(.is-active):hover {
-  @apply bg-heavy text-primary dark:bg-background-accented dark:color-text;
+  @apply bg-background-accented text-primary dark:bg-background-accented dark:color-text;
 }
 
 .taman-normal-menu__item:hover .taman-normal-menu__icon {
@@ -514,12 +514,11 @@
 }
 
 .taman-normal-menu__name {
-  @apply mt-2;
+  @apply mt-2 font-600;
 
   width: 100%;
   margin-bottom: 0;
   font-size: calc(var(--font-size-base, 16px) * 0.75);
-  font-weight: 400;
   text-align: center;
   transition: all 0.25s ease;
 }

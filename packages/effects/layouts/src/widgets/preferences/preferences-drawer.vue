@@ -231,8 +231,6 @@ const [Drawer] = useTamanDrawer();
             v-model:copyright-company-site-link="copyrightCompanySiteLink"
             v-model:copyright-date="copyrightDate"
             v-model:copyright-enable="copyrightEnable"
-            v-model:copyright-icp="copyrightIcp"
-            v-model:copyright-icp-link="copyrightIcpLink"
             :disabled="!footerEnable"
           />
         </Block> -->

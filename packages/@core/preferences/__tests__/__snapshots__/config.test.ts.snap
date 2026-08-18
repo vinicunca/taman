@@ -47,8 +47,6 @@ exports[`defaultPreferences immutability test > should not modify the config obj
     "companySiteLink": "https://www.vben.pro",
     "date": "2024",
     "enable": true,
-    "icp": "",
-    "icpLink": "",
     "settingShow": true,
   },
   "footer": {

@@ -178,9 +178,7 @@
     "enable": "Aktifkan Hak Cipta",
     "companyName": "Nama Perusahaan",
     "companySiteLink": "Tautan Situs Perusahaan",
-    "date": "Tanggal",
-    "icp": "Nomor Lisensi ICP",
-    "icpLink": "Tautan Situs ICP"
+    "date": "Tanggal"
   },
   "shortcutKeys": {
     "title": "Tombol Pintas",

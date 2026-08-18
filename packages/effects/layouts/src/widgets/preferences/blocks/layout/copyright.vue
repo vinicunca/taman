@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-
 import { $t } from '@taman/locales';
+import { computed } from 'vue';
 
 import InputItem from '../input-item.vue';
 import SwitchItem from '../switch-item.vue';
@@ -21,24 +20,29 @@ const itemDisabled = computed(() => props.disabled || !copyrightEnable.value);
 </script>
 
 <template>
-  <SwitchItem v-model="copyrightEnable" :disabled="disabled">
+  <SwitchItem
+    v-model="copyrightEnable"
+    :disabled="disabled"
+  >
     {{ $t('preferences.copyright.enable') }}
   </SwitchItem>
 
-  <InputItem v-model="copyrightCompanyName" :disabled="itemDisabled">
+  <InputItem
+    v-model="copyrightCompanyName"
+    :disabled="itemDisabled"
+  >
     {{ $t('preferences.copyright.companyName') }}
   </InputItem>
-  <InputItem v-model="copyrightCompanySiteLink" :disabled="itemDisabled">
+  <InputItem
+    v-model="copyrightCompanySiteLink"
+    :disabled="itemDisabled"
+  >
     {{ $t('preferences.copyright.companySiteLink') }}
   </InputItem>
-  <InputItem v-model="copyrightDate" :disabled="itemDisabled">
+  <InputItem
+    v-model="copyrightDate"
+    :disabled="itemDisabled"
+  >
     {{ $t('preferences.copyright.date') }}
-  </InputItem>
-
-  <InputItem v-model="copyrightIcp" :disabled="itemDisabled">
-    {{ $t('preferences.copyright.icp') }}
-  </InputItem>
-  <InputItem v-model="copyrightIcpLink" :disabled="itemDisabled">
-    {{ $t('preferences.copyright.icpLink') }}
   </InputItem>
 </template>

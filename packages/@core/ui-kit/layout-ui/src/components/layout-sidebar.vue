@@ -321,7 +321,7 @@ onUnmounted(() => {
       class="h-full"
       :class="[
         {
-          'bg-sidebar-deep': isSidebarMixed,
+          'bg-background-sidebar-deep': isSidebarMixed,
           'border-r border-border bg-background-sidebar': !isSidebarMixed,
         },
       ]"

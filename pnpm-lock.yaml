@@ -994,6 +994,9 @@ importers:
 
   packages/@core/preferences:
     dependencies:
+      '@taman-core/composables':
+        specifier: workspace:*
+        version: link:../composables
       '@taman-core/shared':
         specifier: workspace:*
         version: link:../base/shared
@@ -1009,6 +1012,9 @@ importers:
 
   packages/@core/ui-kit/form-builder:
     dependencies:
+      '@taman-core/composables':
+        specifier: workspace:*
+        version: link:../../composables
       '@taman-core/shared':
         specifier: workspace:*
         version: link:../../base/shared

@@ -24,6 +24,8 @@ export const baseColors = `
     --ui-border-accented: ${colors.neutral[300]};
     --ui-border-inverted: ${colors.neutral[900]};
 
+    --ui-primary-foreground: oklch(0.9848 0 0);
+
     --ui-z-popup: 2000;
     --ui-z-toaster: 3000;
   }
@@ -44,6 +46,8 @@ export const baseColors = `
     --ui-bg-sidebar: oklch(0.2347 0.0093 267.6);
     --ui-bg-sidebar-deep: oklch(0.1996 0.0086 264.36);
     --ui-bg-header: oklch(0.2347 0.0093 267.6);
+
+    --ui-primary-foreground: oklch(0.9848 0 0);
 
     --ui-border: ${colors.neutral[800]};
     --ui-border-muted: ${colors.neutral[700]};

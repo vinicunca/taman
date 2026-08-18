@@ -2,7 +2,7 @@
 import type { FormApi } from '../form-api';
 import type { FieldConfig, PohonFormRef } from '../types';
 
-import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
+import { useBreakpoints } from '@taman-core/composables';
 import { computed, onBeforeUnmount, onMounted, useTemplateRef, watch } from 'vue';
 
 import { useExpandable } from '../expandable';
@@ -29,7 +29,7 @@ const schema = computed(() =>
   }),
 );
 
-const breakpoints = useBreakpoints(breakpointsTailwind);
+const { breakpoints } = useBreakpoints();
 
 const activeCols = computed(() => {
   const cols = state.value.layout?.cols ?? {};
