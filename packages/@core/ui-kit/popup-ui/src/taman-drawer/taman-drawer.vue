@@ -170,7 +170,7 @@ const getForceMount = computed(() => {
   >
     <SheetContent
       :append-to="getAppendTo"
-      class="flex flex-col w-130"
+      class="flex flex-col w-130 sm:max-w-md"
       :class="
         [
           {

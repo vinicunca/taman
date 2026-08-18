@@ -20,7 +20,12 @@ watch(
   },
 );
 
-const THEME_PRESET: Array<{ icon: string; name: TamanThemeModeType }> = [
+interface PresetItem {
+  icon: string;
+  name: TamanThemeModeType;
+}
+
+const THEME_PRESET: Array<PresetItem> = [
   {
     icon: 'lucide:sun',
     name: 'light',
