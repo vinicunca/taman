@@ -343,10 +343,6 @@ const headerSlots = computed(() => {
           <slot name="notification" />
         </template>
 
-        <template #timezone>
-          <slot name="timezone" />
-        </template>
-
         <template
           v-for="item in headerSlots"
           #[item]

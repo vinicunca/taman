@@ -10,6 +10,7 @@ import {
 } from 'akar';
 import { computed, ref } from 'vue';
 
+import { TamanButtonIcon } from '../../components';
 import DialogOverlay from './dialog-overlay.vue';
 import { useDialogStateEvents } from './use-dialog-state-events';
 
@@ -102,6 +103,7 @@ defineExpose({
     >
       <DialogOverlay
         v-if="open && modal"
+        :open="open"
         :overlay-blur="overlayBlur"
         :position="position"
         :z-index="zIndex"
@@ -141,11 +143,8 @@ defineExpose({
         as-child
         @click="() => emits('close')"
       >
-        <PButton
+        <TamanButtonIcon
           icon="lucide:x"
-          color="neutral"
-          variant="ghost"
-          class="pohon:rounded-full"
         />
       </DialogClose>
     </DialogContent>

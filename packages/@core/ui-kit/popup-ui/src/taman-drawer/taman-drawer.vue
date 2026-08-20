@@ -2,7 +2,7 @@
 import type { ExtendedTamanDrawerApi, TamanDrawerProps } from './drawer.types';
 
 import {
-  useIsMobile,
+  useBreakpoints,
   usePriorityValues,
   useSimpleLocale,
 } from '@taman-core/composables';
@@ -18,6 +18,7 @@ import {
   SheetHeader,
   SheetRoot,
   SheetTitle,
+  TamanButtonIcon,
   TamanSpinner,
   VisuallyHidden,
 } from '@taman-core/taman-ui';
@@ -50,7 +51,7 @@ provide(DISMISSABLE_DRAWER_ID, id);
 // @ts-expect-error unused
 const wrapperRef = ref<HTMLElement>();
 const { $t } = useSimpleLocale();
-const { isMobile } = useIsMobile();
+const { isMobile } = useBreakpoints();
 
 const state = props.drawerApi?.useStore?.();
 
@@ -218,11 +219,8 @@ const getForceMount = computed(() => {
             class="ml-0.5 rounded-full opacity-80 cursor-pointer transition-opacity focus:outline-hidden data-[state=open]:bg-secondary hover:opacity-100 disabled:pointer-events-none"
           >
             <slot name="close-icon">
-              <PButton
+              <TamanButtonIcon
                 icon="lucide:x"
-                color="neutral"
-                variant="ghost"
-                class="pohon:rounded-full"
               />
             </slot>
           </SheetClose>
@@ -284,11 +282,8 @@ const getForceMount = computed(() => {
             class="ml-0.5 rounded-full opacity-80 cursor-pointer transition-opacity focus:outline-hidden data-[state=open]:bg-secondary hover:opacity-100 disabled:pointer-events-none"
           >
             <slot name="close-icon">
-              <PButton
+              <TamanButtonIcon
                 icon="lucide:x"
-                color="neutral"
-                variant="ghost"
-                class="pohon:rounded-full"
               />
             </slot>
           </SheetClose>

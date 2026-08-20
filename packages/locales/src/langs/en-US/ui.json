@@ -130,7 +130,7 @@
     "document": "Document",
     "qa": "Q&A",
     "setting": "Settings",
-    "logoutTip": "Do you want to logout?",
+    "logoutTip": "Are you sure you want to logout?",
     "viewAll": "View All Messages",
     "notifications": "Notifications",
     "markAllAsRead": "Make All as Read",

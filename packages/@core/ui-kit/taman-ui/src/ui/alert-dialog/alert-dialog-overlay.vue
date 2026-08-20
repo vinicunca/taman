@@ -5,7 +5,9 @@ const {
   position = 'fixed',
   zIndex,
   overlayBlur,
+  open,
 } = defineProps<{
+  open?: boolean;
   overlayBlur?: number;
   position?: 'absolute' | 'fixed';
   zIndex?: number;
@@ -17,12 +19,13 @@ useScrollLock();
 
 <template>
   <div
+    :data-state="open ? 'open' : 'closed'"
     :style="{
       ...(zIndex ? { zIndex } : {}),
       position,
       backdropFilter:
         overlayBlur && overlayBlur > 0 ? `blur(${overlayBlur}px)` : 'none',
     }"
-    class="bg-background-elevated/75 inset-0 fixed z-popup isolate"
+    class="bg-background-elevated/75 inset-0 fixed z-popup isolate data-[state=closed]:(animate-out fade-out-0) data-[state=open]:(animate-in fade-in-0) pohon:animate-duration-280"
   />
 </template>

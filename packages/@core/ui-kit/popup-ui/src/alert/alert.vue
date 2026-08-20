@@ -11,6 +11,7 @@ import {
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogTitle,
+  TamanButtonIcon,
   TamanRenderContent,
   TamanSpinner,
 } from '@taman-core/taman-ui';
@@ -193,11 +194,8 @@ async function handleOpenChange(val: boolean) {
               v-if="showCancel"
               as-child
             >
-              <PButton
-                class="pohon:rounded-full"
+              <TamanButtonIcon
                 :disabled="loading"
-                variant="ghost"
-                color="neutral"
                 icon="lucide:x"
                 @click="handleCancel"
               />

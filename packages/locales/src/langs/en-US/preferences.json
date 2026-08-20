@@ -192,13 +192,13 @@
     "title": "Widget",
     "globalSearch": "Enable Global Search",
     "fullscreen": "Enable Fullscreen",
-    "themeToggle": "Enable Theme Toggle",
-    "languageToggle": "Enable Language Toggle",
-    "notification": "Enable Notification",
+    "themeToggle": "Theme Toggle",
+    "languageToggle": "Language Toggle",
+    "notification": "Notification",
     "sidebarToggle": "Enable Sidebar Toggle",
     "lockScreen": "Enable Lock Screen",
-    "refresh": "Enable Refresh",
-    "timezone": "Enable Timezone"
+    "refresh": "Refresh Page",
+    "timezone": "Timezone"
   },
   "antd": {
     "tabLabel": "Antd Extension",

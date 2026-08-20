@@ -1,3 +1,4 @@
+export * from './button';
 export * from './full-screen';
 export * from './icon';
 export * from './render-content';

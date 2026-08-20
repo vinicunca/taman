@@ -1,9 +1,10 @@
 <script lang="ts" setup>
+import { TamanButtonIcon } from '@taman-core/taman-ui';
 import { usePreferences } from '@taman/preferences';
 import { nextTick } from 'vue';
 
 defineOptions({
-  name: 'ThemeToggle',
+  name: 'WidgetThemeToggle',
 });
 
 const { isDark, colorMode } = usePreferences();
@@ -52,10 +53,8 @@ function toggleTheme(event: MouseEvent) {
 </script>
 
 <template>
-  <PButton
-    class="pohon:rounded-full"
-    variant="ghost"
-    color="neutral"
+  <TamanButtonIcon
+    :tooltip-text="$t('preferences.theme.title')"
     :icon="isDark ? 'ph:sun-bold' : 'ph:moon-bold'"
     @click.stop="toggleTheme"
   />

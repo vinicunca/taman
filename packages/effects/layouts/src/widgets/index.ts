@@ -1,10 +1,12 @@
 export * from './check-updates';
 export { default as AuthenticationColorToggle } from './color-toggle.vue';
-export { default as LanguageToggle } from './language-toggle.vue';
+export * from './global-search';
 export { default as AuthenticationLayoutToggle } from './layout-toggle.vue';
 export * from './lock-screen';
 export * from './notification';
 export * from './preferences';
-export { default as ThemeToggle } from './theme-toggle.vue';
 export * from './user-dropdown';
 export { default as WidgetBreadcrumb } from './widget-breadcrumb.vue';
+export { default as WidgetLanguageToggle } from './widget-language-toggle.vue';
+export { default as WidgetThemeToggle } from './widget-theme-toggle.vue';
+export { default as WidgetTimezoneToggle } from './widget-timezone-toggle.vue';

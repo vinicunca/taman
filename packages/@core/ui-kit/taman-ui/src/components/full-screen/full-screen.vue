@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useFullscreen } from '@vueuse/core';
+import { TamanButtonIcon } from '../button';
 
 defineOptions({ name: 'FullScreen' });
 
@@ -18,10 +19,8 @@ isFullscreen.value = !!(
 </script>
 
 <template>
-  <PButton
-    class="pohon:rounded-full"
-    variant="ghost"
-    color="neutral"
+  <TamanButtonIcon
+    :tooltip-text="$t('preferences.widget.fullscreen')"
     :icon="isFullscreen ? 'lucide:minimize' : 'lucide:maximize'"
     @click="toggle"
   />

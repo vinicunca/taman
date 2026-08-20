@@ -7,8 +7,8 @@ import { computed } from 'vue';
 import {
   AuthenticationColorToggle,
   AuthenticationLayoutToggle,
-  LanguageToggle,
-  ThemeToggle,
+  WidgetLanguageToggle,
+  WidgetThemeToggle,
 } from '../widgets';
 
 interface Props {
@@ -43,7 +43,7 @@ const showTheme = computed(() => props.toolbarList.includes('theme'));
     </div>
 
     <!-- Always show Language and Theme toggles -->
-    <LanguageToggle v-if="showLanguage && preferences.widget.languageToggle" />
-    <ThemeToggle v-if="showTheme && preferences.widget.themeToggle" />
+    <WidgetLanguageToggle v-if="showLanguage && preferences.widget.languageToggle" />
+    <WidgetThemeToggle v-if="showTheme && preferences.widget.themeToggle" />
   </div>
 </template>

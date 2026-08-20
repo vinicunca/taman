@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import type { DropdownMenuItem } from '@taman-core/taman-ui';
 import type { SupportedLanguagesType } from '@taman/locales';
+import { TamanButtonIcon } from '@taman-core/taman-ui';
 import { SUPPORTED_LANGUAGES } from '@taman/constants';
 import { loadLocaleMessages } from '@taman/locales';
 import { preferences, updatePreferences } from '@taman/preferences';
 import { computed } from 'vue';
 
 defineOptions({
-  name: 'LanguageToggle',
+  name: 'WidgetLanguageToggle',
 });
 
 const items = computed<Array<DropdownMenuItem>>(() => {
@@ -42,10 +43,8 @@ async function handleUpdate(value: string | undefined) {
   <PDropdownMenu
     :items="items"
   >
-    <PButton
-      class="pohon:rounded-full"
-      variant="ghost"
-      color="neutral"
+    <TamanButtonIcon
+      :tooltip-text="$t('preferences.widget.languageToggle')"
       icon="lucide:languages"
     />
   </PDropdownMenu>

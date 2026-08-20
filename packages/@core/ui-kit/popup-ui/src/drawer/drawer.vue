@@ -2,7 +2,7 @@
 import type { DrawerProps, ExtendedDrawerApi } from './drawer';
 
 import {
-  useIsMobile,
+  useBreakpoints,
   usePriorityValues,
   useSimpleLocale,
 } from '@taman-core/composables';
@@ -56,7 +56,7 @@ provide('DISMISSABLE_DRAWER_ID', id);
 // @ts-expect-error unused
 const wrapperRef = ref<HTMLElement>();
 const { $t } = useSimpleLocale();
-const { isMobile } = useIsMobile();
+const { isMobile } = useBreakpoints();
 
 const state = props.drawerApi?.useStore?.();
 

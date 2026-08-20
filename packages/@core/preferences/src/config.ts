@@ -158,8 +158,8 @@ const defaultPreferences: Preferences = {
       'fullscreen',
       'refresh',
       'notification',
-      'lockScreenBtn',
-      'logoutBtn',
+      'lockScreenButton',
+      'logoutButton',
     ],
   },
 };

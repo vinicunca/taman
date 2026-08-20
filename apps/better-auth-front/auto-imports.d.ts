@@ -8,19 +8,19 @@
 // biome-ignore lint: disable
 export {}
 declare global {
-  const defineLocale: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_94729d8e300bd9608d7a36eb938da2cc/node_modules/pohon-ui/dist/runtime/composables/defineLocale').defineLocale
-  const defineShortcuts: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_94729d8e300bd9608d7a36eb938da2cc/node_modules/pohon-ui/dist/runtime/composables/defineShortcuts').defineShortcuts
-  const extendLocale: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_94729d8e300bd9608d7a36eb938da2cc/node_modules/pohon-ui/dist/runtime/composables/defineLocale').extendLocale
-  const extractShortcuts: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_94729d8e300bd9608d7a36eb938da2cc/node_modules/pohon-ui/dist/runtime/composables/defineShortcuts').extractShortcuts
-  const useAppConfig: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_94729d8e300bd9608d7a36eb938da2cc/node_modules/pohon-ui/dist/runtime/vue/composables/useAppConfig.js').useAppConfig
-  const useContentSearch: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_94729d8e300bd9608d7a36eb938da2cc/node_modules/pohon-ui/dist/runtime/composables/useContentSearch').useContentSearch
-  const useFileUpload: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_94729d8e300bd9608d7a36eb938da2cc/node_modules/pohon-ui/dist/runtime/composables/useFileUpload').useFileUpload
-  const useFormField: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_94729d8e300bd9608d7a36eb938da2cc/node_modules/pohon-ui/dist/runtime/composables/useFormField').useFormField
-  const useKbd: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_94729d8e300bd9608d7a36eb938da2cc/node_modules/pohon-ui/dist/runtime/composables/useKbd').useKbd
-  const useOverlay: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_94729d8e300bd9608d7a36eb938da2cc/node_modules/pohon-ui/dist/runtime/composables/useOverlay').useOverlay
-  const useResizable: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_94729d8e300bd9608d7a36eb938da2cc/node_modules/pohon-ui/dist/runtime/composables/useResizable').useResizable
-  const useScrollShadow: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_94729d8e300bd9608d7a36eb938da2cc/node_modules/pohon-ui/dist/runtime/composables/useScrollShadow').useScrollShadow
-  const useScrollspy: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_94729d8e300bd9608d7a36eb938da2cc/node_modules/pohon-ui/dist/runtime/composables/useScrollspy').useScrollspy
-  const useToast: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_94729d8e300bd9608d7a36eb938da2cc/node_modules/pohon-ui/dist/runtime/composables/useToast').useToast
-  const useTour: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_94729d8e300bd9608d7a36eb938da2cc/node_modules/pohon-ui/dist/runtime/composables/useTour').useTour
+  const defineLocale: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/composables/defineLocale').defineLocale
+  const defineShortcuts: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/composables/defineShortcuts').defineShortcuts
+  const extendLocale: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/composables/defineLocale').extendLocale
+  const extractShortcuts: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/composables/defineShortcuts').extractShortcuts
+  const useAppConfig: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/vue/composables/useAppConfig.js').useAppConfig
+  const useContentSearch: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/composables/useContentSearch').useContentSearch
+  const useFileUpload: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/composables/useFileUpload').useFileUpload
+  const useFormField: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/composables/useFormField').useFormField
+  const useKbd: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/composables/useKbd').useKbd
+  const useOverlay: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/composables/useOverlay').useOverlay
+  const useResizable: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/composables/useResizable').useResizable
+  const useScrollShadow: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/composables/useScrollShadow').useScrollShadow
+  const useScrollspy: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/composables/useScrollspy').useScrollspy
+  const useToast: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/composables/useToast').useToast
+  const useTour: typeof import('../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/composables/useTour').useTour
 }

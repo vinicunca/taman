@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DropdownMenuItem } from '@taman-core/taman-ui';
 import type { TamanAuthPageLayoutType } from '@taman/types';
+import { TamanButtonIcon } from '@taman-core/taman-ui';
 import { $t } from '@taman/locales';
 import {
   preferences,
@@ -58,11 +59,7 @@ function handleUpdate(value: string | undefined) {
   <PDropdownMenu
     :items="items"
   >
-    <PButton
-      class="pohon:rounded-full"
-      size="sm"
-      variant="ghost"
-      color="neutral"
+    <TamanButtonIcon
       :icon="{
         'panel-left': 'lucide:panel-left',
         'panel-center': 'lucide:inspection-panel',

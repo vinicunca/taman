@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useTamanDrawer } from '@taman-core/popup-ui';
+import { TamanButtonIcon } from '@taman-core/taman-ui';
 import { loadLocaleMessages } from '@taman/locales';
 import { preferences, updatePreferences } from '@taman/preferences';
 import { capitalize } from '@vinicunca/perkakas';
@@ -11,6 +12,10 @@ const { isFixed = false } = defineProps<{ isFixed?: boolean }>();
 const emits = defineEmits<{
   clearPreferencesAndLogout: [];
 }>();
+
+const showTooltip = computed(() => {
+  return !isFixed;
+});
 
 const [DrawerComp, preferencesDrawerApi] = useTamanDrawer({
   connectedComponent: PreferencesDrawer,
@@ -62,11 +67,10 @@ const listen = computed(() => {
     v-on="listen"
   />
 
-  <PButton
-    class="pohon:rounded-full"
-    variant="ghost"
-    color="neutral"
+  <TamanButtonIcon
+    :show-tooltip="showTooltip"
+    :tooltip-text="$t('preferences.title')"
     icon="lucide:settings"
-    @click="preferencesDrawerApi.open()"
+    @click="preferencesDrawerApi.open"
   />
 </template>

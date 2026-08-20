@@ -1,12 +1,17 @@
 <script lang="ts" setup>
-import { TamanFullScreen } from '@taman-core/taman-ui';
+import { tamanConfirm } from '@taman-core/popup-ui';
+import { TamanButtonIcon, TamanFullScreen } from '@taman-core/taman-ui';
 import { useRefresh } from '@taman/composables';
+import { $t } from '@taman/locales';
 import { preferences, usePreferences } from '@taman/preferences';
+import { useAccessStore } from '@taman/stores';
 import { computed, useSlots } from 'vue';
 import {
-  LanguageToggle,
-  PreferencesWidget,
-  ThemeToggle,
+  WidgetGlobalSearch,
+  WidgetLanguageToggle,
+  WidgetPreferences,
+  WidgetThemeToggle,
+  WidgetTimezoneToggle,
 } from '../../widgets';
 
 interface Props {
@@ -27,10 +32,13 @@ withDefaults(
   },
 );
 
-const emit = defineEmits<{
+const emits = defineEmits<{
   clearPreferencesAndLogout: [];
+  logout: [];
+  openLockScreen: [];
 }>();
 
+const accessStore = useAccessStore();
 const REFERENCE_VALUE = 100;
 
 const {
@@ -175,15 +183,14 @@ const rightSlots = computed(() => {
       visible:
         preferences.widget.lockScreen
         && preferences.widget.lockScreenButtonPosition === 'header',
-      slotName: 'lock-screen-btn',
+      slotName: 'lock-screen-button',
     },
     logoutButton: {
       visible: preferences.widget.logoutButtonPosition === 'header',
-      slotName: 'logout-btn',
+      slotName: 'logout-button',
     },
   };
 
-  console.log('🚀 ~ preferences.widget.order:', preferences.widget.order);
   for (const key of preferences.widget.order) {
     const check = widgetChecks[key];
     if (check?.visible) {
@@ -194,20 +201,19 @@ const rightSlots = computed(() => {
     }
   }
 
-  // Object.keys(slots).forEach((key) => {
-  //   // Match slot names, e.g. first slot: header-right-1
-  //   if (key.startsWith('header-right')) {
-  //     // Use the third segment as index; if not numeric, assign the next index
-  //     const slotIndex = Number(key.split('-')[2]);
-  //     const index = Number.isNaN(slotIndex) ? nextIndex(list) : slotIndex;
-  //     list.push({ index, name: key });
-  //   }
-  // });
+  Object.keys(slots).forEach((key) => {
+    // Match slot names, e.g. first slot: header-right-1
+    if (key.startsWith('header-right')) {
+      // Use the third segment as index; if not numeric, assign the next index
+      const slotIndex = Number(key.split('-')[2]);
+      const index = Number.isNaN(slotIndex) ? nextIndex(list) : slotIndex;
+      list.push({ index, name: key });
+    }
+  });
 
   // Append the user dropdown; if the index exceeds 1000, cap it at 1000 (to accommodate scenarios where the user button is not at the end).
   const userDropdownIndex = Math.min(1000, nextIndex(list));
   list.push({ index: userDropdownIndex, name: 'user-dropdown' });
-  console.log('🚀 ~ list:', list);
 
   return list.toSorted((a, b) => a.index - b.index);
 });
@@ -239,7 +245,19 @@ function nextIndex(list: Array<SlotItem>) {
 }
 
 function clearPreferencesAndLogout() {
-  emit('clearPreferencesAndLogout');
+  emits('clearPreferencesAndLogout');
+}
+
+async function handleLogout() {
+  const isConfirmed = await tamanConfirm({
+    content: $t('ui.widgets.logoutTip'),
+    title: $t('common.logout'),
+    icon: 'question',
+  });
+
+  if (isConfirmed) {
+    emits('logout');
+  }
 }
 </script>
 
@@ -248,6 +266,7 @@ function clearPreferencesAndLogout() {
     v-for="slot in leftSlots.filter((item) => item.index < REFERENCE_VALUE)"
     :key="slot.name"
   >
+    {{ slot.name }}
     <slot :name="slot.name">
       <template v-if="slot.name === 'refresh'">
         <PButton
@@ -287,29 +306,57 @@ function clearPreferencesAndLogout() {
     >
       <slot :name="slot.name">
         <template v-if="slot.name === 'global-search'">
-          <!-- TODO: add global search -->
+          <WidgetGlobalSearch :menus="accessStore.accessMenus" />
         </template>
 
         <template v-else-if="slot.name === 'preferences'">
-          <PreferencesWidget
-            @clear-preferences-and-logout="clearPreferencesAndLogout"
-          />
+          <WidgetPreferences @clear-preferences-and-logout="clearPreferencesAndLogout" />
         </template>
 
         <template v-else-if="slot.name === 'theme-toggle'">
-          <ThemeToggle />
+          <WidgetThemeToggle />
         </template>
 
         <template v-else-if="slot.name === 'language-toggle'">
-          <LanguageToggle />
-        </template>
-
-        <template v-else-if="slot.name === 'timezone'">
-          <!-- TODO: add timezone toggle -->
+          <WidgetLanguageToggle />
         </template>
 
         <template v-else-if="slot.name === 'fullscreen'">
           <TamanFullScreen />
+        </template>
+
+        <template v-else-if="slot.name === 'refresh'">
+          <TamanButtonIcon
+            :tooltip-text="$t('preferences.widget.refresh')"
+            icon="lucide:rotate-cw"
+            @click="refresh"
+          />
+        </template>
+
+        <template v-else-if="slot.name === 'notification'">
+          <TamanButtonIcon
+            :tooltip-text="$t('preferences.widget.notification')"
+            icon="lucide:bell"
+          />
+        </template>
+
+        <template v-else-if="slot.name === 'timezone'">
+          <WidgetTimezoneToggle />
+        </template>
+
+        <template v-else-if="slot.name === 'lock-screen-button'">
+          <TamanButtonIcon
+            :tooltip-text="$t('ui.widgets.lockScreen.title')"
+            icon="lucide:lock-keyhole"
+          />
+        </template>
+
+        <template v-else-if="slot.name === 'logout-button'">
+          <TamanButtonIcon
+            :tooltip-text="$t('common.logout')"
+            icon="lucide:log-out"
+            @click="handleLogout"
+          />
         </template>
       </slot>
     </template>

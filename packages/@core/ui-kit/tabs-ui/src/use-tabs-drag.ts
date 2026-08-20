@@ -3,7 +3,7 @@ import type { EmitType } from '@taman-core/typings';
 
 import type { TabsProps } from './tabs.types';
 
-import { useIsMobile, useSortable } from '@taman-core/composables';
+import { useBreakpoints, useSortable } from '@taman-core/composables';
 import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 
 // Drag may target a child node; ensure the dragged DOM is the tab element
@@ -96,7 +96,7 @@ export function useTabsDrag(props: TabsProps, emit: EmitType) {
   }
 
   async function init() {
-    const { isMobile } = useIsMobile();
+    const { isMobile } = useBreakpoints();
 
     // Tabs are not draggable on mobile
     if (isMobile.value) {

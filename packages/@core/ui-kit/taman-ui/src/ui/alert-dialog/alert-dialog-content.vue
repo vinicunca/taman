@@ -70,6 +70,7 @@ defineExpose({
     >
       <AlertDialogOverlay
         v-if="open && modal"
+        :open="open"
         :overlay-blur="overlayBlur"
         position="fixed"
         :z-index="zIndex"

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DropdownMenuItem } from '@taman-core/taman-ui';
 import { tamanConfirm } from '@taman-core/popup-ui';
+import { $t } from '@taman/locales';
 import { computed } from 'vue';
 
 interface Props {
@@ -47,7 +48,7 @@ const items = computed<Array<DropdownMenuItem>>(() => {
     },
 
     {
-      label: 'Logout',
+      label: $t('common.logout'),
       icon: 'lucide:log-out',
       kbds: ['option', 'q'],
       onSelect: handleLogout,
@@ -57,8 +58,8 @@ const items = computed<Array<DropdownMenuItem>>(() => {
 
 async function handleLogout() {
   const isConfirmed = await tamanConfirm({
-    content: 'Are you sure you want to logout?',
-    title: 'Logout',
+    content: $t('ui.widgets.logoutTip'),
+    title: $t('common.logout'),
     icon: 'question',
   });
 
