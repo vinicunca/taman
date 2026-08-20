@@ -5,7 +5,7 @@ import { loadLocaleMessages } from '@taman/locales';
 import { preferences, updatePreferences } from '@taman/preferences';
 import { capitalize } from '@vinicunca/perkakas';
 import { computed } from 'vue';
-import PreferencesDrawer from './preferences-drawer.vue';
+import WidgetPreferencesDrawer from './widget-preferences-drawer.vue';
 
 const { isFixed = false } = defineProps<{ isFixed?: boolean }>();
 
@@ -17,8 +17,8 @@ const showTooltip = computed(() => {
   return !isFixed;
 });
 
-const [DrawerComp, preferencesDrawerApi] = useTamanDrawer({
-  connectedComponent: PreferencesDrawer,
+const [DrawerPreferences, drawerPreferencesApi] = useTamanDrawer({
+  connectedComponent: WidgetPreferencesDrawer,
 });
 
 /**
@@ -62,7 +62,7 @@ const listen = computed(() => {
 </script>
 
 <template>
-  <DrawerComp
+  <DrawerPreferences
     v-bind="{ ...$attrs, ...attrs }"
     v-on="listen"
   />
@@ -71,6 +71,6 @@ const listen = computed(() => {
     :show-tooltip="showTooltip"
     :tooltip-text="$t('preferences.title')"
     icon="lucide:settings"
-    @click="preferencesDrawerApi.open"
+    @click="drawerPreferencesApi.open"
   />
 </template>

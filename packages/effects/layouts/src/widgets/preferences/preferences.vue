@@ -9,7 +9,7 @@ import { capitalizeFirstLetter } from '@taman/utils';
 import { useVbenDrawer } from '@taman-core/popup-ui';
 import { VbenButton } from '@vben-core/shadcn-ui';
 
-import PreferencesDrawer from './preferences-drawer.vue';
+import PreferencesDrawer from './widget-preferences-drawer.vue';
 
 interface Props {
   /** Whether to show the trigger button */
