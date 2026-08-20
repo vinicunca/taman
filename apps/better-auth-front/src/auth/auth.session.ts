@@ -11,7 +11,7 @@ import { AUTH_QUERY_KEY } from './auth.constant';
  * Single source of truth for the current Better Auth session on the client:
  * the `[AUTH_QUERY_KEY, 'session']` TanStack Query cache entry.
  *
- * Non-component code (router guard, auth store) uses the imperative helpers
+ * Non-component code (router guard, session store) uses the imperative helpers
  * (`ensureSession` / `refreshSession` / `clearAuthCache`); components read
  * reactively via `useSessionStore()`. Session identity itself stays in the Better
  * Auth httpOnly cookie — this module only caches the session *data*.

@@ -15,7 +15,7 @@ import {
 } from '@vben/request';
 import JSONBigInt from 'json-bigint';
 
-import { useAuthStore } from '#/auth';
+import { useSessionStore } from '#/auth';
 
 const { directorUrl: apiURL } = useAppTamanConfig(import.meta.env, import.meta.env.PROD);
 
@@ -45,14 +45,14 @@ function createRequestClient(baseURL: string, options?: RequestClientOptions) {
   async function doReAuthenticate() {
     console.warn('Session is invalid or expired.');
     const accessStore = useAccessStore();
-    const authStore = useAuthStore();
+    const sessionStore = useSessionStore();
     if (
       preferences.app.loginExpiredMode === 'modal'
       && accessStore.isAccessChecked
     ) {
       accessStore.setLoginExpired(true);
     } else {
-      await authStore.logout();
+      await sessionStore.logout();
     }
   }
 

@@ -72,7 +72,7 @@ export function createBetterAuth() {
     ),
 
     advanced: {
-      cookiePrefix: 'ngibur',
+      cookiePrefix: 'taman',
 
       database: {
         generateId: () => {

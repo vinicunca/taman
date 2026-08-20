@@ -76,16 +76,6 @@
         }
       },
       "cache": false
-    },
-
-    "seed": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "bun run ./src/seed/seed.ts",
-        "cwd": "packages/db-pg",
-        "envFile": "packages/db-pg/.env"
-      },
-      "cache": false
     }
   },
   "tags": []

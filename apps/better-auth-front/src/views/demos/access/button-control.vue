@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import type { Recordable } from '@taman/types';
 
-import { resetAllStores, useUserStore } from '@taman/stores';
 import { AccessControl, useAccess } from '@taman/access';
 import { Page } from '@taman/common-ui';
+import { resetAllStores, useUserStore } from '@taman/stores';
 import { useRouter } from 'vue-router';
 
-import { useAuthStore } from '#/auth';
+import { useSessionStore } from '#/auth';
 
 const accounts: Record<string, Recordable<any>> = {
   admin: {
@@ -24,7 +24,7 @@ const accounts: Record<string, Recordable<any>> = {
 };
 
 const { accessMode, hasAccessByCodes } = useAccess();
-const authStore = useAuthStore();
+const sessionStore = useSessionStore();
 const userStore = useUserStore();
 const router = useRouter();
 
@@ -40,7 +40,7 @@ async function changeAccount(role: string) {
   const account = accounts[role];
   resetAllStores();
   if (account) {
-    await authStore.authLogin(account, async () => {
+    await sessionStore.signInWithEmail(account, async () => {
       router.go(0);
     });
   }

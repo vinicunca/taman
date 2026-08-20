@@ -11,6 +11,10 @@ import {
   PreferenceTheme,
 } from './blocks';
 
+const emits = defineEmits<{
+  clearPreferencesAndLogout: [];
+}>();
+
 const {
   // customPreferences,
   // diffCustomPreference,
@@ -261,7 +265,6 @@ const [Drawer] = useTamanDrawer();
 
     <template #footer>
       <PButton
-
         icon="lucide:copy"
         size="sm"
       >
@@ -270,9 +273,9 @@ const [Drawer] = useTamanDrawer();
 
       <PButton
         variant="outline"
-
         color="neutral"
         size="sm"
+        @click="emits('clearPreferencesAndLogout')"
       >
         {{ $t('preferences.clearAndLogout') }}
       </PButton>

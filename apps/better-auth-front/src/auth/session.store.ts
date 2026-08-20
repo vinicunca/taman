@@ -1,18 +1,20 @@
 import type { AuthRoleNames } from '@taman/rbac';
 import { LOGIN_PATH } from '@taman/constants';
 import { $t } from '@taman/locales';
-import { resetAllStores } from '@taman/stores';
+import { preferences } from '@taman/preferences';
+import { resetAllStores, useAccessStore } from '@taman/stores';
 import { useQuery } from '@tanstack/vue-query';
 import { acceptHMRUpdate, defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { getErrors } from '#/api/errors';
 import { authClient } from './auth.client';
-import { clearAuthCache, sessionQueryOptions } from './auth.session';
+import { clearAuthCache, refreshSession, sessionQueryOptions } from './auth.session';
 
 export const useSessionStore = defineStore('auth-session', () => {
   const toast = useToast();
   const router = useRouter();
+  const accessStore = useAccessStore();
 
   const { data: authData } = useQuery(sessionQueryOptions);
 
@@ -22,6 +24,38 @@ export const useSessionStore = defineStore('auth-session', () => {
   const roles = computed(() =>
     (user.value?.role ? [user.value.role] : []) as Array<AuthRoleNames>,
   );
+
+  const isLoggingIn = ref(false);
+
+  async function signInWithEmail(
+    params: { email?: string; password: string; username?: string },
+    onSuccess?: () => Promise<void> | void,
+  ) {
+    try {
+      isLoggingIn.value = true;
+
+      // Better Auth's client resolves (never rejects) on HTTP errors — the
+      // failure comes back in `error`, not via `.catch()`.
+      const { error } = await authClient.signIn.email({
+        email: params.email ?? params.username ?? '',
+        password: params.password,
+      });
+
+      if (error) {
+        throw new Error(error.message ?? 'Login failed');
+      }
+
+      await refreshSession();
+      // Force the guard to regenerate dynamic routes for the new user.
+      accessStore.setIsAccessChecked(false);
+
+      await (onSuccess
+        ? onSuccess()
+        : router.push(preferences.app.defaultHomePath));
+    } finally {
+      isLoggingIn.value = false;
+    }
+  }
 
   async function signInWithGoogle() {
     try {
@@ -47,8 +81,6 @@ export const useSessionStore = defineStore('auth-session', () => {
       notifyAuthError(error);
     }
   }
-
-  const isLoggingIn = ref(false);
 
   async function logout() {
     try {
@@ -83,13 +115,14 @@ export const useSessionStore = defineStore('auth-session', () => {
   return {
     // State
     isAuthenticated,
+    isLoggingIn,
     roles,
     session,
     user,
-    isLoggingIn,
 
     // Actions
     logout,
+    signInWithEmail,
     signInWithGoogle,
     $reset,
   };

@@ -65,12 +65,21 @@ const listen = computed(() => {
   <DrawerPreferences
     v-bind="{ ...$attrs, ...attrs }"
     v-on="listen"
+    @clear-preferences-and-logout="emits('clearPreferencesAndLogout')"
+  />
+
+  <PButton
+    v-if="isFixed"
+    class="right-0 top-1/2 fixed z-100 -translate-y-1/2 pohon:(rounded-r-none w-9 justify-center)"
+    icon="lucide:settings"
+    @click="drawerPreferencesApi.open()"
   />
 
   <TamanButtonIcon
+    v-else
     :show-tooltip="showTooltip"
     :tooltip-text="$t('preferences.title')"
     icon="lucide:settings"
-    @click="drawerPreferencesApi.open"
+    @click="drawerPreferencesApi.open()"
   />
 </template>

@@ -15,7 +15,7 @@ import { clone, mapTree } from '@taman/utils';
 import { VbenBackTop, VbenLogo } from '@vben-core/shadcn-ui';
 import { computed, onMounted, useSlots, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { CheckUpdates, Preferences, WidgetBreadcrumb } from '../widgets';
+import { CheckUpdates, WidgetBreadcrumb, WidgetPreferences } from '../widgets';
 import { LayoutContent, LayoutContentSpinner } from './content';
 import { Copyright } from './copyright';
 import { LayoutFooter } from './footer';
@@ -31,7 +31,7 @@ import { LayoutTabbar } from './tabbar';
 
 defineOptions({ name: 'CoreLayout' });
 
-const emit = defineEmits<{
+const emits = defineEmits<{
   clearPreferencesAndLogout: [];
   clickLogo: [];
 }>();
@@ -162,11 +162,11 @@ function toggleSidebar() {
 }
 
 function clearPreferencesAndLogout() {
-  emit('clearPreferencesAndLogout');
+  emits('clearPreferencesAndLogout');
 }
 
 function clickLogo() {
-  emit('clickLogo');
+  emits('clickLogo');
 }
 
 function autoCollapseMenuByRouteMeta(route: RouteLocationNormalizedLoaded) {
@@ -458,12 +458,11 @@ const headerSlots = computed(() => {
         />
       </Transition>
 
-      <template v-if="preferencesButtonPosition.fixed">
-        <Preferences
-          class="transform right-0 top-1/2 fixed z-100 -translate-y-1/2"
-          @clear-preferences-and-logout="clearPreferencesAndLogout"
-        />
-      </template>
+      <WidgetPreferences
+        v-if="preferencesButtonPosition.fixed"
+        is-fixed
+        @clear-preferences-and-logout="clearPreferencesAndLogout"
+      />
 
       <VbenBackTop />
     </template>

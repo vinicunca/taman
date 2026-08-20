@@ -8,6 +8,7 @@ export class DrawerApi {
   public sharedData: Record<'payload', any> = {
     payload: {},
   };
+
   public store: Store<DrawerState>;
 
   private api: Pick<

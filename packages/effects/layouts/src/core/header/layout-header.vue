@@ -266,7 +266,6 @@ async function handleLogout() {
     v-for="slot in leftSlots.filter((item) => item.index < REFERENCE_VALUE)"
     :key="slot.name"
   >
-    {{ slot.name }}
     <slot :name="slot.name">
       <template v-if="slot.name === 'refresh'">
         <PButton

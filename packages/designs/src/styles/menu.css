@@ -159,7 +159,6 @@
 
 .taman-menu.is-horizontal > .taman-sub-menu .taman-sub-menu-content {
   height: 100%;
-  padding-right: 40px;
   border-radius: var(--menu-item-radius);
 }
 

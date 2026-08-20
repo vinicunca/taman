@@ -63,7 +63,8 @@ function onTransitionEnd() {
     class="bg-overlay/70 flex-center size-full transition-all-500 left-0 top-0 absolute z-100 backdrop-blur-xs"
     :class="
       {
-        'invisible opacity-0': !showSpinner,
+        'invisible pointer-events-none opacity-0': !showSpinner,
+        'pointer-events-auto': showSpinner,
       }
     "
     @transitionend="onTransitionEnd"

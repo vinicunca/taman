@@ -13,7 +13,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     PApp: typeof import('./../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/components/App.vue')['default']
-    PAuthForm: typeof import('./../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_94729d8e300bd9608d7a36eb938da2cc/node_modules/pohon-ui/dist/runtime/components/AuthForm.vue')['default']
+    PAuthForm: typeof import('./../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/components/AuthForm.vue')['default']
     PAvatar: typeof import('./../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/components/Avatar.vue')['default']
     PBreadcrumb: typeof import('./../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/components/Breadcrumb.vue')['default']
     PButton: typeof import('./../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/components/Button.vue')['default']
@@ -42,7 +42,7 @@ declare module 'vue' {
 // For TSX support
 declare global {
   const PApp: typeof import('./../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/components/App.vue')['default']
-  const PAuthForm: typeof import('./../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_94729d8e300bd9608d7a36eb938da2cc/node_modules/pohon-ui/dist/runtime/components/AuthForm.vue')['default']
+  const PAuthForm: typeof import('./../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/components/AuthForm.vue')['default']
   const PAvatar: typeof import('./../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/components/Avatar.vue')['default']
   const PBreadcrumb: typeof import('./../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/components/Breadcrumb.vue')['default']
   const PButton: typeof import('./../../node_modules/.pnpm/pohon-ui@2.0.0-rc7.7_bcb3767dc29a07de0b758b3ed4f69159/node_modules/pohon-ui/dist/runtime/components/Button.vue')['default']

@@ -12,7 +12,7 @@ defineOptions({
 withDefaults(
   defineProps<Props>(),
   {
-    companyName: 'Ngibur Admin',
+    companyName: 'Taman Admin',
     companySiteLink: '',
     date: '2024',
   },

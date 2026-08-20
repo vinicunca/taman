@@ -31,4 +31,13 @@ export default vinicuncaESLint(
       'pnpm/yaml-enforce-settings': 'off',
     },
   },
+
+  {
+    files: [
+      '**/e2e/**',
+    ],
+    rules: {
+      'sonar/assertions-in-tests': 'off',
+    },
+  },
 );

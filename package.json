@@ -1,5 +1,5 @@
 {
-  "name": "@ngibur/monorepo",
+  "name": "@taman/monorepo",
   "type": "module",
   "version": "1.0.0",
   "private": true,
@@ -29,7 +29,7 @@
     "postinstall": "pnpm -r run --if-present stub",
     "preinstall": "npx only-allow pnpm",
     "prepare": "is-ci || pnpm exec lefthook install",
-    "preview": "pnpm --filter @ngibur/director preview",
+    "preview": "pnpm --filter @taman/director preview",
     "publint": "pnpm nx run tooling:publint",
     "reinstall": "pnpm run clean -- --del-lock && pnpm install",
     "test:unit": "vitest run --dom",

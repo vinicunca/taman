@@ -21,6 +21,16 @@
         "cwd": "apps/better-auth-back"
       },
       "cache": false
+    },
+
+    "seed": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bun run ./scripts/seed-admin.ts",
+        "cwd": "apps/better-auth-back",
+        "envFile": "apps/better-auth-back/.env"
+      },
+      "cache": false
     }
   },
   "tags": []

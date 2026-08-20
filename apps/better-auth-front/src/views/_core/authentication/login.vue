@@ -4,11 +4,10 @@ import { z } from '@taman/common-ui';
 import { $t } from '@taman/locales';
 import { computed, ref } from 'vue';
 
-import { useAuthStore, useSessionStore } from '#/auth';
+import { useSessionStore } from '#/auth';
 
 defineOptions({ name: 'Login' });
 
-const authStore = useAuthStore();
 const sessionStore = useSessionStore();
 const errorMessage = ref('');
 
@@ -57,9 +56,10 @@ const schema = computed(() => {
 type Schema = z.output<typeof schema>;
 
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
+  console.log('🚀 ~ onSubmit ~ payload:', payload);
   errorMessage.value = '';
   try {
-    await authStore.authLogin({
+    await sessionStore.signInWithEmail({
       email: payload.data.email,
       password: payload.data.password,
     });

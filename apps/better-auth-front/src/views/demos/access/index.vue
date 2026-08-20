@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import type { Recordable } from '@taman/types';
 
-import { resetAllStores, useUserStore } from '@taman/stores';
 import { useAccess } from '@taman/access';
 import { Page } from '@taman/common-ui';
+import { resetAllStores, useUserStore } from '@taman/stores';
 import { useRouter } from 'vue-router';
 
-import { useAuthStore } from '#/auth';
+import { useSessionStore } from '#/auth';
 
 const accounts: Record<string, Recordable<any>> = {
   admin: {
@@ -25,7 +25,7 @@ const accounts: Record<string, Recordable<any>> = {
 
 const { accessMode, toggleAccessMode } = useAccess();
 const userStore = useUserStore();
-const accessStore = useAuthStore();
+const sessionStore = useSessionStore();
 const router = useRouter();
 
 function roleButtonType(role: string) {
@@ -40,7 +40,7 @@ async function changeAccount(role: string) {
   const account = accounts[role];
   resetAllStores();
   if (account) {
-    await accessStore.authLogin(account, async () => {
+    await sessionStore.signInWithEmail(account, async () => {
       router.go(0);
     });
   }
@@ -53,7 +53,7 @@ async function handleToggleAccessMode() {
   await toggleAccessMode();
   resetAllStores();
 
-  await accessStore.authLogin(accounts.super, async () => {
+  await sessionStore.signInWithEmail(accounts.super, async () => {
     setTimeout(() => {
       router.go(0);
     }, 150);
