@@ -1,2 +1,2 @@
-export type * from './taman-layout';
-export { default as TamanLayout } from './taman-layout.vue';
+export type * from './taman-core-layout';
+export { default as TamanCoreLayout } from './taman-core-layout.vue';

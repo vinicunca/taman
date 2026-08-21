@@ -1,6 +1,6 @@
 import type { TamanLayoutType } from '@taman-core/typings';
 
-import type { TamanLayoutProps } from '../taman-layout';
+import type { TamanLayoutProps } from '../taman-core-layout';
 
 import { computed } from 'vue';
 

@@ -6,7 +6,8 @@ import { useScrollLock } from '@vueuse/core';
 import { computed, onUnmounted, shallowRef, useSlots, watchEffect } from 'vue';
 
 import { useSidebarDrag } from '../composables/use-sidebar-drag';
-import { SidebarCollapseButton, SidebarFixedButton } from './widgets';
+import TamanCoreButtonCollapse from './taman-core-button-collapse.vue';
+import TamanCoreButtonFixed from './taman-core-button-fixed.vue';
 
 interface Props {
   /**
@@ -396,7 +397,7 @@ onUnmounted(() => {
         ]"
         :style="{ width: `${width}px` }"
       >
-        <SidebarFixedButton
+        <TamanCoreButtonFixed
           v-if="!collapse && !isSidebarMixed && showFixedButton"
           v-model:expand-on-hover="expandOnHover"
         />
@@ -418,7 +419,7 @@ onUnmounted(() => {
 
         <div :style="collapseStyle" />
 
-        <SidebarCollapseButton
+        <TamanCoreButtonCollapse
           v-if="showCollapseButton && !isSidebarMixed"
           v-model:collapsed="collapse"
         />
@@ -435,12 +436,12 @@ onUnmounted(() => {
         :style="extraStyle"
         class="border-r border-border bg-background-sidebar h-full transition-[left,width]-300 ease-out top-0 fixed overflow-hidden"
       >
-        <SidebarCollapseButton
+        <TamanCoreButtonCollapse
           v-if="isSidebarMixed && expandOnHover"
           v-model:collapsed="extraCollapse"
         />
 
-        <SidebarFixedButton
+        <TamanCoreButtonFixed
           v-if="!extraCollapse"
           v-model:expand-on-hover="expandOnHover"
         />

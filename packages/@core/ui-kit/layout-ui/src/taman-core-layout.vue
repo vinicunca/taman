@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue';
-import type { TamanLayoutProps } from './taman-layout';
+import type { TamanLayoutProps } from './taman-core-layout';
 import {
   SCROLL_FIXED_CLASS,
   useLayoutFooterStyle,
@@ -22,7 +22,7 @@ import { useLayout } from './composables/use-layout';
 import { resolveHeaderHiddenOnScroll } from './header-scroll-state';
 
 defineOptions({
-  name: 'TamanLayout',
+  name: 'TamanCoreLayout',
 });
 
 const props = withDefaults(

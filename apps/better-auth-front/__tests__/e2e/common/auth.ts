@@ -2,45 +2,64 @@ import type { Page } from '@playwright/test';
 
 import { expect } from '@playwright/test';
 
+const DEFAULT_EMAIL = 'admin@taman.local';
+const DEFAULT_PASSWORD = 'Admin123!';
+
+function e2eCredentials(): { email: string; password: string } {
+  const email
+    = process.env.E2E_EMAIL
+      ?? process.env.TAMAN_E2E_EMAIL
+      ?? DEFAULT_EMAIL;
+  const password
+    = process.env.E2E_PASSWORD
+      ?? process.env.TAMAN_E2E_PASSWORD
+      ?? DEFAULT_PASSWORD;
+
+  return { email, password };
+}
+
+export function hasE2eCredentials(): boolean {
+  return Boolean(
+    process.env.E2E_EMAIL
+    ?? process.env.TAMAN_E2E_EMAIL
+    ?? DEFAULT_EMAIL,
+  );
+}
+
+/**
+ * Sign in through the email/password AuthForm (no captcha).
+ * Waits until the app leaves `/auth/*` so callers can assert on the shell.
+ */
 export async function authLogin(page: Page) {
-  // Ensure the login form is visible and ready
-  const usernameInput = await page.locator(`input[name='username']`);
-  await expect(usernameInput).toBeVisible();
+  const { email, password } = e2eCredentials();
 
-  const passwordInput = await page.locator(`input[name='password']`);
+  const emailInput = page.locator('input[name=\'email\']');
+  await expect(emailInput).toBeVisible();
+  await emailInput.fill(email);
+
+  const passwordInput = page.locator('input[name=\'password\']');
   await expect(passwordInput).toBeVisible();
+  await passwordInput.fill(password);
 
-  const sliderCaptcha = await page.locator(`div[name='captcha']`);
-  const sliderCaptchaAction = await page.locator(`div[name='captcha-action']`);
-  await expect(sliderCaptcha).toBeVisible();
-  await expect(sliderCaptchaAction).toBeVisible();
+  const signInResponse = page.waitForResponse((response) => {
+    return (
+      response.request().method() === 'POST'
+      && /\/sign-in\/email\/?$/.test(new URL(response.url()).pathname)
+    );
+  });
 
-  // Drag the captcha slider
-  // Get the drag handle position
-  const sliderCaptchaBox = await sliderCaptcha.boundingBox();
-  if (!sliderCaptchaBox) throw new Error('滑块未找到');
+  await page.getByRole('button', { name: 'Continue' }).click();
 
-  const actionBoundingBox = await sliderCaptchaAction.boundingBox();
-  if (!actionBoundingBox) throw new Error('要拖动的按钮未找到');
+  const response = await signInResponse;
+  if (!response.ok()) {
+    const body = await response.text().catch(() => '');
+    throw new Error(
+      `Login API failed (${response.status()}): ${body || response.statusText()}`,
+    );
+  }
 
-  // Compute start and target positions
-  const startX = actionBoundingBox.x + actionBoundingBox.width / 2; // x coordinate at center of the element
-  const startY = actionBoundingBox.y + actionBoundingBox.height / 2; // y coordinate at center of the element
-
-  const targetX = startX + sliderCaptchaBox.width + actionBoundingBox.width; // drag right by the container width
-  const targetY = startY; // y coordinate unchanged
-
-  // Simulate mouse drag
-  await page.mouse.move(startX, startY); // move to center of the action handle
-  await page.mouse.down(); // press mouse button down
-  await page.mouse.move(targetX, targetY, { steps: 20 }); // drag to target position
-  await page.mouse.up(); // release mouse button
-
-  // Assert after drag: action handle moved to the expected position
-  const newActionBoundingBox = await sliderCaptchaAction.boundingBox();
-  expect(newActionBoundingBox?.x).toBeGreaterThan(actionBoundingBox.x);
-
-  // Captcha verified; click login
-  await page.waitForTimeout(300);
-  await page.getByRole('button', { name: 'login' }).click();
+  await page.waitForURL(
+    (url) => !url.pathname.startsWith('/auth/'),
+    { timeout: 20_000 },
+  );
 }

@@ -8,9 +8,9 @@ test.beforeEach(async ({ page }) => {
 
 test.describe('Auth Login Page Tests', () => {
   test('check title and page elements', async ({ page }) => {
-    // Get page title and assert it contains 'Vben Admin'
+    // Get page title and assert it contains 'Taman Admin'
     const title = await page.title();
-    expect(title).toContain('Vben Admin');
+    expect(title).toContain('Taman Admin');
   });
 
   // Test case: successful login

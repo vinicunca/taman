@@ -20,6 +20,7 @@ packages:
   - packages/@core/forward/*
   - packages/@core/*
   - packages/effects/*
+  - packages/shell/*
   - packages/business/*
   - apps/*
   - scripts/*

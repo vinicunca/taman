@@ -1,5 +1,5 @@
-export { default as TamanLayoutContent } from './taman-layout-content.vue';
-export { default as TamanLayoutFooter } from './taman-layout-footer.vue';
-export { default as TamanLayoutHeader } from './taman-layout-header.vue';
-export { default as TamanLayoutSidebar } from './taman-layout-sidebar.vue';
-export { default as TamanLayoutTabbar } from './taman-layout-tabbar.vue';
+export { default as TamanCoreLayoutContent } from './taman-core-layout-content.vue';
+export { default as TamanCoreLayoutFooter } from './taman-core-layout-footer.vue';
+export { default as TamanCoreLayoutHeader } from './taman-core-layout-header.vue';
+export { default as TamanCoreLayoutSidebar } from './taman-core-layout-sidebar.vue';
+export { default as TamanCoreLayoutTabbar } from './taman-core-layout-tabbar.vue';
