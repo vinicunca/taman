@@ -1094,9 +1094,6 @@ importers:
       '@taman-core/typings':
         specifier: workspace:*
         version: link:../../base/typings
-      '@vben-core/shadcn-ui':
-        specifier: workspace:*
-        version: link:../shadcn-ui
       '@vueuse/core':
         specifier: 'catalog:'
         version: 14.4.0(vue@3.5.41(typescript@6.0.3))

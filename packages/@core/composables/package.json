@@ -2,12 +2,30 @@
   "name": "@taman-core/composables",
   "type": "module",
   "version": "1.0.0",
+  "license": "MIT",
   "exports": {
     ".": {
       "types": "./src/index.ts",
       "development": "./src/index.ts",
-      "production": "./src/index.ts"
+      "production": "./src/index.ts",
+      "default": "./dist/index.mjs"
     }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "pnpm exec tsdown"
   },
   "dependencies": {
     "@taman-core/shared": "workspace:*",

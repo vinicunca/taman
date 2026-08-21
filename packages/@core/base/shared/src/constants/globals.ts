@@ -6,9 +6,13 @@ export const CSS_VARIABLE_LAYOUT_CONTENT_WIDTH = '--taman-content-width';
 export const CSS_VARIABLE_LAYOUT_HEADER_HEIGHT = '--taman-header-height';
 /** Height of the layout footer component */
 export const CSS_VARIABLE_LAYOUT_FOOTER_HEIGHT = '--taman-footer-height';
+/** The viewport height used by the layout overlay */
+export const CSS_VARIABLE_LAYOUT_VIEWPORT_HEIGHT = '--taman-viewport-height';
 
 /** Main content area element ID */
 export const ELEMENT_ID_MAIN_CONTENT = '__taman_main_content';
+/** Layout scrolling container ID */
+export const ELEMENT_ID_LAYOUT_SCROLL = '__taman_layout_scroll';
 
 /** The mask layer, identified by this id, is only allowed to be closed if a click occurs on the current dialog's mask. */
 export const DISMISSABLE_DIALOG_ID = 'DISMISSABLE_DIALOG_ID';

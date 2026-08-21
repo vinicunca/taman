@@ -1,4 +1,6 @@
-interface VisibleDomRect {
+import { ELEMENT_ID_LAYOUT_SCROLL } from '../constants/globals';
+
+export interface VisibleDomRect {
   bottom: number;
   height: number;
   left: number;
@@ -11,7 +13,7 @@ interface VisibleDomRect {
  * Get the visible portion of an element within the viewport
  * @param element
  */
-function getElementVisibleRect(
+export function getElementVisibleRect(
   element?: HTMLElement | null | undefined,
 ): VisibleDomRect {
   if (!element) {
@@ -63,7 +65,7 @@ function getElementVisibleRect(
   };
 }
 
-function getScrollbarWidth() {
+export function getScrollbarWidth() {
   const scrollDiv = document.createElement('div');
 
   scrollDiv.style.visibility = 'hidden';
@@ -82,7 +84,24 @@ function getScrollbarWidth() {
   return scrollbarWidth;
 }
 
-function needsScrollbar() {
+export function getLayoutScrollElement() {
+  return document.querySelector<HTMLElement>(`#${ELEMENT_ID_LAYOUT_SCROLL}`);
+}
+
+function elementNeedsScrollbar(element: HTMLElement) {
+  const overflowY = window.getComputedStyle(element).overflowY;
+  if (overflowY === 'hidden' || overflowY === 'clip') {
+    return false;
+  }
+
+  return element.scrollHeight > element.clientHeight;
+}
+
+export function needsScrollbar(target?: HTMLElement | null) {
+  if (target) {
+    return elementNeedsScrollbar(target);
+  }
+
   const doc = document.documentElement;
   const body = document.body;
 
@@ -98,18 +117,10 @@ function needsScrollbar() {
   return doc.scrollHeight > window.innerHeight;
 }
 
-function triggerWindowResize(): void {
+export function triggerWindowResize(): void {
   // Create a new resize event
   const resizeEvent = new Event('resize');
 
   // Dispatch it on window
   window.dispatchEvent(resizeEvent);
 }
-
-export {
-  getElementVisibleRect,
-  getScrollbarWidth,
-  needsScrollbar,
-  triggerWindowResize,
-  type VisibleDomRect,
-};

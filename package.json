@@ -33,6 +33,8 @@
     "publint": "pnpm nx run tooling:publint",
     "reinstall": "pnpm run clean -- --del-lock && pnpm install",
     "test:unit": "vitest run --dom",
+    "test:core": "vitest packages",
+    "test": "vitest",
     "db:generate": "pnpm nx run db:generate",
     "db:generate:auth": "pnpm nx run db:generate:auth",
     "db-pg:migrate:dev": "pnpm nx run db-pg:migrate",

@@ -185,7 +185,7 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/auto-imports.d.ts": {
-    "mtime": 1787225125.986062,
+    "mtime": 1787264779.8682528,
     "ast_hash": "465184d0217040e264348de5c751431a",
     "semantic_hash": ""
   },
@@ -195,8 +195,8 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/package.json": {
-    "mtime": 1786621170.4216764,
-    "ast_hash": "93576dac2003afdba90a54f354dbd743",
+    "mtime": 1787266759.472873,
+    "ast_hash": "1f23cf655f64e9fb31830368ea67018d",
     "semantic_hash": ""
   },
   "apps/better-auth-front/playwright.config.ts": {
@@ -395,8 +395,8 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/auth/session.store.ts": {
-    "mtime": 1787225995.9506097,
-    "ast_hash": "5d0667aba3af196ecae3772754c77246",
+    "mtime": 1787264930.9161386,
+    "ast_hash": "c542934e67955f48a47508192e8f799c",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/auth/use-auth.query.ts": {
@@ -585,8 +585,8 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/_core/authentication/login.vue": {
-    "mtime": 1787225997.4843452,
-    "ast_hash": "5d8b3130c12ca4a058995195860cc2cb",
+    "mtime": 1787228161.3816717,
+    "ast_hash": "384b40eaa8b3ca4081f218249eb43ad9",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/_core/authentication/qrcode-login.vue": {
@@ -685,13 +685,13 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/demos/access/button-control.vue": {
-    "mtime": 1787226011.815497,
-    "ast_hash": "34f59980565d5529eafbec5c3a0bf57d",
+    "mtime": 1787226340.3878946,
+    "ast_hash": "2a4171f14e3dc79928fc102927da5bc2",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/demos/access/index.vue": {
-    "mtime": 1787226012.8757305,
-    "ast_hash": "151d84bed88ae3605f11ee9f32ff13d8",
+    "mtime": 1787226283.6815693,
+    "ast_hash": "6747328541d55659bface868ef05c516",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/demos/access/menu-visible-403.vue": {
@@ -1230,7 +1230,7 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/tsconfig.json": {
-    "mtime": 1786587065.843422,
+    "mtime": 1787266766.131032,
     "ast_hash": "899e18c848c68ced3e9dc8a1e88ea236",
     "semantic_hash": ""
   },
@@ -7210,8 +7210,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/taman-ui/src/components/button/taman-button-icon.vue": {
-    "mtime": 1787212087.8289983,
-    "ast_hash": "9c164ffedd9a6d067b09fe338d3024c4",
+    "mtime": 1787265056.109574,
+    "ast_hash": "b132710e758a1f6851943418ddb7667c",
     "semantic_hash": ""
   },
   "packages/effects/layouts/src/core/header/layout-header.vue": {
@@ -7310,8 +7310,23 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/__tests__/e2e/README.md": {
-    "mtime": 1787205970.4223852,
-    "ast_hash": "361fbbe380b7962227759dc4bf859cf0",
+    "mtime": 1787266768.0018024,
+    "ast_hash": "4a35795fc9ffa8a7764f9a5a03110f64",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/__tests__/e2e/global.d.ts": {
+    "mtime": 1787266758.7305253,
+    "ast_hash": "bf4b8812bac52cf9ce669e745c2ab62b",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/__tests__/e2e/tsconfig.json": {
+    "mtime": 1787266757.507484,
+    "ast_hash": "9f6681f60caeeb9140c5c7de45ca1554",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/tsconfig.e2e.json": {
+    "mtime": 1787266756.063978,
+    "ast_hash": "40f37676982d9195ccaf471503b4dd4c",
     "semantic_hash": ""
   }
 }
