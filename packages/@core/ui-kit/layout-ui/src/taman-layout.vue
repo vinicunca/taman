@@ -632,11 +632,19 @@ const idMainContent = ELEMENT_ID_MAIN_CONTENT;
 
     <slot name="extra" />
 
-    <div
-      v-if="maskVisible"
-      :style="maskStyle"
-      class="bg-overlay size-full transition-[background-color]-200 left-0 top-0 fixed"
-      @click="handleClickMask"
-    />
+    <Transition
+      enter-active-class="transition-opacity-300"
+      leave-active-class="transition-opacity-300"
+      enter-from-class="opacity-0"
+      leave-to-class="opacity-0"
+    >
+      <div
+        v-if="maskVisible"
+        data-layout-region="sidebar-mask"
+        :style="maskStyle"
+        class="bg-background-elevated/75 size-full left-0 top-0 fixed"
+        @click="handleClickMask"
+      />
+    </Transition>
   </div>
 </template>

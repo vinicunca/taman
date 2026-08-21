@@ -127,6 +127,10 @@ interface TamanLayoutProps {
    */
   sidebarExtraCollapsedWidth?: number;
   /**
+   * Extra title height
+   */
+  sidebarExtraTitleHeight?: number;
+  /**
    * Whether the sidebar collapse button is fixed
    * @default true
    */
@@ -136,6 +140,10 @@ interface TamanLayoutProps {
    * @default false
    */
   sidebarHidden?: boolean;
+  /**
+   * Whether the sidebar logo is visible
+   */
+  sidebarLogoVisible: boolean;
   /**
    * Mixed sidebar width
    * @default 80

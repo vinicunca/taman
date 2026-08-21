@@ -2,14 +2,13 @@
 import type { AuthFormField, ButtonProps, FormSubmitEvent } from 'pohon-ui';
 import { z } from '@taman/common-ui';
 import { $t } from '@taman/locales';
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 
 import { useSessionStore } from '#/auth';
 
 defineOptions({ name: 'Login' });
 
 const sessionStore = useSessionStore();
-const errorMessage = ref('');
 
 const providers = computed<Array<ButtonProps>>(() => {
   return [
@@ -53,22 +52,13 @@ const schema = computed(() => {
   });
 });
 
-type Schema = z.output<typeof schema>;
+type Schema = z.output<typeof schema.value>;
 
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
-  console.log('🚀 ~ onSubmit ~ payload:', payload);
-  errorMessage.value = '';
-  try {
-    await sessionStore.signInWithEmail({
-      email: payload.data.email,
-      password: payload.data.password,
-    });
-  } catch (error) {
-    errorMessage.value
-      = error instanceof Error
-        ? error.message
-        : $t('authentication.form.password.invalid');
-  }
+  await sessionStore.signInWithEmail({
+    email: payload.data.email,
+    password: payload.data.password,
+  });
 }
 </script>
 
@@ -81,12 +71,5 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
     :title="$t('authentication.welcomeBack')"
     :description="$t('authentication.loginSubtitle')"
     @submit="onSubmit"
-  >
-    <template
-      v-if="errorMessage"
-      #validation
-    >
-      <span class="text-destructive text-sm">{{ errorMessage }}</span>
-    </template>
-  </PAuthForm>
+  />
 </template>

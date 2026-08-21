@@ -28,30 +28,39 @@ export const useSessionStore = defineStore('auth-session', () => {
   const isLoggingIn = ref(false);
 
   async function signInWithEmail(
-    params: { email?: string; password: string; username?: string },
+    params: { email: string; password: string },
     onSuccess?: () => Promise<void> | void,
   ) {
     try {
       isLoggingIn.value = true;
 
       // Better Auth's client resolves (never rejects) on HTTP errors — the
-      // failure comes back in `error`, not via `.catch()`.
+      // failure comes back in `error`, not via `.catch()`. Only genuine
+      // network/CORS failures reject and land in the `catch` below.
       const { error } = await authClient.signIn.email({
-        email: params.email ?? params.username ?? '',
+        email: params.email,
         password: params.password,
       });
 
       if (error) {
-        throw new Error(error.message ?? 'Login failed');
+        notifyAuthError(error);
+        return;
       }
 
+      // Email login stays in the SPA (no full reload). The guard may already
+      // have cached an anonymous session from the login page (staleTime 60s),
+      // so refresh before navigating or ensureSession() would still see "signed out".
       await refreshSession();
-      // Force the guard to regenerate dynamic routes for the new user.
+      // Same SPA continuity: force the access guard to rebuild menus/routes for
+      // this user. Google sign-in does neither — it redirects away and remounts
+      // the app, so Pinia + the query cache start empty.
       accessStore.setIsAccessChecked(false);
 
       await (onSuccess
         ? onSuccess()
         : router.push(preferences.app.defaultHomePath));
+    } catch (error) {
+      notifyAuthError(error);
     } finally {
       isLoggingIn.value = false;
     }
@@ -101,11 +110,37 @@ export const useSessionStore = defineStore('auth-session', () => {
   }
 
   function notifyAuthError(error: unknown) {
+    const isNetworkFailure = error instanceof TypeError;
+
     toast.add({
-      title: $t('ui.fallback.offlineError'),
-      description: getErrors(error),
+      title: isNetworkFailure
+        ? $t('ui.fallback.offlineError')
+        : resolveAuthErrorDescription(error),
+      description: isNetworkFailure
+        ? $t('ui.fallback.offlineErrorDesc')
+        : undefined,
       color: 'error',
     });
+  }
+
+  /**
+   * Prefer Better Auth's own message for credential failures (e.g. wrong
+   * password). `getErrors` maps 401 → "Unauthorized…", which is a poor
+   * login tip. Network TypeErrors still go through `getErrors`.
+   */
+  function resolveAuthErrorDescription(error: unknown): string {
+    if (error instanceof TypeError) {
+      return $t('ui.fallback.offlineErrorDesc');
+    }
+
+    if (error && typeof error === 'object') {
+      const { message } = error as { message?: string };
+      if (message) {
+        return message;
+      }
+    }
+
+    return getErrors(error);
   }
 
   function $reset() {

@@ -2,11 +2,31 @@
   "name": "@taman-core/layout-ui",
   "type": "module",
   "version": "1.0.0",
+  "license": "MIT",
   "exports": {
     ".": {
       "types": "./src/index.ts",
       "development": "./src/index.ts",
-      "production": "./src/index.ts"
+      "production": "./src/index.ts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "pnpm exec tsdown",
+    "prepublishOnly": "npm run build"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      }
     }
   },
   "dependencies": {
@@ -15,7 +35,6 @@
     "@taman-core/shared": "workspace:*",
     "@taman-core/taman-ui": "workspace:*",
     "@taman-core/typings": "workspace:*",
-    "@vben-core/shadcn-ui": "workspace:*",
     "@vueuse/core": "catalog:",
     "vue": "catalog:"
   },
