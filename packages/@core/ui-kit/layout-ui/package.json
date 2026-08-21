@@ -36,6 +36,7 @@
     "@taman-core/taman-ui": "workspace:*",
     "@taman-core/typings": "workspace:*",
     "@vueuse/core": "catalog:",
+    "pohon-ui": "catalog:",
     "vue": "catalog:"
   },
   "devDependencies": {

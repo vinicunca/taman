@@ -17,7 +17,12 @@ export function useSidebarDrag() {
   let cleanup: (() => void) | null = null;
   let dragOverlay: HTMLElement | null = null;
 
-  function startDrag(e: MouseEvent, options: DragOptions, elements: DragElements, onDrag: DragCallback) {
+  function startDrag(
+    event: MouseEvent,
+    options: DragOptions,
+    elements: DragElements,
+    onDrag: DragCallback,
+  ) {
     const { min, max } = options;
     const { dragBar, target } = elements;
 
@@ -25,12 +30,12 @@ export function useSidebarDrag() {
       return;
     }
 
-    e.preventDefault();
-    e.stopPropagation();
+    event.preventDefault();
+    event.stopPropagation();
 
     isDragging.value = true;
 
-    const startX = e.clientX;
+    const startX = event.clientX;
     const startWidth = target.getBoundingClientRect().width;
     const startLeft = dragBar.offsetLeft;
 
@@ -144,7 +149,7 @@ export function useSidebarDrag() {
 
   function endDrag() {
     cleanup?.();
-  };
+  }
 
   return {
     startDrag,

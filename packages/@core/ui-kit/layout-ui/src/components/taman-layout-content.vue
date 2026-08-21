@@ -2,8 +2,6 @@
 import type { TamanContentCompactType } from '@taman-core/typings';
 import type { CSSProperties } from 'vue';
 
-import { useLayoutContentStyle } from '@taman-core/composables';
-import { Slot } from '@taman-core/taman-ui';
 import { computed } from 'vue';
 
 interface Props {
@@ -22,12 +20,17 @@ interface Props {
   paddingTop: number;
 }
 
-const props = withDefaults(defineProps<Props>(), {});
+const props = withDefaults(
+  defineProps<Props>(),
+  {},
+);
 
-// @ts-expect-error - unused
-const { contentElement, overlayStyle } = useLayoutContentStyle();
+const overlayViewportStyle: CSSProperties = {
+  height:
+    'calc(var(--taman-viewport-height) - var(--taman-header-height, 0px) - var(--taman-footer-height, 0px))',
+};
 
-const style = computed((): CSSProperties => {
+const style = computed<CSSProperties>(() => {
   const {
     contentCompact,
     padding,
@@ -55,14 +58,22 @@ const style = computed((): CSSProperties => {
 
 <template>
   <main
-    ref="contentElement"
     :style="style"
-    class="bg-background-elevated relative"
+    class="min-h-0 min-w-0 relative"
   >
-    <Slot :style="overlayStyle">
-      <slot name="overlay" />
-    </Slot>
-
+    <div
+      v-if="$slots.overlay"
+      data-layout-region="content-overlay"
+      class="h-0 w-full pointer-events-none top-0 sticky z-150"
+    >
+      <div
+        :style="overlayViewportStyle"
+        data-layout-region="overlay-viewport"
+        class="min-h-0 w-full pointer-events-none relative"
+      >
+        <slot name="overlay" />
+      </div>
+    </div>
     <slot />
   </main>
 </template>

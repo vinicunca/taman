@@ -25,6 +25,14 @@ interface Props {
    */
   domVisible?: boolean;
   /**
+   * Standard sidebar expanded width
+   */
+  expandedWidth?: number;
+  /**
+   * Extra panel title height
+   */
+  extraTitleHeight?: number;
+  /**
    * Extra panel width
    */
   extraWidth: number;
@@ -37,6 +45,11 @@ interface Props {
    * Header height
    */
   headerHeight: number;
+  /**
+   * Whether mobile drawer mode
+   * @default false
+   */
+  isMobile?: boolean;
   /**
    * Whether mixed sidebar mode is active
    * @default false
@@ -97,7 +110,10 @@ const props = withDefaults(
     collapseHeight: 42,
     collapseWidth: 48,
     domVisible: true,
+    expandedWidth: 180,
+    extraTitleHeight: undefined,
     fixedExtra: false,
+    isMobile: false,
     isSidebarMixed: false,
     marginTop: 0,
     mixedWidth: 70,
@@ -113,6 +129,7 @@ const emits = defineEmits<{
   'leave': [];
   'update:width': [value: number];
 }>();
+
 const draggable = defineModel<boolean>('draggable');
 const collapse = defineModel<boolean>('collapse');
 const extraCollapse = defineModel<boolean>('extraCollapse');
@@ -126,14 +143,37 @@ const slots = useSlots();
 const asideRef = shallowRef<HTMLElement | null>(null);
 const dragBarRef = shallowRef<HTMLElement | null>(null);
 
-const hiddenSideStyle = computed((): CSSProperties => calcMenuWidthStyle(true));
+const hiddenSideStyle = computed<CSSProperties>(() => {
+  const widthValue = props.show ? getMenuWidthValue(true) : '0px';
+
+  return {
+    flexBasis: widthValue,
+    flexGrow: 0,
+    flexShrink: 0,
+    overflow: 'hidden',
+  };
+});
+
+const sidebarVisualWidth = computed(() => {
+  const currentWidth = Number.parseFloat(getMenuWidthValue(false));
+  return !props.isMobile && !props.isSidebarMixed
+    ? Math.max(currentWidth, props.expandedWidth)
+    : currentWidth;
+});
+
+const dragBarStyle = computed((): CSSProperties => {
+  const currentWidth = Number.parseFloat(getMenuWidthValue(false));
+  return {
+    right: `${Math.max(0, sidebarVisualWidth.value - currentWidth)}px`,
+  };
+});
 
 const style = computed((): CSSProperties => {
   const { isSidebarMixed, marginTop, paddingTop, zIndex } = props;
 
   return {
-    '--scroll-shadow': 'var(--taman-color-sidebar)',
-    ...calcMenuWidthStyle(false),
+    '--scroll-shadow': 'var(--sidebar)',
+    ...calcMenuWidthStyle(),
     'height': `calc(100% - ${marginTop}px)`,
     'marginTop': `${marginTop}px`,
     'paddingTop': `${paddingTop}px`,
@@ -153,10 +193,10 @@ const extraStyle = computed((): CSSProperties => {
 });
 
 const extraTitleStyle = computed((): CSSProperties => {
-  const { headerHeight } = props;
+  const { extraTitleHeight, headerHeight } = props;
 
   return {
-    height: `${headerHeight - 1}px`,
+    height: `${extraTitleHeight ?? headerHeight - 1}px`,
   };
 });
 
@@ -189,9 +229,10 @@ const headerStyle = computed((): CSSProperties => {
 });
 
 const extraContentStyle = computed((): CSSProperties => {
-  const { collapseHeight, headerHeight } = props;
+  const { collapseHeight, extraTitleHeight, headerHeight } = props;
+  const titleHeight = extraTitleHeight ?? headerHeight;
   return {
-    height: `calc(100% - ${headerHeight + collapseHeight}px)`,
+    height: `calc(100% - ${titleHeight + collapseHeight}px)`,
   };
 });
 
@@ -205,14 +246,13 @@ watchEffect(() => {
   extraVisible.value = props.fixedExtra ? true : extraVisible.value;
 });
 
-function calcMenuWidthStyle(isHiddenDom: boolean): CSSProperties {
+function getMenuWidthValue(isHiddenDom: boolean) {
   const {
     collapseWidth,
     extraWidth,
     mixedWidth,
     fixedExtra,
     isSidebarMixed,
-    show,
     width,
   } = props;
 
@@ -224,18 +264,33 @@ function calcMenuWidthStyle(isHiddenDom: boolean): CSSProperties {
   if (isHiddenDom && expandOnHovering.value && !expandOnHover.value) {
     widthValue = isSidebarMixed ? `${mixedWidth}px` : `${collapseWidth}px`;
   }
+  return widthValue;
+}
+
+function calcMenuWidthStyle(): CSSProperties {
+  const widthValue = getMenuWidthValue(false);
+  const currentWidth = Number.parseFloat(widthValue);
+  const clippedWidth = Math.max(0, sidebarVisualWidth.value - currentWidth);
+  let transform: CSSProperties['transform'];
+
+  if (props.isMobile) {
+    transform = undefined;
+  } else if (props.show) {
+    transform = 'translate3d(0, 0, 0)';
+  } else {
+    transform = 'translate3d(-100%, 0, 0)';
+  }
+
   return {
     ...(widthValue === '0px' ? { overflow: 'hidden' } : {}),
-    flex: `0 0 ${widthValue}`,
-    marginLeft: show ? 0 : `-${widthValue}`,
-    maxWidth: widthValue,
-    minWidth: widthValue,
-    width: widthValue,
+    clipPath: `inset(0 ${clippedWidth}px 0 0)`,
+    transform,
+    width: `${sidebarVisualWidth.value}px`,
   };
 }
 
-function handleMouseenter(e: MouseEvent) {
-  if (e?.offsetX < 10) {
+function handleMouseenter(event: MouseEvent) {
+  if (event?.offsetX < 10) {
     return;
   }
 
@@ -254,9 +309,11 @@ function handleMouseenter(e: MouseEvent) {
 
 function handleMouseleave() {
   emits('leave');
+
   if (props.isSidebarMixed) {
     isLocked.value = false;
   }
+
   if (expandOnHover.value) {
     return;
   }
@@ -268,13 +325,13 @@ function handleMouseleave() {
 
 const { startDrag, endDrag } = useSidebarDrag();
 
-function handleDragSidebar(e: MouseEvent) {
+function handleDragSidebar(event: MouseEvent) {
   const { isSidebarMixed, collapseWidth, width } = props;
   const minLimit = isSidebarMixed ? width + collapseWidth : collapseWidth;
   const maxLimit = isSidebarMixed ? width + 320 : 320;
 
   startDrag(
-    e,
+    event,
     {
       min: minLimit,
       max: maxLimit,
@@ -306,99 +363,113 @@ onUnmounted(() => {
     v-if="domVisible"
     :class="theme"
     :style="hiddenSideStyle"
-    class="h-full transition-all-150"
+    class="h-full"
   />
 
-  <aside
-    ref="asideRef"
-    :style="style"
-    class="h-full transition-all-150 left-0 top-0 fixed"
-    :class="theme"
-    @mouseenter="handleMouseenter"
-    @mouseleave="handleMouseleave"
-  >
-    <div
-      class="h-full"
+  <Transition name="mobile-sidebar">
+    <aside
+      v-if="!isMobile || !collapse"
+      ref="asideRef"
+      data-layout-region="sidebar"
+      :inert="!show || width === 0"
+      :style="style"
+      class="h-full left-0 top-0 fixed"
       :class="[
+        theme,
         {
-          'bg-background-sidebar-deep': isSidebarMixed,
-          'border-r border-border bg-background-sidebar': !isSidebarMixed,
+          'border-r border-border bg-background-sidebar transition-[clip-path,transform]-300 ease-out':
+            !isMobile && !isSidebarMixed,
+          'transition-transform-300 ease-out':
+            !isMobile && isSidebarMixed,
         },
       ]"
-      :style="{ width: `${width}px` }"
+      @mouseenter="handleMouseenter"
+      @mouseleave="handleMouseleave"
     >
-      <SidebarFixedButton
-        v-if="!collapse && !isSidebarMixed && showFixedButton"
-        v-model:expand-on-hover="expandOnHover"
-      />
-
       <div
-        v-if="slots.logo"
-        :style="headerStyle"
+        class="h-full"
+        :class="[
+          {
+            'bg-background-sidebar-deep': isSidebarMixed,
+            'border-r border-border bg-background-sidebar': !isSidebarMixed,
+          },
+        ]"
+        :style="{ width: `${width}px` }"
       >
-        <slot name="logo" />
+        <SidebarFixedButton
+          v-if="!collapse && !isSidebarMixed && showFixedButton"
+          v-model:expand-on-hover="expandOnHover"
+        />
+
+        <div
+          v-if="slots.logo"
+          :style="headerStyle"
+        >
+          <slot name="logo" />
+        </div>
+
+        <TamanScrollbar
+          :style="contentStyle"
+          shadow
+          shadow-border
+        >
+          <slot />
+        </TamanScrollbar>
+
+        <div :style="collapseStyle" />
+
+        <SidebarCollapseButton
+          v-if="showCollapseButton && !isSidebarMixed"
+          v-model:collapsed="collapse"
+        />
       </div>
 
-      <TamanScrollbar
-        :style="contentStyle"
-        shadow
-        shadow-border
-      >
-        <slot />
-      </TamanScrollbar>
-
-      <div :style="collapseStyle" />
-
-      <SidebarCollapseButton
-        v-if="showCollapseButton && !isSidebarMixed"
-        v-model:collapsed="collapse"
-      />
-    </div>
-
-    <div
-      v-if="isSidebarMixed"
-      :class="[
-        themeSub,
-        {
-          'border-l': extraVisible,
-        },
-      ]"
-      :style="extraStyle"
-      class="border-r border-border bg-background-sidebar h-full transition-all-200 top-0 fixed overflow-hidden"
-    >
-      <SidebarCollapseButton
-        v-if="isSidebarMixed && expandOnHover"
-        v-model:collapsed="extraCollapse"
-      />
-
-      <SidebarFixedButton
-        v-if="!extraCollapse"
-        v-model:expand-on-hover="expandOnHover"
-      />
-
       <div
-        v-if="!extraCollapse"
-        :style="extraTitleStyle"
-        class="pl-2"
+        v-if="isSidebarMixed"
+        :class="[
+          themeSub,
+          {
+            'border-l': extraVisible,
+          },
+        ]"
+        :style="extraStyle"
+        class="border-r border-border bg-background-sidebar h-full transition-[left,width]-300 ease-out top-0 fixed overflow-hidden"
       >
-        <slot name="extra-title" />
+        <SidebarCollapseButton
+          v-if="isSidebarMixed && expandOnHover"
+          v-model:collapsed="extraCollapse"
+        />
+
+        <SidebarFixedButton
+          v-if="!extraCollapse"
+          v-model:expand-on-hover="expandOnHover"
+        />
+
+        <div
+          v-if="!extraCollapse"
+          :style="extraTitleStyle"
+          class="pl-2"
+        >
+          <slot name="extra-title" />
+        </div>
+
+        <TamanScrollbar
+          :style="extraContentStyle"
+          class="py-2 border-border"
+          shadow
+          shadow-border
+        >
+          <slot name="extra" />
+        </TamanScrollbar>
       </div>
 
-      <TamanScrollbar
-        :style="extraContentStyle"
-        class="py-2 border-border"
-        shadow
-        shadow-border
-      >
-        <slot name="extra" />
-      </TamanScrollbar>
-    </div>
-
-    <div
-      v-if="draggable"
-      ref="dragBarRef"
-      class="w-0.5 cursor-col-resize inset-y-0 absolute z-1000 hover:bg-primary -right-px"
-      @mousedown="handleDragSidebar"
-    />
-  </aside>
+      <div
+        v-if="draggable"
+        ref="dragBarRef"
+        :style="dragBarStyle"
+        class="w-0.5 cursor-col-resize inset-y-0 absolute z-1000 hover:bg-primary -right-px"
+        @mousedown="handleDragSidebar"
+      />
+    </aside>
+  </Transition>
 </template>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import PButton from 'pohon-ui/components/Button.vue';
+
 const expandOnHover = defineModel<boolean>('expandOnHover');
 
 function toggleFixed() {

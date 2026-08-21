@@ -10,10 +10,14 @@ interface Props {
   height: number;
 }
 
-const props = withDefaults(defineProps<Props>(), {});
+const props = withDefaults(
+  defineProps<Props>(),
+  {},
+);
 
-const style = computed((): CSSProperties => {
+const style = computed<CSSProperties>(() => {
   const { height } = props;
+
   return {
     height: `${height}px`,
   };
@@ -23,7 +27,7 @@ const style = computed((): CSSProperties => {
 <template>
   <section
     :style="style"
-    class="bg-background border-b border-border flex w-full transition-all"
+    class="border-b border-border bg-background flex w-full transition-colors-280"
   >
     <slot />
   </section>

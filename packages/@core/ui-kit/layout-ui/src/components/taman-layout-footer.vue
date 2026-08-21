@@ -18,16 +18,21 @@ interface Props {
   zIndex: number;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  show: true,
-});
+const props = withDefaults(
+  defineProps<Props>(),
+  {
+    show: true,
+  },
+);
 
-const style = computed((): CSSProperties => {
+const style = computed<CSSProperties>(() => {
   const { fixed, height, show, width, zIndex } = props;
+
   return {
     height: `${height}px`,
     marginBottom: show ? '0' : `-${height}px`,
     position: fixed ? 'fixed' : 'static',
+    transform: show ? 'translateY(0)' : 'translateY(100%)',
     width,
     zIndex,
   };
@@ -37,7 +42,7 @@ const style = computed((): CSSProperties => {
 <template>
   <footer
     :style="style"
-    class="bg-background-elevated w-full transition-all-200 bottom-0"
+    class="bg-background-elevated shrink-0 w-full transition-all-280 bottom-0"
   >
     <slot />
   </footer>

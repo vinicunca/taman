@@ -1097,6 +1097,9 @@ importers:
       '@vueuse/core':
         specifier: 'catalog:'
         version: 14.4.0(vue@3.5.41(typescript@6.0.3))
+      pohon-ui:
+        specifier: 2.0.0-rc7.7
+        version: 2.0.0-rc7.7(66510a03e957d19d13fda38348a074e8)
       vue:
         specifier: ^3.5.41
         version: 3.5.41(typescript@6.0.3)

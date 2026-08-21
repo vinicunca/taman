@@ -9,6 +9,7 @@ export const messages: Record<Locale, Record<string, string>> = {
     prompt: 'Prompt',
     reset: 'Reset',
     submit: 'Submit',
+    toggleSidebar: 'Toggle sidebar',
     confirmTitle: 'Please Confirm',
   },
   'id-ID': {
@@ -19,6 +20,7 @@ export const messages: Record<Locale, Record<string, string>> = {
     prompt: 'Pemberitahuan',
     reset: 'Atur Ulang',
     submit: 'Kirim',
+    toggleSidebar: 'Alihkan sidebar',
     confirmTitle: 'Harap Konfirmasi',
   },
 };

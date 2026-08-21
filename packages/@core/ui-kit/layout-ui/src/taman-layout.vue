@@ -12,11 +12,11 @@ import { TamanButtonIcon } from '@taman-core/taman-ui';
 import { useEventListener, useScroll } from '@vueuse/core';
 import { computed, ref, useTemplateRef, watch } from 'vue';
 import {
-  LayoutContent,
-  LayoutFooter,
-  LayoutHeader,
-  LayoutSidebar,
-  LayoutTabbar,
+  TamanLayoutContent,
+  TamanLayoutFooter,
+  TamanLayoutHeader,
+  TamanLayoutSidebar,
+  TamanLayoutTabbar,
 } from './components';
 import { useLayout } from './composables/use-layout';
 import { resolveHeaderHiddenOnScroll } from './header-scroll-state';
@@ -568,7 +568,7 @@ const layoutStaticHeaderTarget = `#${idLayoutStaticHeader}`;
     :data-sidebar-collapsed="activeSidebarCollapse"
     class="flex h-full min-h-0 w-full relative overflow-hidden"
   >
-    <LayoutSidebar
+    <TamanLayoutSidebar
       v-if="sidebarEnableState"
       v-model:draggable="sidebarDraggable"
       v-model:collapse="activeSidebarCollapse"
@@ -619,7 +619,7 @@ const layoutStaticHeaderTarget = `#${idLayoutStaticHeader}`;
       <template #extra-title>
         <slot name="side-extra-title" />
       </template>
-    </LayoutSidebar>
+    </TamanLayoutSidebar>
 
     <div
       ref="mainRef"
@@ -642,7 +642,7 @@ const layoutStaticHeaderTarget = `#${idLayoutStaticHeader}`;
           :style="headerWrapperStyle"
           class="shrink-0 transition-transform-280 overflow-hidden"
         >
-          <LayoutHeader
+          <TamanLayoutHeader
             v-if="headerVisible"
             :full-width="!isSideMode"
             :height="headerHeight"
@@ -671,15 +671,15 @@ const layoutStaticHeaderTarget = `#${idLayoutStaticHeader}`;
             </template>
 
             <slot name="header" />
-          </LayoutHeader>
+          </TamanLayoutHeader>
 
-          <LayoutTabbar
+          <TamanLayoutTabbar
             v-if="tabbarEnable"
             :height="tabbarHeight"
             :style="tabbarStyle"
           >
             <slot name="tabbar" />
-          </LayoutTabbar>
+          </TamanLayoutTabbar>
         </div>
       </Teleport>
 
@@ -688,14 +688,14 @@ const layoutStaticHeaderTarget = `#${idLayoutStaticHeader}`;
         ref="contentRef"
         data-layout-region="scroll"
         :style="layoutScrollStyle"
-        class="bg-background-deep flex flex-1 flex-col min-h-0 overflow-x-hidden overflow-y-auto"
+        class="bg-background-elevated flex flex-1 flex-col min-h-0 overflow-x-hidden overflow-y-auto"
       >
         <div
           :id="idLayoutStaticHeader"
           class="contents"
         />
 
-        <LayoutContent
+        <TamanLayoutContent
           :id="idMainContent"
           :content-compact="contentCompact"
           :content-compact-width="contentCompactWidth"
@@ -711,9 +711,9 @@ const layoutStaticHeaderTarget = `#${idLayoutStaticHeader}`;
           <template #overlay>
             <slot name="content-overlay" />
           </template>
-        </LayoutContent>
+        </TamanLayoutContent>
 
-        <LayoutFooter
+        <TamanLayoutFooter
           v-if="footerEnable"
           :fixed="footerFixed"
           :height="footerHeight"
@@ -722,7 +722,7 @@ const layoutStaticHeaderTarget = `#${idLayoutStaticHeader}`;
           :z-index="zIndex"
         >
           <slot name="footer" />
-        </LayoutFooter>
+        </TamanLayoutFooter>
       </div>
     </div>
 
