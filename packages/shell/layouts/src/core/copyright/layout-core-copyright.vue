@@ -6,7 +6,7 @@ interface Props {
 }
 
 defineOptions({
-  name: 'Copyright',
+  name: 'LayoutCoreCopyright',
 });
 
 withDefaults(

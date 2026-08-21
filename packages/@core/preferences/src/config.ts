@@ -64,7 +64,7 @@ const defaultPreferences: Preferences = {
   logo: {
     enable: true,
     fit: 'contain',
-    source: 'https://assets.ngibur.com/global/core-logo.webp',
+    source: '/logo-light.png',
   },
   navigation: {
     accordion: true,
