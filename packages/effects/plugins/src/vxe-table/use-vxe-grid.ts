@@ -2,7 +2,7 @@ import type { VxeGridSlots, VxeGridSlotTypes } from 'vxe-table';
 
 import type { SlotsType } from 'vue';
 
-import type { BaseFormComponentType } from '@vben-core/form-ui';
+import type { BaseFormComponentType } from '@taman-core/form-ui';
 
 import type { ExtendedVxeGridApi, VxeGridProps } from './types';
 

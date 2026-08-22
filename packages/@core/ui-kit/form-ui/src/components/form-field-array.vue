@@ -1,19 +1,21 @@
 <script setup lang="ts">
-import type { FormSchema } from '../types';
+import type { FormCommonConfig, FormSchema } from '../form.types';
 
-import { Plus, X } from '@taman-core/icons';
+import { cn, get, set } from '@taman-core/shared/utils';
 import {
-  VbenButton,
-  VbenIconButton,
-  VbenRenderContent,
-} from '@vben-core/shadcn-ui';
-import { cn } from '@taman-core/shared/utils';
-import { useFieldArray } from 'vee-validate';
+  TamanButtonIcon,
+  TamanRenderContent,
+} from '@taman-core/taman-ui';
 import { computed } from 'vue';
 
-import FormField from '../form-render/form-field.vue';
+import FormRenderFormField from '../form-render/form-render-form-field.vue';
+import { injectRenderFormProps } from '../form-render/form-render.context';
+import { createArrayChildSchema } from '../form-render/form-render.schema';
 
-defineOptions({ name: 'VbenFormFieldArray', inheritAttrs: false });
+defineOptions({
+  name: 'TamanFormFieldArray',
+  inheritAttrs: false,
+});
 
 const props = withDefaults(
   defineProps<{
@@ -21,6 +23,8 @@ const props = withDefaults(
     actionText?: string;
     /** 「添加」按钮文案 */
     addButtonText?: string;
+    /** 子字段通用配置 */
+    commonConfig?: FormCommonConfig;
     /**
      * 新增一行时生成的默认数据；缺省时按 schema 的 fieldName 生成空对象
      */
@@ -28,13 +32,13 @@ const props = withDefaults(
     disabled?: boolean;
     /** 空数据文案 */
     emptyText?: string;
+    /** 子字段全局通用配置 */
+    globalCommonConfig?: FormCommonConfig;
     /** 最多行数 */
     max?: number;
     /** 最少行数 */
     min?: number;
-    /**
-     * 字段路径，由外层 FormField 通过 componentField 透传（vee-validate 的 name）
-     */
+    /** 字段路径，由外层 FormField 通过 componentField 透传 */
     name?: string;
     /**
      * 列定义，每一列就是一个子字段（复用 FormSchema）
@@ -49,6 +53,8 @@ const props = withDefaults(
     createRow: undefined,
     disabled: false,
     emptyText: '暂无数据',
+    commonConfig: () => ({}),
+    globalCommonConfig: () => ({}),
     max: Number.POSITIVE_INFINITY,
     min: 0,
     name: '',
@@ -58,119 +64,164 @@ const props = withDefaults(
 );
 
 const arrayPath = computed(() => props.name);
-
-const { fields, push, remove } = useFieldArray<Record<string, any>>(
-  () => arrayPath.value,
+const formRenderProps = injectRenderFormProps();
+const form = formRenderProps.form;
+if (!form) {
+  throw new Error('Form api is required in <VbenFormFieldArray />');
+}
+const formActions = form;
+const arrayLength = formActions.useSelector((state) => {
+  const value = get(state.values, props.name);
+  return Array.isArray(value) ? value.length : 0;
+});
+const rowIndexes = computed(() =>
+  Array.from({ length: arrayLength.value }, (_, index) => index),
 );
 
-const canAdd = computed(() => fields.value.length < props.max);
-const canRemove = computed(() => fields.value.length > props.min);
+const canAdd = computed(() => arrayLength.value < props.max);
+const canRemove = computed(() => arrayLength.value > props.min);
+const gridStyle = computed(() => {
+  const columns = [
+    ...(props.showIndex ? ['3rem'] : []),
+    ...props.schema.map(() => 'minmax(0, 1fr)'),
+    '4rem',
+  ];
+  return {
+    gridTemplateColumns: columns.join(' '),
+  };
+});
 
 function buildDefaultRow(): Record<string, any> {
   if (props.createRow) {
     return props.createRow();
   }
-  return Object.fromEntries(props.schema.map((col) => [col.fieldName, null]));
+
+  const row: Record<string, any> = {};
+  props.schema.forEach((col) => {
+    let value: any = null;
+    if (Reflect.has(col, 'defaultValue') && col.defaultValue !== undefined) {
+      value = col.defaultValue;
+    } else if ('type' in col && col.type === 'array') {
+      value = [];
+    }
+    set(row, col.fieldName, value);
+  });
+  return row;
 }
 
 function addRow() {
   if (props.disabled || !canAdd.value) {
     return;
   }
-  push(buildDefaultRow());
+  formActions.pushFieldValue(arrayPath.value, buildDefaultRow());
 }
 
 function removeRow(index: number) {
   if (props.disabled || !canRemove.value) {
     return;
   }
-  remove(index);
+  void formActions.removeFieldValue(arrayPath.value, index);
 }
 
-/**
- * 把列定义转换为子单元格 FormField 所需的 props。
- * - fieldName 替换为嵌套路径 `name[index].fieldName`，让校验与取值落在数组元素上
- * - hideLabel：表头已展示列名，单元格不重复显示
- */
-function cellProps(col: FormSchema, index: number) {
-  return {
-    ...col,
-    commonComponentProps: {},
-    disabled: props.disabled,
-    fieldName: `${arrayPath.value}[${index}].${col.fieldName}`,
-    formFieldProps: {},
-    hideLabel: true,
-  };
+function rowSchemas(index: number) {
+  return props.schema.map((col) =>
+    createArrayChildSchema(col as never, {
+      arrayField: arrayPath.value,
+      commonConfig: props.commonConfig,
+      disabled: props.disabled,
+      globalCommonConfig: props.globalCommonConfig,
+      index,
+    }),
+  );
 }
+
+const normalizedRowSchemas = computed(() =>
+  Array.from({ length: arrayLength.value }, (_, index) => rowSchemas(index)),
+);
 </script>
 
 <template>
   <div :class="cn('w-full', $attrs.class as string)">
-    <table class="w-full border-collapse">
-      <thead>
-        <tr class="border-b border-border">
-          <th
-            v-if="showIndex"
-            class="text-muted-foreground text-sm font-normal px-2 py-2 text-left w-12"
-          >
-            #
-          </th>
-          <th
-            v-for="col in schema"
-            :key="col.fieldName"
-            class="text-muted-foreground text-sm font-normal px-2 py-2 text-left"
-          >
-            <VbenRenderContent :content="col.label" />
-          </th>
-          <th
-            class="text-muted-foreground text-sm font-normal px-2 py-2 text-left w-16"
-          >
-            {{ actionText }}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="(entry, index) in fields"
-          :key="entry.key"
-          class="align-top border-b border-border/60"
+    <div class="border border-border/70 rounded-md overflow-hidden">
+      <div
+        class="bg-muted/30 px-2 border-b border-border hidden sm:grid"
+        :style="gridStyle"
+      >
+        <div
+          v-if="showIndex"
+          class="text-muted-foreground text-sm font-normal px-2 py-2 text-left"
         >
-          <td
-            v-if="showIndex"
-            class="text-muted-foreground text-sm px-2 py-3"
-          >
-            {{ index + 1 }}
-          </td>
-          <td
-            v-for="col in schema"
-            :key="col.fieldName"
-            class="px-2 py-2"
-          >
-            <FormField v-bind="cellProps(col, index)" />
-          </td>
-          <td class="px-2 py-3">
-            <VbenIconButton
-              :disabled="disabled || !canRemove"
-              :on-click="() => removeRow(index)"
-              class="text-muted-foreground hover:text-destructive"
-            >
-              <X class="size-4" />
-            </VbenIconButton>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          #
+        </div>
+        <div
+          v-for="col in schema"
+          :key="col.fieldName"
+          class="text-muted-foreground text-sm font-normal px-2 py-2 text-left"
+        >
+          <VbenRenderContent :content="col.label" />
+        </div>
+        <div
+          class="text-muted-foreground text-sm font-normal px-2 py-2 text-left"
+        >
+          {{ actionText }}
+        </div>
+      </div>
 
-    <div
-      v-if="fields.length === 0"
-      class="text-muted-foreground text-sm py-6 text-center border-b border-border/60"
-    >
-      {{ emptyText }}
+      <div
+        v-for="index in rowIndexes"
+        :key="`${arrayPath}-${index}`"
+        class="p-3 border-b border-border/60 sm:p-0 last:border-b-0 sm:grid"
+        :style="gridStyle"
+      >
+        <div
+          v-if="showIndex"
+          class="text-muted-foreground text-sm mb-2 sm:mb-0 sm:px-4 sm:py-3"
+        >
+          <span class="sm:hidden">#</span>
+          {{ index + 1 }}
+        </div>
+
+        <template
+          v-for="(childSchema, childIndex) in normalizedRowSchemas[index]"
+          :key="childSchema.fieldName"
+        >
+          <div class="py-2 min-w-0 sm:px-2">
+            <div
+              class="text-muted-foreground text-xs font-medium mb-1 sm:hidden"
+            >
+              <VbenRenderContent :content="schema?.[childIndex]?.label" />
+            </div>
+            <FormRenderFormField
+              v-bind="childSchema"
+              :class="childSchema.formItemClass"
+            />
+          </div>
+        </template>
+
+        <div class="pt-1 flex justify-end sm:px-2 sm:py-3 sm:block">
+          <VbenIconButton
+            type="button"
+            :disabled="disabled || !canRemove"
+            :on-click="() => removeRow(index)"
+            class="text-muted-foreground hover:text-destructive"
+          >
+            <X class="size-4" />
+          </VbenIconButton>
+        </div>
+      </div>
+
+      <div
+        v-if="arrayLength === 0"
+        class="text-muted-foreground text-sm py-6 text-center"
+      >
+        {{ emptyText }}
+      </div>
     </div>
 
     <VbenButton
       variant="outline"
       size="sm"
+      type="button"
       :disabled="disabled || !canAdd"
       class="mt-3 border-dashed w-full"
       @click="addRow"

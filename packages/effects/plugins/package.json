@@ -55,7 +55,7 @@
     "@tiptap/pm": "catalog:",
     "@tiptap/starter-kit": "catalog:",
     "@tiptap/vue-3": "catalog:",
-    "@vben-core/form-ui": "workspace:*",
+    "@taman-core/form-ui": "workspace:*",
     "@vben-core/shadcn-ui": "workspace:*",
     "@vben/icons": "workspace:*",
     "@vueuse/core": "catalog:",

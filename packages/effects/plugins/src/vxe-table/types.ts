@@ -1,6 +1,6 @@
 import type { DeepPartial } from '@taman-core/shared/utils';
 import type { ClassType } from '@taman/types';
-import type { BaseFormComponentType, useVbenForm, VbenFormProps } from '@vben-core/form-ui';
+import type { BaseFormComponentType, useVbenForm, VbenFormProps } from '@taman-core/form-ui';
 import type { Ref } from 'vue';
 import type {
   VxeGridListeners,

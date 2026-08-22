@@ -1,28 +1,8 @@
 {
-  "name": "@vben-core/form-ui",
-  "version": "1.0.0",
-  "homepage": "https://github.com/vbenjs/vue-vben-admin",
-  "bugs": "https://github.com/vbenjs/vue-vben-admin/issues",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vbenjs/vue-vben-admin.git",
-    "directory": "packages/@vben-core/uikit/form-ui"
-  },
-  "license": "MIT",
+  "name": "@taman-core/form-ui",
   "type": "module",
-  "scripts": {
-    "build": "pnpm exec tsdown",
-    "prepublishOnly": "npm run build"
-  },
-  "files": [
-    "dist"
-  ],
-  "sideEffects": [
-    "**/*.css"
-  ],
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "version": "1.0.0",
+  "license": "MIT",
   "exports": {
     ".": {
       "types": "./src/index.ts",
@@ -30,6 +10,16 @@
       "production": "./src/index.ts",
       "default": "./dist/index.mjs"
     }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "pnpm exec tsdown",
+    "prepublishOnly": "npm run build"
   },
   "publishConfig": {
     "exports": {
@@ -43,16 +33,18 @@
     "@taman-core/composables": "workspace:*",
     "@taman-core/icons": "workspace:*",
     "@taman-core/shared": "workspace:*",
+    "@taman-core/taman-ui": "workspace:*",
     "@taman-core/typings": "workspace:*",
-    "@vben-core/shadcn-ui": "workspace:*",
-    "@vee-validate/zod": "catalog:",
+    "@tanstack/store": "catalog:",
+    "@tanstack/vue-form": "catalog:",
     "@vueuse/core": "catalog:",
-    "vee-validate": "catalog:",
+    "pohon-ui": "catalog:",
     "vue": "catalog:",
     "zod": "catalog:",
     "zod-defaults": "catalog:"
   },
   "devDependencies": {
+    "@vue/test-utils": "catalog:",
     "unplugin-vue": "catalog:"
   }
 }

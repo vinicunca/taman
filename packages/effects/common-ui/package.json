@@ -25,7 +25,7 @@
     "@taman/constants": "workspace:*",
     "@taman/locales": "workspace:*",
     "@taman/types": "workspace:*",
-    "@vben-core/form-ui": "workspace:*",
+    "@taman-core/form-ui": "workspace:*",
     "@vben-core/shadcn-ui": "workspace:*",
     "@vben/icons": "workspace:*",
     "@vueuse/core": "catalog:",

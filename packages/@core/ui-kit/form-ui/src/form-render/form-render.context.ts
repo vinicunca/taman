@@ -1,13 +1,16 @@
-import type { FormRenderProps } from '../types';
+import type { FormLabelWidthContext, FormRenderProps } from '../form.types';
 
+import { createContext } from '@taman-core/taman-ui';
 import { computed } from 'vue';
 
-import { createContext } from '@vben-core/shadcn-ui';
+export const [
+  injectRenderFormProps,
+  provideFormRenderProps,
+] = createContext<
+  FormLabelWidthContext & FormRenderProps
+>('FormRenderProps');
 
-export const [injectRenderFormProps, provideFormRenderProps] =
-  createContext<FormRenderProps>('FormRenderProps');
-
-export const useFormContext = () => {
+export function useFormContext() {
   const formRenderProps = injectRenderFormProps();
 
   const isVertical = computed(() => formRenderProps.layout === 'vertical');
@@ -16,9 +19,10 @@ export const useFormContext = () => {
   const componentBindEventMap = computed(
     () => formRenderProps.componentBindEventMap,
   );
+
   return {
     componentBindEventMap,
     componentMap,
     isVertical,
   };
-};
+}

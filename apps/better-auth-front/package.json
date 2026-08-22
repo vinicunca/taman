@@ -16,6 +16,7 @@
     "test:e2e-codegen": "playwright codegen"
   },
   "dependencies": {
+    "@taman-core/form-ui": "workspace:*",
     "@taman-core/menu-ui": "workspace:*",
     "@taman-core/pohon-ui-theme": "workspace:*",
     "@taman/access": "workspace:*",
@@ -34,7 +35,6 @@
     "@taman/types": "workspace:*",
     "@taman/utils": "workspace:*",
     "@tanstack/vue-query": "catalog:",
-    "@vben-core/form-ui": "workspace:*",
     "@vben/icons": "workspace:*",
     "@vben/plugins": "workspace:*",
     "@vben/request": "workspace:*",

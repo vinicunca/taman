@@ -3,7 +3,7 @@ import type { VxeGridInstance } from 'vxe-table';
 import type {
   BaseFormComponentType,
   ExtendedFormApi,
-} from '@vben-core/form-ui';
+} from '@taman-core/form-ui';
 
 import type { VxeGridProps } from './types';
 import type { ViewedRowHelper } from './use-viewed-row';

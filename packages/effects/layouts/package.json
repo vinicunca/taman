@@ -23,7 +23,7 @@
     "@taman/stores": "workspace:*",
     "@taman/types": "workspace:*",
     "@taman/utils": "workspace:*",
-    "@vben-core/form-ui": "workspace:*",
+    "@taman-core/form-ui": "workspace:*",
     "@vben-core/shadcn-ui": "workspace:*",
     "@vben/icons": "workspace:*",
     "@vinicunca/perkakas": "catalog:",

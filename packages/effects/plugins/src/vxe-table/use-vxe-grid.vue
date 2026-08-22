@@ -10,7 +10,7 @@ import type {
 
 import type { SetupContext } from 'vue';
 
-import type { VbenFormProps } from '@vben-core/form-ui';
+import type { VbenFormProps } from '@taman-core/form-ui';
 
 import type { ExtendedVxeGridApi, VxeGridProps } from './types';
 

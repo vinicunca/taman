@@ -1,35 +1,35 @@
 <script setup lang="ts">
-import type { VbenFormProps } from './types';
-
-import { ref, watchEffect } from 'vue';
+import type { TamanFormProps } from './form.types';
 
 import { useForwardPropsEmits } from '@taman-core/composables';
+import { ref, watchEffect } from 'vue';
 
 import FormActions from './components/form-actions.vue';
+import { FormRenderForm } from './form-render';
 import {
   COMPONENT_BIND_EVENT_MAP,
   COMPONENT_MAP,
   DEFAULT_FORM_COMMON_CONFIG,
-} from './config';
-import { Form } from './form-render';
-import { provideFormProps, useFormInitial } from './use-form-context';
+} from './form.config';
+import { provideFormProps, useFormInitial } from './form.use-form-context';
 
-// extends causes HMR to freeze
-interface Props extends VbenFormProps {}
-const props = withDefaults(defineProps<Props>(), {
-  actionWrapperClass: '',
-  collapsed: false,
-  collapsedRows: 1,
-  commonConfig: () => ({}),
-  handleReset: undefined,
-  handleSubmit: undefined,
-  layout: 'horizontal',
-  resetButtonOptions: () => ({}),
-  showCollapseButton: false,
-  showDefaultActions: true,
-  submitButtonOptions: () => ({}),
-  wrapperClass: 'grid-cols-1',
-});
+const props = withDefaults(
+  defineProps<TamanFormProps>(),
+  {
+    actionWrapperClass: '',
+    collapsed: false,
+    collapsedRows: 1,
+    commonConfig: () => ({}),
+    handleReset: undefined,
+    handleSubmit: undefined,
+    layout: 'horizontal',
+    resetButtonOptions: () => ({}),
+    showCollapseButton: false,
+    showDefaultActions: true,
+    submitButtonOptions: () => ({}),
+    wrapperClass: 'grid-cols-1',
+  },
+);
 
 const forward = useForwardPropsEmits(props);
 
@@ -39,11 +39,11 @@ const { delegatedSlots, form } = useFormInitial(props);
 
 provideFormProps([props, form]);
 
-const handleUpdateCollapsed = (value: boolean) => {
+function handleUpdateCollapsed(value: boolean) {
   currentCollapsed.value = value;
-  // Fire collapsed/expanded state change callback
+  // Trigger the callback for the expand/collapse state change.
   props.handleCollapsedChange?.(value);
-};
+}
 
 watchEffect(() => {
   currentCollapsed.value = props.collapsed;
@@ -51,7 +51,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <Form
+  <FormRenderForm
     v-bind="forward"
     :collapsed="currentCollapsed"
     :component-bind-event-map="COMPONENT_BIND_EVENT_MAP"
@@ -64,8 +64,12 @@ watchEffect(() => {
       :key="slotName"
       #[slotName]="slotProps"
     >
-      <slot :name="slotName" v-bind="slotProps"></slot>
+      <slot
+        :name="slotName"
+        v-bind="slotProps"
+      />
     </template>
+
     <template #default="slotProps">
       <slot v-bind="slotProps">
         <FormActions
@@ -75,5 +79,5 @@ watchEffect(() => {
         />
       </slot>
     </template>
-  </Form>
+  </FormRenderForm>
 </template>

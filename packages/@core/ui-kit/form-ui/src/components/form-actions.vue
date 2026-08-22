@@ -1,12 +1,11 @@
 <script setup lang="ts">
+import { useSimpleLocale } from '@taman-core/composables';
+import { cn, isFunction, triggerWindowResize } from '@taman-core/shared/utils';
+import { TamanExpandableArrow } from '@taman-core/taman-ui';
 import { computed, toRaw, unref, watch } from 'vue';
 
-import { useSimpleLocale } from '@taman-core/composables';
-import { VbenExpandableArrow } from '@vben-core/shadcn-ui';
-import { cn, isFunction, triggerWindowResize } from '@taman-core/shared/utils';
-
-import { COMPONENT_MAP } from '../config';
-import { injectFormProps } from '../use-form-context';
+import { COMPONENT_MAP } from '../form.config';
+import { injectFormProps } from '../form.use-form-context';
 
 const { $t } = useSimpleLocale();
 
@@ -38,13 +37,7 @@ async function handleSubmit(e: Event) {
     return;
   }
 
-  const { valid } = await props.formApi.validate();
-  if (!valid) {
-    return;
-  }
-
-  const values = toRaw(await props.formApi.getValues()) ?? {};
-  await props.handleSubmit?.(values);
+  await props.formApi.validateAndSubmit();
 }
 
 async function handleReset(e: Event) {
@@ -57,7 +50,7 @@ async function handleReset(e: Event) {
   if (isFunction(props.handleReset)) {
     await props.handleReset?.(values);
   } else {
-    form.resetForm();
+    form.reset();
   }
 }
 
@@ -122,63 +115,64 @@ defineExpose({
   handleSubmit,
 });
 </script>
+
 <template>
   <div :class="cn(actionWrapperClass)">
     <template v-if="rootProps.actionButtonsReverse">
       <!-- Before submit button -->
-      <slot name="submit-before"></slot>
+      <slot name="submit-before" />
 
       <component
         :is="COMPONENT_MAP.PrimaryButton"
         v-if="submitButtonOptions.show"
         type="button"
-        @click="handleSubmit"
         v-bind="submitButtonOptions"
+        @click="handleSubmit"
       >
         {{ submitButtonOptions.content }}
       </component>
     </template>
 
     <!-- Before reset button -->
-    <slot name="reset-before"></slot>
+    <slot name="reset-before" />
 
     <component
       :is="COMPONENT_MAP.DefaultButton"
       v-if="resetButtonOptions.show"
       type="button"
-      @click="handleReset"
       v-bind="resetButtonOptions"
+      @click="handleReset"
     >
       {{ resetButtonOptions.content }}
     </component>
 
     <template v-if="!rootProps.actionButtonsReverse">
       <!-- Before submit button -->
-      <slot name="submit-before"></slot>
+      <slot name="submit-before" />
 
       <component
         :is="COMPONENT_MAP.PrimaryButton"
         v-if="submitButtonOptions.show"
         type="button"
-        @click="handleSubmit"
         v-bind="submitButtonOptions"
+        @click="handleSubmit"
       >
         {{ submitButtonOptions.content }}
       </component>
     </template>
 
     <!-- Before expand button -->
-    <slot name="expand-before"></slot>
+    <slot name="expand-before" />
 
     <VbenExpandableArrow
-      class="ml-[-0.3em]"
       v-if="rootProps.showCollapseButton"
       v-model:model-value="collapsed"
+      class="ml-[-0.3em]"
     >
       <span>{{ collapsed ? $t('expand') : $t('collapse') }}</span>
     </VbenExpandableArrow>
 
     <!-- After expand button -->
-    <slot name="expand-after"></slot>
+    <slot name="expand-after" />
   </div>
 </template>

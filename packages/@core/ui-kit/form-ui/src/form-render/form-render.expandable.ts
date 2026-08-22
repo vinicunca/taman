@@ -1,24 +1,20 @@
-import type { FormRenderProps } from '../types';
+import type { FormRenderProps } from '../form.types';
 
+import { useBreakpoints } from '@taman-core/composables';
+import { useElementVisibility } from '@vueuse/core';
 import { computed, nextTick, onMounted, ref, useTemplateRef, watch } from 'vue';
 
-import {
-  breakpointsTailwind,
-  useBreakpoints,
-  useElementVisibility,
-} from '@vueuse/core';
-
 /**
- * Dynamically compute row count
+ * Dynamically calculate the number of rows
  */
 export function useExpandable(props: FormRenderProps) {
   const wrapperRef = useTemplateRef<HTMLElement>('wrapperRef');
   const isVisible = useElementVisibility(wrapperRef);
   const rowMapping = ref<Record<number, number>>({});
-  // Whether row count has been computed once
+  // Whether it has been calculated once
   const isCalculated = ref(false);
 
-  const breakpoints = useBreakpoints(breakpointsTailwind);
+  const { breakpoints } = useBreakpoints();
 
   const keepFormItemIndex = computed(() => {
     const rows = props.collapsedRows ?? 1;
@@ -27,7 +23,7 @@ export function useExpandable(props: FormRenderProps) {
     for (let index = 1; index <= rows; index++) {
       maxItem += mapping?.[index] ?? 0;
     }
-    // Keep a single row
+    // Keep one row
     return maxItem - 1 || 1;
   });
 
@@ -57,12 +53,6 @@ export function useExpandable(props: FormRenderProps) {
     if (!wrapperRef.value) {
       return;
     }
-    // Skip calculation on small screens
-    // if (breakpoints.smaller('sm').value) {
-    //   // Keep a single row
-    //   rowMapping.value = { 1: 2 };
-    //   return;
-    // }
 
     const formItems = [...wrapperRef.value.children];
 
@@ -77,7 +67,7 @@ export function useExpandable(props: FormRenderProps) {
     formItems.forEach((el) => {
       const itemRect = el.getBoundingClientRect();
 
-      // Determine which row the element is on
+      // Calculate the element in which row
       const itemTop = itemRect.top - containerRect.top;
       let rowStart = 0;
       let cumulativeHeight = 0;
@@ -101,5 +91,9 @@ export function useExpandable(props: FormRenderProps) {
     calculateRowMapping();
   });
 
-  return { isCalculated, keepFormItemIndex, wrapperRef };
+  return {
+    isCalculated,
+    keepFormItemIndex,
+    wrapperRef,
+  };
 }
