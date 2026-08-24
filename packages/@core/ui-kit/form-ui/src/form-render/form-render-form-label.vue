@@ -6,8 +6,8 @@ import {
   FormLabel,
   TamanRenderContent,
 } from '@taman-core/taman-ui';
-// import PIcon from 'pohon-ui/components/icon.vue';
-import PTooltip from 'pohon-ui/components/tooltip.vue';
+import PTooltip from 'pohon-ui/components/Tooltip.vue';
+import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
 
 interface Props {
   class?: string;

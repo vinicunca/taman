@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import type { ButtonProps } from 'pohon-ui';
+import PButton from 'pohon-ui/components/Button.vue';
+import PTooltip from 'pohon-ui/components/Tooltip.vue';
 import { computed } from 'vue';
+
+defineOptions({ name: 'TamanButtonIcon' });
 
 const {
   showTooltip = true,

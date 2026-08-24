@@ -5,9 +5,7 @@
     "allowArbitraryExtensions": true
   },
   "include": [
-    "src",
-    "../../../../apps/better-auth-front/components.d.ts",
-    "../../../../apps/better-auth-front/auto-imports.d.ts"
+    "src"
   ],
   "exclude": ["node_modules"]
 }

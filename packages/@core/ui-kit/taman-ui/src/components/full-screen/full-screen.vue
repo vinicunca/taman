@@ -2,7 +2,11 @@
 import { useFullscreen } from '@vueuse/core';
 import { TamanButtonIcon } from '../button';
 
-defineOptions({ name: 'FullScreen' });
+defineOptions({ name: 'TamanFullScreen' });
+
+defineProps<{
+  tooltipText?: string;
+}>();
 
 const { isFullscreen, toggle } = useFullscreen();
 
@@ -20,7 +24,7 @@ isFullscreen.value = !!(
 
 <template>
   <TamanButtonIcon
-    :tooltip-text="$t('preferences.widget.fullscreen')"
+    :tooltip-text="tooltipText"
     :icon="isFullscreen ? 'lucide:minimize' : 'lucide:maximize'"
     @click="toggle"
   />
