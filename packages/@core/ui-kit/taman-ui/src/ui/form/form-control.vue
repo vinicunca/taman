@@ -1,0 +1,25 @@
+<script lang="ts" setup>
+import { Slot } from 'akar';
+
+import { useFormField } from './use-form-field';
+
+const {
+  error,
+  formItemId,
+  formDescriptionId,
+  formMessageId,
+} = useFormField();
+</script>
+
+<template>
+  <Slot
+    :id="formItemId"
+    data-slot="form-control"
+    :aria-describedby="
+      !error ? `${formDescriptionId}` : `${formDescriptionId} ${formMessageId}`
+    "
+    :aria-invalid="!!error"
+  >
+    <slot />
+  </Slot>
+</template>

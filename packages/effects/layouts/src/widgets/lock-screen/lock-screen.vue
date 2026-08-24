@@ -6,7 +6,7 @@ import { $t, useI18n } from '@taman/locales';
 import { storeToRefs, useAccessStore } from '@taman/stores';
 
 import { useScrollLock } from '@taman-core/composables';
-import { useVbenForm, z } from '@vben-core/form-ui';
+import { useVbenForm, z } from '@taman-core/form-ui';
 import { VbenAvatar, VbenButton } from '@vben-core/shadcn-ui';
 
 import { useDateFormat, useNow } from '@vueuse/core';

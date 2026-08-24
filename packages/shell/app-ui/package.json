@@ -9,6 +9,7 @@
     }
   },
   "dependencies": {
+    "@taman-core/form-ui": "workspace:*",
     "@taman-core/shared": "workspace:*",
     "vue": "catalog:"
   }

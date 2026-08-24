@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import type { Recordable } from '@taman/types';
 
-import type { VbenFormSchema } from '@vben-core/form-ui';
+import type { VbenFormSchema } from '@taman-core/form-ui';
 
 import { computed, reactive } from 'vue';
 
 import { $t } from '@taman/locales';
 
-import { useVbenForm } from '@vben-core/form-ui';
+import { useVbenForm } from '@taman-core/form-ui';
 import { VbenButton } from '@vben-core/shadcn-ui';
 
 interface Props {

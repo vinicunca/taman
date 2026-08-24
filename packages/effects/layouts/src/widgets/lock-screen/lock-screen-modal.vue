@@ -5,7 +5,7 @@ import { computed, reactive } from 'vue';
 
 import { $t } from '@taman/locales';
 
-import { useVbenForm, z } from '@vben-core/form-ui';
+import { useVbenForm, z } from '@taman-core/form-ui';
 import { useVbenModal } from '@taman-core/popup-ui';
 import { VbenAvatar, VbenButton } from '@vben-core/shadcn-ui';
 
