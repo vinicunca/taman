@@ -5,11 +5,11 @@ import { Page } from '@taman/common-ui';
 
 import { Card, Input, message } from 'antdv-next';
 
-import { useVbenForm, z } from '#/adapter/form';
+import { useTamanForm, z } from '#/adapter/form';
 
 import TwoFields from './modules/two-fields.vue';
 
-const [Form] = useVbenForm({
+const [Form] = useTamanForm({
   // Shared by all form items; can be overridden per form
   commonConfig: {
     // All form items

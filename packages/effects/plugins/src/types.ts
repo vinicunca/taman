@@ -1,7 +1,7 @@
 import type { Component } from 'vue';
 
 export interface VbenPluginsFormOptions {
-  useVbenForm: (...args: any[]) => any;
+  useTamanForm: (...args: any[]) => any;
 }
 
 export interface VbenPluginsModalOptions {

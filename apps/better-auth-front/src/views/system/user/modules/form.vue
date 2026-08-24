@@ -8,7 +8,7 @@ import { Tree, useVbenDrawer } from '@taman/common-ui';
 import { Spin } from 'antdv-next';
 import { computed, nextTick, ref } from 'vue';
 
-import { useVbenForm } from '#/adapter/form';
+import { useTamanForm } from '#/adapter/form';
 import { getMenuList } from '#/api/system/menu';
 import { createUser, updateUser } from '#/api/system/user';
 import { $t } from '#/locales';
@@ -19,7 +19,7 @@ const emits = defineEmits(['success']);
 
 const formData = ref<SystemUserApi.SystemUser>();
 
-const [Form, formApi] = useVbenForm({
+const [Form, formApi] = useTamanForm({
   schema: useFormSchema(),
   showDefaultActions: false,
 });

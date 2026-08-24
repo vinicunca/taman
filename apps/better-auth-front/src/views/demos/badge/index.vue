@@ -9,7 +9,7 @@ import { MenuBadge } from '@taman-core/menu-ui';
 
 import { Button, Card, Radio, RadioGroup } from 'antdv-next';
 
-import { useVbenForm } from '#/adapter/form';
+import { useTamanForm } from '#/adapter/form';
 
 const colors = [
   { label: '预设：默认', value: 'default' },
@@ -28,7 +28,7 @@ const badgeProps = reactive({
   badgeVariants: menu?.badgeVariants as string,
 });
 
-const [Form] = useVbenForm({
+const [Form] = useTamanForm({
   handleValuesChange(values) {
     badgeProps.badge = values.badge;
     badgeProps.badgeType = values.badgeType;

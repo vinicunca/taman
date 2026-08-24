@@ -12,7 +12,7 @@ import { getPopupContainer } from '@taman/utils';
 
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 
-import { useVbenForm, z } from '#/adapter/form';
+import { useTamanForm, z } from '#/adapter/form';
 import {
   createMenu,
   getMenuList,
@@ -431,7 +431,7 @@ const schema: VbenFormSchema[] = [
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const isHorizontal = computed(() => breakpoints.greaterOrEqual('md').value);
 
-const [Form, formApi] = useVbenForm({
+const [Form, formApi] = useTamanForm({
   commonConfig: {
     colon: true,
     formItemClass: 'col-span-2 md:col-span-1',

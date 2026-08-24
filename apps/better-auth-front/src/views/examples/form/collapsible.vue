@@ -9,7 +9,7 @@ import { Page, VbenCollapsibleParams } from '@taman/common-ui';
 
 import { Button, Card, message, RadioGroup } from 'antdv-next';
 
-import { useVbenForm, z } from '#/adapter/form';
+import { useTamanForm, z } from '#/adapter/form';
 
 import DocButton from '../doc-button.vue';
 
@@ -122,7 +122,7 @@ const paramsValidator = z
   })
   .required();
 
-const [BaseForm, baseFormApi] = useVbenForm({
+const [BaseForm, baseFormApi] = useTamanForm({
   showDefaultActions: false,
   // Shared by all form items; can be overridden per form
   commonConfig: {

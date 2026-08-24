@@ -30,13 +30,13 @@ import {
 
 ```ts
 import { setupVbenVxeTable } from "@vben/plugins/vxe-table";
-import { useVbenForm } from "@taman-core/form-ui";
+import { useTamanForm } from "@taman-core/form-ui";
 
 setupVbenVxeTable({
   configVxeTable: (vxeUI) => {
     // 配置 VXE Table
   },
-  useVbenForm,
+  useTamanForm,
 });
 ```
 

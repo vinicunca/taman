@@ -6,7 +6,7 @@ import { useRouter } from 'vue-router';
 
 import { $t } from '@taman/locales';
 
-import { useVbenForm } from '@taman-core/form-ui';
+import { useTamanForm } from '@taman-core/form-ui';
 import { VbenButton } from '@vben-core/shadcn-ui';
 
 import Title from './auth-title.vue';
@@ -41,7 +41,7 @@ const emit = defineEmits<{
   submit: [Record<string, any>];
 }>();
 
-const [Form, formApi] = useVbenForm(
+const [Form, formApi] = useTamanForm(
   reactive({
     commonConfig: {
       hideLabel: true,

@@ -7,7 +7,7 @@ import { useVbenModal } from '@taman/common-ui';
 
 import { Button } from 'antdv-next';
 
-import { useVbenForm } from '#/adapter/form';
+import { useTamanForm } from '#/adapter/form';
 import { createDept, updateDept } from '#/api/system/dept';
 import { $t } from '#/locales';
 
@@ -21,7 +21,7 @@ const getTitle = computed(() => {
     : $t('ui.actionTitle.create', [$t('system.dept.name')]);
 });
 
-const [Form, formApi] = useVbenForm({
+const [Form, formApi] = useTamanForm({
   layout: 'vertical',
   schema: useSchema(),
   showDefaultActions: false,

@@ -11,15 +11,12 @@ import type {
 
 import { isFunction, isPlainObject, isString } from '@taman-core/shared/utils';
 import {
-  Button,
   FormControl,
   FormDescription,
   FormField,
   FormItem,
   FormMessage,
-  VbenCollapsible,
-  VbenRenderContent,
-  VbenTooltip,
+  TamanRenderContent,
 } from '@taman-core/taman-ui';
 import {
   computed,
@@ -467,8 +464,9 @@ onUnmounted(() => {
           :style="labelStyle"
         >
           <template v-if="label">
-            <VbenRenderContent :content="label" />
+            <TamanRenderContent :content="label" />
           </template>
+
           <template #extra>
             <Button
               v-if="shouldCollapsible"
@@ -487,6 +485,7 @@ onUnmounted(() => {
             </Button>
           </template>
         </FormLabel>
+
         <div class="p-px flex-auto overflow-hidden">
           <VbenCollapsible
             v-model:open="collapseOpen"
@@ -512,7 +511,7 @@ onUnmounted(() => {
                         :key="name"
                         #[name]="renderSlotProps"
                       >
-                        <VbenRenderContent
+                        <TamanRenderContent
                           :content="customContentRender[name]"
                           v-bind="{
                             ...renderSlotProps,
@@ -546,7 +545,7 @@ onUnmounted(() => {
                   v-if="suffix"
                   class="ml-1"
                 >
-                  <VbenRenderContent :content="suffix" />
+                  <TamanRenderContent :content="suffix" />
                 </div>
               </div>
             </template>
@@ -556,7 +555,7 @@ onUnmounted(() => {
             v-if="description"
             class="text-xs"
           >
-            <VbenRenderContent :content="description" />
+            <TamanRenderContent :content="description" />
           </FormDescription>
 
           <Transition

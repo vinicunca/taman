@@ -1,75 +1,54 @@
 <script lang="ts" setup>
-import type { AuthFormField, ButtonProps, FormSubmitEvent } from 'pohon-ui';
-import { z } from '@taman/common-ui';
+import type { TamanFormSchema } from '@taman/app-ui';
+import { AuthLogin, z } from '@taman/app-ui';
 import { $t } from '@taman/locales';
 import { computed } from 'vue';
-
 import { useSessionStore } from '#/auth';
-
-defineOptions({ name: 'Login' });
 
 const sessionStore = useSessionStore();
 
-const providers = computed<Array<ButtonProps>>(() => {
+const formSchema = computed<Array<TamanFormSchema>>(() => {
   return [
     {
-      icon: 'logos:google-icon',
-      label: 'Google',
-      onClick: sessionStore.signInWithGoogle,
-    },
-  ];
-});
-
-const fields = computed<Array<AuthFormField>>(() => {
-  return [
-    {
+      component: 'Input',
+      componentProps: {
+        placeholder: $t('authentication.form.email.placeholder'),
+      },
+      fieldName: 'email',
       label: $t('authentication.form.email.label'),
-      placeholder: $t('authentication.form.email.placeholder'),
-      name: 'email',
-      type: 'email',
-      required: true,
-      size: 'lg',
+      rules: z.email($t('authentication.form.email.invalid')),
     },
     {
+      component: 'InputPassword',
+      componentProps: {
+        placeholder: $t('authentication.form.password.placeholder'),
+      },
+      fieldName: 'password',
       label: $t('authentication.form.password.label'),
-      placeholder: $t('authentication.form.password.placeholder'),
-      name: 'password',
-      type: 'password',
-      required: true,
-      size: 'lg',
+      rules: z
+        .string($t('authentication.form.password.invalid'))
+        .trim()
+        .min(1, $t('authentication.form.password.invalid')),
     },
   ];
 });
 
-const schema = computed(() => {
-  return z.object({
-    email: z
-      .email($t('authentication.form.email.invalid')),
-    password: z
-      .string($t('authentication.form.password.invalid'))
-      .trim()
-      .min(1, $t('authentication.form.password.invalid')),
-  });
-});
+function handleGoogleLogin() {
+  sessionStore.signInWithGoogle();
+}
 
-type Schema = z.output<typeof schema.value>;
-
-async function onSubmit(payload: FormSubmitEvent<Schema>) {
+async function handleEmailLogin(payload) {
   await sessionStore.signInWithEmail({
-    email: payload.data.email,
-    password: payload.data.password,
+    email: payload.email,
+    password: payload.password,
   });
 }
 </script>
 
 <template>
-  <PAuthForm
-    :fields="fields"
-    :providers="providers"
-    :schema="schema"
-    :loading="sessionStore.isLoggingIn"
-    :title="$t('authentication.welcomeBack')"
-    :description="$t('authentication.loginSubtitle')"
-    @submit="onSubmit"
+  <AuthLogin
+    :schema="formSchema"
+    @login-google="handleGoogleLogin"
+    @login-email="handleEmailLogin"
   />
 </template>

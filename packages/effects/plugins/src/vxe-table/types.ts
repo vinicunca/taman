@@ -1,6 +1,6 @@
 import type { DeepPartial } from '@taman-core/shared/utils';
 import type { ClassType } from '@taman/types';
-import type { BaseFormComponentType, useVbenForm, VbenFormProps } from '@taman-core/form-ui';
+import type { BaseFormComponentType, useTamanForm, VbenFormProps } from '@taman-core/form-ui';
 import type { Ref } from 'vue';
 import type {
   VxeGridListeners,
@@ -179,5 +179,5 @@ export type ExtendedVxeGridApi<
 
 export interface SetupVxeTable {
   configVxeTable: (ui: VxeUIExport) => void;
-  useVbenForm?: typeof useVbenForm;
+  useTamanForm?: typeof useTamanForm;
 }

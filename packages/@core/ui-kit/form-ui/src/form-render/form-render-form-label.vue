@@ -5,8 +5,9 @@ import { useForwardExpose } from '@taman-core/composables';
 import {
   FormLabel,
   TamanRenderContent,
-  VbenHelpTooltip,
 } from '@taman-core/taman-ui';
+// import PIcon from 'pohon-ui/components/icon.vue';
+import PTooltip from 'pohon-ui/components/tooltip.vue';
 
 interface Props {
   class?: string;
@@ -32,13 +33,17 @@ const { forwardRef } = useForwardExpose();
       class="text-destructive mr-0.5"
     >*</span>
     <slot />
-    <VbenHelpTooltip
+
+    <PTooltip
       v-if="help"
-      trigger-class="size-3.5 ml-1"
     >
-      <TamanRenderContent :content="help" />
-    </VbenHelpTooltip>
-    <slot name="extra" />
+      <PIcon name="lucide:circle-question-mark" />
+
+      <template #content>
+        <TamanRenderContent :content="help" />
+      </template>
+    </PTooltip>
+
     <span
       v-if="colon && label"
       class="ml-0.5"

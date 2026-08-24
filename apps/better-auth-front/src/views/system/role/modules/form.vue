@@ -12,7 +12,7 @@ import { IconifyIcon } from '@vben/icons';
 
 import { Spin } from 'antdv-next';
 
-import { useVbenForm } from '#/adapter/form';
+import { useTamanForm } from '#/adapter/form';
 import { getMenuList } from '#/api/system/menu';
 import { createRole, updateRole } from '#/api/system/role';
 import { $t } from '#/locales';
@@ -23,7 +23,7 @@ const emits = defineEmits(['success']);
 
 const formData = ref<SystemRoleApi.SystemRole>();
 
-const [Form, formApi] = useVbenForm({
+const [Form, formApi] = useTamanForm({
   schema: useFormSchema(),
   showDefaultActions: false,
 });

@@ -6,7 +6,7 @@ import { $t, useI18n } from '@taman/locales';
 import { storeToRefs, useAccessStore } from '@taman/stores';
 
 import { useScrollLock } from '@taman-core/composables';
-import { useVbenForm, z } from '@taman-core/form-ui';
+import { useTamanForm, z } from '@taman-core/form-ui';
 import { VbenAvatar, VbenButton } from '@vben-core/shadcn-ui';
 
 import { useDateFormat, useNow } from '@vueuse/core';
@@ -37,7 +37,7 @@ const date = useDateFormat(now, 'YYYY-MM-DD dddd', { locales: locale.value });
 const showUnlockForm = ref(false);
 const { lockScreenPassword } = storeToRefs(accessStore);
 
-const [Form, { form, validate, getFieldComponentRef }] = useVbenForm(
+const [Form, { form, validate, getFieldComponentRef }] = useTamanForm(
   reactive({
     commonConfig: {
       hideLabel: true,

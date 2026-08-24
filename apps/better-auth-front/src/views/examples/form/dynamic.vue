@@ -3,9 +3,9 @@ import { Page } from '@taman/common-ui';
 
 import { Button, Card, message } from 'antdv-next';
 
-import { useVbenForm } from '#/adapter/form';
+import { useTamanForm } from '#/adapter/form';
 
-const [Form, formApi] = useVbenForm({
+const [Form, formApi] = useTamanForm({
   // Submit handler
   handleSubmit: onSubmit,
   schema: [
@@ -163,7 +163,7 @@ const [Form, formApi] = useVbenForm({
   wrapperClass: 'grid-cols-1 md:grid-cols-3 lg:grid-cols-4',
 });
 
-const [SyncForm] = useVbenForm({
+const [SyncForm] = useTamanForm({
   handleSubmit: onSubmit,
   schema: [
     {

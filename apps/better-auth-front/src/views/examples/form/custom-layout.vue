@@ -5,11 +5,11 @@ import { Page } from '@taman/common-ui';
 
 import { Card } from 'antdv-next';
 
-import { useVbenForm } from '#/adapter/form';
+import { useTamanForm } from '#/adapter/form';
 
 import DocButton from '../doc-button.vue';
 
-const [CustomLayoutForm] = useVbenForm({
+const [CustomLayoutForm] = useTamanForm({
   // Shared by all form items; can be overridden per form
   commonConfig: {
     // All form items

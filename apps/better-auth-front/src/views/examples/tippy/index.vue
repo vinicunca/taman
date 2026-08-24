@@ -7,7 +7,7 @@ import { Page, Tippy } from '@taman/common-ui';
 
 import { Button, Card, Flex } from 'antdv-next';
 
-import { useVbenForm } from '#/adapter/form';
+import { useTamanForm } from '#/adapter/form';
 
 const tippyProps = reactive<TippyProps>({
   animation: 'shift-away',
@@ -38,7 +38,7 @@ function parseBoolean(value: string) {
   }
 }
 
-const [Form] = useVbenForm({
+const [Form] = useTamanForm({
   handleValuesChange(values) {
     Object.assign(tippyProps, {
       ...values,

@@ -3,9 +3,9 @@ import { Page } from '@taman/common-ui';
 
 import { Button, Card, message } from 'antdv-next';
 
-import { useVbenForm, z } from '#/adapter/form';
+import { useTamanForm, z } from '#/adapter/form';
 
-const [Form, formApi] = useVbenForm({
+const [Form, formApi] = useTamanForm({
   // Shared by all form items; can be overridden per form
   commonConfig: {
     // All form items

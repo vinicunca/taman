@@ -1,9 +1,7 @@
 import type { SetupVxeTable } from './types';
 
-import { defineComponent, watch } from 'vue';
-
 import { usePreferences } from '@taman/preferences';
-
+import { defineComponent, watch } from 'vue';
 import {
   VxeButton,
   VxeCheckbox,
@@ -34,26 +32,26 @@ import { extendsDefaultFormatter } from './extends';
 // Whether vxe-table has been initialized
 let isInit = false;
 
-let tableFormFactory: ((...args: any[]) => any) | undefined;
+let tableFormFactory: ((...args: Array<any>) => any) | undefined;
 
 function normalizeVxeLocale<T extends Record<string, any>>(localeModule: T) {
   return (
-    localeModule &&
-    typeof localeModule === 'object' &&
-    'default' in localeModule
+    localeModule
+    && typeof localeModule === 'object'
+    && 'default' in localeModule
       ? localeModule.default
       : localeModule
   ) as T;
 }
 
-export function useTableForm(...args: any[]) {
+export function useTableForm(...args: Array<any>) {
   const pluginsOptions = injectPluginsOptions();
-  const contextFormFactory = pluginsOptions?.form?.useVbenForm;
+  const contextFormFactory = pluginsOptions?.form?.useTamanForm;
 
   const factory = tableFormFactory || contextFormFactory;
   if (!factory) {
     throw new Error(
-      'useTableForm is not initialized. Please provide useVbenForm via setupVbenVxeTable() or providePluginsOptions()',
+      'useTableForm is not initialized. Please provide useTamanForm via setupVbenVxeTable() or providePluginsOptions()',
     );
   }
 
@@ -61,11 +59,11 @@ export function useTableForm(...args: any[]) {
 }
 
 // Some components must be registered or vxe-table throws; these are no-op stubs to avoid errors and reduce bundle size
-const createVirtualComponent = (name = '') => {
+function createVirtualComponent(name = '') {
   return defineComponent({
     name,
   });
-};
+}
 
 export function initVxeTable() {
   if (isInit) {
@@ -108,11 +106,11 @@ export function initVxeTable() {
 }
 
 export function setupVbenVxeTable(setupOptions: SetupVxeTable) {
-  const { configVxeTable, useVbenForm: useVbenFormFromParam } = setupOptions;
+  const { configVxeTable, useTamanForm: useVbenFormFromParam } = setupOptions;
 
   initVxeTable();
 
-  // Prefer useVbenForm from params; otherwise clear so context injection applies
+  // Prefer useTamanForm from params; otherwise clear so context injection applies
   if (useVbenFormFromParam) {
     tableFormFactory = useVbenFormFromParam;
   }

@@ -5,7 +5,7 @@ import { Page } from '@taman/common-ui';
 
 import { Button, Card, Switch } from 'antdv-next';
 
-import { useVbenForm } from '#/adapter/form';
+import { useTamanForm } from '#/adapter/form';
 
 defineOptions({
   name: 'ScrollToErrorTest',
@@ -13,7 +13,7 @@ defineOptions({
 
 const scrollEnabled = ref(true);
 
-const [Form, formApi] = useVbenForm({
+const [Form, formApi] = useTamanForm({
   scrollToFirstError: scrollEnabled.value,
   schema: [
     {

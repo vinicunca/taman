@@ -29,6 +29,7 @@ overrides:
   '@ast-grep/napi': 'catalog:'
   '@ctrl/tinycolor': 'catalog:'
   clsx: 'catalog:'
+  oxc-parser: 0.143.0
   pinia: 'catalog:'
   pohon-ui: 'catalog:'
   unocss: 'catalog:'

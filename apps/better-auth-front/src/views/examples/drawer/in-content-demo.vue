@@ -5,11 +5,11 @@ import { useTamanDrawer } from '@taman/common-ui';
 
 import { Input, message } from 'antdv-next';
 
-import { useVbenForm } from '#/adapter/form';
+import { useTamanForm } from '#/adapter/form';
 
 const value = ref('');
 
-const [Form] = useVbenForm({
+const [Form] = useTamanForm({
   schema: [
     {
       component: 'Input',

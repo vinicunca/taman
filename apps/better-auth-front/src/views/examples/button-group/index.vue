@@ -13,7 +13,7 @@ import { LoaderCircle, Square, SquareCheckBig } from '@vben/icons';
 
 import { Button, Card, message } from 'antdv-next';
 
-import { useVbenForm } from '#/adapter/form';
+import { useTamanForm } from '#/adapter/form';
 
 const radioValue = ref<string | undefined>('a');
 const checkValue = ref(['a', 'b']);
@@ -55,7 +55,7 @@ const compProps = reactive({
   allowClear: false,
 } as Recordable<any>);
 
-const [Form] = useVbenForm({
+const [Form] = useTamanForm({
   handleValuesChange(values) {
     Object.keys(values).forEach((k) => {
       if (k === 'beforeChange') {

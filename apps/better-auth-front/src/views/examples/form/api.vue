@@ -5,11 +5,11 @@ import { Page } from '@taman/common-ui';
 
 import { Button, Card, message, Space } from 'antdv-next';
 
-import { useVbenForm } from '#/adapter/form';
+import { useTamanForm } from '#/adapter/form';
 
 const isReverseActionButtons = ref(false);
 
-const [BaseForm, formApi] = useVbenForm({
+const [BaseForm, formApi] = useTamanForm({
   // Flip action button position
   actionButtonsReverse: isReverseActionButtons.value,
   // Shared by all form items; can be overridden per form

@@ -4,11 +4,11 @@ import PTextarea from 'pohon-ui/components/Textarea.vue';
 import CoreUploadImages from '#/domains/core/components/core-upload-images.vue';
 
 export {
-  useVbenForm,
+  useTamanForm,
   type VbenFormProps,
   type VbenFormSchema,
   z,
-} from '@vben-core/form-ui';
+} from '@taman-core/form-ui';
 
 const fieldComponents = defineFieldComponents({
   Input: PInput,

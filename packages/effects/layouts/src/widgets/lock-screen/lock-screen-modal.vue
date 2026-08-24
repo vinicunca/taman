@@ -5,7 +5,7 @@ import { computed, reactive } from 'vue';
 
 import { $t } from '@taman/locales';
 
-import { useVbenForm, z } from '@taman-core/form-ui';
+import { useTamanForm, z } from '@taman-core/form-ui';
 import { useVbenModal } from '@taman-core/popup-ui';
 import { VbenAvatar, VbenButton } from '@vben-core/shadcn-ui';
 
@@ -28,7 +28,7 @@ const emit = defineEmits<{
 }>();
 
 const [Form, { resetForm, validate, getValues, getFieldComponentRef }] =
-  useVbenForm(
+  useTamanForm(
     reactive({
       commonConfig: {
         hideLabel: true,

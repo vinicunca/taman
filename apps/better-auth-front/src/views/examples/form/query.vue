@@ -3,9 +3,9 @@ import { Page } from '@taman/common-ui';
 
 import { Card, message } from 'antdv-next';
 
-import { useVbenForm } from '#/adapter/form';
+import { useTamanForm } from '#/adapter/form';
 
-const [QueryForm] = useVbenForm({
+const [QueryForm] = useTamanForm({
   // Expanded by default
   collapsed: false,
   // Shared by all form items; can be overridden per form
@@ -86,7 +86,7 @@ const [QueryForm] = useVbenForm({
   wrapperClass: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
 });
 
-const [InlineForm] = useVbenForm({
+const [InlineForm] = useTamanForm({
   layout: 'inline',
   schema: [
     {
@@ -142,7 +142,7 @@ const [InlineForm] = useVbenForm({
   ],
 });
 
-const [QueryForm1] = useVbenForm({
+const [QueryForm1] = useTamanForm({
   // Expanded by default
   collapsed: true,
   collapsedRows: 2,
@@ -181,7 +181,7 @@ const [QueryForm1] = useVbenForm({
   wrapperClass: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
 });
 
-const [QueryForm2] = useVbenForm({
+const [QueryForm2] = useTamanForm({
   // Action button group: newLine = new row; rowEnd = inline, right-aligned (default); inline = grid default
   actionLayout: 'newLine',
   actionPosition: 'left', // Show action buttons on the left

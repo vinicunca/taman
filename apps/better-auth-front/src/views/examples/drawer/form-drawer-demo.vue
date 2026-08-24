@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { useTamanDrawer } from '@taman/common-ui';
 
-import { useVbenForm } from '#/adapter/form';
+import { useTamanForm } from '#/adapter/form';
 
 defineOptions({
   name: 'FormDrawerDemo',
 });
 
-const [Form, formApi] = useVbenForm({
+const [Form, formApi] = useTamanForm({
   schema: [
     {
       component: 'Input',

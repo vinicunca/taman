@@ -6,14 +6,14 @@ import { Page } from '@taman/common-ui';
 import { Button, Card, message, Space, Tag } from 'antdv-next';
 import dayjs from 'dayjs';
 
-import { useVbenForm } from '#/adapter/form';
+import { useTamanForm } from '#/adapter/form';
 
 import DocButton from '../doc-button.vue';
 
 const transformedValues = ref<Record<string, any>>({});
 const liveValues = ref<Record<string, any>>({});
 
-const [Form, formApi] = useVbenForm({
+const [Form, formApi] = useTamanForm({
   commonConfig: {
     componentProps: {
       class: 'w-full',

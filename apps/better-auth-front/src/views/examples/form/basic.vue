@@ -4,7 +4,7 @@ import { useDebounceFn } from '@vueuse/core';
 import dayjs from 'dayjs';
 import { h, ref, toRaw } from 'vue';
 
-import { useVbenForm, z } from '#/adapter/form';
+import { useTamanForm, z } from '#/adapter/form';
 import { getAllMenusApi } from '#/api';
 import { upload_file } from '#/api/examples/upload';
 import { $t } from '#/locales';
@@ -26,7 +26,7 @@ function fetchRemoteOptions({ keyword = '选项' }: Record<string, any>) {
   });
 }
 
-const [BaseForm, baseFormApi] = useVbenForm({
+const [BaseForm, baseFormApi] = useTamanForm({
   // Shared by all form items; can be overridden per form
   commonConfig: {
     // Show a colon after the label
