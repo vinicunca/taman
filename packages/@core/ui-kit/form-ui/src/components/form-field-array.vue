@@ -19,40 +19,43 @@ defineOptions({
 
 const props = withDefaults(
   defineProps<{
-    /** 操作列表头文案 */
+    /** Action list header text */
     actionText?: string;
-    /** 「添加」按钮文案 */
+    /** "Add" button text */
     addButtonText?: string;
-    /** 子字段通用配置 */
+    /** Sub-field common configuration */
     commonConfig?: FormCommonConfig;
     /**
-     * 新增一行时生成的默认数据；缺省时按 schema 的 fieldName 生成空对象
+     * Default data generated when a new row is added; if not specified, generate an empty object according to the fieldName of the schema
      */
     createRow?: () => Record<string, any>;
     disabled?: boolean;
-    /** 空数据文案 */
+    /** Empty data text */
     emptyText?: string;
-    /** 子字段全局通用配置 */
+    /** Sub-field global common configuration */
     globalCommonConfig?: FormCommonConfig;
-    /** 最多行数 */
+    /** Maximum number of rows */
     max?: number;
-    /** 最少行数 */
+    /** Minimum number of rows */
     min?: number;
-    /** 字段路径，由外层 FormField 通过 componentField 透传 */
+    /** Field path, passed through componentField by the outer FormField */
     name?: string;
     /**
-     * 列定义，每一列就是一个子字段（复用 FormSchema）
+     * Column definition, each column is a sub-field (reuse FormSchema)
      */
     schema?: Array<FormSchema>;
-    /** 是否显示序号列 */
+    /** Whether to display the index column */
     showIndex?: boolean;
   }>(),
   {
-    actionText: '操作',
-    addButtonText: '添加一行',
+    // TODO: implement i18n
+    actionText: 'Action',
+    // TODO: implement i18n
+    addButtonText: 'Add a row',
     createRow: undefined,
     disabled: false,
-    emptyText: '暂无数据',
+    // TODO: implement i18n
+    emptyText: 'No data',
     commonConfig: () => ({}),
     globalCommonConfig: () => ({}),
     max: Number.POSITIVE_INFINITY,
@@ -67,7 +70,7 @@ const arrayPath = computed(() => props.name);
 const formRenderProps = injectRenderFormProps();
 const form = formRenderProps.form;
 if (!form) {
-  throw new Error('Form api is required in <VbenFormFieldArray />');
+  throw new Error('Form api is required in <TamanFormFieldArray />');
 }
 const formActions = form;
 const arrayLength = formActions.useSelector((state) => {

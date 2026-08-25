@@ -16,6 +16,7 @@
     "test:e2e-codegen": "playwright codegen"
   },
   "dependencies": {
+    "@formkit/auto-animate": "catalog:",
     "@taman-core/form-ui": "workspace:*",
     "@taman-core/menu-ui": "workspace:*",
     "@taman-core/pohon-ui-theme": "workspace:*",
@@ -53,7 +54,6 @@
     "vue-router": "catalog:"
   },
   "devDependencies": {
-    "@formkit/auto-animate": "catalog:",
     "@playwright/test": "catalog:",
     "@tanstack/vue-query-devtools": "catalog:",
     "@types/json-bigint": "catalog:",

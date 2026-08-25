@@ -231,6 +231,10 @@ export const presetCore = definePreset<VinicuncaTheme>(() => {
           950: 'var(--ui-color-error-950)',
         },
       },
+
+      ease: {
+        emphasized: 'cubic-bezier(0.25, 0.8, 0.5, 1)',
+      },
     },
 
     variants: [

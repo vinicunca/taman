@@ -18,13 +18,14 @@ type ExtendFormProps = TamanFormProps & {
 export const [
   injectFormProps,
   provideFormProps,
-]
-  = createContext<[ComputedRef<ExtendFormProps> | ExtendFormProps, FormActions]>(
-    'TamanFormProps',
-  );
+] = createContext<[ComputedRef<ExtendFormProps> | ExtendFormProps, FormActions]>(
+  'TamanFormProps',
+);
 
-export const [injectComponentRefMap, provideComponentRefMap]
-  = createContext<Map<string, unknown>>('ComponentRefMap');
+export const [
+  injectComponentRefMap,
+  provideComponentRefMap,
+] = createContext<Map<string, unknown>>('ComponentRefMap');
 
 export function useFormInitial(
   props: ComputedRef<TamanFormProps> | TamanFormProps,

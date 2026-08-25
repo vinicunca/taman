@@ -15,6 +15,9 @@ const formSchema = computed<Array<TamanFormSchema>>(() => {
         placeholder: $t('authentication.form.email.placeholder'),
       },
       fieldName: 'email',
+      formFieldProps: {
+        validateOn: ['blur'],
+      },
       label: $t('authentication.form.email.label'),
       rules: z.email($t('authentication.form.email.invalid')),
     },
@@ -24,6 +27,9 @@ const formSchema = computed<Array<TamanFormSchema>>(() => {
         placeholder: $t('authentication.form.password.placeholder'),
       },
       fieldName: 'password',
+      formFieldProps: {
+        validateOn: ['blur'],
+      },
       label: $t('authentication.form.password.label'),
       rules: z
         .string($t('authentication.form.password.invalid'))
@@ -47,7 +53,7 @@ async function handleEmailLogin(payload) {
 
 <template>
   <AuthLogin
-    :schema="formSchema"
+    :form-schema="formSchema"
     @login-google="handleGoogleLogin"
     @login-email="handleEmailLogin"
   />

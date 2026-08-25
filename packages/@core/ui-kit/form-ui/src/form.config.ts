@@ -6,17 +6,8 @@ import type {
   TamanFormAdapterOptions,
 } from './form.types';
 
-// import {
-//   TamanButton,
-//   TamanCheckbox,
-//   Input as TamanInput,
-//   TamanInputPassword,
-//   TamanPinInput,
-//   TamanSelect,
-// } from '@Taman-core/shadcn-ui';
 import { globalShareState } from '@taman-core/shared/global-state';
-import { h } from 'vue';
-
+import PInput from 'pohon-ui/components/Input.vue';
 import TamanFormFieldArray from './components/form-field-array.vue';
 import { warnDeprecatedOnce } from './form.deprecation';
 import { registerFormRules } from './form.rule-registry';
@@ -26,8 +17,7 @@ const DEFAULT_MODEL_PROP_NAME = 'modelValue';
 export const DEFAULT_FORM_COMMON_CONFIG: FormCommonConfig = {};
 
 export const COMPONENT_MAP: Record<FormBaseComponentType, Component> = {
-  // DefaultButton: h(TamanButton, { size: 'sm', variant: 'outline' }),
-  // PrimaryButton: h(TamanButton, { size: 'sm', variant: 'default' }),
+  Input: PInput,
   // TamanCheckbox,
   // TamanFormFieldArray,
   // TamanInput,

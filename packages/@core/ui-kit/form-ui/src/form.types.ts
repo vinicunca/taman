@@ -33,14 +33,8 @@ export type FormFieldValue<
 export type FormLayout = 'horizontal' | 'inline' | 'vertical';
 
 export type FormBaseComponentType
-  = | 'DefaultButton'
-    | 'PrimaryButton'
-    | 'PCheckbox'
-    | 'PFormFieldArray'
-    | 'PInput'
-    | 'PInputPassword'
-    | 'PPinInput'
-    | 'PSelect'
+  = | 'Input'
+    | 'InputPassword'
     | (Record<never, never> & string);
 
 type Breakpoints = '2xl:' | '3xl:' | '' | 'lg:' | 'md:' | 'sm:' | 'xl:';
@@ -801,24 +795,19 @@ export interface FormRenderProps<
    */
   form?: FormActions<TValues>;
   /**
-   * 表单项布局
+   * Form item layout
    */
   layout?: FormLayout;
   /**
-   * 表单定义
+   * Form Definition
    */
   schema?: Array<FormSchema<T, P, TValues>>;
-
   /**
-   * 是否显示展开/折叠
+   * Whether to display expand/collapse
    */
   showCollapseButton?: boolean;
   /**
-   * 格式化日期
-   */
-
-  /**
-   * 表单栅格布局
+   * Form grid layout
    * @default "grid-cols-1"
    */
   wrapperClass?: WrapperClassType;

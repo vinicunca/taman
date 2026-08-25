@@ -66,7 +66,7 @@ const logoSrc = computed(() => {
   >
     <template v-if="toolbar">
       <slot name="toolbar">
-        <Toolbar :toolbar-list="toolbarList" />
+        <!-- <Toolbar :toolbar-list="toolbarList" /> -->
       </slot>
     </template>
 

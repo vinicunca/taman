@@ -18,6 +18,8 @@ import {
   FormMessage,
   TamanRenderContent,
 } from '@taman-core/taman-ui';
+import PButton from 'pohon-ui/components/Button.vue';
+import PCollapsible from 'pohon-ui/components/Collapsible.vue';
 import {
   computed,
   markRaw,
@@ -28,7 +30,6 @@ import {
   useTemplateRef,
   watch,
 } from 'vue';
-
 import { getFormRule } from '../form.rule-registry';
 import { injectComponentRefMap } from '../form.use-form-context';
 import FormLabel from './form-render-form-label.vue';
@@ -356,6 +357,15 @@ function createComponentProps(slotProps: RuntimeFieldSlotProps) {
 
   const binds = {
     ...computedProps.value,
+    // Pohon UI inputs render their visual boundary via `ring`/`outline` on an
+    // inner slot, not `border-*` on the root — `color`/`highlight` are the
+    // props that theme correctly targets. Ignored (harmless) by components
+    // that don't support them.
+    ...(
+      shouldApplyInvalidStyle.value
+        ? { color: 'error', highlight: true }
+        : {}
+    ),
     ...normalizedSlotProps.componentField,
     ...bindEvents,
     disabled: shouldDisabled.value,
@@ -437,7 +447,7 @@ onUnmounted(() => {
           'form-is-required': shouldRequired,
           'flex-col': isVertical,
           'flex-row items-center': !isVertical,
-          'pb-4': !compact,
+          'pb-6': !compact,
           'pb-2': compact,
         }"
         class="flex relative"
@@ -446,16 +456,16 @@ onUnmounted(() => {
         <FormLabel
           v-if="!hideLabel"
           ref="labelRef"
+          class="leading-6 flex"
           :class="
-            cn(
-              'flex leading-6',
+            [
               {
                 'flex-shrink-0 justify-end pr-3': !isVertical,
                 'mb-1 flex-row': isVertical,
                 'self-start': shouldCollapsible && !isVertical,
               },
               labelClass,
-            )
+            ]
           "
           :help="computedHelp"
           :colon="colon"
@@ -468,40 +478,34 @@ onUnmounted(() => {
           </template>
 
           <template #extra>
-            <Button
+            <PButton
               v-if="shouldCollapsible"
               class="ml-0.5"
-              variant="icon"
-              size="icon"
+              icon="lucide:chevron-down"
+              :class="{
+                'rotate-180': !collapseOpen,
+              }"
               @click.prevent="toggleCollapsed"
-            >
-              <ChevronsDown
-                :size="16"
-                class="transition-transform"
-                :class="{
-                  'rotate-180': !collapseOpen,
-                }"
-              />
-            </Button>
+            />
           </template>
         </FormLabel>
 
-        <div class="p-px flex-auto overflow-hidden">
-          <VbenCollapsible
+        <div class="p-px flex-auto">
+          <PCollapsible
             v-model:open="collapseOpen"
-            :show-trigger="false"
           >
-            <template #collapsibleContent>
+            <template #content>
               <div
-                :class="cn('relative flex w-full items-center', wrapperClass)"
+                class="flex w-full items-center relative"
+                :class="[wrapperClass]"
               >
-                <FormControl :class="cn(controlClass)">
+                <FormControl :class="controlClass">
                   <slot v-bind="createFieldSlotScope(slotProps)">
                     <component
                       :is="FieldComponent"
                       ref="fieldComponentRef"
                       :class="{
-                        'border-destructive hover:border-destructive/80 focus:border-destructive focus:shadow-[0_0_0_2px_rgba(255,38,5,0.06)]':
+                        'border-error hover:border-error/80 focus:border-error focus:shadow-[0_0_0_2px_rgba(255,38,5,0.06)]':
                           shouldApplyInvalidStyle,
                       }"
                       v-bind="createComponentProps(slotProps)"
@@ -520,24 +524,6 @@ onUnmounted(() => {
                         />
                       </template>
                     </component>
-                    <VbenTooltip
-                      v-if="compact && isInValid"
-                      :delay-duration="300"
-                      side="left"
-                    >
-                      <template #trigger>
-                        <slot name="trigger">
-                          <CircleAlert
-                            :class="
-                              cn(
-                                'inline-flex size-5 cursor-pointer text-foreground/80 hover:text-foreground',
-                              )
-                            "
-                          />
-                        </slot>
-                      </template>
-                      <FormMessage />
-                    </VbenTooltip>
                   </slot>
                 </FormControl>
                 <!-- Custom suffix -->
@@ -549,7 +535,7 @@ onUnmounted(() => {
                 </div>
               </div>
             </template>
-          </VbenCollapsible>
+          </PCollapsible>
 
           <FormDescription
             v-if="description"
@@ -560,7 +546,10 @@ onUnmounted(() => {
 
           <Transition
             v-if="!compact"
-            name="slide-up"
+            enter-active-class="duration-250 ease-emphasized"
+            leave-active-class="duration-250 ease-emphasized"
+            enter-from-class="opacity-0 -translate-y-15px"
+            leave-to-class="opacity-0 -translate-y-15px"
           >
             <FormMessage class="absolute" />
           </Transition>

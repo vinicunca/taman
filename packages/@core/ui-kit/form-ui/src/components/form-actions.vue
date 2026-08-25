@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useSimpleLocale } from '@taman-core/composables';
-import { cn, isFunction, triggerWindowResize } from '@taman-core/shared/utils';
+import { isFunction, triggerWindowResize } from '@taman-core/shared/utils';
 import { TamanExpandableArrow } from '@taman-core/taman-ui';
+import PButton from 'pohon-ui/components/Button.vue';
 import { computed, toRaw, unref, watch } from 'vue';
 
-import { COMPONENT_MAP } from '../form.config';
 import { injectFormProps } from '../form.use-form-context';
 
 const { $t } = useSimpleLocale();
@@ -29,9 +29,9 @@ const submitButtonOptions = computed(() => {
   };
 });
 
-async function handleSubmit(e: Event) {
-  e?.preventDefault();
-  e?.stopPropagation();
+async function handleSubmit(event: Event) {
+  event?.preventDefault();
+  event?.stopPropagation();
   const props = unref(rootProps);
   if (!props.formApi) {
     return;
@@ -40,9 +40,9 @@ async function handleSubmit(e: Event) {
   await props.formApi.validateAndSubmit();
 }
 
-async function handleReset(e: Event) {
-  e?.preventDefault();
-  e?.stopPropagation();
+async function handleReset(event: Event) {
+  event?.preventDefault();
+  event?.stopPropagation();
   const props = unref(rootProps);
 
   const values = toRaw(await props.formApi?.getValues()) ?? {};
@@ -117,48 +117,42 @@ defineExpose({
 </script>
 
 <template>
-  <div :class="cn(actionWrapperClass)">
+  <div :class="actionWrapperClass">
     <template v-if="rootProps.actionButtonsReverse">
       <!-- Before submit button -->
       <slot name="submit-before" />
 
-      <component
-        :is="COMPONENT_MAP.PrimaryButton"
+      <PButton
         v-if="submitButtonOptions.show"
-        type="button"
         v-bind="submitButtonOptions"
         @click="handleSubmit"
       >
         {{ submitButtonOptions.content }}
-      </component>
+      </PButton>
     </template>
 
     <!-- Before reset button -->
     <slot name="reset-before" />
 
-    <component
-      :is="COMPONENT_MAP.DefaultButton"
+    <PButton
       v-if="resetButtonOptions.show"
-      type="button"
       v-bind="resetButtonOptions"
       @click="handleReset"
     >
       {{ resetButtonOptions.content }}
-    </component>
+    </PButton>
 
     <template v-if="!rootProps.actionButtonsReverse">
       <!-- Before submit button -->
       <slot name="submit-before" />
 
-      <component
-        :is="COMPONENT_MAP.PrimaryButton"
+      <PButton
         v-if="submitButtonOptions.show"
-        type="button"
         v-bind="submitButtonOptions"
         @click="handleSubmit"
       >
         {{ submitButtonOptions.content }}
-      </component>
+      </PButton>
     </template>
 
     <!-- Before expand button -->

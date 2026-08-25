@@ -11,6 +11,9 @@
   "dependencies": {
     "@taman-core/form-ui": "workspace:*",
     "@taman-core/shared": "workspace:*",
+    "@taman-core/taman-ui": "workspace:*",
+    "@taman/locales": "workspace:*",
+    "pohon-ui": "catalog:",
     "vue": "catalog:"
   }
 }

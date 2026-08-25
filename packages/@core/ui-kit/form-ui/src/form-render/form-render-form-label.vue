@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { HTMLAttributes } from 'vue';
 import type { FormCustomRenderType } from '../form.types';
-
 import { useForwardExpose } from '@taman-core/composables';
 import {
   FormLabel,
@@ -10,7 +10,7 @@ import PTooltip from 'pohon-ui/components/Tooltip.vue';
 import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
 
 interface Props {
-  class?: string;
+  class?: HTMLAttributes['class'];
   colon?: boolean;
   help?: FormCustomRenderType;
   label?: FormCustomRenderType;

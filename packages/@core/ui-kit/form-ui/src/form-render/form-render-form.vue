@@ -36,7 +36,8 @@ const wrapperClass = computed(() => {
   } else {
     cls.push(props.compact ? 'gap-x-2' : 'gap-x-4', 'flex-col grid');
   }
-  return cn(...cls, props.wrapperClass);
+
+  return [...cls, props.wrapperClass];
 });
 
 provideFormRenderProps(

@@ -5,7 +5,7 @@ import { fieldGroupVariantWithRoot } from './field-group.ts';
 
 export const input = {
   slots: {
-    root: 'relative inline-flex items-center',
+    root: 'relative inline-flex items-center w-full',
     base: 'w-full rounded-md border-0 appearance-none placeholder:color-text-dimmed disabled:(cursor)-not-allowed opacity-75) transition-colors',
     leading: 'absolute inset-y-0 start-0 flex items-center',
     leadingIcon: 'shrink-0 color-text-dimmed',

@@ -4,7 +4,6 @@ import { isString } from '@taman-core/shared/utils';
 import { useResizeObserver } from '@vueuse/core';
 import {
   computed,
-
   nextTick,
   onBeforeUnmount,
   onMounted,
