@@ -11,6 +11,8 @@ export const messages: Record<Locale, Record<string, string>> = {
     submit: 'Submit',
     toggleSidebar: 'Toggle sidebar',
     confirmTitle: 'Please Confirm',
+    showPassword: 'Show password',
+    hidePassword: 'Hide password',
   },
   'id-ID': {
     cancel: 'Batal',
@@ -22,6 +24,8 @@ export const messages: Record<Locale, Record<string, string>> = {
     submit: 'Kirim',
     toggleSidebar: 'Alihkan sidebar',
     confirmTitle: 'Harap Konfirmasi',
+    showPassword: 'Tampilkan password',
+    hidePassword: 'Sembunyikan password',
   },
 };
 

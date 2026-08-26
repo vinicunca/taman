@@ -1,13 +1,21 @@
-import { describe, expect, it } from 'vitest';
-import { z, ZodString } from 'zod';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { object, z, ZodString } from 'zod';
 import { getDefaultsForSchema } from 'zod-defaults';
 
 import {
   getBaseRules,
   getDefaultValueInZodStack,
 } from '../src/form-render/form-render.helper';
+import {
+  getCustomDefaultValue,
+  schemaForZodDefaults,
+} from '../src/form.schema-defaults';
 
 describe('zod v4 schema helpers', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it('unwraps optional and default schemas with public APIs', () => {
     const schema = z.string().default('default value').optional();
 
@@ -65,5 +73,24 @@ describe('zod v4 schema helpers', () => {
   it('keeps nullable and coerce input semantics explicit', () => {
     expect(z.string().nullable().safeParse(undefined).success).toBe(false);
     expect(z.coerce.number().parse('42')).toBe(42);
+  });
+
+  it('treats zod v4 string formats like empty strings', () => {
+    expect(getCustomDefaultValue(z.email('invalid'))).toBe('');
+    expect(getCustomDefaultValue(z.url())).toBe('');
+    expect(getCustomDefaultValue(z.string())).toBe('');
+  });
+
+  it('maps string formats to ZodString so zod-defaults does not warn', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    expect(
+      getDefaultsForSchema(object({ email: schemaForZodDefaults(z.email()) })),
+    ).toEqual({ email: '' });
+    expect(
+      warn.mock.calls.filter(([message]) =>
+        String(message).includes('Unhandled type'),
+      ),
+    ).toEqual([]);
   });
 });

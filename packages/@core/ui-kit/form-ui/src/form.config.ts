@@ -7,6 +7,7 @@ import type {
 } from './form.types';
 
 import { globalShareState } from '@taman-core/shared/global-state';
+import { TamanInputPassword } from '@taman-core/taman-ui';
 import PInput from 'pohon-ui/components/Input.vue';
 import TamanFormFieldArray from './components/form-field-array.vue';
 import { warnDeprecatedOnce } from './form.deprecation';
@@ -18,10 +19,10 @@ export const DEFAULT_FORM_COMMON_CONFIG: FormCommonConfig = {};
 
 export const COMPONENT_MAP: Record<FormBaseComponentType, Component> = {
   Input: PInput,
+  InputPassword: TamanInputPassword,
   // TamanCheckbox,
   // TamanFormFieldArray,
   // TamanInput,
-  // TamanInputPassword,
   // TamanPinInput,
   // TamanSelect,
 };

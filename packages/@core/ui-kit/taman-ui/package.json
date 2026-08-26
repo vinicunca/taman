@@ -15,6 +15,7 @@
   "dependencies": {
     "@taman-core/composables": "workspace:*",
     "@taman-core/shared": "workspace:*",
+    "@taman/locales": "workspace:*",
     "@vueuse/core": "catalog:",
     "akar": "catalog:",
     "pohon-ui": "catalog:",

@@ -13,6 +13,7 @@ const formSchema = computed<Array<TamanFormSchema>>(() => {
       component: 'Input',
       componentProps: {
         placeholder: $t('authentication.form.email.placeholder'),
+        size: 'lg',
       },
       fieldName: 'email',
       formFieldProps: {
@@ -25,6 +26,7 @@ const formSchema = computed<Array<TamanFormSchema>>(() => {
       component: 'InputPassword',
       componentProps: {
         placeholder: $t('authentication.form.password.placeholder'),
+        size: 'lg',
       },
       fieldName: 'password',
       formFieldProps: {

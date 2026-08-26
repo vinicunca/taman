@@ -6,10 +6,14 @@ import type { ExtendedFormApi, FormActions, TamanFormProps } from './form.types'
 import { isString, mergeWithArrayOverride, set } from '@taman-core/shared/utils';
 import { createContext } from '@taman-core/taman-ui';
 import { computed, toRaw, unref, useSlots } from 'vue';
-import { object, ZodIntersection, ZodNumber, ZodObject, ZodString } from 'zod';
+import { object } from 'zod';
 import { getDefaultsForSchema } from 'zod-defaults';
 
 import { useFormRuntime } from './form.runtime';
+import {
+  getCustomDefaultValue,
+  schemaForZodDefaults,
+} from './form.schema-defaults';
 
 type ExtendFormProps = TamanFormProps & {
   formApi?: ExtendedFormApi<any, any, any>;
@@ -57,7 +61,7 @@ export function useFormInitial(
         // Check whether the rule is suitable for extracting default values.
         const rawRules = toRaw(item.rules);
         const customDefaultValue = getCustomDefaultValue(rawRules);
-        zodObject[item.fieldName] = rawRules;
+        zodObject[item.fieldName] = schemaForZodDefaults(rawRules);
         if (customDefaultValue !== undefined) {
           initialValues[item.fieldName] = customDefaultValue;
         }
@@ -71,26 +75,6 @@ export function useFormInitial(
       set(zodDefaults, key, schemaInitialValues[key]);
     }
     return mergeWithArrayOverride(initialValues, zodDefaults);
-  }
-  // Custom default value extraction logic
-  function getCustomDefaultValue(rule: any): any {
-    rule = toRaw(rule);
-    if (rule instanceof ZodString) {
-      return ''; // Defaults to an empty string.
-    } else if (rule instanceof ZodNumber) {
-      return null; // Defaults to null (to avoid displaying 0).
-    } else if (rule instanceof ZodObject) {
-      // Recursively extract default values from nested objects.
-      const defaultValues: Record<string, any> = {};
-      for (const [key, valueSchema] of Object.entries(rule.shape)) {
-        defaultValues[key] = getCustomDefaultValue(valueSchema);
-      }
-      return defaultValues;
-    } else if (rule instanceof ZodIntersection) {
-      return getDefaultsForSchema(rule);
-    } else {
-      return undefined; // Other types do not provide default values.
-    }
   }
 
   return {

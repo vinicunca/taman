@@ -4,6 +4,7 @@ import type { ButtonProps } from 'pohon-ui';
 import { useTamanForm } from '@taman-core/form-ui';
 import { TamanAuthForm } from '@taman-core/taman-ui';
 import { $t } from '@taman/locales';
+import PButton from 'pohon-ui/components/Button.vue';
 import { computed, reactive } from 'vue';
 
 const props = withDefaults(
@@ -28,7 +29,7 @@ const providers = computed<Array<ButtonProps>>(() => {
   ];
 });
 
-const [FormAuth] = useTamanForm(
+const [FormAuth, formAuthApi] = useTamanForm(
   // TODO: how to type the reactive
   reactive({
     showDefaultActions: false,
@@ -41,6 +42,12 @@ const [FormAuth] = useTamanForm(
     layout: 'vertical',
   }),
 );
+
+async function handleSubmit() {
+  const { valid } = await formAuthApi.validate();
+  const values = await formAuthApi.getValues();
+  console.log('🚀 ~ handleSubmit ~ valid:', values);
+}
 </script>
 
 <template>
@@ -50,5 +57,12 @@ const [FormAuth] = useTamanForm(
     :description="$t('authentication.loginSubtitle')"
   >
     <FormAuth />
+
+    <PButton
+      block
+      @click="handleSubmit"
+    >
+      {{ $t('common.login') }}
+    </PButton>
   </TamanAuthForm>
 </template>

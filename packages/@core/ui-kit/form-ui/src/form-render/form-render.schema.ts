@@ -13,7 +13,7 @@ import type {
 
 import {
   get,
-  isFunction,
+  isFunctionType,
   mergeWithArrayOverride,
 } from '@taman-core/shared/utils';
 
@@ -79,7 +79,7 @@ function wrapComponentProps(
   componentProps: AnyFormSchema['componentProps'],
   baseContext: FormSchemaContext,
 ) {
-  if (!isFunction(componentProps)) {
+  if (!isFunctionType(componentProps)) {
     return componentProps;
   }
 
@@ -90,7 +90,7 @@ function wrapCommonConfig(
   commonConfig: FormCommonConfig | undefined,
   baseContext: FormSchemaContext,
 ) {
-  if (!commonConfig || !isFunction(commonConfig.componentProps)) {
+  if (!commonConfig || !isFunctionType(commonConfig.componentProps)) {
     return commonConfig;
   }
 
@@ -107,7 +107,7 @@ function wrapCustomParamsRender(
   render: AnyFormSchema['help'],
   baseContext: FormSchemaContext,
 ) {
-  if (!isFunction(render)) {
+  if (!isFunctionType(render)) {
     return render;
   }
 
@@ -119,7 +119,7 @@ function wrapRenderComponentContent(
   render: AnyFormSchema['renderComponentContent'],
   baseContext: FormSchemaContext,
 ) {
-  if (!isFunction(render)) {
+  if (!isFunctionType(render)) {
     return render;
   }
 
@@ -127,7 +127,7 @@ function wrapRenderComponentContent(
 }
 
 function wrapDependencyFn<T>(handler: T, baseContext: FormSchemaContext): T {
-  if (!isFunction(handler)) {
+  if (!isFunctionType(handler)) {
     return handler;
   }
 
@@ -161,7 +161,7 @@ function scopeDependencies(
     = dependencies.triggerFields?.map((fieldName) =>
       scopeRowFieldName(rowPath, fieldName),
     ) ?? [];
-  if (isFunction(dependencies.resolve)) {
+  if (isFunctionType(dependencies.resolve)) {
     const resolve = dependencies.resolve;
     return {
       resolve(context: FormDependenciesResolveContext) {
@@ -206,7 +206,7 @@ function createArrayComponentProps(
   const globalCommonConfig = options.globalCommonConfig;
   const schemaProps = children.length > 0 ? { schema: children } : {};
 
-  if (isFunction(componentProps)) {
+  if (isFunctionType(componentProps)) {
     return () => ({
       ...arrayProps,
       ...componentProps({ fieldName: schema.fieldName }),
@@ -262,7 +262,7 @@ function setSchemaChildren<TSchema extends UpdatableFormSchemaLike>(
   }
 
   if (
-    !isFunction(schema.componentProps)
+    !isFunctionType(schema.componentProps)
     && schema.componentProps
     && Array.isArray((schema.componentProps as Record<string, any>).schema)
   ) {
@@ -286,7 +286,7 @@ export function getFormArraySchemaChildren<TSchema = FormSchema>(
 
   const componentProps = schema.componentProps;
   if (
-    !isFunction(componentProps)
+    !isFunctionType(componentProps)
     && componentProps
     && Array.isArray((componentProps as Record<string, any>).schema)
   ) {
@@ -368,12 +368,12 @@ export function createFormFieldSchema(
   const normalizedSchema = isFormArraySchema(schema)
     ? createArrayFieldSchema(schema, options)
     : schema;
-  const commonComponentProps = isFunction(componentProps)
+  const commonComponentProps = isFunctionType(componentProps)
     ? componentProps({ fieldName: normalizedSchema.fieldName })
     : componentProps;
 
   let resolvedSchemaFormItemClass = normalizedSchema.formItemClass;
-  if (isFunction(normalizedSchema.formItemClass)) {
+  if (isFunctionType(normalizedSchema.formItemClass)) {
     try {
       resolvedSchemaFormItemClass = normalizedSchema.formItemClass();
     } catch (error) {
