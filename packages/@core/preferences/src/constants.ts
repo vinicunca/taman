@@ -13,23 +13,23 @@ const BUILT_IN_THEME_PRESETS: Array<BuiltinThemePreset> = [
     type: 'default',
   },
   {
-    color: 'hsl(245 82% 67%)',
+    color: 'oklch(0.5946 0.2002 282.19)',
     type: 'violet',
   },
   {
-    color: 'hsl(347 77% 60%)',
+    color: 'oklch(0.6384 0.1931 11.76)',
     type: 'pink',
   },
   {
-    color: 'hsl(42 84% 61%)',
+    color: 'oklch(0.8228 0.1423 85.03)',
     type: 'yellow',
   },
   {
-    color: 'hsl(231 98% 65%)',
+    color: 'oklch(0.5871 0.2218 270.38)',
     type: 'sky-blue',
   },
   {
-    color: 'hsl(161 90% 43%)',
+    color: 'oklch(0.7599 0.1637 162.66)',
     type: 'green',
   },
   {

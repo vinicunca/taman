@@ -16,6 +16,14 @@ export const animations = {
       from: { height: 'var(--akar-collapsible-content-height)' },
       to: { height: 0 },
     },
+    'collapsible-left': {
+      from: { width: 0 },
+      to: { width: 'var(--akar-collapsible-content-width)' },
+    },
+    'collapsible-right': {
+      from: { width: 'var(--akar-collapsible-content-width)' },
+      to: { width: 0 },
+    },
 
     'toast-collapsed-closed': {
       from: { transform: 'var(--transform)' },
@@ -155,6 +163,8 @@ export const animations = {
   animation: {
     'collapsible-down': 'collapsible-down 0.2s ease-in-out',
     'collapsible-up': 'collapsible-up 0.2s ease-in-out',
+    'collapsible-left': 'collapsible-left 0.2s ease-in-out',
+    'collapsible-right': 'collapsible-right 0.2s ease-in-out',
     'accordion-down': 'accordion-down 0.2s ease-out',
     'accordion-up': 'accordion-up 0.2s ease-out',
 

@@ -6,15 +6,16 @@ import { computed } from 'vue';
 
 defineOptions({ name: 'TamanButtonIcon' });
 
-const {
-  showTooltip = true,
-  tooltipText,
-  icon,
-  disabled,
-} = defineProps<ButtonProps & {
-  showTooltip?: boolean;
-  tooltipText?: string;
-}>();
+const props = withDefaults(
+  defineProps<ButtonProps & {
+    showTooltip?: boolean;
+    tooltipText?: string;
+  }>(),
+  {
+    showTooltip: true,
+    tooltipText: '',
+  },
+);
 
 const emits = defineEmits<{
   click: [event: MouseEvent];
@@ -26,21 +27,22 @@ const emits = defineEmits<{
  * TODO: revisit this if we can render the alert dialogs inside the base Vue app.
  */
 const withTooltip = computed(
-  () => Boolean(showTooltip && tooltipText),
+  () => Boolean(props.showTooltip && props.tooltipText),
 );
 </script>
 
 <template>
   <PTooltip
     v-if="withTooltip"
-    :text="tooltipText"
+    :text="props.tooltipText"
   >
     <PButton
       class="pohon:rounded-full"
       variant="ghost"
       color="neutral"
-      :icon="icon"
-      :disabled="disabled"
+      :icon="props.icon"
+      :disabled="props.disabled"
+      :ui="props.ui"
       @click="emits('click', $event)"
     />
   </PTooltip>
@@ -50,8 +52,9 @@ const withTooltip = computed(
     class="pohon:rounded-full"
     variant="ghost"
     color="neutral"
-    :icon="icon"
-    :disabled="disabled"
+    :icon="props.icon"
+    :disabled="props.disabled"
+    :ui="props.ui"
     @click="emits('click', $event)"
   />
 </template>
