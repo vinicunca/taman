@@ -1,45 +1,36 @@
 import { getColors } from 'theme-colors';
-
-import { convertToHslCssVar, TinyColor } from './convert';
+import { colordx } from './color';
 
 interface ColorItem {
-  alias?: string;
   color: string;
   name: string;
 }
 
-function generatorColorVariables(colorItems: Array<ColorItem>) {
+export function generatorColorVariables(colorItems: Array<ColorItem>) {
   const colorVariables: Record<string, string> = {};
 
-  colorItems.forEach(({ alias, color, name }) => {
+  colorItems.forEach(({ color, name }) => {
     if (color) {
-      const colorsMap = getColors(new TinyColor(color).toHexString());
+      const hexColor = colordx(color).toHex();
+      const colorsMap = getColors(hexColor);
 
-      let mainColor = colorsMap['500'];
+      const colorShades = Object.keys(colorsMap);
 
-      const colorKeys = Object.keys(colorsMap);
-
-      colorKeys.forEach((key) => {
-        const colorValue = colorsMap[key];
+      colorShades.forEach((shade) => {
+        const colorValue = colorsMap[shade];
 
         if (colorValue) {
-          const hslColor = convertToHslCssVar(colorValue);
-          colorVariables[`--taman-color-${name}-${key}`] = hslColor;
-          if (alias) {
-            colorVariables[`--taman-color-${alias}-${key}`] = hslColor;
-          }
+          const oklchColor = colordx(colorValue).toOklchString();
 
-          if (key === '500') {
-            mainColor = hslColor;
+          colorVariables[`--taman-color-${name}-${shade}`] = oklchColor;
+
+          if (shade === '500') {
+            colorVariables[`--taman-color-${name}`] = oklchColor;
           }
         }
       });
-      if (alias && mainColor) {
-        colorVariables[`--taman-color-${alias}`] = mainColor;
-      }
     }
   });
+
   return colorVariables;
 }
-
-export { generatorColorVariables };

@@ -2,7 +2,7 @@
  * Updates CSS variables.
  * @param variables Map of CSS variable names to new values
  */
-function updateCSSVariables(
+export function applyCssVariables(
   variables: { [key: string]: string },
   id = 'taman-styles__',
 ): void {
@@ -32,5 +32,3 @@ function updateCSSVariables(
     });
   }
 }
-
-export { updateCSSVariables };

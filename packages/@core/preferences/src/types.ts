@@ -301,14 +301,16 @@ interface TabbarPreferences {
 }
 
 interface ThemeBrandColors {
-  /** Error/danger brand color */
-  error: string;
   /** Primary brand color */
   primary: string;
   /** Success brand color */
   success: string;
   /** Warning brand color */
   warning: string;
+  /** Error/danger brand color */
+  error: string;
+  /** Neutral brand color */
+  neutral: string;
 }
 
 interface ThemePreferences {

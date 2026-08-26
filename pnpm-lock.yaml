@@ -6,6 +6,9 @@ settings:
 
 catalogs:
   default:
+    '@colordx/core':
+      specifier: 5.6.0
+      version: 5.6.0
     '@commitlint/cli':
       specifier: ^21.2.1
       version: 21.2.1
@@ -301,8 +304,8 @@ catalogs:
       specifier: ^1.62.1
       version: 1.62.1
     pnpm:
-      specifier: ^11.10.0
-      version: 11.13.0
+      specifier: ^11.21.0
+      version: 11.24.0
     postcss:
       specifier: ^8.5.26
       version: 8.5.26
@@ -723,7 +726,7 @@ importers:
         version: 2.0.6
       pnpm:
         specifier: 'catalog:'
-        version: 11.13.0
+        version: 11.24.0
       unocss:
         specifier: 66.8.0
         version: 66.8.0(@unocss/webpack@66.7.0(esbuild@0.28.1)(rolldown@1.2.4)(rollup@4.62.2)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(tsx@4.23.12)(yaml@2.9.0))(webpack@5.108.4(clean-css@5.3.3)(esbuild@0.28.1)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(postcss@8.5.26)))(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(tsx@4.23.12)(yaml@2.9.0))
@@ -923,6 +926,9 @@ importers:
 
   packages/@core/base/shared:
     dependencies:
+      '@colordx/core':
+        specifier: 'catalog:'
+        version: 5.6.0
       '@ctrl/tinycolor':
         specifier: ^4.2.0
         version: 4.2.0
@@ -1277,6 +1283,9 @@ importers:
       '@taman-core/shared':
         specifier: workspace:*
         version: link:../../base/shared
+      '@taman/locales':
+        specifier: workspace:*
+        version: link:../../../locales
       '@vueuse/core':
         specifier: 'catalog:'
         version: 14.4.0(vue@3.5.41(typescript@6.0.3))
@@ -1714,12 +1723,54 @@ importers:
 
   packages/shell/layouts:
     dependencies:
+      '@taman-core/composables':
+        specifier: workspace:*
+        version: link:../../@core/composables
+      '@taman-core/form-ui':
+        specifier: workspace:*
+        version: link:../../@core/ui-kit/form-ui
       '@taman-core/layout-ui':
         specifier: workspace:*
         version: link:../../@core/ui-kit/layout-ui
+      '@taman-core/menu-ui':
+        specifier: workspace:*
+        version: link:../../@core/ui-kit/menu-ui
+      '@taman-core/popup-ui':
+        specifier: workspace:*
+        version: link:../../@core/ui-kit/popup-ui
+      '@taman-core/shared':
+        specifier: workspace:*
+        version: link:../../@core/base/shared
+      '@taman-core/tabs-ui':
+        specifier: workspace:*
+        version: link:../../@core/ui-kit/tabs-ui
+      '@taman-core/taman-ui':
+        specifier: workspace:*
+        version: link:../../@core/ui-kit/taman-ui
+      '@taman/composables':
+        specifier: workspace:*
+        version: link:../../effects/composables
+      '@taman/constants':
+        specifier: workspace:*
+        version: link:../../constants
+      '@taman/locales':
+        specifier: workspace:*
+        version: link:../../locales
       '@taman/preferences':
         specifier: workspace:*
         version: link:../../preferences
+      '@taman/stores':
+        specifier: workspace:*
+        version: link:../../stores
+      '@taman/types':
+        specifier: workspace:*
+        version: link:../../types
+      '@taman/utils':
+        specifier: workspace:*
+        version: link:../../utils
+      '@types/sortablejs':
+        specifier: 'catalog:'
+        version: 1.15.9
       '@vinicunca/perkakas':
         specifier: 'catalog:'
         version: 1.16.0
@@ -1729,6 +1780,9 @@ importers:
       pohon-ui:
         specifier: 2.0.0-rc7.7
         version: 2.0.0-rc7.7(66510a03e957d19d13fda38348a074e8)
+      sortablejs:
+        specifier: 'catalog:'
+        version: 1.15.7
       vue:
         specifier: ^3.5.41
         version: 3.5.41(typescript@6.0.3)
@@ -2635,6 +2689,9 @@ packages:
     engines: {node: '>=16'}
     cpu: [x64]
     os: [win32]
+
+  '@colordx/core@5.6.0':
+    resolution: {integrity: sha512-EDlcg/Hmlj1WuFh/Os9YhA+A2aasB2XlgwFfGePUDuW7fVHC07HBi5AFIMx0Ct1eM8kHM9NRyOtZ0MuVYa8xvg==}
 
   '@commitlint/cli@21.2.1':
     resolution: {integrity: sha512-blsZGe29hJ72VGEFVl72IVYX+1vsfINpjA9yWQA6i7OKD/McGEOXg08sKIRKjFk4JvzhV/9n0l3i6NooPLTNfg==}
@@ -10681,10 +10738,9 @@ packages:
   pnpm-workspace-yaml@1.8.0:
     resolution: {integrity: sha512-rqGldoFOzjalWzlPtzAi/RcjAyep+Pjl4QUKJ6/oEZXzhVAX79GS/i8gjhQT715g75kTkyfHjL9eBPGZ9Co++Q==}
 
-  pnpm@11.13.0:
-    resolution: {integrity: sha512-iNlHJNjy5sGGdEpVhMblnsrIaex7oV6ctM1ijo3HBmggskgdjuO1HqjaMjpzeAaKpYxVajcg0yt8IKBR0Ig2Og==}
+  pnpm@11.24.0:
+    resolution: {integrity: sha512-vSfjRel23LC+C3oSKCF7BJqBfiGx81XJDb59xGZxiVqLwebQbCRVRQXqk+oLRfSJon7Bv7yN5qlln8oPFvoAAA==}
     engines: {node: '>=22.13'}
-    deprecated: This is a broken version. Please install pnpm v11.13.1 or newer
     hasBin: true
 
   pohon-ui@2.0.0-rc7.7:
@@ -14113,6 +14169,8 @@ snapshots:
 
   '@cloudflare/workerd-windows-64@1.20260710.1':
     optional: true
+
+  '@colordx/core@5.6.0': {}
 
   '@commitlint/cli@21.2.1(@types/node@26.2.0)(conventional-commits-parser@7.1.0)(typescript@6.0.3)':
     dependencies:
@@ -22692,7 +22750,7 @@ snapshots:
     dependencies:
       yaml: 2.9.0
 
-  pnpm@11.13.0: {}
+  pnpm@11.24.0: {}
 
   pohon-ui@2.0.0-rc7.7(53fc48d05091592f8da2bfc9d5e8698a):
     dependencies:

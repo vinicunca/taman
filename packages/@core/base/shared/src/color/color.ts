@@ -1,9 +1,8 @@
-import { TinyColor } from '@ctrl/tinycolor';
+import { colordx, extend } from '@colordx/core';
+import mix from '@colordx/core/plugins/mix';
 
-export function isDarkColor(color: string) {
-  return new TinyColor(color).isDark();
-}
+extend([mix]);
 
-export function isLightColor(color: string) {
-  return new TinyColor(color).isLight();
-}
+export {
+  colordx,
+};

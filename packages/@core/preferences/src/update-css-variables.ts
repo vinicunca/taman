@@ -1,7 +1,7 @@
 import type { Preferences } from './types';
 
 import { generatorColorVariables } from '@taman-core/shared/color';
-import { updateCSSVariables as executeUpdateCSSVariables } from '@taman-core/shared/utils';
+import { applyCssVariables } from '@taman-core/shared/utils';
 
 import { BUILT_IN_THEME_PRESETS } from './constants';
 import { usePreferences } from './use-preferences';
@@ -10,7 +10,7 @@ import { usePreferences } from './use-preferences';
  * Updates theme and related CSS variables on the document root.
  * @param preferences - Current preferences; theme values drive document theme.
  */
-function updateCSSVariables(preferences: Preferences) {
+export function updateCssVariables(preferences: Preferences) {
   // Update CSS variables when color-related theme fields change
   const root = document.documentElement;
   if (!root) {
@@ -96,28 +96,10 @@ function updateMainColorVariables(preference: Preferences) {
 
   const colorVariables = generatorColorVariables([
     { color: brands.primary, name: 'primary' },
-    { alias: 'warning', color: brands.warning, name: 'yellow' },
-    { alias: 'success', color: brands.success, name: 'green' },
-    { alias: 'error', color: brands.error, name: 'red' },
+    { color: brands.success, name: 'success' },
+    { color: brands.warning, name: 'warning' },
+    { color: brands.error, name: 'error' },
   ]);
 
-  // Map generated variables to semantic CSS variable names
-  const colorMappings = {
-    '--taman-color-green-500': '--taman-brand-success',
-    '--taman-color-primary-500': '--taman-brand-primary',
-    '--taman-color-red-500': '--taman-brand-error',
-    '--taman-color-yellow-500': '--taman-brand-warning',
-  };
-
-  // Apply color variable updates
-  Object.entries(colorMappings).forEach(([sourceVar, targetVar]) => {
-    const colorValue = colorVariables[sourceVar];
-    if (colorValue) {
-      document.documentElement.style.setProperty(targetVar, colorValue);
-    }
-  });
-
-  executeUpdateCSSVariables(colorVariables);
+  applyCssVariables(colorVariables);
 }
-
-export { updateCSSVariables };

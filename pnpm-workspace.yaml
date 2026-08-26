@@ -36,6 +36,7 @@ overrides:
 
 catalog:
   '@ast-grep/napi': ^0.45.1
+  '@colordx/core': 5.6.0
   '@commitlint/cli': ^21.2.1
   '@commitlint/config-conventional': ^21.2.0
   '@ctrl/tinycolor': ^4.2.0
@@ -137,7 +138,7 @@ catalog:
   pinia-plugin-persistedstate: ^4.7.1
   pkg-types: ^2.3.1
   playwright: ^1.62.1
-  pnpm: ^11.10.0
+  pnpm: ^11.21.0
   pohon-ui: 2.0.0-rc7.7
   postcss: ^8.5.26
   postcss-html: ^2.0.0

@@ -48,6 +48,7 @@
     "stub": "pnpm run build"
   },
   "dependencies": {
+    "@colordx/core": "catalog:",
     "@ctrl/tinycolor": "catalog:",
     "@tanstack/vue-store": "catalog:",
     "@vinicunca/perkakas": "catalog:",

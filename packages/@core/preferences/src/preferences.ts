@@ -22,7 +22,7 @@ import { useDebounceFn } from '@vueuse/core';
 import { markRaw, reactive, readonly, watch } from 'vue';
 
 import { defaultPreferences } from './config';
-import { updateCSSVariables } from './update-css-variables';
+import { updateCssVariables } from './update-css-variables';
 
 const STORAGE_KEYS = {
   CUSTOM: 'preferences-custom',
@@ -122,7 +122,11 @@ class PreferenceManager {
     // Load cached preferences and use the cache only to fill in fields not explicitly set in the initial configuration.
     const cachedPreferences = (await this.loadFromCache()) || {};
 
-    this.sanitizeCachedArray({ cached: cachedPreferences, group: 'widget', field: 'order' });
+    this.sanitizeCachedArray({
+      cached: cachedPreferences,
+      group: 'widget',
+      field: 'order',
+    });
     const mergedPreference = mergeWithArrayOverride(
       {},
       cachedPreferences, // user cache takes precedence
@@ -239,7 +243,7 @@ class PreferenceManager {
       theme
       && (Object.keys(theme).length > 0 || Reflect.has(theme, 'fontSize'))
     ) {
-      updateCSSVariables(this.state);
+      updateCssVariables(this.state);
     }
 
     if (

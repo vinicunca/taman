@@ -56,13 +56,14 @@ async function handleSubmit() {
     :title="$t('authentication.welcomeBack')"
     :description="$t('authentication.loginSubtitle')"
   >
-    <FormAuth />
-
-    <PButton
-      block
-      @click="handleSubmit"
-    >
-      {{ $t('common.login') }}
-    </PButton>
+    <div class="flex flex-col gap-2">
+      <FormAuth />
+      <PButton
+        block
+        @click="handleSubmit"
+      >
+        {{ $t('common.login') }}
+      </PButton>
+    </div>
   </TamanAuthForm>
 </template>

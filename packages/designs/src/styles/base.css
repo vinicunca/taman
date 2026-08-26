@@ -1,0 +1,90 @@
+@layer base {
+  *,
+  ::after,
+  ::before {
+    @apply border-border outline-ring/50;
+
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 0;
+  }
+
+  html {
+    --taman-viewport-height: 100vh;
+
+    @apply bg-background font-sans color-text;
+
+    scroll-behavior: smooth;
+    font-size: var(--font-size-base, 16px);
+    font-variation-settings: normal;
+    font-synthesis-weight: none;
+    line-height: 1.15;
+    text-rendering: optimizelegibility;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+
+    @supports (height: 1dvh) {
+      --taman-viewport-height: 100dvh;
+    }
+  }
+
+  #app,
+  body,
+  html {
+    @apply size-full;
+  }
+
+  body {
+    @apply scheme-light dark:scheme-dark scheme-light dark:scheme-dark min-h-screen;
+  }
+
+  ::view-transition-new(root),
+  ::view-transition-old(root) {
+    @apply animate-none mix-blend-normal;
+  }
+
+  ::view-transition-old(root) {
+    @apply z-1;
+  }
+
+  ::view-transition-new(root) {
+    @apply z-2147483646;
+  }
+
+  html.dark::view-transition-old(root) {
+    @apply z-2147483646;
+  }
+
+  html.dark::view-transition-new(root) {
+    @apply z-1;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    @apply opacity-100;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    @apply m-0 appearance-none;
+  }
+
+  /* Only adjust scrollbar for non-macOS */
+  html:not([data-platform="macOs"]) {
+    ::-webkit-scrollbar {
+      @apply h-2.5 w-2.5;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      @apply rounded-sm border-none bg-border;
+    }
+
+    ::-webkit-scrollbar-track {
+      @apply rounded-sm border-none bg-transparent shadow-none;
+    }
+
+    ::-webkit-scrollbar-button {
+      @apply hidden;
+    }
+  }
+}

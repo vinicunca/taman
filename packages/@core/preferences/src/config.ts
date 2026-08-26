@@ -113,10 +113,11 @@ const defaultPreferences: Preferences = {
   theme: {
     builtinType: 'default',
     brands: {
-      error: 'hsl(348 100% 61%)',
-      primary: 'hsl(212 100% 45%)',
-      success: 'hsl(144 57% 58%)',
-      warning: 'hsl(42 84% 61%)',
+      primary: 'oklch(0.5524 0.2034 257.88)',
+      success: 'oklch(0.7728 0.1523 154.19)',
+      warning: 'oklch(0.8228 0.1423 85.03)',
+      error: 'oklch(0.6586 0.2309 15.88)',
+      // neutral: 'hsl(212 100% 45%)',
     },
     radius: '0.5',
     fontSize: 16,

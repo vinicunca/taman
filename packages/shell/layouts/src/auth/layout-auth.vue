@@ -7,7 +7,7 @@ import { computed } from 'vue';
 import { LayoutCoreCopyright } from '../core/copyright';
 import LayoutAuthForm from './layout-auth-form.vue';
 import LayoutAuthSlogan from './layout-auth-slogan.vue';
-// import Toolbar from './toolbar.vue';
+import LayoutAuthToolbar from './layout-auth-toolbar.vue';
 
 interface Props {
   appName?: string;
@@ -66,7 +66,7 @@ const logoSrc = computed(() => {
   >
     <template v-if="toolbar">
       <slot name="toolbar">
-        <!-- <Toolbar :toolbar-list="toolbarList" /> -->
+        <LayoutAuthToolbar :toolbar-list="toolbarList" />
       </slot>
     </template>
 
