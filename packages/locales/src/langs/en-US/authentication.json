@@ -11,7 +11,9 @@
     "password": {
       "label": "Password",
       "placeholder": "Enter your password",
-      "invalid": "Password is required"
+      "invalid": "Password is required",
+      "length": "Password must be at least 8 characters long",
+      "strength": "Password must include uppercase, lowercase, a number, and a symbol"
     }
   },
   "loginSuccess": "Login Successful",
@@ -38,7 +40,7 @@
   "terms": "Terms",
   "agreeTip": "Please agree to the Privacy Policy and Terms",
   "goToLogin": "Login instead",
-  "passwordStrength": "Use 8 or more characters with a mix of letters, numbers & symbols",
+  "passwordStrength": "Use 8 or more characters with uppercase, lowercase, a number, and a symbol",
   "forgetPassword": "Forget Password?",
   "forgetPasswordSubtitle": "Enter your email and we'll send you instructions to reset your password",
   "emailTip": "Please enter email",

@@ -2,6 +2,20 @@
   "welcomeBack": "Selamat Datang Kembali",
   "pageTitle": "Sistem Admin siap pakai",
   "pageDesc": "Template frontend yang efisien dan serbaguna",
+  "form": {
+    "email": {
+      "label": "Email",
+      "placeholder": "Masukkan email Anda",
+      "invalid": "Email tidak valid"
+    },
+    "password": {
+      "label": "Kata Sandi",
+      "placeholder": "Masukkan kata sandi Anda",
+      "invalid": "Kata sandi wajib diisi",
+      "length": "Kata sandi minimal 8 karakter",
+      "strength": "Kata sandi harus berisi huruf besar, huruf kecil, angka, dan simbol"
+    }
+  },
   "loginSuccess": "Berhasil Masuk",
   "loginSuccessDesc": "Selamat Datang Kembali",
   "loginSubtitle": "Masukkan detail akun Anda untuk mengelola proyek",
@@ -26,7 +40,7 @@
   "terms": "Ketentuan",
   "agreeTip": "Harap setujui Kebijakan Privasi dan Ketentuan",
   "goToLogin": "Masuk saja",
-  "passwordStrength": "Gunakan 8 karakter atau lebih dengan kombinasi huruf, angka & simbol",
+  "passwordStrength": "Gunakan 8 karakter atau lebih dengan huruf besar, huruf kecil, angka, dan simbol",
   "forgetPassword": "Lupa Kata Sandi?",
   "forgetPasswordSubtitle": "Masukkan email Anda dan kami akan mengirim instruksi untuk mengatur ulang kata sandi",
   "emailTip": "Silakan masukkan email",

@@ -1,53 +1,66 @@
 <script lang="ts" setup>
-import type { VbenFormSchema } from '@taman/common-ui';
+import type { AuthLoginValues, FormBaseComponentType, TamanFormSchema } from '@taman/app-ui';
 import type { Recordable } from '@taman/types';
 
-import { computed, h, ref } from 'vue';
-
-import { AuthenticationRegister, z } from '@taman/common-ui';
+import { AuthRegister, createStrongPasswordSchema, z } from '@taman/app-ui';
 import { $t } from '@taman/locales';
+import { computed } from 'vue';
 
-defineOptions({ name: 'Register' });
-
-const loading = ref(false);
-
-const formSchema = computed((): VbenFormSchema[] => {
+const formSchema = computed<
+  Array<
+    TamanFormSchema<
+      FormBaseComponentType,
+      Record<never, never>,
+      AuthLoginValues
+    >
+  >
+>(() => {
   return [
     {
-      component: 'VbenInput',
+      component: 'Input',
       componentProps: {
-        placeholder: $t('authentication.usernameTip'),
+        placeholder: $t('authentication.form.email.placeholder'),
+        size: 'lg',
       },
-      fieldName: 'username',
-      label: $t('authentication.username'),
-      rules: z.string().min(1, { message: $t('authentication.usernameTip') }),
+      fieldName: 'email',
+      formFieldProps: {
+        validateOn: ['blur'],
+      },
+      label: $t('authentication.form.email.label'),
+      rules: z.email($t('authentication.form.email.invalid')),
     },
     {
-      component: 'VbenInputPassword',
+      component: 'InputPassword',
       componentProps: {
         passwordStrength: true,
-        placeholder: $t('authentication.password'),
+        placeholder: $t('authentication.form.password.placeholder'),
+        size: 'lg',
       },
       fieldName: 'password',
       label: $t('authentication.password'),
-      renderComponentContent() {
-        return {
-          strengthText: () => $t('authentication.passwordStrength'),
-        };
+      description: $t('authentication.passwordStrength'),
+      formFieldProps: {
+        validateOn: ['blur'],
       },
-      rules: z.string().min(1, { message: $t('authentication.passwordTip') }),
+      formItemClass: 'pohon:pb-11',
+      rules: createStrongPasswordSchema({
+        required: $t('authentication.form.password.invalid'),
+        strength: $t('authentication.form.password.strength'),
+      }),
     },
     {
-      component: 'VbenInputPassword',
+      component: 'InputPassword',
       componentProps: {
         placeholder: $t('authentication.confirmPassword'),
+        size: 'lg',
       },
       dependencies: {
         rules(values) {
           const { password } = values;
           return z
-            .string({ required_error: $t('authentication.passwordTip') })
-            .min(1, { message: $t('authentication.passwordTip') })
+            .string({ error: $t('authentication.passwordTip') })
+            .trim()
+            .min(1, $t('authentication.passwordTip'))
             .refine((value) => value === password, {
               message: $t('authentication.confirmPasswordTip'),
             });
@@ -56,27 +69,6 @@ const formSchema = computed((): VbenFormSchema[] => {
       },
       fieldName: 'confirmPassword',
       label: $t('authentication.confirmPassword'),
-    },
-    {
-      component: 'VbenCheckbox',
-      fieldName: 'agreePolicy',
-      renderComponentContent: () => ({
-        default: () =>
-          h('span', [
-            $t('authentication.agree'),
-            h(
-              'a',
-              {
-                class: 'vben-link ml-1 ',
-                href: '',
-              },
-              `${$t('authentication.privacyPolicy')} & ${$t('authentication.terms')}`,
-            ),
-          ]),
-      }),
-      rules: z.boolean().refine((value) => !!value, {
-        message: $t('authentication.agreeTip'),
-      }),
     },
   ];
 });
@@ -87,9 +79,8 @@ function handleSubmit(value: Recordable<any>) {
 </script>
 
 <template>
-  <AuthenticationRegister
+  <AuthRegister
     :form-schema="formSchema"
-    :loading="loading"
     @submit="handleSubmit"
   />
 </template>

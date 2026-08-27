@@ -1,3 +1,4 @@
-export interface AuthLoginProps {
-
+export interface AuthLoginValues {
+  email: string;
+  password: string;
 }

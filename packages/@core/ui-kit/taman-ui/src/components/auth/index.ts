@@ -1,1 +1,1 @@
-export { default as TamanAuthForm } from './auth-form.vue';
+export { default as TamanAuthForm } from './taman-auth-form.vue';

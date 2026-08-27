@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { TamanFormSchema } from '@taman/app-ui';
+import type { AuthLoginValues, FormBaseComponentType, TamanFormSchema } from '@taman/app-ui';
 import { AuthLogin, z } from '@taman/app-ui';
 import { $t } from '@taman/locales';
 import { computed } from 'vue';
@@ -7,7 +7,13 @@ import { useSessionStore } from '#/auth';
 
 const sessionStore = useSessionStore();
 
-const formSchema = computed<Array<TamanFormSchema>>(() => {
+const formSchema = computed<Array<
+  TamanFormSchema<
+    FormBaseComponentType,
+    Record<never, never>,
+    AuthLoginValues
+  >
+>>(() => {
   return [
     {
       component: 'Input',
@@ -45,7 +51,7 @@ function handleGoogleLogin() {
   sessionStore.signInWithGoogle();
 }
 
-async function handleEmailLogin(payload) {
+async function handleEmailLogin(payload: AuthLoginValues) {
   await sessionStore.signInWithEmail({
     email: payload.email,
     password: payload.password,
