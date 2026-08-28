@@ -73,6 +73,7 @@ const defaultPreferences: Preferences = {
   },
   shortcutKeys: {
     enable: true,
+    globalEscape: true,
     globalLockScreen: true,
     globalLogout: true,
     globalPreferences: true,

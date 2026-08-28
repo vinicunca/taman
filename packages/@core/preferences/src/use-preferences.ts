@@ -154,6 +154,12 @@ function usePreferences() {
     return enable && globalLogout;
   });
 
+  /** Whether global escape shortcut is enabled. */
+  const globalEscapeShortcutKey = computed(() => {
+    const { enable, globalEscape } = shortcutKeysPreferences.value;
+    return enable && globalEscape;
+  });
+
   const globalLockScreenShortcutKey = computed(() => {
     const { enable, globalLockScreen } = shortcutKeysPreferences.value;
     return enable && globalLockScreen;
@@ -212,6 +218,7 @@ function usePreferences() {
     customPreferences,
     diffPreference,
     diffCustomPreference,
+    globalEscapeShortcutKey,
     globalLockScreenShortcutKey,
     globalLogoutShortcutKey,
     globalSearchShortcutKey,

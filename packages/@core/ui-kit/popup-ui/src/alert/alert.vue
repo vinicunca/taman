@@ -3,7 +3,8 @@ import type { Component } from 'vue';
 import type { AlertProps } from './alert';
 
 import { useSimpleLocale } from '@taman-core/composables';
-import { IconifyIcon } from '@taman-core/icons';
+import { usePreferences } from '@taman-core/preferences';
+import { isString } from '@taman-core/shared/utils';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,6 +16,8 @@ import {
   TamanRenderContent,
   TamanSpinner,
 } from '@taman-core/taman-ui';
+import PButton from 'pohon-ui/components/Button.vue';
+import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
 import { computed, h, nextTick, ref } from 'vue';
 import { provideAlertContext } from './alert';
 
@@ -33,6 +36,7 @@ const emits = defineEmits<{
   confirm: [];
   opened: [];
 }>();
+const { globalEscapeShortcutKey } = usePreferences();
 
 const open = defineModel<boolean>(
   'open',
@@ -51,7 +55,7 @@ function onEscapeKeyDown(event: KeyboardEvent) {
   isConfirm.value = false;
 
   // Block close only when both component and global Esc settings are false
-  if (!props.escapeKeyClose) {
+  if (!props.escapeKeyClose && !globalEscapeShortcutKey.value) {
     event.preventDefault();
   }
 }
@@ -59,42 +63,42 @@ function onEscapeKeyDown(event: KeyboardEvent) {
 const getIconRender = computed(() => {
   let iconRender: Component | null = null;
   if (props.icon) {
-    if (typeof props.icon === 'string') {
+    if (isString(props.icon)) {
       switch (props.icon) {
         case 'error': {
-          iconRender = h(IconifyIcon, {
-            icon: 'lucide:x-circle',
+          iconRender = h(PIcon, {
+            name: 'lucide:x-circle',
             class: 'color-error',
           });
           break;
         }
         case 'info': {
-          iconRender = h(IconifyIcon, {
-            icon: 'lucide:info',
+          iconRender = h(PIcon, {
+            name: 'lucide:info',
             class: 'color-info',
           });
           break;
         }
         case 'question': {
-          iconRender = h(IconifyIcon, {
-            icon: 'lucide:help-circle',
+          iconRender = h(PIcon, {
+            name: 'lucide:help-circle',
             class: 'color-info',
           });
           break;
         }
         case 'success': {
           iconRender = h(
-            IconifyIcon,
+            PIcon,
             {
-              icon: 'lucide:check-circle',
+              name: 'lucide:check-circle',
               class: 'color-success',
             },
           );
           break;
         }
         case 'warning': {
-          iconRender = h(IconifyIcon, {
-            icon: 'lucide:alert-circle',
+          iconRender = h(PIcon, {
+            name: 'lucide:alert-circle',
             class: 'color-warning',
           });
           break;

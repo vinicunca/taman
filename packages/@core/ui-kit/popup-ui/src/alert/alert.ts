@@ -5,14 +5,14 @@ import { createContext } from '@taman-core/taman-ui';
 
 export type IconType = 'error' | 'info' | 'question' | 'success' | 'warning';
 
-export interface BeforeCloseScope {
+export interface AlertBeforeCloseScope {
   isConfirm: boolean;
 }
 
 export interface AlertProps {
   /** Callback before close; return false to abort closing */
   beforeClose?: (
-    scope: BeforeCloseScope,
+    scope: AlertBeforeCloseScope,
   ) => boolean | Promise<boolean | undefined> | undefined;
   /** Whether to show a border */
   bordered?: boolean;
@@ -30,7 +30,7 @@ export interface AlertProps {
   /** Extra styles for the alert container */
   containerClass?: string;
   /** Alert content */
-  content: Component | string;
+  content?: Component | string;
   /** Extra styles for the alert content */
   contentClass?: string;
   /** Show a loading overlay on the content while beforeClose runs */
@@ -52,7 +52,7 @@ export interface AlertProps {
 }
 
 /** Prompt props */
-export type PromptProps<T = any> = {
+export type AlertPromptProps<T = any> = {
   /** Callback before close; return false to abort closing */
   beforeClose?: (scope: {
     isConfirm: boolean;

@@ -1,88 +1,136 @@
-import type { Recordable } from '@taman-core/typings';
 import type { Component, VNode } from 'vue';
 
-import type { AlertProps, BeforeCloseScope, PromptProps } from './alert';
+import type { AlertBeforeCloseScope, AlertPromptProps, AlertProps } from './alert';
 
 import { useSimpleLocale } from '@taman-core/composables';
-import { globalShareState } from '@taman-core/shared/global-state';
-import { isFunctionType } from '@taman-core/shared/utils';
+import { isFunctionType, isString } from '@taman-core/shared/utils';
 import { TamanRenderContent } from '@taman-core/taman-ui';
 import PInput from 'pohon-ui/components/Input.vue';
 import { h, nextTick, ref, render } from 'vue';
 import Alert from './alert.vue';
 
-const alerts = ref<Array<{ container: HTMLElement; instance: Component }>>([]);
+const alerts = ref<Array<{
+  container: HTMLElement;
+  instance: Component;
+}>>([]);
 
 const { $t } = useSimpleLocale();
 
-/**
- * Show an alert popup. Resolves `true` when confirmed, `false` when
- * dismissed (cancel button, close button, or Esc) — never rejects.
- */
-export function tamanAlert(options: AlertProps): Promise<boolean> {
-  return new Promise((resolve) => {
-    // Create container element
+export function tamanAlert(options: AlertProps): Promise<void>;
+export function tamanAlert(
+  message: string,
+  options?: Partial<AlertProps>,
+): Promise<void>;
+export function tamanAlert(
+  message: string,
+  title?: string,
+  options?: Partial<AlertProps>,
+): Promise<void>;
+
+export function tamanAlert(
+  arg0: AlertProps | string,
+  arg1?: Partial<AlertProps> | string,
+  arg2?: Partial<AlertProps>,
+): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const options: AlertProps = isString(arg0)
+      ? {
+          content: arg0,
+        }
+      : { ...arg0 };
+    if (arg1) {
+      if (isString(arg1)) {
+        options.title = arg1;
+      } else if (!isString(arg1)) {
+        // If the second argument is an object, it is merged into the options.
+        Object.assign(options, arg1);
+      }
+    }
+
+    if (arg2 && !isString(arg2)) {
+      Object.assign(options, arg2);
+    }
+
     const container = document.createElement('div');
     document.body.append(container);
 
-    // Reference used in callbacks to access the instance
+    // Create a reference to access the instance in the callback.
     const alertRef = { container, instance: null as any };
 
-    const props: AlertProps & Recordable<any> = {
+    const props: AlertProps & Record<string, any> = {
       onClosed: (isConfirm: boolean) => {
-        // Tear down the component and DOM (restore page to pre-open state)
-        // Remove this instance from the alerts array
+        // Remove the component instance and all the DOM created (restore the page to the state before opening).
+        // Remove the instance from the alerts array.
         alerts.value = alerts.value.filter((item) => item !== alertRef);
 
-        // Remove container from the DOM
+        // Remove the container from the DOM.
         render(null, container);
         if (container.parentNode) {
           container.remove();
         }
 
-        resolve(isConfirm);
+        // Parse the Promise, pass the user operation result.
+        if (isConfirm) {
+          resolve();
+        } else {
+          reject(new Error('dialog cancelled'));
+        }
       },
       ...options,
       open: true,
       title: options.title ?? $t.value('prompt'),
     };
 
-    // Create Alert component VNode
+    // Create the VNode for the Alert component.
     const vnode = h(Alert, props);
 
-    // Render outside the normal component tree (no parent instance), so
-    // without this the vnode has no app context and anything inside Alert's
-    // chrome that injects app-level state (e.g. Vue Router) warns/breaks.
-    const appContext = globalShareState.getAppContext();
-    if (appContext) {
-      vnode.appContext = appContext;
-    }
-
-    // Render component into container
+    // Render the component to the container.
     render(vnode, container);
 
-    // Store component instance reference
+    // Save the component instance reference.
     alertRef.instance = vnode.component?.proxy as Component;
 
-    // Track instance and container in alerts array
+    // Add the instance and container to the alerts array.
     alerts.value.push(alertRef);
   });
 }
 
-/**
- * Show a confirm popup (adds a cancel button by default). Resolves `true`
- * when confirmed, `false` when dismissed — never rejects.
- */
-export function tamanConfirm(options: AlertProps): Promise<boolean> {
-  return tamanAlert({ showCancel: true, ...options });
+export function tamanConfirm(options: AlertProps): Promise<void>;
+export function tamanConfirm(
+  message: string,
+  options?: Partial<AlertProps>,
+): Promise<void>;
+export function tamanConfirm(
+  message: string,
+  title?: string,
+  options?: Partial<AlertProps>,
+): Promise<void>;
+
+export function tamanConfirm(
+  arg0: AlertProps | string,
+  arg1?: Partial<AlertProps> | string,
+  arg2?: Partial<AlertProps>,
+): Promise<void> {
+  const defaultProps: Partial<AlertProps> = {
+    showCancel: true,
+  };
+  if (!arg1) {
+    return isString(arg0)
+      ? tamanAlert(arg0, defaultProps)
+      : tamanAlert({ ...defaultProps, ...arg0 });
+  } else if (!arg2) {
+    return isString(arg1)
+      ? tamanAlert(arg0 as string, arg1, defaultProps)
+      : tamanAlert(arg0 as string, { ...defaultProps, ...arg1 });
+  }
+  return tamanAlert(arg0 as string, arg1 as string, {
+    ...defaultProps,
+    ...arg2,
+  });
 }
 
-/**
- * Show a prompt popup collecting one input value. Resolves the entered
- * value when confirmed, `undefined` when dismissed — never rejects.
- */
 export async function tamanPrompt<T = any>(
-  options: PromptProps<T>,
+  options: AlertPromptProps<T>,
 ): Promise<T | undefined> {
   const {
     component: _component,
@@ -103,7 +151,7 @@ export async function tamanPrompt<T = any>(
   const modelPropName = _modelPropName || 'modelValue';
   const componentProps = { ..._componentProps };
 
-  // Content renderer recomputed on each render
+  // The content function that will be recalculated each time it is rendered.
   const contentRenderer = () => {
     const currentProps = {
       ...componentProps,
@@ -113,29 +161,23 @@ export async function tamanPrompt<T = any>(
       },
     };
 
-    // Create input component
     inputComponentRef.value = h(
       _component || PInput,
       currentProps,
       componentSlots,
     );
 
-    // Return static content plus the input component
+    // Return an array containing the static content and the input component.
     return h(
       'div',
       { class: 'flex flex-col gap-2' },
-      {
-        default: () => [
-          ...staticContents,
-          inputComponentRef.value,
-        ],
-      },
+      { default: () => [...staticContents, inputComponentRef.value] },
     );
   };
 
-  const props: AlertProps & Recordable<any> = {
+  const props: AlertProps & Record<string, any> = {
     ...delegated,
-    async beforeClose(scope: BeforeCloseScope) {
+    async beforeClose(scope: AlertBeforeCloseScope) {
       if (delegated.beforeClose) {
         return await delegated.beforeClose({
           ...scope,
@@ -143,7 +185,7 @@ export async function tamanPrompt<T = any>(
         });
       }
     },
-    // Use a function so content is recomputed on each render
+    // Use a function form, the content will be recalculated each time it is rendered.
     content: contentRenderer,
     contentMasking: true,
     async onOpened() {
@@ -183,14 +225,13 @@ export async function tamanPrompt<T = any>(
     },
   };
 
-  const confirmed = await tamanConfirm(props);
-
-  return confirmed ? modelValue.value : undefined;
+  await tamanConfirm(props);
+  return modelValue.value;
 }
 
 export function clearAllAlerts() {
   alerts.value.forEach((alert) => {
-    // Remove container from the DOM
+    // Remove the container from the DOM.
     render(null, alert.container);
     if (alert.container.parentNode) {
       alert.container.remove();

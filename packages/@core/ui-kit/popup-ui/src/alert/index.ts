@@ -6,9 +6,9 @@ export type {
 } from './alert';
 export { useAlertContext } from './alert';
 export {
+  vbenAlert as alert,
   clearAllAlerts,
-  tamanAlert,
-  tamanConfirm,
-  tamanPrompt,
+  vbenConfirm as confirm,
+  vbenPrompt as prompt,
 } from './alert-builder';
-export { default as TamanAlert } from './alert.vue';
+export { default as Alert } from './alert.vue';

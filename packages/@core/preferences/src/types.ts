@@ -263,6 +263,8 @@ interface SidebarPreferences {
 interface ShortcutKeyPreferences {
   /** Whether global shortcut keys are enabled */
   enable: boolean;
+  /** Whether global escape shortcut is enabled */
+  globalEscape: boolean;
   /** Whether global lock-screen shortcut is enabled */
   globalLockScreen: boolean;
   /** Whether global logout shortcut is enabled */

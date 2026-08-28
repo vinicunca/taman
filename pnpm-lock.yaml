@@ -1192,9 +1192,6 @@ importers:
       '@taman-core/typings':
         specifier: workspace:*
         version: link:../../base/typings
-      '@vben-core/shadcn-ui':
-        specifier: workspace:*
-        version: link:../shadcn-ui
       '@vueuse/core':
         specifier: 'catalog:'
         version: 14.4.0(vue@3.5.41(typescript@6.0.3))
@@ -1482,75 +1479,6 @@ importers:
       ofetch:
         specifier: 'catalog:'
         version: 1.5.1
-
-  packages/effects/layouts:
-    dependencies:
-      '@taman-core/composables':
-        specifier: workspace:*
-        version: link:../../@core/composables
-      '@taman-core/form-ui':
-        specifier: workspace:*
-        version: link:../../@core/ui-kit/form-ui
-      '@taman-core/layout-ui':
-        specifier: workspace:*
-        version: link:../../@core/ui-kit/layout-ui
-      '@taman-core/menu-ui':
-        specifier: workspace:*
-        version: link:../../@core/ui-kit/menu-ui
-      '@taman-core/popup-ui':
-        specifier: workspace:*
-        version: link:../../@core/ui-kit/popup-ui
-      '@taman-core/shared':
-        specifier: workspace:*
-        version: link:../../@core/base/shared
-      '@taman-core/tabs-ui':
-        specifier: workspace:*
-        version: link:../../@core/ui-kit/tabs-ui
-      '@taman-core/taman-ui':
-        specifier: workspace:*
-        version: link:../../@core/ui-kit/taman-ui
-      '@taman/composables':
-        specifier: workspace:*
-        version: link:../composables
-      '@taman/constants':
-        specifier: workspace:*
-        version: link:../../constants
-      '@taman/locales':
-        specifier: workspace:*
-        version: link:../../locales
-      '@taman/preferences':
-        specifier: workspace:*
-        version: link:../../preferences
-      '@taman/stores':
-        specifier: workspace:*
-        version: link:../../stores
-      '@taman/types':
-        specifier: workspace:*
-        version: link:../../types
-      '@taman/utils':
-        specifier: workspace:*
-        version: link:../../utils
-      '@vben-core/shadcn-ui':
-        specifier: workspace:*
-        version: link:../../@core/ui-kit/shadcn-ui
-      '@vben/icons':
-        specifier: workspace:*
-        version: link:../../icons
-      '@vinicunca/perkakas':
-        specifier: 'catalog:'
-        version: 1.16.0
-      '@vueuse/core':
-        specifier: 'catalog:'
-        version: 14.4.0(vue@3.5.41(typescript@6.0.3))
-      pohon-ui:
-        specifier: 2.0.0-rc7.7
-        version: 2.0.0-rc7.7(66510a03e957d19d13fda38348a074e8)
-      vue:
-        specifier: ^3.5.41
-        version: 3.5.41(typescript@6.0.3)
-      vue-router:
-        specifier: 'catalog:'
-        version: 5.2.0(@vue/compiler-sfc@3.5.41)(esbuild@0.28.1)(pinia@4.0.3(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.5.41(typescript@6.0.3)))(rolldown@1.2.4)(rollup@4.62.2)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(tsx@4.23.12)(yaml@2.9.0))(vue@3.5.41(typescript@6.0.3))(webpack@5.108.4(clean-css@5.3.3)(esbuild@0.28.1)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(postcss@8.5.26))
 
   packages/effects/plugins:
     dependencies:
