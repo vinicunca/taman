@@ -1,6 +1,3 @@
-import dayjs from 'dayjs';
-import timezone from 'dayjs/plugin/timezone.js';
-import utc from 'dayjs/plugin/utc.js';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
@@ -8,50 +5,33 @@ import {
   formatDateTime,
   getCurrentTimezone,
   getSystemTimezone,
-  isDate,
-  isDayjsObject,
+  getTimezoneOptions,
   setCurrentTimezone,
 } from '../date';
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
 
 describe('dateUtils', () => {
   const sampleISO = '2024-10-30T12:34:56Z';
   const sampleTimestamp = Date.parse(sampleISO);
 
   beforeEach(() => {
-    // Reset timezone
-    dayjs.tz.setDefault();
-    setCurrentTimezone(); // Reset to system default
+    setCurrentTimezone('UTC');
   });
 
   afterEach(() => {
     vi.restoreAllMocks();
   });
 
-  // ===============================
-  // formatDate
-  // ===============================
   describe('formatDate', () => {
     it('should format a valid ISO date string', () => {
-      const formatted = formatDate(sampleISO, 'YYYY/MM/DD');
-      expect(formatted).toMatch(/2024\/10\/30/);
+      expect(formatDate(sampleISO, 'YYYY/MM/DD')).toBe('2024/10/30');
     });
 
     it('should format a timestamp correctly', () => {
-      const formatted = formatDate(sampleTimestamp);
-      expect(formatted).toMatch(/2024-10-30/);
+      expect(formatDate(sampleTimestamp)).toBe('2024-10-30');
     });
 
     it('should format a Date object', () => {
-      const formatted = formatDate(new Date(sampleISO));
-      expect(formatted).toMatch(/2024-10-30/);
-    });
-
-    it('should format a dayjs object', () => {
-      const formatted = formatDate(dayjs(sampleISO));
-      expect(formatted).toMatch(/2024-10-30/);
+      expect(formatDate(new Date(sampleISO))).toBe('2024-10-30');
     });
 
     it('should return original input if date is invalid', () => {
@@ -63,53 +43,23 @@ describe('dateUtils', () => {
     });
 
     it('should apply given format', () => {
-      const formatted = formatDate(sampleISO, 'YYYY-MM-DD HH:mm');
-      expect(formatted).toMatch(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/);
+      expect(formatDate(sampleISO, 'YYYY-MM-DD HH:mm')).toBe('2024-10-30 12:34');
+    });
+
+    it('should format in the configured timezone', () => {
+      setCurrentTimezone('America/New_York');
+      expect(formatDate('2024-01-01T00:00:00Z', 'YYYY-MM-DD HH:mm')).toBe(
+        '2023-12-31 19:00',
+      );
     });
   });
 
-  // ===============================
-  // formatDateTime
-  // ===============================
   describe('formatDateTime', () => {
     it('should format date into full datetime', () => {
-      const result = formatDateTime(sampleISO);
-      expect(result).toMatch(/2024-10-30 \d{2}:\d{2}:\d{2}/);
+      expect(formatDateTime(sampleISO)).toBe('2024-10-30 12:34:56');
     });
   });
 
-  // ===============================
-  // isDate
-  // ===============================
-  describe('isDate', () => {
-    it('should return true for Date instances', () => {
-      expect(isDate(new Date())).toBe(true);
-    });
-
-    it('should return false for non-Date values', () => {
-      expect(isDate('2024-10-30')).toBe(false);
-      expect(isDate(null)).toBe(false);
-      expect(isDate(undefined)).toBe(false);
-    });
-  });
-
-  // ===============================
-  // isDayjsObject
-  // ===============================
-  describe('isDayjsObject', () => {
-    it('should return true for dayjs objects', () => {
-      expect(isDayjsObject(dayjs())).toBe(true);
-    });
-
-    it('should return false for other values', () => {
-      expect(isDayjsObject(new Date())).toBe(false);
-      expect(isDayjsObject('string')).toBe(false);
-    });
-  });
-
-  // ===============================
-  // getSystemTimezone
-  // ===============================
   describe('getSystemTimezone', () => {
     it('should return a valid IANA timezone string', () => {
       const tz = getSystemTimezone();
@@ -118,9 +68,6 @@ describe('dateUtils', () => {
     });
   });
 
-  // ===============================
-  // setCurrentTimezone / getCurrentTimezone
-  // ===============================
   describe('setCurrentTimezone & getCurrentTimezone', () => {
     it('should set and retrieve the current timezone', () => {
       setCurrentTimezone('Asia/Shanghai');
@@ -132,12 +79,33 @@ describe('dateUtils', () => {
       setCurrentTimezone();
       expect(getCurrentTimezone()).toBe(guessed);
     });
+  });
 
-    it('should update dayjs default timezone', () => {
-      setCurrentTimezone('America/New_York');
-      const d = dayjs('2024-01-01T00:00:00Z');
-      // Verify timezone conversion changes the hour
-      expect(d.tz().format('HH')).not.toBe('00');
+  describe('getTimezoneOptions', () => {
+    it('should include common IANA timezones', () => {
+      const options = getTimezoneOptions('en-US');
+      const values = options.map((item) => item.value);
+
+      expect(values).toContain('America/New_York');
+      expect(values).toContain('Asia/Makassar');
+      expect(options.length).toBeGreaterThan(100);
+    });
+
+    it('should format labels with an offset', () => {
+      const option = getTimezoneOptions('en-US').find(
+        (item) => item.value === 'Asia/Makassar',
+      );
+
+      expect(option).toBeDefined();
+      expect(option?.label).toContain('Asia/Makassar');
+      expect(option?.label).toMatch(/GMT|UTC|[+-]\d/);
+    });
+
+    it('should reuse the catalog for the same locale', () => {
+      const first = getTimezoneOptions('en-US');
+      const second = getTimezoneOptions('en-US');
+
+      expect(first).toBe(second);
     });
   });
 });

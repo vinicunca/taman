@@ -5,7 +5,7 @@ export interface VbenPluginsFormOptions {
 }
 
 export interface VbenPluginsModalOptions {
-  useVbenModal?: () => any;
+  useTamanDialog?: () => any;
 }
 
 export interface VbenPluginsMessageOptions {

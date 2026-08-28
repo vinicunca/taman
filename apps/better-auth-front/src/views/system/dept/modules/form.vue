@@ -3,7 +3,7 @@ import type { SystemDeptApi } from '#/api/system/dept';
 
 import { computed, ref } from 'vue';
 
-import { useVbenModal } from '@taman/common-ui';
+import { useTamanDialog } from '@taman/common-ui';
 
 import { Button } from 'antdv-next';
 
@@ -32,7 +32,7 @@ function resetForm() {
   formApi.setValues(formData.value || {});
 }
 
-const [Modal, modalApi] = useVbenModal({
+const [Modal, modalApi] = useTamanDialog({
   async onConfirm() {
     const { valid } = await formApi.validate();
     if (valid) {

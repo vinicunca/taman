@@ -11,7 +11,7 @@ export const contentNavigation = {
     item: '',
     listWithChildren: 'ms-5 border-s border-border',
     itemWithChildren: 'flex flex-col data-[state=open]:mb-1.5',
-    trigger: 'font-semibold',
+    trigger: 'font-600',
     link: 'group relative w-full px-2.5 py-1.5 before:(inset-y-px inset-x-0 absolute -z-1 rounded-md) flex items-center gap-1.5 text-sm focus:outline-none focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-2',
     linkLeadingIcon: 'shrink-0 size-5',
     linkTrailing: 'ms-auto inline-flex gap-1.5 items-center',

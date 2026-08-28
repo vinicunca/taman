@@ -14,7 +14,7 @@
       rx="4"
     />
     <path
-      fill="var(--ui-primary)"
+      fill="var(--taman-color-primary)"
       stroke="null"
       d="M-3.37838 3.61916a4.4919 4.02457 0 0 1 4.4919-4.02457H27.472V66H1.11352a4.4919 4.02457 0 0 1-4.4919-4.02457z"
     />

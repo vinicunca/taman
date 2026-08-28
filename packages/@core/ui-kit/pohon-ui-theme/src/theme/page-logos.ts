@@ -5,7 +5,7 @@ import type { PThemePageLogos } from 'pohon-ui';
 export const pageLogos = {
   slots: {
     root: 'relative overflow-hidden',
-    title: 'text-lg text-center font-semibold color-text-highlighted',
+    title: 'text-lg text-center font-600 color-text-highlighted',
     logos: 'mt-10',
     logo: 'size-10 shrink-0',
   },

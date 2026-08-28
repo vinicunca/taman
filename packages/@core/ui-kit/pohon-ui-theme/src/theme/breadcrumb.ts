@@ -19,7 +19,7 @@ export const breadcrumb = {
   variants: {
     active: {
       true: {
-        link: 'font-semibold',
+        link: 'font-600',
       },
       false: {
         link: 'color-text-muted font-medium',

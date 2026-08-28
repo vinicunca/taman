@@ -19,7 +19,7 @@ export const inputMenu = {
       viewport: 'relative scroll-py-1 overflow-y-auto flex-1',
       group: 'p-1 isolate',
       empty: 'text-center color-text-muted',
-      label: 'font-semibold color-text-highlighted',
+      label: 'font-600 color-text-highlighted',
       separator: '-mx-1 my-1 h-px bg-border',
       item: 'group relative w-full flex items-start gap-1.5 p-1.5 text-sm select-none outline-none before:absolute before:-z-1 before:inset-px before:rounded-md data-disabled:cursor-not-allowed data-disabled:opacity-75 color-text data-highlighted:not-data-disabled:color-text-highlighted data-highlighted:not-data-disabled:before:bg-background-elevated/50 transition-colors before:transition-colors',
       itemLeadingIcon: 'shrink-0 color-text-dimmed group-data-highlighted:not-group-data-disabled:color-text transition-colors',

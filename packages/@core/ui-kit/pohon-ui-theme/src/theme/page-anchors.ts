@@ -16,7 +16,7 @@ export const pageAnchors = {
   variants: {
     active: {
       true: {
-        link: 'color-primary font-semibold',
+        link: 'color-primary font-600',
         linkLeading: 'bg-primary ring-primary color-text-inverted',
       },
       false: {

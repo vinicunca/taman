@@ -32,7 +32,7 @@ export interface DialogProps {
   class?: HTMLAttributes['class'];
 
   /**
-   * Whether to show the close button in the top-right corner
+   * Whether to show the close button in the top-right header
    * @default true
    */
   closable?: boolean;

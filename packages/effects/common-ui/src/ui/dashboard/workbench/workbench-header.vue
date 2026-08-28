@@ -20,7 +20,7 @@ withDefaults(defineProps<Props>(), {
       v-if="$slots.title || $slots.description"
       class="flex flex-col justify-center md:mt-0 md:ml-6"
     >
-      <h1 v-if="$slots.title" class="text-base font-semibold md:text-xl">
+      <h1 v-if="$slots.title" class="text-base font-600 md:text-xl">
         <slot name="title"></slot>
       </h1>
       <span v-if="$slots.description" class="mt-1 color-text/80">

@@ -11,7 +11,7 @@ import { computed, onBeforeUnmount, reactive, watch } from 'vue';
 import { Check, ChevronDown, Eye } from '@vben/icons';
 import { $t } from '@taman/locales';
 
-import { useVbenModal } from '@taman-core/popup-ui';
+import { useTamanDialog } from '@taman-core/popup-ui';
 import { VbenIconButton, VbenPopover } from '@vben-core/shadcn-ui';
 import { cn } from '@taman-core/shared/utils';
 
@@ -88,7 +88,7 @@ const toolbarGroups = computed<ToolbarAction[][]>(() => {
 const previewContent = computed(
   () => editor.value?.getHTML() ?? modelValue.value,
 );
-const [PreviewModal, previewModalApi] = useVbenModal({
+const [PreviewModal, previewModalApi] = useTamanDialog({
   footer: false,
   fullscreenButton: false,
 });
@@ -193,7 +193,7 @@ onBeforeUnmount(() => {
                 variant="ghost"
               >
                 <template v-if="action.triggerText">
-                  <span class="text-xs font-semibold tracking-wide">
+                  <span class="text-xs font-600 tracking-wide">
                     {{
                       typeof action.triggerText === 'function'
                         ? action.triggerText(editor)
@@ -250,7 +250,7 @@ onBeforeUnmount(() => {
                 type="button"
                 @click="handleMenuItemClick(action, item)"
               >
-                <span class="w-7 text-xs font-semibold tracking-wide">
+                <span class="w-7 text-xs font-600 tracking-wide">
                   {{ item.shortLabel }}
                 </span>
                 <span class="flex-1">{{ item.label }}</span>

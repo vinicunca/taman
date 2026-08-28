@@ -40,6 +40,7 @@ export class DialogApi<TData = unknown> {
       bordered: true,
       centered: false,
       class: '',
+      closable: true,
       closeOnClickModal: true,
       closeOnPressEscape: true,
       confirmDisabled: false,

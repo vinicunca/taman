@@ -41,7 +41,7 @@ withDefaults(defineProps<Props>(), {
           <div class="flex min-w-0 items-center gap-x-4">
             <VbenCheckbox v-model="item.completed" name="completed" />
             <div class="min-w-0 flex-auto">
-              <p class="text-sm/6 font-semibold color-text">
+              <p class="text-sm/6 font-600 color-text">
                 {{ item.title }}
               </p>
               <!-- eslint-disable vue/no-v-html -->

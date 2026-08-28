@@ -18,6 +18,7 @@ import {
   TamanButtonIcon,
   VisuallyHidden,
 } from '@taman-core/taman-ui';
+import PButton from 'pohon-ui/components/Button.vue';
 import PSeparator from 'pohon-ui/components/Separator.vue';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
 import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
@@ -197,12 +198,11 @@ const getForceMount = computed(() => {
     >
       <SheetHeader
         v-if="showHeader"
-        class="border-b items-center justify-between"
+        class="border-b items-start justify-between"
         :class="
           [
             headerClass,
             {
-              'px-4 py-3': closable,
               'pl-2': closable && closeIconPlacement === 'left',
             },
           ]
@@ -213,7 +213,6 @@ const getForceMount = computed(() => {
             v-if="closable && closeIconPlacement === 'left'"
             as-child
             :disabled="submitting"
-            class="data-[state=open]:bg-secondary ml-0.5 rounded-full opacity-80 cursor-pointer transition-opacity focus:outline-hidden hover:opacity-100 disabled:pointer-events-none"
           >
             <slot name="close-icon">
               <TamanButtonIcon
@@ -228,38 +227,37 @@ const getForceMount = computed(() => {
             decorative
             orientation="vertical"
           />
-          <SheetTitle
-            v-if="title"
-            class="text-left"
-          >
-            <slot name="title">
-              {{ title }}
 
-              <PTooltip
-                v-if="titleTooltip"
-                :text="titleTooltip"
-              >
-                <PIcon
-                  name="lucide:circle-help"
-                  class="color-text-muted"
-                />
-              </PTooltip>
-            </slot>
-          </SheetTitle>
-          <SheetDescription
-            v-if="description"
-            class="text-xs mt-1"
-          >
-            <slot name="description">
-              {{ description }}
-            </slot>
-          </SheetDescription>
+          <div class="flex flex-col gap-1">
+            <SheetTitle
+              v-if="title"
+              class="text-left"
+            >
+              <slot name="title">
+                {{ title }}
+
+                <PTooltip
+                  v-if="titleTooltip"
+                  :text="titleTooltip"
+                >
+                  <PIcon
+                    name="lucide:circle-help"
+                    class="color-text-muted"
+                  />
+                </PTooltip>
+              </slot>
+            </SheetTitle>
+
+            <SheetDescription
+              v-if="description"
+              class="text-xs"
+            >
+              <slot name="description">
+                {{ description }}
+              </slot>
+            </SheetDescription>
+          </div>
         </div>
-
-        <VisuallyHidden v-if="!title || !description">
-          <SheetTitle v-if="!title" />
-          <SheetDescription v-if="!description" />
-        </VisuallyHidden>
 
         <div class="flex-center">
           <slot name="extra" />
@@ -268,7 +266,6 @@ const getForceMount = computed(() => {
             v-if="closable && closeIconPlacement === 'right'"
             as-child
             :disabled="submitting"
-            class="data-[state=open]:bg-secondary ml-0.5 rounded-full opacity-80 cursor-pointer transition-opacity focus:outline-hidden hover:opacity-100 disabled:pointer-events-none"
           >
             <slot name="close-icon">
               <TamanButtonIcon
@@ -277,6 +274,11 @@ const getForceMount = computed(() => {
             </slot>
           </SheetClose>
         </div>
+
+        <VisuallyHidden v-if="!title || !description">
+          <SheetTitle v-if="!title" />
+          <SheetDescription v-if="!description" />
+        </VisuallyHidden>
       </SheetHeader>
 
       <template v-else>

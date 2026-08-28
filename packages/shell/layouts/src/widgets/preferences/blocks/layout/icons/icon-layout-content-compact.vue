@@ -15,7 +15,7 @@
         rx="4"
       />
       <path
-        fill="var(--ui-primary)"
+        fill="var(--taman-color-primary)"
         d="M-.07419-.05773h104.07934v9.07027H-.07419z"
       />
       <rect

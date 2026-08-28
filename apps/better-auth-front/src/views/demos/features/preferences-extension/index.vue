@@ -159,7 +159,7 @@ function getPriorityColor(priority: DemoTaskItem['priority']) {
       <div class="mt-4 rounded-xl border p-4" :class="toneConfig.cardClass">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
-            <div class="text-lg font-semibold">
+            <div class="text-lg font-600">
               {{ playgroundPreferences.reportTitle }}
             </div>
             <div class="text-sm color-text/60">

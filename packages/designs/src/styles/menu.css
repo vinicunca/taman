@@ -19,34 +19,38 @@
   --menu-item-collapse-margin-x: 0px;
   --menu-item-radius: 0px;
   --menu-item-indent: 16px;
-  --menu-background-color: var(--ui-bg-sidebar);
+  --menu-background-color: var(--taman-color-bg-sidebar);
   --menu-item-background-color: var(--menu-background-color);
   --menu-submenu-background-color: var(--menu-background-color);
 }
 
 .taman-menu.is-dark,
 .taman-menu__popup-container.is-dark {
-  --menu-item-color: color-mix(in oklch, var(--ui-text) 80%, transparent);
-  --menu-item-hover-color: var(--ui-text-highlighted);
-  --menu-item-hover-background-color: var(--ui-bg-accented);
-  --menu-item-active-color: var(--ui-text-highlighted);
-  --menu-item-active-background-color: var(--ui-bg-accented);
-  --menu-submenu-hover-color: var(--ui-text-highlighted);
-  --menu-submenu-hover-background-color: var(--ui-bg-accented);
-  --menu-submenu-active-color: var(--ui-text-highlighted);
+  --menu-item-color: color-mix(
+    in oklch,
+    var(--taman-color-text) 80%,
+    transparent
+  );
+  --menu-item-hover-color: var(--taman-color-text-highlighted);
+  --menu-item-hover-background-color: var(--taman-color-bg-accented);
+  --menu-item-active-color: var(--taman-color-text-highlighted);
+  --menu-item-active-background-color: var(--taman-color-bg-accented);
+  --menu-submenu-hover-color: var(--taman-color-text-highlighted);
+  --menu-submenu-hover-background-color: var(--taman-color-bg-accented);
+  --menu-submenu-active-color: var(--taman-color-text-highlighted);
   --menu-submenu-active-background-color: transparent;
 }
 
 .taman-menu.is-light,
 .taman-menu__popup-container.is-light {
-  --menu-item-color: var(--ui-text-toned);
+  --menu-item-color: var(--taman-color-text-toned);
   --menu-item-hover-color: var(--menu-item-color);
-  --menu-item-hover-background-color: var(--ui-bg-accented);
-  --menu-item-active-color: var(--ui-color-primary-500);
-  --menu-item-active-background-color: var(--ui-color-primary-100);
-  --menu-submenu-hover-color: var(--ui-color-primary-500);
-  --menu-submenu-hover-background-color: var(--ui-bg-accented);
-  --menu-submenu-active-color: var(--ui-color-primary-500);
+  --menu-item-hover-background-color: var(--taman-color-bg-accented);
+  --menu-item-active-color: var(--taman-color-primary);
+  --menu-item-active-background-color: var(--taman-color-primary-100);
+  --menu-submenu-hover-color: var(--taman-color-primary);
+  --menu-submenu-hover-background-color: var(--taman-color-bg-accented);
+  --menu-submenu-active-color: var(--taman-color-primary);
   --menu-submenu-active-background-color: transparent;
 }
 
@@ -79,19 +83,19 @@
 .taman-menu__popup-container.is-horizontal.is-dark,
 .taman-menu.is-horizontal.is-light,
 .taman-menu__popup-container.is-horizontal.is-light {
-  --menu-background-color: var(--ui-bg);
+  --menu-background-color: var(--taman-color-bg);
   --menu-item-background-color: var(--menu-background-color);
   --menu-submenu-background-color: var(--menu-background-color);
 }
 
 .taman-menu.is-horizontal.is-dark,
 .taman-menu__popup-container.is-horizontal.is-dark {
-  --menu-submenu-active-background-color: var(--ui-bg-accented);
+  --menu-submenu-active-background-color: var(--taman-color-bg-accented);
 }
 
 .taman-menu.is-horizontal.is-light,
 .taman-menu__popup-container.is-horizontal.is-light {
-  --menu-submenu-active-background-color: var(--ui-color-primary-100);
+  --menu-submenu-active-background-color: var(--taman-color-primary-100);
 }
 
 .taman-menu {
@@ -479,7 +483,7 @@
   justify-content: center;
   padding: var(--menu-item-padding-y) var(--menu-item-padding-x);
   margin: var(--menu-item-margin-y) var(--menu-item-margin-x);
-  color: color-mix(in oklch, var(--ui-text) 90%, transparent);
+  color: color-mix(in oklch, var(--taman-color-text) 90%, transparent);
   cursor: pointer;
   border-radius: var(--menu-item-radius);
   transition:

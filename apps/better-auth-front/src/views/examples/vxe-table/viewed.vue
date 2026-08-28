@@ -3,7 +3,7 @@ import type { OnActionClickParams, VxeGridProps } from '#/adapter/vxe-table';
 
 import { ref } from 'vue';
 
-import { Page, useVbenModal } from '@taman/common-ui';
+import { Page, useTamanDialog } from '@taman/common-ui';
 import { $t } from '@taman/locales';
 
 import { Button, message } from 'antdv-next';
@@ -120,7 +120,7 @@ function onActionClick({ code, row }: OnActionClickParams<RowType>) {
 }
 
 const editRow = ref<RowType>();
-const [Modal, modalApi] = useVbenModal({
+const [Modal, modalApi] = useTamanDialog({
   draggable: true,
   onConfirm: () => {
     modalApi.setState({ loading: true });

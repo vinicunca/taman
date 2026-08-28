@@ -10,7 +10,7 @@ export const sidebar = {
     inner: 'flex size-full flex-col overflow-hidden divide-y divide-divide',
     header: 'flex items-center gap-1.5 overflow-hidden px-4 min-h-$ui-header-height',
     wrapper: 'min-w-0 flex-1',
-    title: 'color-text-highlighted font-semibold truncate',
+    title: 'color-text-highlighted font-600 truncate',
     description: 'color-text-muted text-sm truncate',
     actions: 'flex items-center gap-1.5 shrink-0',
     close: '',

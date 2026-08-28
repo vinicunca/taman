@@ -105,7 +105,7 @@
         rx="2"
       />
       <path
-        fill="var(--ui-primary)"
+        fill="var(--taman-color-primary)"
         d="M-.06423 9.03113h15.44642v56.81191H-.06423z"
       />
       <path

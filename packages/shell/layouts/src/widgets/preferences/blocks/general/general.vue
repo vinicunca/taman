@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { SUPPORTED_LANGUAGES } from '@taman/constants';
-import { useTimezoneStore } from '@taman/stores';
 import { $t } from '@taman/locales';
-import { onMounted, ref, unref } from 'vue';
+import { preferences } from '@taman/preferences';
+import { getTimezoneOptions } from '@taman/utils';
+import PSelectMenu from 'pohon-ui/components/SelectMenu.vue';
+import { computed } from 'vue';
 
 import InputItem from '../input-item.vue';
 import SelectItem from '../select-item.vue';
@@ -21,23 +23,10 @@ const appEnableCheckUpdates = defineModel<boolean>('appEnableCheckUpdates');
 const appEnableCopyPreferences = defineModel<boolean>(
   'appEnableCopyPreferences',
 );
-const timezoneStore = useTimezoneStore();
 
-const TamanTimezoneOptionsRef = ref<
-  Array<{
-    label: string;
-    value: string;
-  }>
->([]);
-
-onMounted(async () => {
-  TamanTimezoneOptionsRef.value = await timezoneStore.getTamanTimezoneOptions();
-  // Apply current timezone, e.g. Asia/Shanghai
-  const timezoneValue = unref(timezoneStore.timezone);
-  if (timezoneValue) {
-    appTimezone.value = timezoneValue;
-  }
-});
+const timezoneOptions = computed(() =>
+  getTimezoneOptions(preferences.app.locale),
+);
 </script>
 
 <template>
@@ -47,12 +36,22 @@ onMounted(async () => {
   >
     {{ $t('preferences.language') }}
   </SelectItem>
-  <SelectItem
-    v-model="appTimezone"
-    :items="TamanTimezoneOptionsRef"
+  <div
+    class="my-1 px-2 py-1 rounded-md flex w-full items-center justify-between hover:bg-background-accented"
   >
-    {{ $t('preferences.timezone') }}
-  </SelectItem>
+    <span class="text-sm flex items-center">
+      {{ $t('preferences.timezone') }}
+    </span>
+    <PSelectMenu
+      v-model="appTimezone"
+      :filter-fields="['label', 'value']"
+      :items="timezoneOptions"
+      class="w-64"
+      size="sm"
+      value-key="value"
+      virtualize
+    />
+  </div>
   <SwitchItem v-model="appDynamicTitle">
     {{ $t('preferences.dynamicTitle') }}
   </SwitchItem>

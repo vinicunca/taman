@@ -91,15 +91,6 @@ type TamanPageTransitionType = 'fade' | 'fade-down' | 'fade-slide' | 'fade-up';
  */
 type TamanAuthPageLayoutType = 'panel-center' | 'panel-left' | 'panel-right';
 
-/**
- * Timezone option
- */
-interface TamanTimezoneOption {
-  label: string;
-  offset: number;
-  timezone: string;
-}
-
 export type {
   TamanAccessModeType,
   TamanAuthPageLayoutType,
@@ -114,5 +105,4 @@ export type {
   TamanPreferencesButtonPositionType,
   TamanTabsStyleType,
   TamanThemeModeType,
-  TamanTimezoneOption,
 };

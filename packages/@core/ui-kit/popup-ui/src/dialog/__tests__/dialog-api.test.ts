@@ -47,6 +47,7 @@ describe('dialogApi', () => {
     expect(dialogState.isOpen).toBe(false);
     expect(dialogState.cancelText).toBeUndefined();
     expect(dialogState.confirmText).toBeUndefined();
+    expect(dialogState.closable).toBe(true);
   });
 
   it('should open the dialog', () => {

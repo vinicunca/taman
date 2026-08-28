@@ -7,7 +7,7 @@ export const contextMenu = {
     content: 'min-w-32 max-h-$akar-context-menu-content-available-height bg-background shadow-lg rounded-md ring ring-border overflow-hidden data-[state=closed]:(animate-out fade-out-0 zoom-out-95) data-[state=open]:(animate-in fade-in-0 zoom-in-95) data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-$akar-context-menu-content-transform-origin flex flex-col',
     viewport: 'relative divide-y divide-border scroll-py-1 overflow-y-auto flex-1',
     group: 'p-1 isolate',
-    label: 'w-full flex items-center font-semibold color-text-highlighted',
+    label: 'w-full flex items-center font-600 color-text-highlighted',
     separator: '-mx-1 my-1 h-px bg-border',
     item: 'group relative w-full flex items-start select-none outline-none before:(content-empty absolute -z-1 inset-px rounded-md) data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50',
     itemLeadingIcon: 'shrink-0',

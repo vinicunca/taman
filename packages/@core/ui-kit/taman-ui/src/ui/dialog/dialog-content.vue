@@ -3,14 +3,12 @@ import type { DialogContentEmits, DialogContentProps } from 'akar';
 import type { HTMLAttributes } from 'vue';
 
 import {
-  DialogClose,
   DialogContent,
   DialogPortal,
   useForwardPropsEmits,
 } from 'akar';
 import { computed, ref } from 'vue';
 
-import { TamanButtonIcon } from '../../components';
 import DialogOverlay from './dialog-overlay.vue';
 import { useDialogStateEvents } from './use-dialog-state-events';
 
@@ -24,20 +22,15 @@ const props = withDefaults(
       animationType?: 'scale' | 'slide';
       appendTo?: HTMLElement | string;
       class?: HTMLAttributes['class'];
-      closeClass?: HTMLAttributes['class'];
-      closeDisabled?: boolean;
       modal?: boolean;
       open?: boolean;
       overlayBlur?: number;
-      showCloseButton?: boolean;
       zIndex?: number;
     }
   >(),
   {
     appendTo: 'body',
     animationType: 'slide',
-    closeDisabled: false,
-    showCloseButton: true,
   },
 );
 
@@ -54,7 +47,6 @@ const delegatedProps = computed(() => {
     class: _,
     modal: _modal,
     open: _open,
-    showCloseButton: __,
     animationType: ___,
     ...delegated
   } = props;
@@ -131,22 +123,6 @@ defineExpose({
       @animationcancel="handleAnimationEvent"
     >
       <slot />
-
-      <DialogClose
-        v-if="showCloseButton"
-        :disabled="closeDisabled"
-        data-slot="dialog-close"
-        class="right-3 top-2.5 absolute"
-        :class="[
-          closeClass,
-        ]"
-        as-child
-        @click="() => emits('close')"
-      >
-        <TamanButtonIcon
-          icon="lucide:x"
-        />
-      </DialogClose>
     </DialogContent>
   </DialogPortal>
 </template>

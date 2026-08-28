@@ -10,7 +10,7 @@ export const dropdownMenu = {
     viewport: 'relative divide-y divide-border scroll-py-1 overflow-y-auto flex-1',
     arrow: 'fill-background stroke-stroke',
     group: 'p-1 isolate',
-    label: 'w-full flex items-center font-semibold color-text-highlighted',
+    label: 'w-full flex items-center font-600 color-text-highlighted',
     separator: '-mx-1 my-1 h-px bg-border',
     item: 'group cursor-pointer outline-none flex w-full select-none items-start relative before:(content-empty rounded-md inset-px absolute -z-1) data-[disabled]:(opacity-50 cursor-not-allowed) data-[state=checked]:before:bg-background-elevated data-[state=checked]:(color-text-highlighted font-medium)',
     itemLeadingIcon: 'shrink-0',

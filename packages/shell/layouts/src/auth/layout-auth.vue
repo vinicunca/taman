@@ -208,7 +208,7 @@ const logoSrc = computed(() => {
   background: linear-gradient(
     154deg,
     #07070915 30%,
-    color-mix(in oklab, var(--ui-primary) 30%, transparent) 48%,
+    color-mix(in oklab, var(--taman-color-primary) 30%, transparent) 48%,
     #07070915 64%
   );
   filter: blur(100px);
@@ -219,7 +219,7 @@ const logoSrc = computed(() => {
     background: linear-gradient(
       154deg,
       #07070915 30%,
-      color-mix(in oklab, var(--ui-primary) 30%, transparent) 48%,
+      color-mix(in oklab, var(--taman-color-primary) 30%, transparent) 48%,
       #07070915 64%
     );
     filter: blur(100px);

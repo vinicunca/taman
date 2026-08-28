@@ -1,7 +1,7 @@
 <template>
   <div
     data-slot="dialog-header"
-    class="text-center flex flex-col gap-2 sm:text-left"
+    class="px-4 py-3 flex gap-1.5"
   >
     <slot />
   </div>

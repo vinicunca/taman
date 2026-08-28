@@ -5,11 +5,11 @@ import { POHON_THEME_BRANDS } from '../../constants.ts';
 
 export const contentToc = {
   slots: {
-    root: 'sticky top-$ui-header-height z-10 bg-background/75 lg:bg-[initial] backdrop-blur -mx-4 px-4 sm:px-6 sm:-mx-6 lg:ms-0 overflow-y-auto max-h-[calc(100vh-var(--ui-header-height))]',
+    root: 'sticky top-$ui-header-height z-10 bg-background/75 lg:bg-[initial] backdrop-blur -mx-4 px-4 sm:px-6 sm:-mx-6 lg:ms-0 overflow-y-auto max-h-[calc(100vh-var(--taman-header-height))]',
     container: 'pt-4 sm:pt-6 pb-2.5 sm:pb-4.5 lg:py-8 border-b border-dashed border-border lg:border-0 flex flex-col',
     top: '',
     bottom: 'hidden lg:flex lg:flex-col gap-6',
-    trigger: 'group text-sm font-semibold flex-1 flex items-center gap-1.5 py-1.5 -mt-1.5 focus-visible:outline-primary',
+    trigger: 'group text-sm font-600 flex-1 flex items-center gap-1.5 py-1.5 -mt-1.5 focus-visible:outline-primary',
     title: 'truncate',
     trailing: 'ms-auto inline-flex gap-1.5 items-center',
     trailingIcon: 'size-5 transform transition-transform duration-200 shrink-0 group-data-[state=open]:rotate-180 lg:hidden',

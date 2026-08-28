@@ -9,7 +9,7 @@ export const listbox = {
     input: 'border-b border-border',
     content: 'relative overflow-y-auto flex-1 max-h-60 scroll-py-1 focus:outline-none',
     group: 'p-1 isolate',
-    label: 'font-semibold color-text-highlighted',
+    label: 'font-600 color-text-highlighted',
     separator: '-mx-1 my-1 h-px bg-border',
     empty: 'text-center color-text-muted',
     loading: 'flex items-center justify-center color-text-muted',

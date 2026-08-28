@@ -33,7 +33,7 @@ const tabsValue = defineModel<string>('modelValue');
             :src="userInfo?.avatar ?? preferences.app.defaultAvatar"
             class="size-20"
           />
-          <span class="text-lg font-semibold">
+          <span class="text-lg font-600">
             {{ userInfo?.realName ?? '' }}
           </span>
           <span class="text-sm color-text/80">

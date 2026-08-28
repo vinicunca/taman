@@ -98,7 +98,7 @@ useScrollLock();
         class="size-full"
       >
         <div
-          class="group text-foreground/80 hover:text-foreground text-xl font-semibold flex-col-center cursor-pointer left-1/2 top-6 fixed z-2001 -translate-x-1/2"
+          class="group text-foreground/80 hover:text-foreground text-xl font-600 flex-col-center cursor-pointer left-1/2 top-6 fixed z-2001 -translate-x-1/2"
           @click="toggleUnlockForm"
         >
           <PIcon
@@ -113,7 +113,7 @@ useScrollLock();
               class="bg-accent text-[36px] rounded-xl flex-center h-35 w-35 relative md:text-[72px] sm:text-[42px] md:h-50 md:w-50 sm:h-40 sm:w-40"
             >
               <span
-                class="text-xs font-semibold left-3 top-3 absolute md:text-xl sm:text-sm"
+                class="text-xs font-600 left-3 top-3 absolute md:text-xl sm:text-sm"
               >
                 {{ meridiem }}
               </span>

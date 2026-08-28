@@ -13,7 +13,7 @@ export const pageCard = {
     footer: 'pt-4 mt-auto',
     leading: 'inline-flex items-center mb-2.5',
     leadingIcon: 'size-5 shrink-0 color-primary',
-    title: 'text-base text-pretty font-semibold color-text-highlighted',
+    title: 'text-base text-pretty font-600 color-text-highlighted',
     description: 'text-[15px] text-pretty',
   },
   variants: {

@@ -98,38 +98,44 @@ function handleSubmitLogout() {
 }
 
 // 快捷键
-if (preferences.shortcutKeys.enable) {
-  const keys = useMagicKeys();
-  const lockKey = keys['Alt+KeyL'];
-  const logoutKey = keys['Alt+KeyQ'];
+// if (preferences.shortcutKeys.enable) {
+//   const keys = useMagicKeys();
+//   const lockKey = keys['Alt+KeyL'];
+//   const logoutKey = keys['Alt+KeyQ'];
 
-  if (lockKey) {
-    whenever(lockKey, () => {
-      if (enableLockScreenShortcutKey.value) {
-        handleOpenLock();
-      }
-    });
-  }
+//   if (lockKey) {
+//     whenever(lockKey, () => {
+//       if (enableLockScreenShortcutKey.value) {
+//         handleOpenLock();
+//       }
+//     });
+//   }
 
-  if (logoutKey) {
-    whenever(logoutKey, () => {
-      if (enableLogoutShortcutKey.value) {
-        handleLogout();
-      }
-    });
-  }
-}
+//   if (logoutKey) {
+//     whenever(logoutKey, () => {
+//       if (enableLogoutShortcutKey.value) {
+//         handleLogout();
+//       }
+//     });
+//   }
+// }
 
 /**
- * 插槽列表类型
+ * Slot list type
  */
 interface SlotItem { index: number; name: string }
 
 const rightSlots = computed(() => {
   const list: Array<SlotItem> = [];
 
-  // 按 widget.order 顺序遍历，检查每个部件是否应在 header 中显示
-  const widgetChecks: Record<string, { slotName: string; visible: boolean }> = {
+  // Iterate through the widgets in the order specified by `widget.order` and check whether each widget should be displayed in the header.
+  const widgetChecks: Record<
+    string,
+    {
+      slotName: string;
+      visible: boolean;
+    }
+  > = {
     globalSearch: {
       visible:
         preferences.widget.globalSearch
@@ -176,26 +182,30 @@ const rightSlots = computed(() => {
         && preferences.widget.notificationButtonPosition === 'header',
       slotName: 'notification',
     },
-    lockScreenBtn: {
+    lockScreenButton: {
       visible:
         preferences.widget.lockScreen
         && preferences.widget.lockScreenButtonPosition === 'header',
-      slotName: 'lock-screen-btn',
+      slotName: 'lock-screen-button',
     },
-    logoutBtn: {
+    logoutButton: {
       visible: preferences.widget.logoutButtonPosition === 'header',
-      slotName: 'logout-btn',
+      slotName: 'logout-button',
     },
   };
 
   for (const key of preferences.widget.order) {
     const check = widgetChecks[key];
+
     if (check?.visible) {
-      list.push({ index: REFERENCE_VALUE + list.length, name: check.slotName });
+      list.push({
+        index: REFERENCE_VALUE + list.length,
+        name: check.slotName,
+      });
     }
   }
 
-  // 用户插槽（header-right-N）追加在后面
+  // Add user slots (header-right-N) at the end
   Object.keys(slots).forEach((key) => {
     if (key.startsWith('header-right')) {
       const slotIndex = Number(key.split('-')[2]);
@@ -203,10 +213,10 @@ const rightSlots = computed(() => {
       list.push({ index, name: key });
     }
   });
-  // 最后追加用户下拉框，若是索引值超过1000时则固定在1000（适配用户按钮不在最后的场景）
+  // Add the user dropdown at the end. If the index value exceeds 1000, it is fixed at 1000 (to accommodate the scenario where the user button is not at the end).
   const userDropdownIndex = Math.min(1000, nextIndex(list));
   list.push({ index: userDropdownIndex, name: 'user-dropdown' });
-  // 按照索引排序，保证插槽顺序
+  // Sort by index to ensure the slot order
   return list.toSorted((a, b) => a.index - b.index);
 });
 
@@ -214,21 +224,21 @@ const leftSlots = computed(() => {
   const list: Array<SlotItem> = [];
 
   Object.keys(slots).forEach((key) => {
-    // 适配插槽名称，例如第一个插槽名：header-left-1
+    // Adapt the slot name, for example the first slot name: header-left-1
     if (key.startsWith('header-left')) {
-      // 取第三个占位的数字，若是第三个占位不是数字，则自动分配排序索引
+      // Get the third placeholder number. If the third placeholder is not a number, the sort index is automatically assigned.
       const slotIndex = Number(key.split('-')[2]);
       const index = Number.isNaN(slotIndex) ? nextIndex(list) : slotIndex;
       list.push({ index, name: key });
     }
   });
-  // 按照索引排序，保证插槽顺序
+  // Sort by index to ensure the slot order
   return list.toSorted((a, b) => a.index - b.index);
 });
 
 /**
- * 获取列表下一个索引值(用于排序)
- * @param list 列表
+ * Get the next index value in the list (for sorting)
+ * @param list The list to get the next index value from
  */
 function nextIndex(list: Array<SlotItem>) {
   const index
@@ -269,38 +279,40 @@ function clearPreferencesAndLogout() {
   >
     <slot :name="slot.name">
       <template v-if="slot.name === 'refresh'">
-        <VbenIconButton
-          class="my-0 mr-1 rounded-md"
+        <TamanButtonIcon
+          icon="lucide:rotate-cw"
           @click="refresh"
-        >
-          <RotateCw class="size-4" />
-        </VbenIconButton>
+        />
       </template>
     </slot>
   </template>
+
   <div class="flex-center hidden lg:block">
     <slot name="breadcrumb" />
   </div>
+
   <template
     v-for="slot in leftSlots.filter((item) => item.index > REFERENCE_VALUE)"
     :key="slot.name"
   >
     <slot :name="slot.name" />
   </template>
+
   <div
     :class="`menu-align-${preferences.header.menuAlign}`"
     class="flex flex-1 h-full min-w-0 items-center"
   >
     <slot name="menu" />
   </div>
-  <div class="flex shrink-0 h-full min-w-0 items-center">
+
+  <div class="flex shrink-0 gap-1 h-full min-w-0 items-center">
     <template
       v-for="slot in rightSlots"
       :key="slot.name"
     >
       <slot :name="slot.name">
         <template v-if="slot.name === 'global-search'">
-          <GlobalSearch
+          <LayoutWidgetGlobalSearch
             :enable-shortcut-key="globalSearchShortcutKey"
             :menus="accessStore.accessMenus"
             class="mr-1 sm:mr-4"
@@ -308,75 +320,51 @@ function clearPreferencesAndLogout() {
         </template>
 
         <template v-else-if="slot.name === 'preferences'">
-          <VbenTooltip side="bottom">
-            <template #trigger>
-              <PreferencesButton
-                class="mr-1"
-                @clear-preferences-and-logout="clearPreferencesAndLogout"
-              />
-            </template>
-            {{ $t('preferences.title') }}
-          </VbenTooltip>
+          <LayoutWidgetPreferences @clear-preferences-and-logout="clearPreferencesAndLogout" />
         </template>
+
         <template v-else-if="slot.name === 'theme-toggle'">
-          <VbenTooltip side="bottom">
-            <template #trigger>
-              <ThemeToggle class="mr-1 mt-0.5" />
-            </template>
-            {{ $t('preferences.theme.title') }}
-          </VbenTooltip>
+          <LayoutWidgetThemeToggle />
         </template>
+
         <template v-else-if="slot.name === 'language-toggle'">
-          <VbenTooltip side="bottom">
-            <template #trigger>
-              <LanguageToggle class="mr-1" />
-            </template>
-            {{ $t('preferences.widget.languageToggle') }}
-          </VbenTooltip>
+          <LayoutWidgetLanguageToggle />
         </template>
+
         <template v-else-if="slot.name === 'fullscreen'">
-          <VbenFullScreen
-            class="mr-1"
-            :tooltip="$t('preferences.widget.fullscreen')"
+          <TamanFullScreen />
+        </template>
+
+        <template v-else-if="slot.name === 'timezone'">
+          <LayoutWidgetTimezoneButton />
+        </template>
+
+        <template v-else-if="slot.name === 'lock-screen-button'">
+          <TamanButtonIcon
+            :tooltip-text="$t('ui.widgets.lockScreen.title')"
+            icon="lucide:lock-keyhole"
+            @click="handleOpenLock"
           />
         </template>
-        <template v-else-if="slot.name === 'timezone'">
-          <TimezoneButton class="mr-1 mt-0.5" />
-        </template>
-        <template v-else-if="slot.name === 'lock-screen-btn'">
-          <VbenIconButton
+
+        <template v-else-if="slot.name === 'logout-button'">
+          <TamanButtonIcon
             class="mr-1"
-            :tooltip="$t('ui.widgets.lockScreen.title')"
-            @click="handleOpenLock"
-          >
-            <LockKeyhole class="size-4" />
-          </VbenIconButton>
-        </template>
-        <template v-else-if="slot.name === 'logout-btn'">
-          <VbenIconButton
-            class="mr-1"
-            :tooltip="$t('common.logout')"
+            :tooltip-text="$t('common.logout')"
+            icon="lucide:log-out"
             @click="handleLogout"
-          >
-            <LogOut class="size-4" />
-          </VbenIconButton>
+          />
         </template>
-        <template v-else-if="slot.name === 'notification'">
-          <VbenTooltip side="bottom">
-            <template #trigger>
-              <Notification class="mr-1" />
-            </template>
-            {{ $t('preferences.widget.notification') }}
-          </VbenTooltip>
-        </template>
+
+        <!-- <template v-else-if="slot.name === 'notification'">
+          <LayoutWidgetNotification />
+        </template> -->
+
         <template v-else-if="slot.name === 'refresh'">
-          <VbenIconButton
-            class="my-0 mr-1 rounded-md"
-            :tooltip="$t('preferences.widget.refresh')"
+          <TamanButtonIcon
+            icon="lucide:rotate-cw"
             @click="refresh"
-          >
-            <RotateCw class="size-4" />
-          </VbenIconButton>
+          />
         </template>
       </slot>
     </template>

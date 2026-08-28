@@ -1,96 +1,70 @@
 <script setup lang="ts">
 import { useTamanDialog } from '@taman-core/popup-ui';
+import { TamanButtonIcon } from '@taman-core/taman-ui';
 import { $t } from '@taman/locales';
-import { useTimezoneStore } from '@taman/stores';
-import { ref, unref } from 'vue';
+import { preferences, updatePreferences } from '@taman/preferences';
+import { getTimezoneOptions } from '@taman/utils';
+import PSelectMenu from 'pohon-ui/components/SelectMenu.vue';
+import { computed, ref, unref } from 'vue';
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     showButton?: boolean;
   }>(),
   { showButton: true },
 );
 
-const timezoneStore = useTimezoneStore();
-
 const timezoneRef = ref<string | undefined>();
+const timezoneOptions = computed(() =>
+  getTimezoneOptions(preferences.app.locale),
+);
 
-const timezoneOptionsRef = ref<
-  Array<{
-    label: string;
-    value: string;
-  }>
->([]);
-
-const [Modal, modalApi] = useVbenModal({
+const [DialogTimezone, dialogTimezoneApi] = useTamanDialog({
   fullscreenButton: false,
   onConfirm: async () => {
     try {
-      modalApi.setState({ confirmLoading: true });
+      dialogTimezoneApi.setState({ confirmLoading: true });
       const timezone = unref(timezoneRef);
       if (timezone) {
-        await timezoneStore.setTimezone(timezone);
+        updatePreferences({
+          app: { timezone },
+        });
       }
-      modalApi.close();
+      dialogTimezoneApi.close();
     } finally {
-      modalApi.setState({ confirmLoading: false });
+      dialogTimezoneApi.setState({ confirmLoading: false });
     }
   },
-  async onOpenChange(isOpen) {
+  onOpenChange(isOpen) {
     if (isOpen) {
-      timezoneRef.value = unref(timezoneStore.timezone);
-      timezoneOptionsRef.value = await timezoneStore.getTimezoneOptions();
+      timezoneRef.value = preferences.app.timezone;
     }
   },
 });
 
 function open() {
-  modalApi.open();
+  dialogTimezoneApi.open();
 }
 
 defineExpose({ open });
 </script>
 
 <template>
-  <div>
-    <VbenIconButton
-      v-if="showButton"
-      :tooltip="$t('ui.widgets.timezone.setTimezone')"
-      class="hover:animate-[shrink_0.3s_ease-in-out]"
-      @click="open"
-    >
-      <TimezoneIcon class="text-foreground size-4" />
-    </VbenIconButton>
-    <Modal :title="$t('ui.widgets.timezone.setTimezone')">
-      <div class="timezone-container">
-        <RadioGroup
-          v-model="timezoneRef"
-          class="flex flex-col gap-2"
-        >
-          <div
-            v-for="item in timezoneOptionsRef"
-            :key="`container${item.value}`"
-            class="flex gap-2 cursor-pointer items-center"
-          >
-            <RadioGroupItem
-              :id="item.value"
-              :value="item.value"
-            />
-            <label
-              :for="item.value"
-              class="cursor-pointer"
-            >{{
-              item.label
-            }}</label>
-          </div>
-        </RadioGroup>
-      </div>
-    </Modal>
-  </div>
-</template>
+  <TamanButtonIcon
+    v-if="props.showButton"
+    :tooltip-text="$t('ui.widgets.timezone.setTimezone')"
+    icon="fluent-mdl2:world-clock"
+    @click="open"
+  />
 
-<style scoped>
-.timezone-container {
-  @apply pl-5;
-}
-</style>
+  <DialogTimezone :title="$t('ui.widgets.timezone.setTimezone')">
+    <PSelectMenu
+      v-model="timezoneRef"
+      :filter-fields="['label', 'value']"
+      :items="timezoneOptions"
+      class="w-full"
+      value-key="value"
+      virtualize
+    />
+  </DialogTimezone>
+</template>

@@ -54,7 +54,7 @@ async function changeAccount(role: string) {
   >
     <Card class="mb-5">
       <template #title>
-        <span class="font-semibold">当前角色:</span>
+        <span class="font-600">当前角色:</span>
         <span class="text-lg text-primary mx-4">
           {{ userStore.userRoles?.[0] }}
         </span>

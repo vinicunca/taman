@@ -1,11 +1,12 @@
-import dayjs from 'dayjs';
-import timezone from 'dayjs/plugin/timezone.js';
-import utc from 'dayjs/plugin/utc.js';
+import type { ZonedDateTime } from '@internationalized/date';
+import {
+  getLocalTimeZone,
+  now,
+  parseAbsolute,
+  today,
+} from '@internationalized/date';
 
-dayjs.extend(utc);
-dayjs.extend(timezone);
-
-type FormatDate = Date | dayjs.Dayjs | number | string;
+type FormatDate = Date | number | string;
 
 type Format
   = | 'HH'
@@ -19,36 +20,42 @@ type Format
     | 'YYYY-MM-DD HH:mm:ss'
     | (string & {});
 
-export function formatDate(time?: FormatDate, format: Format = 'YYYY-MM-DD') {
+export interface TimezoneOption {
+  label: string;
+  offset: number;
+  value: string;
+}
+
+export function formatDate(time?: FormatDate | null, format: Format = 'YYYY-MM-DD') {
   if (time === undefined || time === null || time === '') {
     return '';
   }
+
   try {
-    const date = dayjs.isDayjs(time) ? time : dayjs(time);
-    if (!date.isValid()) {
-      throw new Error('Invalid date');
+    const date = time instanceof Date ? time : new Date(time);
+    if (Number.isNaN(date.getTime())) {
+      throw new TypeError('Invalid date');
     }
-    return date.tz().format(format);
+
+    const zoned = parseAbsolute(date.toISOString(), getCurrentTimezone());
+    return applyFormat(zoned, format);
   } catch (error) {
     console.error(`Error formatting date: ${error}`);
     return String(time ?? '');
   }
 }
 
-export function formatDateTime(time?: FormatDate) {
+export function formatDateTime(time?: FormatDate | null) {
   return formatDate(time, 'YYYY-MM-DD HH:mm:ss');
-}
-
-export function isDayjsObject(value: any): value is dayjs.Dayjs {
-  return dayjs.isDayjs(value);
 }
 
 /**
  * Gets the current system timezone.
  * @returns The current timezone.
+ * @see https://react-aria.adobe.com/internationalized/date/ZonedDateTime#getlocaltimezone
  */
 export function getSystemTimezone() {
-  return dayjs.tz.guess();
+  return getLocalTimeZone();
 }
 
 /**
@@ -57,12 +64,11 @@ export function getSystemTimezone() {
 let currentTimezone = getSystemTimezone();
 
 /**
- * Sets the default timezone.
+ * Sets the default timezone used by date formatters.
  * @param timezone
  */
 export function setCurrentTimezone(timezone?: string) {
   currentTimezone = timezone || getSystemTimezone();
-  dayjs.tz.setDefault(currentTimezone);
 }
 
 /**
@@ -71,4 +77,55 @@ export function setCurrentTimezone(timezone?: string) {
  */
 export function getCurrentTimezone() {
   return currentTimezone;
+}
+
+let timezoneOptionsCacheKey: string | undefined;
+let timezoneOptionsCache: Array<TimezoneOption> | undefined;
+
+/**
+ * Lists IANA timezones with localized offset labels.
+ * Cached per locale and local calendar date (offsets change with DST).
+ * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/supportedValuesOf
+ */
+export function getTimezoneOptions(locale = 'en-US'): Array<TimezoneOption> {
+  const cacheKey = `${locale}:${today(getLocalTimeZone()).toString()}`;
+  if (timezoneOptionsCache && timezoneOptionsCacheKey === cacheKey) {
+    return timezoneOptionsCache;
+  }
+
+  timezoneOptionsCache = Intl.supportedValuesOf('timeZone')
+    .map((timeZone) => {
+      const offsetName
+        = new Intl.DateTimeFormat(locale, {
+          timeZone,
+          timeZoneName: 'shortOffset',
+        })
+          .formatToParts(new Date())
+          .find((part) => part.type === 'timeZoneName')
+          ?.value ?? '';
+
+      return {
+        label: `${timeZone} (${offsetName})`,
+        offset: now(timeZone).offset,
+        value: timeZone,
+      };
+    })
+    .sort((a, b) => a.offset - b.offset || a.value.localeCompare(b.value));
+
+  timezoneOptionsCacheKey = cacheKey;
+  return timezoneOptionsCache;
+}
+
+function applyFormat(zoned: ZonedDateTime, format: string) {
+  return format
+    .replaceAll('YYYY', pad(zoned.year, 4))
+    .replaceAll('MM', pad(zoned.month))
+    .replaceAll('DD', pad(zoned.day))
+    .replaceAll('HH', pad(zoned.hour))
+    .replaceAll('mm', pad(zoned.minute))
+    .replaceAll('ss', pad(zoned.second));
+}
+
+function pad(value: number, length = 2) {
+  return String(value).padStart(length, '0');
 }

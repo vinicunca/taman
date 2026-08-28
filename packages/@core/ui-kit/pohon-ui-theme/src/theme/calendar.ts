@@ -15,7 +15,7 @@ export const calendar = {
     headCell: 'rounded-md',
     headCellWeek: 'rounded-md color-text-muted',
     cell: 'relative text-center',
-    cellTrigger: 'm-0.5 relative flex items-center justify-center rounded-full whitespace-nowrap focus-visible:ring-2 focus:outline-none data-disabled:color-text-muted data-unavailable:line-through data-unavailable:color-text-muted data-unavailable:pointer-events-none data-today:font-semibold data-[outside-view]:color-text-muted transition',
+    cellTrigger: 'm-0.5 relative flex items-center justify-center rounded-full whitespace-nowrap focus-visible:ring-2 focus:outline-none data-disabled:color-text-muted data-unavailable:line-through data-unavailable:color-text-muted data-unavailable:pointer-events-none data-today:font-600 data-[outside-view]:color-text-muted transition',
     cellWeek: 'relative text-center color-text-muted',
   },
   variants: {

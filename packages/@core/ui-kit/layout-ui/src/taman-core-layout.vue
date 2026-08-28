@@ -704,7 +704,7 @@ const layoutStaticHeaderTarget = `#${idLayoutStaticHeader}`;
         ref="contentRef"
         data-layout-region="scroll"
         :style="layoutScrollStyle"
-        class="bg-background-deep flex flex-1 flex-col min-h-0 overflow-x-hidden overflow-y-auto"
+        class="bg-background-accented flex flex-1 flex-col min-h-0 overflow-x-hidden overflow-y-auto"
       >
         <div
           :id="idLayoutStaticHeader"

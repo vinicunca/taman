@@ -10,7 +10,7 @@ export const table = {
     tbody: 'isolate [&>tr]:data-[selectable=true]:hover:bg-background-elevated/50 [&>tr]:data-[selectable=true]:focus-visible:outline-primary divide-y divide-divide [&>tr]:last:[&>td]:border-b-0',
     tfoot: 'relative',
     tr: 'data-[selected=true]:bg-background-elevated/50',
-    th: 'px-4 py-3.5 text-sm color-text-highlighted text-left rtl:text-right font-semibold [&:has([role=checkbox])]:pe-0 py-2 first:rounded-l-lg last:rounded-r-lg border-y border-border first:border-l last:border-r',
+    th: 'px-4 py-3.5 text-sm color-text-highlighted text-left rtl:text-right font-600 [&:has([role=checkbox])]:pe-0 py-2 first:rounded-l-lg last:rounded-r-lg border-y border-border first:border-l last:border-r',
     td: 'p-4 text-sm color-text-muted whitespace-nowrap [&:has([role=checkbox])]:pe-0 border-b border-border',
     separator: 'absolute z-1 left-0 w-full h-px bg-border-accented',
     empty: 'py-6 text-center text-sm color-text-muted',

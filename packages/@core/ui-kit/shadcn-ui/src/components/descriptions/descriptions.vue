@@ -64,7 +64,7 @@ const tableClass = computed(() =>
 <template>
   <div :class="cn('w-full', props.class)">
     <div v-if="hasHeader" class="mb-5 flex items-center justify-between gap-4">
-      <div class="text-base font-semibold color-text">
+      <div class="text-base font-600 color-text">
         <slot name="title">{{ title }}</slot>
       </div>
       <div class="color-text">

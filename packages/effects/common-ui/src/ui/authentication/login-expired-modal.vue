@@ -5,7 +5,7 @@ import { computed, watch } from 'vue';
 
 import { $t } from '@taman/locales';
 
-import { useVbenModal } from '@taman-core/popup-ui';
+import { useTamanDialog } from '@taman-core/popup-ui';
 import { Slot, VbenAvatar } from '@vben-core/shadcn-ui';
 
 interface Props extends AuthenticationProps {
@@ -24,7 +24,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const open = defineModel<boolean>('open');
 
-const [Modal, modalApi] = useVbenModal();
+const [Modal, modalApi] = useTamanDialog();
 
 watch(
   () => open.value,

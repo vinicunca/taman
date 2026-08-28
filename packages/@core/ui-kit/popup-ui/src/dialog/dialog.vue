@@ -3,16 +3,20 @@ import type { DialogProps, ExtendedDialogApi } from './dialog.types';
 import { usePriorityValues, useSimpleLocale } from '@taman-core/composables';
 import { DISMISSABLE_DIALOG_ID, ELEMENT_ID_MAIN_CONTENT } from '@taman-core/shared/constants';
 import {
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogRoot,
   DialogTitle,
+  TamanButtonIcon,
   TamanSpinner,
   VisuallyHidden,
 } from '@taman-core/taman-ui';
 import PButton from 'pohon-ui/components/Button.vue';
+import PTooltip from 'pohon-ui/components/Tooltip.vue';
+import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
 import {
   computed,
   nextTick,
@@ -27,6 +31,8 @@ import { useDialogDraggable } from './use-dialog-draggable';
 
 interface Props extends DialogProps {
   dialogApi?: ExtendedDialogApi;
+  closeDisabled?: boolean;
+  closeClass?: string;
 }
 
 const props = withDefaults(
@@ -35,6 +41,7 @@ const props = withDefaults(
     appendToMain: false,
     destroyOnClose: false,
     dialogApi: undefined,
+    closable: true,
   },
 );
 
@@ -240,12 +247,9 @@ function handleClosed() {
       :force-mount="getForceMount"
       :modal="modal"
       :open="state?.isOpen"
-      :show-close-button="closable"
       :animation-type="animationType"
       :z-index="zIndex"
       :overlay-blur="overlayBlur"
-      close-class="top-3"
-      :close-disabled="submitting"
       @close-auto-focus="handleCloseAutoFocus"
       @closed="handleClosed"
       @escape-key-down="handleEscapeKeydown"
@@ -257,46 +261,68 @@ function handleClosed() {
     >
       <DialogHeader
         ref="headerRef"
-        class="px-5 py-4"
+        class="justify-between"
         :class="
           [
             {
               'border-b': bordered,
               'hidden': !header,
               'cursor-move select-none': shouldDraggable,
+              'items-center': !description,
+              'items-start': description,
             },
             headerClass,
           ]
         "
       >
-        <DialogTitle
-          v-if="title"
-          class="text-left flex gap-1 items-center"
-        >
-          <slot name="title">
-            {{ title }}
+        <div class="flex flex-col gap-1">
+          <DialogTitle
+            v-if="title"
+            class="text-left flex gap-1 items-center"
+          >
+            <slot name="title">
+              {{ title }}
 
-            <slot
-              name="titleTooltip"
-            >
-              <PTooltip
-                v-if="titleTooltip"
-                :text="titleTooltip"
+              <slot
+                name="titleTooltip"
               >
-                <PIcon
-                  name="lucide:circle-help"
-                  class="color-text-muted"
-                />
-              </PTooltip>
+                <PTooltip
+                  v-if="titleTooltip"
+                  :text="titleTooltip"
+                >
+                  <PIcon
+                    name="lucide:circle-help"
+                    class="color-text-muted"
+                  />
+                </PTooltip>
+              </slot>
             </slot>
-          </slot>
-        </DialogTitle>
+          </DialogTitle>
 
-        <DialogDescription v-if="description">
-          <slot name="description">
-            {{ description }}
-          </slot>
-        </DialogDescription>
+          <DialogDescription v-if="description">
+            <slot name="description">
+              {{ description }}
+            </slot>
+          </DialogDescription>
+        </div>
+
+        <div class="flex-center">
+          <slot name="extra" />
+
+          <DialogClose
+            v-if="closable"
+            as-child
+            @click="handleClosed"
+          >
+            <TamanButtonIcon
+              :disabled="submitting"
+              :class="[
+                closeClass,
+              ]"
+              icon="lucide:x"
+            />
+          </DialogClose>
+        </div>
 
         <VisuallyHidden v-if="!title || !description">
           <DialogTitle v-if="!title" />

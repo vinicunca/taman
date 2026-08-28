@@ -1,6 +1,6 @@
 import type { Preferences } from './types';
 
-const defaultPreferences: Preferences = {
+export const defaultPreferences: Preferences = {
   app: {
     accessMode: 'frontend',
     authPageLayout: 'panel-right',
@@ -30,7 +30,7 @@ const defaultPreferences: Preferences = {
     loginExpiredMode: 'page',
     name: 'Taman Admin',
     preferencesButtonPosition: 'auto',
-    timezone: 'Asia/Shanghai',
+    timezone: 'Asia/Makassar',
     watermark: false,
     watermarkContent: '',
     zIndex: 200,
@@ -63,8 +63,9 @@ const defaultPreferences: Preferences = {
 
   logo: {
     enable: true,
-    fit: 'contain',
     source: '/logo-light.png',
+    showText: true,
+    logoMode: 'icon',
   },
   navigation: {
     accordion: true,
@@ -118,7 +119,7 @@ const defaultPreferences: Preferences = {
       success: 'oklch(0.7728 0.1523 154.19)',
       warning: 'oklch(0.8228 0.1423 85.03)',
       error: 'oklch(0.6586 0.2309 15.88)',
-      // neutral: 'hsl(212 100% 45%)',
+      neutral: 'oklch(0.5 0 0)',
     },
     radius: '0.5',
     fontSize: 16,
@@ -165,5 +166,3 @@ const defaultPreferences: Preferences = {
     ],
   },
 };
-
-export { defaultPreferences };

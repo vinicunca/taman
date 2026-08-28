@@ -66,13 +66,11 @@ describe('preferences', () => {
         locale: 'en-US',
       },
     };
+
     await preferenceManager.initPreferences({
       namespace: 'testNamespace',
       overrides,
     });
-
-    // Wait for debounced save (optional)
-    // await new Promise((resolve) => setTimeout(resolve, 300));
 
     const expected = {
       ...defaultPreferences,
@@ -130,6 +128,19 @@ describe('preferences', () => {
     });
 
     expect(preferenceManager.getPreferences().app.locale).toBe('en-US');
+  });
+
+  it('applies the timezone preference to date formatters', async () => {
+    const { getCurrentTimezone } = await import('@taman-core/shared/utils');
+
+    preferenceManager.updatePreferences({
+      app: { timezone: 'America/New_York' },
+    });
+
+    expect(preferenceManager.getPreferences().app.timezone).toBe(
+      'America/New_York',
+    );
+    expect(getCurrentTimezone()).toBe('America/New_York');
   });
 
   it('updates the sidebar width correctly', () => {
@@ -215,19 +226,6 @@ describe('preferences', () => {
     };
 
     expect(preferenceManager.getPreferences()).toEqual(expected);
-  });
-
-  it('applies updates immediately after initialization', async () => {
-    const overrides: any = {
-      app: {
-        locale: 'en-US',
-      },
-    };
-
-    await preferenceManager.initPreferences({
-      namespace: 'apply-updates',
-      overrides,
-    });
   });
 
   it('initializes custom preferences extension with default values', async () => {

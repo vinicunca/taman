@@ -15,7 +15,6 @@ import {
 import {
   useAccessStore,
   useTabbarStore,
-  useTimezoneStore,
 } from '@taman/stores';
 import { clone, mapTree } from '@taman/utils';
 import { computed, onMounted, useSlots, watch } from 'vue';
@@ -95,7 +94,6 @@ const {
   theme,
 } = usePreferences();
 const accessStore = useAccessStore();
-const timezoneStore = useTimezoneStore();
 const { refresh } = useRefresh();
 const layoutScrollTarget = `#${ELEMENT_ID_LAYOUT_SCROLL}`;
 
@@ -273,7 +271,11 @@ function refreshAll() {
 watch(i18n.global.locale, refreshAll, { flush: 'post' });
 
 // Refresh the page after timezone changes
-watch(() => timezoneStore.timezone, refreshAll, { flush: 'post' });
+watch(
+  () => preferences.app.timezone,
+  refreshAll,
+  { flush: 'post' },
+);
 
 const slots: SetupContext['slots'] = useSlots();
 const headerSlots = computed(() => {

@@ -17,6 +17,7 @@ import {
   isNumber,
   isString,
   mergeWithArrayOverride,
+  setCurrentTimezone,
 } from '@taman-core/shared/utils';
 import { useDebounceFn } from '@vueuse/core';
 import { markRaw, reactive, readonly, watch } from 'vue';
@@ -251,6 +252,10 @@ class PreferenceManager {
       && (Reflect.has(app, 'colorGrayMode') || Reflect.has(app, 'colorWeakMode'))
     ) {
       this.updateColorMode(this.state);
+    }
+
+    if (app && Reflect.has(app, 'timezone')) {
+      setCurrentTimezone(app.timezone);
     }
   }
 

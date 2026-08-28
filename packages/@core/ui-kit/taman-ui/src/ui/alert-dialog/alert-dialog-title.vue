@@ -16,7 +16,7 @@ const delegatedProps = reactiveOmit(props, 'class');
   <AlertDialogTitle
     data-slot="alert-dialog-title"
     v-bind="delegatedProps"
-    class="text-lg font-semibold"
+    class="text-lg font-600"
     :class="[props.class]"
   >
     <slot />

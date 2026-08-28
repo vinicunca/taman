@@ -15,7 +15,7 @@
         rx="4"
       />
       <path
-        fill="var(--ui-primary)"
+        fill="var(--taman-color-primary)"
         d="M-3.37838 3.7543A1.93401 4.02457 0 0 1-1.44437-.27027h11.3488v66.40541h-11.3488a1.93401 4.02457 0 0 1-1.93401-4.02457z"
       />
       <rect
@@ -39,7 +39,7 @@
         height="9.07027"
         x="25.38277"
         y="1.42876"
-        fill="var(--ui-primary)"
+        fill="var(--taman-color-primary)"
         rx="2"
       />
       <rect

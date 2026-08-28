@@ -42,7 +42,7 @@ export const pageSection = {
     },
     headline: {
       true: {
-        headline: 'font-semibold color-primary flex items-center gap-1.5',
+        headline: 'font-600 color-primary flex items-center gap-1.5',
       },
     },
     title: {

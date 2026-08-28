@@ -10,7 +10,7 @@ export const changelogVersion = {
     meta: 'flex items-center gap-3 mb-2',
     date: 'text-sm/6 color-text-toned truncate',
     badge: '',
-    title: 'relative text-xl text-pretty font-semibold color-text-highlighted',
+    title: 'relative text-xl text-pretty font-600 color-text-highlighted',
     description: 'text-base text-pretty color-text-muted mt-1',
     imageWrapper: 'relative overflow-hidden rounded-lg aspect-[16/9] mt-5 group/changelog-version-image',
     image: 'object-cover object-top w-full h-full',

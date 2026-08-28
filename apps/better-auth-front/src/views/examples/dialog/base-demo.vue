@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { useVbenModal } from '@taman/common-ui';
+import { useTamanDialog } from '@taman/common-ui';
 import { Button, message } from 'antdv-next';
 
-const [Modal, modalApi] = useVbenModal({
+const [Modal, modalApi] = useTamanDialog({
   onCancel() {
     modalApi.close();
   },

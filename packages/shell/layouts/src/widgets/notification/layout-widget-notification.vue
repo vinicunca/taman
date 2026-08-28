@@ -116,7 +116,7 @@ defineExpose({ toggle });
                   >
                 </span>
                 <div class="leading-none flex flex-col gap-1">
-                  <p class="font-semibold">
+                  <p class="font-600">
                     {{ item.title }}
                   </p>
                   <p class="text-muted-foreground text-xs my-1 line-clamp-2">

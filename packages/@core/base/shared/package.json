@@ -50,11 +50,11 @@
   "dependencies": {
     "@colordx/core": "catalog:",
     "@ctrl/tinycolor": "catalog:",
+    "@internationalized/date": "catalog:",
     "@tanstack/vue-store": "catalog:",
     "@vinicunca/perkakas": "catalog:",
     "@vue/shared": "catalog:",
     "clsx": "catalog:",
-    "dayjs": "catalog:",
     "defu": "catalog:",
     "es-toolkit": "catalog:",
     "nprogress": "catalog:",

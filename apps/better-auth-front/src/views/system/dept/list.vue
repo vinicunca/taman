@@ -5,7 +5,7 @@ import type {
 } from '#/adapter/vxe-table';
 import type { SystemDeptApi } from '#/api/system/dept';
 
-import { Page, useVbenModal } from '@taman/common-ui';
+import { Page, useTamanDialog } from '@taman/common-ui';
 import { Plus } from '@vben/icons';
 
 import { Button, message } from 'antdv-next';
@@ -17,7 +17,7 @@ import { $t } from '#/locales';
 import { useColumns } from './data';
 import Form from './modules/form.vue';
 
-const [FormModal, formModalApi] = useVbenModal({
+const [FormModal, formModalApi] = useTamanDialog({
   connectedComponent: Form,
   destroyOnClose: true,
 });

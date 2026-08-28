@@ -9,7 +9,7 @@ export const drawer = {
     handle: 'shrink-0 !bg-background-accented transition-opacity',
     container: 'w-full flex flex-col gap-4 p-4 overflow-y-auto',
     header: '',
-    title: 'color-text-highlighted font-semibold',
+    title: 'color-text-highlighted font-600',
     description: 'mt-1 color-text-muted text-sm',
     body: 'flex-1',
     footer: 'flex flex-col gap-1.5',
