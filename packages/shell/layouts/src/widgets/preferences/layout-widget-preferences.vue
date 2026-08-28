@@ -4,6 +4,7 @@ import { TamanButtonIcon } from '@taman-core/taman-ui';
 import { loadLocaleMessages } from '@taman/locales';
 import { preferences, updatePreferences } from '@taman/preferences';
 import { capitalize } from '@vinicunca/perkakas';
+import PButton from 'pohon-ui/components/Button.vue';
 import { computed } from 'vue';
 import WidgetPreferencesDrawer from './layout-widget-preferences-drawer.vue';
 

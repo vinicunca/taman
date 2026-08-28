@@ -4,7 +4,7 @@ import type { LayoutAuthToolbarType } from './layout.auth.types';
 import { preferences, usePreferences } from '@taman/preferences';
 import { computed } from 'vue';
 
-import { LayoutCoreCopyright } from '../core/copyright';
+import LayoutCoreCopyright from '../core/layout-core-copyright.vue';
 import LayoutAuthForm from './layout-auth-form.vue';
 import LayoutAuthSlogan from './layout-auth-slogan.vue';
 import LayoutAuthToolbar from './layout-auth-toolbar.vue';

@@ -5,10 +5,10 @@ import { preferences } from '@taman/preferences';
 import { computed } from 'vue';
 
 import {
+  LayoutWidgetLanguageToggle,
+  LayoutWidgetThemeToggle,
   WidgetAuthLayoutToggle,
   WidgetColorToggle,
-  WidgetLanguageToggle,
-  WidgetThemeToggle,
 } from '../widgets';
 
 interface Props {
@@ -44,7 +44,7 @@ const showTheme = computed(() => props.toolbarList.includes('theme'));
       <WidgetAuthLayoutToggle v-if="showLayout" />
     </div>
 
-    <WidgetLanguageToggle v-if="showLanguage && preferences.widget.languageToggle" />
-    <WidgetThemeToggle v-if="showTheme && preferences.widget.themeToggle" />
+    <LayoutWidgetLanguageToggle v-if="showLanguage && preferences.widget.languageToggle" />
+    <LayoutWidgetThemeToggle v-if="showTheme && preferences.widget.themeToggle" />
   </div>
 </template>

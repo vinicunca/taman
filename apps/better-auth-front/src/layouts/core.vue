@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { DropdownMenuItem } from 'pohon-ui';
 import {
-  CoreLayout,
-  LockScreen,
-  UserDropdown,
+  LayoutCore,
+  // LockScreen,
+  // UserDropdown,
 } from '@taman/layouts';
 import { useTabbarStore } from '@taman/stores';
 import { computed } from 'vue';
@@ -34,7 +34,7 @@ async function handleLogout() {
 </script>
 
 <template>
-  <CoreLayout
+  <LayoutCore
     @clear-preferences-and-logout="handleLogout"
   >
     <template #user-dropdown>
@@ -61,5 +61,5 @@ async function handleLogout() {
         @to-login="handleLogout"
       />
     </template>
-  </CoreLayout>
+  </LayoutCore>
 </template>

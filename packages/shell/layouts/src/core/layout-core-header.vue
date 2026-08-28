@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { tamanConfirm } from '@taman-core/popup-ui';
+import { tamanConfirm, useTamanDialog } from '@taman-core/popup-ui';
 import { TamanButtonIcon, TamanFullScreen } from '@taman-core/taman-ui';
 import { useRefresh } from '@taman/composables';
 import { $t } from '@taman/locales';
@@ -8,17 +8,17 @@ import { useAccessStore } from '@taman/stores';
 import { computed, useSlots } from 'vue';
 
 import {
-  GlobalSearch,
-  LanguageToggle,
-  LockScreenModal,
-  Notification,
-  PreferencesButton,
-  ThemeToggle,
-  TimezoneButton,
+  LayoutWidgetGlobalSearch,
+  LayoutWidgetLanguageToggle,
+  LayoutWidgetLockScreenModal,
+  LayoutWidgetNotification,
+  LayoutWidgetPreferences,
+  LayoutWidgetThemeToggle,
+  LayoutWidgetTimezoneButton,
 } from '../widgets';
 
 defineOptions({
-  name: 'LayoutHeader',
+  name: 'LayoutCoreHeader',
 });
 
 withDefaults(
@@ -70,10 +70,10 @@ const enableLogoutShortcutKey = computed(() => {
   return showLogoutInHeader.value && globalLogoutShortcutKey.value;
 });
 
-const [LockModal, lockModalApi] = useVbenModal({
-  connectedComponent: LockScreenModal,
+const [LockModal, lockModalApi] = useTamanDialog({
+  connectedComponent: LayoutWidgetLockScreenModal,
 });
-const [LogoutModal, logoutModalApi] = useVbenModal({
+const [LogoutModal, logoutModalApi] = useTamanDialog({
   onConfirm() {
     handleSubmitLogout();
   },

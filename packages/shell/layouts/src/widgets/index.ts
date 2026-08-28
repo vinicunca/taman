@@ -1,7 +1,11 @@
 export { default as LayoutWidgetBreadcrumb } from './layout-widget-breadcrumb.vue';
 export { default as LayoutWidgetCheckUpdates } from './layout-widget-check-updates.vue';
+export { default as LayoutWidgetGlobalSearch } from './layout-widget-global-search.vue';
+export { default as LayoutWidgetLanguageToggle } from './layout-widget-language-toggle.vue';
+export { default as LayoutWidgetThemeToggle } from './layout-widget-theme-toggle.vue';
+export { default as LayoutWidgetTimezoneButton } from './layout-widget-timezone-button.vue';
+export * from './lock-screen';
+export * from './notification';
 export * from './preferences';
 export { default as WidgetAuthLayoutToggle } from './widget-auth-layout-toggle.vue';
 export { default as WidgetColorToggle } from './widget-color-toggle.vue';
-export { default as WidgetLanguageToggle } from './widget-language-toggle.vue';
-export { default as WidgetThemeToggle } from './widget-theme-toggle.vue';
