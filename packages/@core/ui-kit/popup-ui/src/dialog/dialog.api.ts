@@ -3,10 +3,10 @@ import type { DialogApiOptions, DialogState } from './dialog.types';
 import { Store } from '@taman-core/shared/store';
 import { bindMethods, isFunction } from '@taman-core/shared/utils';
 
-export class DialogApi {
+export class DialogApi<TData = unknown> {
   // Shared data
-  public sharedData: Record<'payload', any> = {
-    payload: {},
+  public sharedData: Record<'payload', TData | undefined> = {
+    payload: undefined,
   };
 
   public store: Store<DialogState>;
@@ -21,12 +21,8 @@ export class DialogApi {
     | 'onOpened'
   >;
 
-  // private prevState!: ModalState;
+  // private prevState!: DialogState;
   private state!: DialogState;
-
-  private openPromise: Promise<unknown> | undefined;
-
-  private openResolver: ((value: unknown) => void) | undefined;
 
   constructor(options: DialogApiOptions = {}) {
     const {
@@ -99,23 +95,20 @@ export class DialogApi {
    * Close dialog
    * @description When closing the dialog, the onBeforeClose hook function is called. If onBeforeClose returns false, the dialog will not be closed. Otherwise, the pending open() promise resolves with `result`.
    */
-  async close(result?: unknown) {
+  async close() {
+    // Check if the dialog can be closed by calling the onBeforeClose hook function
+    // If onBeforeClose returns false, the dialog will not be closed.
     const allowClose = (await this.api.onBeforeClose?.()) ?? true;
-    if (!allowClose) {
-      return;
+    if (allowClose) {
+      this.store.setState((prev) => ({
+        ...prev,
+        isOpen: false,
+      }));
     }
-    this.store.setState((prev) => ({
-      ...prev,
-      isOpen: false,
-    }));
-    const resolve = this.openResolver;
-    this.openPromise = undefined;
-    this.openResolver = undefined;
-    resolve?.(result);
   }
 
-  getData<T extends object = Record<string, any>>() {
-    return (this.sharedData?.payload ?? {}) as T;
+  getData(): TData | undefined {
+    return this.sharedData.payload;
   }
 
   /**
@@ -163,25 +156,15 @@ export class DialogApi {
     }
   }
 
-  /**
-   * Open dialog
-   * @description Returns a promise that resolves with the value passed to close(result), or undefined when the dialog is dismissed. Repeated calls while open return the same pending promise.
-   */
-  open<T = unknown>(): Promise<T | undefined> {
-    if (!this.openPromise) {
-      this.openPromise = new Promise<unknown>((resolve) => {
-        this.openResolver = resolve;
-      });
-    }
+  open() {
     this.store.setState((prev) => ({
       ...prev,
       isOpen: true,
       submitting: false,
     }));
-    return this.openPromise as Promise<T | undefined>;
   }
 
-  setData<T>(payload: T) {
+  setData(payload: TData) {
     this.sharedData.payload = payload;
     return this;
   }

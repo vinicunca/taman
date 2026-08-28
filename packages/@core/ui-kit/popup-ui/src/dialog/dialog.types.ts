@@ -1,5 +1,5 @@
-import type { ClassType, MaybePromise } from '@taman-core/typings';
-import type { Component, Ref } from 'vue';
+import type { MaybePromise } from '@taman-core/typings';
+import type { Component, HTMLAttributes, Ref } from 'vue';
 
 import type { DialogApi } from './dialog.api';
 
@@ -29,7 +29,7 @@ export interface DialogProps {
    */
   centered?: boolean;
 
-  class?: ClassType;
+  class?: HTMLAttributes['class'];
 
   /**
    * Whether to show the close button in the top-right corner
@@ -59,7 +59,7 @@ export interface DialogProps {
    * Confirm button text
    */
   confirmText?: string;
-  contentClass?: ClassType;
+  contentClass?: HTMLAttributes['class'];
   /**
    * Modal description
    */
@@ -78,7 +78,7 @@ export interface DialogProps {
    * @default true
    */
   footer?: boolean;
-  footerClass?: ClassType;
+  footerClass?: HTMLAttributes['class'];
   /**
    * Whether the modal is fullscreen
    * @default false
@@ -94,7 +94,7 @@ export interface DialogProps {
    * @default true
    */
   header?: boolean;
-  headerClass?: ClassType;
+  headerClass?: HTMLAttributes['class'];
   /**
    * Modal loading state
    * @default false
@@ -149,23 +149,36 @@ export interface DialogProps {
 export interface DialogState extends DialogProps {
   /** Modal open state */
   isOpen?: boolean;
-  /**
-   * Shared data
-   */
-  sharedData?: Record<string, any>;
 }
 
-export type ExtendedDialogApi = DialogApi & {
+export type ExtendedDialogApi<TData = unknown> = DialogApi<TData> & {
   useStore: <T = NoInfer<DialogState>>(
     selector?: (state: NoInfer<DialogState>) => T,
   ) => Readonly<Ref<T>>;
 };
 
-export interface DialogApiOptions extends DialogState {
+type DialogComponentInstance<TComponent extends Component>
+  = TComponent extends abstract new (...args: Array<any>) => infer TInstance
+    ? TInstance
+    : never;
+
+export type InferDialogData<TComponent extends Component> = [
+  DialogComponentInstance<TComponent>,
+] extends [never]
+  ? unknown
+  : DialogComponentInstance<TComponent> extends {
+    dialogApi: ExtendedDialogApi<infer TData>;
+  }
+    ? TData
+    : unknown;
+
+export interface DialogApiOptions<
+  TConnectedComponent extends Component = Component,
+> extends DialogState {
   /**
    * Standalone modal component
    */
-  connectedComponent?: Component;
+  connectedComponent?: TConnectedComponent;
   /**
    * Callback before close; return false to prevent closing
    * @returns

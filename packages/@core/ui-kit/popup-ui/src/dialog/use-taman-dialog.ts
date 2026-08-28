@@ -4,138 +4,163 @@ import type {
   DialogApiOptions,
   DialogProps,
   ExtendedDialogApi,
+  InferDialogData,
 } from './dialog.types';
 
+import { usePreferences } from '@taman-core/preferences';
 import { useSelector } from '@taman-core/shared/store';
 import {
   defineComponent,
-  getCurrentScope,
   h,
   inject,
+  markRaw,
   nextTick,
-  onDeactivated,
-  onScopeDispose,
+  onBeforeUnmount,
   provide,
-  reactive,
   ref,
+  shallowReactive,
 } from 'vue';
-
 import { DialogApi } from './dialog.api';
-import { dialogDefaults } from './dialog.defaults';
-import { registerDialog, unregisterDialog } from './dialog.registry';
 import DialogComponent from './dialog.vue';
 
 const TAMAN_DIALOG_INJECT_KEY = Symbol('TAMAN_DIALOG_INJECT');
 
-/**
- * Caller side: registers `connectedComponent` with the global
- * <TamanDialogProvider /> and returns the api. No template tag needed.
- */
-export function useTamanDialog(
-  options: DialogApiOptions & { connectedComponent: Component },
-): ExtendedDialogApi;
-/**
- * Content-component side: returns [Dialog, api]; render <Dialog> in the
- * content component's own template to get the chrome.
- */
-export function useTamanDialog(
-  options?: Omit<DialogApiOptions, 'connectedComponent'>,
-): readonly [Component, ExtendedDialogApi];
-export function useTamanDialog(options: DialogApiOptions = {}): any {
+declare const DIALOG_DATA_NOT_PROVIDED: unique symbol;
+
+interface DialogDataNotProvided {
+  readonly [DIALOG_DATA_NOT_PROVIDED]: true;
+}
+
+type ResolvedDialogData<
+  TData,
+  TConnectedComponent extends Component,
+> = TData extends DialogDataNotProvided
+  ? InferDialogData<TConnectedComponent>
+  : TData;
+
+interface DialogInjectData<TData> {
+  consumed?: boolean;
+  extendApi?: (api: ExtendedDialogApi<TData>) => void;
+  options?: DialogApiOptions;
+  reCreateModal?: () => Promise<void>;
+}
+
+const { globalEscapeShortcutKey } = usePreferences();
+
+const DEFAULT_DIALOG_PROPS: Partial<DialogProps> = {};
+
+export function setDefaultDialogProps(props: Partial<DialogProps>) {
+  Object.assign(DEFAULT_DIALOG_PROPS, props);
+}
+
+export function useTamanDialog<
+  TData = DialogDataNotProvided,
+  TConnectedComponent extends Component = Component,
+>(options: DialogApiOptions<TConnectedComponent> = {}) {
+  type TResolvedData = ResolvedDialogData<TData, TConnectedComponent>;
+
+  // The Modal component is typically extracted into a separate module; if a `connectedComponent` is passed,
+  // it indicates an external invocation that connects to the internal component.
+  // The external Modal passes the API via provide/inject.
+
+  const defaultOptions = {
+    closeOnPressEscape: globalEscapeShortcutKey.value,
+    ...options,
+  };
+
   const { connectedComponent } = options;
 
   if (connectedComponent) {
-    const id = Symbol('TamanDialog');
-    const hasRendered = ref(false);
+    const extendedApi = shallowReactive({}) as ExtendedDialogApi<TResolvedData>;
     const isDialogReady = ref(true);
-
-    const extendedApi = reactive({});
-    Object.setPrototypeOf(extendedApi, {
-      open() {
-        if (hasRendered.value) {
-          console.warn(
-            '[Taman Dialog]: the connected component never completed the dialog handshake — it must call useTamanDialog() with no arguments and render the returned <Dialog>. open() will resolve undefined until it does.',
-          );
-        } else {
-          console.warn(
-            '[Taman Dialog]: open() was called before <TamanDialogProvider /> rendered this dialog. Mount <TamanDialogProvider /> once in your root App component.',
-          );
+    const Dialog = defineComponent(
+      (props: DialogProps, { attrs, slots }) => {
+        function rebindApi(api: ExtendedDialogApi<TResolvedData>) {
+          Object.setPrototypeOf(extendedApi, markRaw(api));
         }
-        return Promise.resolve(undefined);
-      },
-    });
 
-    const Connector = defineComponent(
-      () => {
-        hasRendered.value = true;
-        provide(TAMAN_DIALOG_INJECT_KEY, {
-          extendApi(api: ExtendedDialogApi) {
-            // Do not assign directly to reactive; reactivity would be lost.
-            // Do not use Object.assign; prototype methods would be lost.
-            Object.setPrototypeOf(extendedApi, api);
+        provide(
+          TAMAN_DIALOG_INJECT_KEY,
+          {
+            extendApi: rebindApi,
+            consumed: false,
+            options: defaultOptions,
+            async reCreateDialog() {
+              isDialogReady.value = false;
+              await nextTick();
+              isDialogReady.value = true;
+            },
           },
-          consumed: false,
-          options,
-          async reCreateModal() {
-            isDialogReady.value = false;
-            await nextTick();
-            isDialogReady.value = true;
-          },
+        );
+
+        checkProps(extendedApi, {
+          ...props,
+          ...attrs,
+          ...slots,
         });
-        return () => h(isDialogReady.value ? connectedComponent : 'div');
+
+        return () =>
+          h(
+            isDialogReady.value ? connectedComponent : 'div',
+            {
+              ...props,
+              ...attrs,
+            },
+            slots,
+          );
       },
+
       {
-        name: 'TamanDialogConnector',
+        name: 'TamanParentDialog',
         inheritAttrs: false,
       },
     );
 
-    registerDialog(id, Connector);
-    if (getCurrentScope()) {
-      onScopeDispose(() => unregisterDialog(id));
-      onDeactivated(() => {
-        (extendedApi as ExtendedDialogApi).close?.();
-      });
-    } else {
-      console.warn(
-        '[Taman Dialog]: useTamanDialog({ connectedComponent }) was called outside an effect scope, so this dialog will never be unregistered. Call it inside a component setup (or an effectScope()).',
-      );
+    return [Dialog, extendedApi] as const;
+  }
+
+  const injectData = inject<DialogInjectData<TResolvedData>>(
+    TAMAN_DIALOG_INJECT_KEY,
+    {},
+  );
+  const isConsumed = injectData.consumed;
+  const effectiveOptions = isConsumed ? {} : injectData.options;
+  if (!isConsumed && injectData.consumed !== undefined) {
+    injectData.consumed = true;
+  }
+  onBeforeUnmount(() => {
+    if (!isConsumed && injectData.consumed !== undefined) {
+      injectData.consumed = false;
     }
-
-    return extendedApi as ExtendedDialogApi;
-  }
-
-  const injectData = inject<any>(TAMAN_DIALOG_INJECT_KEY, {});
-  if (!injectData.extendApi || injectData.consumed) {
-    throw new Error(
-      '[Taman Dialog]: useTamanDialog requires `connectedComponent`. Dialog bodies are standalone components rendered by <TamanDialogProvider />; nested dialogs must register their own connectedComponent.',
-    );
-  }
-  injectData.consumed = true;
+  });
 
   const mergedOptions = {
-    ...dialogDefaults,
-    ...injectData.options,
-    ...options,
+    ...DEFAULT_DIALOG_PROPS,
+    ...effectiveOptions,
+    ...defaultOptions,
   } as DialogApiOptions;
 
   mergedOptions.onOpenChange = (isOpen: boolean) => {
     options.onOpenChange?.(isOpen);
-    injectData.options?.onOpenChange?.(isOpen);
+    if (!isConsumed) {
+      injectData.options?.onOpenChange?.(isOpen);
+    }
   };
 
   const onClosed = mergedOptions.onClosed;
   mergedOptions.onClosed = () => {
     onClosed?.();
-    if (mergedOptions.destroyOnClose) {
-      injectData.consumed = false;
+    if (mergedOptions.destroyOnClose && !isConsumed) {
+      if (injectData.consumed !== undefined) {
+        injectData.consumed = false;
+      }
       injectData.reCreateModal?.();
     }
   };
 
-  const api = new DialogApi(mergedOptions);
+  const api = new DialogApi<TResolvedData>(mergedOptions);
 
-  const extendedApi: ExtendedDialogApi = api as never;
+  const extendedApi = api as ExtendedDialogApi<TResolvedData>;
 
   extendedApi.useStore = (selector) => {
     return useSelector(api.store, selector);
@@ -154,13 +179,49 @@ export function useTamanDialog(options: DialogApiOptions = {}): any {
           slots,
         );
     },
+
     {
       name: 'TamanDialog',
       inheritAttrs: false,
     },
   );
-
-  injectData.extendApi(extendedApi);
+  injectData.extendApi?.(extendedApi);
 
   return [Dialog, extendedApi] as const;
+}
+
+export function createTamanDialog<TData = unknown>() {
+  return function useTypedTamanDialog<
+    TConnectedComponent extends Component = Component,
+  >(options: DialogApiOptions<TConnectedComponent> = {}) {
+    return useTamanDialog<TData, TConnectedComponent>(options);
+  };
+}
+
+async function checkProps<TData>(
+  api: ExtendedDialogApi<TData>,
+  attrs: Record<string, any>,
+) {
+  if (!attrs || Object.keys(attrs).length === 0) {
+    return;
+  }
+
+  await nextTick();
+
+  const state = api?.store?.state;
+
+  if (!state) {
+    return;
+  }
+
+  const stateKeys = new Set(Object.keys(state));
+
+  for (const attr of Object.keys(attrs)) {
+    if (stateKeys.has(attr) && !['class'].includes(attr)) {
+      // When a `connectedComponent` is present, do not pass props to the `Dialog` directly, as this increases complexity; if you need to modify the `Dialog`'s props, please use `useTamanDialog` or the API instead.
+      console.warn(
+        `[Taman Dialog]: When 'connectedComponent' exists, do not set props or slots '${attr}', which will increase complexity. If you need to modify the props of Modal, please use useTamanDialog or api.`,
+      );
+    }
+  }
 }

@@ -1,31 +1,31 @@
 import type { Component, Ref } from 'vue';
 
-import type { ClassType, MaybePromise } from '@taman-core/typings';
+import type { ClassType, MaybePromise } from '@vben-core/typings';
 
 import type { ModalApi } from './modal-api';
 
 export interface ModalProps {
   /**
-   * Animation type
+   * 动画类型
    * @default 'slide'
    */
   animationType?: 'scale' | 'slide';
   /**
-   * Whether to mount to the content area
+   * 是否要挂载到内容区域
    * @default false
    */
   appendToMain?: boolean;
   /**
-   * Whether to show a border
+   * 是否显示边框
    * @default false
    */
   bordered?: boolean;
   /**
-   * Cancel button text
+   * 取消按钮文字
    */
   cancelText?: string;
   /**
-   * Whether to center the modal
+   * 是否居中
    * @default false
    */
   centered?: boolean;
@@ -33,166 +33,179 @@ export interface ModalProps {
   class?: ClassType;
 
   /**
-   * Whether to show the close button in the top-right corner
+   * 是否显示右上角的关闭按钮
    * @default true
    */
   closable?: boolean;
   /**
-   * Whether clicking the overlay closes the modal
+   * 点击弹窗遮罩是否关闭弹窗
    * @default true
    */
   closeOnClickModal?: boolean;
   /**
-   * Whether pressing ESC closes the modal
+   * 按下 ESC 键是否关闭弹窗
    * @default true
    */
   closeOnPressEscape?: boolean;
   /**
-   * Disable the confirm button
+   * 禁用确认按钮
    */
   confirmDisabled?: boolean;
   /**
-   * Confirm button loading state
+   * 确定按钮 loading
    * @default false
    */
   confirmLoading?: boolean;
   /**
-   * Confirm button text
+   * 确定按钮文字
    */
   confirmText?: string;
   contentClass?: ClassType;
   /**
-   * Modal description
+   * 弹窗描述
    */
   description?: string;
   /**
-   * Destroy modal on close
+   * 在关闭时销毁弹窗
    */
   destroyOnClose?: boolean;
   /**
-   * Whether the modal is draggable
+   * 是否可拖拽
    * @default false
    */
   draggable?: boolean;
   /**
-   * Whether to show the footer
+   * 是否显示底部
    * @default true
    */
   footer?: boolean;
   footerClass?: ClassType;
   /**
-   * Whether the modal is fullscreen
+   * 是否全屏
    * @default false
    */
   fullscreen?: boolean;
   /**
-   * Whether to show the fullscreen button
+   * 是否显示全屏按钮
    * @default true
    */
   fullscreenButton?: boolean;
   /**
-   * Whether to show the header
+   * 是否显示顶栏
    * @default true
    */
   header?: boolean;
   headerClass?: ClassType;
   /**
-   * Modal loading state
+   * 弹窗加载状态
    * @default false
    */
   loading?: boolean;
   /**
-   * Whether to show the overlay
+   * 是否显示遮罩
    * @default true
    */
   modal?: boolean;
   /**
-   * Whether to auto-focus on open
+   * 是否自动聚焦
    */
   openAutoFocus?: boolean;
   /**
-   * Whether dragging can exceed the viewport
+   * 拖动范围是否可以超出可视区
    * @default false
    */
   overflow?: boolean;
   /**
-   * Overlay blur effect
+   * 弹窗遮罩模糊效果
    */
   overlayBlur?: number;
   /**
-   * Whether to show the cancel button
+   * 是否显示取消按钮
    * @default true
    */
   showCancelButton?: boolean;
   /**
-   * Whether to show the confirm button
+   * 是否显示确认按钮
    * @default true
    */
   showConfirmButton?: boolean;
   /**
-   * Submitting (locks modal state)
+   * 提交中（锁定弹窗状态）
    */
   submitting?: boolean;
   /**
-   * Modal title
+   * 弹窗标题
    */
   title?: string;
   /**
-   * Modal title tooltip
+   * 弹窗标题提示
    */
   titleTooltip?: string;
   /**
-   * Modal z-index
+   * 弹窗层级
    */
   zIndex?: number;
 }
 
 export interface ModalState extends ModalProps {
-  /** Modal open state */
+  /** 弹窗打开状态 */
   isOpen?: boolean;
-  /**
-   * Shared data
-   */
-  sharedData?: Record<string, any>;
 }
 
-export type ExtendedModalApi = ModalApi & {
+export type ExtendedModalApi<TData = unknown> = ModalApi<TData> & {
   useStore: <T = NoInfer<ModalState>>(
     selector?: (state: NoInfer<ModalState>) => T,
   ) => Readonly<Ref<T>>;
 };
 
-export interface ModalApiOptions extends ModalState {
+type ModalComponentInstance<TComponent extends Component> =
+  TComponent extends abstract new (...args: any[]) => infer TInstance
+    ? TInstance
+    : never;
+
+export type InferModalData<TComponent extends Component> = [
+  ModalComponentInstance<TComponent>,
+] extends [never]
+  ? unknown
+  : ModalComponentInstance<TComponent> extends {
+        modalApi: ExtendedModalApi<infer TData>;
+      }
+    ? TData
+    : unknown;
+
+export interface ModalApiOptions<
+  TConnectedComponent extends Component = Component,
+> extends ModalState {
   /**
-   * Standalone modal component
+   * 独立的弹窗组件
    */
-  connectedComponent?: Component;
+  connectedComponent?: TConnectedComponent;
   /**
-   * Callback before close; return false to prevent closing
+   * 关闭前的回调，返回 false 可以阻止关闭
    * @returns
    */
   onBeforeClose?: () => MaybePromise<boolean | undefined>;
   /**
-   * Callback when cancel button is clicked
+   * 点击取消按钮的回调
    */
   onCancel?: () => void;
   /**
-   * Callback after close animation completes
+   * 弹窗关闭动画结束的回调
    * @returns
    */
   onClosed?: () => void;
   /**
-   * Callback when confirm button is clicked
+   * 点击确定按钮的回调
    */
   onConfirm?: () => void;
   /**
-   * Callback when open state changes
+   * 弹窗状态变化回调
    * @param isOpen
    * @returns
    */
   onOpenChange?: (isOpen: boolean) => void;
   /**
-   * Callback after open animation completes
+   * 弹窗打开动画结束的回调
    * @returns
    */
   onOpened?: () => void;

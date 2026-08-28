@@ -1,6 +1,6 @@
 /**
  * @copy https://github.com/element-plus/element-plus/blob/dev/packages/hooks/use-draggable/index.ts
- * Adjusted for local modal behavior
+ * 调整部分细节
  */
 
 import type { ComputedRef, Ref } from 'vue';

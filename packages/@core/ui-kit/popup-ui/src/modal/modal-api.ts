@@ -1,12 +1,12 @@
 import type { ModalApiOptions, ModalState } from './modal';
 
-import { Store } from '@taman-core/shared/store';
-import { bindMethods, isFunction } from '@taman-core/shared/utils';
+import { Store } from '@vben-core/shared/store';
+import { bindMethods, isFunction } from '@vben-core/shared/utils';
 
-export class ModalApi {
-  // Shared data
-  public sharedData: Record<'payload', any> = {
-    payload: {},
+export class ModalApi<TData = unknown> {
+  // 共享数据
+  public sharedData: Record<'payload', TData | undefined> = {
+    payload: undefined,
   };
   public store: Store<ModalState>;
 
@@ -69,7 +69,7 @@ export class ModalApi {
     });
 
     this.store.subscribe((state) => {
-      // Call onOpenChange whenever open state changes
+      // 每次更新状态时，都会调用 onOpenChange 回调函数
       const prevIsOpen = this.state?.isOpen;
       this.state = state;
       if (state?.isOpen !== prevIsOpen) {
@@ -91,12 +91,12 @@ export class ModalApi {
   }
 
   /**
-   * Close the modal
-   * @description Calls onBeforeClose before closing; if onBeforeClose returns false, the modal stays open
+   * 关闭弹窗
+   * @description 关闭弹窗时会调用 onBeforeClose 钩子函数，如果 onBeforeClose 返回 false，则不关闭弹窗
    */
   async close() {
-    // Use onBeforeClose to decide whether closing is allowed
-    // If onBeforeClose returns false, do not close the modal
+    // 通过 onBeforeClose 钩子函数来判断是否允许关闭弹窗
+    // 如果 onBeforeClose 返回 false，则不关闭弹窗
     const allowClose = (await this.api.onBeforeClose?.()) ?? true;
     if (allowClose) {
       this.store.setState((prev) => ({
@@ -106,21 +106,21 @@ export class ModalApi {
     }
   }
 
-  getData<T extends object = Record<string, any>>() {
-    return (this.sharedData?.payload ?? {}) as T;
+  getData(): TData | undefined {
+    return this.sharedData.payload;
   }
 
   /**
-   * Lock modal state (for waiting during submission)
-   * @description Disables the default cancel button, covers modal content with a spinner, hides the close button, prevents manual close, and marks the default confirm button as loading
-   * @param isLocked Whether to lock
+   * 锁定弹窗状态（用于提交过程中的等待状态）
+   * @description 锁定状态将禁用默认的取消按钮，使用spinner覆盖弹窗内容，隐藏关闭按钮，阻止手动关闭弹窗，将默认的提交按钮标记为loading状态
+   * @param isLocked 是否锁定
    */
   lock(isLocked = true) {
     return this.setState({ submitting: isLocked });
   }
 
   /**
-   * Cancel action
+   * 取消操作
    */
   onCancel() {
     if (this.api.onCancel) {
@@ -131,7 +131,7 @@ export class ModalApi {
   }
 
   /**
-   * Callback after close animation completes
+   * 弹窗关闭动画播放完毕后的回调
    */
   onClosed() {
     if (!this.state.isOpen) {
@@ -140,14 +140,14 @@ export class ModalApi {
   }
 
   /**
-   * Confirm action
+   * 确认操作
    */
   onConfirm() {
     this.api.onConfirm?.();
   }
 
   /**
-   * Callback after open animation completes
+   * 弹窗打开动画播放完毕后的回调
    */
   onOpened() {
     if (this.state.isOpen) {
@@ -163,7 +163,7 @@ export class ModalApi {
     }));
   }
 
-  setData<T>(payload: T) {
+  setData(payload: TData) {
     this.sharedData.payload = payload;
     return this;
   }
@@ -182,8 +182,8 @@ export class ModalApi {
   }
 
   /**
-   * Unlock the modal
-   * @description Clears the lock set by lock(); alias for lock(false)
+   * 解除弹窗的锁定状态
+   * @description 解除由lock方法设置的锁定状态，是lock(false)的别名
    */
   unlock() {
     return this.lock(false);

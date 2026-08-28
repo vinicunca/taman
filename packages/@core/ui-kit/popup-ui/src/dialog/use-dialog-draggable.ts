@@ -71,9 +71,9 @@ export function useDialogDraggable(
       maxTop = clientHeight - targetTop - targetHeight + offsetY;
     }
 
-    const onMousemove = (e: MouseEvent) => {
-      let moveX = offsetX + e.clientX - downX;
-      let moveY = offsetY + e.clientY - downY;
+    const onMousemove = (event: MouseEvent) => {
+      let moveX = offsetX + event.clientX - downX;
+      let moveY = offsetY + event.clientY - downY;
 
       if (!isOverflow?.value) {
         moveX = Math.min(Math.max(moveX, minLeft), maxLeft);

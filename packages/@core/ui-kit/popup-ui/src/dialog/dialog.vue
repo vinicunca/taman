@@ -12,6 +12,7 @@ import {
   TamanSpinner,
   VisuallyHidden,
 } from '@taman-core/taman-ui';
+import PButton from 'pohon-ui/components/Button.vue';
 import {
   computed,
   nextTick,
@@ -38,12 +39,8 @@ const props = withDefaults(
 );
 
 const contentRef = ref();
-// @ts-expect-error unused
-const wrapperRef = ref<HTMLElement>();
 const dialogRef = ref();
 const headerRef = ref();
-// @ts-expect-error unused
-const footerRef = ref();
 
 const { $t } = useSimpleLocale();
 const state = props.dialogApi?.useStore?.();
@@ -104,7 +101,7 @@ const getAppendTo = computed(() => {
 
 const { dragging, transform } = useDialogDraggable(
   {
-    targetRef: dialogRef,
+    targetRef: contentRef,
     dragRef: headerRef,
     draggable: shouldDraggable,
     containerSelector: getAppendTo,
@@ -116,43 +113,39 @@ const { dragging, transform } = useDialogDraggable(
 const firstOpened = ref(false);
 const isClosed = ref(true);
 
-async function handleOpenToggle(value?: boolean) {
-  if (!value) {
-    return;
-  }
-
-  isClosed.value = false;
-
-  if (!firstOpened.value) {
-    firstOpened.value = true;
-  }
-
-  await nextTick();
-
-  if (!contentRef.value) {
-    return;
-  }
-
-  const innerContentRef = contentRef.value.getContentRef();
-  dialogRef.value = innerContentRef?.$el;
-  // reopen modal reassign value
-  const { offsetX, offsetY } = transform;
-  dialogRef.value.style.transform = shouldCentered.value
-    ? `translate(${offsetX}px, calc(-50% + ${offsetY}px))`
-    : `translate(${offsetX}px, ${offsetY}px)`;
-}
-
 watch(
   () => state?.value?.isOpen,
-  handleOpenToggle,
+  async (isOpen_) => {
+    if (!contentRef.value) {
+      return;
+    }
+
+    if (isOpen_) {
+      isClosed.value = false;
+      if (!firstOpened.value) {
+        firstOpened.value = true;
+      }
+      await nextTick();
+      if (!contentRef.value) {
+        return;
+      }
+      const innerContentRef = contentRef.value.getContentRef();
+      dialogRef.value = innerContentRef?.$el;
+      // reopen modal reassign value
+      const { offsetX, offsetY } = transform;
+      dialogRef.value.style.transform = shouldCentered.value
+        ? `translate(${offsetX}px, calc(-50% + ${offsetY}px))`
+        : `translate(${offsetX}px, ${offsetY}px)`;
+    }
+  },
   { immediate: true },
 );
 
 /**
- * When keepAlive is enabled, directly returning via browser buttons/gestures will not close the pop-up window.
+ * With keepAlive enabled, browser back/gesture navigation does not close the modal
  */
 onDeactivated(() => {
-  // If the pop-up is not mounted to the content area, close the pop-up.
+  // Close the modal if it is not mounted to the content area
   if (!appendToMain.value) {
     props.dialogApi?.close();
   }
@@ -163,6 +156,7 @@ function handleFullscreen() {
     return { ...prev, fullscreen: !shouldFullscreen.value };
   });
 }
+
 function handleInteractOutside(event: Event) {
   if (!closeOnClickModal.value || submitting.value) {
     event.preventDefault();
@@ -181,13 +175,12 @@ function handleOpenAutoFocus(event: Event) {
   }
 }
 
-// pointer-down-outside
-function pointerDownOutside(event: Event) {
+function handlePointerDownOutside(event: Event) {
   const target = event.target as HTMLElement;
-  const isDismissableDialog = target?.dataset.dismissableDialog;
+  const isDismissableModal = target?.dataset.dismissableModal;
   if (
     !closeOnClickModal.value
-    || isDismissableDialog !== id
+    || isDismissableModal !== id
     || submitting.value
   ) {
     event.preventDefault();
@@ -198,6 +191,10 @@ function pointerDownOutside(event: Event) {
 function handleFocusOutside(event: Event) {
   event.preventDefault();
   event.stopPropagation();
+}
+
+function handleCloseAutoFocus(_event: Event) {
+  // allow akar to return focus to the trigger element on close
 }
 
 const getForceMount = computed(() => {
@@ -249,13 +246,14 @@ function handleClosed() {
       :overlay-blur="overlayBlur"
       close-class="top-3"
       :close-disabled="submitting"
+      @close-auto-focus="handleCloseAutoFocus"
       @closed="handleClosed"
       @escape-key-down="handleEscapeKeydown"
       @focus-outside="handleFocusOutside"
       @interact-outside="handleInteractOutside"
       @open-auto-focus="handleOpenAutoFocus"
       @opened="handleOpened"
-      @pointer-down-outside="pointerDownOutside"
+      @pointer-down-outside="handlePointerDownOutside"
     >
       <DialogHeader
         ref="headerRef"
@@ -307,7 +305,6 @@ function handleClosed() {
       </DialogHeader>
 
       <div
-        ref="wrapperRef"
         class="p-3 flex-1 min-h-40 relative overflow-y-auto"
         :class="
           [
@@ -337,7 +334,6 @@ function handleClosed() {
 
       <DialogFooter
         v-if="showFooter"
-        ref="footerRef"
         class="p-2 flex-row items-center justify-end"
         :class="
           [

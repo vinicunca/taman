@@ -4,14 +4,13 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ModalApi } from '../modal-api';
 
-vi.mock('@taman-core/shared/store', () => {
+vi.mock('@vben-core/shared/store', () => {
   return {
     isFunction: (fn: any) => typeof fn === 'function',
     Store: class {
       get state() {
         return this._state;
       }
-
       private _state: ModalState;
       private subscribers: Array<(state: ModalState) => void> = [];
 
@@ -21,9 +20,7 @@ vi.mock('@taman-core/shared/store', () => {
 
       setState(fn: (prev: ModalState) => ModalState) {
         this._state = fn(this._state);
-        this.subscribers.forEach((sub) => {
-          sub(this._state);
-        });
+        this.subscribers.forEach((sub) => sub(this._state));
       }
 
       subscribe(fn: (state: ModalState) => void) {
@@ -36,19 +33,19 @@ vi.mock('@taman-core/shared/store', () => {
 
 describe('modalApi', () => {
   let modalApi: ModalApi;
-  // Use modalState instead of state
+  // 使用 modalState 而不是 state
   let modalState: ModalState;
 
   beforeEach(() => {
     modalApi = new ModalApi();
-    // Get state from modalApi
+    // 获取 modalApi 内的 state
     modalState = modalApi.store.state;
   });
 
   it('should initialize with default state', () => {
     expect(modalState.isOpen).toBe(false);
-    expect(modalState.cancelText).toBeUndefined();
-    expect(modalState.confirmText).toBeUndefined();
+    expect(modalState.cancelText).toBe(undefined);
+    expect(modalState.confirmText).toBe(undefined);
   });
 
   it('should open the modal', () => {
@@ -83,6 +80,16 @@ describe('modalApi', () => {
     const testData = { key: 'value' };
     modalApi.setData(testData);
     expect(modalApi.getData()).toEqual(testData);
+  });
+
+  it('should return undefined before shared data is set', () => {
+    expect(modalApi.getData()).toBeUndefined();
+  });
+
+  it('should preserve null shared data', () => {
+    const nullableModalApi = new ModalApi<null | Record<string, unknown>>();
+    nullableModalApi.setData(null);
+    expect(nullableModalApi.getData()).toBeNull();
   });
 
   it('should set state correctly using an object', () => {
