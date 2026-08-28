@@ -42,6 +42,7 @@ const style = computed<CSSProperties>(() => {
 <template>
   <footer
     :style="style"
+    data-layout-region="footer"
     class="bg-background-elevated shrink-0 w-full transition-all-280 bottom-0"
   >
     <slot />

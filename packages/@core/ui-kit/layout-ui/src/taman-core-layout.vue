@@ -12,11 +12,11 @@ import { TamanButtonIcon } from '@taman-core/taman-ui';
 import { useEventListener, useScroll } from '@vueuse/core';
 import { computed, ref, useTemplateRef, watch } from 'vue';
 import {
-  TamanLayoutContent,
-  TamanLayoutFooter,
-  TamanLayoutHeader,
-  TamanLayoutSidebar,
-  TamanLayoutTabbar,
+  TamanCoreLayoutContent,
+  TamanCoreLayoutFooter,
+  TamanCoreLayoutHeader,
+  TamanCoreLayoutSidebar,
+  TamanCoreLayoutTabbar,
 } from './components';
 import { useLayout } from './composables/use-layout';
 import { resolveHeaderHiddenOnScroll } from './header-scroll-state';
@@ -269,7 +269,7 @@ const mainStyle = computed(() => {
     && showSidebar.value
     && !props.isMobile
   ) {
-    // Applies in fixed header mode
+    // fixed模式下生效
     const isSideNavEffective
       = (isSidebarMixedNav.value || isHeaderMixedNav.value)
         && sidebarExpandOnHover.value
@@ -281,7 +281,7 @@ const mainStyle = computed(() => {
         ? props.sidebarExtraCollapsedWidth
         : props.sidebarWidth;
 
-      // 100% minus mixed sidebar width minus menu width
+      // 100% - 侧边菜单混合宽度 - 菜单宽度
       sidebarAndExtraWidth = `${sideCollapseWidth + sideWidth}px`;
       width = `calc(100% - ${sidebarAndExtraWidth})`;
     } else {
@@ -307,24 +307,24 @@ const tabbarStyle = computed<CSSProperties>(() => {
   let width: string;
   let marginLeft = 0;
 
-  // Full width when not mixed navigation
+  // If it is not a mixed navigation, the width of the tab bar is 100%
   if (!isMixedNav.value || props.sidebarHidden) {
     width = '100%';
   } else if (sidebarEnable.value) {
-    // Width when hovering sidebar with expand-on-hover
+    // When the mouse is on the sidebar, and the sidebar is expanded, the width is the sidebar width
     const onHoveringWidth = sidebarExpandOnHover.value
       ? props.sidebarWidth
       : getSideCollapseWidth.value;
 
-    // marginLeft based on whether the sidebar is collapsed
+    // Set marginLeft, determine based on whether the sidebar is collapsed
     marginLeft = activeSidebarCollapse.value
       ? getSideCollapseWidth.value
       : onHoveringWidth;
 
-    // Tab bar width: 100% minus sidebar width
+    // Set the width of the tab bar, the calculation method is 100% minus the width of the sidebar
     width = `calc(100% - ${activeSidebarCollapse.value ? getSidebarWidth.value : onHoveringWidth}px)`;
   } else {
-    // Default tab bar width is 100%
+    // By default, the width of the tab bar is 100%
     width = '100%';
   }
 
@@ -334,8 +334,10 @@ const tabbarStyle = computed<CSSProperties>(() => {
   };
 });
 
-const layoutScrollStyle = computed<CSSProperties>(() => {
-  if (!headerFixed.value) {
+const layoutScrollStyle = computed((): CSSProperties => {
+  const fixed = headerFixed.value;
+
+  if (!fixed) {
     return {
       marginTop: 0,
       paddingTop: 0,
@@ -350,20 +352,21 @@ const layoutScrollStyle = computed<CSSProperties>(() => {
   }
 
   return {
-    marginTop: headerFixed.value
+    marginTop:
+      fixed
       && !isFullContent.value
       && !headerIsHidden.value
       && (!isHeaderAutoActive.value || scrollY.value < headerWrapperHeight.value)
-      ? `${headerWrapperHeight.value}px`
-      : 0,
+        ? `${headerWrapperHeight.value}px`
+        : 0,
     paddingTop: 0,
   };
 });
 
-const contentStyle = computed<CSSProperties>(() => {
+const contentStyle = computed((): CSSProperties => {
   const { footerEnable, footerFixed, footerHeight } = props;
-
   return {
+    minHeight: footerEnable && !footerFixed ? undefined : 0,
     paddingBottom: `${footerEnable && footerFixed ? footerHeight : 0}px`,
   };
 });
@@ -374,7 +377,7 @@ const headerZIndex = computed(() => {
   return zIndex + offset;
 });
 
-const headerWrapperStyle = computed<CSSProperties>(() => {
+const headerWrapperStyle = computed((): CSSProperties => {
   const fixed = headerFixed.value;
   const hidden = headerIsHidden.value || isFullContent.value;
 
@@ -420,7 +423,7 @@ const maskStyle = computed<CSSProperties>(() => {
 });
 
 /**
- * Whether the sidebar logo region is visible
+ * Whether the sidebar logo region is displayed
  */
 const sidebarHeaderHeight = computed(() => {
   if (isMixedNav.value || !props.sidebarLogoVisible) {
@@ -447,9 +450,9 @@ const showHeaderLogo = computed(() => {
 
 watch(
   () => props.isMobile,
-  (val) => {
-    if (val) {
-      sidebarCollapse.value = true;
+  (isMobile) => {
+    if (isMobile) {
+      mobileSidebarOpen.value = false;
     }
   },
   {
@@ -477,9 +480,21 @@ watch(
   },
 );
 
+watch(
+  [
+    () => props.headerMode,
+    () => isMixedNav.value,
+    () => isFullContent.value,
+  ],
+  () => {
+    headerIsHidden.value = false;
+  },
+);
+
 useEventListener(mainRef, 'mousemove', handleHeaderMouseMove, {
   passive: true,
 });
+
 useEventListener(mainRef, 'wheel', handleLayoutWheel, {
   passive: true,
 });
@@ -528,6 +543,7 @@ function handleLayoutScroll() {
   ) {
     return;
   }
+
   resolveHeaderVisibilityOnScroll();
 }
 
@@ -568,7 +584,7 @@ const layoutStaticHeaderTarget = `#${idLayoutStaticHeader}`;
     :data-sidebar-collapsed="activeSidebarCollapse"
     class="flex h-full min-h-0 w-full relative overflow-hidden"
   >
-    <TamanLayoutSidebar
+    <TamanCoreLayoutSidebar
       v-if="sidebarEnableState"
       v-model:draggable="sidebarDraggable"
       v-model:collapse="activeSidebarCollapse"
@@ -619,7 +635,7 @@ const layoutStaticHeaderTarget = `#${idLayoutStaticHeader}`;
       <template #extra-title>
         <slot name="side-extra-title" />
       </template>
-    </TamanLayoutSidebar>
+    </TamanCoreLayoutSidebar>
 
     <div
       ref="mainRef"
@@ -642,7 +658,7 @@ const layoutStaticHeaderTarget = `#${idLayoutStaticHeader}`;
           :style="headerWrapperStyle"
           class="shrink-0 transition-transform-280 overflow-hidden"
         >
-          <TamanLayoutHeader
+          <TamanCoreLayoutHeader
             v-if="headerVisible"
             :full-width="!isSideMode"
             :height="headerHeight"
@@ -671,15 +687,15 @@ const layoutStaticHeaderTarget = `#${idLayoutStaticHeader}`;
             </template>
 
             <slot name="header" />
-          </TamanLayoutHeader>
+          </TamanCoreLayoutHeader>
 
-          <TamanLayoutTabbar
+          <TamanCoreLayoutTabbar
             v-if="tabbarEnable"
             :height="tabbarHeight"
             :style="tabbarStyle"
           >
             <slot name="tabbar" />
-          </TamanLayoutTabbar>
+          </TamanCoreLayoutTabbar>
         </div>
       </Teleport>
 
@@ -688,14 +704,14 @@ const layoutStaticHeaderTarget = `#${idLayoutStaticHeader}`;
         ref="contentRef"
         data-layout-region="scroll"
         :style="layoutScrollStyle"
-        class="bg-background-elevated flex flex-1 flex-col min-h-0 overflow-x-hidden overflow-y-auto"
+        class="bg-background-deep flex flex-1 flex-col min-h-0 overflow-x-hidden overflow-y-auto"
       >
         <div
           :id="idLayoutStaticHeader"
           class="contents"
         />
 
-        <TamanLayoutContent
+        <TamanCoreLayoutContent
           :id="idMainContent"
           :content-compact="contentCompact"
           :content-compact-width="contentCompactWidth"
@@ -711,9 +727,9 @@ const layoutStaticHeaderTarget = `#${idLayoutStaticHeader}`;
           <template #overlay>
             <slot name="content-overlay" />
           </template>
-        </TamanLayoutContent>
+        </TamanCoreLayoutContent>
 
-        <TamanLayoutFooter
+        <TamanCoreLayoutFooter
           v-if="footerEnable"
           :fixed="footerFixed"
           :height="footerHeight"
@@ -722,18 +738,13 @@ const layoutStaticHeaderTarget = `#${idLayoutStaticHeader}`;
           :z-index="zIndex"
         >
           <slot name="footer" />
-        </TamanLayoutFooter>
+        </TamanCoreLayoutFooter>
       </div>
     </div>
 
     <slot name="extra" />
 
-    <Transition
-      enter-active-class="transition-opacity-300"
-      leave-active-class="transition-opacity-300"
-      enter-from-class="opacity-0"
-      leave-to-class="opacity-0"
-    >
+    <Transition name="mobile-sidebar-mask">
       <div
         v-if="maskVisible"
         data-layout-region="sidebar-mask"
@@ -744,3 +755,22 @@ const layoutStaticHeaderTarget = `#${idLayoutStaticHeader}`;
     </Transition>
   </div>
 </template>
+
+<style scoped>
+.mobile-sidebar-mask-enter-active,
+.mobile-sidebar-mask-leave-active {
+  transition: opacity 300ms ease;
+}
+
+.mobile-sidebar-mask-enter-from,
+.mobile-sidebar-mask-leave-to {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-sidebar-mask-enter-active,
+  .mobile-sidebar-mask-leave-active {
+    transition-duration: 0ms;
+  }
+}
+</style>

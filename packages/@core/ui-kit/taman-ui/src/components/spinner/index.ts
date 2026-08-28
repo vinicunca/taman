@@ -1,1 +1,1 @@
-export { default as TamanSpinner } from './spinner.vue';
+export { default as TamanSpinner } from './taman-spinner.vue';

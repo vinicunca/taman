@@ -208,8 +208,12 @@ interface HeaderPreferences {
 interface LogoPreferences {
   /** Whether logo is visible */
   enable: boolean;
-  /** Logo image object-fit */
-  fit: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
+  /** Logo height; takes effect only when logoMode=full. */
+  fullLogoHeight?: number | string;
+  /** Logo display type: icon mode; "full" fills the entire logo area. */
+  logoMode: 'full' | 'icon';
+  /** Whether to display the logo text */
+  showText: boolean;
   /** Logo image URL */
   source: string;
   /** Dark theme logo URL (optional; falls back to source) */

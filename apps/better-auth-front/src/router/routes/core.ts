@@ -5,7 +5,7 @@ import { preferences } from '@taman/preferences';
 
 import { $t } from '#/locales';
 
-const CoreLayout = () => import('#/layouts/basic.vue');
+const CoreLayout = () => import('#/layouts/core.vue');
 const AuthPageLayout = () => import('#/layouts/auth.vue');
 /** Global 404 fallback route */
 const fallbackNotFoundRoute: RouteRecordRaw = {

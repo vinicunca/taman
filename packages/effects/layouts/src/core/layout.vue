@@ -2,7 +2,9 @@
 import type { TamanMenuRecordRaw } from '@taman/types';
 import type { SetupContext } from 'vue';
 import type { RouteLocationNormalizedLoaded } from 'vue-router';
-import { TamanAdminLayout } from '@taman-core/layout-ui';
+import { TamanCoreLayout } from '@taman-core/layout-ui';
+import { ELEMENT_ID_LAYOUT_SCROLL } from '@taman-core/shared/constants';
+import { TamanBackToTop, TamanLogo } from '@taman-core/taman-ui';
 import { useRefresh } from '@taman/composables';
 import { $t, i18n } from '@taman/locales';
 import {
@@ -12,7 +14,6 @@ import {
 } from '@taman/preferences';
 import { useAccessStore, useTabbarStore, useTimezoneStore } from '@taman/stores';
 import { clone, mapTree } from '@taman/utils';
-import { VbenBackTop, VbenLogo } from '@vben-core/shadcn-ui';
 import { computed, onMounted, useSlots, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { CheckUpdates, WidgetBreadcrumb, WidgetPreferences } from '../widgets';
@@ -24,17 +25,50 @@ import {
   LayoutExtraMenu,
   LayoutMenu,
   LayoutMixedMenu,
-  useExtraMenu,
-  useMixedMenu,
+  useMenuExtra,
+  useMenuMixed,
 } from './menu';
 import { LayoutTabbar } from './tabbar';
+import { useLayoutScroll } from './use-layout-scroll';
 
-defineOptions({ name: 'CoreLayout' });
+defineOptions({ name: 'LayoutCore' });
+
+const props = withDefaults(
+  defineProps<{
+    /** Custom logo image URL; if not provided, the default value from preferences will be used. */
+    logoSrc?: string;
+    /** Custom dark theme logo image URL; if not provided, the default value from preferences will be used. */
+    logoSrcDark?: string;
+    /** Custom logo text; if not provided, the default value from preferences will be used. */
+    logoText?: string;
+    /** User avatar image URL; if not provided, the default value from preferences will be used. */
+    avatar?: string;
+    /** User text (e.g. username); if not provided, the default value from preferences will be used. */
+    text?: string;
+  }>(),
+  {
+    logoSrc: '',
+    logoSrcDark: '',
+    logoText: '',
+    avatar: '',
+    text: '',
+  },
+);
 
 const emits = defineEmits<{
   clearPreferencesAndLogout: [];
+  logout: [];
   clickLogo: [];
 }>();
+
+/** Final used logo image URL; if not provided, the default value from preferences will be used. */
+const finalLogoSrc = computed(() => props.logoSrc || preferences.logo.source);
+/** Final used dark theme logo image URL; if not provided, the default value from preferences will be used. */
+const finalLogoSrcDark = computed(
+  () => props.logoSrcDark || preferences.logo.sourceDark,
+);
+/** Final used logo text; if not provided, the default value from preferences will be used. */
+const finalLogoText = computed(() => props.logoText || preferences.app.name);
 
 const {
   isDark,
@@ -53,6 +87,9 @@ const {
 const accessStore = useAccessStore();
 const timezoneStore = useTimezoneStore();
 const { refresh } = useRefresh();
+const layoutScrollTarget = `#${ELEMENT_ID_LAYOUT_SCROLL}`;
+
+useLayoutScroll();
 
 const sidebarTheme = computed(() => {
   const dark = isDark.value || preferences.theme.semiDarkSidebar;
@@ -116,6 +153,15 @@ const logoTheme = computed(() => {
   return showLogoInHeader ? headerTheme.value : sidebarTheme.value;
 });
 
+/**
+ * The height of the extra-title slot of the layout-sidebar extension area
+ */
+const sidebarExtraTitleHeight = computed<number | undefined>(() => {
+  const showSideExtraTitle
+    = preferences.logo.enable && preferences.logo.showText;
+  return showSideExtraTitle ? undefined : 0;
+});
+
 const {
   handleMenuSelect,
   handleMenuOpen,
@@ -125,7 +171,7 @@ const {
   sidebarMenus,
   mixHeaderMenus,
   sidebarVisible,
-} = useMixedMenu();
+} = useMenuMixed();
 
 // Sidebar multi-column menus
 const {
@@ -136,7 +182,7 @@ const {
   handleMixedMenuSelect,
   handleSideMouseLeave,
   sidebarExtraVisible,
-} = useExtraMenu(mixHeaderMenus);
+} = useMenuExtra(mixHeaderMenus);
 
 /**
  * Wraps menus and translates menu names
@@ -165,7 +211,11 @@ function clearPreferencesAndLogout() {
   emits('clearPreferencesAndLogout');
 }
 
-function clickLogo() {
+function handleLogout() {
+  emits('logout');
+}
+
+function handleClickLogo() {
   emits('clickLogo');
 }
 
@@ -222,7 +272,7 @@ const headerSlots = computed(() => {
 </script>
 
 <template>
-  <TamanAdminLayout
+  <TamanCoreLayout
     v-model:sidebar-extra-visible="sidebarExtraVisible"
     :content-compact="preferences.app.contentCompact"
     :content-compact-width="preferences.app.contentCompactWidth"
@@ -251,48 +301,39 @@ const headerSlots = computed(() => {
     :sidebar-expand-on-hover="preferences.sidebar.expandOnHover"
     :sidebar-extra-collapse="preferences.sidebar.extraCollapse"
     :sidebar-extra-collapsed-width="preferences.sidebar.extraCollapsedWidth"
+    :sidebar-extra-title-height="sidebarExtraTitleHeight"
     :sidebar-hidden="preferences.sidebar.hidden"
     :sidebar-mixed-width="preferences.sidebar.mixedWidth"
     :sidebar-theme="sidebarTheme"
     :sidebar-theme-sub="sidebarThemeSub"
     :sidebar-width="preferences.sidebar.width"
     :side-collapse-width="preferences.sidebar.collapseWidth"
+    :sidebar-logo-visible="preferences.logo.enable"
     :tabbar-enable="preferences.tabbar.enable"
     :tabbar-height="preferences.tabbar.height"
     :z-index="preferences.app.zIndex"
     @side-mouse-leave="handleSideMouseLeave"
     @toggle-sidebar="toggleSidebar"
-    @update:sidebar-collapse="
-      (value: boolean) => updatePreferences({ sidebar: { collapsed: value } })
-    "
-    @update:sidebar-enable="
-      (value: boolean) => updatePreferences({ sidebar: { enable: value } })
-    "
-    @update:sidebar-expand-on-hover="
-      (value: boolean) =>
-        updatePreferences({ sidebar: { expandOnHover: value } })
-    "
-    @update:sidebar-extra-collapse="
-      (value: boolean) =>
-        updatePreferences({ sidebar: { extraCollapse: value } })
-    "
-    @update:sidebar-width="
-      (value: number) => updatePreferences({ sidebar: { width: value } })
-    "
+    @update:sidebar-collapse="(value: boolean) => updatePreferences({ sidebar: { collapsed: value } })"
+    @update:sidebar-enable="(value: boolean) => updatePreferences({ sidebar: { enable: value } })"
+    @update:sidebar-expand-on-hover="(value: boolean) => updatePreferences({ sidebar: { expandOnHover: value } })"
+    @update:sidebar-extra-collapse="(value: boolean) => updatePreferences({ sidebar: { extraCollapse: value } })"
+    @update:sidebar-width="(value: number) => updatePreferences({ sidebar: { width: value } })"
   >
     <!-- logo -->
-    <!-- TODO: replace with org selector -->
     <template #logo>
-      <VbenLogo
+      <TamanLogo
         v-if="preferences.logo.enable"
-        :fit="preferences.logo.fit"
         :class="logoClass"
         :collapsed="logoCollapsed"
-        :src="preferences.logo.source"
-        :src-dark="preferences.logo.sourceDark"
-        :text="preferences.app.name"
+        :src="finalLogoSrc"
+        :src-dark="finalLogoSrcDark"
+        :text="finalLogoText"
+        :show-text="preferences.logo.showText"
+        :logo-mode="preferences.logo.logoMode"
+        :full-logo-height="preferences.logo.fullLogoHeight"
         :theme="logoTheme"
-        @click="clickLogo"
+        @click="handleClickLogo"
       >
         <template
           v-if="$slots['logo-text']"
@@ -300,14 +341,17 @@ const headerSlots = computed(() => {
         >
           <slot name="logo-text" />
         </template>
-      </VbenLogo>
+      </TamanLogo>
     </template>
 
     <!-- Header -->
     <template #header>
       <LayoutHeader
+        :avatar="avatar"
         :theme="theme"
+        :text="text"
         @clear-preferences-and-logout="clearPreferencesAndLogout"
+        @logout="handleLogout"
       >
         <template
           v-if="!showHeaderNav && preferences.breadcrumb.enable"
@@ -392,10 +436,10 @@ const headerSlots = computed(() => {
     </template>
 
     <template #side-extra-title>
-      <VbenLogo
+      <TamanLogo
         v-if="preferences.logo.enable"
-        :fit="preferences.logo.fit"
         :text="preferences.app.name"
+        :show-text="preferences.logo.showText"
         :theme="sidebarThemeSub"
       >
         <template
@@ -404,7 +448,7 @@ const headerSlots = computed(() => {
         >
           <slot name="logo-text" />
         </template>
-      </VbenLogo>
+      </TamanLogo>
     </template>
 
     <template #tabbar>
@@ -464,7 +508,7 @@ const headerSlots = computed(() => {
         @clear-preferences-and-logout="clearPreferencesAndLogout"
       />
 
-      <VbenBackTop />
+      <TamanBackToTop :target="layoutScrollTarget" />
     </template>
-  </TamanAdminLayout>
+  </TamanCoreLayout>
 </template>

@@ -51,7 +51,7 @@ export function transformComponent(
 /**
  * Layout-related hooks
  */
-export function useLayoutHook() {
+export function useLayoutComposable() {
   const { keepAlive } = usePreferences();
   /**
    * Whether route transitions are enabled
@@ -78,13 +78,6 @@ export function useLayoutHook() {
     if (!tabbar.enable || !keepAlive) {
       return transitionName;
     }
-
-    // Skip animation when the page was already loaded
-    // if (route.meta.loaded) {
-    //   return;
-    // }
-    // Skip animation for open tabs that were already loaded
-    // const inTabs = getCachedTabs.value.includes(route.name as string);
 
     // return inTabs && route.meta.loaded ? undefined : transitionName;
     return transitionName;

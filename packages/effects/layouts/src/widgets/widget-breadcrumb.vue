@@ -2,6 +2,7 @@
 import type { BreadcrumbItem } from '@taman-core/taman-ui';
 
 import { $t } from '@taman/locales';
+import PBreadcrumb from 'pohon-ui/components/Breadcrumb.vue';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 
