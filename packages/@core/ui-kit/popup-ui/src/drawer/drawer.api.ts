@@ -1,12 +1,12 @@
-import type { DrawerApiOptions, DrawerState } from './drawer';
+import type { DrawerApiOptions, DrawerState } from './drawer.types';
 
 import { Store } from '@taman-core/shared/store';
 import { bindMethods, isFunction } from '@taman-core/shared/utils';
 
-export class DrawerApi {
+export class DrawerApi<TData = unknown> {
   // Shared data
-  public sharedData: Record<'payload', any> = {
-    payload: {},
+  public sharedData: Record<'payload', TData | undefined> = {
+    payload: undefined,
   };
 
   public store: Store<DrawerState>;
@@ -21,7 +21,6 @@ export class DrawerApi {
     | 'onOpened'
   >;
 
-  // private prevState!: DrawerState;
   private state!: DrawerState;
 
   constructor(options: DrawerApiOptions = {}) {
@@ -82,12 +81,10 @@ export class DrawerApi {
   }
 
   /**
-   * Close the drawer
-   * @description Calls onBeforeClose before closing; if onBeforeClose returns false, the drawer stays open
+   * Close drawer
+   * @description When closing the drawer, the onBeforeClose hook function is called, and if onBeforeClose returns false, the drawer will not be closed
    */
   async close() {
-    // Use onBeforeClose to decide whether closing is allowed
-    // If onBeforeClose returns false, do not close the drawer
     const allowClose = (await this.api.onBeforeClose?.()) ?? true;
     if (allowClose) {
       this.store.setState((prev) => ({
@@ -98,21 +95,20 @@ export class DrawerApi {
     }
   }
 
-  getData<T extends object = Record<string, any>>() {
-    return (this.sharedData?.payload ?? {}) as T;
+  getData(): TData | undefined {
+    return this.sharedData.payload;
   }
 
   /**
-   * Lock drawer state (for waiting during submission)
-   * @description Disables the default cancel button, covers drawer content with a spinner, hides the close button, prevents manual close, and marks the default confirm button as loading
-   * @param isLocked Whether to lock
+   * Lock drawer state (used for waiting state during submission)
+   * @description The locked state will disable the default cancel button, use spinner to cover the drawer content, hide the close button, prevent manual closing of the drawer, and mark the default submit button as loading state
    */
   lock(isLocked: boolean = true) {
     return this.setState({ submitting: isLocked });
   }
 
   /**
-   * Cancel action
+   * Cancel operation
    */
   onCancel() {
     if (this.api.onCancel) {
@@ -123,7 +119,7 @@ export class DrawerApi {
   }
 
   /**
-   * Callback after close animation completes
+   * Callback after the drawer close animation is complete
    */
   onClosed() {
     if (!this.state.isOpen) {
@@ -132,14 +128,14 @@ export class DrawerApi {
   }
 
   /**
-   * Confirm action
+   * Confirm operation
    */
   onConfirm() {
     this.api.onConfirm?.();
   }
 
   /**
-   * Callback after open animation completes
+   * Callback after the drawer open animation is complete
    */
   onOpened() {
     if (this.state.isOpen) {
@@ -151,7 +147,7 @@ export class DrawerApi {
     this.store.setState((prev) => ({ ...prev, isOpen: true }));
   }
 
-  setData<T>(payload: T) {
+  setData(payload: TData) {
     this.sharedData.payload = payload;
     return this;
   }
@@ -170,8 +166,8 @@ export class DrawerApi {
   }
 
   /**
-   * Unlock the drawer
-   * @description Clears the lock set by lock(); alias for lock(false)
+   * Unlock the drawer state
+   * @description Unlock the state set by the lock method, is an alias for lock(false)
    */
   unlock() {
     return this.lock(false);

@@ -7,7 +7,7 @@ import type {
 } from '#/adapter/vxe-table';
 import type { SystemRoleApi } from '#/api';
 
-import { Page, useVbenDrawer } from '@taman/common-ui';
+import { Page, useTamanDrawer } from '@taman/common-ui';
 import { Plus } from '@vben/icons';
 
 import { Button, message, Modal } from 'antdv-next';
@@ -19,7 +19,7 @@ import { $t } from '#/locales';
 import { useColumns, useGridFormSchema } from './data';
 import Form from './modules/form.vue';
 
-const [FormDrawer, formDrawerApi] = useVbenDrawer({
+const [FormDrawer, formDrawerApi] = useTamanDrawer({
   connectedComponent: Form,
   destroyOnClose: true,
 });

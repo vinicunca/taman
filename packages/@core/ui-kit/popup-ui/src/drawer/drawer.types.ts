@@ -1,7 +1,7 @@
-import type { ClassType, MaybePromise } from '@taman-core/typings';
-import type { Component, Ref } from 'vue';
+import type { MaybePromise } from '@taman-core/typings';
+import type { Component, HTMLAttributes, Ref } from 'vue';
 
-import type { DrawerApi } from './drawer-api';
+import type { DrawerApi } from './drawer.api';
 
 export type DrawerPlacement = 'bottom' | 'left' | 'right' | 'top';
 
@@ -17,28 +17,28 @@ export interface DrawerProps {
    * Cancel button text
    */
   cancelText?: string;
-  class?: ClassType;
+  class?: HTMLAttributes['class'];
   /**
    * Whether to show the close button
    * @default true
    */
   closable?: boolean;
   /**
-   * Close button placement
+   * The position of the close button
    */
   closeIconPlacement?: CloseIconPlacement;
   /**
-   * Whether clicking the overlay closes the drawer
+   * Whether to close the drawer when clicking the modal mask
    * @default true
    */
   closeOnClickModal?: boolean;
   /**
-   * Whether pressing ESC closes the drawer
+   * Whether to close the drawer when pressing the ESC key
    * @default true
    */
   closeOnPressEscape?: boolean;
   /**
-   * Confirm button loading state
+   * Confirm button loading
    * @default false
    */
   confirmLoading?: boolean;
@@ -52,7 +52,7 @@ export interface DrawerProps {
    */
   description?: string;
   /**
-   * Destroy drawer on close
+   * Whether to destroy the drawer when it is closed
    */
   destroyOnClose?: boolean;
   /**
@@ -61,39 +61,39 @@ export interface DrawerProps {
    */
   footer?: boolean;
   /**
-   * Footer class/styles
+   * Drawer footer style
    */
-  footerClass?: ClassType;
+  footerClass?: HTMLAttributes['class'];
   /**
    * Whether to show the header
    * @default true
    */
   header?: boolean;
   /**
-   * Header class/styles
+   * Drawer header style
    */
-  headerClass?: ClassType;
+  headerClass?: HTMLAttributes['class'];
   /**
    * Drawer loading state
    * @default false
    */
   loading?: boolean;
   /**
-   * Whether to show the overlay
+   * Whether to show the modal mask
    * @default true
    */
   modal?: boolean;
 
   /**
-   * Whether to auto-focus on open
+   * Whether to auto focus
    */
   openAutoFocus?: boolean;
   /**
-   * Overlay blur effect
+   * Modal mask blur effect
    */
   overlayBlur?: number;
   /**
-   * Drawer placement
+   * Drawer position
    * @default right
    */
   placement?: DrawerPlacement;
@@ -109,7 +109,7 @@ export interface DrawerProps {
    */
   showConfirmButton?: boolean;
   /**
-   * Submitting (locks drawer state)
+   * Submitting (locking drawer state)
    */
   submitting?: boolean;
   /**
@@ -129,49 +129,62 @@ export interface DrawerProps {
 export interface DrawerState extends DrawerProps {
   /** Drawer open state */
   isOpen?: boolean;
-  /**
-   * Shared data
-   */
-  sharedData?: Record<string, any>;
 }
 
-export type ExtendedDrawerApi = DrawerApi & {
+export type ExtendedDrawerApi<TData = unknown> = DrawerApi<TData> & {
   useStore: <T = NoInfer<DrawerState>>(
     selector?: (state: NoInfer<DrawerState>) => T,
   ) => Readonly<Ref<T>>;
 };
 
-export interface DrawerApiOptions extends DrawerState {
+type DrawerComponentInstance<TComponent extends Component>
+  = TComponent extends abstract new (...args: Array<any>) => infer TInstance
+    ? TInstance
+    : never;
+
+export type InferDrawerData<TComponent extends Component> = [
+  DrawerComponentInstance<TComponent>,
+] extends [never]
+  ? unknown
+  : DrawerComponentInstance<TComponent> extends {
+    drawerApi: ExtendedDrawerApi<infer TData>;
+  }
+    ? TData
+    : unknown;
+
+export interface DrawerApiOptions<
+  TConnectedComponent extends Component = Component,
+> extends DrawerState {
   /**
-   * Standalone drawer component
+   * Independent drawer component
    */
-  connectedComponent?: Component;
+  connectedComponent?: TConnectedComponent;
   /**
-   * Callback before close; return false to prevent closing
+   * Callback before closing, returning false can prevent closing
    * @returns
    */
   onBeforeClose?: () => MaybePromise<boolean | undefined>;
   /**
-   * Callback when cancel button is clicked
+   * Callback when the cancel button is clicked
    */
   onCancel?: () => void;
   /**
-   * Callback after close animation completes
+   * Callback after the drawer close animation is complete
    * @returns
    */
   onClosed?: () => void;
   /**
-   * Callback when confirm button is clicked
+   * Callback when the confirm button is clicked
    */
   onConfirm?: () => void;
   /**
-   * Callback when open state changes
+   * Callback when the drawer state changes
    * @param isOpen
    * @returns
    */
   onOpenChange?: (isOpen: boolean) => void;
   /**
-   * Callback after open animation completes
+   * Callback after the drawer open animation is complete
    * @returns
    */
   onOpened?: () => void;

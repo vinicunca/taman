@@ -5,7 +5,7 @@ import type { VbenFormSchema } from '#/adapter/form';
 
 import { computed, h, ref } from 'vue';
 
-import { useVbenDrawer } from '@taman/common-ui';
+import { useTamanDrawer } from '@taman/common-ui';
 import { IconifyIcon } from '@vben/icons';
 import { $te } from '@taman/locales';
 import { getPopupContainer } from '@taman/utils';
@@ -440,7 +440,7 @@ const [Form, formApi] = useTamanForm({
   showDefaultActions: false,
   wrapperClass: 'grid-cols-2 gap-x-4',
 });
-const [Drawer, drawerApi] = useVbenDrawer({
+const [Drawer, drawerApi] = useTamanDrawer({
   onConfirm: onSubmit,
   onOpenChange(isOpen) {
     if (isOpen) {

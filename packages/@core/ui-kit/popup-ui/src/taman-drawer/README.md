@@ -23,7 +23,7 @@ if (result) {
 - [Lifecycle callbacks](#lifecycle-callbacks)
 - [Nested drawers](#nested-drawers)
 - [Gotchas](#gotchas)
-- [Migrating from `useVbenDrawer`](#migrating-from-usevbendrawer)
+- [Migrating from `useTamanDrawer`](#migrating-from-useTamanDrawer)
 
 ## Setup
 
@@ -232,15 +232,15 @@ Do **not** call the inline (argument-less) form twice in one content component �
 - **Don't mount two hosts** — every drawer would render twice.
 - **`destroyOnClose`** re-creates the content component after each close (fresh state per open). In the tick right after the close animation, calls on the api still target the old instance — avoid `open()` in `onClosed`.
 
-## Migrating from `useVbenDrawer`
+## Migrating from `useTamanDrawer`
 
-| `useVbenDrawer` (connected)                                                 | `useTamanDrawer`                                                             |
-| --------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `const [FormDrawer, api] = useVbenDrawer({ connectedComponent: Form })`     | `const api = useTamanDrawer({ connectedComponent: Form })`                   |
-| `<FormDrawer @success="..." />` in the caller template                      | _(delete it — nothing to mount)_                                             |
-| events emitted to the caller via the mounted tag                            | return a value: `close(result)` → `await api.open()`                         |
-| inner side: `const [Drawer, drawerApi] = useVbenDrawer({...})` + `<Drawer>` | same shape: `const [Drawer, drawerApi] = useTamanDrawer({...})` + `<Drawer>` |
-| `api.open()` returns `void`                                                 | returns a promise (safe to ignore)                                           |
+| `useTamanDrawer` (connected)                                                 | `useTamanDrawer`                                                             |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `const [FormDrawer, api] = useTamanDrawer({ connectedComponent: Form })`     | `const api = useTamanDrawer({ connectedComponent: Form })`                   |
+| `<FormDrawer @success="..." />` in the caller template                       | _(delete it — nothing to mount)_                                             |
+| events emitted to the caller via the mounted tag                             | return a value: `close(result)` → `await api.open()`                         |
+| inner side: `const [Drawer, drawerApi] = useTamanDrawer({...})` + `<Drawer>` | same shape: `const [Drawer, drawerApi] = useTamanDrawer({...})` + `<Drawer>` |
+| `api.open()` returns `void`                                                  | returns a promise (safe to ignore)                                           |
 
 Everything else — `setData`/`getData`, `lock`/`unlock`, `setState`/`useStore`, props, slots, callbacks — carries over unchanged.
 

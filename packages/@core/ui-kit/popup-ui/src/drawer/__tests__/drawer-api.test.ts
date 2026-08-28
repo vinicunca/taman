@@ -1,8 +1,8 @@
-import type { DrawerState } from '../drawer';
+import type { DrawerState } from '../drawer.types';
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { DrawerApi } from '../drawer-api';
+import { DrawerApi } from '../drawer.api';
 
 // Mock Store class
 vi.mock('@taman-core/shared/store', () => {
@@ -12,7 +12,9 @@ vi.mock('@taman-core/shared/store', () => {
       get state() {
         return this._state;
       }
+
       private _state: DrawerState;
+
       private subscribers: Array<(state: DrawerState) => void> = [];
 
       constructor(initialState: DrawerState) {
@@ -21,7 +23,9 @@ vi.mock('@taman-core/shared/store', () => {
 
       setState(fn: (prev: DrawerState) => DrawerState) {
         this._state = fn(this._state);
-        this.subscribers.forEach((sub) => sub(this._state));
+        this.subscribers.forEach((sub) => {
+          sub(this._state);
+        });
       }
 
       subscribe(fn: (state: DrawerState) => void) {
@@ -43,8 +47,8 @@ describe('drawerApi', () => {
 
   it('should initialize with default state', () => {
     expect(drawerState.isOpen).toBe(false);
-    expect(drawerState.cancelText).toBe(undefined);
-    expect(drawerState.confirmText).toBe(undefined);
+    expect(drawerState.cancelText).toBeUndefined();
+    expect(drawerState.confirmText).toBeUndefined();
   });
 
   it('should open the drawer', () => {
@@ -72,13 +76,23 @@ describe('drawerApi', () => {
     drawerApiWithHook.open();
     drawerApiWithHook.onCancel();
     expect(onCancel).toHaveBeenCalled();
-    expect(drawerApiWithHook.store.state.isOpen).toBe(true); // Close logic is not inside onCancel
+    expect(drawerApiWithHook.store.state.isOpen).toBe(true); // 关闭逻辑不在 onCancel 内
   });
 
   it('should update shared data correctly', () => {
     const testData = { key: 'value' };
     drawerApi.setData(testData);
     expect(drawerApi.getData()).toEqual(testData);
+  });
+
+  it('should return undefined before shared data is set', () => {
+    expect(drawerApi.getData()).toBeUndefined();
+  });
+
+  it('should preserve null shared data', () => {
+    const nullableDrawerApi = new DrawerApi<null | Record<string, unknown>>();
+    nullableDrawerApi.setData(null);
+    expect(nullableDrawerApi.getData()).toBeNull();
   });
 
   it('should set state correctly using an object', () => {

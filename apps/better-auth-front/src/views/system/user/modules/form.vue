@@ -4,7 +4,7 @@ import type { DataNode } from 'antdv-next/dist/tree';
 
 import type { SystemUserApi } from '#/api/system/user';
 
-import { Tree, useVbenDrawer } from '@taman/common-ui';
+import { Tree, useTamanDrawer } from '@taman/common-ui';
 import { Spin } from 'antdv-next';
 import { computed, nextTick, ref } from 'vue';
 
@@ -28,7 +28,7 @@ const permissions = ref<Array<DataNode>>([]);
 const loadingPermissions = ref(false);
 
 const id = ref();
-const [Drawer, drawerApi] = useVbenDrawer({
+const [Drawer, drawerApi] = useTamanDrawer({
   async onConfirm() {
     const { valid } = await formApi.validate();
     if (!valid) {

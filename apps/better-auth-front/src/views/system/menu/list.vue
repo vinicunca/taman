@@ -4,7 +4,7 @@ import type {
   VxeTableGridOptions,
 } from '#/adapter/vxe-table';
 
-import { Page, useVbenDrawer } from '@taman/common-ui';
+import { Page, useTamanDrawer } from '@taman/common-ui';
 import { IconifyIcon, Plus } from '@vben/icons';
 import { $t } from '@taman/locales';
 
@@ -18,7 +18,7 @@ import { deleteMenu, getMenuList, SystemMenuApi } from '#/api/system/menu';
 import { useColumns } from './data';
 import Form from './modules/form.vue';
 
-const [FormDrawer, formDrawerApi] = useVbenDrawer({
+const [FormDrawer, formDrawerApi] = useTamanDrawer({
   connectedComponent: Form,
   destroyOnClose: true,
 });

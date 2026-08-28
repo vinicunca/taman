@@ -7,7 +7,7 @@ import type { SystemRoleApi } from '#/api/system/role';
 
 import { computed, nextTick, ref } from 'vue';
 
-import { Tree, useVbenDrawer } from '@taman/common-ui';
+import { Tree, useTamanDrawer } from '@taman/common-ui';
 import { IconifyIcon } from '@vben/icons';
 
 import { Spin } from 'antdv-next';
@@ -32,7 +32,7 @@ const permissions = ref<DataNode[]>([]);
 const loadingPermissions = ref(false);
 
 const id = ref();
-const [Drawer, drawerApi] = useVbenDrawer({
+const [Drawer, drawerApi] = useTamanDrawer({
   async onConfirm() {
     const { valid } = await formApi.validate();
     if (!valid) return;

@@ -3,7 +3,7 @@ import type { SystemUserApi } from '#/api/system/user';
 
 import { computed, ref } from 'vue';
 
-import { useVbenDrawer, VbenDescriptions } from '@taman/common-ui';
+import { useTamanDrawer, VbenDescriptions } from '@taman/common-ui';
 
 import { $t } from '#/locales';
 
@@ -13,7 +13,7 @@ const detailData = ref<SystemUserApi.SystemUser>();
 
 const items = computed(() => useDescriptionItems(detailData.value));
 
-const [Drawer, drawerApi] = useVbenDrawer({
+const [Drawer, drawerApi] = useTamanDrawer({
   onOpenChange(isOpen) {
     if (isOpen) {
       detailData.value = drawerApi.getData<SystemUserApi.SystemUser>();

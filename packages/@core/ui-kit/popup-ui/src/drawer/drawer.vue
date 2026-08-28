@@ -1,30 +1,26 @@
 <script lang="ts" setup>
-import type { DrawerProps, ExtendedDrawerApi } from './drawer';
+import type { DrawerProps, ExtendedDrawerApi } from './drawer.types';
 
 import {
   useBreakpoints,
   usePriorityValues,
   useSimpleLocale,
 } from '@taman-core/composables';
-import { X } from '@taman-core/icons';
-import { ELEMENT_ID_MAIN_CONTENT } from '@taman-core/shared/constants';
-import { globalShareState } from '@taman-core/shared/global-state';
-import { cn } from '@taman-core/shared/utils';
+import { DISMISSABLE_DRAWER_ID, ELEMENT_ID_MAIN_CONTENT } from '@taman-core/shared/constants';
 import {
-  Separator,
-  Sheet,
   SheetClose,
   SheetContent,
   SheetDescription,
   SheetFooter,
   SheetHeader,
+  SheetRoot,
   SheetTitle,
-  VbenButton,
-  VbenHelpTooltip,
-  VbenIconButton,
-  VbenLoading,
+  TamanButtonIcon,
   VisuallyHidden,
-} from '@vben-core/shadcn-ui';
+} from '@taman-core/taman-ui';
+import PSeparator from 'pohon-ui/components/Separator.vue';
+import PTooltip from 'pohon-ui/components/Tooltip.vue';
+import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
 import {
   computed,
   onDeactivated,
@@ -39,21 +35,21 @@ interface Props extends DrawerProps {
   drawerApi?: ExtendedDrawerApi;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  appendToMain: false,
-  closeIconPlacement: 'right',
-  destroyOnClose: false,
-  drawerApi: undefined,
-  submitting: false,
-  zIndex: 1000,
-});
-
-const components = globalShareState.getComponents();
+const props = withDefaults(
+  defineProps<Props>(),
+  {
+    appendToMain: false,
+    closeIconPlacement: 'right',
+    destroyOnClose: false,
+    drawerApi: undefined,
+    submitting: false,
+    zIndex: 1000,
+  },
+);
 
 const id = useId();
-provide('DISMISSABLE_DRAWER_ID', id);
+provide(DISMISSABLE_DRAWER_ID, id);
 
-// @ts-expect-error unused
 const wrapperRef = ref<HTMLElement>();
 const { $t } = useSimpleLocale();
 const { isMobile } = useBreakpoints();
@@ -90,18 +86,6 @@ const {
   zIndex,
 } = usePriorityValues(props, state);
 
-// watch(
-//   () => showLoading.value,
-//   (v) => {
-//     if (v && wrapperRef.value) {
-//       wrapperRef.value.scrollTo({
-//         // behavior: 'smooth',
-//         top: 0,
-//       });
-//     }
-//   },
-// );
-
 /**
  * With keepAlive enabled, browser back/gesture navigation does not close the drawer
  */
@@ -112,48 +96,46 @@ onDeactivated(() => {
   }
 });
 
-function interactOutside(e: Event) {
+function interactOutside(event: Event) {
   if (!closeOnClickModal.value || submitting.value) {
-    e.preventDefault();
+    event.preventDefault();
   }
 }
-function escapeKeyDown(e: KeyboardEvent) {
+function escapeKeyDown(event: KeyboardEvent) {
   if (!closeOnPressEscape.value || submitting.value) {
-    e.preventDefault();
+    event.preventDefault();
   }
 }
-// pointer-down-outside
-function pointerDownOutside(e: Event) {
-  const target = e.target as HTMLElement;
+
+function pointerDownOutside(event: Event) {
+  const target = event.target as HTMLElement;
   const dismissableDrawer = target?.dataset.dismissableDrawer;
   if (
     submitting.value
     || !closeOnClickModal.value
     || dismissableDrawer !== id
   ) {
-    e.preventDefault();
+    event.preventDefault();
   }
 }
 
-function handerOpenAutoFocus(e: Event) {
+function handerOpenAutoFocus(event: Event) {
   if (!openAutoFocus.value) {
-    e?.preventDefault();
+    event?.preventDefault();
   }
 }
 
-function handleFocusOutside(e: Event) {
-  e.preventDefault();
-  e.stopPropagation();
+function handleFocusOutside(event: Event) {
+  event.preventDefault();
+  event.stopPropagation();
 }
 
 const getAppendTo = computed(() => {
-  return appendToMain.value
-    ? `#${ELEMENT_ID_MAIN_CONTENT}`
-    : undefined;
+  return appendToMain.value ? `#${ELEMENT_ID_MAIN_CONTENT}` : undefined;
 });
 
 /**
- * Improved destroyOnClose behavior
+ * Improve the destroyOnClose feature
  */
 // Whether the drawer has been opened at least once
 const hasOpened = ref(false);
@@ -166,6 +148,7 @@ watch(
       hasOpened.value = true;
     }
   },
+  { immediate: true },
 );
 function handleClosed() {
   isClosed.value = true;
@@ -177,16 +160,17 @@ const getForceMount = computed(() => {
 </script>
 
 <template>
-  <Sheet
+  <SheetRoot
     :modal="false"
     :open="state?.isOpen"
     @update:open="() => drawerApi?.close()"
   >
     <SheetContent
       :append-to="getAppendTo"
+      class="flex flex-col w-130 sm:max-w-md"
       :class="
-        cn(
-          'flex w-130 flex-col asd2',
+        [
+
           {
             'w-full!':
               isMobile || placement === 'bottom' || placement === 'top',
@@ -194,7 +178,7 @@ const getForceMount = computed(() => {
             'hidden': isClosed,
           },
           drawerClass,
-        )
+        ]
       "
       :modal="modal"
       :open="state?.isOpen"
@@ -213,15 +197,15 @@ const getForceMount = computed(() => {
     >
       <SheetHeader
         v-if="showHeader"
+        class="border-b items-center justify-between"
         :class="
-          cn(
-            'flex! flex-row items-center justify-between border-b px-6 py-5',
+          [
             headerClass,
             {
               'px-4 py-3': closable,
               'pl-2': closable && closeIconPlacement === 'left',
             },
-          )
+          ]
         "
       >
         <div class="flex items-center">
@@ -229,15 +213,16 @@ const getForceMount = computed(() => {
             v-if="closable && closeIconPlacement === 'left'"
             as-child
             :disabled="submitting"
-            class="ml-0.5 rounded-full opacity-80 cursor-pointer transition-opacity focus:outline-hidden data-[state=open]:bg-secondary hover:opacity-100 disabled:pointer-events-none"
+            class="data-[state=open]:bg-secondary ml-0.5 rounded-full opacity-80 cursor-pointer transition-opacity focus:outline-hidden hover:opacity-100 disabled:pointer-events-none"
           >
             <slot name="close-icon">
-              <VbenIconButton>
-                <X class="size-4" />
-              </VbenIconButton>
+              <TamanButtonIcon
+                icon="lucide:x"
+              />
             </slot>
           </SheetClose>
-          <Separator
+
+          <PSeparator
             v-if="closable && closeIconPlacement === 'left'"
             class="ml-1 mr-2 h-8"
             decorative
@@ -250,12 +235,15 @@ const getForceMount = computed(() => {
             <slot name="title">
               {{ title }}
 
-              <VbenHelpTooltip
+              <PTooltip
                 v-if="titleTooltip"
-                trigger-class="pb-1"
+                :text="titleTooltip"
               >
-                {{ titleTooltip }}
-              </VbenHelpTooltip>
+                <PIcon
+                  name="lucide:circle-help"
+                  class="color-text-muted"
+                />
+              </PTooltip>
             </slot>
           </SheetTitle>
           <SheetDescription
@@ -275,65 +263,76 @@ const getForceMount = computed(() => {
 
         <div class="flex-center">
           <slot name="extra" />
+
           <SheetClose
             v-if="closable && closeIconPlacement === 'right'"
             as-child
             :disabled="submitting"
-            class="ml-0.5 rounded-full opacity-80 cursor-pointer transition-opacity focus:outline-hidden data-[state=open]:bg-secondary hover:opacity-100 disabled:pointer-events-none"
+            class="data-[state=open]:bg-secondary ml-0.5 rounded-full opacity-80 cursor-pointer transition-opacity focus:outline-hidden hover:opacity-100 disabled:pointer-events-none"
           >
             <slot name="close-icon">
-              <VbenIconButton>
-                <X class="size-4" />
-              </VbenIconButton>
+              <TamanButtonIcon
+                icon="lucide:x"
+              />
             </slot>
           </SheetClose>
         </div>
       </SheetHeader>
+
       <template v-else>
         <VisuallyHidden>
           <SheetTitle />
           <SheetDescription />
         </VisuallyHidden>
       </template>
+
       <div
         ref="wrapperRef"
+        class="p-3 flex-1 relative overflow-y-auto"
         :class="
-          cn('relative flex-1 overflow-y-auto p-3', contentClass, {
-            'pointer-events-none': showLoading || submitting,
-          })
+          [
+            contentClass,
+            {
+              'pointer-events-none': showLoading || submitting,
+            },
+          ]
         "
       >
         <slot />
       </div>
-      <VbenLoading
+
+      <TamanSpinner
         v-if="showLoading || submitting"
         spinning
       />
+
       <SheetFooter
         v-if="showFooter"
+        class="p-2 px-3 border-t flex-row w-full items-center justify-end"
         :class="
-          cn(
-            'w-full flex-row items-center justify-end border-t p-2 px-3',
+          [
             footerClass,
-          )
+          ]
         "
       >
         <slot name="prepend-footer" />
+
         <slot name="footer">
-          <component
-            :is="components.DefaultButton || VbenButton"
+          <PButton
             v-if="showCancelButton"
-            variant="ghost"
+            variant="outline"
+            color="neutral"
             :disabled="submitting"
             @click="() => drawerApi?.onCancel()"
           >
             <slot name="cancelText">
               {{ cancelText || $t('cancel') }}
             </slot>
-          </component>
+          </PButton>
+
           <slot name="center-footer" />
-          <component
-            :is="components.PrimaryButton || VbenButton"
+
+          <PButton
             v-if="showConfirmButton"
             :loading="confirmLoading || submitting"
             @click="() => drawerApi?.onConfirm()"
@@ -341,10 +340,11 @@ const getForceMount = computed(() => {
             <slot name="confirmText">
               {{ confirmText || $t('confirm') }}
             </slot>
-          </component>
+          </PButton>
         </slot>
+
         <slot name="append-footer" />
       </SheetFooter>
     </SheetContent>
-  </Sheet>
+  </SheetRoot>
 </template>
