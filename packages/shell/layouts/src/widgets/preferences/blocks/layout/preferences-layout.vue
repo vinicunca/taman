@@ -2,6 +2,8 @@
 import type { TamanLayoutType } from '@taman/types';
 import type { Component } from 'vue';
 import { $t } from '@taman/locales';
+import PTooltip from 'pohon-ui/components/Tooltip.vue';
+import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
 import { computed } from 'vue';
 
 import {
@@ -13,6 +15,10 @@ import {
   IconLayoutSidebarMixedNav,
   IconLayoutSidebarNav,
 } from './icons';
+
+defineOptions({
+  name: 'PreferencesLayout',
+});
 
 interface PresetItem {
   name: string;
@@ -84,7 +90,7 @@ function handleLayoutChange(layout: TamanLayoutType) {
     <button
       v-for="layout in LAYOUT_PRESET"
       :key="layout.name"
-      class="group flex flex-col gap-2 w-25"
+      class="group flex flex-col gap-2 w-28"
       @click="handleLayoutChange(layout.type)"
     >
       <div
@@ -94,7 +100,7 @@ function handleLayoutChange(layout: TamanLayoutType) {
         <component :is="components[layout.type]" />
       </div>
 
-      <div class="text-xs color-text-muted text-center flex-center gap-1 group-hover:color-text">
+      <div class="text-xs color-text-muted font-500 text-center flex gap-1 items-start justify-center group-hover:color-text">
         {{ layout.name }}
 
         <PTooltip
@@ -105,7 +111,8 @@ function handleLayoutChange(layout: TamanLayoutType) {
         >
           <PIcon
             name="lucide:info"
-            class="cursor-help"
+            class="mt-0.25 shrink-0 cursor-help"
+            size="16"
           />
         </PTooltip>
       </div>

@@ -4,6 +4,7 @@ export { default as LayoutWidgetGlobalSearch } from './layout-widget-global-sear
 export { default as LayoutWidgetLanguageToggle } from './layout-widget-language-toggle.vue';
 export { default as LayoutWidgetThemeToggle } from './layout-widget-theme-toggle.vue';
 export { default as LayoutWidgetTimezoneButton } from './layout-widget-timezone-button.vue';
+export { default as LayoutWidgetUserDropdown } from './layout-widget-user-dropdown.vue';
 export * from './lock-screen';
 export * from './notification';
 export * from './preferences';

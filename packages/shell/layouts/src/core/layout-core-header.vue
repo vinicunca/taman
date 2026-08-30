@@ -305,7 +305,7 @@ function clearPreferencesAndLogout() {
     <slot name="menu" />
   </div>
 
-  <div class="flex shrink-0 gap-1 h-full min-w-0 items-center">
+  <div class="pr-4 flex shrink-0 gap-1 h-full min-w-0 items-center">
     <template
       v-for="slot in rightSlots"
       :key="slot.name"

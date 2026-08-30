@@ -1,19 +1,40 @@
 <script lang="ts" setup>
-import type { TamanLayoutType } from '@taman/types';
+import type { TamanContentCompactType, TamanLayoutType } from '@taman/types';
 import type { TabsItem } from 'pohon-ui';
 import { useTamanDrawer } from '@taman-core/popup-ui';
 import { $t } from '@taman/locales';
 import { usePreferences } from '@taman/preferences';
+import PButton from 'pohon-ui/components/Button.vue';
+import PTabs from 'pohon-ui/components/Tabs.vue';
+import PTooltip from 'pohon-ui/components/Tooltip.vue';
 import { computed } from 'vue';
 import {
-  PreferenceBlock,
-  PreferenceLayout,
-  PreferenceTheme,
+  PreferencesBlock,
+  PreferencesContent,
+  PreferencesLayout,
+  PreferencesTheme,
 } from './blocks';
 
 const emits = defineEmits<{
   clearPreferencesAndLogout: [];
 }>();
+
+/**
+ * ----------
+ * Layout
+ * ----------
+ */
+const appLayout = defineModel<TamanLayoutType>('appLayout');
+const appContentCompact = defineModel<TamanContentCompactType>('appContentCompact');
+
+/**
+ * ----------
+ * Appearance
+ * ----------
+ */
+const themeSemiDarkSidebar = defineModel<boolean>('themeSemiDarkSidebar');
+const themeSemiDarkSidebarSub = defineModel<boolean>('themeSemiDarkSidebarSub');
+const themeSemiDarkHeader = defineModel<boolean>('themeSemiDarkHeader');
 
 const {
   // customPreferences,
@@ -29,22 +50,6 @@ const {
   // isSideMode,
   // isSideNav,
 } = usePreferences();
-
-/**
- * ----------
- * Appearance
- * ----------
- */
-const themeSemiDarkSidebar = defineModel<boolean>('themeSemiDarkSidebar');
-const themeSemiDarkSidebarSub = defineModel<boolean>('themeSemiDarkSidebarSub');
-const themeSemiDarkHeader = defineModel<boolean>('themeSemiDarkHeader');
-
-/**
- * ----------
- * Layout
- * ----------
- */
-const appLayout = defineModel<TamanLayoutType>('appLayout');
 
 const customPreferencesTab = computed(() => {
   return preferencesExtension.value;
@@ -95,11 +100,11 @@ const tabs = computed<Array<TabsItem>>(() => {
   return items;
 });
 
-const [Drawer] = useTamanDrawer();
+const [DrawerPreferences] = useTamanDrawer();
 </script>
 
 <template>
-  <Drawer
+  <DrawerPreferences
     :description="$t('preferences.subtitle')"
     :title="$t('preferences.title')"
     footer-class="pohon:justify-center"
@@ -130,9 +135,13 @@ const [Drawer] = useTamanDrawer();
       size="sm"
     >
       <template #layout>
-        <PreferenceBlock :title="$t('preferences.layout')">
-          <PreferenceLayout v-model="appLayout" />
-        </PreferenceBlock>
+        <PreferencesBlock :title="$t('preferences.layout')">
+          <PreferencesLayout v-model="appLayout" />
+        </PreferencesBlock>
+
+        <PreferencesBlock :title="$t('preferences.content')">
+          <PreferencesContent v-model="appContentCompact" />
+        </PreferencesBlock>
 
         <!-- <Block :title="$t('preferences.content')">
           <Content v-model="appContentCompact" />
@@ -241,13 +250,13 @@ const [Drawer] = useTamanDrawer();
       </template>
 
       <template #appearance>
-        <PreferenceBlock :title="$t('preferences.theme.title')">
-          <PreferenceTheme
+        <PreferencesBlock :title="$t('preferences.theme.title')">
+          <PreferencesTheme
             v-model:theme-semi-dark-header="themeSemiDarkHeader"
             v-model:theme-semi-dark-sidebar="themeSemiDarkSidebar"
             v-model:theme-semi-dark-sidebar-sub="themeSemiDarkSidebarSub"
           />
-        </PreferenceBlock>
+        </PreferencesBlock>
       </template>
 
       <template #shortcutKey>
@@ -280,5 +289,5 @@ const [Drawer] = useTamanDrawer();
         {{ $t('preferences.clearAndLogout') }}
       </PButton>
     </template>
-  </Drawer>
+  </DrawerPreferences>
 </template>

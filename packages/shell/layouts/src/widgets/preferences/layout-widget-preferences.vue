@@ -6,7 +6,7 @@ import { preferences, updatePreferences } from '@taman/preferences';
 import { capitalize } from '@vinicunca/perkakas';
 import PButton from 'pohon-ui/components/Button.vue';
 import { computed } from 'vue';
-import WidgetPreferencesDrawer from './layout-widget-preferences-drawer.vue';
+import LayoutWidgetPreferencesDrawer from './layout-widget-preferences-drawer.vue';
 
 const { isFixed = false } = defineProps<{ isFixed?: boolean }>();
 
@@ -19,7 +19,7 @@ const showTooltip = computed(() => {
 });
 
 const [DrawerPreferences, drawerPreferencesApi] = useTamanDrawer({
-  connectedComponent: WidgetPreferencesDrawer,
+  connectedComponent: LayoutWidgetPreferencesDrawer,
 });
 
 /**

@@ -3,11 +3,9 @@
 // export { default as Animation } from './general/animation.vue';
 // export { default as General } from './general/general.vue';
 // export { default as Breadcrumb } from './layout/breadcrumb.vue';
-// export { default as Content } from './layout/content.vue';
 // export { default as Copyright } from './layout/copyright.vue';
 // export { default as Footer } from './layout/footer.vue';
 // export { default as Header } from './layout/header.vue';
-// export { default as Layout } from './layout/layout.vue';
 // export { default as Navigation } from './layout/navigation.vue';
 // export { default as Sidebar } from './layout/sidebar.vue';
 // export { default as Tabbar } from './layout/tabbar.vue';
@@ -20,6 +18,7 @@
 // export { default as Radius } from './theme/radius.vue';
 // export { default as Theme } from './theme/theme.vue';
 
-export { default as PreferenceLayout } from './layout/preference-layout.vue';
-export { default as PreferenceBlock } from './preference-block.vue';
-export { default as PreferenceTheme } from './theme/preference-theme.vue';
+export { default as PreferencesContent } from './layout/preferences-content.vue';
+export { default as PreferencesLayout } from './layout/preferences-layout.vue';
+export { default as PreferencesBlock } from './preferences-block.vue';
+export { default as PreferencesTheme } from './theme/preferences-theme.vue';

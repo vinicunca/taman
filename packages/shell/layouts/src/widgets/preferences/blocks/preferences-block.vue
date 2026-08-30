@@ -5,7 +5,7 @@ const { title = '' } = defineProps<{
 </script>
 
 <template>
-  <div class="p-4 flex flex-col gap-3">
+  <div class="p-1 flex flex-col gap-3">
     <h3 class="leading-none tracking-tight font-600">
       {{ title }}
     </h3>
