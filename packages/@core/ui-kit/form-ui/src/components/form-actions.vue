@@ -137,6 +137,8 @@ defineExpose({
     <PButton
       v-if="resetButtonOptions.show"
       v-bind="resetButtonOptions"
+      variant="outline"
+      color="neutral"
       @click="handleReset"
     >
       {{ resetButtonOptions.content }}

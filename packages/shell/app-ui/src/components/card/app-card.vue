@@ -38,12 +38,13 @@ interface AppPageProps {
     <div
       v-if="title || description || slots.title || slots.description"
       data-slot="card-header"
-      class="group/card-header px-4 py-4 border-b rounded-t-xl @container/cardHeader gap-1 grid auto-rows-min items-start has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto]"
+      class="group/card-header px-4 py-4 border-b rounded-t-xl @container/cardHeader gap-1 grid auto-rows-min items-center has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] has-data-[slot=card-description]:items-start"
       :class="headerClass"
     >
       <slot name="title">
         <h3
           v-if="title"
+          data-slot="card-title"
           class="leading-none font-600"
         >
           {{ title }}
@@ -53,6 +54,7 @@ interface AppPageProps {
       <slot name="description">
         <p
           v-if="description"
+          data-slot="card-description"
           class="text-sm color-text-muted"
         >
           {{ description }}

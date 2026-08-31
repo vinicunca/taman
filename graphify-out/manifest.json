@@ -185,13 +185,13 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/auto-imports.d.ts": {
-    "mtime": 1787906530.6618886,
+    "mtime": 1788075552.5471768,
     "ast_hash": "f1a9de1cb78985c6770cabab807a2c97",
     "semantic_hash": ""
   },
   "apps/better-auth-front/components.d.ts": {
-    "mtime": 1787906537.9446168,
-    "ast_hash": "417ed3aa68450b3ed7bcf514cff53992",
+    "mtime": 1787962125.6346185,
+    "ast_hash": "afd70ca0161ac6549512cae99ca9d67d",
     "semantic_hash": ""
   },
   "apps/better-auth-front/package.json": {
@@ -220,8 +220,8 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/adapter/form.ts": {
-    "mtime": 1787544491.5145473,
-    "ast_hash": "a6a20e2a18b71794b9c5e40950e6b519",
+    "mtime": 1788131986.1679351,
+    "ast_hash": "9e48263c0f336ae079ba13bd5e554776",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/adapter/vxe-table.ts": {
@@ -435,8 +435,8 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/locales/langs/en-US/examples.json": {
-    "mtime": 1786587065.7933517,
-    "ast_hash": "d76dc9232f4fbabe84cca4d7ba07af5c",
+    "mtime": 1788131598.331587,
+    "ast_hash": "c805b745fe6a2d2d0215078084c27216",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/locales/langs/en-US/form.json": {
@@ -445,8 +445,8 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/locales/langs/en-US/page.json": {
-    "mtime": 1786599447.0001352,
-    "ast_hash": "20f7c9067f68a68140adeb4264c27db2",
+    "mtime": 1788131536.5331304,
+    "ast_hash": "d4bf1d0915443af1d763dc6d0beaee33",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/locales/langs/en-US/system.json": {
@@ -545,8 +545,8 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/router/routes/modules/dev/examples.ts": {
-    "mtime": 1786587065.801384,
-    "ast_hash": "e13ab8e58b05ffb53679385074a7c225",
+    "mtime": 1788132049.1346583,
+    "ast_hash": "11320d91586c76466e2383c27c515e87",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/router/routes/modules/dev/system.ts": {
@@ -675,13 +675,13 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/demos/access/button-control.vue": {
-    "mtime": 1787226340.3878946,
-    "ast_hash": "2a4171f14e3dc79928fc102927da5bc2",
+    "mtime": 1787909060.3832963,
+    "ast_hash": "1b5317c11e3d570bbd52651be85d5ff2",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/demos/access/index.vue": {
-    "mtime": 1787226283.6815693,
-    "ast_hash": "6747328541d55659bface868ef05c516",
+    "mtime": 1787909060.5630329,
+    "ast_hash": "f9c0c89c577e84edbd5b2fc44d222389",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/demos/access/menu-visible-403.vue": {
@@ -780,8 +780,8 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/demos/features/preferences-extension/index.vue": {
-    "mtime": 1786587065.8187013,
-    "ast_hash": "b904d5dd7e47354556142804399ab6d7",
+    "mtime": 1787909060.4225187,
+    "ast_hash": "9963af16887935aead5cb0130faa66dc",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/demos/features/request-params-serializer/index.vue": {
@@ -1620,8 +1620,8 @@
     "semantic_hash": ""
   },
   "packages/@core/base/shared/src/constants/index.ts": {
-    "mtime": 1786586885.1434178,
-    "ast_hash": "2e0dcd4d09754603d20187456f5cae8b",
+    "mtime": 1788072943.2226624,
+    "ast_hash": "46dc14c77f96353b1b997e897125c0a2",
     "semantic_hash": ""
   },
   "packages/@core/base/shared/src/constants/vben.ts": {
@@ -2160,8 +2160,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/__tests__/form-api.test.ts": {
-    "mtime": 1787400967.9350214,
-    "ast_hash": "abe47fc3d44d1102491ea856e486c8dd",
+    "mtime": 1788130421.0240288,
+    "ast_hash": "57a1be157f7f0d421a9a267fb5c5aadd",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/package.json": {
@@ -2375,8 +2375,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/auth-form.ts": {
-    "mtime": 1786586885.2635672,
-    "ast_hash": "cfe1f96c1332913f539218c2e4d50000",
+    "mtime": 1787909059.0583997,
+    "ast_hash": "811e0bae4f5612c705ccb030cfbd3f17",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/avatar-group.ts": {
@@ -2400,8 +2400,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/blog-post.ts": {
-    "mtime": 1786586885.2644823,
-    "ast_hash": "f8e9c06664d53042b431946435b895c8",
+    "mtime": 1787909057.6506782,
+    "ast_hash": "3905f75751d3fa30f5662e7e27027202",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/blog-posts.ts": {
@@ -2410,8 +2410,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/breadcrumb.ts": {
-    "mtime": 1786676445.0760279,
-    "ast_hash": "db7a957e887a05440b1464f990667e36",
+    "mtime": 1787909055.3137631,
+    "ast_hash": "b3dbed4e136a75be59c3d7f3e0b127b4",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/button.ts": {
@@ -2420,8 +2420,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/calendar.ts": {
-    "mtime": 1786676445.0759175,
-    "ast_hash": "e89493c17955ccc1494c6c73a4412e1c",
+    "mtime": 1787909058.7873538,
+    "ast_hash": "d61194fc0b40f4f585dabbeac7ee6f29",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/card.ts": {
@@ -2435,8 +2435,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/changelog-version.ts": {
-    "mtime": 1786586885.2663803,
-    "ast_hash": "95bcbdb995baffae488a3122d3513e36",
+    "mtime": 1787909059.349251,
+    "ast_hash": "ec264afe5e11136e50e3aa3bd85b6a0f",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/changelog-versions.ts": {
@@ -2510,8 +2510,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/command-palette.ts": {
-    "mtime": 1786586885.2707207,
-    "ast_hash": "fe3cffdb2247ebdee9d561a516eaef7f",
+    "mtime": 1787909059.2242513,
+    "ast_hash": "a8ae7eb59b43207259063dd2933a9eb8",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/container.ts": {
@@ -2520,8 +2520,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/content/content-navigation.ts": {
-    "mtime": 1786676444.993459,
-    "ast_hash": "b2d43c8b60aeddd9ea1159ab6712a8b1",
+    "mtime": 1787909059.4349022,
+    "ast_hash": "990fc123c8148cdbb741847b9e3139be",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/content/content-search-button.ts": {
@@ -2540,13 +2540,13 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/content/content-toc.ts": {
-    "mtime": 1786676444.993734,
-    "ast_hash": "0d7c9d6055abf45de913bda08adbc40e",
+    "mtime": 1787909835.7677026,
+    "ast_hash": "8ce38f0a768f3d359e19b2322e700d5c",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/context-menu.ts": {
-    "mtime": 1786676445.066404,
-    "ast_hash": "30b8fe0e5b51e9b7d4c0dc313ee92782",
+    "mtime": 1787909058.0052612,
+    "ast_hash": "a62173af5e06407b90e3a34d771440f7",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/dashboard-group.ts": {
@@ -2555,8 +2555,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/dashboard-navbar.ts": {
-    "mtime": 1786586885.2730167,
-    "ast_hash": "b0b75c21e67ae1ac829fe68a26d7d2c5",
+    "mtime": 1787909058.8489513,
+    "ast_hash": "864508570d916038ba240ae2408d80d6",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/dashboard-panel.ts": {
@@ -2600,13 +2600,13 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/drawer.ts": {
-    "mtime": 1786586885.2752383,
-    "ast_hash": "b5f47effc6cfec8dedf3b6da1e2e0ef1",
+    "mtime": 1787909058.064331,
+    "ast_hash": "db81f80bf7ebedb520234bd2caec35ca",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/dropdown-menu.ts": {
-    "mtime": 1786676445.0663,
-    "ast_hash": "fb2426176c70b4cd5e34d4d795e0aed0",
+    "mtime": 1787909059.3033657,
+    "ast_hash": "30bfa76d2a2586f834e11639c7f48a5f",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/editor-drag-handle.ts": {
@@ -2625,8 +2625,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/editor-suggestion-menu.ts": {
-    "mtime": 1786586885.2763972,
-    "ast_hash": "f05a499ccd0da76f3e53749995200c44",
+    "mtime": 1787909058.6709857,
+    "ast_hash": "d6dd0d592687c0ea2aad6f2f56ec8195",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/editor-toolbar.ts": {
@@ -2645,8 +2645,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/error.ts": {
-    "mtime": 1786586885.277211,
-    "ast_hash": "2fedee3cc4ad4ba9805504e39d04eb86",
+    "mtime": 1787909804.5162654,
+    "ast_hash": "54da92623c76cc41c1c9c43de3ad7b9e",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/field-group.ts": {
@@ -2660,8 +2660,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/footer-columns.ts": {
-    "mtime": 1786586885.2779145,
-    "ast_hash": "3a98a5be65414f329ad48b8f14686d99",
+    "mtime": 1787909058.1543489,
+    "ast_hash": "2b5d16f921ce53162367c415ddf87426",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/footer.ts": {
@@ -2690,8 +2690,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/input-menu.ts": {
-    "mtime": 1786676444.9982557,
-    "ast_hash": "3c32f70fa4a5fd1063047d35d8af4b18",
+    "mtime": 1787909057.7391922,
+    "ast_hash": "2ece7f96030393bfc7ea92a599a86d57",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/input-number.ts": {
@@ -2725,13 +2725,13 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/listbox.ts": {
-    "mtime": 1786676444.9982631,
-    "ast_hash": "59ec870a582866f785fb09b2816e7e3c",
+    "mtime": 1787909058.572491,
+    "ast_hash": "5b95aeb4923f68724b03d18485a0691a",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/main.ts": {
-    "mtime": 1786586885.2816358,
-    "ast_hash": "488abb361a1929301d7d9141308f61ef",
+    "mtime": 1787909562.802989,
+    "ast_hash": "cd72de8478666711509fba6f02593534",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/marquee.ts": {
@@ -2740,23 +2740,23 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/modal.ts": {
-    "mtime": 1787103164.403415,
-    "ast_hash": "163064be479e925336dccf72d3b9c125",
+    "mtime": 1787909058.9261026,
+    "ast_hash": "35af10b4865eb4ef6ba334d69ed42444",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/navigation-menu.ts": {
-    "mtime": 1786676445.0759177,
-    "ast_hash": "d0370e05cd79847e1510906db2784665",
+    "mtime": 1787909058.9767063,
+    "ast_hash": "0e254e211db3abd501342274812fd719",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/page-anchors.ts": {
-    "mtime": 1786586885.2828345,
-    "ast_hash": "2ae75e1174a30782c0d2f1ab89ba16f9",
+    "mtime": 1787909058.1084974,
+    "ast_hash": "f3cf714637a5c9e9e83f4d0115b0ab12",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/page-aside.ts": {
-    "mtime": 1786586885.2831821,
-    "ast_hash": "e65016d62f2c3e86201e5413acc6ac7a",
+    "mtime": 1787909835.7683241,
+    "ast_hash": "fce9aa45cb3eb6da15b3ab026825c756",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/page-body.ts": {
@@ -2765,8 +2765,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/page-card.ts": {
-    "mtime": 1786676445.0761256,
-    "ast_hash": "c1581ce88afc66d441b97a2933c21e19",
+    "mtime": 1787909056.8018298,
+    "ast_hash": "46dd1b963732fccc60fbc9656a2614b4",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/page-columns.ts": {
@@ -2780,8 +2780,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/page-feature.ts": {
-    "mtime": 1786586885.284724,
-    "ast_hash": "30a22f2713334b7607726ea888627c60",
+    "mtime": 1787909057.8499963,
+    "ast_hash": "32c9060c606048417884650ce83f5184",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/page-grid.ts": {
@@ -2790,18 +2790,18 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/page-header.ts": {
-    "mtime": 1786586885.2858992,
-    "ast_hash": "8099bdb6f133f5871f7de7695ddc8011",
+    "mtime": 1787909057.9800456,
+    "ast_hash": "052bb5a8cd611e3238439e5cb8038f52",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/page-hero.ts": {
-    "mtime": 1786586885.2863195,
-    "ast_hash": "1965f55cad4c22e3785f1cfcbe20ae5a",
+    "mtime": 1787909059.3916523,
+    "ast_hash": "dcc16ca58cafa366ad6b81abef1b7daf",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/page-links.ts": {
-    "mtime": 1786586885.2867525,
-    "ast_hash": "3f4c92fd7c4c2a8131799982f2748d28",
+    "mtime": 1787909058.6265233,
+    "ast_hash": "f9ce01f5ea98b4621f3ca56413219a7b",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/page-list.ts": {
@@ -2810,13 +2810,13 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/page-logos.ts": {
-    "mtime": 1786586885.2875867,
-    "ast_hash": "6acd8a3fa2ba9ad180b140b7523b790a",
+    "mtime": 1787909059.2617295,
+    "ast_hash": "84de95e3d05e5003f1660f80ff63ee7f",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/page-section.ts": {
-    "mtime": 1786586885.2879303,
-    "ast_hash": "a69bcf8a85e11530eaf3117318dcd1e5",
+    "mtime": 1787909052.521234,
+    "ast_hash": "b9164969ab34a486b20d1022794b480b",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/page.ts": {
@@ -2840,8 +2840,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/pricing-plan.ts": {
-    "mtime": 1786586885.289422,
-    "ast_hash": "0772f9012c9b57bfc1242a2fc4576c4f",
+    "mtime": 1787909059.1408095,
+    "ast_hash": "80c9b008cac98c73324859e61e8078b9",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/pricing-plans.ts": {
@@ -2850,8 +2850,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/pricing-table.ts": {
-    "mtime": 1786586885.289811,
-    "ast_hash": "719fab49205de62b0d506be59faa8cab",
+    "mtime": 1787909059.0953867,
+    "ast_hash": "5057566fe0e24c65e785a955e31c1c9d",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/progress.ts": {
@@ -2860,8 +2860,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/prose.ts": {
-    "mtime": 1786676444.9938092,
-    "ast_hash": "9d1fb69b02447948848465220d7b1faa",
+    "mtime": 1787909835.768561,
+    "ast_hash": "36d9c03f973f47c2f74f61032d04782e",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/radio-group.ts": {
@@ -2875,13 +2875,13 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/select-menu.ts": {
-    "mtime": 1786586885.2913246,
-    "ast_hash": "8bb089281e484b8da2c06d41c747fb12",
+    "mtime": 1787909390.9302568,
+    "ast_hash": "6f323fd02702581ec0e945d42fb4d435",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/select.ts": {
-    "mtime": 1786586885.291715,
-    "ast_hash": "bdb0b57941a2d3baa625e20c9594fd8c",
+    "mtime": 1787909047.903909,
+    "ast_hash": "2f2024934c322c2129775ece61579a92",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/separator.ts": {
@@ -2890,8 +2890,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/sidebar.ts": {
-    "mtime": 1786586885.2921414,
-    "ast_hash": "7778aebaa88ba2a181a866feab25dee4",
+    "mtime": 1787909053.938958,
+    "ast_hash": "4dceb0b744f3363fcb30c2ed034af169",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/skeleton.ts": {
@@ -2900,8 +2900,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/slideover.ts": {
-    "mtime": 1786586885.29252,
-    "ast_hash": "b079e37e08c692cb3daf1efbb7b6cfe1",
+    "mtime": 1787909058.8820887,
+    "ast_hash": "c66969610668c5bfd39d36fc9ac43b2b",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/slider.ts": {
@@ -2910,23 +2910,23 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/stepper.ts": {
-    "mtime": 1786676444.9936833,
-    "ast_hash": "52e441d0f298be6c934f41386c1c337b",
+    "mtime": 1787909058.7185721,
+    "ast_hash": "8b518ab7fbe15e72f4c7237606a291be",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/switch.ts": {
-    "mtime": 1786676444.9937577,
-    "ast_hash": "130116224bbc8b9a2878a84efb067d7c",
+    "mtime": 1788074990.9846945,
+    "ast_hash": "a5a65735689560a82695ffc4b60bd316",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/table.ts": {
-    "mtime": 1786676444.9936879,
-    "ast_hash": "14f054d38bebe9f455470707b3b1d937",
+    "mtime": 1787909058.5153677,
+    "ast_hash": "30d7321ffd09ba32ed82c0a4bc90f175",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/tabs.ts": {
-    "mtime": 1786692854.1286523,
-    "ast_hash": "34065c092c4eca8c51d3f63df1e81417",
+    "mtime": 1788075394.5745797,
+    "ast_hash": "c3da36370a5f87b047516e16416450bd",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/textarea.ts": {
@@ -3010,8 +3010,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/popup-ui/src/dialog/dialog.vue": {
-    "mtime": 1787907874.7381132,
-    "ast_hash": "3008795f4dd7f837a1145ddc27a57c6d",
+    "mtime": 1787908526.712254,
+    "ast_hash": "95ca94984a930e28431fb5c09f370489",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/popup-ui/src/dialog/index.ts": {
@@ -3035,8 +3035,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/popup-ui/src/drawer/drawer.vue": {
-    "mtime": 1787903328.5301352,
-    "ast_hash": "b65fe64ea02619ddaf19aacb2f666275",
+    "mtime": 1787910389.5181358,
+    "ast_hash": "946dada057fbf9838496361b34d816d0",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/popup-ui/src/drawer/index.ts": {
@@ -3200,8 +3200,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/shadcn-ui/src/components/descriptions/descriptions.vue": {
-    "mtime": 1786586885.34125,
-    "ast_hash": "4222d9ccda502de47986d9b2b2d31ebd",
+    "mtime": 1787909060.699364,
+    "ast_hash": "371556208a0f7ef9d5f5365037f6854b",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/shadcn-ui/src/components/descriptions/index.ts": {
@@ -3295,8 +3295,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/shadcn-ui/src/components/logo/logo.vue": {
-    "mtime": 1786586885.3476343,
-    "ast_hash": "a5e3225c23dfc4f07a0666b2f34fb536",
+    "mtime": 1787909060.1118038,
+    "ast_hash": "49cc3e8491513a93d333ce9a1619d13c",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/shadcn-ui/src/components/pin-input/index.ts": {
@@ -3505,8 +3505,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/shadcn-ui/src/ui/alert-dialog/AlertDialogTitle.vue": {
-    "mtime": 1786586885.3585136,
-    "ast_hash": "80e7514311fb456ade848d2a67d9100d",
+    "mtime": 1787909059.5199304,
+    "ast_hash": "77c9c2541f352c6c05b10c39a78fd48a",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/shadcn-ui/src/ui/alert-dialog/AlertDialogTrigger.vue": {
@@ -3640,8 +3640,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/shadcn-ui/src/ui/card/CardTitle.vue": {
-    "mtime": 1786586885.365932,
-    "ast_hash": "0d9af121fd3a6b3004c6d6afdb0b1069",
+    "mtime": 1787909059.8372016,
+    "ast_hash": "058932d1e1783d867f02e523be685743",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/shadcn-ui/src/ui/card/index.ts": {
@@ -3780,8 +3780,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/shadcn-ui/src/ui/dialog/DialogTitle.vue": {
-    "mtime": 1786586885.373666,
-    "ast_hash": "6fa2481572f73a9b1a16cdd4db7d47f2",
+    "mtime": 1787909059.9783635,
+    "ast_hash": "bf1a03149fa6423715dcdace0ed08ba0",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/shadcn-ui/src/ui/dialog/DialogTrigger.vue": {
@@ -4495,8 +4495,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/taman-ui/src/components/scrollbar/scrollbar.vue": {
-    "mtime": 1786586885.4315426,
-    "ast_hash": "ba3c46a7ed952085a69550c7dee6bd1b",
+    "mtime": 1788078304.4351785,
+    "ast_hash": "0ab7a8f0c10bb09966f715e309cc2987",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/taman-ui/src/components/spinner/index.ts": {
@@ -4550,8 +4550,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/taman-ui/src/ui/alert-dialog/alert-dialog-title.vue": {
-    "mtime": 1786586885.4346359,
-    "ast_hash": "f73b37387f5b80e54f511a3ff56b163d",
+    "mtime": 1787909059.5589175,
+    "ast_hash": "aa1ed06aa881d8d0f2ed13423cf58d16",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/taman-ui/src/ui/alert-dialog/alert-dialog-trigger.vue": {
@@ -4585,8 +4585,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/taman-ui/src/ui/dialog/dialog-header.vue": {
-    "mtime": 1787907394.7912176,
-    "ast_hash": "6d091ee1c857f9be09b2c902914c8f80",
+    "mtime": 1787908272.078088,
+    "ast_hash": "60e8edf1385ee866bebf146fb9e61580",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/taman-ui/src/ui/dialog/dialog-overlay.vue": {
@@ -4660,8 +4660,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/taman-ui/src/ui/sheet/sheet-header.vue": {
-    "mtime": 1786586885.4402497,
-    "ast_hash": "41db8e655cd7542b21fedae9c7c82ecd",
+    "mtime": 1787908239.507772,
+    "ast_hash": "d6a324cdb3143ccdb9213b10c8105940",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/taman-ui/src/ui/sheet/sheet-overlay.vue": {
@@ -5055,8 +5055,8 @@
     "semantic_hash": ""
   },
   "packages/effects/common-ui/src/components/page/page.vue": {
-    "mtime": 1786586885.53562,
-    "ast_hash": "c8811c6d839831a4982b5fa919f43dbd",
+    "mtime": 1787909060.795144,
+    "ast_hash": "be4bae8bdc34e6127e3af56b97e25920",
     "semantic_hash": ""
   },
   "packages/effects/common-ui/src/components/page/types.ts": {
@@ -5205,8 +5205,8 @@
     "semantic_hash": ""
   },
   "packages/effects/common-ui/src/ui/dashboard/workbench/workbench-header.vue": {
-    "mtime": 1786586885.5475566,
-    "ast_hash": "4aaf669136f7fb9d158a618811aa707c",
+    "mtime": 1787909060.3439596,
+    "ast_hash": "29f1251b1e7a4213cc8cecf34a9c4fda",
     "semantic_hash": ""
   },
   "packages/effects/common-ui/src/ui/dashboard/workbench/workbench-project.vue": {
@@ -5220,13 +5220,13 @@
     "semantic_hash": ""
   },
   "packages/effects/common-ui/src/ui/dashboard/workbench/workbench-todo.vue": {
-    "mtime": 1786586885.548246,
-    "ast_hash": "5b6e94d90788208d56c84c57c709b299",
+    "mtime": 1787909060.4910815,
+    "ast_hash": "18a973ef64fb690a4448a9472e374639",
     "semantic_hash": ""
   },
   "packages/effects/common-ui/src/ui/dashboard/workbench/workbench-trends.vue": {
-    "mtime": 1786586885.5484378,
-    "ast_hash": "adb6c3569d82bd3e98990e5df7483a3d",
+    "mtime": 1787909060.302126,
+    "ast_hash": "31a48c325c74c26c1f4f69463a2b51ff",
     "semantic_hash": ""
   },
   "packages/effects/common-ui/src/ui/fallback/fallback.ts": {
@@ -5290,8 +5290,8 @@
     "semantic_hash": ""
   },
   "packages/effects/common-ui/src/ui/profile/profile.vue": {
-    "mtime": 1786586885.5549178,
-    "ast_hash": "0400806298d93ec59bce3ac70d66aa31",
+    "mtime": 1787909060.2471697,
+    "ast_hash": "6d611334f47a1eb982cebde780798a67",
     "semantic_hash": ""
   },
   "packages/effects/common-ui/src/ui/profile/security-setting.vue": {
@@ -5470,8 +5470,8 @@
     "semantic_hash": ""
   },
   "packages/effects/plugins/src/tiptap/tiptap.vue": {
-    "mtime": 1787900303.3376198,
-    "ast_hash": "2f3547ef9f939e41a1fc809bcfc762aa",
+    "mtime": 1787909057.3529758,
+    "ast_hash": "377527c2cd9771cd4b43d7790208ffb0",
     "semantic_hash": ""
   },
   "packages/effects/plugins/src/tiptap/toolbar.ts": {
@@ -5675,8 +5675,8 @@
     "semantic_hash": ""
   },
   "packages/locales/src/langs/en-US/preferences.json": {
-    "mtime": 1787196718.0732248,
-    "ast_hash": "84a05424eaa67b9d0e5cd42ba4c56e63",
+    "mtime": 1788076769.7899303,
+    "ast_hash": "27e3dee968b2c76fe4455db0a9e4edb6",
     "semantic_hash": ""
   },
   "packages/locales/src/langs/en-US/profile.json": {
@@ -6380,8 +6380,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/__tests__/form-integration.test.ts": {
-    "mtime": 1787709440.606781,
-    "ast_hash": "b85e4203386bb2a59cdd6e1ae4e0c45d",
+    "mtime": 1788130456.72152,
+    "ast_hash": "2a4086e9b4636bb18d95aa713d092fd8",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/__tests__/form-performance.benchmark.ts": {
@@ -6400,8 +6400,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/__tests__/form-types.test.ts": {
-    "mtime": 1787401141.8336308,
-    "ast_hash": "694bec0dd03db17ca8dfa3cfe18ee292",
+    "mtime": 1788130560.3439963,
+    "ast_hash": "b650964739fd4bb6f5862eef8d23b4c6",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/__tests__/form-value-transform.test.ts": {
@@ -6465,8 +6465,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.api.ts": {
-    "mtime": 1787398556.9094868,
-    "ast_hash": "e41ea45f5bec1a37e8ace50066aa66a5",
+    "mtime": 1788130844.2517416,
+    "ast_hash": "2928212976f644f7e88e770a7cd0aeb0",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.codec.ts": {
@@ -6475,8 +6475,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.config.ts": {
-    "mtime": 1787698697.9711936,
-    "ast_hash": "819aac9f5b6dd9e73365077f5cef139c",
+    "mtime": 1788130873.2307117,
+    "ast_hash": "fb148c6ed0aec70e09e0f0e23bb324d3",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.deprecation.ts": {
@@ -6510,8 +6510,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.types.ts": {
-    "mtime": 1787551584.0466483,
-    "ast_hash": "3b3bd142566b414aeaddc8f032cdfd19",
+    "mtime": 1788130833.2765856,
+    "ast_hash": "b3bcf3cb06912d574ab352f642bbb71a",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.use-form-context.ts": {
@@ -6570,8 +6570,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/layout-ui/src/components/taman-core-layout-sidebar.vue": {
-    "mtime": 1787300192.312685,
-    "ast_hash": "10f7a9e1704dca0b1b1bd8bb372e0127",
+    "mtime": 1788078311.1994886,
+    "ast_hash": "be77fe54ce6bc71e5ea4e84056bc6aa0",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/layout-ui/src/components/taman-core-layout-tabbar.vue": {
@@ -6685,13 +6685,13 @@
     "semantic_hash": ""
   },
   "packages/shell/app-ui/src/components/card/app-card-action.vue": {
-    "mtime": 1786586885.5035315,
-    "ast_hash": "c9bc0152b44b593bb4f31837fa910352",
+    "mtime": 1788143537.7346716,
+    "ast_hash": "fa2960fecf18583df39e0082ec76e826",
     "semantic_hash": ""
   },
   "packages/shell/app-ui/src/components/card/app-card.vue": {
-    "mtime": 1786586885.5041895,
-    "ast_hash": "f49a7ab44c52e46c38dbdc9d06a675d3",
+    "mtime": 1788143537.6002738,
+    "ast_hash": "54c327ab7882463e6fa818b2d09fe5d3",
     "semantic_hash": ""
   },
   "packages/shell/app-ui/src/components/card/index.ts": {
@@ -6705,8 +6705,8 @@
     "semantic_hash": ""
   },
   "packages/shell/app-ui/src/components/page/app-page.vue": {
-    "mtime": 1786586885.5050266,
-    "ast_hash": "cb05e9502c16035efe4101d683bffbc1",
+    "mtime": 1788143351.489406,
+    "ast_hash": "7d41268000f3948b7bc111e9f8365e2a",
     "semantic_hash": ""
   },
   "packages/shell/app-ui/src/components/page/index.ts": {
@@ -6745,8 +6745,8 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/auth/layout-auth.vue": {
-    "mtime": 1787886220.6664455,
-    "ast_hash": "4ba33ca593cadc00702b3539681d8828",
+    "mtime": 1787909523.345857,
+    "ast_hash": "9cd1155152b666fdf8487642cd555f4d",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/auth/layout.auth.types.ts": {
@@ -6760,8 +6760,8 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/index.ts": {
-    "mtime": 1787831082.8770757,
-    "ast_hash": "129fe91d6b69c0754e777bfea8934e5c",
+    "mtime": 1787961327.2940366,
+    "ast_hash": "822b948fc99f81307bc49e331baf6e4d",
     "semantic_hash": ""
   },
   "packages/shell/layouts/tsconfig.json": {
@@ -6800,8 +6800,8 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/index.ts": {
-    "mtime": 1787887402.3384733,
-    "ast_hash": "d6b15a58d2b7392a669a36f4adb24f5d",
+    "mtime": 1787961090.1991434,
+    "ast_hash": "8d7dbfbe504f67de7e4127040d26bca0",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/widget-auth-layout-toggle.vue": {
@@ -6820,8 +6820,8 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/layouts/core.vue": {
-    "mtime": 1787887632.243842,
-    "ast_hash": "6d019b8f5e938a633c5775a477d16c96",
+    "mtime": 1788073029.3939025,
+    "ast_hash": "e29b0e4a360dd231a1223a0165914841",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/popup-ui/src/alert/__tests__/alert.test.ts": {
@@ -6965,8 +6965,8 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/core/layout-core-header.vue": {
-    "mtime": 1787902919.9304066,
-    "ast_hash": "b553a8cc6f4d630810706dd0fe49603e",
+    "mtime": 1787961503.1354935,
+    "ast_hash": "17f682d759a4809c7fd111dc80c0e4a4",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/core/layout-core.vue": {
@@ -7085,8 +7085,8 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/layout-widget-timezone-button.vue": {
-    "mtime": 1787905586.7972205,
-    "ast_hash": "39faa2ecd25e39e9da9e1e909ca1ac89",
+    "mtime": 1787908744.3926294,
+    "ast_hash": "f56830861f80ed87c386dcedf98351d3",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/lock-screen/index.ts": {
@@ -7100,8 +7100,8 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/lock-screen/layout-widget-lock-screen.vue": {
-    "mtime": 1787886846.573925,
-    "ast_hash": "ff9af939cfe804b7575af7e87c540222",
+    "mtime": 1787909054.7652164,
+    "ast_hash": "da2f8bd52ac4ca7a8aba292d1475349f",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/notification/index.ts": {
@@ -7115,13 +7115,13 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/notification/layout-widget-notification.vue": {
-    "mtime": 1787887267.5643613,
-    "ast_hash": "4c7acbae3e431bedb2be510c17ea81ce",
+    "mtime": 1787909054.7720194,
+    "ast_hash": "66d14a3d03c17c170c062709f9a3a689",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/block.vue": {
-    "mtime": 1787882648.375391,
-    "ast_hash": "145a89af727dd2043acc58b27472f9cc",
+    "mtime": 1787909060.0560503,
+    "ast_hash": "e5767b4ddebcdf17d97b42778a79caad",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/checkbox-item.vue": {
@@ -7145,8 +7145,8 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/index.ts": {
-    "mtime": 1787882648.3774939,
-    "ast_hash": "51849eec6e93d3f9e5c874677e758321",
+    "mtime": 1788075589.7222433,
+    "ast_hash": "ecec7ff292954950c7542b38c49bb3f0",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/input-item.vue": {
@@ -7157,11 +7157,6 @@
   "packages/shell/layouts/src/widgets/preferences/blocks/layout/breadcrumb.vue": {
     "mtime": 1787882648.3783503,
     "ast_hash": "24523c3254e799cdf32664b03f250f14",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/blocks/layout/content.vue": {
-    "mtime": 1787882648.3787239,
-    "ast_hash": "c86b12c5e09ec0900093258709d5011d",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/layout/copyright.vue": {
@@ -7180,8 +7175,8 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/layout/icons/icon-layout-content-compact.vue": {
-    "mtime": 1787882648.380415,
-    "ast_hash": "feb36382a6493d72e584bdb46cb94665",
+    "mtime": 1787909525.793599,
+    "ast_hash": "141b46a541b516416c10e2c358c0977c",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/layout/icons/icon-layout-full-content.vue": {
@@ -7190,33 +7185,33 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/layout/icons/icon-layout-header-mixed-nav.vue": {
-    "mtime": 1787882648.3812323,
-    "ast_hash": "463265597b510e2ec4b8afd2f031c057",
+    "mtime": 1787909523.4731307,
+    "ast_hash": "7a363da35a6bfdbe8b2e2b6862b37dcc",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/layout/icons/icon-layout-header-nav.vue": {
-    "mtime": 1787882648.3816214,
-    "ast_hash": "0b281a21a03d5a8131f02a876692153b",
+    "mtime": 1787909525.0628588,
+    "ast_hash": "d2616eacf6e0335aaaf87ca2db3125be",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/layout/icons/icon-layout-header-sidebar-nav.vue": {
-    "mtime": 1787882648.3820295,
-    "ast_hash": "494c986d4fd0f6d11fcd3122b904f6b1",
+    "mtime": 1787909525.2046654,
+    "ast_hash": "68fd1a8abda208209c20f23502d959de",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/layout/icons/icon-layout-mixed-nav.vue": {
-    "mtime": 1787882648.3823335,
-    "ast_hash": "c42f213c207c4362173ab89bc77a3d1a",
+    "mtime": 1787909525.3015916,
+    "ast_hash": "f18aec11150c2d93547d6655dd890df7",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/layout/icons/icon-layout-sidebar-mixed-nav.vue": {
-    "mtime": 1787882648.3827713,
-    "ast_hash": "a1c504c2e151e101b87d74985c667449",
+    "mtime": 1787909525.77544,
+    "ast_hash": "94eb24805a416e93f1340c942b1bea8f",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/layout/icons/icon-layout-sidebar-nav.vue": {
-    "mtime": 1787882648.3840482,
-    "ast_hash": "59f1320f2f312d83d5f9cd215bba5b1b",
+    "mtime": 1787909523.5993142,
+    "ast_hash": "5771301802e0eff4c898dae7569777e8",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/layout/icons/index.ts": {
@@ -7224,19 +7219,9 @@
     "ast_hash": "80967b3a0ab083e45097f5331ce14905",
     "semantic_hash": ""
   },
-  "packages/shell/layouts/src/widgets/preferences/blocks/layout/layout.vue": {
-    "mtime": 1787882648.3847466,
-    "ast_hash": "25c367850d1614e3d260cd939183ae9d",
-    "semantic_hash": ""
-  },
   "packages/shell/layouts/src/widgets/preferences/blocks/layout/navigation.vue": {
     "mtime": 1787882648.3852603,
     "ast_hash": "9a46946cdc311815b1dcfe4aff56e8f5",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/blocks/layout/preference-layout.vue": {
-    "mtime": 1787882648.3857362,
-    "ast_hash": "37587eab43e41ecd7bcdb60b318bce1e",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/layout/sidebar.vue": {
@@ -7259,14 +7244,9 @@
     "ast_hash": "513bb68b44a3fd511b2bbbf48ddaba02",
     "semantic_hash": ""
   },
-  "packages/shell/layouts/src/widgets/preferences/blocks/preference-block.vue": {
-    "mtime": 1787882648.3880076,
-    "ast_hash": "a4b37e586db2cf97c6203a660f2a2d8c",
-    "semantic_hash": ""
-  },
   "packages/shell/layouts/src/widgets/preferences/blocks/preferences-switch-item.vue": {
-    "mtime": 1787882648.38844,
-    "ast_hash": "b6b494c546a4fe32e605d8171ccd3681",
+    "mtime": 1788076686.7954874,
+    "ast_hash": "2d47a53b033660181aadc2ac89974c78",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/select-item.vue": {
@@ -7299,11 +7279,6 @@
     "ast_hash": "d69c8c6681535e65a185db28da707d98",
     "semantic_hash": ""
   },
-  "packages/shell/layouts/src/widgets/preferences/blocks/theme/preference-theme.vue": {
-    "mtime": 1787882648.3928394,
-    "ast_hash": "af09849413f1f47b8cb8a6390da62975",
-    "semantic_hash": ""
-  },
   "packages/shell/layouts/src/widgets/preferences/blocks/theme/radius.vue": {
     "mtime": 1787882648.3932824,
     "ast_hash": "5dfd868735d01a87a46440dc543dc048",
@@ -7319,69 +7294,69 @@
     "ast_hash": "6c00ec2206d6dc169ece1fda96077716",
     "semantic_hash": ""
   },
-  "packages/shell/layouts/src/widgets/preferences/icons/content-compact.vue": {
-    "mtime": 1787882648.3949525,
-    "ast_hash": "d3be59f3edfeaf9a107da435de1be422",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/icons/full-content.vue": {
-    "mtime": 1787882648.3951592,
-    "ast_hash": "c86c9033c6255f528b11fe5e77f79174",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/icons/header-mixed-nav.vue": {
-    "mtime": 1787882648.3953807,
-    "ast_hash": "c860ff006d7e3de11a86dcc0e32f47f7",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/icons/header-nav.vue": {
-    "mtime": 1787882648.3957565,
-    "ast_hash": "8cddcbd71a1de7b061be325f76d0b640",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/icons/header-sidebar-nav.vue": {
-    "mtime": 1787882648.396204,
-    "ast_hash": "c875db72ed8b1e3bc95fa66f1334d122",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/icons/index.ts": {
-    "mtime": 1787882648.3964496,
-    "ast_hash": "bbece8825f7582fcf687a751091e08e1",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/icons/mixed-nav.vue": {
-    "mtime": 1787882648.3968854,
-    "ast_hash": "ebf42e7ac5cebcdb9688c5dcd7c04962",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/icons/setting.vue": {
-    "mtime": 1787882648.3971143,
-    "ast_hash": "1e4eba0467711db338d7315993c53cd3",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/icons/sidebar-mixed-nav.vue": {
-    "mtime": 1787882648.3973658,
-    "ast_hash": "049a0b3f2c256f293f1a2927eb91543c",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/icons/sidebar-nav.vue": {
-    "mtime": 1787882648.397618,
-    "ast_hash": "683d47351cc3defc99af6ebab22ff54a",
-    "semantic_hash": ""
-  },
   "packages/shell/layouts/src/widgets/preferences/index.ts": {
     "mtime": 1787882700.6629615,
     "ast_hash": "319e4e15a354e690e171fa77209f3cd4",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/layout-widget-preferences-drawer.vue": {
-    "mtime": 1787882648.4006915,
-    "ast_hash": "eb696bbfcd96cb38bd4b01cb481d8865",
+    "mtime": 1788075306.0408666,
+    "ast_hash": "fcb5062dd15711ff9d68055e2aa8c226",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/layout-widget-preferences.vue": {
-    "mtime": 1787887304.759385,
-    "ast_hash": "65f999b6c2a956e39c818b3609eaaa72",
+    "mtime": 1788073614.247269,
+    "ast_hash": "a9c0b264745f77ec4bd7d0166155c3d0",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/form/all-fields.vue": {
+    "mtime": 1788143219.5393963,
+    "ast_hash": "e1a84c77a6d159f18a2e2ad2f57f3347",
+    "semantic_hash": ""
+  },
+  "packages/@core/base/shared/src/constants/constants.taman.ts": {
+    "mtime": 1788072934.898403,
+    "ast_hash": "b5b02034fe2c7735f82c2ecc2e70ae61",
+    "semantic_hash": ""
+  },
+  "packages/@core/ui-kit/form-ui/__tests__/form-config.test.ts": {
+    "mtime": 1788130359.1393764,
+    "ast_hash": "439e10c4f810691232cd29d1314fdb4c",
+    "semantic_hash": ""
+  },
+  "packages/shell/app-ui/src/components/page/app-page.types.ts": {
+    "mtime": 1788078657.2016268,
+    "ast_hash": "f1bedc148674e11d9fdadd4c9f2419bc",
+    "semantic_hash": ""
+  },
+  "packages/shell/layouts/src/widgets/layout-widget-user-dropdown.vue": {
+    "mtime": 1788073283.9069695,
+    "ast_hash": "a4628811744c0df6ad8f116dfe1f5274",
+    "semantic_hash": ""
+  },
+  "packages/shell/layouts/src/widgets/preferences/blocks/layout/preferences-content.vue": {
+    "mtime": 1788074648.5320132,
+    "ast_hash": "79e6f0e35fc22892efac8871ba352d05",
+    "semantic_hash": ""
+  },
+  "packages/shell/layouts/src/widgets/preferences/blocks/layout/preferences-layout.vue": {
+    "mtime": 1788074588.6305745,
+    "ast_hash": "c4520b8ae19b1b8d263f524c4cc16874",
+    "semantic_hash": ""
+  },
+  "packages/shell/layouts/src/widgets/preferences/blocks/layout/preferences-sidebar.vue": {
+    "mtime": 1788077338.0870037,
+    "ast_hash": "a9163fadf0bdba259ef2bf87c9bc4264",
+    "semantic_hash": ""
+  },
+  "packages/shell/layouts/src/widgets/preferences/blocks/preferences-block.vue": {
+    "mtime": 1788075347.7060788,
+    "ast_hash": "3a38bac7c4dea7c52d0d9db00d26c754",
+    "semantic_hash": ""
+  },
+  "packages/shell/layouts/src/widgets/preferences/blocks/theme/preferences-theme.vue": {
+    "mtime": 1787882648.3928394,
+    "ast_hash": "af09849413f1f47b8cb8a6390da62975",
     "semantic_hash": ""
   }
 }

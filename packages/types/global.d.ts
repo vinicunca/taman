@@ -7,11 +7,11 @@ declare module 'vue-router' {
 }
 
 export interface TamanAdminDevConfigRaw {
-  VITE_DIRECTOR_URL: string;
+  VITE_API_URL: string;
 }
 
 export interface ApplicationConfig {
-  directorUrl: string;
+  apiUrl: string;
 }
 
 declare global {

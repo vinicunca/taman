@@ -30,7 +30,7 @@ const { forwardRef } = useForwardExpose();
   >
     <span
       v-if="required"
-      class="text-destructive mr-0.5"
+      class="color-error mr-0.5"
     >*</span>
     <slot />
 

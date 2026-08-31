@@ -2,11 +2,14 @@ import type { RequestOptions } from '@taman/request';
 import { useAppTamanConfig } from '@taman/composables';
 import { createFetchClient } from '@taman/request';
 
-const { directorUrl } = useAppTamanConfig(import.meta.env, import.meta.env.PROD);
+const { apiUrl } = useAppTamanConfig(
+  import.meta.env,
+  import.meta.env.PROD,
+);
 
 export function useRequest() {
   const client = createFetchClient({
-    baseURL: directorUrl,
+    baseURL: apiUrl,
     // Director authenticates off the Better Auth session cookie and runs on a
     // different origin, so cookies have to ride along — ofetch defaults to
     // `same-origin` and would send none. Director's CORS layer already replies

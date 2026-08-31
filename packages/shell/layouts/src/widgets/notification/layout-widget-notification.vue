@@ -152,7 +152,7 @@ defineExpose({ toggle });
                       icon="lucide:circle-x"
                       size="xs"
                       variant="ghost"
-                      class="text-destructive px-2 h-6"
+                      class="color-error px-2 h-6"
                       :tooltip="$t('common.delete')"
                       @click.stop="emits('remove', item)"
                     />

@@ -14,8 +14,5 @@
     "analytics": "Analytics",
     "workspace": "Workspace"
   },
-  "talents": {
-    "root": "Talents",
-    "list": "Talent List"
-  }
+  "viewDocs": "View documentation"
 }

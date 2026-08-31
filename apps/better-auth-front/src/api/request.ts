@@ -17,7 +17,7 @@ import JSONBigInt from 'json-bigint';
 
 import { useSessionStore } from '#/auth';
 
-const { directorUrl: apiURL } = useAppTamanConfig(import.meta.env, import.meta.env.PROD);
+const { apiUrl } = useAppTamanConfig(import.meta.env, import.meta.env.PROD);
 
 function createRequestClient(baseURL: string, options?: RequestClientOptions) {
   const client = new RequestClient({
@@ -114,11 +114,11 @@ function createRequestClient(baseURL: string, options?: RequestClientOptions) {
   return client;
 }
 
-export const requestClient = createRequestClient(apiURL, {
+export const requestClient = createRequestClient(apiUrl, {
   responseReturn: 'data',
 });
 
-export const baseRequestClient = new RequestClient({ baseURL: apiURL });
+export const baseRequestClient = new RequestClient({ baseURL: apiUrl });
 
 export interface PageFetchParams {
   [key: string]: any;

@@ -3,7 +3,10 @@ import { adminAc, adminRoles } from '@taman/rbac';
 import { adminClient } from 'better-auth/client/plugins';
 import { createAuthClient } from 'better-auth/vue';
 
-const { directorUrl } = useAppTamanConfig(import.meta.env, import.meta.env.PROD);
+const { apiUrl } = useAppTamanConfig(
+  import.meta.env,
+  import.meta.env.PROD,
+);
 
 /**
  * Better Auth client singleton.
@@ -12,7 +15,7 @@ const { directorUrl } = useAppTamanConfig(import.meta.env, import.meta.env.PROD)
  * `session.user.role` and admin helpers are available and typed.
  */
 export const authClient = createAuthClient({
-  baseURL: directorUrl,
+  baseURL: apiUrl,
 
   plugins: [
     adminClient({

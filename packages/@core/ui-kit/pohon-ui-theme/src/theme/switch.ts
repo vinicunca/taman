@@ -78,7 +78,7 @@ export const switchTheme = {
     },
     disabled: {
       true: {
-        root: 'opacity-75',
+        root: 'opacity-50',
         base: 'cursor-not-allowed',
         label: 'cursor-not-allowed',
         description: 'cursor-not-allowed',

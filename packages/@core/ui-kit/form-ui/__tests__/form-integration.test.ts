@@ -1090,6 +1090,45 @@ describe('useTamanForm integration', () => {
     });
   });
 
+  it('preserves nested defaults during partial setValues updates', async () => {
+    interface NestedFormValues {
+      profile: {
+        email: string;
+        nickname: string;
+      };
+    }
+
+    const [Form, formApi] = useTamanForm<NestedFormValues>({
+      schema: [
+        {
+          component: TestInput,
+          defaultValue: 'old@example.com',
+          fieldName: 'profile.email',
+        },
+        {
+          component: TestInput,
+          defaultValue: 'Ada',
+          fieldName: 'profile.nickname',
+        },
+      ],
+    });
+    const wrapper = mount(Form);
+    wrappers.push(wrapper);
+    await flushPromises();
+
+    await formApi.setValues({
+      profile: { email: 'new@example.com' },
+    });
+    await flushPromises();
+
+    expect(await formApi.getRawValues()).toEqual({
+      profile: {
+        email: 'new@example.com',
+        nickname: 'Ada',
+      },
+    });
+  });
+
   it('retains initial values for unspecified fields on partial reset', async () => {
     const [Form, formApi] = useTamanForm({
       schema: [

@@ -173,11 +173,10 @@ const style = computed((): CSSProperties => {
   const { isSidebarMixed, marginTop, paddingTop, zIndex } = props;
 
   return {
-    '--scroll-shadow': 'var(--sidebar)',
     ...calcMenuWidthStyle(),
-    'height': `calc(100% - ${marginTop}px)`,
-    'marginTop': `${marginTop}px`,
-    'paddingTop': `${paddingTop}px`,
+    height: `calc(100% - ${marginTop}px)`,
+    marginTop: `${marginTop}px`,
+    paddingTop: `${paddingTop}px`,
     zIndex,
     ...(isSidebarMixed && extraVisible.value ? { transition: 'none' } : {}),
   };
@@ -291,6 +290,12 @@ function calcMenuWidthStyle(): CSSProperties {
 }
 
 function handleMouseenter(event: MouseEvent) {
+  // Mobile drawer mode does not have hover semantics: synthetic mouse events must not modify the collapsed state
+  // (when resizing across breakpoints, the browser dispatches mouseenter/mouseleave to the sidebar being unmounted/re-rendered)
+  if (props.isMobile) {
+    return;
+  }
+
   if (event?.offsetX < 10) {
     return;
   }
@@ -315,7 +320,8 @@ function handleMouseleave() {
     isLocked.value = false;
   }
 
-  if (expandOnHover.value) {
+  // isMobile guard: prevent synthetic mouseleave during breakpoint switch window period from writing the collapsed state and persisting it
+  if (expandOnHover.value || props.isMobile) {
     return;
   }
 

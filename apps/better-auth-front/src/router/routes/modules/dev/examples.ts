@@ -23,6 +23,14 @@ const routes: Array<RouteRecordRaw> = [
         },
         children: [
           {
+            name: 'FormAllFieldsExample',
+            path: 'all-fields',
+            component: () => import('#/views/examples/form/all-fields.vue'),
+            meta: {
+              title: $t('examples.form.allFields.title'),
+            },
+          },
+          {
             name: 'FormBasicExample',
             path: 'basic',
             component: () => import('#/views/examples/form/basic.vue'),

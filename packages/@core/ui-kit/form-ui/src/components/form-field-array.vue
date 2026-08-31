@@ -206,7 +206,7 @@ const normalizedRowSchemas = computed(() =>
             type="button"
             :disabled="disabled || !canRemove"
             :on-click="() => removeRow(index)"
-            class="text-muted-foreground hover:text-destructive"
+            class="text-muted-foreground hover:color-error"
           >
             <X class="size-4" />
           </VbenIconButton>

@@ -23,7 +23,7 @@ const open = ref(false);
 const itemClass = computed(() =>
   cn(
     'cursor-pointer gap-2',
-    props.action.danger && 'text-destructive focus:text-destructive',
+    props.action.danger && 'color-error focus:color-error',
   ),
 );
 

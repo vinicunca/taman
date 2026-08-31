@@ -7,6 +7,7 @@ import type {
   FormResetOptions,
   FormResetState,
   FormSchema,
+  FormValuePatch,
   FormValues,
   FormValueSnapshot,
   TamanFormProps,
@@ -15,9 +16,7 @@ import { Store } from '@taman-core/shared/store';
 import {
   bindMethods,
   clone,
-  isDate,
   isFunction,
-  isPlainObject,
   isString,
   mergeWithArrayOverride,
   StateHandler,
@@ -42,6 +41,36 @@ type FormApiSchema<
   T extends FormBaseComponentType,
   P extends Record<string, any>,
 > = FormSchema<T, P, TValues>;
+
+function isPlainFormObject(value: unknown): value is Record<string, unknown> {
+  if (value === null || typeof value !== 'object') {
+    return false;
+  }
+  const prototype = Object.getPrototypeOf(value);
+  return prototype === null || prototype === Object.prototype;
+}
+
+function mergeFormValuePatch(
+  currentValue: unknown,
+  nextValue: unknown,
+  visited = new WeakMap<object, Record<string, unknown>>(),
+): unknown {
+  if (!isPlainFormObject(nextValue)) {
+    return clone(nextValue);
+  }
+
+  const cached = visited.get(nextValue);
+  if (cached) {
+    return cached;
+  }
+
+  const result = isPlainFormObject(currentValue) ? clone(currentValue) : {};
+  visited.set(nextValue, result);
+  for (const [key, value] of Object.entries(nextValue)) {
+    result[key] = mergeFormValuePatch(result[key], value, visited);
+  }
+  return result;
+}
 
 function getDefaultState<
   TFormValues extends FormValues,
@@ -453,7 +482,11 @@ export class FormApi<
       );
     }
     const formValues = decodeFormValues(codec, values);
-    await this.setValues(formValues, filterFields, shouldValidate);
+    await this.setValues(
+      formValues as FormValuePatch<TFormValues>,
+      filterFields,
+      shouldValidate,
+    );
   }
 
   /**
@@ -463,15 +496,23 @@ export class FormApi<
    * @param shouldValidate
    */
   async setValues(
-    fields: Partial<TFormValues>,
+    fields: FormValuePatch<TFormValues>,
     filterFields: boolean = true,
     shouldValidate: boolean = false,
   ) {
     const form = await this.getForm();
     if (!filterFields) {
-      form.setValues(fields, shouldValidate);
+      form.setValues(fields as Partial<TFormValues>, shouldValidate);
       return;
     }
+
+    const currentValues = toRaw(form.values ?? {}) as Record<string, unknown>;
+    const mergedFields = Object.fromEntries(
+      Object.entries(fields).map(([key, value]) => [
+        key,
+        mergeFormValuePatch(currentValues[key], value),
+      ]),
+    );
 
     const schemaFieldPaths = (this.state?.schema ?? []).map(
       (schema) => resolveFieldNamePath(schema.fieldName).pathSegments,
@@ -480,11 +521,7 @@ export class FormApi<
       value: unknown,
       parentPath: Array<string> = [],
     ): unknown => {
-      if (
-        !isPlainObject(value)
-        || Array.isArray(value)
-        || isDate(value)
-      ) {
+      if (!isPlainFormObject(value)) {
         return value;
       }
 
@@ -510,8 +547,8 @@ export class FormApi<
       }
       return result;
     };
-    const filteredFields = filterValue(fields) as Partial<TFormValues>;
-    form.setValues(filteredFields as Partial<TFormValues>, shouldValidate);
+    const filteredFields = filterValue(mergedFields) as Partial<TFormValues>;
+    form.setValues(filteredFields, shouldValidate);
   }
 
   async submit(e?: Event) {

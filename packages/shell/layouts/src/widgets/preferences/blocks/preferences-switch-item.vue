@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import PSwitch from 'pohon-ui/components/Switch.vue';
+import PTooltip from 'pohon-ui/components/Tooltip.vue';
+import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
+
 defineOptions({
   name: 'PreferenceSwitchItem',
 });
@@ -21,7 +25,7 @@ const checked = defineModel<boolean>();
     v-model="checked"
     :disabled="disabled"
     :ui="{
-      root: 'flex-row-reverse justify-between',
+      root: 'flex-row-reverse justify-between py-2 hover:bg-background-elevated rounded-lg px-2 transition-colors-280',
       wrapper: 'pohon:ms-0',
     }"
   >

@@ -1,22 +1,20 @@
 <script lang="ts" setup>
 import type { StyleValue, VNode } from 'vue';
-import { CSS_VARIABLE_LAYOUT_CONTENT_HEIGHT } from '@taman-core/shared/constants';
-import { computed, nextTick, onMounted, ref, useTemplateRef } from 'vue';
+import type { AppPageProps } from './app-page.types';
+import { computed } from 'vue';
 
 defineOptions({
   name: 'AppPage',
 });
 
-const {
-  title,
-  description,
-  contentClass,
-  autoContentHeight = false,
-  headerClass,
-  footerClass,
-  heightOffset = 0,
-  footerFixed = false,
-} = defineProps<AppPageProps>();
+const props = withDefaults(
+  defineProps<AppPageProps>(),
+  {
+    autoContentHeight: false,
+    heightOffset: 0,
+    footerFixed: false,
+  },
+);
 
 const slots = defineSlots<{
   default?: () => Array<VNode>;
@@ -26,107 +24,73 @@ const slots = defineSlots<{
   footer?: () => Array<VNode>;
 }>();
 
-interface AppPageProps {
-  title?: string;
-  description?: string;
-  contentClass?: string;
-  /**
-   * Adapt height to visible content area
-   */
-  autoContentHeight?: boolean;
-  headerClass?: string;
-  footerClass?: string;
-  /**
-   * Custom height offset value (in pixels) to adjust content area sizing
-   * when used with autoContentHeight
-   * @default 0
-   */
-  heightOffset?: number;
-  /**
-   * Whether the footer is position: fixed.
-   * When true, footer height is excluded from content height calculation.
-   * @default false
-   */
-  footerFixed?: boolean;
-}
-
-const headerHeight = ref(0);
-const footerHeight = ref(0);
-const shouldAutoHeight = ref(false);
-
 const contentStyle = computed<StyleValue>(() => {
-  if (autoContentHeight) {
-    return {
-      height: `calc(var(${CSS_VARIABLE_LAYOUT_CONTENT_HEIGHT}) - ${headerHeight.value}px - ${footerHeight.value}px - ${typeof heightOffset === 'number' ? `${heightOffset}px` : heightOffset})`,
-      overflowY: shouldAutoHeight.value ? 'auto' : 'unset',
-    };
+  if (!props.autoContentHeight) {
+    return {};
   }
 
-  return {};
-});
-
-const headerRef = useTemplateRef('headerRef');
-const footerRef = useTemplateRef('footerRef');
-
-async function calcContentHeight() {
-  if (!autoContentHeight) {
-    return;
-  }
-  shouldAutoHeight.value = false;
-  await nextTick();
-  headerHeight.value = headerRef.value?.offsetHeight || 0;
-
-  footerHeight.value = footerFixed ? 0 : footerRef.value?.offsetHeight || 0;
-
-  setTimeout(() => {
-    shouldAutoHeight.value = true;
-  }, 30);
-}
-
-onMounted(() => {
-  calcContentHeight();
+  return {
+    '--page-content-height-offset': `${props.heightOffset}px`,
+    // In auto-content-height mode the content region manages its own scrolling.
+    // Size containment prevents the inner content's min-content height from
+    // feeding back into the outer flex layout, which would clamp the content
+    // region taller than the available space and push the layout footer below
+    // the viewport.
+    'contain': 'size',
+    'marginBlockEnd': 'var(--page-content-height-offset)',
+  };
 });
 </script>
 
 <template>
-  <div class="flex flex-col min-h-full relative">
+  <div
+    class="flex flex-col h-full min-h-0 relative"
+    :class="{
+      'overflow-hidden': props.autoContentHeight,
+    }"
+  >
     <div
-      v-if="description || title || slots.description || slots.title || slots.trailingHeader"
-      ref="headerRef"
-      class="px-6 py-4 border-b border-border bg-background flex items-end relative"
+      v-if="props.description || props.title || slots.description || slots.title || slots.trailingHeader"
+      class="px-6 py-4 border-b border-border bg-background flex gap-4 items-end relative"
       :class="[
         headerClass,
       ]"
     >
-      <div class="flex-auto">
+      <div class="flex-auto min-w-0">
         <slot name="title">
           <div
-            v-if="title"
-            class="text-lg font-600 mb-2 flex"
+            v-if="props.title"
+            class="text-lg font-600 mb-2"
           >
-            {{ title }}
+            {{ props.title }}
           </div>
         </slot>
 
         <slot name="description">
           <p
-            v-if="description"
+            v-if="props.description"
             class="text-sm color-text-muted"
           >
-            {{ description }}
+            {{ props.description }}
           </p>
         </slot>
       </div>
 
-      <div v-if="slots.trailingHeader">
+      <div
+        v-if="slots.trailingHeader"
+        class="flex shrink-0 items-center"
+      >
         <slot name="trailingHeader" />
       </div>
     </div>
 
     <div
-      class="p-4 h-full"
+      class="p-4 flex-1"
       :class="[
-        contentClass,
+        {
+          'min-h-0 overflow-y-auto': props.autoContentHeight,
+        },
+        props.contentClass,
       ]"
       :style="contentStyle"
     >
@@ -135,9 +99,11 @@ onMounted(() => {
 
     <div
       v-if="slots.footer"
-      ref="footerRef"
-      class="px-6 py-4 bg-background flex items-center"
+      class="px-6 py-4 bg-background flex shrink-0 items-center"
       :class="[
+        {
+          'mt-auto': props.footerFixed,
+        },
         footerClass,
       ]"
     >

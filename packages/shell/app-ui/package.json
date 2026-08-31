@@ -13,7 +13,11 @@
     "@taman-core/shared": "workspace:*",
     "@taman-core/taman-ui": "workspace:*",
     "@taman/locales": "workspace:*",
+    "@taman/types": "workspace:*",
     "pohon-ui": "catalog:",
     "vue": "catalog:"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "catalog:"
   }
 }

@@ -7,7 +7,6 @@
 // export { default as Footer } from './layout/footer.vue';
 // export { default as Header } from './layout/header.vue';
 // export { default as Navigation } from './layout/navigation.vue';
-// export { default as Sidebar } from './layout/sidebar.vue';
 // export { default as Tabbar } from './layout/tabbar.vue';
 // export { default as Widget } from './layout/widget.vue';
 // export { default as GlobalShortcutKeys } from './shortcut-keys/global.vue';
@@ -20,5 +19,6 @@
 
 export { default as PreferencesContent } from './layout/preferences-content.vue';
 export { default as PreferencesLayout } from './layout/preferences-layout.vue';
+export { default as PreferencesSidebar } from './layout/preferences-sidebar.vue';
 export { default as PreferencesBlock } from './preferences-block.vue';
 export { default as PreferencesTheme } from './theme/preferences-theme.vue';

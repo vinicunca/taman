@@ -185,7 +185,7 @@ defineExpose({
           v-if="state.showTip"
           :class="{
             'bg-success/80': state.isPassing,
-            'bg-destructive/80': !state.isPassing,
+            'bg-error/80': !state.isPassing,
           }"
         >
           {{ verifyTip }}

@@ -1,31 +1,48 @@
-import { createFormBuilder, defineFieldComponents, defineTamanForm } from '@taman/common-ui';
-import PInput from 'pohon-ui/components/Input.vue';
-import PTextarea from 'pohon-ui/components/Textarea.vue';
-import CoreUploadImages from '#/domains/core/components/core-upload-images.vue';
+import type {
+  TamanFormProps as FormProps,
+  TamanFormSchema as FormSchema,
+  FormValues,
+} from '@taman/app-ui';
+import type { ComponentPropsMap, ComponentType } from './components';
+import { setupTamanForm, useTamanForm as useForm } from '@taman/app-ui';
+import { isEmpty } from '@vinicunca/perkakas';
+import { $t } from '#/locales';
 
-export {
-  useTamanForm,
-  type VbenFormProps,
-  type VbenFormSchema,
-  z,
-} from '@taman-core/form-ui';
+export async function initTamanForm() {
+  setupTamanForm<ComponentType>({
+    rules: {
+      required: (value, _params, ctx) => {
+        if (isEmpty(value)) {
+          return $t('ui.formRules.required', [ctx.label]);
+        }
 
-const fieldComponents = defineFieldComponents({
-  Input: PInput,
-  Textarea: PTextarea,
-  UploadImages: CoreUploadImages,
-});
-
-export function TamanFormBuilderApp() {
-  return createFormBuilder({
-    components: fieldComponents,
+        return true;
+      },
+    },
   });
 }
 
-export type FormFieldComponents = typeof fieldComponents;
+export function useTamanForm<
+  TFormValues extends FormValues = FormValues,
+  TSubmitValues extends FormValues = TFormValues,
+>(
+  options: FormProps<
+    ComponentType,
+    ComponentPropsMap,
+    TFormValues,
+    TSubmitValues
+  >,
+) {
+  return useForm<TFormValues, ComponentType, ComponentPropsMap, TSubmitValues>(
+    options,
+  );
+}
 
-/**
- * `useTamanForm` with this app's field registry bound, so call sites name only
- * their values type: `useAppForm<TalentFormValues>({ fields })`.
- */
-export const useAppForm = defineTamanForm<FormFieldComponents>();
+export type TamanFormSchema<TValues extends FormValues = FormValues>
+  = FormSchema<ComponentType, ComponentPropsMap, TValues>;
+export type TamanFormProps<
+  TFormValues extends FormValues = FormValues,
+  TSubmitValues extends FormValues = TFormValues,
+> = FormProps<ComponentType, ComponentPropsMap, TFormValues, TSubmitValues>;
+
+export { z } from '@taman-core/form-ui';

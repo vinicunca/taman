@@ -16,7 +16,7 @@ const open = ref(false);
 const buttonClass = computed(() =>
   cn(
     'gap-1',
-    props.action.danger && 'text-destructive hover:text-destructive',
+    props.action.danger && 'color-error hover:color-error',
     props.action.class,
   ),
 );

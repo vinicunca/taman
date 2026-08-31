@@ -90,7 +90,7 @@ const renderedActions = computed(() => {
       action,
       buttonClass: cn(
         'gap-1 p-2',
-        action.danger && 'text-destructive hover:text-destructive',
+        action.danger && 'color-error hover:color-error',
         action.class,
       ),
       hasTooltip,

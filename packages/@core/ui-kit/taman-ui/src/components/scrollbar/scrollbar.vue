@@ -162,7 +162,7 @@ function handleScroll(event: Event) {
 .scrollbar-top-shadow {
   background: linear-gradient(
     to bottom,
-    var(--scroll-shadow),
+    var(--taman-color-bg-sidebar),
     transparent
   );
 }
@@ -170,7 +170,7 @@ function handleScroll(event: Event) {
 .scrollbar-bottom-shadow {
   background: linear-gradient(
     to top,
-    var(--scroll-shadow),
+    var(--taman-color-bg-sidebar),
     transparent
   );
 }

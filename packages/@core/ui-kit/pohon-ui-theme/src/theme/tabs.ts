@@ -7,7 +7,7 @@ export const tabs = {
     root: 'flex items-center gap-2',
     list: 'relative flex p-1 group',
     indicator: 'absolute transition-[transform,width] duration-200',
-    trigger: 'group relative inline-flex items-center min-w-0 data-[state=inactive]:color-text-muted hover:data-[state=inactive]:not-disabled:color-text font-medium rounded-md disabled:cursor-not-allowed disabled:opacity-75 transition-colors',
+    trigger: 'group relative inline-flex items-center min-w-0 font-600 data-[state=inactive]:color-text-muted hover:data-[state=inactive]:not-disabled:color-text font-medium rounded-md disabled:cursor-not-allowed disabled:opacity-75 transition-colors',
     leadingIcon: 'shrink-0',
     leadingAvatar: 'shrink-0',
     leadingAvatarSize: '',

@@ -12,6 +12,7 @@ import {
   PreferencesBlock,
   PreferencesContent,
   PreferencesLayout,
+  PreferencesSidebar,
   PreferencesTheme,
 } from './blocks';
 
@@ -27,6 +28,16 @@ const emits = defineEmits<{
 const appLayout = defineModel<TamanLayoutType>('appLayout');
 const appContentCompact = defineModel<TamanContentCompactType>('appContentCompact');
 
+const sidebarAutoActivateChild = defineModel<boolean>('sidebarAutoActivateChild');
+const sidebarDraggable = defineModel<boolean>('sidebarDraggable');
+const sidebarCollapsed = defineModel<boolean>('sidebarCollapsed');
+const sidebarCollapsedShowTitle = defineModel<boolean>('sidebarCollapsedShowTitle');
+const sidebarEnable = defineModel<boolean>('sidebarEnable');
+const sidebarExpandOnHover = defineModel<boolean>('sidebarExpandOnHover');
+const sidebarCollapsedButton = defineModel<boolean>('sidebarCollapsedButton');
+const sidebarFixedButton = defineModel<boolean>('sidebarFixedButton');
+const sidebarWidth = defineModel<number>('sidebarWidth');
+
 /**
  * ----------
  * Appearance
@@ -37,18 +48,18 @@ const themeSemiDarkSidebarSub = defineModel<boolean>('themeSemiDarkSidebarSub');
 const themeSemiDarkHeader = defineModel<boolean>('themeSemiDarkHeader');
 
 const {
-  // customPreferences,
-  // diffCustomPreference,
-  // diffPreference,
-  // isDark,
-  // isFullContent,
-  // isHeaderNav,
-  // isHeaderSidebarNav,
-  // isMixedNav,
+  customPreferences,
+  diffCustomPreference,
+  diffPreference,
+  isDark,
+  isFullContent,
+  isHeaderNav,
+  isHeaderSidebarNav,
+  isMixedNav,
   preferencesExtension,
-  // isSideMixedNav,
-  // isSideMode,
-  // isSideNav,
+  isSideMixedNav,
+  isSideMode,
+  isSideNav,
 } = usePreferences();
 
 const customPreferencesTab = computed(() => {
@@ -143,12 +154,8 @@ const [DrawerPreferences] = useTamanDrawer();
           <PreferencesContent v-model="appContentCompact" />
         </PreferencesBlock>
 
-        <!-- <Block :title="$t('preferences.content')">
-          <Content v-model="appContentCompact" />
-        </Block> -->
-
-        <!-- <Block :title="$t('preferences.sidebar.title')">
-          <Sidebar
+        <PreferencesBlock :title="$t('preferences.sidebar.title')">
+          <PreferencesSidebar
             v-model:sidebar-auto-activate-child="sidebarAutoActivateChild"
             v-model:sidebar-draggable="sidebarDraggable"
             v-model:sidebar-collapsed="sidebarCollapsed"
@@ -161,7 +168,7 @@ const [DrawerPreferences] = useTamanDrawer();
             :current-layout="appLayout"
             :disabled="!isSideMode"
           />
-        </Block> -->
+        </PreferencesBlock>
 
         <!-- <Block :title="$t('preferences.header.title')">
           <Header

@@ -9,7 +9,7 @@ import type {
 } from './types';
 
 import { useBreakpoints } from '@taman-core/composables';
-import { StorageManager } from '@taman-core/shared/cache';
+import { MemoryStorageDriver, StorageManager } from '@taman-core/shared/cache';
 import {
   defu,
   isBoolean,
@@ -41,7 +41,7 @@ class PreferenceManager {
   private state: Preferences;
 
   constructor() {
-    this.cache = new StorageManager();
+    this.cache = new StorageManager({ driver: new MemoryStorageDriver() });
     // The constructor no longer reads the cache synchronously; initialization uses default values.
     // Actual cache loading is performed in initPreferences (which is already async).
     this.state = reactive<Preferences>({ ...defaultPreferences });
@@ -161,10 +161,10 @@ class PreferenceManager {
     Object.assign(this.state, this.initialPreferences);
     this.replaceCustomPreferences(this.initialCustomPreferences);
 
-    await this.saveToCache();
-
     // Trigger UI updates immediately
     this.handleUpdates(this.state);
+
+    await this.saveToCache();
   };
 
   /**

@@ -58,7 +58,7 @@
     "width": "Width",
     "visible": "Show Sidebar",
     "draggable": "Drag Sidebar Menu",
-    "collapsed": "Collpase Menu",
+    "collapsed": "Collapse Menu",
     "collapsedShowTitle": "Show Menu Title",
     "autoActivateChild": "Auto Activate SubMenu",
     "autoActivateChildTip": "`Enabled` to automatically activate the submenu while click menu.",

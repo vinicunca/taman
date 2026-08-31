@@ -16,11 +16,11 @@ export function useAppTamanConfig(
     : (env as TamanAdminDevConfigRaw);
 
   const {
-    VITE_DIRECTOR_URL,
+    VITE_API_URL,
   } = config;
 
   const applicationConfig: ApplicationConfig = {
-    directorUrl: VITE_DIRECTOR_URL,
+    apiUrl: VITE_API_URL,
   };
 
   return applicationConfig;

@@ -7,7 +7,7 @@ defineOptions({
 <template>
   <div
     data-slot="card-action"
-    class="row-span-2 col-start-2 row-start-1 self-start justify-self-end"
+    class="row-span-2 col-start-2 row-start-1 justify-self-end"
   >
     <slot />
   </div>

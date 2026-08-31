@@ -12,6 +12,10 @@
   "form": {
     "title": "Form",
     "basic": "Basic Form",
+    "allFields": {
+      "title": "All Fields Form",
+      "description": "This is a basic example of a form component. Please note that the parameter code used on this page will have some simple comments added for easier understanding. Please review them carefully."
+    },
     "layout": "Custom Layout",
     "query": "Query Form",
     "valueFormat": "Value Format",
@@ -26,7 +30,8 @@
     "file": "file",
     "crop-image": "Crop image",
     "upload-image": "Click to upload image",
-    "collapsible": "Collapsible Form Field"
+    "collapsible": "Collapsible Form Field",
+    "setFormValues": "Set form values"
   },
   "vxeTable": {
     "title": "Vxe Table",

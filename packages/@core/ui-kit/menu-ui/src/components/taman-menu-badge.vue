@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<Props>(), {});
 
 const variantsMap: Record<string, string> = {
   default: 'bg-green-500',
-  destructive: 'bg-destructive',
+  destructive: 'bg-error',
   primary: 'bg-primary',
   success: 'bg-green-500',
   warning: 'bg-yellow-500',
