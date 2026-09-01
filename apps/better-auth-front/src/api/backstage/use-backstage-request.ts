@@ -9,7 +9,7 @@ import type { QueryParams } from './query-key';
 import { isFunction } from '@taman/utils';
 import { useMutation, useQuery } from '@tanstack/vue-query';
 import { computed, toValue } from 'vue';
-import { useRequest } from '../use-request';
+import { doRequest } from '#/api/use-request';
 import { buildQueryKey } from './query-key';
 
 interface UseBackstageQueryOptions<T>
@@ -32,8 +32,6 @@ export function useBackstageQuery<
     queryOptions?: UseBackstageQueryOptions<T>;
   },
 ): UseQueryReturnType<T, ApiError> {
-  const { doRequest } = useRequest();
-
   const { key, query, ...restQueryOptions } = queryOptions;
 
   const queryKey = key
@@ -79,7 +77,6 @@ export function useBackstageMutation<
     mutationOptions?: UseBackstageMutationOptions<TData, TVars>;
   },
 ) {
-  const { doRequest } = useRequest();
   const { body, ...restMutationOptions } = mutationOptions;
 
   return useMutation<TData, ApiError, TVars>({

@@ -58,7 +58,7 @@ function withDefaultPlaceholder(
 
 export async function initComponentAdapter() {
   const components: Partial<Record<ComponentType, Component>> = {
-    ApiSelect: withDefaultPlaceholder({
+    SelectFetch: withDefaultPlaceholder({
       component: AppFetchComponent,
       type: 'select',
       componentProps: {
@@ -66,6 +66,7 @@ export async function initComponentAdapter() {
         loadingSlot: 'suffixIcon',
         modelPropName: 'value',
         visibleEvent: 'onOpenChange',
+        optionsPropName: 'items',
       },
     }),
   };

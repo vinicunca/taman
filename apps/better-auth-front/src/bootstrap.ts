@@ -12,6 +12,7 @@ import { useSessionStore } from '#/auth';
 import { $t, setupI18n } from '#/locales';
 import { queryClient, setQueryClientAppContext } from '#/query-client';
 import { router } from '#/router';
+import { initComponentAdapter } from './adapter/components';
 import { initTamanForm } from './adapter/form';
 import App from './app.vue';
 import 'virtual:uno.css';
@@ -20,6 +21,9 @@ import '@taman/designs/styles';
 import 'virtual:pohon-theme';
 
 async function bootstrap(namespace: string) {
+  // Initialize component adapter
+  await initComponentAdapter();
+
   // Initialize the form component.
   await initTamanForm();
 

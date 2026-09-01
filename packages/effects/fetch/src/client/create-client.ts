@@ -31,6 +31,7 @@ export function createFetchClient(
       throw ApiError.fromUnknown(error);
     }
     const envelope = response._data;
+
     if (envelope?.code !== successCode) {
       throw new ApiError({
         code: envelope?.code,

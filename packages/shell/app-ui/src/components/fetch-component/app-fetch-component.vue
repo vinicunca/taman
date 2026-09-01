@@ -4,7 +4,7 @@ import type { AppFetchComponentOptionsItem, AppFetchComponentProps } from './app
 import {
   clone,
   isDeepEqual,
-  isFunction,
+  isFunctionType,
   omit,
   prop,
 } from '@taman-core/shared/utils';
@@ -124,7 +124,7 @@ function updateModelValue(value: any) {
     return;
   }
   const updateHandler = attrs[`onUpdate:${props.modelPropName}`];
-  if (isFunction(updateHandler)) {
+  if (isFunctionType(updateHandler)) {
     updateHandler(value);
   }
 }
@@ -148,8 +148,7 @@ const mergedParams = computed(() => {
 
 async function fetchApi() {
   const { api, beforeFetch, shouldFetch, afterFetch, resultField } = props;
-
-  if (!api || !isFunction(api)) {
+  if (!api || !isFunctionType(api)) {
     return;
   }
 
@@ -163,20 +162,20 @@ async function fetchApi() {
   try {
     isLoading.value = true;
     let finalParams = unref(mergedParams);
-    if (beforeFetch && isFunction(beforeFetch)) {
+    if (beforeFetch && isFunctionType(beforeFetch)) {
       finalParams = (await beforeFetch(clone(finalParams))) || finalParams;
     }
     // If the request should be aborted, return.
     if (
       shouldFetch
-      && isFunction(shouldFetch)
+      && isFunctionType(shouldFetch)
       && !(await shouldFetch(finalParams))
     ) {
       return;
     }
 
     let res = await api(finalParams);
-    if (afterFetch && isFunction(afterFetch)) {
+    if (afterFetch && isFunctionType(afterFetch)) {
       res = (await afterFetch(res)) || res;
     }
 
@@ -213,7 +212,7 @@ function emitChange() {
     && unref(getOptions).length > 0
   ) {
     let firstOption;
-    if (isFunction(props.autoSelect)) {
+    if (isFunctionType(props.autoSelect)) {
       firstOption = props.autoSelect(unref(getOptions));
     } else {
       switch (props.autoSelect) {
