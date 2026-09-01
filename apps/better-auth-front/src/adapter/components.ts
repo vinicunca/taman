@@ -1,5 +1,5 @@
 import type { AppFetchComponentSharedProps } from '@taman/app-ui';
-import type { CheckboxProps, InputProps } from 'pohon-ui';
+import type { CheckboxGroupProps, CheckboxProps, InputProps } from 'pohon-ui';
 import type { Component } from 'vue';
 import { AppFetchComponent, globalShareState } from '@taman/app-ui';
 import PSelect from 'pohon-ui/components/Select.vue';
@@ -11,6 +11,7 @@ import { $t } from '#/locales';
  */
 export interface ComponentPropsMap {
   Checkbox: CheckboxProps;
+  CheckboxGroup: CheckboxGroupProps;
   Input: InputProps;
   SelectFetch: AppFetchComponentSharedProps;
 }
@@ -21,7 +22,6 @@ export type LegacyComponentType
     | 'ApiTreeSelect'
     | 'AutoComplete'
     | 'Cascader'
-    | 'CheckboxGroup'
     | 'CollapsibleParams'
     | 'DatePicker'
     | 'DefaultButton'

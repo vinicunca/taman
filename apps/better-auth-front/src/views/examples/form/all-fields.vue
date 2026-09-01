@@ -29,6 +29,31 @@ const [FormAllFields] = useTamanForm({
         .boolean()
         .refine((v) => v, { message: 'Why not agree? Check the box!' }),
     },
+
+    {
+      component: 'CheckboxGroup',
+      fieldName: 'checkboxGroup',
+      label: 'Checkbox Group',
+      componentProps: {
+        name: 'cname',
+        items: [
+          {
+            label: 'Option 1',
+            value: '1',
+          },
+          {
+            label: 'Option 2',
+            value: '2',
+          },
+        ],
+      },
+      rules: z
+        .array(
+          z.string(),
+        )
+        .min(1, { message: 'Please select at least one option' }),
+    },
+
     {
       component: 'Input',
       fieldName: 'username',

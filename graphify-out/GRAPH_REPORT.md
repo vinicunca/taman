@@ -1,7 +1,7 @@
 # Graph Report - taman  (2026-09-01)
 
 ## Corpus Check
-- 1450 files · ~288,278 words
+- 1450 files · ~288,285 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `0bccf749`
+- Built from commit: `ecdc954f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -1124,8 +1124,8 @@ Cohesion: 0.33
 Nodes (3): FormSchemaItem, Props, SettingProps
 
 ### Community 223 - "Community 223"
-Cohesion: 0.40
-Nodes (5): default, development, production, types, ./color
+Cohesion: 0.33
+Nodes (6): default, development, production, types, exports, ./color
 
 ### Community 224 - "Community 224"
 Cohesion: 0.33
@@ -1296,8 +1296,8 @@ Cohesion: 0.40
 Nodes (4): exclude, extends, include, $schema
 
 ### Community 274 - "Community 274"
-Cohesion: 0.33
-Nodes (6): default, development, production, types, exports, ./cache
+Cohesion: 0.40
+Nodes (5): default, development, production, types, ./cache
 
 ### Community 275 - "Community 275"
 Cohesion: 0.40

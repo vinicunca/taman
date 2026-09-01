@@ -9,6 +9,7 @@ import type {
 import { globalShareState } from '@taman-core/shared/global-state';
 import { TamanInputPassword } from '@taman-core/taman-ui';
 import PCheckbox from 'pohon-ui/components/Checkbox.vue';
+import PCheckboxGroup from 'pohon-ui/components/CheckboxGroup.vue';
 import PInput from 'pohon-ui/components/Input.vue';
 import TamanFormFieldArray from './components/form-field-array.vue';
 import { warnDeprecatedOnce } from './form.deprecation';
@@ -22,17 +23,12 @@ const BUILT_IN_COMPONENT_MAP: Record<FormBaseComponentType, Component> = {
   Input: PInput,
   InputPassword: TamanInputPassword,
   Checkbox: PCheckbox,
-  // TamanCheckbox,
-  // TamanFormFieldArray,
-  // TamanInput,
-  // TamanPinInput,
-  // TamanSelect,
+  CheckboxGroup: PCheckboxGroup,
 };
 
 const BUILT_IN_COMPONENT_BIND_EVENT_MAP: Partial<
   Record<FormBaseComponentType, string>
 > = {
-  // TamanCheckbox: 'checked',
 };
 
 export const COMPONENT_MAP: Record<FormBaseComponentType, Component> = {

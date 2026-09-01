@@ -44,6 +44,8 @@ export type FormLayout = 'horizontal' | 'inline' | 'vertical';
 export type FormBaseComponentType
   = | 'Input'
     | 'InputPassword'
+    | 'Checkbox'
+    | 'CheckboxGroup'
     | (Record<never, never> & string);
 
 type Breakpoints = '2xl:' | '3xl:' | '' | 'lg:' | 'md:' | 'sm:' | 'xl:';
