@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { TamanFormSchema } from '#/adapter/form';
+
 import { Page } from '@taman/common-ui';
 
 import { Card, message } from 'antdv-next';
@@ -159,7 +161,7 @@ const [QueryForm1] = useTamanForm({
   // Horizontal layout: label and input on the same row
   layout: 'horizontal',
   schema: (() => {
-    const schema = [];
+    const schema: Array<TamanFormSchema> = [];
     for (let index = 0; index < 14; index++) {
       schema.push({
         // Component must be registered in #/adapter.ts with proper types

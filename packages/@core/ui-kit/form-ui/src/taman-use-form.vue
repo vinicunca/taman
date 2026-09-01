@@ -10,8 +10,8 @@ import FormActions from './components/form-actions.vue';
 import { FormRenderForm } from './form-render';
 import {
   COMPONENT_BIND_EVENT_MAP,
-  COMPONENT_MAP,
   DEFAULT_FORM_COMMON_CONFIG,
+  getFormComponentMap,
 } from './form.config';
 import {
   provideComponentRefMap,
@@ -38,6 +38,8 @@ if (!formApi) {
 const state = formApi.useStore();
 
 const forward = useForwardPriorityValues(props, state);
+
+const formComponentMap = getFormComponentMap();
 
 const componentRefMap = new Map<string, unknown>();
 
@@ -114,7 +116,7 @@ watch(values, (currentValues, previousValues) => {
     v-bind="forward"
     :collapsed="state?.collapsed"
     :component-bind-event-map="COMPONENT_BIND_EVENT_MAP"
-    :component-map="COMPONENT_MAP"
+    :component-map="formComponentMap"
     :form="form"
     :global-common-config="DEFAULT_FORM_COMMON_CONFIG"
     @keydown.enter="handleKeyDownEnter"

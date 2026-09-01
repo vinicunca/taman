@@ -8,6 +8,7 @@ import type {
 
 import { globalShareState } from '@taman-core/shared/global-state';
 import { TamanInputPassword } from '@taman-core/taman-ui';
+import PCheckbox from 'pohon-ui/components/Checkbox.vue';
 import PInput from 'pohon-ui/components/Input.vue';
 import TamanFormFieldArray from './components/form-field-array.vue';
 import { warnDeprecatedOnce } from './form.deprecation';
@@ -20,6 +21,7 @@ export const DEFAULT_FORM_COMMON_CONFIG: FormCommonConfig = {};
 const BUILT_IN_COMPONENT_MAP: Record<FormBaseComponentType, Component> = {
   Input: PInput,
   InputPassword: TamanInputPassword,
+  Checkbox: PCheckbox,
   // TamanCheckbox,
   // TamanFormFieldArray,
   // TamanInput,
@@ -50,9 +52,54 @@ function replaceRecord<T extends object>(target: T, source: T) {
   Object.assign(target, source);
 }
 
+let lastAdapterOptions: TamanFormAdapterOptions | undefined;
+
+/** Rebuild COMPONENT_MAP from globalShareState after this module is HMR'd. */
+export function rehydrateFormComponentMaps(
+  options: TamanFormAdapterOptions = {},
+) {
+  const { config } = options;
+  const baseModelPropName = config?.baseModelPropName ?? DEFAULT_MODEL_PROP_NAME;
+  const modelPropNameMap = config?.modelPropNameMap as
+    | Record<FormBaseComponentType, string>
+    | undefined;
+
+  const components = globalShareState.getComponents();
+  const nextComponentMap = {
+    ...BUILT_IN_COMPONENT_MAP,
+    ...components,
+  } as Record<FormBaseComponentType, Component>;
+  const nextBindEventMap = {
+    ...BUILT_IN_COMPONENT_BIND_EVENT_MAP,
+  } as Partial<Record<FormBaseComponentType, string>>;
+
+  for (const component of Object.keys(components)) {
+    const key = component as FormBaseComponentType;
+
+    if (baseModelPropName !== DEFAULT_MODEL_PROP_NAME) {
+      nextBindEventMap[key] = baseModelPropName;
+    }
+
+    if (modelPropNameMap && modelPropNameMap[key]) {
+      nextBindEventMap[key] = modelPropNameMap[key];
+    }
+  }
+
+  replaceRecord(COMPONENT_MAP, nextComponentMap);
+  replaceRecord(COMPONENT_BIND_EVENT_MAP, nextBindEventMap);
+}
+
+export function getFormComponentMap() {
+  return {
+    ...BUILT_IN_COMPONENT_MAP,
+    ...globalShareState.getComponents(),
+  } as Record<FormBaseComponentType, Component>;
+}
+
 export function setupTamanForm<
   T extends FormBaseComponentType = FormBaseComponentType,
 >(options: TamanFormAdapterOptions<T>) {
+  lastAdapterOptions = options;
   const { config, defineRules, rules } = options;
 
   const { changeEventFallback = false, emptyStateValue = undefined }
@@ -74,34 +121,20 @@ export function setupTamanForm<
     registerFormRules(rules);
   }
 
-  const baseModelPropName = config?.baseModelPropName ?? DEFAULT_MODEL_PROP_NAME;
-  const modelPropNameMap = config?.modelPropNameMap as
-    | Record<FormBaseComponentType, string>
+  rehydrateFormComponentMaps(options);
+}
+
+const hot = import.meta.hot;
+if (hot) {
+  hot.dispose((data) => {
+    data.lastAdapterOptions = lastAdapterOptions;
+  });
+  const resumed = hot.data.lastAdapterOptions as
+    | TamanFormAdapterOptions
     | undefined;
-
-  const components = globalShareState.getComponents();
-  const nextComponentMap = {
-    ...BUILT_IN_COMPONENT_MAP,
-    ...components,
-  } as Record<FormBaseComponentType, Component>;
-  const nextBindEventMap = {
-    ...BUILT_IN_COMPONENT_BIND_EVENT_MAP,
-  } as Partial<Record<FormBaseComponentType, string>>;
-
-  for (const component of Object.keys(components)) {
-    const key = component as FormBaseComponentType;
-    COMPONENT_MAP[key] = components[component as never];
-
-    if (baseModelPropName !== DEFAULT_MODEL_PROP_NAME) {
-      nextBindEventMap[key] = baseModelPropName;
-    }
-
-    // modelPropName for overriding special components
-    if (modelPropNameMap && modelPropNameMap[key]) {
-      nextBindEventMap[key] = modelPropNameMap[key];
-    }
+  if (resumed) {
+    setupTamanForm(resumed);
+  } else {
+    rehydrateFormComponentMaps();
   }
-
-  replaceRecord(COMPONENT_MAP, nextComponentMap);
-  replaceRecord(COMPONENT_BIND_EVENT_MAP, nextBindEventMap);
 }

@@ -4,6 +4,15 @@ import { defineComponent, h, markRaw, nextTick, ref } from 'vue';
 
 import ApiComponent from '../app-fetch-component.vue';
 
+vi.mock('pohon-ui/runtime/vue/components/Icon.vue', () => ({
+  default: {
+    name: 'PIconStub',
+    render() {
+      return null;
+    },
+  },
+}));
+
 const ValueInput = defineComponent({
   name: 'ValueInput',
   props: {
@@ -126,5 +135,46 @@ describe('api-component.vue', () => {
     await nextTick();
     expect(handleUpdate).toHaveBeenCalledWith('selected');
     expect(input.props('modelValue')).toBe('selected');
+  });
+
+  it('auto-selects the first option onto modelValue for a PSelect-like inner', async () => {
+    const SelectLike = defineComponent({
+      name: 'SelectLike',
+      props: {
+        modelValue: { type: String, default: undefined },
+        items: { type: Array, default: () => [] },
+        loading: { type: Boolean, default: false },
+      },
+      emits: ['update:modelValue'],
+      setup: (props) => () =>
+        h('div', {
+          'data-value': String(props.modelValue ?? ''),
+          'data-items': props.items.length,
+        }),
+    });
+
+    const wrapper = mount(ApiComponent, {
+      props: {
+        api: vi.fn().mockResolvedValue([
+          { label: 'Alpha', value: 'alpha' },
+          { label: 'Beta', value: 'beta' },
+        ]),
+        autoSelect: 'first',
+        component: markRaw(SelectLike),
+        optionsPropName: 'items',
+      },
+    });
+
+    await vi.waitFor(() => {
+      expect(wrapper.emitted('update:modelValue')).toEqual([['alpha']]);
+    });
+
+    const inner = wrapper.findComponent(SelectLike);
+    expect(inner.props('modelValue')).toBe('alpha');
+    expect(inner.props('loading')).toBe(false);
+    expect(inner.props('items')).toEqual([
+      expect.objectContaining({ label: 'Alpha', value: 'alpha' }),
+      expect.objectContaining({ label: 'Beta', value: 'beta' }),
+    ]);
   });
 });

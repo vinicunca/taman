@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { Recordable } from '@taman/types';
+import type { TamanFormSchema } from '#/adapter/form';
 
 import { useQuery } from '@tanstack/vue-query';
 
@@ -25,7 +26,7 @@ async function fetchOptions() {
   return await fetchDataFn.value;
 }
 
-const schema = [];
+const schema: Array<TamanFormSchema> = [];
 
 for (let i = 0; i < count; i++) {
   schema.push({

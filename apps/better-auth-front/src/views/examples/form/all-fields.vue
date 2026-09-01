@@ -8,18 +8,27 @@ const toast = useToast();
 const [FormAllFields] = useTamanForm({
   // 3 columns on large screens, 2 on medium, 1 on small
   wrapperClass: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
-  // Shared by all form items; can be overridden per form
+
   commonConfig: {
-    // Show a colon after the label
     colon: true,
-    // All form items
     componentProps: {
       class: 'w-full',
     },
   },
+
   layout: 'horizontal',
 
   schema: [
+    {
+      component: 'Checkbox',
+      fieldName: 'checkbox',
+      componentProps: {
+        label: 'I have read and agree.',
+      },
+      rules: z
+        .boolean()
+        .refine((v) => v, { message: 'Why not agree? Check the box!' }),
+    },
     {
       component: 'Input',
       fieldName: 'username',
@@ -32,17 +41,13 @@ const [FormAllFields] = useTamanForm({
     {
       component: 'Input',
       fieldName: 'desc',
-      // Description shown in the UI
       label: 'String with description',
       description: 'This is a description of the form field',
     },
     {
-      // Component must be registered in #/adapter.ts with proper types
       component: 'SelectFetch',
-      // Props passed to the component
       componentProps: {
-        // Transform menu API response to options format
-        afterFetch: (data: Array<{ name: string; path: string }>) => {
+        afterFetch: async (data: Array<{ name: string; path: string }>) => {
           return data.map((item) => ({
             label: item.name,
             value: item.path,
@@ -51,14 +56,20 @@ const [FormAllFields] = useTamanForm({
         api: getAllMenusApi,
         autoSelect: 'first',
       },
-      // Field name
       fieldName: 'api',
-      // Label shown in the UI
-      label: 'SelectFetch',
+      label: 'Select Fetch',
     },
   ],
 
   handleSubmit: onSubmit,
+
+  handleValuesChange: (_values, fields) => {
+    toast.add({
+      color: 'neutral',
+      title: `The following fields in the form have changed: ${fields.join(', ')}`,
+      duration: 2_000,
+    });
+  },
 });
 
 function onSubmit(values: Record<string, any>) {

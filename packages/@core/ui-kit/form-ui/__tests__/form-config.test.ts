@@ -5,6 +5,7 @@ import { defineComponent } from 'vue';
 import {
   COMPONENT_BIND_EVENT_MAP,
   COMPONENT_MAP,
+  rehydrateFormComponentMaps,
   setupTamanForm,
 } from '../src/form.config';
 
@@ -56,5 +57,19 @@ describe('setupTamanForm', () => {
     });
 
     expect(COMPONENT_BIND_EVENT_MAP.CustomInput).toBe('checked');
+  });
+
+  it('restores adapter components from share state after the map is reset', () => {
+    const SelectFetch = defineComponent({ name: 'SelectFetch' });
+    globalShareState.setComponents({ SelectFetch });
+    setupTamanForm({ config: {} });
+    expect(COMPONENT_MAP.SelectFetch).toBe(SelectFetch);
+
+    Reflect.deleteProperty(COMPONENT_MAP, 'SelectFetch');
+    expect(COMPONENT_MAP.SelectFetch).toBeUndefined();
+
+    rehydrateFormComponentMaps();
+    expect(COMPONENT_MAP.SelectFetch).toBe(SelectFetch);
+    expect(COMPONENT_MAP).toBe(componentMapReference);
   });
 });

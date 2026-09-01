@@ -160,13 +160,13 @@ defineExpose({
     <!-- Before expand button -->
     <slot name="expand-before" />
 
-    <VbenExpandableArrow
+    <!-- <VbenExpandableArrow
       v-if="rootProps.showCollapseButton"
       v-model:model-value="collapsed"
       class="ml-[-0.3em]"
     >
       <span>{{ collapsed ? $t('expand') : $t('collapse') }}</span>
-    </VbenExpandableArrow>
+    </VbenExpandableArrow> -->
 
     <!-- After expand button -->
     <slot name="expand-after" />

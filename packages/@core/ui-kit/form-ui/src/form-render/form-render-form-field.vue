@@ -9,6 +9,7 @@ import type {
   MaybeComponentProps,
 } from '../form.types';
 
+import { globalShareState } from '@taman-core/shared/global-state';
 import { isFunction, isPlainObject, isString } from '@taman-core/shared/utils';
 import {
   FormControl,
@@ -97,6 +98,7 @@ function getFormApi(): FormActions {
 const FieldComponent = computed(() => {
   const finalComponent = isString(component)
     ? componentMap.value[component]
+    ?? globalShareState.getComponents()[component]
     : component;
   if (!finalComponent) {
     // Component not registered
@@ -319,9 +321,10 @@ function fieldBindEvent(
   let value = modelValue;
   // Some components of antd design will pass an event object
   if (modelValue && isPlainObject(modelValue) && bindEventField) {
-    value = isEventObjectLike(modelValue)
-      ? modelValue?.target?.[bindEventField]
-      : (modelValue?.[bindEventField] ?? modelValue);
+    const record = modelValue as Record<string, any>;
+    value = isEventObjectLike(record)
+      ? record.target?.[bindEventField]
+      : (record[bindEventField] ?? record);
   }
 
   if (bindEventField) {

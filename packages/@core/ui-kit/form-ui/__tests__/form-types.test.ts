@@ -5,6 +5,8 @@ import type {
   FormContextApi,
   FormFieldOptions,
   FormItemDependencies,
+  FormSchema,
+  FormSchemaContext,
   FormValidationResult,
   FormValuePatch,
   FormValueSnapshot,
@@ -15,6 +17,19 @@ import type {
 import { describe, expectTypeOf, it } from 'vitest';
 
 import { useTamanForm } from '../src/form.use-taman-form';
+
+type Assert<T extends true> = T;
+type IsEqual<TLeft, TRight>
+  = (<T>() => T extends TLeft ? 1 : 2) extends
+  (<T>() => T extends TRight ? 1 : 2)
+    ? true
+    : false;
+type MembersAcceptingComponent<TSchema, TComponent>
+  = TSchema extends { component: infer TSchemaComponent }
+    ? TComponent extends TSchemaComponent
+      ? TSchema
+      : never
+    : never;
 
 interface AccountFormValues {
   email: string;
@@ -31,6 +46,48 @@ interface AccountSubmitValues {
 }
 
 describe('form public types', () => {
+  it('uses the component key to resolve mapped component props', () => {
+    interface ComponentPropsMap {
+      Input: {
+        maxLength?: number;
+        onChange?: (value: string) => void;
+        placeholder?: string;
+      };
+    }
+
+    type ComponentType = 'Input' | 'LegacySelect';
+    type Schema = FormSchema<ComponentType, ComponentPropsMap>;
+    type InputSchema = MembersAcceptingComponent<Schema, 'Input'>;
+    type InputComponentProps
+      = & ComponentPropsMap['Input']
+        & Record<string, any>;
+    type InputPropsAreMapped = Assert<
+      IsEqual<
+        InputSchema['componentProps'],
+        | ((context: FormSchemaContext) => InputComponentProps)
+        | InputComponentProps
+        | undefined
+      >
+    >;
+    const inputSchema = {
+      component: 'Input',
+      componentProps: {
+        onChange(value) {
+          expectTypeOf(value).toEqualTypeOf<string>();
+        },
+      },
+      fieldName: 'name',
+    } satisfies Schema;
+
+    expectTypeOf(inputSchema).toMatchTypeOf<Schema>();
+    expectTypeOf<InputPropsAreMapped>().toEqualTypeOf<true>();
+    expectTypeOf<InputSchema['componentProps']>().toEqualTypeOf<
+      | ((context: FormSchemaContext) => InputComponentProps)
+      | InputComponentProps
+      | undefined
+    >();
+  });
+
   it('keeps the compatibility alias and stable method signatures', () => {
     expectTypeOf<FormActions>().toEqualTypeOf<FormContextApi>();
     expectTypeOf<FormActions['setFieldValue']>()

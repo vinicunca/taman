@@ -639,11 +639,12 @@ type FormSchemaDiscriminated<
 
 type FormSchemaFallback<
   T extends FormBaseComponentType,
+  P extends Record<string, any>,
   TValues extends FormValues,
 > = {
-  /** Component */
-  component: Component | T;
-  /** Component props */
+  component:
+    | Component
+    | (string extends keyof P ? T : Exclude<T, keyof P>);
   componentProps?: ComponentProps<TValues>;
 } & FormSchemaBody<TValues>;
 
@@ -660,7 +661,9 @@ type FormArraySchema<
   /** Array field definition */
   children: Array<FormSchema<T, P, TValues>>;
   /** Compatible with explicitly specifying the built-in array editor */
-  component?: Component | T;
+  component?:
+    | Component
+    | (string extends keyof P ? T : Exclude<T, keyof P>);
   /** Compatible with passing array editor parameters through componentProps */
   componentProps?: ComponentProps<TValues>;
   /** Array field type */
@@ -674,7 +677,7 @@ export type FormSchema<
 >
   = | FormArraySchema<T, P, TValues>
     | FormSchemaDiscriminated<T, P, TValues>
-    | FormSchemaFallback<T, TValues>;
+    | FormSchemaFallback<T, P, TValues>;
 
 /**
  * Component props for the array editor (TamanFormFieldArray)

@@ -8,8 +8,8 @@ import FormActions from './components/form-actions.vue';
 import { FormRenderForm } from './form-render';
 import {
   COMPONENT_BIND_EVENT_MAP,
-  COMPONENT_MAP,
   DEFAULT_FORM_COMMON_CONFIG,
+  getFormComponentMap,
 } from './form.config';
 import { provideFormProps, useFormInitial } from './form.use-form-context';
 
@@ -33,6 +33,8 @@ const props = withDefaults(
 
 const forward = useForwardPropsEmits(props);
 
+const formComponentMap = getFormComponentMap();
+
 const currentCollapsed = ref(false);
 
 const { delegatedSlots, form } = useFormInitial(props);
@@ -55,7 +57,7 @@ watchEffect(() => {
     v-bind="forward"
     :collapsed="currentCollapsed"
     :component-bind-event-map="COMPONENT_BIND_EVENT_MAP"
-    :component-map="COMPONENT_MAP"
+    :component-map="formComponentMap"
     :form="form"
     :global-common-config="DEFAULT_FORM_COMMON_CONFIG"
   >

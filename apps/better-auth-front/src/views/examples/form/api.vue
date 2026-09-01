@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { TamanFormSchema } from '#/adapter/form';
+
 import { ref } from 'vue';
 
 import { Page } from '@taman/common-ui';
@@ -103,7 +105,7 @@ function handleClick(
     case 'batchAddSchema': {
       formApi.setState((prev) => {
         const currentSchema = prev?.schema ?? [];
-        const newSchema = [];
+        const newSchema: Array<TamanFormSchema> = [];
         for (let i = 0; i < 3; i++) {
           newSchema.push({
             component: 'Input',

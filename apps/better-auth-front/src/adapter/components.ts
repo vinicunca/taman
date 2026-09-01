@@ -1,5 +1,5 @@
-import type { FormBaseComponentType } from '@taman-core/form-ui';
-import type { InputProps } from 'pohon-ui';
+import type { AppFetchComponentSharedProps } from '@taman/app-ui';
+import type { CheckboxProps, InputProps } from 'pohon-ui';
 import type { Component } from 'vue';
 import { AppFetchComponent, globalShareState } from '@taman/app-ui';
 import PSelect from 'pohon-ui/components/Select.vue';
@@ -10,12 +10,44 @@ import { $t } from '#/locales';
  * Maps to {@link ComponentType} for schema `component` + `componentProps` typing.
  */
 export interface ComponentPropsMap {
+  Checkbox: CheckboxProps;
   Input: InputProps;
+  SelectFetch: AppFetchComponentSharedProps;
 }
 
-export type ComponentType
-  = | 'Input'
-    | FormBaseComponentType;
+export type LegacyComponentType
+  = | 'ApiCascader'
+    | 'ApiSelect'
+    | 'ApiTreeSelect'
+    | 'AutoComplete'
+    | 'Cascader'
+    | 'CheckboxGroup'
+    | 'CollapsibleParams'
+    | 'DatePicker'
+    | 'DefaultButton'
+    | 'Divider'
+    | 'IconPicker'
+    | 'InputNumber'
+    | 'InputPassword'
+    | 'Mentions'
+    | 'PrimaryButton'
+    | 'Radio'
+    | 'RadioGroup'
+    | 'RangePicker'
+    | 'Rate'
+    | 'RichEditor'
+    | 'Select'
+    | 'Space'
+    | 'Switch'
+    | 'Textarea'
+    | 'TimePicker'
+    | 'TreeSelect'
+    | 'Upload'
+    | 'VbenInput'
+    | 'VbenInputPassword'
+    | 'VbenPinInput';
+
+export type ComponentType = keyof ComponentPropsMap | LegacyComponentType;
 
 function withDefaultPlaceholder(
   { component, type, componentProps }:
@@ -63,10 +95,8 @@ export async function initComponentAdapter() {
       type: 'select',
       componentProps: {
         component: PSelect,
-        loadingSlot: 'suffixIcon',
-        modelPropName: 'value',
-        visibleEvent: 'onOpenChange',
         optionsPropName: 'items',
+        visibleEvent: 'onUpdate:open',
       },
     }),
   };

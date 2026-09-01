@@ -106,10 +106,11 @@ const bindProps = computed(() => {
   return {
     [props.modelPropName]: unref(currentModelValue),
     [props.optionsPropName]: unref(getOptions),
+    loading: unref(isLoading),
     [updateEvent]: (val: string) => {
       updateModelValue(val);
     },
-    ...omit(attrs, [props.modelPropName, updateEvent]),
+    ...omit(attrs, [props.modelPropName, updateEvent, 'loading']),
     ...(props.visibleEvent
       ? {
           [props.visibleEvent]: handleFetchForVisible,
@@ -123,7 +124,9 @@ function updateModelValue(value: any) {
     modelValue.value = value;
     return;
   }
+
   const updateHandler = attrs[`onUpdate:${props.modelPropName}`];
+
   if (isFunctionType(updateHandler)) {
     updateHandler(value);
   }

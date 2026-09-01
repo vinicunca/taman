@@ -80,9 +80,9 @@ async function handleLogout() {
     </template>
 
     <template #lock-screen>
-      <LockScreen
+      <!-- <LockScreen
         @to-login="handleLogout"
-      />
+      /> -->
     </template>
   </LayoutCore>
 </template>
