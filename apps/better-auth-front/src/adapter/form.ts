@@ -4,16 +4,22 @@ import type {
   FormValues,
 } from '@taman/app-ui';
 import type { ComponentPropsMap, ComponentType } from './components';
-import { setupTamanForm, useTamanForm as useForm } from '@taman/app-ui';
-import { isEmpty } from '@vinicunca/perkakas';
+import { isEmptyFormValue, setupTamanForm, useTamanForm as useForm } from '@taman/app-ui';
 import { $t } from '#/locales';
 
 export async function initTamanForm() {
   setupTamanForm<ComponentType>({
     rules: {
       required: (value, _params, ctx) => {
-        if (isEmpty(value)) {
+        if (isEmptyFormValue(value)) {
           return $t('ui.formRules.required', [ctx.label]);
+        }
+
+        return true;
+      },
+      selectRequired: (value, _params, ctx) => {
+        if (isEmptyFormValue(value)) {
+          return $t('ui.formRules.selectRequired', [ctx.label]);
         }
 
         return true;

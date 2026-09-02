@@ -1,6 +1,7 @@
 export * from './auth';
 export * from './back-to-top';
 export * from './button';
+export * from './file-upload';
 export * from './full-screen';
 export * from './icon';
 export * from './input';

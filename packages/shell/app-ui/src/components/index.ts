@@ -6,3 +6,8 @@ export * from './page';
 export * from '@taman-core/form-ui';
 
 export { globalShareState } from '@taman-core/shared/global-state';
+
+export {
+  TamanFileUpload,
+  type TamanFileUploadProps,
+} from '@taman-core/taman-ui';

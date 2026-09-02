@@ -31,6 +31,7 @@ import {
   useTemplateRef,
   watch,
 } from 'vue';
+import { toFormFieldValue } from '../form.empty-value';
 import { getFormRule } from '../form.rule-registry';
 import { injectComponentRefMap } from '../form.use-form-context';
 import FormLabel from './form-render-form-label.vue';
@@ -289,7 +290,7 @@ function createFieldSlotProps(slotProps: RuntimeFieldSlotProps) {
   const { field } = slotProps;
   function handleChange(value: any) {
     getFormApi().setFieldError(fieldName);
-    field.handleChange(value);
+    field.handleChange(toFormFieldValue(value));
   }
   return {
     ...slotProps,

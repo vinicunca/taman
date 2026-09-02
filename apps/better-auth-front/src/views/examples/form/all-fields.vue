@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { AppCard, AppCardAction, AppPage } from '@taman/app-ui';
+import { AppCard, AppCardAction, AppPage, TamanFileUpload } from '@taman/app-ui';
+import { ref } from 'vue';
 import { useTamanForm, z } from '#/adapter/form';
 import { getAllMenusApi } from '#/api';
 import { $t } from '#/locales';
@@ -55,6 +56,22 @@ const [FormAllFields] = useTamanForm({
     },
 
     {
+      component: 'FileUpload',
+      fieldName: 'fileUpload',
+      label: 'File Upload',
+      componentProps: {
+        accept: 'image/*',
+        label: 'Drop your images here',
+        multiple: true,
+        description: 'SVG, PNG, JPG or GIF (max. 2MB)',
+        labelActions: 'Select images',
+        labelPreview: 'Files',
+        labelAddMore: 'Add more',
+      },
+      rules: 'selectRequired',
+    },
+
+    {
       component: 'Input',
       fieldName: 'username',
       label: 'String',
@@ -63,12 +80,14 @@ const [FormAllFields] = useTamanForm({
       },
       rules: 'required',
     },
+
     {
       component: 'Input',
       fieldName: 'desc',
       label: 'String with description',
       description: 'This is a description of the form field',
     },
+
     {
       component: 'SelectFetch',
       componentProps: {

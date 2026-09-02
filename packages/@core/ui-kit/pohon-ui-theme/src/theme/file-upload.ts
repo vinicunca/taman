@@ -198,7 +198,7 @@ export const fileUpload = {
       layout: 'grid',
       multiple: false,
       class: {
-        file: 'absolute inset-0 p-0',
+        file: 'pohon:absolute inset-0 p-0',
       },
     },
     {

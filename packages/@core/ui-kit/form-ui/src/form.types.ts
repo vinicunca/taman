@@ -46,6 +46,7 @@ export type FormBaseComponentType
     | 'InputPassword'
     | 'Checkbox'
     | 'CheckboxGroup'
+    | 'FileUpload'
     | (Record<never, never> & string);
 
 type Breakpoints = '2xl:' | '3xl:' | '' | 'lg:' | 'md:' | 'sm:' | 'xl:';

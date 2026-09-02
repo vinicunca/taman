@@ -7,7 +7,7 @@ import type {
 } from './form.types';
 
 import { globalShareState } from '@taman-core/shared/global-state';
-import { TamanInputPassword } from '@taman-core/taman-ui';
+import { TamanFileUpload, TamanInputPassword } from '@taman-core/taman-ui';
 import PCheckbox from 'pohon-ui/components/Checkbox.vue';
 import PCheckboxGroup from 'pohon-ui/components/CheckboxGroup.vue';
 import PInput from 'pohon-ui/components/Input.vue';
@@ -20,10 +20,11 @@ const DEFAULT_MODEL_PROP_NAME = 'modelValue';
 export const DEFAULT_FORM_COMMON_CONFIG: FormCommonConfig = {};
 
 const BUILT_IN_COMPONENT_MAP: Record<FormBaseComponentType, Component> = {
-  Input: PInput,
-  InputPassword: TamanInputPassword,
   Checkbox: PCheckbox,
   CheckboxGroup: PCheckboxGroup,
+  FileUpload: TamanFileUpload,
+  Input: PInput,
+  InputPassword: TamanInputPassword,
 };
 
 const BUILT_IN_COMPONENT_BIND_EVENT_MAP: Partial<
