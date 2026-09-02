@@ -7,6 +7,8 @@ export { setupTamanForm } from './form.config';
 export { isEmptyFormValue } from './form.empty-value';
 
 export type {
+  BuiltInFormComponentPropsMap,
+  BuiltInFormComponentType,
   ExtendedFormApi,
   FormActions,
   FormBaseComponentType,

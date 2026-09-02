@@ -2,6 +2,7 @@ import type { MaybeComputedRef } from '@taman-core/typings';
 import type { ButtonProps } from 'pohon-ui';
 import type { Component, HTMLAttributes, HtmlHTMLAttributes, Ref, UnwrapNestedRefs } from 'vue';
 import type { ZodType } from 'zod';
+import type { BuiltInFormComponentType } from './form.built-ins';
 import type { useFormLabelWidth } from './form-render/form-render.utils';
 import type { FormApi } from './form.api';
 
@@ -41,12 +42,10 @@ export type FormFieldValue<
 
 export type FormLayout = 'horizontal' | 'inline' | 'vertical';
 
+export type { BuiltInFormComponentPropsMap, BuiltInFormComponentType } from './form.built-ins';
+
 export type FormBaseComponentType
-  = | 'Input'
-    | 'InputPassword'
-    | 'Checkbox'
-    | 'CheckboxGroup'
-    | 'FileUpload'
+  = | BuiltInFormComponentType
     | (Record<never, never> & string);
 
 type Breakpoints = '2xl:' | '3xl:' | '' | 'lg:' | 'md:' | 'sm:' | 'xl:';

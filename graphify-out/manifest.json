@@ -290,8 +290,8 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/adapter/components.ts": {
-    "mtime": 1788337827.8888109,
-    "ast_hash": "6e0dff813510e81b8063855df288adae",
+    "mtime": 1788341425.3672302,
+    "ast_hash": "a414e2a35f579dbfca876cb181313b53",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/adapter/form.ts": {
@@ -2325,8 +2325,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/__tests__/form-types.test.ts": {
-    "mtime": 1788233008.8253949,
-    "ast_hash": "e34d872a3c5037de3f947903fd7ca2df",
+    "mtime": 1788341387.081334,
+    "ast_hash": "e22899a08e7b12b7a65114d470e43fe8",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/__tests__/form-value-transform.test.ts": {
@@ -2420,8 +2420,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.config.ts": {
-    "mtime": 1788305569.4745622,
-    "ast_hash": "24c441af0445872b470294e2fbe43358",
+    "mtime": 1788341424.7712777,
+    "ast_hash": "f2fef8d7b2c323416af259b6add51e53",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.deprecation.ts": {
@@ -2455,8 +2455,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.types.ts": {
-    "mtime": 1788305581.9287486,
-    "ast_hash": "4f04083919c20ff1d297fb8a409ee65f",
+    "mtime": 1788341467.4203632,
+    "ast_hash": "d67b7fcd327b9f5dac4fe978654d2eb8",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.use-form-context.ts": {
@@ -2475,8 +2475,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/index.ts": {
-    "mtime": 1788318528.2990263,
-    "ast_hash": "e5804fa646ad3326f3f2f0aa8a88564f",
+    "mtime": 1788341425.2294912,
+    "ast_hash": "f338f74103dc9ce7cdd009834f9de67f",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/taman-form.vue": {
@@ -7442,6 +7442,11 @@
   "packages/@core/ui-kit/form-ui/src/form.empty-value.ts": {
     "mtime": 1788317877.3772588,
     "ast_hash": "412ab889687b510e1492633fe6a6dbca",
+    "semantic_hash": ""
+  },
+  "packages/@core/ui-kit/form-ui/src/form.built-ins.ts": {
+    "mtime": 1788341424.7002025,
+    "ast_hash": "ba6b3f6ec82d73cf9c3f2b7638992146",
     "semantic_hash": ""
   }
 }

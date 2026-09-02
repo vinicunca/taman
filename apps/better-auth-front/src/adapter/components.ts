@@ -1,5 +1,4 @@
-import type { AppFetchComponentSharedProps, TamanFileUploadProps } from '@taman/app-ui';
-import type { CheckboxGroupProps, CheckboxProps, InputProps } from 'pohon-ui';
+import type { AppFetchComponentSharedProps, BuiltInFormComponentPropsMap } from '@taman/app-ui';
 import type { Component } from 'vue';
 import { AppFetchComponent, globalShareState } from '@taman/app-ui';
 import PSelect from 'pohon-ui/components/Select.vue';
@@ -9,11 +8,7 @@ import { $t } from '#/locales';
 /**
  * Maps to {@link ComponentType} for schema `component` + `componentProps` typing.
  */
-export interface ComponentPropsMap {
-  Checkbox: CheckboxProps;
-  CheckboxGroup: CheckboxGroupProps;
-  FileUpload: TamanFileUploadProps<false> | TamanFileUploadProps<true>;
-  Input: InputProps;
+export interface ComponentPropsMap extends BuiltInFormComponentPropsMap {
   SelectFetch: AppFetchComponentSharedProps;
 }
 

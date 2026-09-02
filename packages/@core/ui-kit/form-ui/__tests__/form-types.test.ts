@@ -1,4 +1,6 @@
 import type {
+  BuiltInFormComponentPropsMap,
+  BuiltInFormComponentType,
   ExtendedFormApi,
   FormActions,
   FormBaseComponentType,
@@ -46,6 +48,20 @@ interface AccountSubmitValues {
 }
 
 describe('form public types', () => {
+  it('maps built-in multi-file upload props', () => {
+    type Schema = FormSchema<
+      BuiltInFormComponentType,
+      BuiltInFormComponentPropsMap
+    >;
+    const schema = {
+      component: 'FileUpload',
+      componentProps: { multiple: true },
+      fieldName: 'files',
+    } satisfies Schema;
+
+    expectTypeOf(schema).toMatchTypeOf<Schema>();
+  });
+
   it('uses the component key to resolve mapped component props', () => {
     interface ComponentPropsMap {
       Input: {
