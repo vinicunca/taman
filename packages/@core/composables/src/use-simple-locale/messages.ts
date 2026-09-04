@@ -13,6 +13,7 @@ export const messages: Record<Locale, Record<string, string>> = {
     confirmTitle: 'Please Confirm',
     showPassword: 'Show password',
     hidePassword: 'Hide password',
+    selectDate: 'Select a date',
   },
   'id-ID': {
     cancel: 'Batal',
@@ -26,6 +27,7 @@ export const messages: Record<Locale, Record<string, string>> = {
     confirmTitle: 'Harap Konfirmasi',
     showPassword: 'Tampilkan password',
     hidePassword: 'Sembunyikan password',
+    selectDate: 'Pilih tanggal',
   },
 };
 

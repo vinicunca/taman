@@ -1,7 +1,13 @@
 import type { TamanFileUploadProps } from '@taman-core/taman-ui';
-import type { CheckboxGroupProps, CheckboxProps, InputProps } from 'pohon-ui';
+import type {
+  CalendarProps,
+  CheckboxGroupProps,
+  CheckboxProps,
+  InputDateProps,
+  InputProps,
+} from 'pohon-ui';
 import type { Component } from 'vue';
-import { TamanFileUpload, TamanInputPassword } from '@taman-core/taman-ui';
+import { TamanFileUpload, TamanInputDate, TamanInputPassword } from '@taman-core/taman-ui';
 import PCheckbox from 'pohon-ui/components/Checkbox.vue';
 import PCheckboxGroup from 'pohon-ui/components/CheckboxGroup.vue';
 import PInput from 'pohon-ui/components/Input.vue';
@@ -11,6 +17,9 @@ export interface BuiltInFormComponentPropsMap {
   CheckboxGroup: CheckboxGroupProps;
   FileUpload: TamanFileUploadProps<false> | TamanFileUploadProps<true>;
   Input: InputProps;
+  InputDate: (InputDateProps<false> | InputDateProps<true>) & {
+    type: CalendarProps['type'];
+  };
   InputPassword: InputProps & { passwordStrength?: boolean };
 }
 
@@ -21,5 +30,6 @@ export const BUILT_IN_COMPONENT_MAP = {
   CheckboxGroup: PCheckboxGroup,
   FileUpload: TamanFileUpload,
   Input: PInput,
+  InputDate: TamanInputDate,
   InputPassword: TamanInputPassword,
 } satisfies Record<BuiltInFormComponentType, Component>;

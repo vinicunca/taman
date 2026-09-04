@@ -1277,15 +1277,15 @@ importers:
 
   packages/@core/ui-kit/taman-ui:
     dependencies:
+      '@internationalized/date':
+        specifier: 'catalog:'
+        version: 3.12.2
       '@taman-core/composables':
         specifier: workspace:*
         version: link:../../composables
       '@taman-core/shared':
         specifier: workspace:*
         version: link:../../base/shared
-      '@taman/locales':
-        specifier: workspace:*
-        version: link:../../../locales
       '@vueuse/core':
         specifier: 'catalog:'
         version: 14.4.0(vue@3.5.41(typescript@6.0.3))

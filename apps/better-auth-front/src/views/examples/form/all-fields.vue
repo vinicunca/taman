@@ -89,6 +89,33 @@ const [FormAllFields] = useTamanForm({
     },
 
     {
+      component: 'InputDate',
+      fieldName: 'date',
+      label: 'Date',
+      rules: 'required',
+    },
+
+    // {
+    //   component: 'InputDate',
+    //   fieldName: 'month',
+    //   componentProps: {
+    //     type: 'month',
+    //   },
+    //   label: 'Month',
+    //   rules: 'required',
+    // },
+
+    // {
+    //   component: 'InputDate',
+    //   fieldName: 'year',
+    //   componentProps: {
+    //     type: 'year',
+    //   },
+    //   label: 'Year',
+    //   rules: 'required',
+    // },
+
+    {
       component: 'SelectFetch',
       componentProps: {
         afterFetch: async (data: Array<{ name: string; path: string }>) => {

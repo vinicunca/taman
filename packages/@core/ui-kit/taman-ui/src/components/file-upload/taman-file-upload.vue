@@ -1,24 +1,33 @@
-<script setup lang="ts" generic="Multiple extends boolean = false">
+<script setup lang="ts" generic="M extends boolean = false">
 import type { TamanFileUploadProps } from './taman-file-upload.types';
 import { useForwardProps } from '@taman-core/composables';
 import { reactiveOmit } from '@vueuse/core';
 import PButton from 'pohon-ui/components/Button.vue';
 import PFileUpload from 'pohon-ui/components/FileUpload.vue';
-import { toFileList } from './taman-file-upload.utils';
+
+type FileUploadSlotFiles = File | Array<File> | null | undefined;
 
 defineOptions({
   inheritAttrs: false,
 });
 
 const props = withDefaults(
-  defineProps<TamanFileUploadProps<Multiple>>(),
+  defineProps<TamanFileUploadProps<M>>(),
   {
     icon: 'lucide:image',
   },
 );
 
+function toFileList(files: FileUploadSlotFiles): Array<File> {
+  if (files == null) {
+    return [];
+  }
+
+  return Array.isArray(files) ? files : [files];
+}
+
 const modelValue = defineModel<
-  (Multiple extends true ? Array<File> : File) | null
+  (M extends true ? Array<File> : File) | null
 >();
 
 const rootProps = useForwardProps(

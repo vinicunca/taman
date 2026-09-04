@@ -5,6 +5,7 @@ export * from './file-upload';
 export * from './full-screen';
 export * from './icon';
 export * from './input';
+export * from './input-date';
 export * from './logo';
 export * from './render-content';
 export * from './scrollbar';

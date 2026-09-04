@@ -55,7 +55,7 @@ const color = computed(() => {
           variant="link"
           size="sm"
           :icon="isPasswordVisible ? 'lucide:eye-off' : 'lucide:eye'"
-          :aria-label="isPasswordVisible ? $t('authentication.form.password.hidePassword') : $t('authentication.form.password.showPassword')"
+          :aria-label="isPasswordVisible ? $t('hidePassword') : $t('showPassword')"
           :aria-pressed="isPasswordVisible"
           :aria-controls="inputRef?.inputRef?.id"
           @click="isPasswordVisible = !isPasswordVisible"
