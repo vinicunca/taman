@@ -116,6 +116,19 @@ const [FormAllFields] = useTamanForm({
     // },
 
     {
+      component: 'InputMenu',
+      fieldName: 'inputMenu',
+      label: 'InputMenu',
+      componentProps: {
+        items: ['Backlog', 'Todo', 'In Progress', 'Done'],
+        ui: {
+          trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform-280',
+        },
+      },
+      rules: 'selectRequired',
+    },
+
+    {
       component: 'SelectFetch',
       componentProps: {
         afterFetch: async (data: Array<{ name: string; path: string }>) => {

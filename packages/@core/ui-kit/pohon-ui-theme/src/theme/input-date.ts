@@ -11,7 +11,7 @@ export const inputDate = {
   slots: {
     ...inputSlots,
     base: 'group relative inline-flex items-center rounded-md select-none transition-colors',
-    segment: 'rounded text-center outline-hidden data-placeholder:color-text-dimmed data-[segment=literal]:color-text-muted data-invalid:text-error data-disabled:cursor-not-allowed data-disabled:opacity-75 transition-colors',
+    segment: 'rounded text-center outline-hidden data-[placeholder]:color-text-dimmed data-[segment=literal]:color-text-muted data-[invalid]:color-error data-[disabled]:cursor-not-allowed data-[disabled]:opacity-75 transition-colors',
     separatorIcon: 'shrink-0 size-4 color-text-muted',
   },
   variants: defu(
