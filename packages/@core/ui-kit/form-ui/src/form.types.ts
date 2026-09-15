@@ -661,7 +661,7 @@ type FormArraySchema<
     'disabled' | 'globalCommonConfig' | 'name' | 'schema'
   >;
   /** Array field definition */
-  children: Array<FormSchema<T, P, TValues>>;
+  children: Array<FormFieldSchema<T, P, TValues>>;
   /** Compatible with explicitly specifying the built-in array editor */
   component?:
     | Component
@@ -672,7 +672,51 @@ type FormArraySchema<
   type: 'array';
 } & FormSchemaBody<TValues>;
 
-export type FormSchema<
+/**
+ * 表单分组，用于把若干字段组织成一个可折叠的区块。
+ * 分组本身不是字段，不参与取值与校验。
+ */
+export interface FormGroupSchema<
+  T extends FormBaseComponentType = FormBaseComponentType,
+  P extends Record<string, any> = Record<never, never>,
+  TValues extends FormValues = FormValues,
+> {
+  /** Fields defined within the group */
+  children: Array<FormFieldSchema<T, P, TValues>>;
+  /**
+   * Whether to allow collapsing
+   * @default true
+   */
+  collapsible?: boolean;
+  /** Groups are not fields, so specifying a component is prohibited */
+  component?: never;
+  /**
+   * Whether to default collapse
+   * @default false
+   */
+  defaultCollapsed?: boolean;
+  /** Additional content on the right side of the title */
+  extra?: FormCustomRenderType;
+  /** Groups are not fields, so specifying a field name is prohibited */
+  fieldName?: never;
+  /** Styles for the group container in the form grid, defaulting to occupying one full row */
+  formItemClass?: FormItemClassType;
+  /** Whether to hide the group */
+  hide?: boolean;
+  /** Group identifier, used for stable keys during rendering, defaulting to index */
+  name?: string;
+  /** Group title */
+  title?: FormCustomRenderType;
+  /** Group type */
+  type: 'group';
+  /** Grid layout within the group, defaulting to inheriting the wrapperClass of the form */
+  wrapperClass?: WrapperClassType;
+}
+
+/**
+ * Single form field schema (normal field / array field)
+ */
+export type FormFieldSchema<
   T extends FormBaseComponentType = FormBaseComponentType,
   P extends Record<string, any> = Record<never, never>,
   TValues extends FormValues = FormValues,
@@ -680,6 +724,15 @@ export type FormSchema<
   = | FormArraySchema<T, P, TValues>
     | FormSchemaDiscriminated<T, P, TValues>
     | FormSchemaFallback<T, P, TValues>;
+
+/**
+ * Form schema item: field or group, distinguished by `type`.
+ */
+export type FormSchema<
+  T extends FormBaseComponentType = FormBaseComponentType,
+  P extends Record<string, any> = Record<never, never>,
+  TValues extends FormValues = FormValues,
+> = FormFieldSchema<T, P, TValues> | FormGroupSchema<T, P, TValues>;
 
 /**
  * Component props for the array editor (TamanFormFieldArray)
@@ -708,8 +761,8 @@ export interface TamanFormFieldArrayProps<
   min?: number;
   /** Array field path, passed through the outer FormField */
   name?: string;
-  /** Column definition, each column is a subfield (reuse FormSchema) */
-  schema?: Array<FormSchema<T, P, TValues>>;
+  /** Column definition, each column is a subfield (reuse FormFieldSchema) */
+  schema?: Array<FormFieldSchema<T, P, TValues>>;
   /** Whether to display the index column */
   showIndex?: boolean;
 }

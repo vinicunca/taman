@@ -10,7 +10,7 @@ interface TreeConfigOptions {
  * @param options Optional property name used for child arrays
  * @returns Array of collected values
  */
-function traverseTreeValues<T, V>(
+export function traverseTreeValues<T, V>(
   tree: Array<T>,
   getValue: (node: T) => V,
   options?: TreeConfigOptions,
@@ -42,12 +42,17 @@ function traverseTreeValues<T, V>(
 
 /**
  * Filter nodes in a tree by condition and return all matching nodes in original order.
+ *
+ * This function is a pure function: it does not write the filtered results back to the tree (source data is not modified).
+ * Otherwise, when filtering the same tree with different conditions again (e.g., after switching user roles and regenerating routes),
+ * the previously filtered child nodes will be permanently lost.
+ *
  * @param tree Root node array to filter
  * @param filter Predicate used to match each node
  * @param options Optional property name used for child arrays
  * @returns Array of matching nodes
  */
-function filterTree<T extends Record<string, any>>(
+export function filterTree<T extends Record<string, any>>(
   tree: Array<T>,
   filter: (node: T) => boolean,
   options?: TreeConfigOptions,
@@ -57,27 +62,46 @@ function filterTree<T extends Record<string, any>>(
   };
 
   const _filterTree = (nodes: Array<T>): Array<T> => {
-    return nodes.filter((node: Record<string, any>) => {
-      if (filter(node as T)) {
-        if (node[childProps]) {
-          node[childProps] = _filterTree(node[childProps]);
-        }
-        return true;
+    const result: Array<T> = [];
+
+    for (const node of nodes) {
+      if (!filter(node)) {
+        continue;
       }
-      return false;
-    });
+
+      const children = (node as Record<string, any>)[childProps];
+
+      if (!children) {
+        result.push(node);
+        continue;
+      }
+
+      const filteredChildren = _filterTree(children);
+
+      // When the child node sequence is exactly the same before and after filtering, the branch node must be the original object,
+      // otherwise the caller caching the route/menu node will consider the content to have changed.
+      const childrenUnchanged
+        = filteredChildren.length === children.length
+          && filteredChildren.every((child, index) => child === children[index]);
+
+      result.push(
+        childrenUnchanged ? node : { ...node, [childProps]: filteredChildren },
+      );
+    }
+
+    return result;
   };
 
   return _filterTree(tree);
 }
 
 /**
- * Recursively map nodes in a tree structure.
- * @param tree Root node array to map
- * @param mapper Function used to map each node
+ * Re-map the given tree structure by condition
+ * @param tree Root node array to filter
+ * @param mapper Predicate used to map each node
  * @param options Optional property name used for child arrays
  */
-function mapTree<T, V extends Record<string, any>>(
+export function mapTree<T, V extends Record<string, any>>(
   tree: Array<T>,
   mapper: (node: T, parent: null | V) => V,
   options?: TreeConfigOptions,
@@ -101,13 +125,13 @@ function mapTree<T, V extends Record<string, any>>(
 }
 
 /**
- * Recursively sort tree data.
- * @param treeData Tree data array
- * @param sortFunction Sort comparator
- * @param options Options including the child property name
- * @returns Sorted tree data
+ * Recursively sort the tree structure data
+ * @param treeData Tree structure data array
+ * @param sortFunction Sort function used to define sorting rules
+ * @param options Optional property name used for child arrays
+ * @returns Sorted tree structure data
  */
-function sortTree<T extends Record<string, any>>(
+export function sortTree<T extends Record<string, any>>(
   treeData: Array<T>,
   sortFunction: (a: T, b: T) => number,
   options?: TreeConfigOptions,
@@ -127,5 +151,3 @@ function sortTree<T extends Record<string, any>>(
     return item;
   });
 }
-
-export { filterTree, mapTree, sortTree, traverseTreeValues };

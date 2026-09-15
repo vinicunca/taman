@@ -136,10 +136,12 @@ export const presetCore = definePreset<VinicuncaTheme>(() => {
         },
         stroke: {
           DEFAULT: 'var(--taman-color-border)',
+          bg: 'var(--taman-color-bg)',
           inverted: 'var(--taman-color-border-inverted)',
         },
         fill: {
           DEFAULT: 'var(--taman-color-border)',
+          bg: 'var(--taman-color-bg)',
           inverted: 'var(--taman-color-border-inverted)',
         },
         primary: {

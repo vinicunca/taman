@@ -34,7 +34,7 @@ const mockRoutes = [
     meta: { hideInMenu: false },
     path: '/profile',
   },
-] as RouteRecordRaw[];
+] as Array<RouteRecordRaw>;
 
 describe('hasAuthority', () => {
   it('should return true if there is no authority defined', () => {
@@ -131,7 +131,7 @@ describe('generateRoutesByFrontend', () => {
         meta: { authority: ['admin'], menuVisibleWithForbidden: true },
         path: '/reports',
       },
-    ] as RouteRecordRaw[];
+    ] as Array<RouteRecordRaw>;
     const generatedRoutes = await generateRoutesByFrontend(
       routesWithVisibleForbidden,
       [],
@@ -148,13 +148,36 @@ describe('generateRoutesByFrontend', () => {
       { meta: { authority: ['admin'] }, path: '/path3' }, // Only authority
     ];
     const generatedRoutes = await generateRoutesByFrontend(
-      routesWithMissingMeta as RouteRecordRaw[],
+      routesWithMissingMeta as Array<RouteRecordRaw>,
       ['admin'],
     );
     expect(generatedRoutes).toEqual([
       { path: '/path1' },
       { meta: {}, path: '/path2' },
       { meta: { authority: ['admin'] }, path: '/path3' },
+    ]);
+  });
+
+  it('should not corrupt the source route table across repeated generations', async () => {
+    // Reproduction scenario: a low-privilege user logs in, and then generates routes again with higher privileges within the same session.
+    // filterTree used to write back the filtered child nodes to the source route table,
+    // causing high-privilege users to no longer be able to access those routes.
+    const routes = [
+      {
+        meta: { authority: ['admin', 'user'] },
+        path: '/dashboard',
+        children: [
+          { path: '/dashboard/overview', meta: { authority: ['admin'] } },
+          { path: '/dashboard/stats', meta: { authority: ['user'] } },
+        ],
+      },
+    ] as unknown as Array<RouteRecordRaw>;
+
+    await generateRoutesByFrontend(routes, ['user']);
+    const asAdmin = await generateRoutesByFrontend(routes, ['admin']);
+
+    expect(asAdmin[0]?.children?.map((child) => child.path)).toEqual([
+      '/dashboard/overview',
     ]);
   });
 });

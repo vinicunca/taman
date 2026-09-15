@@ -1,9 +1,7 @@
-import type { TamanFileUploadProps } from '@taman-core/taman-ui';
+import type { TamanFileUploadProps, TamanInputDateProps } from '@taman-core/taman-ui';
 import type {
-  CalendarProps,
   CheckboxGroupProps,
   CheckboxProps,
-  InputDateProps,
   InputMenuProps,
   InputProps,
 } from 'pohon-ui';
@@ -19,9 +17,7 @@ export interface BuiltInFormComponentPropsMap {
   CheckboxGroup: CheckboxGroupProps;
   FileUpload: TamanFileUploadProps<false> | TamanFileUploadProps<true>;
   Input: InputProps;
-  InputDate: (InputDateProps<false> | InputDateProps<true>) & {
-    type: CalendarProps['type'];
-  };
+  InputDate: TamanInputDateProps<false> | TamanInputDateProps<true>;
   InputMenu: InputMenuProps;
   InputPassword: InputProps & { passwordStrength?: boolean };
 }

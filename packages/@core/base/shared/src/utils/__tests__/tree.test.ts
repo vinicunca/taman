@@ -4,13 +4,11 @@ import { filterTree, mapTree, traverseTreeValues } from '../tree';
 
 describe('traverseTreeValues', () => {
   interface Node {
-    children?: Node[];
+    children?: Array<Node>;
     name: string;
   }
 
-  type NodeValue = string;
-
-  const sampleTree: Node[] = [
+  const sampleTree: Array<Node> = [
     {
       name: 'A',
       children: [
@@ -34,7 +32,7 @@ describe('traverseTreeValues', () => {
   ];
 
   it('traverses tree and returns all node values', () => {
-    const values = traverseTreeValues<Node, NodeValue>(
+    const values = traverseTreeValues<Node, string>(
       sampleTree,
       (node) => node.name,
       {
@@ -45,13 +43,13 @@ describe('traverseTreeValues', () => {
   });
 
   it('handles empty tree', () => {
-    const values = traverseTreeValues<Node, NodeValue>([], (node) => node.name);
+    const values = traverseTreeValues<Node, string>([], (node) => node.name);
     expect(values).toEqual([]);
   });
 
   it('handles tree with only root node', () => {
     const rootNode = { name: 'A' };
-    const values = traverseTreeValues<Node, NodeValue>(
+    const values = traverseTreeValues<Node, string>(
       [rootNode],
       (node) => node.name,
     );
@@ -60,7 +58,7 @@ describe('traverseTreeValues', () => {
 
   it('handles tree with only leaf nodes', () => {
     const leafNodes = [{ name: 'A' }, { name: 'B' }, { name: 'C' }];
-    const values = traverseTreeValues<Node, NodeValue>(
+    const values = traverseTreeValues<Node, string>(
       leafNodes,
       (node) => node.name,
     );
@@ -131,6 +129,134 @@ describe('filterTree', () => {
         name: 'root',
         children: [{ name: 'leaf 1' }, { name: 'leaf 4' }],
       },
+    ]);
+  });
+});
+
+describe('filterTree immutability', () => {
+  interface TreeNode {
+    children?: Array<TreeNode>;
+    id: number;
+  }
+
+  // Simulates module-level route constants located under apps/*/src/router/routes.
+  // It is re-filtered by filterTree upon every login or role refresh.
+  const buildTree = (): Array<TreeNode> => [
+    {
+      id: 1,
+      children: [
+        { id: 2 },
+        { id: 3, children: [{ id: 4 }, { id: 5 }, { id: 6 }] },
+        { id: 7 },
+      ],
+    },
+    { id: 8, children: [{ id: 9 }, { id: 10 }] },
+    { id: 11 },
+  ];
+
+  const keepEven = (node: TreeNode) => node.id % 2 === 0;
+  const clone = <T>(value: T): T => JSON.parse(JSON.stringify(value)) as T;
+
+  it('should not mutate the source tree', () => {
+    const tree = buildTree();
+    const snapshot = clone(tree);
+
+    filterTree(tree, keepEven);
+
+    expect(tree).toEqual(snapshot);
+  });
+
+  it('should not write filtered children back onto the source node', () => {
+    const tree = buildTree();
+
+    const result = filterTree(tree, keepEven);
+
+    const sourceParent = tree.find((node) => node.id === 8);
+    const resultParent = result.find((node) => node.id === 8);
+
+    expect(sourceParent?.children?.map((child) => child.id)).toEqual([9, 10]);
+    expect(resultParent).not.toBe(sourceParent);
+    expect(resultParent?.children?.map((child) => child.id)).toEqual([10]);
+  });
+
+  it('should keep nodes without children by reference', () => {
+    const tree = buildTree();
+    const leaf = tree.find((node) => node.id === 11);
+
+    const result = filterTree(tree, () => true);
+
+    expect(result.find((node) => node.id === 11)).toBe(leaf);
+  });
+
+  it('should keep branch nodes by reference when no child is dropped', () => {
+    // When the child node sequence is exactly the same before and after filtering, the branch node must be the original object,
+    // otherwise the caller caching the route/menu node will consider the content to have changed.
+    const tree = buildTree();
+
+    const result = filterTree(tree, () => true);
+
+    expect(result[0]).toBe(tree[0]);
+    expect(result[1]).toBe(tree[1]);
+    expect(result[0]?.children).toEqual(tree[0]?.children);
+    expect(result[0]?.children?.[1]).toBe(tree[0]?.children?.[1]);
+  });
+
+  it('should only copy the branches on the path of a dropped node', () => {
+    const tree = buildTree();
+
+    // Only discard one deep node (id 6), the other branches should maintain the original reference
+    const result = filterTree(tree, (node) => node.id !== 6);
+
+    const sourceBranch = tree[0]?.children?.find((node) => node.id === 3);
+    const resultBranch = result[0]?.children?.find((node) => node.id === 3);
+
+    // The affected branches: copied, the source node is not affected
+    expect(resultBranch).not.toBe(sourceBranch);
+    expect(sourceBranch?.children?.map((child) => child.id)).toEqual([4, 5, 6]);
+    expect(resultBranch?.children?.map((child) => child.id)).toEqual([4, 5]);
+
+    // The unaffected sibling branches and branches other than the root node: maintain the original reference
+    expect(result[0]?.children?.[0]).toBe(tree[0]?.children?.[0]);
+    expect(result[0]?.children?.[2]).toBe(tree[0]?.children?.[2]);
+    expect(result[1]).toBe(tree[1]);
+    expect(result[2]).toBe(tree[2]);
+  });
+
+  it('should keep returning nodes that an earlier filter run dropped', () => {
+    // Reproduction scenario: a low-permission user logs in, and then generates routes again with higher privileges within the same session.
+    // Before the fix, the previously filtered child nodes are permanently written back to the source data,
+    // causing subsequent filtering (even with more lenient conditions) to再也拿不到它们。
+    const tree = buildTree();
+
+    // First filter with a narrower condition (simulating a low-permission user), discard the child node with id 9
+    filterTree(tree, (node) => node.id !== 9);
+
+    // Then widen the condition (simulating a higher-permission user), the discarded nodes should reappear
+    const widened = filterTree(tree, () => true);
+
+    expect(widened).toEqual(buildTree());
+  });
+
+  it('should not mutate the source tree with a custom childProps', () => {
+    interface CustomNode {
+      id: number;
+      items?: Array<CustomNode>;
+    }
+
+    const tree: Array<CustomNode> = [
+      { id: 1, items: [{ id: 2 }, { id: 3 }] },
+      { id: 4, items: [{ id: 5 }] },
+    ];
+    const snapshot = clone(tree);
+
+    const result = filterTree(tree, (node) => node.id !== 2, {
+      childProps: 'items',
+    });
+
+    expect(tree).toEqual(snapshot);
+    expect(result).toEqual([
+      { id: 1, items: [{ id: 3 }] },
+      { id: 4, items: [{ id: 5 }] },
     ]);
   });
 });

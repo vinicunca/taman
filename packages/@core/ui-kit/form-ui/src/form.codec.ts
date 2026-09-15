@@ -1,5 +1,10 @@
 import type { FormCodec, FormValues } from './form.types';
 
+import {
+  decodeCalendarDateValues,
+  encodeCalendarDateValues,
+} from '@taman-core/shared/utils';
+
 export type FormCodecPhase = 'decode' | 'encode';
 
 export class FormCodecError extends Error {
@@ -38,3 +43,8 @@ export function encodeFormValues<
     throw new FormCodecError('encode', error);
   }
 }
+
+export const calendarDateCodec: FormCodec = {
+  decode: decodeCalendarDateValues,
+  encode: encodeCalendarDateValues,
+};

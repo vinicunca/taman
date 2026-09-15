@@ -245,9 +245,9 @@ function emitChange() {
 }
 
 watch(
-  mergedParams,
-  (value, oldValue) => {
-    if (isDeepEqual(value, oldValue)) {
+  [() => props.api, mergedParams],
+  ([api, value], [oldApi, oldValue]) => {
+    if (api === oldApi && isDeepEqual(value, oldValue)) {
       return;
     }
     fetchApi();

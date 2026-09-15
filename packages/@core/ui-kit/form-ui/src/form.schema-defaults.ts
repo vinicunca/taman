@@ -30,28 +30,62 @@ export function schemaForZodDefaults(schema: ZodType): ZodType {
   return rawSchema;
 }
 
-export function getCustomDefaultValue(rule: unknown): unknown {
-  const rawRule = toRaw(rule);
-
-  if (rawRule instanceof ZodString || rawRule instanceof ZodStringFormat) {
-    return '';
-  }
-
-  if (rawRule instanceof ZodNumber) {
-    return null;
-  }
-
-  if (rawRule instanceof ZodObject) {
-    const defaultValues: Record<string, unknown> = {};
-    for (const [key, valueSchema] of Object.entries(rawRule.shape)) {
+export function getCustomDefaultValue(rule: any): any {
+  rule = toRaw(rule);
+  if (rule instanceof ZodString || rule instanceof ZodStringFormat) {
+    return ''; // The default value for strings and their format validation is an empty string.
+  } else if (rule instanceof ZodNumber) {
+    return null; // The default value for numbers is null (to avoid displaying 0)
+  } else if (rule instanceof ZodObject) {
+    // Recursively extract the default values of nested objects
+    const defaultValues: Record<string, any> = {};
+    for (const [key, valueSchema] of Object.entries(rule.shape)) {
       defaultValues[key] = getCustomDefaultValue(valueSchema);
     }
     return defaultValues;
+  } else if (rule instanceof ZodIntersection) {
+    return getDefaultsForSchema(normalizeSchemaForDefaults(rule) as any);
+  } else {
+    return undefined; // Other types do not provide default values
+  }
+}
+
+/**
+ * Rebuild the schema used by zod-defaults, replacing native format nodes that
+ * zod-defaults does not recognise while retaining supported wrappers.
+ */
+export function normalizeSchemaForDefaults(rule: ZodType): ZodType {
+  const rawRule = toRaw(rule) as any;
+
+  if (rawRule instanceof ZodStringFormat) {
+    return string();
+  }
+
+  if (rawRule instanceof ZodObject) {
+    const shape = Object.fromEntries(
+      Object.entries(rawRule.shape).map(([key, value]) => [
+        key,
+        normalizeSchemaForDefaults(value as ZodType),
+      ]),
+    );
+    return object(shape);
   }
 
   if (rawRule instanceof ZodIntersection) {
-    return getDefaultsForSchema(rawRule);
+    const { left, right } = (rawRule as any).def;
+    return normalizeSchemaForDefaults(left as ZodType).and(
+      normalizeSchemaForDefaults(right as ZodType),
+    );
   }
 
-  return undefined;
+  if (rawRule.constructor.name === 'ZodDefault') {
+    const inner = normalizeSchemaForDefaults(rawRule.unwrap());
+    return inner.default(rawRule.def.defaultValue);
+  }
+
+  if (rawRule.constructor.name === 'ZodPipe') {
+    return normalizeSchemaForDefaults(rawRule.in).pipe(rawRule.out);
+  }
+
+  return rawRule;
 }

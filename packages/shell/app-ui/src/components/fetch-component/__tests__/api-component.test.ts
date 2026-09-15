@@ -1,7 +1,7 @@
+import type { AppFetchComponentSharedProps } from '../app-fetch-component.types';
 import { mount } from '@vue/test-utils';
 import { describe, expect, it, vi } from 'vitest';
 import { defineComponent, h, markRaw, nextTick, ref } from 'vue';
-
 import ApiComponent from '../app-fetch-component.vue';
 
 vi.mock('pohon-ui/runtime/vue/components/Icon.vue', () => ({
@@ -176,5 +176,38 @@ describe('api-component.vue', () => {
       expect.objectContaining({ label: 'Alpha', value: 'alpha' }),
       expect.objectContaining({ label: 'Beta', value: 'beta' }),
     ]);
+  });
+
+  it('fetches when the api is provided after mount', async () => {
+    const api = vi
+      .fn()
+      .mockResolvedValue([{ label: 'Loaded', value: 'loaded' }]);
+    const apiRef = ref<AppFetchComponentSharedProps['api']>();
+    const Harness = defineComponent({
+      setup() {
+        return () =>
+          h(ApiComponent, {
+            api: apiRef.value,
+            component: markRaw(ModelValueInput),
+          });
+      },
+    });
+
+    const wrapper = mount(Harness);
+    expect(api).not.toHaveBeenCalled();
+
+    apiRef.value = api;
+    await nextTick();
+
+    expect(api).toHaveBeenCalledTimes(1);
+    await vi.waitFor(() => {
+      const events = wrapper
+        .findComponent(ApiComponent)
+        .emitted('optionsChange');
+      const lastEvent = events?.at(-1)?.[0];
+      expect(lastEvent).toEqual([
+        expect.objectContaining({ label: 'Loaded', value: 'loaded' }),
+      ]);
+    });
   });
 });

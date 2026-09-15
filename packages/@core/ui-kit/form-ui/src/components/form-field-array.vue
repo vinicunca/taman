@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import type { FormCommonConfig, FormSchema } from '../form.types';
+import type { FormCommonConfig, FormFieldSchema } from '../form.types';
 
 import { cn, get, set } from '@taman-core/shared/utils';
-import {
-  TamanButtonIcon,
-  TamanRenderContent,
-} from '@taman-core/taman-ui';
+import { TamanRenderContent } from '@taman-core/taman-ui';
 import { computed } from 'vue';
 
 import FormRenderFormField from '../form-render/form-render-form-field.vue';
@@ -41,9 +38,9 @@ const props = withDefaults(
     /** Field path, passed through componentField by the outer FormField */
     name?: string;
     /**
-     * Column definition, each column is a sub-field (reuse FormSchema)
+     * Column definition, each column is a sub-field (reuse FormFieldSchema)
      */
-    schema?: Array<FormSchema>;
+    schema?: Array<FormFieldSchema>;
     /** Whether to display the index column */
     showIndex?: boolean;
   }>(),
@@ -161,7 +158,7 @@ const normalizedRowSchemas = computed(() =>
           :key="col.fieldName"
           class="text-muted-foreground text-sm font-normal px-2 py-2 text-left"
         >
-          <VbenRenderContent :content="col.label" />
+          <TamanRenderContent :content="col.label" />
         </div>
         <div
           class="text-muted-foreground text-sm font-normal px-2 py-2 text-left"
@@ -192,7 +189,7 @@ const normalizedRowSchemas = computed(() =>
             <div
               class="text-muted-foreground text-xs font-medium mb-1 sm:hidden"
             >
-              <VbenRenderContent :content="schema?.[childIndex]?.label" />
+              <TamanRenderContent :content="schema?.[childIndex]?.label" />
             </div>
             <FormRenderFormField
               v-bind="childSchema"

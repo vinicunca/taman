@@ -2,6 +2,7 @@ import type {
   ArrayToStringFields,
   FormBaseComponentType,
   FormFieldMappingTime,
+  FormFieldSchema,
   FormSchema,
   FormSchemaContext,
   FormValues,
@@ -11,6 +12,7 @@ import { clone, formatDate, isFunction } from '@taman-core/shared/utils';
 
 import {
   getFormArraySchemaChildren,
+  getFormFieldSchemas,
   resolveArrayChildFieldName,
 } from './form-render/form-render.schema';
 import {
@@ -21,6 +23,12 @@ import {
 } from './form.field-name';
 
 type AnyFormSchema<TValues extends FormValues> = FormSchema<
+  FormBaseComponentType,
+  Record<string, any>,
+  TValues
+>;
+
+type AnyFormFieldSchema<TValues extends FormValues> = FormFieldSchema<
   FormBaseComponentType,
   Record<string, any>,
   TValues
@@ -132,7 +140,7 @@ function applyRangeTimeFields(
 }
 
 function applyValueFormatBySchemas<TValues extends FormValues>(
-  schemas: Array<AnyFormSchema<TValues>>,
+  schemas: Array<AnyFormFieldSchema<TValues>>,
   values: Record<string, any>,
   parentPath?: string,
   parentContext?: FormSchemaContext<TValues>,
@@ -153,7 +161,8 @@ function applyValueFormatBySchemas<TValues extends FormValues>(
       row,
     };
 
-    const children = getFormArraySchemaChildren<AnyFormSchema<TValues>>(schema);
+    const children
+      = getFormArraySchemaChildren<AnyFormFieldSchema<TValues>>(schema);
     if (children.length > 0) {
       const arrayValue = getValueByFieldName(values, fieldName);
       if (Array.isArray(arrayValue)) {
@@ -197,7 +206,7 @@ export function applyFormValueFormats<TValues extends FormValues>(
   schemas: Array<AnyFormSchema<TValues>>,
 ) {
   const values = clone(originValues);
-  applyValueFormatBySchemas(schemas, values);
+  applyValueFormatBySchemas(getFormFieldSchemas(schemas), values);
   return values;
 }
 
@@ -210,7 +219,7 @@ export function formatFormValues<TValues extends FormValues>(
   const values = clone(originValues);
   applyArrayToStringFields(values, arrayToStringFields);
   applyRangeTimeFields(values, fieldMappingTime);
-  applyValueFormatBySchemas(schemas, values);
+  applyValueFormatBySchemas(getFormFieldSchemas(schemas), values);
   return values;
 }
 

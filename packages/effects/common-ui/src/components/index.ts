@@ -12,7 +12,6 @@ export * from './resize';
 export * from './tippy';
 export * from './tree';
 
-export * from '@taman-core/form-builder';
 export * from '@taman-core/popup-ui';
 
 export { globalShareState } from '@taman-core/shared/global-state';

@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-import type { FieldConfig } from '@taman-core/form-builder';
 import type { AuthenticationProps } from './types';
-import { useTamanForm } from '@taman-core/form-builder';
 import AuthTitle from './auth-title.vue';
 
 interface Props extends AuthenticationProps {

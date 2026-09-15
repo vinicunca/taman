@@ -8,6 +8,7 @@ import { nextTick, onMounted, readonly, watch } from 'vue';
 
 import FormActions from './components/form-actions.vue';
 import { FormRenderForm } from './form-render';
+import { getFormFieldSchemas } from './form-render/form-render.schema';
 import {
   COMPONENT_BIND_EVENT_MAP,
   DEFAULT_FORM_COMMON_CONFIG,
@@ -92,7 +93,9 @@ watch(values, (currentValues, previousValues) => {
   if (!handleValuesChange && !submitOnChange) {
     return;
   }
-  const fields = state?.value.schema?.map((item) => item.fieldName) ?? [];
+  const fields = getFormFieldSchemas(state?.value.schema ?? []).map(
+    (item) => item.fieldName,
+  );
   if (handleValuesChange && fields.length > 0) {
     const changedFields = fields.filter((field) => {
       return !isEqual(

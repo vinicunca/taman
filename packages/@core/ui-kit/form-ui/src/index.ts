@@ -1,4 +1,4 @@
-export { FormCodecError } from './form.codec';
+export { calendarDateCodec, FormCodecError } from './form.codec';
 
 export type { FormCodecPhase } from './form.codec';
 
@@ -14,6 +14,7 @@ export type {
   FormBaseComponentType,
   FormCodec,
   FormContextApi,
+  FormGroupSchema,
   FormLayout,
   FormSchemaContext,
   FormValues,
@@ -22,7 +23,9 @@ export type {
   TamanFormComponent,
   TamanFormDefaultSlotProps,
   TamanFormFieldArrayProps,
+  FormFieldSchema as TamanFormFieldSchema,
   TamanFormFieldSlotProps,
+  FormGroupSchema as TamanFormGroupSchema,
   TamanFormProps,
   TamanFormResolvedComponentProps,
   FormSchema as TamanFormSchema,

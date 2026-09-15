@@ -3,6 +3,7 @@ import type {
   FormActions,
   FormBaseComponentType,
   FormFieldName,
+  FormFieldSchema,
   FormFieldValue,
   FormResetOptions,
   FormResetState,
@@ -23,7 +24,11 @@ import {
 } from '@taman-core/shared/utils';
 import { isRef, toRaw } from 'vue';
 
-import { updateFormSchemaList } from './form-render/form-render.schema';
+import {
+  getFormFieldSchemas,
+  removeFormSchemaByFields,
+  updateFormSchemaList,
+} from './form-render/form-render.schema';
 import { decodeFormValues, encodeFormValues } from './form.codec';
 import { warnDeprecatedOnce } from './form.deprecation';
 import { resolveFieldNamePath } from './form.field-name';
@@ -42,6 +47,32 @@ type FormApiSchema<
   P extends Record<string, any>,
 > = FormSchema<T, P, TValues>;
 
+type FormApiFieldSchema<
+  TValues extends FormValues,
+  T extends FormBaseComponentType,
+  P extends Record<string, any>,
+> = FormFieldSchema<T, P, TValues>;
+
+function cloneFormValues<T>(value: T): T {
+  if (Array.isArray(value)) {
+    return value.map((item) => cloneFormValues(item)) as T;
+  }
+
+  if (isPlainFormObject(value)) {
+    const next: Record<string, unknown> = {};
+    for (const [key, item] of Object.entries(value)) {
+      next[key] = cloneFormValues(item);
+    }
+    return next as T;
+  }
+
+  if (value instanceof Date) {
+    return new Date(value.getTime()) as T;
+  }
+
+  return value;
+}
+
 function isPlainFormObject(value: unknown): value is Record<string, unknown> {
   if (value === null || typeof value !== 'object') {
     return false;
@@ -56,7 +87,7 @@ function mergeFormValuePatch(
   visited = new WeakMap<object, Record<string, unknown>>(),
 ): unknown {
   if (!isPlainFormObject(nextValue)) {
-    return clone(nextValue);
+    return cloneFormValues(nextValue);
   }
 
   const cached = visited.get(nextValue);
@@ -171,12 +202,16 @@ export class FormApi<
   ): TResult;
   formatValues(rawValues: Readonly<FormValues>): FormValues {
     this.warnLegacyValueTransforms();
+
     if (this.state?.codec) {
-      return encodeFormValues(
-        this.state.codec,
-        clone(toRaw(rawValues)) as Readonly<TFormValues>,
+      return clone(
+        encodeFormValues(
+          this.state.codec,
+          toRaw(rawValues) as Readonly<TFormValues>,
+        ),
       );
     }
+
     return formatFormValues(
       toRaw(rawValues),
       this.state?.schema ?? [],
@@ -251,7 +286,7 @@ export class FormApi<
   async getRawValues<TResult extends FormValues>(): Promise<TResult>;
   async getRawValues(): Promise<FormValues> {
     const form = await this.getForm();
-    return clone(toRaw(form.values ?? {}));
+    return cloneFormValues(toRaw(form.values ?? {}));
   }
 
   getState() {
@@ -263,6 +298,7 @@ export class FormApi<
   async getValues<TResult extends FormValues>(): Promise<TResult>;
   async getValues(): Promise<FormValues> {
     const form = await this.getForm();
+
     return this.formatValues(toRaw(form.values ?? {}));
   }
 
@@ -275,6 +311,7 @@ export class FormApi<
   >;
   async getValueSnapshot(): Promise<FormValueSnapshot> {
     const rawValues = await this.getRawValues();
+
     return {
       rawValues,
       values: this.formatValues(rawValues),
@@ -346,7 +383,7 @@ export class FormApi<
             '[Taman Form] Failed to encode initial values. Falling back to raw form values.',
             error,
           );
-          initialValues = clone(rawInitialValues);
+          initialValues = cloneFormValues(rawInitialValues);
         }
       }
       this.setLatestSubmissionValues(initialValues as Partial<TSubmitValues>);
@@ -361,13 +398,10 @@ export class FormApi<
    * @param fields
    */
   async removeSchemaByFields(fields: Array<string>) {
-    const fieldSet = new Set(fields);
     const schema = this.state?.schema ?? [];
 
-    const filterSchema = schema.filter((item) => !fieldSet.has(item.fieldName));
-
     this.setState({
-      schema: filterSchema,
+      schema: removeFormSchemaByFields(schema, fields),
     });
   }
 
@@ -478,7 +512,7 @@ export class FormApi<
     const codec = this.state?.codec;
     if (!codec) {
       throw new Error(
-        '[Vben Form] `setSubmitValues()` requires a form `codec`.',
+        '[Taman Form] `setSubmitValues()` requires a form `codec`.',
       );
     }
     const formValues = decodeFormValues(codec, values);
@@ -514,7 +548,7 @@ export class FormApi<
       ]),
     );
 
-    const schemaFieldPaths = (this.state?.schema ?? []).map(
+    const schemaFieldPaths = getFormFieldSchemas(this.state?.schema ?? []).map(
       (schema) => resolveFieldNamePath(schema.fieldName).pathSegments,
     );
     const filterValue = (
@@ -563,21 +597,20 @@ export class FormApi<
   async submitForm(e?: Event) {
     warnDeprecatedOnce(
       'form-api-submit-form',
-      '[Vben Form] `formApi.submitForm()` is deprecated. Use `formApi.submit()` instead.',
+      '[Taman Form] `formApi.submitForm()` is deprecated. Use `formApi.submit()` instead.',
     );
     return this.submit(e);
   }
 
   unmount() {
     this.form?.reset?.();
-    // this.state = null;
     this.componentRefMap = new Map();
     this.latestSubmissionValues = null;
     this.isMounted = false;
     this.stateHandler.reset();
   }
 
-  updateSchema(schema: Array<Partial<FormApiSchema<TFormValues, T, P>>>) {
+  updateSchema(schema: Array<Partial<FormApiFieldSchema<TFormValues, T, P>>>) {
     const updated: Array<Partial<FormApiSchema<TFormValues, T, P>>> = [...schema];
     const hasField = updated.every(
       (item) => Reflect.has(item, 'fieldName') && item.fieldName,
@@ -659,8 +692,8 @@ export class FormApi<
   }
 
   private updateState() {
-    const currentSchema = this.state?.schema ?? [];
-    const prevSchema = this.prevState?.schema ?? [];
+    const currentSchema = getFormFieldSchemas(this.state?.schema ?? []);
+    const prevSchema = getFormFieldSchemas(this.prevState?.schema ?? []);
     // Deleted schema operation
     if (currentSchema.length < prevSchema.length) {
       const currentFields = new Set(
@@ -698,7 +731,7 @@ export class FormApi<
     this.legacyTransformWarningState = warningState;
 
     const hasValueFormat = (
-      items: Array<FormApiSchema<TFormValues, T, P>>,
+      items: Array<FormApiFieldSchema<TFormValues, T, P>>,
     ): boolean => {
       return items.some((schema) => {
         if (schema.valueFormat) {
@@ -708,7 +741,9 @@ export class FormApi<
         return Array.isArray(children) && hasValueFormat(children);
       });
     };
-    const usesValueFormat = hasValueFormat(warningState.schema);
+    const usesValueFormat = hasValueFormat(
+      getFormFieldSchemas(warningState.schema),
+    );
     const usesFieldMappingTime = (warningState.fieldMappingTime?.length ?? 0) > 0;
     const usesArrayToStringFields = (warningState.arrayToStringFields?.length ?? 0) > 0;
     const usesLegacyTransform = usesValueFormat || usesFieldMappingTime || usesArrayToStringFields;
@@ -716,26 +751,26 @@ export class FormApi<
     if (warningState.codec && usesLegacyTransform) {
       warnDeprecatedOnce(
         'form-codec-legacy-transform-conflict',
-        '[Vben Form] The form `codec` takes precedence over deprecated `valueFormat`, `fieldMappingTime`, and `arrayToStringFields` options.',
+        '[Taman Form] The form `codec` takes precedence over deprecated `valueFormat`, `fieldMappingTime`, and `arrayToStringFields` options.',
       );
       return;
     }
     if (usesValueFormat) {
       warnDeprecatedOnce(
         'form-schema-value-format',
-        '[Vben Form] `schema.valueFormat` is deprecated. Use the form-level `codec` instead.',
+        '[Taman Form] `schema.valueFormat` is deprecated. Use the form-level `codec` instead.',
       );
     }
     if (usesFieldMappingTime) {
       warnDeprecatedOnce(
         'form-field-mapping-time',
-        '[Vben Form] `fieldMappingTime` is deprecated. Use the form-level `codec` instead.',
+        '[Taman Form] `fieldMappingTime` is deprecated. Use the form-level `codec` instead.',
       );
     }
     if (usesArrayToStringFields) {
       warnDeprecatedOnce(
         'form-array-to-string-fields',
-        '[Vben Form] `arrayToStringFields` is deprecated. Use the form-level `codec` instead.',
+        '[Taman Form] `arrayToStringFields` is deprecated. Use the form-level `codec` instead.',
       );
     }
   }

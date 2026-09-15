@@ -1,15 +1,12 @@
 <script lang="ts" setup>
+import type { CollapsibleParamSchema, FormLayout } from '@vben/common-ui';
 import type { RadioGroupProps } from 'antdv-next';
 
-import type { CollapsibleParamSchema, FormLayout } from '@taman/common-ui';
-
+import { Page, VbenCollapsibleParams } from '@vben/common-ui';
+import { Button, Card, message, RadioGroup } from 'antdv-next';
 import { h, ref } from 'vue';
 
-import { Page, VbenCollapsibleParams } from '@taman/common-ui';
-
-import { Button, Card, message, RadioGroup } from 'antdv-next';
-
-import { useTamanForm, z } from '#/adapter/form';
+import { useVbenForm, z } from '#/adapter/form';
 
 import DocButton from '../doc-button.vue';
 
@@ -22,8 +19,8 @@ const layout = ref<FormLayout>('vertical');
 
 function getNumberValidator(key: string, limit?: [number?, number?]) {
   let validator = z.number({
-    required_error: `${key} 值不能为空`,
-    invalid_type_error: `${key} 值只能为数字`,
+    error: (issue) =>
+      issue.input === undefined ? `${key} 值不能为空` : `${key} 值只能为数字`,
   });
 
   if (limit) {
@@ -42,7 +39,7 @@ function getNumberValidator(key: string, limit?: [number?, number?]) {
   return validator.optional();
 }
 
-const paramsSchema: CollapsibleParamSchema[] = [
+const paramsSchema: Array<CollapsibleParamSchema> = [
   {
     key: 'micro_batch_size',
     description: `批次大小，代表模型训练过程中，模型更新模型参数的数据步长，可理解为模型每看多少数据即更新一次模型参数，
@@ -84,7 +81,7 @@ const paramsSchema: CollapsibleParamSchema[] = [
   },
   {
     key: 'max_length',
-    description: `序列长度，单个训练数据样本的最大长度，超出配置长度将丢弃`,
+    description: '序列长度，单个训练数据样本的最大长度，超出配置长度将丢弃',
     option: {
       min: 500,
       max: 131_072,
@@ -122,9 +119,9 @@ const paramsValidator = z
   })
   .required();
 
-const [BaseForm, baseFormApi] = useTamanForm({
+const [BaseForm, baseFormApi] = useVbenForm({
   showDefaultActions: false,
-  // Shared by all form items; can be overridden per form
+  // 所有表单项共用，可单独在表单内覆盖
   commonConfig: {
     colon: true,
     componentProps: {
@@ -151,9 +148,9 @@ const [BaseForm, baseFormApi] = useTamanForm({
       component: h(VbenCollapsibleParams),
       componentProps: {
         params: paramsSchema,
-        // maxHeight: 200, // Limit max height; scrollable when expanded
-        // defaultOpen: true, // Default false = collapsed
-        // visibleCount: 0 // Default 3; minimum visible is 1 (values below 1 become 1)
+        // maxHeight: 200, //限制最大高度，展开后可滚动
+        // defaultOpen: true, // 默认false折叠
+        // visibleCount: 0 // 默认3，最小可见为1，小于1取1
       },
       modelPropName: 'value',
       fieldName: 'params',
@@ -167,7 +164,7 @@ const [BaseForm, baseFormApi] = useTamanForm({
               ? [
                   {
                     key: 'calib_steps',
-                    description: `校准步数；校准的数据集大小 = 校准步数 * 训练的batch_size`,
+                    description: '校准步数；校准的数据集大小 = 校准步数 * 训练的batch_size',
                     option: {
                       min: 1,
                     },
@@ -178,9 +175,9 @@ const [BaseForm, baseFormApi] = useTamanForm({
           };
         },
         trigger(values, __, controller) {
-          // Access the VbenCollapsibleParams instance inside the form
-          const paramsRef =
-            controller.getFieldComponentRef<typeof VbenCollapsibleParams>(
+          // 访问 form 内 VbenCollapsibleParams 的实例
+          const paramsRef
+            = controller.getFieldComponentRef<typeof VbenCollapsibleParams>(
               'params',
             );
           if (values.qat) {
@@ -226,16 +223,126 @@ const [BaseForm, baseFormApi] = useTamanForm({
       label: '富文本',
       formItemClass: 'col-span-12 items-baseline',
       collapsible: true,
-      defaultCollapsed: false, // Default false
+      defaultCollapsed: false, // 默认false
     },
   ],
   wrapperClass: 'grid-cols-12',
+});
+
+// 通过 schema 的 type: 'group' 把字段组织成可折叠的分组
+const [GroupForm, groupFormApi] = useVbenForm({
+  showDefaultActions: false,
+  commonConfig: {
+    componentProps: {
+      class: 'w-full',
+    },
+  },
+  handleSubmit: onSubmit,
+  schema: [
+    {
+      component: 'Input',
+      fieldName: 'name',
+      label: '任务名称',
+      rules: 'required',
+    },
+    {
+      component: 'Select',
+      componentProps: {
+        options: [
+          { label: 'SFT', value: 'sft' },
+          { label: 'DPO', value: 'dpo' },
+        ],
+      },
+      defaultValue: 'sft',
+      fieldName: 'method',
+      label: '训练方式',
+    },
+    {
+      type: 'group',
+      name: 'training',
+      title: '训练参数',
+      children: [
+        {
+          component: 'InputNumber',
+          defaultValue: 32,
+          fieldName: 'batchSize',
+          label: '批次大小',
+        },
+        {
+          component: 'InputNumber',
+          defaultValue: 1e-5,
+          fieldName: 'learningRate',
+          label: '学习率',
+        },
+        {
+          component: 'InputNumber',
+          defaultValue: 3,
+          fieldName: 'epochs',
+          label: '循环次数',
+        },
+        {
+          component: 'InputNumber',
+          defaultValue: 32_768,
+          fieldName: 'maxLength',
+          label: '序列长度',
+        },
+      ],
+    },
+    {
+      type: 'group',
+      name: 'advanced',
+      title: '高级选项',
+      extra: () =>
+        h(
+          'span',
+          { class: 'text-muted-foreground text-xs' },
+          '默认折叠，校验失败时自动展开',
+        ),
+      defaultCollapsed: true,
+      children: [
+        {
+          component: 'Input',
+          fieldName: 'checkpoint',
+          label: 'Checkpoint',
+          rules: 'required',
+        },
+        {
+          component: 'Switch',
+          componentProps: {
+            class: 'w-auto',
+          },
+          defaultValue: false,
+          fieldName: 'enableEval',
+          label: '定期评估',
+        },
+        {
+          component: 'Textarea',
+          fieldName: 'remark',
+          formItemClass: 'col-span-2',
+          label: '备注',
+        },
+      ],
+    },
+  ],
+  wrapperClass: 'grid-cols-2',
 });
 
 function onSubmit(values: Record<string, any>) {
   message.info({
     content: `form values: ${JSON.stringify(values)}`,
   });
+}
+
+async function handleSubmitGroupForm() {
+  const { valid } = await groupFormApi.validate();
+
+  if (valid) {
+    groupFormApi.submit();
+  }
+}
+
+function handleResetGroupForm() {
+  groupFormApi.reset(undefined, { force: true });
 }
 
 function onLayoutChange() {
@@ -257,14 +364,14 @@ function handleSetFormValue() {
 }
 
 function handleResetFormValue() {
-  baseFormApi.resetForm(undefined, { force: true });
+  baseFormApi.reset(undefined, { force: true });
 }
 
 async function handleSubmitFormValue() {
   const { valid } = await baseFormApi.validate();
 
   if (valid) {
-    baseFormApi.submitForm();
+    baseFormApi.submit();
   }
 }
 </script>
@@ -277,34 +384,72 @@ async function handleSubmitFormValue() {
   >
     <template #description>
       <div class="text-muted-foreground">
-        <p>可折叠表单项、以及可折叠参数配置组件示例</p>
+        <p>可折叠表单项、可折叠参数配置组件，以及 schema 分组折叠示例</p>
       </div>
     </template>
     <template #extra>
-      <DocButton class="mb-2" path="/components/common-ui/vben-form" />
+      <DocButton
+        class="mb-2"
+        path="/components/common-ui/vben-form"
+      />
     </template>
     <Card title="基础示例">
       <template #extra>
         <div class="inline-flex items-center gap-4!">
           <RadioGroup
+            v-model:value="layout"
             :options="layouts"
             option-type="button"
-            v-model:value="layout"
             @change="onLayoutChange"
           />
-          <Button type="primary" @click="handleSetFormValue">
+          <Button
+            type="primary"
+            @click="handleSetFormValue"
+          >
             设置表单值
           </Button>
-          <Button type="primary" @click="handleSubmitFormValue">
+          <Button
+            type="primary"
+            @click="handleSubmitFormValue"
+          >
             提交表单
           </Button>
-          <Button type="primary" @click="handleResetFormValue">
+          <Button
+            type="primary"
+            @click="handleResetFormValue"
+          >
             重置表单
           </Button>
         </div>
       </template>
       <div class="w-full overflow-hidden">
         <BaseForm />
+      </div>
+    </Card>
+    <Card title="分组折叠">
+      <template #extra>
+        <div class="inline-flex items-center gap-4!">
+          <Button
+            type="primary"
+            @click="handleSubmitGroupForm"
+          >
+            提交表单
+          </Button>
+          <Button
+            type="primary"
+            @click="handleResetGroupForm"
+          >
+            重置表单
+          </Button>
+        </div>
+      </template>
+      <p class="text-muted-foreground text-sm mb-4">
+        在 schema 中使用 <code>type: 'group'</code>
+        把字段组织成可折叠区块。分组本身不是字段，组内字段与顶层字段完全等价；
+        「高级选项」默认折叠，直接提交时会因校验失败自动展开。
+      </p>
+      <div class="w-full overflow-hidden">
+        <GroupForm />
       </div>
     </Card>
   </Page>

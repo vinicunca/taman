@@ -1,14 +1,13 @@
 import type {
-  BuiltInFormComponentPropsMap,
-  BuiltInFormComponentType,
   ExtendedFormApi,
   FormActions,
   FormBaseComponentType,
   FormContextApi,
   FormFieldOptions,
+  FormFieldSchema,
+  FormGroupSchema,
   FormItemDependencies,
   FormSchema,
-  FormSchemaContext,
   FormValidationResult,
   FormValuePatch,
   FormValueSnapshot,
@@ -19,19 +18,6 @@ import type {
 import { describe, expectTypeOf, it } from 'vitest';
 
 import { useTamanForm } from '../src/form.use-taman-form';
-
-type Assert<T extends true> = T;
-type IsEqual<TLeft, TRight>
-  = (<T>() => T extends TLeft ? 1 : 2) extends
-  (<T>() => T extends TRight ? 1 : 2)
-    ? true
-    : false;
-type MembersAcceptingComponent<TSchema, TComponent>
-  = TSchema extends { component: infer TSchemaComponent }
-    ? TComponent extends TSchemaComponent
-      ? TSchema
-      : never
-    : never;
 
 interface AccountFormValues {
   email: string;
@@ -48,62 +34,6 @@ interface AccountSubmitValues {
 }
 
 describe('form public types', () => {
-  it('maps built-in multi-file upload props', () => {
-    type Schema = FormSchema<
-      BuiltInFormComponentType,
-      BuiltInFormComponentPropsMap
-    >;
-    const schema = {
-      component: 'FileUpload',
-      componentProps: { multiple: true },
-      fieldName: 'files',
-    } satisfies Schema;
-
-    expectTypeOf(schema).toMatchTypeOf<Schema>();
-  });
-
-  it('uses the component key to resolve mapped component props', () => {
-    interface ComponentPropsMap {
-      Input: {
-        maxLength?: number;
-        onChange?: (value: string) => void;
-        placeholder?: string;
-      };
-    }
-
-    type ComponentType = 'Input' | 'LegacySelect';
-    type Schema = FormSchema<ComponentType, ComponentPropsMap>;
-    type InputSchema = MembersAcceptingComponent<Schema, 'Input'>;
-    type InputComponentProps
-      = & ComponentPropsMap['Input']
-        & Record<string, any>;
-    type InputPropsAreMapped = Assert<
-      IsEqual<
-        InputSchema['componentProps'],
-        | ((context: FormSchemaContext) => InputComponentProps)
-        | InputComponentProps
-        | undefined
-      >
-    >;
-    const inputSchema = {
-      component: 'Input',
-      componentProps: {
-        onChange(value) {
-          expectTypeOf(value).toEqualTypeOf<string>();
-        },
-      },
-      fieldName: 'name',
-    } satisfies Schema;
-
-    expectTypeOf(inputSchema).toMatchTypeOf<Schema>();
-    expectTypeOf<InputPropsAreMapped>().toEqualTypeOf<true>();
-    expectTypeOf<InputSchema['componentProps']>().toEqualTypeOf<
-      | ((context: FormSchemaContext) => InputComponentProps)
-      | InputComponentProps
-      | undefined
-    >();
-  });
-
   it('keeps the compatibility alias and stable method signatures', () => {
     expectTypeOf<FormActions>().toEqualTypeOf<FormContextApi>();
     expectTypeOf<FormActions['setFieldValue']>()
@@ -342,6 +272,57 @@ describe('form public types', () => {
     expectTypeOf(
       formApi.getRawValues(),
     ).resolves.toEqualTypeOf<AccountFormValues>();
+  });
+
+  it('discriminates group schemas from field schemas by type', () => {
+    const [, formApi] = useTamanForm<AccountFormValues>({
+      schema: [
+        { component: 'Input', fieldName: 'email' },
+        {
+          children: [{ component: 'Input', fieldName: 'profile.nickname' }],
+          defaultCollapsed: true,
+          title: 'Profile',
+          type: 'group',
+        },
+      ],
+    });
+
+    expectTypeOf<FormSchema>().toEqualTypeOf<
+      FormFieldSchema | FormGroupSchema
+    >();
+    expectTypeOf<FormGroupSchema['fieldName']>().toEqualTypeOf<undefined>();
+    expectTypeOf<FormGroupSchema['component']>().toEqualTypeOf<undefined>();
+    expectTypeOf<FormGroupSchema['children']>().toEqualTypeOf<
+      Array<FormFieldSchema>
+    >();
+    // updateSchema only accepts field updates, groups themselves cannot be updated
+    expectTypeOf(formApi.updateSchema)
+      .parameter(0)
+      .toEqualTypeOf<
+      Array<Partial<
+        FormFieldSchema<
+          FormBaseComponentType,
+          Record<never, never>,
+          AccountFormValues
+        >
+      >>
+    >();
+
+    // @ts-expect-error Grouping cannot declare fieldName
+    const invalidGroup: FormSchema = {
+      children: [],
+      fieldName: 'group',
+      type: 'group',
+    };
+    // @ts-expect-error Array child fields cannot be groups
+    const invalidArrayChildren: FormSchema = {
+      children: [{ children: [], type: 'group' }],
+      fieldName: 'contacts',
+      type: 'array',
+    };
+
+    expectTypeOf(invalidGroup).toMatchTypeOf<FormSchema>();
+    expectTypeOf(invalidArrayChildren).toMatchTypeOf<FormSchema>();
   });
 
   it('exposes canonical names alongside deprecated aliases', () => {

@@ -1,8 +1,14 @@
+import type { FormSchema } from '../src/form.types';
+
 import { describe, expect, it, vi } from 'vitest';
 
 import {
   createArrayChildSchema,
   createFormFieldSchema,
+  getFormFieldSchemas,
+  isFormGroupSchema,
+  removeFormSchemaByFields,
+  updateFormSchemaList,
 } from '../src/form-render/form-render.schema';
 
 describe('form schema normalization', () => {
@@ -12,7 +18,7 @@ describe('form schema normalization', () => {
     }));
 
     const schema = createFormFieldSchema(
-      { component: 'VbenInput', fieldName: 'name' },
+      { component: 'Input', fieldName: 'name' },
       { commonConfig: { componentProps } },
     );
 
@@ -24,7 +30,7 @@ describe('form schema normalization', () => {
 
   it('preserves common component props objects', () => {
     const schema = createFormFieldSchema(
-      { component: 'VbenInput', fieldName: 'name' },
+      { component: 'Input', fieldName: 'name' },
       { commonConfig: { componentProps: { placeholder: 'Enter a name' } } },
     );
 
@@ -39,7 +45,7 @@ describe('form schema normalization', () => {
     }));
 
     const schema = createFormFieldSchema(
-      { component: 'VbenInput', fieldName: 'email' },
+      { component: 'Input', fieldName: 'email' },
       { globalCommonConfig: { componentProps } },
     );
 
@@ -51,7 +57,7 @@ describe('form schema normalization', () => {
     const componentProps = vi.fn(() => ({ placeholder: 'Contact name' }));
 
     const schema = createArrayChildSchema(
-      { component: 'VbenInput', fieldName: 'name' },
+      { component: 'Input', fieldName: 'name' },
       {
         arrayField: 'contacts',
         commonConfig: { componentProps },
@@ -69,5 +75,77 @@ describe('form schema normalization', () => {
     expect(schema.commonComponentProps).toEqual({
       placeholder: 'Contact name',
     });
+  });
+});
+
+describe('form group schema', () => {
+  const nameSchema: FormSchema = { component: 'Input', fieldName: 'name' };
+  const contactGroup: FormSchema = {
+    children: [
+      { component: 'Input', fieldName: 'email' },
+      { component: 'Input', fieldName: 'phone' },
+    ],
+    name: 'contact',
+    title: 'Contact',
+    type: 'group',
+  };
+  const tagsArray: FormSchema = {
+    children: [{ component: 'Input', fieldName: 'label' }],
+    fieldName: 'tags',
+    type: 'array',
+  };
+  const schema: Array<FormSchema> = [nameSchema, contactGroup, tagsArray];
+
+  it('distinguishes groups from fields and arrays', () => {
+    expect(isFormGroupSchema(nameSchema)).toBe(false);
+    expect(isFormGroupSchema(contactGroup)).toBe(true);
+    expect(isFormGroupSchema(tagsArray)).toBe(false);
+  });
+
+  it('flattens groups into field schemas while keeping arrays intact', () => {
+    const fields = getFormFieldSchemas(schema);
+
+    expect(fields.map((item) => item.fieldName)).toEqual([
+      'name',
+      'email',
+      'phone',
+      'tags',
+    ]);
+    expect(fields[3]).toBe(schema[2]);
+  });
+
+  it('updates fields nested inside groups', () => {
+    const updated = updateFormSchemaList(schema, [
+      { fieldName: 'phone', label: 'Phone' },
+      { fieldName: 'tags.label', label: 'Tag' },
+    ]);
+
+    expect(updated[0]).toBe(schema[0]);
+    expect(updated[1]).toMatchObject({
+      children: [
+        { fieldName: 'email' },
+        { fieldName: 'phone', label: 'Phone' },
+      ],
+      name: 'contact',
+      type: 'group',
+    });
+    expect(updated[2]).toMatchObject({
+      children: [{ fieldName: 'label', label: 'Tag' }],
+      fieldName: 'tags',
+    });
+    // The original schema should not be modified.
+    expect(schema[1]).not.toHaveProperty('children.1.label');
+  });
+
+  it('removes fields nested inside groups without dropping the group', () => {
+    const result = removeFormSchemaByFields(schema, ['name', 'email']);
+
+    expect(result).toHaveLength(2);
+    expect(result[0]).toMatchObject({
+      children: [{ fieldName: 'phone' }],
+      name: 'contact',
+      type: 'group',
+    });
+    expect(result[1]).toBe(schema[2]);
   });
 });

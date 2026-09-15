@@ -171,7 +171,11 @@ class PreferenceManager {
    * Updates custom (extension) preferences.
    * @param updates - Partial custom preference values
    */
-  updateCustomPreferences = (updates: DeepPartial<object>) => {
+  updateCustomPreferences = <
+    TCustomPreferences extends object = CustomPreferencesRecord,
+  >(
+    updates: DeepPartial<TCustomPreferences>,
+  ) => {
     if (!this.customPreferencesExtension) {
       return;
     }

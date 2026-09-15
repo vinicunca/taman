@@ -8,11 +8,11 @@ import { createContext } from '@taman-core/taman-ui';
 import { computed, toRaw, unref, useSlots } from 'vue';
 import { object } from 'zod';
 import { getDefaultsForSchema } from 'zod-defaults';
-
+import { getFormFieldSchemas } from './form-render/form-render.schema';
 import { useFormRuntime } from './form.runtime';
 import {
   getCustomDefaultValue,
-  schemaForZodDefaults,
+  normalizeSchemaForDefaults,
 } from './form.schema-defaults';
 
 type ExtendFormProps = TamanFormProps & {
@@ -54,14 +54,14 @@ export function useFormInitial(
     const initialValues: Record<string, any> = {};
 
     const zodObject: Record<string, ZodType> = {};
-    (unref(props).schema || []).forEach((item) => {
+    getFormFieldSchemas(unref(props).schema ?? []).forEach((item) => {
       if (Reflect.has(item, 'defaultValue')) {
         set(initialValues, item.fieldName, item.defaultValue);
       } else if (item.rules && !isString(item.rules)) {
         // Check whether the rule is suitable for extracting default values.
         const rawRules = toRaw(item.rules);
         const customDefaultValue = getCustomDefaultValue(rawRules);
-        zodObject[item.fieldName] = schemaForZodDefaults(rawRules);
+        zodObject[item.fieldName] = normalizeSchemaForDefaults(rawRules);
         if (customDefaultValue !== undefined) {
           initialValues[item.fieldName] = customDefaultValue;
         }

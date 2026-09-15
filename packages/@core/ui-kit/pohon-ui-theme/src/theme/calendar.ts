@@ -32,7 +32,7 @@ export const calendar = {
     headCell: 'rounded-md',
     headCellWeek: 'rounded-md color-text-muted',
     cell: 'relative text-center',
-    cellTrigger: 'm-0.5 relative flex items-center justify-center whitespace-nowrap focus-visible:outline-3 data-[disabled]:color-text-muted data-[unavailable]:line-through color-text-muted pointer-events-none) data-[today]:font-600 transition',
+    cellTrigger: 'm-0.5 relative flex items-center justify-center whitespace-nowrap focus-visible:outline-3 data-[disabled]:color-text-muted data-[unavailable]:(line-through color-text-muted pointer-events-none) data-[today]:font-600 transition',
     cellWeek: 'relative text-center color-text-muted',
   },
   variants: {
@@ -93,7 +93,7 @@ export const calendar = {
     view: {
       day: {
         gridRow: 'grid-cols-7 place-items-center',
-        cellTrigger: 'rounded-full data-outside-view:text-muted',
+        cellTrigger: 'rounded-full data-[outside-view]:color-text-muted',
       },
       month: {
         gridRow: 'grid-cols-4',
@@ -113,28 +113,28 @@ export const calendar = {
       color,
       variant: 'solid',
       class: {
-        cellTrigger: `data-[selected]:bg-${color} data-[selected]:color-text-inverted data-today:not-data-[selected]:color-${color} data-[highlighted]:bg-${color}/20 hover:not-data-[selected]:bg-${color}/20`,
+        cellTrigger: `pohon:data-[selected]:bg-${color} data-[selected]:color-text-inverted data-[today]:not-[[data-selected]]:color-${color} data-[highlighted]:bg-${color}/20 hover:not-[[data-selected]]:bg-${color}/20`,
       },
     })),
     ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'outline',
       class: {
-        cellTrigger: `data-[selected]:ring data-[selected]:ring-inset data-[selected]:ring-${color}/50 data-[selected]:color-${color} data-today:not-data-[selected]:color-${color} data-[highlighted]:bg-${color}/10 hover:not-data-[selected]:bg-${color}/10`,
+        cellTrigger: `data-[selected]:ring data-[selected]:ring-inset data-[selected]:ring-${color}/50 data-[selected]:color-${color} data-[today]:not-[[data-selected]]:color-${color} data-[highlighted]:bg-${color}/10 hover:not-[[data-selected]]:bg-${color}/10`,
       },
     })),
     ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'soft',
       class: {
-        cellTrigger: `data-[selected]:bg-${color}/10 data-[selected]:color-${color} data-today:not-data-[selected]:color-${color} data-[highlighted]:bg-${color}/20 hover:not-data-[selected]:bg-${color}/20`,
+        cellTrigger: `data-[selected]:bg-${color}/10 data-[selected]:color-${color} data-[today]:not-[[data-selected]]:color-${color} data-[highlighted]:bg-${color}/20 hover:not-[[data-selected]]:bg-${color}/20`,
       },
     })),
     ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'subtle',
       class: {
-        cellTrigger: `data-[selected]:bg-${color}/10 data-[selected]:color-${color} data-[selected]:ring data-[selected]:ring-inset data-[selected]:ring-${color}/25 data-today:not-data-[selected]:color-${color} data-[highlighted]:bg-${color}/20 hover:not-data-[selected]:bg-${color}/20`,
+        cellTrigger: `data-[selected]:bg-${color}/10 data-[selected]:color-${color} data-[selected]:ring data-[selected]:ring-inset data-[selected]:ring-${color}/25 data-[today]:not-[[data-selected]]:color-${color} data-[highlighted]:bg-${color}/20 hover:not-[[data-selected]]:bg-${color}/20`,
       },
     })),
     {
