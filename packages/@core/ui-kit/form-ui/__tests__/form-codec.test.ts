@@ -84,8 +84,10 @@ describe('form codec', () => {
 });
 
 describe('calendarDateCodec', () => {
-  it('encodes live CalendarDate form values to ISO strings', async () => {
-    const { date } = decodeCalendarDateValues({ date: '2022-02-03' });
+  const utcIso = '2022-02-03T00:00:00.000Z';
+  const { date } = decodeCalendarDateValues({ date: utcIso });
+
+  it('encodes live CalendarDate form values to UTC ISO strings', async () => {
     const formApi = new FormApi({
       codec: calendarDateCodec,
     });
@@ -96,11 +98,11 @@ describe('calendarDateCodec', () => {
 
     formApi.mount(formActions, new Map());
 
-    expect(await formApi.getValues()).toEqual({ date: '2022-02-03' });
+    expect(await formApi.getValues()).toEqual({ date: utcIso });
     expect(formActions.values.date).toBe(date);
   });
 
-  it('decodes ISO calendar date strings into CalendarDate form values', async () => {
+  it('decodes UTC ISO strings into CalendarDate form values', async () => {
     const setValues = vi.fn();
     const formApi = new FormApi({
       codec: calendarDateCodec,
@@ -112,16 +114,12 @@ describe('calendarDateCodec', () => {
     };
 
     await formApi.mount(formActions, new Map());
-    await formApi.setSubmitValues({ date: '2022-02-03' }, false);
+    await formApi.setSubmitValues({ date: utcIso }, false);
 
-    expect(setValues).toHaveBeenCalledWith(
-      decodeCalendarDateValues({ date: '2022-02-03' }),
-      false,
-    );
+    expect(setValues).toHaveBeenCalledWith({ date }, false);
   });
 
   it('submits encoded ISO dates without cloning live CalendarDate values', async () => {
-    const { date } = decodeCalendarDateValues({ date: '2022-02-03' });
     const handleSubmit = vi.fn();
     const formApi = new FormApi({
       codec: calendarDateCodec,
@@ -136,9 +134,9 @@ describe('calendarDateCodec', () => {
     await formApi.mount(formActions, new Map());
     const result = await formApi.submit();
 
-    expect(result).toEqual({ date: '2022-02-03', name: 'Ada' });
+    expect(result).toEqual({ date: utcIso, name: 'Ada' });
     expect(handleSubmit).toHaveBeenCalledWith(
-      { date: '2022-02-03', name: 'Ada' },
+      { date: utcIso, name: 'Ada' },
       { date, name: 'Ada' },
     );
     expect(handleSubmit.mock.calls[0]?.[1]?.date).toBe(date);

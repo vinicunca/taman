@@ -1,9 +1,8 @@
+import type { CalendarDateCodecOptions } from '@taman-core/shared/utils';
 import type { FormCodec, FormValues } from './form.types';
+import { createCalendarDateCodec as createSharedCalendarDateCodec } from '@taman-core/shared/utils';
 
-import {
-  decodeCalendarDateValues,
-  encodeCalendarDateValues,
-} from '@taman-core/shared/utils';
+export type { CalendarDateCodecOptions } from '@taman-core/shared/utils';
 
 export type FormCodecPhase = 'decode' | 'encode';
 
@@ -44,7 +43,10 @@ export function encodeFormValues<
   }
 }
 
-export const calendarDateCodec: FormCodec = {
-  decode: decodeCalendarDateValues,
-  encode: encodeCalendarDateValues,
-};
+export function createCalendarDateCodec(
+  options?: CalendarDateCodecOptions,
+): FormCodec {
+  return createSharedCalendarDateCodec(options);
+}
+
+export const calendarDateCodec: FormCodec = createCalendarDateCodec();

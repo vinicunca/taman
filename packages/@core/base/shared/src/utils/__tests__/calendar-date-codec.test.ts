@@ -1,7 +1,8 @@
 import {
   CalendarDate,
   CalendarDateTime,
-  parseDate,
+  parseAbsolute,
+  toCalendarDate,
 } from '@internationalized/date';
 import { describe, expect, it } from 'vitest';
 
@@ -11,29 +12,44 @@ import {
   isDateValue,
 } from '../calendar-date-codec';
 
-describe('calendar date value codec', () => {
-  it('encodes CalendarDate values to ISO calendar date strings', () => {
-    const date = new CalendarDate(2022, 2, 3);
+const februaryThird = new CalendarDate(2022, 2, 3);
+const utcIso = '2022-02-03T00:00:00.000Z';
 
+describe('calendar date value codec', () => {
+  it('encodes CalendarDate values to UTC ISO strings', () => {
     expect(
       encodeCalendarDateValues({
-        date,
+        date: februaryThird,
         name: 'Ada',
       }),
     ).toEqual({
-      date: '2022-02-03',
+      date: utcIso,
       name: 'Ada',
     });
   });
 
-  it('decodes ISO calendar date strings back to CalendarDate', () => {
+  it('decodes UTC ISO strings back to CalendarDate', () => {
     const decoded = decodeCalendarDateValues({
-      date: '2022-02-03',
+      date: utcIso,
       name: 'Ada',
     });
 
-    expect(decoded.date).toEqual(parseDate('2022-02-03'));
+    expect(decoded.date).toEqual(februaryThird);
     expect(decoded.name).toBe('Ada');
+  });
+
+  it('interprets CalendarDate midnight in a given time zone', () => {
+    const encoded = encodeCalendarDateValues(
+      { date: februaryThird },
+      'Asia/Jakarta',
+    );
+
+    expect(encoded).toEqual({
+      date: '2022-02-02T17:00:00.000Z',
+    });
+    expect(
+      decodeCalendarDateValues(encoded, 'Asia/Jakarta').date,
+    ).toEqual(februaryThird);
   });
 
   it('does not treat a { start, end } range as a DateValue', () => {
@@ -46,8 +62,8 @@ describe('calendar date value codec', () => {
     expect(isDateValue(range.start)).toBe(true);
     expect(encodeCalendarDateValues({ period: range })).toEqual({
       period: {
-        end: '2026-09-20',
-        start: '2026-09-15',
+        end: '2026-09-20T00:00:00.000Z',
+        start: '2026-09-15T00:00:00.000Z',
       },
     });
   });
@@ -64,28 +80,36 @@ describe('calendar date value codec', () => {
     const encoded = encodeCalendarDateValues(values);
 
     expect(encoded).toEqual({
-      nested: { created: '2026-09-15' },
+      nested: { created: '2026-09-15T00:00:00.000Z' },
       period: {
-        end: '2026-09-20',
-        start: '2026-09-15',
+        end: '2026-09-20T00:00:00.000Z',
+        start: '2026-09-15T00:00:00.000Z',
       },
     });
     expect(values.nested.created).toBeInstanceOf(CalendarDate);
     expect(decodeCalendarDateValues(encoded)).toEqual(values);
   });
 
-  it('encodes CalendarDateTime with its ISO string', () => {
+  it('encodes CalendarDateTime as a UTC ISO instant', () => {
     const dateTime = new CalendarDateTime(2022, 2, 3, 14, 30);
 
     expect(encodeCalendarDateValues({ deadline: dateTime })).toEqual({
-      deadline: dateTime.toString(),
+      deadline: dateTime.toDate('UTC').toISOString(),
     });
   });
 
-  it('leaves unrelated strings unchanged', () => {
-    const values = { sku: 'ABC-123', year: '2022' };
+  it('leaves unrelated and date-only strings unchanged', () => {
+    const values = { sku: 'ABC-123', year: '2022', calendar: '2022-02-03' };
 
     expect(encodeCalendarDateValues(values)).toEqual(values);
     expect(decodeCalendarDateValues(values)).toEqual(values);
+  });
+
+  it('parses ISO instants with parseAbsolute', () => {
+    const decoded = decodeCalendarDateValues({ date: utcIso });
+
+    expect(decoded.date).toEqual(
+      toCalendarDate(parseAbsolute(utcIso, 'UTC')),
+    );
   });
 });

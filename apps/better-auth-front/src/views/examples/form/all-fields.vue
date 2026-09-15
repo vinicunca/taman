@@ -1,12 +1,58 @@
 <script lang="ts" setup>
-import { AppCard, AppCardAction, AppPage, TamanFileUpload } from '@taman/app-ui';
-import { ref } from 'vue';
+import type { DateValue } from '@taman/utils';
+import { AppCard, AppCardAction, AppPage } from '@taman/app-ui';
+import { CalendarDate } from '@taman/utils';
 import { useTamanForm, z } from '#/adapter/form';
 import { getAllMenusApi } from '#/api';
 import { $t } from '#/locales';
 
+interface AllFieldsDateRange {
+  end: DateValue | undefined;
+  start: DateValue | undefined;
+}
+
+interface AllFieldsEncodedDateRange {
+  end?: string;
+  start?: string;
+}
+
+interface AllFieldsFormValues {
+  api?: string;
+  checkbox: boolean;
+  checkboxGroup: Array<string>;
+  date: DateValue;
+  dateRange?: AllFieldsDateRange;
+  desc?: string;
+  fileUpload: Array<File>;
+  inputMenu: string;
+  month: DateValue;
+  monthRange?: AllFieldsDateRange;
+  username: string;
+  year: DateValue;
+  yearRange?: AllFieldsDateRange;
+}
+
+interface AllFieldsSubmitValues {
+  api?: string;
+  checkbox: boolean;
+  checkboxGroup: Array<string>;
+  date: string;
+  dateRange?: AllFieldsEncodedDateRange;
+  desc?: string;
+  fileUpload: Array<File>;
+  inputMenu: string;
+  month: string;
+  monthRange?: AllFieldsEncodedDateRange;
+  username: string;
+  year: string;
+  yearRange?: AllFieldsEncodedDateRange;
+}
+
 const toast = useToast();
-const [FormAllFields] = useTamanForm({
+const [FormAllFields, formAllFieldsApi] = useTamanForm<
+  AllFieldsFormValues,
+  AllFieldsSubmitValues
+>({
   // 3 columns on large screens, 2 on medium, 1 on small
   wrapperClass: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
 
@@ -68,13 +114,12 @@ const [FormAllFields] = useTamanForm({
         labelPreview: 'Files',
         labelAddMore: 'Add more',
       },
-      rules: 'selectRequired',
     },
 
     {
       component: 'Input',
       fieldName: 'username',
-      label: 'String',
+      label: 'Input',
       componentProps: {
         placeholder: 'Please enter your username',
       },
@@ -84,36 +129,65 @@ const [FormAllFields] = useTamanForm({
     {
       component: 'Input',
       fieldName: 'desc',
-      label: 'String with description',
+      label: 'Input with description',
       description: 'This is a description of the form field',
     },
 
     {
       component: 'InputDate',
       fieldName: 'date',
-      label: 'Date',
+      label: 'InputDate',
       rules: 'required',
     },
 
-    // {
-    //   component: 'InputDate',
-    //   fieldName: 'month',
-    //   componentProps: {
-    //     type: 'month',
-    //   },
-    //   label: 'Month',
-    //   rules: 'required',
-    // },
+    {
+      component: 'InputDate',
+      fieldName: 'dateRange',
+      label: 'InputDateRange',
+      componentProps: {
+        range: true,
+      },
+    },
 
-    // {
-    //   component: 'InputDate',
-    //   fieldName: 'year',
-    //   componentProps: {
-    //     type: 'year',
-    //   },
-    //   label: 'Year',
-    //   rules: 'required',
-    // },
+    {
+      component: 'InputDate',
+      fieldName: 'month',
+      componentProps: {
+        type: 'month',
+      },
+      label: 'InputDate Month',
+      rules: 'required',
+    },
+
+    {
+      component: 'InputDate',
+      fieldName: 'monthRange',
+      componentProps: {
+        type: 'month',
+        range: true,
+      },
+      label: 'InputDate Month Range',
+    },
+
+    {
+      component: 'InputDate',
+      fieldName: 'year',
+      componentProps: {
+        type: 'year',
+      },
+      label: 'InputDate Year',
+      rules: 'required',
+    },
+
+    {
+      component: 'InputDate',
+      fieldName: 'yearRange',
+      componentProps: {
+        type: 'year',
+        range: true,
+      },
+      label: 'InputDate Year Range',
+    },
 
     {
       component: 'InputMenu',
@@ -140,7 +214,7 @@ const [FormAllFields] = useTamanForm({
         api: getAllMenusApi,
         autoSelect: 'first',
       },
-      fieldName: 'api',
+      fieldName: 'selectFetch',
       label: 'Select Fetch',
     },
   ],
@@ -156,16 +230,36 @@ const [FormAllFields] = useTamanForm({
   },
 });
 
-function onSubmit(values: Record<string, any>) {
+function handleSetFormValue() {
+  const date = new CalendarDate(2026, 9, 15);
 
+  formAllFieldsApi.setValues({
+    checkbox: true,
+    checkboxGroup: ['1', '2'],
+    date,
+    dateRange: {
+      end: date.add({ days: 7 }),
+      start: date,
+    },
+    month: date,
+    monthRange: {
+      end: date.add({ months: 1 }),
+      start: date,
+    },
+    year: date,
+    yearRange: {
+      end: date.add({ years: 1 }),
+      start: date,
+    },
+    username: 'test',
+    inputMenu: 'Backlog',
+  });
 }
 
-function handleSetFormValue() {
-  toast.add({
-    color: 'neutral',
-    title: 'Changed',
-    duration: 2_000,
-  });
+function onSubmit(
+  values: AllFieldsSubmitValues,
+) {
+  console.log('🚀 ~ onSubmit ~ values:', values);
 }
 </script>
 

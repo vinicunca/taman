@@ -40,3 +40,15 @@ export function formatCalendarInputValue(
 
   return start ?? end;
 }
+
+export function isCalendarInputComplete(value: unknown): boolean {
+  if (isDateValue(value)) {
+    return true;
+  }
+
+  if (!isDateRange(value)) {
+    return false;
+  }
+
+  return isDateValue(value.start) && isDateValue(value.end);
+}

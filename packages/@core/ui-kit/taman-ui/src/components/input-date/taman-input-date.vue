@@ -10,7 +10,7 @@ import PInputDate from 'pohon-ui/components/InputDate.vue';
 import PPopover from 'pohon-ui/components/Popover.vue';
 import { computed, ref, watch } from 'vue';
 
-import { formatCalendarInputValue } from './format-calendar-input-value';
+import { formatCalendarInputValue, isCalendarInputComplete } from './format-calendar-input-value';
 
 defineOptions({
   inheritAttrs: false,
@@ -55,9 +55,12 @@ const inputValue = computed(() => {
 
 watch(
   modelValue,
-  () => {
-    isOpen.value = false;
+  (value) => {
+    if (isCalendarInputComplete(value)) {
+      isOpen.value = false;
+    }
   },
+  { deep: true },
 );
 </script>
 

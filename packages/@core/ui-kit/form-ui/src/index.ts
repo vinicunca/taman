@@ -1,6 +1,10 @@
-export { calendarDateCodec, FormCodecError } from './form.codec';
+export {
+  calendarDateCodec,
+  createCalendarDateCodec,
+  FormCodecError,
+} from './form.codec';
 
-export type { FormCodecPhase } from './form.codec';
+export type { CalendarDateCodecOptions, FormCodecPhase } from './form.codec';
 
 export { setupTamanForm } from './form.config';
 

@@ -1,7 +1,10 @@
 import { CalendarDate } from '@internationalized/date';
 import { describe, expect, it } from 'vitest';
 
-import { formatCalendarInputValue } from '../format-calendar-input-value';
+import {
+  formatCalendarInputValue,
+  isCalendarInputComplete,
+} from '../format-calendar-input-value';
 
 const february = new CalendarDate(2022, 2, 1);
 const april = new CalendarDate(2022, 4, 1);
@@ -44,5 +47,30 @@ describe('formatCalendarInputValue', () => {
         formatYear,
       ),
     ).toBeUndefined();
+  });
+});
+
+describe('isCalendarInputComplete', () => {
+  it('is complete for a single date value', () => {
+    expect(isCalendarInputComplete(february)).toBe(true);
+  });
+
+  it('is incomplete for a range that only has a start', () => {
+    expect(
+      isCalendarInputComplete({ end: undefined, start: february }),
+    ).toBe(false);
+  });
+
+  it('is complete when both range ends are selected', () => {
+    expect(
+      isCalendarInputComplete({ end: april, start: february }),
+    ).toBe(true);
+  });
+
+  it('is incomplete when the value is empty', () => {
+    expect(isCalendarInputComplete(undefined)).toBe(false);
+    expect(
+      isCalendarInputComplete({ end: undefined, start: undefined }),
+    ).toBe(false);
   });
 });
