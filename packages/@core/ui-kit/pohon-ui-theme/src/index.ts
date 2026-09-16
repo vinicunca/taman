@@ -19,8 +19,8 @@ import { chatPrompt } from './theme/theme.chat-prompt.ts';
 import { chatReasoning } from './theme/theme.chat-reasoning.ts';
 import { chatShimmer } from './theme/theme.chat-shimmer.ts';
 import { chatTool } from './theme/theme.chat-tool.ts';
-import { checkboxGroup } from './theme/theme.checkbox-group.ts';
-import { checkbox } from './theme/theme.checkbox.ts';
+import { themeCheckboxGroup } from './theme/theme.checkbox-group.ts';
+import { themeCheckbox } from './theme/theme.checkbox.ts';
 import { chip } from './theme/theme.chip.ts';
 import { collapsible } from './theme/theme.collapsible.ts';
 import { colorPicker } from './theme/theme.color-picker.ts';
@@ -47,6 +47,7 @@ import { header } from './theme/theme.header.ts';
 import { themeInputDate } from './theme/theme.input-date.ts';
 import { themeInputMenu } from './theme/theme.input-menu.ts';
 import { themeInputNumber } from './theme/theme.input-number.ts';
+import { themeInputRating } from './theme/theme.input-rating.ts';
 import { themeInputTags } from './theme/theme.input-tags.ts';
 import { themeInputTime } from './theme/theme.input-time.ts';
 import { themeInput } from './theme/theme.input.ts';
@@ -62,7 +63,7 @@ import { pinInput } from './theme/theme.pin-input.ts';
 import { popover } from './theme/theme.popover.ts';
 import { progress } from './theme/theme.progress.ts';
 import { prose } from './theme/theme.prose.ts';
-import { radioGroup } from './theme/theme.radio-group.ts';
+import { themeRadioGroup } from './theme/theme.radio-group.ts';
 import { scrollArea } from './theme/theme.scroll-area.ts';
 import { themeSelectMenu } from './theme/theme.select-menu.ts';
 import { themeSelect } from './theme/theme.select.ts';
@@ -70,7 +71,7 @@ import { separator } from './theme/theme.separator.ts';
 import { sidebar } from './theme/theme.sidebar.ts';
 import { skeleton } from './theme/theme.skeleton.ts';
 import { slideover } from './theme/theme.slideover.ts';
-import { slider } from './theme/theme.slider.ts';
+import { themeSlider } from './theme/theme.slider.ts';
 import { stepper } from './theme/theme.stepper.ts';
 import { themeSwitch } from './theme/theme.switch.ts';
 import { table } from './theme/theme.table.ts';
@@ -105,8 +106,8 @@ export const ui = parseThemeClasses({
   chatReasoning,
   chatShimmer,
   chatTool,
-  checkboxGroup,
-  checkbox,
+  checkboxGroup: themeCheckboxGroup,
+  checkbox: themeCheckbox,
   chip,
   collapsible,
   colorPicker,
@@ -136,6 +137,7 @@ export const ui = parseThemeClasses({
   inputTags: themeInputTags,
   inputTime: themeInputTime,
   input: themeInput,
+  inputRating: themeInputRating,
   kbd,
   link,
   listbox,
@@ -148,7 +150,7 @@ export const ui = parseThemeClasses({
   popover,
   progress,
   prose,
-  radioGroup,
+  radioGroup: themeRadioGroup,
   scrollArea,
   selectMenu: themeSelectMenu,
   select: themeSelect,
@@ -156,7 +158,7 @@ export const ui = parseThemeClasses({
   sidebar,
   skeleton,
   slideover,
-  slider,
+  slider: themeSlider,
   stepper,
   switch: themeSwitch,
   table,

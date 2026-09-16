@@ -1,14 +1,14 @@
 // @unocss-include
-
 import type { PThemeCheckboxGroup } from 'pohon-ui';
 import { POHON_THEME_BRANDS } from '../constants.ts';
+// `table` is defined here rather than in checkbox.ts, so its focus ring is too
+import { focusCard } from './theme.checkbox.ts';
 
-export const checkboxGroup = {
+export const themeCheckboxGroup = {
   slots: {
     root: 'relative',
     fieldset: 'flex gap-x-2',
-    legend: 'mb-1 block font-500 color-text',
-    item: '',
+    legend: 'color-text font-500 mb-1 block',
   },
   variants: {
     orientation: {
@@ -19,15 +19,15 @@ export const checkboxGroup = {
         fieldset: 'flex-col',
       },
     },
-    color: {
-      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {}])),
-      neutral: {},
-    },
     variant: {
-      list: {},
-      card: {},
+      list: {
+        fieldset: 'flex-wrap',
+      },
+      card: {
+        fieldset: 'flex-wrap',
+      },
       table: {
-        item: 'border border-border-muted',
+        item: 'border border-border hover:[&:not(:has(:disabled,:focus-visible,[data-state=checked]))]:bg-background-elevated/50 transition-colors',
       },
     },
     size: {
@@ -54,14 +54,25 @@ export const checkboxGroup = {
     },
     required: {
       true: {
-        legend: 'after:content-[\'*\'] after:ms-0.5 after:text-error',
+        legend: 'after:color-error after:(ms-0.5 content-["*"])',
       },
-    },
-    disabled: {
-      true: {},
     },
   },
   compoundVariants: [
+    ...[...POHON_THEME_BRANDS.map((color) => [color, color]), ['neutral', 'inverted']].map(([color, token]: Array<string>) => ({
+      color,
+      variant: 'table',
+      class: {
+        item: focusCard(token!),
+      },
+    })),
+    {
+      variant: 'table',
+      highlight: false,
+      class: {
+        item: 'hover:[&:not(:has(:disabled,:focus-visible,[data-state=checked]))]:border-border-accented',
+      },
+    },
     { size: 'xs', variant: 'table', class: { item: 'p-2.5' } },
     { size: 'sm', variant: 'table', class: { item: 'p-3' } },
     { size: 'md', variant: 'table', class: { item: 'p-3.5' } },
@@ -72,7 +83,7 @@ export const checkboxGroup = {
       variant: 'table',
       class: {
         item: 'first-of-type:rounded-s-lg last-of-type:rounded-e-lg',
-        fieldset: 'gap-0 -space-x-px',
+        fieldset: 'pohon:gap-0 -space-x-px',
       },
     },
     {
@@ -80,21 +91,21 @@ export const checkboxGroup = {
       variant: 'table',
       class: {
         item: 'first-of-type:rounded-t-lg last-of-type:rounded-b-lg',
-        fieldset: 'gap-0 -space-y-px',
+        fieldset: 'pohon:gap-0 -space-y-px',
       },
     },
     ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'table',
       class: {
-        item: `has-data-[state=checked]:bg-${color}/10 has-data-[state=checked]:border-${color}/50 has-data-[state=checked]:z-[1]`,
+        item: `has-data-[state=checked]:bg-${color}/10 has-data-[state=checked]:border-${color}/50 has-data-[state=checked]:z-1`,
       },
     })),
     {
       color: 'neutral',
       variant: 'table',
       class: {
-        item: 'has-data-[state=checked]:bg-background-elevated has-data-[state=checked]:border-border-inverted/50 has-data-[state=checked]:z-[1]',
+        item: 'has-data-[state=checked]:bg-background-elevated has-data-[state=checked]:border-border-inverted/50 has-data-[state=checked]:z-1',
       },
     },
     {

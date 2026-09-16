@@ -1,23 +1,24 @@
 // @unocss-include
+
 import type { PThemeSlider } from 'pohon-ui';
 import { POHON_THEME_BRANDS } from '../constants.ts';
 
-export const slider = {
+export const themeSlider = {
   slots: {
-    root: 'relative flex items-center select-none touch-none',
-    track: 'relative bg-background-accented overflow-hidden rounded-full grow',
-    range: 'absolute rounded-full',
-    thumb: 'rounded-full bg-background ring-2 focus-visible:outline-2 focus-visible:outline-offset-2',
+    root: 'flex select-none items-center relative touch-none',
+    track: 'rounded-full bg-background-accented grow relative overflow-hidden',
+    range: 'rounded-full absolute',
+    thumb: 'rounded-full bg-background ring-2 focus-visible:(outline-3 outline-offset-2)',
   },
   variants: {
     color: {
       ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
         range: `bg-${color}`,
-        thumb: `ring-${color} focus-visible:outline-${color}/50`,
+        thumb: `ring-${color} outline-${color}/25`,
       }])),
       neutral: {
         range: 'bg-background-inverted',
-        thumb: 'ring-ring-inverted focus-visible:outline-inverted/50',
+        thumb: 'outline-outline-inverted/25 ring-ring-inverted',
       },
     },
     size: {

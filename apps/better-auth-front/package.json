@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "@formkit/auto-animate": "catalog:",
+    "@internationalized/date": "catalog:",
+    "@internationalized/number": "catalog:",
     "@taman-core/form-ui": "workspace:*",
     "@taman-core/menu-ui": "workspace:*",
     "@taman-core/pohon-ui-theme": "workspace:*",

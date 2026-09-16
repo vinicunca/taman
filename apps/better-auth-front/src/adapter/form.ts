@@ -5,7 +5,7 @@ import type {
   FormValues,
 } from '@taman/app-ui';
 import type { ComponentPropsMap, ComponentType } from './components';
-import { calendarDateCodec, isEmptyFormValue, setupTamanForm, useTamanForm as useForm } from '@taman/app-ui';
+import { calendarDateTimeCodec, isEmptyFormValue, setupTamanForm, useTamanForm as useForm } from '@taman/app-ui';
 import { $t } from '#/locales';
 
 export async function initTamanForm() {
@@ -42,7 +42,7 @@ export function useTamanForm<
 ) {
   return useForm<TFormValues, ComponentType, ComponentPropsMap, TSubmitValues>({
     ...options,
-    codec: options.codec ?? (calendarDateCodec as FormCodec<TFormValues, TSubmitValues>),
+    codec: options.codec ?? (calendarDateTimeCodec as FormCodec<TFormValues, TSubmitValues>),
   });
 }
 

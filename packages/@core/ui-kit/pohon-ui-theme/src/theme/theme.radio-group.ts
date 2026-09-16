@@ -1,40 +1,42 @@
 // @unocss-include
 import type { PThemeRadioGroup } from 'pohon-ui';
 import { POHON_THEME_BRANDS } from '../constants.ts';
+import { focusCard, focusControl } from './theme.checkbox.ts';
 
-export const radioGroup = {
+export const themeRadioGroup = {
   slots: {
     root: 'relative',
     fieldset: 'flex gap-x-2',
-    legend: 'mb-1 block font-500 color-text',
+    legend: 'color-text font-500 mb-1 block',
     item: 'flex items-start',
     container: 'flex items-center',
-    base: 'rounded-full ring ring-inset ring-ring-accented overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-2',
-    indicator: 'flex items-center justify-center size-full after:bg-background after:rounded-full',
+    base: 'rounded-full ring ring-ring-accented ring-inset overflow-hidden focus-visible:outline-none',
+    indicator: 'flex size-full items-center justify-center after:(content-empty rounded-full bg-background)',
     wrapper: 'w-full',
-    label: 'block font-500 color-text',
+    label: 'color-text font-500 block',
+    icon: 'shrink-0',
     description: 'color-text-muted',
   },
   variants: {
     color: {
       ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
-        base: `focus-visible:outline-${color}`,
         indicator: `bg-${color}`,
       }])),
       neutral: {
-        base: 'focus-visible:outline-inverted',
         indicator: 'bg-background-inverted',
       },
     },
     variant: {
       list: {
+        fieldset: 'flex-wrap',
         item: '',
       },
       card: {
-        item: 'border border-border-muted rounded-lg',
+        fieldset: 'flex-wrap',
+        item: 'border border-border rounded-lg transition-colors hover:[&:not(:has(:disabled,:focus-visible,[data-state=checked]))]:bg-background-elevated/50',
       },
       table: {
-        item: 'border border-border-muted',
+        item: 'border border-border transition-colors hover:[&:not(:has(:disabled,:focus-visible,[data-state=checked]))]:bg-background-elevated/50',
       },
     },
     orientation: {
@@ -56,7 +58,7 @@ export const radioGroup = {
       },
       hidden: {
         base: 'sr-only',
-        wrapper: 'text-center',
+        wrapper: 'text-center flex flex-col gap-1 items-center',
       },
     },
     size: {
@@ -101,6 +103,10 @@ export const radioGroup = {
         indicator: 'after:size-2',
       },
     },
+    highlight: {
+      true: '',
+      false: '',
+    },
     disabled: {
       true: {
         item: 'opacity-75',
@@ -111,11 +117,29 @@ export const radioGroup = {
     },
     required: {
       true: {
-        legend: 'after:content-[\'*\'] after:ms-0.5 after:text-error',
+        legend: 'after:(color-error ms-0.5 content-["*"])',
       },
     },
   },
   compoundVariants: [
+    {
+      indicator: 'hidden',
+      class: {
+        container: 'h-auto',
+      },
+    },
+    {
+      variant: ['card', 'table'],
+      highlight: false,
+      class: {
+        item: 'hover:[&:not(:has(:disabled,:focus-visible,[data-state=checked]))]:border-border-accented',
+      },
+    },
+    { size: 'xs', indicator: 'hidden', class: { icon: 'size-3' } },
+    { size: 'sm', indicator: 'hidden', class: { icon: 'size-3.5' } },
+    { size: 'md', indicator: 'hidden', class: { icon: 'size-4' } },
+    { size: 'lg', indicator: 'hidden', class: { icon: 'size-4.5' } },
+    { size: 'xl', indicator: 'hidden', class: { icon: 'size-5' } },
     { size: 'xs', variant: ['card', 'table'], class: { item: 'p-2.5' } },
     { size: 'sm', variant: ['card', 'table'], class: { item: 'p-3' } },
     { size: 'md', variant: ['card', 'table'], class: { item: 'p-3.5' } },
@@ -137,32 +161,64 @@ export const radioGroup = {
         fieldset: 'gap-0 -space-y-px',
       },
     },
+    ...[
+      ...POHON_THEME_BRANDS.map((color: string) => [color, color]),
+      ['neutral', 'inverted'],
+    ].map(([color, token]: Array<string>) => ({
+      color,
+      variant: 'list',
+      indicator: ['start', 'end'],
+      class: {
+        base: focusControl(token!),
+      },
+    })),
+    ...[
+      ...POHON_THEME_BRANDS.map((color: string) => [color, color]),
+      ['neutral', 'inverted'],
+    ].map(([color, token]: Array<string>) => ({
+      color,
+      variant: ['card', 'table'],
+      class: {
+        item: focusCard(token!),
+      },
+    })),
+    ...[
+      ...POHON_THEME_BRANDS.map((color: string) => [color, color]),
+      ['neutral', 'inverted'],
+    ].map(([color, token]: Array<string>) => ({
+      color,
+      variant: 'list',
+      indicator: 'hidden',
+      class: {
+        item: focusCard(token!),
+      },
+    })),
     ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'card',
       class: {
-        item: `has-data-[state=checked]:border-${color}`,
+        item: `has-data-[state=checked]:border-${color}/50 has-data-[state=checked]:bg-${color}/10`,
       },
     })),
     {
       color: 'neutral',
       variant: 'card',
       class: {
-        item: 'has-data-[state=checked]:border-border-inverted',
+        item: 'has-data-[state=checked]:border-border-inverted/50 has-data-[state=checked]:bg-background-elevated',
       },
     },
     ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'table',
       class: {
-        item: `has-data-[state=checked]:bg-${color}/10 has-data-[state=checked]:border-${color}/50 has-data-[state=checked]:z-[1]`,
+        item: `has-data-[state=checked]:bg-${color}/10 has-data-[state=checked]:border-${color}/50 has-data-[state=checked]:z-1`,
       },
     })),
     {
       color: 'neutral',
       variant: 'table',
       class: {
-        item: 'has-data-[state=checked]:bg-background-elevated has-data-[state=checked]:border-border-inverted/50 has-data-[state=checked]:z-[1]',
+        item: 'has-data-[state=checked]:bg-background-elevated has-data-[state=checked]:border-border-inverted/50 has-data-[state=checked]:z-1',
       },
     },
     {
@@ -170,6 +226,22 @@ export const radioGroup = {
       disabled: true,
       class: {
         item: 'cursor-not-allowed',
+      },
+    },
+    ...POHON_THEME_BRANDS.map((color: string) => ({
+      color,
+      indicator: 'hidden',
+      highlight: true,
+      class: {
+        item: `[&:not(:has(:disabled))]:border-${color} [&:not(:has(:disabled)):has([data-state=checked])]:border-${color}`,
+      },
+    })),
+    {
+      color: 'neutral',
+      indicator: 'hidden',
+      highlight: true,
+      class: {
+        item: '[&:not(:has(:disabled))]:border-border-inverted [&:not(:has(:disabled)):has([data-state=checked])]:border-border-inverted',
       },
     },
     ...POHON_THEME_BRANDS.map((color: string) => ({

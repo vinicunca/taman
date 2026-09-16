@@ -23,7 +23,7 @@ const formatter = new NumberFormatter('en-US', formatOptions);
 const parser = new NumberParser('en-US', formatOptions);
 
 const inputProps = useForwardProps(
-  reactiveOmit(props, 'defaultValue', 'modelValue'),
+  reactiveOmit(props, 'formatOptions', 'modelValue'),
 );
 
 const modelValue = defineModel<number | null>('modelValue', { default: null });

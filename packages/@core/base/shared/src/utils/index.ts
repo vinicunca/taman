@@ -11,6 +11,7 @@ export * from './nprogress';
 export * from './resources';
 export * from './stack';
 export * from './state-handler';
+export * from './time-codec';
 export * from './to';
 export * from './tree';
 export * from './unique';

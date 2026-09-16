@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { DateValue } from '@taman/utils';
+import { Time } from '@internationalized/date';
 import { AppCard, AppCardAction, AppPage } from '@taman/app-ui';
 import { CalendarDate } from '@taman/utils';
 import { useTamanForm, z } from '#/adapter/form';
@@ -224,6 +225,105 @@ const [FormAllFields, formAllFieldsApi] = useTamanForm<
           currency: 'IDR',
         },
       },
+    },
+
+    {
+      component: 'InputRating',
+      fieldName: 'inputRating',
+      label: 'InputRating',
+    },
+
+    {
+      component: 'InputTags',
+      fieldName: 'inputTags',
+      label: 'InputTags',
+      defaultValue: ['Vue'],
+    },
+
+    {
+      component: 'InputTime',
+      fieldName: 'inputTime',
+      label: 'InputTime',
+      defaultValue: new Time(12, 30, 0),
+      componentProps: {
+        ui: {
+          base: 'justify-center',
+        },
+      },
+    },
+
+    {
+      component: 'PinInput',
+      fieldName: 'pinInput',
+      label: 'PinInput',
+      rules: 'required',
+    },
+
+    {
+      component: 'RadioGroup',
+      fieldName: 'radioGroup',
+      label: 'RadioGroup',
+      componentProps: {
+        items: [
+          {
+            label: 'Option 1',
+            value: 1,
+          },
+          {
+            label: 'Option 2',
+            value: 2,
+          },
+          {
+            label: 'Option 3',
+            value: 3,
+          },
+        ],
+      },
+      defaultValue: 2,
+      rules: 'required',
+    },
+
+    {
+      component: 'Select',
+      fieldName: 'select',
+      label: 'Select',
+      componentProps: {
+        items: ['Backlog', 'Todo', 'In Progress', 'Done'],
+      },
+      rules: 'required',
+    },
+
+    {
+      component: 'SelectMenu',
+      fieldName: 'selectMenu',
+      label: 'SelectMenu',
+      componentProps: {
+        items: [
+          ['Apple', 'Banana', 'Blueberry', 'Grapes', 'Pineapple'],
+          ['Aubergine', 'Broccoli', 'Carrot', 'Courgette', 'Leek'],
+        ],
+      },
+      rules: 'required',
+    },
+
+    {
+      component: 'Slider',
+      fieldName: 'slider',
+      label: 'Slider',
+      rules: 'required',
+    },
+
+    {
+      component: 'Switch',
+      fieldName: 'switch',
+      label: 'Switch',
+      rules: 'required',
+    },
+
+    {
+      component: 'Textarea',
+      fieldName: 'textarea',
+      label: 'Textarea',
       rules: 'required',
     },
 

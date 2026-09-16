@@ -141,7 +141,7 @@ catalog:
   pkg-types: ^2.3.1
   playwright: ^1.62.1
   pnpm: ^11.21.0
-  pohon-ui: 2.0.0-rc7.7
+  pohon-ui: 2.0.0-rc7.8
   postcss: ^8.5.26
   postcss-html: ^2.0.0
   postcss-scss: ^4.0.9

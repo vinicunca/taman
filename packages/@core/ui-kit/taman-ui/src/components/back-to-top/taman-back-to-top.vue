@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useEventListener, useThrottleFn } from '@vueuse/core';
+import PButton from 'pohon-ui/components/Button.vue';
 import { computed, onMounted, ref, shallowRef } from 'vue';
 import { TamanButtonIcon } from '../button';
 
@@ -60,12 +61,20 @@ onMounted(() => {
 </script>
 
 <template>
-  <Transition name="fade-down">
-    <TamanButtonIcon
+  <Transition
+    enter-active-class="transition-opacity,transform-280"
+    leave-active-class="transition-opacity,transform-280"
+    enter-from-class="opacity-0 translate-y-100%"
+    leave-to-class="opacity-0 translate-y-100%"
+  >
+    <PButton
       v-if="visible"
       :style="backTopStyle"
-      class="shadow-float size-10 bottom-10 fixed z-popup"
+      class="shadow-float fixed z-popup pohon:rounded-full"
+      variant="outline"
+      color="neutral"
       icon="lucide:arrow-up-to-line"
+      size="xl"
       @click="handleClick"
     />
   </Transition>

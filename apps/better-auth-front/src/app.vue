@@ -13,6 +13,6 @@ import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
   >
     <RouterView />
 
-    <VueQueryDevtools />
+    <!-- <VueQueryDevtools /> -->
   </PApp>
 </template>

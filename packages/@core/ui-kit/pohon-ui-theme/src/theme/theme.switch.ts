@@ -5,10 +5,10 @@ import { POHON_THEME_BRANDS } from '../constants.ts';
 export const themeSwitch = {
   slots: {
     root: 'flex items-start relative',
-    base: 'border-2 border-transparent rounded-full inline-flex shrink-0 transition-[background-color]-280 items-center focus-visible:(outline-2 outline-offset-2) data-[state=unchecked]:bg-background-accented',
+    base: 'data-[state=unchecked]:bg-background-accented border-2 border-transparent rounded-full inline-flex shrink-0 transition-[background-color]-280 ease-out items-center focus-visible:outline-3',
     container: 'flex items-center',
-    thumb: 'group rounded-full bg-background flex pointer-events-none ring-0 shadow-lg transition-transform-280 items-center justify-center data-[state=unchecked]:translate-x-0 data-[state=unchecked]:rtl:-translate-x-0',
-    icon: 'opacity-0 shrink-0 size-10/12 transition-[color,opacity]-280 absolute group-data-[state=unchecked]:color-text-dimmed',
+    thumb: 'group bg-background rounded-full flex pointer-events-none ring-0 shadow-lg transition-transform-280 ease-out items-center justify-center data-[state=unchecked]:translate-x-0 motion-reduce:transition-none data-[state=unchecked]:rtl:-translate-x-0',
+    icon: 'absolute shrink-0 group-data-[state=unchecked]:color-text-dimmed opacity-0 size-10/12 transition-[color,opacity]-280 ease-out',
     wrapper: 'ms-2',
     label: 'color-text font-500 block',
     description: 'color-text-muted',
@@ -16,11 +16,11 @@ export const themeSwitch = {
   variants: {
     color: {
       ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
-        base: `data-[state=checked]:bg-${color} focus-visible:outline-${color}`,
+        base: `data-[state=checked]:bg-${color} outline-${color}/25`,
         icon: `group-data-[state=checked]:color-${color}`,
       }])),
       neutral: {
-        base: 'focus-visible:outline-border-inverted data-[state=checked]:bg-background-inverted',
+        base: 'data-[state=checked]:bg-background-inverted outline-outline-inverted/25',
         icon: 'group-data-[state=checked]:color-text-highlighted',
       },
     },
@@ -71,14 +71,17 @@ export const themeSwitch = {
         icon: 'animate-spin',
       },
     },
+    highlight: {
+      true: '',
+    },
     required: {
       true: {
-        label: 'after:(color-error ms-0.5 content-["*"])',
+        label: 'after:color-error after:(ms-0.5 content-["*"])',
       },
     },
     disabled: {
       true: {
-        root: 'opacity-50',
+        root: 'opacity-75',
         base: 'cursor-not-allowed',
         label: 'cursor-not-allowed',
         description: 'cursor-not-allowed',

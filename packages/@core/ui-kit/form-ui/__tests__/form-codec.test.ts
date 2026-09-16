@@ -1,11 +1,15 @@
 import type { FormCodec } from '../src/form.types';
 
-import { decodeCalendarDateValues } from '@taman-core/shared/utils';
+import {
+  decodeCalendarDateValues,
+  decodeTimeValues,
+} from '@taman-core/shared/utils';
 import { describe, expect, expectTypeOf, it, vi } from 'vitest';
 
 import { FormApi } from '../src/form.api';
 import {
   calendarDateCodec,
+  calendarDateTimeCodec,
   decodeFormValues,
   encodeFormValues,
   FormCodecError,
@@ -141,5 +145,24 @@ describe('calendarDateCodec', () => {
     );
     expect(handleSubmit.mock.calls[0]?.[1]?.date).toBe(date);
     expect(formActions.values.date).toBe(date);
+  });
+});
+
+describe('calendarDateTimeCodec', () => {
+  it('encodes and decodes date and time form values', () => {
+    const utcIso = '2022-02-03T00:00:00.000Z';
+    const { date } = decodeCalendarDateValues({ date: utcIso });
+    const { time } = decodeTimeValues({ time: '12:30:00' });
+
+    expect(calendarDateTimeCodec.encode({ date, time })).toEqual({
+      date: utcIso,
+      time: '12:30:00',
+    });
+    expect(
+      calendarDateTimeCodec.decode({
+        date: utcIso,
+        time: '12:30:00',
+      }),
+    ).toEqual({ date, time });
   });
 });
