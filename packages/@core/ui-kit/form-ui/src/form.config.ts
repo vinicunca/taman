@@ -7,7 +7,6 @@ import type {
 } from './form.types';
 
 import { globalShareState } from '@taman-core/shared/global-state';
-import TamanFormFieldArray from './components/form-field-array.vue';
 import { BUILT_IN_COMPONENT_MAP } from './form.built-ins';
 import { warnDeprecatedOnce } from './form.deprecation';
 import { registerFormRules } from './form.rule-registry';

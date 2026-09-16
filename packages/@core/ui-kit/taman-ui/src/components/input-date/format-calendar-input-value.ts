@@ -1,10 +1,18 @@
 import type { DateValue } from '@internationalized/date';
+import { getLocalTimeZone } from '@internationalized/date';
 import { isDateValue } from '@taman-core/shared/utils';
-import { toDate } from 'akar/date';
 
 export interface CalendarDateRange {
   end: DateValue | undefined;
   start: DateValue | undefined;
+}
+
+function toDate(value: DateValue): Date {
+  if ('timeZone' in value) {
+    return value.toDate();
+  }
+
+  return value.toDate(getLocalTimeZone());
 }
 
 function isDateRange(value: unknown): value is CalendarDateRange {

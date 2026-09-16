@@ -17,7 +17,7 @@
     }
   },
   "dependencies": {
-    "@taman-core/form-builder": "workspace:*",
+    "@taman-core/form-ui": "workspace:*",
     "@taman-core/popup-ui": "workspace:*",
     "@taman-core/preferences": "workspace:*",
     "@taman-core/shared": "workspace:*",
@@ -25,7 +25,6 @@
     "@taman/constants": "workspace:*",
     "@taman/locales": "workspace:*",
     "@taman/types": "workspace:*",
-    "@taman-core/form-ui": "workspace:*",
     "@vben-core/shadcn-ui": "workspace:*",
     "@vben/icons": "workspace:*",
     "@vueuse/core": "catalog:",

@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-import { useSimpleLocale } from '@taman-core/composables';
+import type { InputProps } from 'pohon-ui';
+
+import { useForwardProps, useSimpleLocale } from '@taman-core/composables';
+import { reactiveOmit } from '@vueuse/core';
 import PButton from 'pohon-ui/components/Button.vue';
 import PInput from 'pohon-ui/components/Input.vue';
 import PProgress from 'pohon-ui/components/Progress.vue';
 import { computed, ref, useTemplateRef } from 'vue';
-
 import {
   PASSWORD_STRENGTH_MAX,
   passwordStrengthScore,
@@ -14,9 +16,13 @@ defineOptions({
   inheritAttrs: false,
 });
 
-defineProps<{
+const props = defineProps<InputProps & {
   passwordStrength?: boolean;
 }>();
+
+const inputProps = useForwardProps(
+  reactiveOmit(props, 'passwordStrength', 'defaultValue', 'modelValue'),
+);
 
 const { $t } = useSimpleLocale();
 
@@ -45,8 +51,8 @@ const color = computed(() => {
   <div class="flex flex-col gap-2 w-full">
     <PInput
       ref="inputRef"
-      v-bind="$attrs"
       v-model="modelValue"
+      v-bind="inputProps"
       :type="isPasswordVisible ? 'text' : 'password'"
     >
       <template #trailing>

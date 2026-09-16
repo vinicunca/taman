@@ -203,20 +203,45 @@ const [FormAllFields, formAllFieldsApi] = useTamanForm<
     },
 
     {
-      component: 'SelectFetch',
+      component: 'InputNumber',
+      fieldName: 'inputNumber',
+      label: 'InputNumber',
       componentProps: {
-        afterFetch: async (data: Array<{ name: string; path: string }>) => {
-          return data.map((item) => ({
-            label: item.name,
-            value: item.path,
-          }));
-        },
-        api: getAllMenusApi,
-        autoSelect: 'first',
+        min: 0,
+        max: 100,
+        step: 1,
       },
-      fieldName: 'selectFetch',
-      label: 'Select Fetch',
+      rules: 'required',
     },
+
+    {
+      component: 'InputCurrency',
+      fieldName: 'inputCurrency',
+      label: 'InputCurrency',
+      componentProps: {
+        formatOptions: {
+          style: 'currency',
+          currency: 'IDR',
+        },
+      },
+      rules: 'required',
+    },
+
+    // {
+    //   component: 'SelectFetch',
+    //   componentProps: {
+    //     afterFetch: async (data: Array<{ name: string; path: string }>) => {
+    //       return data.map((item) => ({
+    //         label: item.name,
+    //         value: item.path,
+    //       }));
+    //     },
+    //     api: getAllMenusApi,
+    //     autoSelect: 'first',
+    //   },
+    //   fieldName: 'selectFetch',
+    //   label: 'Select Fetch',
+    // },
   ],
 
   handleSubmit: onSubmit,

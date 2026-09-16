@@ -14,6 +14,7 @@
   "types": "./src/index.ts",
   "dependencies": {
     "@internationalized/date": "catalog:",
+    "@internationalized/number": "catalog:",
     "@taman-core/composables": "workspace:*",
     "@taman-core/shared": "workspace:*",
     "@vueuse/core": "catalog:",

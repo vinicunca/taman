@@ -1,4 +1,4 @@
-import { CalendarDate } from '@internationalized/date';
+import { CalendarDate, getLocalTimeZone, ZonedDateTime } from '@internationalized/date';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -47,6 +47,12 @@ describe('formatCalendarInputValue', () => {
         formatYear,
       ),
     ).toBeUndefined();
+  });
+
+  it('formats a ZonedDateTime with its own timezone', () => {
+    const zoned = new ZonedDateTime(2022, 2, 1, getLocalTimeZone(), 0);
+
+    expect(formatCalendarInputValue(zoned, formatYear)).toBe('2022');
   });
 });
 
