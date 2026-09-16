@@ -89,6 +89,7 @@ export interface FormRuntimeField<TValue = unknown> {
       isDirty: boolean;
       isTouched: boolean;
       isValid: boolean;
+      isValidating: boolean;
     };
     value: TValue;
   };

@@ -29,6 +29,11 @@ const submitButtonOptions = computed(() => {
   };
 });
 
+// Async field validators (onBlurAsync/onChangeAsync/...) or an in-flight
+// submit both leave the form in a state where clicking submit is either
+// invalid or a duplicate request — disable it to prevent rage-clicking.
+const isFormBusy = computed(() => form.meta.submitting || form.meta.validating);
+
 async function handleSubmit(event: Event) {
   event?.preventDefault();
   event?.stopPropagation();
@@ -125,6 +130,8 @@ defineExpose({
       <PButton
         v-if="submitButtonOptions.show"
         v-bind="submitButtonOptions"
+        :disabled="isFormBusy || Boolean(submitButtonOptions.disabled)"
+        :loading="isFormBusy || Boolean(submitButtonOptions.loading)"
         @click="handleSubmit"
       >
         {{ submitButtonOptions.content }}
@@ -151,6 +158,8 @@ defineExpose({
       <PButton
         v-if="submitButtonOptions.show"
         v-bind="submitButtonOptions"
+        :disabled="isFormBusy || Boolean(submitButtonOptions.disabled)"
+        :loading="isFormBusy || Boolean(submitButtonOptions.loading)"
         @click="handleSubmit"
       >
         {{ submitButtonOptions.content }}

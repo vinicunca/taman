@@ -31,30 +31,6 @@ const routes: Array<RouteRecordRaw> = [
             },
           },
           {
-            name: 'FormBasicExample',
-            path: 'basic',
-            component: () => import('#/views/examples/form/basic.vue'),
-            meta: {
-              title: $t('examples.form.basic'),
-            },
-          },
-          {
-            name: 'FormQueryExample',
-            path: 'query',
-            component: () => import('#/views/examples/form/query.vue'),
-            meta: {
-              title: $t('examples.form.query'),
-            },
-          },
-          {
-            name: 'FormValueFormatExample',
-            path: 'value-format',
-            component: () => import('#/views/examples/form/value-format.vue'),
-            meta: {
-              title: $t('examples.form.valueFormat'),
-            },
-          },
-          {
             name: 'FormRulesExample',
             path: 'rules',
             component: () => import('#/views/examples/form/rules.vue'),

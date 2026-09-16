@@ -19,6 +19,7 @@ export function createRuntimeFieldComponent(
     fieldName: string,
     invalidator: FieldValidationInvalidator,
   ) => () => void,
+  onValidatingChange: (delta: -1 | 1) => void,
 ) {
   return markRaw(
     defineComponent({
@@ -47,10 +48,15 @@ export function createRuntimeFieldComponent(
             }
             wrappedValidators[key] = async (...args: Array<any>) => {
               const currentValidationRunId = ++validationRunId;
-              const result = await validator(...args);
-              return currentValidationRunId === validationRunId
-                ? result
-                : undefined;
+              onValidatingChange(1);
+              try {
+                const result = await validator(...args);
+                return currentValidationRunId === validationRunId
+                  ? result
+                  : undefined;
+              } finally {
+                onValidatingChange(-1);
+              }
             };
           }
           cachedValidators = validators;

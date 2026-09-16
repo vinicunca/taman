@@ -253,4 +253,35 @@ describe('form runtime', () => {
 
     expect(form.errors).toEqual({ email: 'Email error' });
   });
+
+  it('reflects an in-flight async validator on form.meta.validating', async () => {
+    let resolveValidation: ((error: string | undefined) => void) | undefined;
+    let notifyValidationStarted: (() => void) | undefined;
+    const validationStarted = new Promise<void>((resolve) => {
+      notifyValidationStarted = resolve;
+    });
+    const validator = vi.fn(() => {
+      notifyValidationStarted?.();
+      return new Promise<string | undefined>((resolve) => {
+        resolveValidation = resolve;
+      });
+    });
+    const { form } = mountRuntime({ name: '' }, validator);
+    expect(form).toBeDefined();
+    if (!form) {
+      return;
+    }
+
+    expect(form.meta.validating).toBe(false);
+
+    const pendingValidation = form.validate();
+    await validationStarted;
+    await nextTick();
+    expect(form.meta.validating).toBe(true);
+
+    resolveValidation?.(undefined);
+    await pendingValidation;
+    await nextTick();
+    expect(form.meta.validating).toBe(false);
+  });
 });

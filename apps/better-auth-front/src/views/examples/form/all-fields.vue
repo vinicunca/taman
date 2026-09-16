@@ -327,21 +327,21 @@ const [FormAllFields, formAllFieldsApi] = useTamanForm<
       rules: 'required',
     },
 
-    // {
-    //   component: 'SelectFetch',
-    //   componentProps: {
-    //     afterFetch: async (data: Array<{ name: string; path: string }>) => {
-    //       return data.map((item) => ({
-    //         label: item.name,
-    //         value: item.path,
-    //       }));
-    //     },
-    //     api: getAllMenusApi,
-    //     autoSelect: 'first',
-    //   },
-    //   fieldName: 'selectFetch',
-    //   label: 'Select Fetch',
-    // },
+    {
+      component: 'SelectFetch',
+      componentProps: {
+        afterFetch: async (data: Array<{ name: string; path: string }>) => {
+          return data.map((item) => ({
+            label: item.name,
+            value: item.path,
+          }));
+        },
+        api: getAllMenusApi,
+        autoSelect: 'first',
+      },
+      fieldName: 'selectFetch',
+      label: 'Select Fetch',
+    },
   ],
 
   handleSubmit: onSubmit,
@@ -384,7 +384,7 @@ function handleSetFormValue() {
 function onSubmit(
   values: AllFieldsSubmitValues,
 ) {
-  console.log('🚀 ~ onSubmit ~ values:', values);
+  console.warn('🚀 ~ onSubmit ~ values:', values);
 }
 </script>
 

@@ -1,220 +1,207 @@
 <script lang="ts" setup>
-import { Page } from '@taman/common-ui';
-
-import { Button, Card, message } from 'antdv-next';
+import { AppCard, AppCardAction, AppPage } from '@taman/app-ui';
 
 import { useTamanForm, z } from '#/adapter/form';
 
+const toast = useToast();
+
 const [Form, formApi] = useTamanForm({
-  // Shared by all form items; can be overridden per form
   commonConfig: {
-    // All form items
     componentProps: {
       class: 'w-full',
     },
   },
-  // Submit handler
+
   handleSubmit: onSubmit,
-  // Vertical layout: label and input on separate rows (value: vertical)
-  // Horizontal layout: label and input on the same row
-  layout: 'horizontal',
+  layout: 'vertical',
   schema: [
     {
-      // Component must be registered in #/adapter.ts with proper types
       component: 'Input',
-      // Props passed to the component
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please input',
       },
-      // Field name
       fieldName: 'field1',
-      // Label shown in the UI
-      label: '字段1',
+      label: 'Field 1',
       rules: 'required',
     },
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please input',
       },
-      defaultValue: '默认值',
+      defaultValue: 'Default Value',
       fieldName: 'field2',
-      label: '默认值(必填)',
+      label: 'Default Value (Required)',
       rules: 'required',
     },
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please input',
       },
       fieldName: 'field3',
-      label: '默认值(非必填)',
-      rules: z.string().default('默认值').optional(),
+      label: 'Default Value (Optional)',
+      rules: z.string().default('Default Value').optional(),
     },
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please input',
       },
       fieldName: 'field31',
-      label: '自定义信息',
-      rules: z.string().min(1, { message: '最少输入1个字符' }),
+      label: 'Custom Information',
+      rules: z.string().min(1, { message: 'Minimum 1 character' }),
     },
     {
       component: 'Input',
-      // Props passed to the component
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please input',
       },
-      // Field name
       fieldName: 'field4',
-      // Label shown in the UI
-      label: '邮箱',
-      rules: z.string().email('请输入正确的邮箱'),
+      label: 'Email',
+      rules: z.email('Please input a valid email'),
     },
     {
       component: 'InputNumber',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please input',
       },
       fieldName: 'number',
-      label: '数字',
+      label: 'Number',
       rules: 'required',
     },
     {
       component: 'Select',
       componentProps: {
-        allowClear: true,
-        filterOption: true,
-        options: [
+        items: [
           {
-            label: '选项1',
+            label: 'Option 1',
             value: '1',
           },
           {
-            label: '选项2',
+            label: 'Option 2',
             value: '2',
           },
         ],
-        placeholder: '请选择',
-        showSearch: true,
+        placeholder: 'Please select',
       },
       defaultValue: undefined,
       fieldName: 'options',
-      label: '下拉选',
+      label: 'Dropdown',
       rules: 'selectRequired',
     },
     {
       component: 'RadioGroup',
       componentProps: {
-        options: [
+        items: [
           {
-            label: '选项1',
+            label: 'Option 1',
             value: '1',
           },
           {
-            label: '选项2',
+            label: 'Option 2',
             value: '2',
           },
         ],
       },
       fieldName: 'radioGroup',
-      label: '单选组',
+      label: 'Radio Group',
       rules: 'selectRequired',
     },
     {
       component: 'CheckboxGroup',
       componentProps: {
         name: 'cname',
-        options: [
+        items: [
           {
-            label: '选项1',
+            label: 'Option 1',
             value: '1',
           },
           {
-            label: '选项2',
+            label: 'Option 2',
             value: '2',
           },
         ],
       },
       fieldName: 'checkboxGroup',
-      label: '多选组',
+      label: 'Checkbox Group',
       rules: 'selectRequired',
     },
     {
       component: 'Checkbox',
       fieldName: 'checkbox',
-      label: '',
-      renderComponentContent: () => {
-        return {
-          default: () => ['我已阅读并同意'],
-        };
+      componentProps: {
+        label: 'I have read and agree.',
       },
       rules: z.boolean().refine((value) => value, {
-        message: '请勾选',
+        message: 'Please check the box',
       }),
     },
     {
-      component: 'DatePicker',
+      component: 'InputDate',
       defaultValue: undefined,
       fieldName: 'datePicker',
-      label: '日期选择框',
+      label: 'Date Picker',
       rules: 'selectRequired',
     },
     {
-      component: 'RangePicker',
+      component: 'InputDate',
       defaultValue: undefined,
+      componentProps: {
+        range: true,
+      },
       fieldName: 'rangePicker',
-      label: '区间选择框',
+      label: 'Range Picker',
       rules: 'selectRequired',
     },
     {
       component: 'InputPassword',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please input',
       },
       fieldName: 'password',
-      label: '密码',
+      label: 'Password',
       rules: 'required',
     },
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please input',
       },
       fieldName: 'input-blur',
       formFieldProps: {
-        validateOnChange: false,
-        validateOnModelUpdate: false,
+        validateOn: ['blur'],
       },
-      help: 'blur时才会触发校验',
-      label: 'blur触发',
+      help: 'Validation will only trigger when the input is blurred',
+      label: 'Blur Trigger',
       rules: 'required',
     },
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please input',
       },
       fieldName: 'input-async',
-      label: '异步校验',
+      label: 'Async Validation',
       rules: z
         .string()
-        .min(3, '用户名至少需要3个字符')
+        .min(3, 'Username must be at least 3 characters')
         .refine(
           async (username) => {
             // Async validator simulating a username availability check
             const checkUsernameExists = async (
               username: string,
             ): Promise<boolean> => {
-              await new Promise((resolve) => setTimeout(resolve, 1000));
+              await new Promise((resolve) => {
+                setTimeout(resolve, 1000);
+              });
               return username === 'existingUser';
             };
             const exists = await checkUsernameExists(username);
             return !exists;
           },
           {
-            message: '用户名已存在',
+            message: 'Username already exists',
           },
         ),
     },
@@ -224,22 +211,40 @@ const [Form, formApi] = useTamanForm({
 });
 
 function onSubmit(values: Record<string, any>) {
-  message.success({
-    content: `form values: ${JSON.stringify(values)}`,
+  toast.add({
+    color: 'success',
+    title: `form values: ${JSON.stringify(values)}`,
+    duration: 2_000,
   });
 }
 </script>
 
 <template>
-  <Page description="表单校验示例" title="表单组件">
-    <Card title="基础组件校验示例">
-      <template #extra>
-        <Button @click="() => formApi.validate()">校验表单</Button>
-        <Button class="mx-2" @click="() => formApi.resetValidate()">
-          清空校验信息
-        </Button>
+  <AppPage
+    content-class="flex flex-col gap-4"
+    description="Form Validation Example"
+    title="Form Components"
+  >
+    <AppCard :title="$t('examples.form.allFields.title')">
+      <template #trailingHeader>
+        <AppCardAction class="flex gap-2">
+          <PButton
+            variant="outline"
+            @click="() => formApi.validate()"
+          >
+            Validate Form
+          </PButton>
+
+          <PButton
+            variant="outline"
+            @click="() => formApi.clearValidation()"
+          >
+            Reset Validation
+          </PButton>
+        </AppCardAction>
       </template>
+
       <Form />
-    </Card>
-  </Page>
+    </AppCard>
+  </AppPage>
 </template>

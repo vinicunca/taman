@@ -57,6 +57,18 @@ export function useFormRuntime<TValues extends FormValues>(
     Set<FieldValidationInvalidator>
   >();
 
+  // TanStack Form's own `formState.isValidating` doesn't reliably flip to
+  // true for async field validators driven through the render-prop `Field`
+  // pattern used here, even though each field's own `isValidating` does.
+  // Track it ourselves from the same wrapper that powers the per-field
+  // loading state, so the two stay consistent.
+  const pendingAsyncValidations = shallowRef(0);
+  const isAnyFieldValidating = computed(() => pendingAsyncValidations.value > 0);
+
+  function onFieldValidatingChange(delta: -1 | 1) {
+    pendingAsyncValidations.value += delta;
+  }
+
   function registerValidationInvalidator(
     fieldName: string,
     invalidator: FieldValidationInvalidator,
@@ -85,6 +97,7 @@ export function useFormRuntime<TValues extends FormValues>(
   const RuntimeField = createRuntimeFieldComponent(
     rawForm.Field,
     registerValidationInvalidator,
+    onFieldValidatingChange,
   );
 
   function getErrors() {
@@ -106,7 +119,7 @@ export function useFormRuntime<TValues extends FormValues>(
     dirty: isDirty.value,
     submitting: isSubmitting.value,
     valid: isValid.value && manualErrors.value.size === 0,
-    validating: isValidating.value,
+    validating: isValidating.value || isAnyFieldValidating.value,
   }));
   const runtimeState = computed<FormRuntimeState<TValues>>(() => ({
     errors: errors.value,

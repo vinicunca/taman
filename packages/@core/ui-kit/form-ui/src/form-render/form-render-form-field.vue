@@ -358,6 +358,7 @@ function createComponentProps(slotProps: RuntimeFieldSlotProps) {
     normalizedSlotProps.componentField,
     bindEventField,
   );
+  const isFieldValidating = slotProps.field.state.meta.isValidating;
 
   const binds = {
     ...computedProps.value,
@@ -370,6 +371,10 @@ function createComponentProps(slotProps: RuntimeFieldSlotProps) {
         ? { color: 'error', highlight: true }
         : {}
     ),
+    // Surface async validation (onBlurAsync/onChangeAsync/...) as the
+    // component's own `loading` prop so fields don't need to hand-manage a
+    // loading flag. Ignored (harmless) by components without a `loading` prop.
+    loading: Boolean(computedProps.value?.loading) || isFieldValidating,
     ...normalizedSlotProps.componentField,
     ...bindEvents,
     disabled: shouldDisabled.value,
