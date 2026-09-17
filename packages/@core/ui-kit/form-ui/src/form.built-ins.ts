@@ -12,6 +12,7 @@ import type {
   RadioGroupProps,
   SelectMenuProps,
   SelectProps,
+  SeparatorProps,
   SliderProps,
   SwitchProps,
   TextareaProps,
@@ -30,6 +31,7 @@ import PPinInput from 'pohon-ui/components/PinInput.vue';
 import PRadioGroup from 'pohon-ui/components/RadioGroup.vue';
 import PSelect from 'pohon-ui/components/Select.vue';
 import PSelectMenu from 'pohon-ui/components/SelectMenu.vue';
+import PSeparator from 'pohon-ui/components/Separator.vue';
 import PSlider from 'pohon-ui/components/Slider.vue';
 import PSwitch from 'pohon-ui/components/Switch.vue';
 import PTextarea from 'pohon-ui/components/Textarea.vue';
@@ -54,19 +56,21 @@ export interface BuiltInFormComponentPropsMap {
   Slider: SliderProps;
   Switch: SwitchProps;
   Textarea: TextareaProps;
+  Separator: SeparatorProps;
 }
 
 export type BuiltInFormComponentType = keyof BuiltInFormComponentPropsMap;
 
+// @keep-sorted
 export const BUILT_IN_COMPONENT_MAP = {
   Checkbox: PCheckbox,
   CheckboxGroup: PCheckboxGroup,
   FileUpload: TamanFileUpload,
   Input: PInput,
-  InputDate: TamanInputDate,
-  InputNumber: PInputNumber,
   InputCurrency: TamanInputCurrency,
+  InputDate: TamanInputDate,
   InputMenu: PInputMenu,
+  InputNumber: PInputNumber,
   InputPassword: TamanInputPassword,
   InputRating: PInputRating,
   InputTags: PInputTags,
@@ -75,6 +79,7 @@ export const BUILT_IN_COMPONENT_MAP = {
   RadioGroup: PRadioGroup,
   Select: PSelect,
   SelectMenu: PSelectMenu,
+  Separator: PSeparator,
   Slider: PSlider,
   Switch: PSwitch,
   Textarea: PTextarea,

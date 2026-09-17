@@ -1,48 +1,47 @@
 <script lang="ts" setup>
-import { Page } from '@taman/common-ui';
-
-import { Button, Card, message } from 'antdv-next';
+import { AppCard, AppCardAction, AppPage } from '@taman/app-ui';
 
 import { useTamanForm } from '#/adapter/form';
 
 const [Form, formApi] = useTamanForm({
-  // Submit handler
+  layout: 'vertical',
+
   handleSubmit: onSubmit,
+
   schema: [
     {
       component: 'Input',
       defaultValue: 'hidden value',
       dependencies: {
         show: false,
-        // Triggers when any field changes
         triggerFields: ['field1Switch'],
       },
       fieldName: 'hiddenField',
-      label: '隐藏字段',
+      label: 'Hidden Field',
     },
     {
       component: 'Switch',
       defaultValue: true,
       fieldName: 'field1Switch',
-      help: '通过Dom控制销毁',
-      label: '显示字段1',
+      help: 'Destroyed by DOM control',
+      label: 'Show Field 1',
     },
     {
       component: 'Switch',
       defaultValue: true,
       fieldName: 'field2Switch',
-      help: '通过css控制隐藏',
-      label: '显示字段2',
+      help: 'Hidden by CSS control',
+      label: 'Show Field 2',
     },
     {
       component: 'Switch',
       fieldName: 'field3Switch',
-      label: '禁用字段3',
+      label: 'Disable Field 3',
     },
     {
       component: 'Switch',
       fieldName: 'field4Switch',
-      label: '字段4必填',
+      label: 'Field 4 Required',
     },
     {
       component: 'Input',
@@ -50,13 +49,10 @@ const [Form, formApi] = useTamanForm({
         if(values) {
           return !!values.field1Switch;
         },
-        // Triggers only when specified fields change
         triggerFields: ['field1Switch'],
       },
-      // Field name
       fieldName: 'field1',
-      // Label shown in the UI
-      label: '字段1',
+      label: 'Field 1',
     },
     {
       component: 'Input',
@@ -67,7 +63,7 @@ const [Form, formApi] = useTamanForm({
         triggerFields: ['field2Switch'],
       },
       fieldName: 'field2',
-      label: '字段2',
+      label: 'Field 2',
     },
     {
       component: 'Input',
@@ -78,7 +74,7 @@ const [Form, formApi] = useTamanForm({
         triggerFields: ['field3Switch'],
       },
       fieldName: 'field3',
-      label: '字段3',
+      label: 'Field 3',
     },
     {
       component: 'Input',
@@ -89,7 +85,7 @@ const [Form, formApi] = useTamanForm({
         triggerFields: ['field4Switch'],
       },
       fieldName: 'field4',
-      label: '字段4',
+      label: 'Field 4',
     },
     {
       component: 'Input',
@@ -103,43 +99,40 @@ const [Form, formApi] = useTamanForm({
         triggerFields: ['field1'],
       },
       fieldName: 'field5',
-      help: '当字段1的值为`123`时，必填',
-      label: '动态rules',
+      help: 'When the value of field 1 is `123`, it is required',
+      label: 'Dynamic Rules',
     },
     {
       component: 'Select',
       componentProps: {
-        allowClear: true,
         class: 'w-full',
-        filterOption: true,
-        options: [
+        items: [
           {
-            label: '选项1',
+            label: 'Option 1',
             value: '1',
           },
           {
-            label: '选项2',
+            label: 'Option 2',
             value: '2',
           },
         ],
-        placeholder: '请选择',
-        showSearch: true,
+        placeholder: 'Please select',
       },
       dependencies: {
         componentProps(values) {
           if (values.field2 === '123') {
             return {
-              options: [
+              items: [
                 {
-                  label: '选项1',
+                  label: 'Option 1',
                   value: '1',
                 },
                 {
-                  label: '选项2',
+                  label: 'Option 2',
                   value: '2',
                 },
                 {
-                  label: '选项3',
+                  label: 'Option 3',
                   value: '3',
                 },
               ],
@@ -150,16 +143,16 @@ const [Form, formApi] = useTamanForm({
         triggerFields: ['field2'],
       },
       fieldName: 'field6',
-      help: '当字段2的值为`123`时，更改下拉选项',
-      label: '动态配置',
+      help: 'When the value of field 2 is `123`, change the dropdown options',
+      label: 'Dynamic Configuration',
     },
     {
       component: 'Input',
       fieldName: 'field7',
-      label: '字段7',
+      label: 'Field 7',
     },
   ],
-  // 3 columns on large screens, 2 on medium, 1 on small
+
   wrapperClass: 'grid-cols-1 md:grid-cols-3 lg:grid-cols-4',
 });
 
@@ -168,10 +161,8 @@ const [SyncForm] = useTamanForm({
   schema: [
     {
       component: 'Input',
-      // Field name
       fieldName: 'field1',
-      // Label shown in the UI
-      label: '字段1',
+      label: 'Field 1',
     },
     {
       component: 'Input',
@@ -182,22 +173,22 @@ const [SyncForm] = useTamanForm({
         trigger(values, form) {
           form.setFieldValue('field2', values.field1);
         },
-        // Triggers only when specified fields change
         triggerFields: ['field1'],
       },
-      // Field name
       fieldName: 'field2',
-      // Label shown in the UI
-      label: '字段2',
+      label: 'Field 2',
     },
   ],
-  // 3 columns on large screens, 2 on medium, 1 on small
   wrapperClass: 'grid-cols-1 md:grid-cols-3 lg:grid-cols-4',
 });
 
+const toast = useToast();
+
 function onSubmit(values: Record<string, any>) {
-  message.success({
-    content: `form values: ${JSON.stringify(values)}`,
+  toast.add({
+    color: 'success',
+    title: `form values: ${JSON.stringify(values)}`,
+    duration: 2_000,
   });
 }
 
@@ -217,7 +208,7 @@ function handleAdd() {
         {
           component: 'Input',
           fieldName: `field${Date.now()}`,
-          label: '字段+',
+          label: 'Field +',
         },
       ],
     };
@@ -231,7 +222,7 @@ function handleUpdate() {
         if (item.fieldName === 'field3') {
           return {
             ...item,
-            label: '字段3-修改',
+            label: 'Field 3-Modify',
           };
         }
         return item;
@@ -242,21 +233,42 @@ function handleUpdate() {
 </script>
 
 <template>
-  <Page
-    description="表单组件动态联动示例，包含了常用的场景。增删改，本质上是修改schema，你也可以通过 `setState` 动态修改schema。"
-    title="表单组件"
+  <AppPage
+    content-class="flex flex-col gap-4"
+    description="Form dynamic linking example, including common scenarios. Add, delete, and modify,本质上上是修改schema，你也可以通过 `setState` 动态修改schema。"
+    title="Form Components"
   >
-    <Card title="表单动态联动示例">
-      <template #extra>
-        <Button class="mr-2" @click="handleUpdate">修改字段3</Button>
-        <Button class="mr-2" @click="handleDelete">删除字段7</Button>
-        <Button @click="handleAdd">添加字段</Button>
-      </template>
-      <Form />
-    </Card>
+    <AppCard title="Form Dynamic Linking Example">
+      <template #trailingHeader>
+        <AppCardAction class="flex gap-2">
+          <PButton
+            variant="outline"
+            @click="handleUpdate"
+          >
+            Modify Field 3
+          </PButton>
 
-    <Card class="mt-5" title="字段同步，字段1数据与字段2数据同步">
+          <PButton
+            variant="outline"
+            @click="handleDelete"
+          >
+            Delete Field 7
+          </PButton>
+
+          <PButton
+            variant="outline"
+            @click="handleAdd"
+          >
+            Add Field
+          </PButton>
+        </AppCardAction>
+      </template>
+
+      <Form />
+    </AppCard>
+
+    <AppCard title="Field synchronization, field 1 data and field 2 data synchronization">
       <SyncForm />
-    </Card>
-  </Page>
+    </AppCard>
+  </AppPage>
 </template>

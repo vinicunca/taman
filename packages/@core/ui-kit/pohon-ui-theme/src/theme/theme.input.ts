@@ -59,7 +59,7 @@ export const themeInput = {
       },
     },
     variant: {
-      outline: 'color-text-highlighted bg-background ring-ring-accented ring ring-inset',
+      outline: 'color-text-highlighted bg-background ring-ring-accented ring ring-inset disabled:bg-background-accented',
       soft: 'color-text-highlighted bg-background-elevated/50 hover:bg-background-elevated focus:bg-background-elevated disabled:bg-background-elevated/50',
       subtle: 'color-text-highlighted bg-background-elevated ring-ring-accented ring ring-inset',
       ghost: 'color-text-highlighted hover:bg-background-elevated focus:bg-background-elevated bg-transparent disabled:bg-transparent dark:disabled:bg-transparent',

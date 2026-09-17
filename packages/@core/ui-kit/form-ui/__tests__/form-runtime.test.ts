@@ -284,4 +284,39 @@ describe('form runtime', () => {
     await nextTick();
     expect(form.meta.validating).toBe(false);
   });
+
+  it('never touches form.meta.validating for a field with no validators', async () => {
+    vi.useFakeTimers();
+    try {
+      let form: FormActions | undefined;
+      const defaultValues: Record<string, any> = { name: '' };
+      const Harness = defineComponent({
+        setup() {
+          const runtime = useFormRuntime(defaultValues);
+          form = runtime;
+          return () =>
+            h(
+              runtime.fieldComponent,
+              { name: 'name' },
+              {
+                default: ({ field }: Record<string, any>) =>
+                  h('input', { name: 'name', value: field.state.value }),
+              },
+            );
+        },
+      });
+      const wrapper = mount(Harness);
+      wrappers.push(wrapper);
+      if (!form) {
+        return;
+      }
+
+      await form.validate();
+      await vi.advanceTimersByTimeAsync(200);
+      await nextTick();
+      expect(form.meta.validating).toBe(false);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
 });

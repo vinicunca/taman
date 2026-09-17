@@ -214,6 +214,15 @@ async function validateFieldValue({ value }: { value: any }) {
 }
 
 const fieldValidators = computed(() => {
+  // No active rule means `validateFieldValue` would just no-op anyway —
+  // skip wiring it up so ruleless fields don't run through TanStack's
+  // async validation machinery (and briefly flash a loading state) on
+  // every submit/blur/change for nothing. Reactive: a field that becomes
+  // required later (via `dependencies.required`) picks this back up
+  // through `fieldRules`.
+  if (!fieldRules.value) {
+    return {};
+  }
   const validators: Record<string, typeof validateFieldValue> = {
     onSubmitAsync: validateFieldValue,
   };

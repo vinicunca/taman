@@ -36,7 +36,7 @@ export const themeSelect = defuFn(
       ...fieldGroupVariant,
       variant: (prev: Record<string, string>) => ({
         ...prev,
-        outline: [prev.outline, 'hover:bg-background-elevated disabled:bg-background'].join(' '),
+        outline: [prev.outline, 'hover:bg-background-elevated/70 disabled:bg-background-accented'].join(' '),
         subtle: [prev.subtle, 'hover:bg-background-accented/75 disabled:bg-background-elevated'].join(' '),
       }),
       size: {
