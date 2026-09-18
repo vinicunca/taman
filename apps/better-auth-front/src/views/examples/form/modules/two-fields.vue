@@ -1,42 +1,47 @@
 <script lang="ts" setup>
-import { Input, Select } from 'antdv-next';
+import { computed } from 'vue';
 
-const emit = defineEmits(['blur', 'change']);
-
-const modelValue = defineModel<[string, string]>({
+const modelValue = defineModel<
+  [string | undefined, string | undefined]
+>({
   default: () => [undefined, undefined],
 });
 
-function onChange() {
-  emit('change', modelValue.value);
-}
+const typeValue = computed({
+  get: () => modelValue.value[0],
+  set: (value) => {
+    modelValue.value = [value, modelValue.value[1]];
+  },
+});
+
+const phoneValue = computed({
+  get: () => modelValue.value[1],
+  set: (value) => {
+    modelValue.value = [modelValue.value[0], value];
+  },
+});
 </script>
+
 <template>
-  <div class="flex w-full gap-1">
-    <Select
-      v-model:value="modelValue[0]"
+  <div class="flex gap-1 w-full">
+    <PSelect
+      v-model="typeValue"
       class="w-20"
-      placeholder="类型"
-      allow-clear
-      :class="{ 'valid-success': !!modelValue[0] }"
-      :options="[
-        { label: '个人', value: 'personal' },
-        { label: '工作', value: 'work' },
-        { label: '私密', value: 'private' },
+      placeholder="Type"
+      :class="{ 'valid-success': !!typeValue }"
+      :items="[
+        { label: 'Personal', value: 'personal' },
+        { label: 'Work', value: 'work' },
+        { label: 'Private', value: 'private' },
       ]"
-      @blur="emit('blur')"
-      @change="onChange"
     />
-    <Input
-      placeholder="请输入11位手机号码"
+    <PInput
+      v-model="phoneValue"
+      placeholder="Enter 11-digit phone number"
       class="flex-1"
-      allow-clear
-      :class="{ 'valid-success': modelValue[1]?.match(/^1[3-9]\d{9}$/) }"
-      v-model:value="modelValue[1]"
+      :class="{ 'valid-success': phoneValue?.match(/^1[3-9]\d{9}$/) }"
       :maxlength="11"
       type="tel"
-      @blur="emit('blur')"
-      @change="onChange"
     />
   </div>
 </template>

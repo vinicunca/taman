@@ -126,7 +126,7 @@ export const button = {
     {
       color: 'neutral',
       variant: 'outline',
-      class: 'ring ring-inset ring-ring-accented color-text bg-background hover:bg-background-elevated active:bg-background-elevated disabled:bg-background aria-disabled:bg-background outline-outline-inverted/25 focus-visible:outline-3 focus-visible:ring-ring-inverted',
+      class: 'ring ring-inset ring-ring-accented color-text bg-background hover:bg-background-elevated active:bg-background-elevated disabled:bg-background-elevated aria-disabled:bg-background-elevated outline-outline-inverted/25 focus-visible:outline-3 focus-visible:ring-ring-inverted',
     },
     {
       color: 'neutral',

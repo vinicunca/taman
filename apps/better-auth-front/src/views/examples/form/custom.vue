@@ -1,100 +1,195 @@
 <script lang="ts" setup>
-import { h, markRaw } from 'vue';
+import type { Component } from 'vue';
 
-import { Page } from '@taman/common-ui';
-
-import { Card, Input, message } from 'antdv-next';
+import { AppCard, AppPage } from '@taman/app-ui';
+import PInput from 'pohon-ui/components/Input.vue';
+import PSelect from 'pohon-ui/components/Select.vue';
+import { h, markRaw, ref } from 'vue';
 
 import { useTamanForm, z } from '#/adapter/form';
 
 import TwoFields from './modules/two-fields.vue';
 
-const [Form] = useTamanForm({
-  // Shared by all form items; can be overridden per form
+interface CustomFormValues {
+  field?: string;
+  field1?: string;
+  field2?: string;
+  field3?: string;
+  field4?: [string | undefined, string | undefined];
+  field5?: string;
+}
+
+const dynamicComponentType = ref<'input' | 'select'>('input');
+
+function encodeCustomFormValues(values: Readonly<CustomFormValues>) {
+  const { field4, ...formValues } = values;
+  return {
+    ...formValues,
+    phoneNumber: field4?.[1],
+    phoneType: field4?.[0],
+  };
+}
+
+type CustomSubmitValues = ReturnType<typeof encodeCustomFormValues>;
+
+function decodeCustomFormValues(
+  values: Readonly<CustomSubmitValues>,
+): CustomFormValues {
+  const { phoneNumber, phoneType, ...formValues } = values;
+  return {
+    ...formValues,
+    field4: [phoneType, phoneNumber ?? ''],
+  };
+}
+
+const [Form, formApi] = useTamanForm({
+  codec: {
+    decode: decodeCustomFormValues,
+    encode: encodeCustomFormValues,
+  },
+
   commonConfig: {
-    // All form items
     componentProps: {
-      class: 'w-full',
+      class: 'w-full asd',
     },
     labelClass: 'w-2/6',
   },
   fieldMappingTime: [['field4', ['phoneType', 'phoneNumber'], null]],
-  // Submit handler
   handleSubmit: onSubmit,
-  // Vertical layout: label and input on separate rows (value: vertical)
-  // Horizontal layout: label and input on the same row
   layout: 'horizontal',
   schema: [
     {
-      // Component must be registered in #/adapter.ts with proper types
       component: 'Input',
       fieldName: 'field',
-      label: '自定义后缀',
-      suffix: () => h('span', { class: 'text-red-600' }, '元'),
+      label: 'Custom Suffix',
+      suffix: () => h('span', { class: 'text-red-600' }, 'Rupiah'),
     },
     {
       component: 'Input',
       fieldName: 'field1',
-      label: '自定义组件slot',
+      label: 'Custom Component Slot',
       renderComponentContent: () => ({
         prefix: () => 'prefix',
         suffix: () => 'suffix',
       }),
     },
     {
-      component: h(Input, { placeholder: '请输入Field2' }),
+      component: h(PInput as Component, { placeholder: 'Enter Field2' }),
       fieldName: 'field2',
-      label: '自定义组件',
+      label: 'Custom Component',
       modelPropName: 'value',
       rules: 'required',
     },
     {
       component: 'Input',
       fieldName: 'field3',
-      label: '自定义组件(slot)',
+      label: 'Custom Component (slot)',
       rules: 'required',
     },
     {
       component: markRaw(TwoFields),
       defaultValue: [undefined, ''],
-      disabledOnChangeListener: false,
       fieldName: 'field4',
       formItemClass: 'col-span-1',
-      label: '组合字段',
+      label: 'Combined Fields',
       rules: z
         .array(z.string().optional())
-        .length(2, '请选择类型并输入手机号码')
+        .length(2, 'Please select a type and enter a phone number')
         .refine((v) => !!v[0], {
-          message: '请选择类型',
+          message: 'Please select a type',
         })
         .refine((v) => !!v[1] && v[1] !== '', {
-          message: '　　　　　　　输入手机号码',
+          message: 'Please enter a phone number',
         })
         .refine((v) => v[1]?.match(/^1[3-9]\d{9}$/), {
-          // Use full-width spaces to push validation errors below the phone number input
-          message: '　　　　　　　号码格式不正确',
+          message: 'Phone number format is incorrect',
         }),
     },
+    {
+      component: markRaw(PInput),
+      componentProps: {
+        placeholder: 'Enter Dynamic Component Value',
+      },
+      fieldName: 'field5',
+      label: 'Dynamic Component',
+      modelPropName: 'value',
+    },
   ],
-  // 2 per row on medium screens, 1 on small
   wrapperClass: 'grid-cols-1 md:grid-cols-2',
 });
 
+function handleToggleDynamicComponent() {
+  const nextType = dynamicComponentType.value === 'input' ? 'select' : 'input';
+  dynamicComponentType.value = nextType;
+
+  if (nextType === 'select') {
+    formApi.updateSchema([
+      {
+        component: markRaw(PSelect),
+        componentProps: {
+          allowClear: true,
+          items: [
+            { label: 'Option 1', value: 'option-1' },
+            { label: 'Option 2', value: 'option-2' },
+          ],
+          placeholder: 'Select Dynamic Component Value',
+        },
+        fieldName: 'field5',
+        modelPropName: 'value',
+      },
+    ]);
+    return;
+  }
+
+  formApi.updateSchema([
+    {
+      component: markRaw(PInput),
+      componentProps: {
+        placeholder: 'Enter Dynamic Component Value',
+      },
+      fieldName: 'field5',
+      modelPropName: 'value',
+    },
+  ]);
+}
+
+const toast = useToast();
 function onSubmit(values: Record<string, any>) {
-  message.success({
-    content: `form values: ${JSON.stringify(values)}`,
+  toast.add({
+    color: 'success',
+    title: `form values: ${JSON.stringify(values)}`,
+    duration: 2_000,
   });
 }
 </script>
 
 <template>
-  <Page description="表单组件自定义示例" title="表单组件">
-    <Card title="基础示例">
+  <AppPage
+    description="Example of Customizing Form Components"
+    title="Form Components"
+  >
+    <template #trailingHeader>
+      <PButton
+        color="neutral"
+        size="sm"
+        variant="outline"
+        @click="handleToggleDynamicComponent"
+      >
+        {{
+          dynamicComponentType === 'input' ? 'Switch to Select' : 'Switch to Input'
+        }}
+      </PButton>
+    </template>
+
+    <AppCard title="Basic Example">
       <Form>
-        <template #field3="slotProps">
-          <Input placeholder="请输入" v-bind="slotProps" />
+        <template #field3="{ componentProps }">
+          <PInput
+            placeholder="Enter Field3"
+            v-bind="componentProps"
+          />
         </template>
       </Form>
-    </Card>
-  </Page>
+    </AppCard>
+  </AppPage>
 </template>

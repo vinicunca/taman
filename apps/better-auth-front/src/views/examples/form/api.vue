@@ -1,49 +1,35 @@
 <script lang="ts" setup>
 import type { TamanFormSchema } from '#/adapter/form';
 
+import { AppCard, AppPage } from '@taman/app-ui';
 import { ref } from 'vue';
-
-import { Page } from '@taman/common-ui';
-
-import { Button, Card, message, Space } from 'antdv-next';
 
 import { useTamanForm } from '#/adapter/form';
 
 const isReverseActionButtons = ref(false);
 
 const [BaseForm, formApi] = useTamanForm({
-  // Flip action button position
   actionButtonsReverse: isReverseActionButtons.value,
-  // Shared by all form items; can be overridden per form
   commonConfig: {
-    // All form items
     componentProps: {
       class: 'w-full',
     },
   },
-  // Use Tailwind CSS grid layout
-  // Submit handler
   handleSubmit: onSubmit,
-  // Vertical layout: label and input on separate rows (value: vertical)
   layout: 'horizontal',
-  // Horizontal layout: label and input on the same row
   schema: [
     {
-      // Component must be registered in #/adapter.ts with proper types
       component: 'Input',
-      // Props passed to the component
       componentProps: {
-        placeholder: '请输入用户名',
+        placeholder: 'Please enter your username.',
       },
-      // Field name
       fieldName: 'field1',
-      // Label shown in the UI
       label: 'field1',
     },
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please enter your username.',
       },
       fieldName: 'field2',
       label: 'field2',
@@ -53,30 +39,32 @@ const [BaseForm, formApi] = useTamanForm({
       componentProps: {
         allowClear: true,
         filterOption: true,
-        options: [
+        items: [
           {
-            label: '选项1',
+            label: 'Option 1',
             value: '1',
           },
           {
-            label: '选项2',
+            label: 'Option 2',
             value: '2',
           },
         ],
-        placeholder: '请选择',
+        placeholder: 'Please select',
         showSearch: true,
       },
       fieldName: 'fieldOptions',
-      label: '下拉选',
+      label: 'Dropdown',
     },
   ],
-  // 3 columns on large screens, 2 on medium, 1 on small
   wrapperClass: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
 });
 
+const toast = useToast();
 function onSubmit(values: Record<string, any>) {
-  message.success({
-    content: `form values: ${JSON.stringify(values)}`,
+  toast.add({
+    color: 'success',
+    title: `form values: ${JSON.stringify(values)}`,
+    duration: 2_000,
   });
 }
 
@@ -96,7 +84,6 @@ function handleClick(
     | 'showAction'
     | 'showResetButton'
     | 'showSubmitButton'
-    | 'updateActionAlign'
     | 'updateResetButton'
     | 'updateSchema'
     | 'updateSubmitButton',
@@ -110,10 +97,10 @@ function handleClick(
           newSchema.push({
             component: 'Input',
             componentProps: {
-              placeholder: '请输入',
+              placeholder: 'Please enter',
             },
             fieldName: `field${i}${Date.now()}`,
-            label: `field+`,
+            label: 'field+',
           });
         }
         return {
@@ -133,10 +120,9 @@ function handleClick(
       break;
     }
     case 'componentRef': {
-      // Get the select component instance and call its focus method
-      formApi
-        .getFieldComponentRef<{ focus?: () => void }>('fieldOptions')
-        ?.focus?.();
+      const selectRef = formApi.getFieldComponentRef<{ triggerRef?: { focus?: () => void } }>('fieldOptions');
+
+      selectRef?.triggerRef?.focus?.({ focusVisible: true });
       break;
     }
     case 'disabled': {
@@ -193,13 +179,6 @@ function handleClick(
       break;
     }
 
-    case 'updateActionAlign': {
-      formApi.setState({
-        // Adjust class as needed
-        actionWrapperClass: 'text-center',
-      });
-      break;
-    }
     case 'updateResetButton': {
       formApi.setState({
         resetButtonOptions: { disabled: true },
@@ -210,17 +189,17 @@ function handleClick(
       formApi.updateSchema([
         {
           componentProps: {
-            options: [
+            items: [
               {
-                label: '选项1',
+                label: 'Option 1',
                 value: '1',
               },
               {
-                label: '选项2',
+                label: 'Option 2',
                 value: '2',
               },
               {
-                label: '选项3',
+                label: 'Option 3',
                 value: '3',
               },
             ],
@@ -228,7 +207,11 @@ function handleClick(
           fieldName: 'fieldOptions',
         },
       ]);
-      message.success('字段 `fieldOptions` 下拉选项更新成功。');
+      toast.add({
+        color: 'success',
+        title: 'Field `fieldOptions` dropdown options updated successfully.',
+        duration: 2_000,
+      });
       break;
     }
     case 'updateSubmitButton': {
@@ -242,35 +225,65 @@ function handleClick(
 </script>
 
 <template>
-  <Page description="表单组件api操作示例。" title="表单组件">
-    <Space class="mb-5 flex-wrap">
-      <Button @click="handleClick('updateSchema')">updateSchema</Button>
-      <Button @click="handleClick('labelWidth')">更改labelWidth</Button>
-      <Button @click="handleClick('resetLabelWidth')">还原labelWidth</Button>
-      <Button @click="handleClick('disabled')">禁用表单</Button>
-      <Button @click="handleClick('resetDisabled')">解除禁用</Button>
-      <Button @click="handleClick('reverseActionButtons')">
-        翻转操作按钮位置
-      </Button>
-      <Button @click="handleClick('hiddenAction')">隐藏操作按钮</Button>
-      <Button @click="handleClick('showAction')">显示操作按钮</Button>
-      <Button @click="handleClick('hiddenResetButton')">隐藏重置按钮</Button>
-      <Button @click="handleClick('showResetButton')">显示重置按钮</Button>
-      <Button @click="handleClick('hiddenSubmitButton')">隐藏提交按钮</Button>
-      <Button @click="handleClick('showSubmitButton')">显示提交按钮</Button>
-      <Button @click="handleClick('updateResetButton')">修改重置按钮</Button>
-      <Button @click="handleClick('updateSubmitButton')">修改提交按钮</Button>
-      <Button @click="handleClick('updateActionAlign')">
-        调整操作按钮位置
-      </Button>
-      <Button @click="handleClick('batchAddSchema')"> 批量添加表单项 </Button>
-      <Button @click="handleClick('batchDeleteSchema')">
-        批量删除表单项
-      </Button>
-      <Button @click="handleClick('componentRef')">下拉组件获取焦点</Button>
-    </Space>
-    <Card title="操作示例">
+  <AppPage
+    description="Form component API operation example."
+    title="Form Components"
+  >
+    <div class="mb-5 flex flex-wrap gap-2">
+      <PButton @click="handleClick('updateSchema')">
+        update Schema
+      </PButton>
+      <PButton @click="handleClick('labelWidth')">
+        Change labelWidth
+      </PButton>
+      <PButton @click="handleClick('resetLabelWidth')">
+        Reset labelWidth
+      </PButton>
+      <PButton @click="handleClick('disabled')">
+        Disable form
+      </PButton>
+      <PButton @click="handleClick('resetDisabled')">
+        Reset disable
+      </PButton>
+      <PButton @click="handleClick('reverseActionButtons')">
+        Reverse action buttons position
+      </PButton>
+      <PButton @click="handleClick('hiddenAction')">
+        Hide action buttons
+      </PButton>
+      <PButton @click="handleClick('showAction')">
+        Show action buttons
+      </PButton>
+      <PButton @click="handleClick('hiddenResetButton')">
+        Hide reset buttons
+      </PButton>
+      <PButton @click="handleClick('showResetButton')">
+        Show reset buttons
+      </PButton>
+      <PButton @click="handleClick('hiddenSubmitButton')">
+        Hide submit buttons
+      </PButton>
+      <PButton @click="handleClick('showSubmitButton')">
+        Show submit buttons
+      </PButton>
+      <PButton @click="handleClick('updateResetButton')">
+        Update reset buttons
+      </PButton>
+      <PButton @click="handleClick('updateSubmitButton')">
+        Update submit buttons
+      </PButton>
+      <PButton @click="handleClick('batchAddSchema')">
+        Batch add form items
+      </PButton>
+      <PButton @click="handleClick('batchDeleteSchema')">
+        Batch delete form items
+      </PButton>
+      <PButton @click="handleClick('componentRef')">
+        Get focus of dropdown component
+      </PButton>
+    </div>
+    <AppCard title="Example">
       <BaseForm />
-    </Card>
-  </Page>
+    </AppCard>
+  </AppPage>
 </template>

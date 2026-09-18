@@ -1302,9 +1302,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/form/api.vue": {
-    "mtime": 1789699111.9866161,
-    "seen": 1789699132.966075,
-    "ast_hash": "49c26ec8c920e90fd93405a3cfc7c950",
+    "mtime": 1789698250.143853,
+    "seen": 1789698744.7808042,
+    "ast_hash": "82f2a81369202375b71d146c35bca2cd",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/form/collapsible.vue": {
