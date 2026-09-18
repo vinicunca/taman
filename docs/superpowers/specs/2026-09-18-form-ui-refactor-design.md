@@ -368,3 +368,18 @@ batched at the end.
   `const` type parameter and group recursion, and is orthogonal to everything
   here.
 - **vxe-table migration.** Those files are being deleted.
+- **A per-field label slot** (e.g. `#<fieldName>-label`) in place of `labelClass`.
+  Considered and rejected for this change set:
+  - `label` is already `(() => Component | string) | string`, so arbitrary label
+    *content* is expressible from the schema today without any template.
+  - `commonConfig.labelClass` styles every label at once; a slot is inherently
+    per-field.
+  - Many schemas are plain `.ts` modules with no template at the `<Form>` call
+    site, so a slot would be unreachable for them.
+  - A slot replacing the whole `FormLabel` would drop the `for`/`formItemId`
+    wiring, the required marker, and the help tooltip, forcing every consumer to
+    re-implement them; a slot replacing only the inner text is redundant with the
+    render-function `label`.
+
+  It remains viable later as pure call-site ergonomics, but it is additive to
+  `labelClass`, not a substitute.
