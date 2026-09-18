@@ -609,7 +609,16 @@ becomes:
 ```
 
 and the `FormLabel` loses `:style="labelStyle"`, `ref="labelRef"` and the
-layout-conditional classes, keeping `class="leading-6 flex"` plus `labelClass`.
+layout-conditional classes, keeping `class="leading-6 flex mb-1"` plus
+`labelClass`.
+
+**Keep `mb-1`.** It came from the old `'mb-1 flex-row': isVertical` branch.
+Dropping the whole conditional object also drops the label's bottom margin, and
+nothing replaces it: `FormItem` contributes no `gap-y`/`space-y` of its own
+(`taman-ui/src/ui/form/form-item.vue`) and the control wrapper below it is
+`p-px`, i.e. 1px. Losing it shrinks the label-to-control gap from ~5px to 1px on
+**every** field in the app. `flex-row` is the only class safe to drop here, since
+`flex` already defaults to row.
 
 In `src/components/form-actions.vue`, the two layout lines become unconditional
 `'self-end'` and `'w-full'`.
