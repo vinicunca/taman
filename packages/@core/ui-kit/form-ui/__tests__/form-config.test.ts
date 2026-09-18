@@ -42,7 +42,7 @@ describe('setupTamanForm', () => {
     expect(COMPONENT_MAP.SecondInput).toBe(SecondInput);
     expect(COMPONENT_BIND_EVENT_MAP.SecondInput).toBeUndefined();
     expect(COMPONENT_MAP.Checkbox).toBe(builtInCheckbox);
-    expect(COMPONENT_BIND_EVENT_MAP.Checkbox).toBe('checked');
+    expect(COMPONENT_BIND_EVENT_MAP.Checkbox).toBeUndefined();
   });
 
   it('prefers component mappings over the base model prop name', () => {

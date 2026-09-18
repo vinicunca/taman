@@ -15,9 +15,9 @@ import type {
 } from '../form.types';
 
 import {
+  get,
   isFunctionType,
   mergeWithArrayOverride,
-  prop,
 } from '@taman-core/shared/utils';
 
 import { resolveChildUpdateFieldName } from '../form.field-name';
@@ -56,7 +56,7 @@ function createSchemaContext(
     rootValues,
     row:
       baseContext.rowPath && rootValues
-        ? prop(rootValues, baseContext.rowPath)
+        ? get(rootValues, baseContext.rowPath)
         : undefined,
   };
 }
