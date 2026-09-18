@@ -823,15 +823,21 @@ Then `pnpm vitest run --dom packages/@core/ui-kit/form-ui`.
 
 **Files:**
 - Create: `src/form-render/form-render-field-control.vue`
+- Create: `src/form-render/form-render-field-collapsible.vue`
 - Modify: `src/form-render/form-render-form-field.vue`
 - Test: `__tests__/form-field-collapsible.test.ts` (create)
 
 **Interfaces:**
 - Consumes: Task 5's simplified field template.
-- Produces: `FormRenderFieldControl` with props
-  `{ controlClass?: HTMLAttributes['class']; suffix?: FormCustomRenderType; wrapperClass?: HTMLAttributes['class'] }`
-  and a default slot. The field renders exactly one `PCollapsible` when
-  `collapsible` is truthy and none otherwise.
+- Produces:
+  - `FormRenderFieldControl` with props
+    `{ controlClass?: HTMLAttributes['class']; suffix?: FormCustomRenderType; wrapperClass?: HTMLAttributes['class'] }`
+    and a default slot.
+  - `FormRenderFieldCollapsible` with prop `{ collapsible?: boolean }`, a
+    `defineModel<boolean>('open')`, and a default slot it renders either inside
+    `PCollapsible` or bare.
+  - The field renders exactly one `PCollapsible` when `collapsible` is truthy
+    and none otherwise.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -942,99 +948,97 @@ const props = defineProps<Props>();
 
 - [ ] **Step 4: Make the wrapper conditional**
 
-In `src/form-render/form-render-form-field.vue`, import the new component,
-remove the `FormControl` / `TamanRenderContent` usages that moved into it, and
-replace the control block. Define the inner markup once as a reusable template
-via `v-for` over a single-element list is *not* needed — instead extract the
-component invocation into a small named template using Vue's `<template>` +
-`v-if` / `v-else` around the same child component:
+Create `src/form-render/form-render-field-collapsible.vue`. Slot content is
+compiled in the *parent's* scope, so `ref="fieldComponentRef"` inside the slot
+still registers on `form-render-form-field.vue` — which is why this wrapper works
+where hoisting the control into a child component would not:
 
 ```vue
-<div class="p-px flex-auto">
+<script setup lang="ts">
+import PCollapsible from 'pohon-ui/components/Collapsible.vue';
+
+interface Props {
+  collapsible?: boolean;
+}
+
+const props = defineProps<Props>();
+
+const open = defineModel<boolean>('open', { default: true });
+</script>
+
+<template>
   <PCollapsible
-    v-if="shouldCollapsible"
-    v-model:open="collapseOpen"
+    v-if="props.collapsible"
+    v-model:open="open"
   >
     <template #content>
-      <FormRenderFieldControl
-        :control-class="controlClass"
-        :suffix="suffix"
-        :wrapper-class="wrapperClass"
-      >
-        <slot v-bind="createFieldSlotScope(slotProps)">
-          <component
-            :is="FieldComponent"
-            ref="fieldComponentRef"
-            :class="{
-              'border-error hover:border-error/80 focus:border-error focus:shadow-[0_0_0_2px_rgba(255,38,5,0.06)]':
-                shouldApplyInvalidStyle,
-            }"
-            v-bind="createComponentProps(slotProps)"
-          >
-            <template
-              v-for="name in renderContentKey"
-              :key="name"
-              #[name]="renderSlotProps"
-            >
-              <TamanRenderContent
-                :content="customContentRender[name]"
-                v-bind="{
-                  ...renderSlotProps,
-                  formContext: createFieldSlotProps(slotProps),
-                }"
-              />
-            </template>
-          </component>
-        </slot>
-      </FormRenderFieldControl>
+      <slot />
     </template>
   </PCollapsible>
 
-  <FormRenderFieldControl
-    v-else
-    :control-class="controlClass"
-    :suffix="suffix"
-    :wrapper-class="wrapperClass"
-  >
-    <slot v-bind="createFieldSlotScope(slotProps)">
-      <component
-        :is="FieldComponent"
-        ref="fieldComponentRef"
-        :class="{
-          'border-error hover:border-error/80 focus:border-error focus:shadow-[0_0_0_2px_rgba(255,38,5,0.06)]':
-            shouldApplyInvalidStyle,
-        }"
-        v-bind="createComponentProps(slotProps)"
-      >
-        <template
-          v-for="name in renderContentKey"
-          :key="name"
-          #[name]="renderSlotProps"
-        >
-          <TamanRenderContent
-            :content="customContentRender[name]"
-            v-bind="{
-              ...renderSlotProps,
-              formContext: createFieldSlotProps(slotProps),
-            }"
-          />
-        </template>
-      </component>
-    </slot>
-  </FormRenderFieldControl>
-</div>
+  <slot v-else />
+</template>
 ```
 
-The inner block is repeated because Vue cannot pass a slot through a `v-if`
-boundary without a wrapper component, and hoisting it into its own component
-would break the `ref="fieldComponentRef"` binding that `getFieldComponentRef`
-depends on. Keep the two blocks byte-identical.
+Then in `src/form-render/form-render-form-field.vue`, import both new components,
+drop the now-unused `PCollapsible` and `FormControl` imports, and replace the
+whole control block with a single copy:
+
+```vue
+<div class="p-px flex-auto">
+  <FormRenderFieldCollapsible
+    v-model:open="collapseOpen"
+    :collapsible="shouldCollapsible"
+  >
+    <FormRenderFieldControl
+      :control-class="controlClass"
+      :suffix="suffix"
+      :wrapper-class="wrapperClass"
+    >
+      <slot v-bind="createFieldSlotScope(slotProps)">
+        <component
+          :is="FieldComponent"
+          ref="fieldComponentRef"
+          :class="{
+            'border-error hover:border-error/80 focus:border-error focus:shadow-[0_0_0_2px_rgba(255,38,5,0.06)]':
+              shouldApplyInvalidStyle,
+          }"
+          v-bind="createComponentProps(slotProps)"
+        >
+          <template
+            v-for="name in renderContentKey"
+            :key="name"
+            #[name]="renderSlotProps"
+          >
+            <TamanRenderContent
+              :content="customContentRender[name]"
+              v-bind="{
+                ...renderSlotProps,
+                formContext: createFieldSlotProps(slotProps),
+              }"
+            />
+          </template>
+        </component>
+      </slot>
+    </FormRenderFieldControl>
+  </FormRenderFieldCollapsible>
+
+  <!-- FormDescription / FormMessage below stay exactly as they are -->
+</div>
+```
 
 Also simplify:
 
 ```ts
 const shouldCollapsible = computed(() => collapsible);
 ```
+
+**Verify the template ref survived.** `getFieldComponentRef` and
+scroll-to-error both depend on `fieldComponentRef` resolving. If
+`form-api.test.ts`'s componentRef or scroll-to-error cases fail after this
+change, the slot-scoping assumption is wrong — fall back to duplicating the
+control block across a `v-if`/`v-else` on `PCollapsible` (keeping the two copies
+byte-identical) and say so in your report.
 
 - [ ] **Step 5: Run the test and confirm it passes**
 
@@ -2362,10 +2366,11 @@ No spec section is unassigned.
 
 **Known risks**
 
-- Task 7 duplicates the field control markup across the `v-if` / `v-else`
-  branches. This is deliberate: hoisting it would break `ref="fieldComponentRef"`,
-  which `getFieldComponentRef` and scroll-to-error depend on. Keep the branches
-  identical.
+- Task 7 relies on Vue compiling slot content in the parent's scope, so
+  `ref="fieldComponentRef"` still registers on the field component through the
+  `FormRenderFieldCollapsible` wrapper. `form-api.test.ts`'s componentRef and
+  scroll-to-error cases are the check; the task carries a duplication fallback
+  if the assumption turns out wrong.
 - Task 11's integration case depends on fake timers interacting with TanStack's
   async validators. If it proves flaky, the three `useDelayedFlag` unit tests
   carry the contract; drop the integration case rather than weakening it.
