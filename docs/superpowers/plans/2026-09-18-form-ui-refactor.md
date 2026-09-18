@@ -18,11 +18,25 @@
   commit. This overrides the writing-plans skill's default commit step.
 - **Test command:** `pnpm vitest run --dom packages/@core/ui-kit/form-ui`
 - **Single-file test command:** `pnpm vitest run --dom packages/@core/ui-kit/form-ui/__tests__/<name>.test.ts`
-- **Typecheck command:** `pnpm check:type`
+- **Typecheck command:** ~~`pnpm check:type`~~ — **unusable.** `turbo.json` was
+  deleted in commit 75f71c9 and is absent from HEAD, so `turbo run typecheck`
+  cannot resolve. This is pre-existing and unrelated to this plan. Substitute:
+  `npx vue-tsc --noEmit --skipLibCheck -p packages/@core/ui-kit/form-ui/tsconfig.json`,
+  filtered to lines starting `packages/@core/ui-kit/form-ui/`. The unfiltered
+  output carries pre-existing errors from `@taman-core/shared` and `taman-ui`
+  that belong to the user's own in-flight refactor.
 - **Baseline:** 6 tests fail before any work starts (3 in the deprecated
   `valueFormat` path, 3 in `form-group.test.ts`). Tasks 2 and 10 resolve them.
   Never treat these 6 as "already broken, therefore ignorable" once their
   owning task has run.
+- **Known-red, out of scope, never to be "fixed" by a task in this plan:**
+  `__tests__/taman-file-upload.test.ts` — "keeps a selected file on the parent
+  model" — plus the single form-ui type error at `taman-file-upload.test.ts(57,13)`.
+  Both are collateral from the user's in-flight `pohon-ui` dependency change: the
+  test passes `class: 'select-file'` into pohon-ui's FileUpload and asserts on it,
+  and the component no longer renders that class. From Batch A onward the expected
+  failure count is **4** (3 form-group + this one), dropping to **1** after
+  Task 10.
 - **Exit criterion:** the full form-ui suite green, plus `pnpm check:type` clean.
 - Tests use `setupTamanForm({ config: {} })` in `beforeAll` and push wrappers
   into a `wrappers` array unmounted in `afterEach` — follow
