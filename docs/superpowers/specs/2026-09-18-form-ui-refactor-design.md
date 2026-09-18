@@ -98,7 +98,18 @@ Delete:
 branches (`self-end` and `w-full` become unconditional).
 
 `labelClass` **stays** — it is a general styling passthrough, not layout
-machinery. Only its width-derivation logic goes.
+machinery. Only the logic that *derives* layout from it goes, namely
+`formResolveLabelStyle`'s `labelClass?.includes('w-')` check and its
+`justify-start` margin-side branch.
+
+Its one consumer in the repo is `custom.vue:55` (`labelClass: 'w-2/6'`), which is
+itself a horizontal artifact — a label occupying two of six grid columns. That
+value is dropped; the prop is not. (`descriptions-cell.vue` has an unrelated
+local `labelClass` computed; `label-width.test.ts` is deleted outright.)
+
+Note for A3: `labelClass` is merged onto the same element that now carries the
+asterisk's `after:` classes, so a consumer passing their own `after:*` utility
+would collide with the required marker. Worth a line in the prop's doc comment.
 
 Call sites to migrate (remove `layout:`): `custom.vue`, `all-fields.vue`,
 `api.vue`, `custom-layout.vue`, `merge.vue` (×2), `dynamic.vue`, `rules.vue`,
@@ -331,7 +342,7 @@ Audit of all 10 examples found these features demonstrated **nowhere**: per-fiel
 | `all-fields.vue` | Drop the `colon` demo; add `compact`, `hideRequiredMark`, `emptyStateValue` |
 | `menu/modules/form.vue` | Drop the template `:layout` binding, `commonConfig.colon`, and the now-dead `isHorizontal` / breakpoints imports |
 | `rules.vue` | Add an async validator showing the loading state |
-| `custom.vue` | Composite messages via `issues` + `hideMessage`; drop `fieldMappingTime` |
+| `custom.vue` | Composite messages via `issues` + `hideMessage`; drop `fieldMappingTime` and the `labelClass: 'w-2/6'` width |
 | `dynamic.vue` | Add `submitOnChange` / `submitOnEnter` |
 | `scroll-to-error-test.vue` | Migrate off the removed method aliases |
 
