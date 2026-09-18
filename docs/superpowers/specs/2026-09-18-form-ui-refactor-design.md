@@ -208,9 +208,16 @@ Retained: form-level `collapsed` state, `handleCollapsedChange`,
 
 The collapse toggle **does not currently exist** — it is commented out in
 `form-actions.vue` behind `<!-- TODO: how should we implement this? -->`,
-referencing the old `VbenExpandableArrow`. Implement it with
-`TamanExpandableArrow`, which that file already imports but never uses. Without
-this the feature has no UI at all.
+referencing the old `VbenExpandableArrow`. Without this the feature has no UI at
+all.
+
+Build it as a real `<button class="form-collapse-trigger">` carrying
+`aria-expanded`, consistent with the chevron already in
+`form-render-group.vue`. **Not** `TamanExpandableArrow`, despite that component
+already being imported here: it is a `<div>` with a bare `@click`, so it is not
+focusable or keyboard-operable and exposes no expanded state; it also carries a
+stale `vben-link` class and renders the raw boolean as its default slot
+fallback. Leave that component alone and drop the unused import.
 
 ### B4. vxe-table
 
