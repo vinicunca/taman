@@ -1196,20 +1196,31 @@ Inside `computedSchema`, replace the index arithmetic with:
 Run: `pnpm vitest run --dom packages/@core/ui-kit/form-ui/__tests__/form-collapse.test.ts`
 Expected: PASS, 4 tests.
 
-- [ ] **Step 6: Strip the removed options from vxe-table**
+- [ ] **Step 6: Strip the removed options from remaining consumers**
 
-Delete `showCollapseButton: true,` from
-`packages/effects/plugins/src/vxe-table/use-vxe-grid.vue:145` and
-`apps/better-auth-front/src/views/examples/vxe-table/form.vue:70`, and at
-`use-vxe-grid.vue:370` replace
-`collapseTriggerResize: !!finalFormOptions.showCollapseButton,` with
-`collapseTriggerResize: true,`.
+First re-run the search, because the user is deleting the vxe-table examples in
+parallel and `views/examples/vxe-table/form.vue` is already gone:
 
-These files are slated for deletion by the user, so this is a mechanical
-typecheck fix, not a migration — do not design collapsed sets for them.
+```bash
+grep -rn "showCollapseButton\|collapseTriggerResize\|collapsedRows" apps packages --include='*.vue' --include='*.ts' | grep -v node_modules | grep -v layout-ui
+```
 
-Run: `pnpm check:type`
-Expected: clean.
+`layout-ui`'s sidebar has its own unrelated `showCollapseButton` — never touch it.
+
+As of writing, two places need editing:
+
+1. `packages/effects/plugins/src/vxe-table/use-vxe-grid.vue` — delete
+   `showCollapseButton: true,` at line 145, and at line 370 replace
+   `collapseTriggerResize: !!finalFormOptions.showCollapseButton,` with
+   `collapseTriggerResize: true,`. This file is slated for deletion by the user,
+   so this is a mechanical typecheck fix, not a migration — do not design a
+   collapsed set for it. If the file is already gone when you get here, skip it.
+2. `packages/@core/ui-kit/form-ui/__tests__/form-api.test.ts` — delete
+   `collapsedRows: 1,` (line 20) and `showCollapseButton: false,` (line 27) from
+   the default-state assertion, since those keys no longer exist on the state.
+
+Run: `pnpm check:type` and `pnpm vitest run --dom packages/@core/ui-kit/form-ui`
+Expected: clean and green.
 
 ---
 
