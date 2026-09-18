@@ -95,6 +95,14 @@ const routes: Array<RouteRecordRaw> = [
               title: $t('examples.form.collapsible'),
             },
           },
+          {
+            name: 'FormArrayFieldsExample',
+            path: 'array-fields',
+            component: () => import('#/views/examples/form/array-fields.vue'),
+            meta: {
+              title: 'Form Array Fields',
+            },
+          },
         ],
       },
       {

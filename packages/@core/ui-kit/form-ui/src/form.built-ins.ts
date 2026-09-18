@@ -18,6 +18,7 @@ import type {
   TextareaProps,
 } from 'pohon-ui';
 import type { Component } from 'vue';
+import type { TamanFormFieldArrayProps } from './components/form-field-array.types';
 import { TamanFileUpload, TamanInputCurrency, TamanInputDate, TamanInputPassword } from '@taman-core/taman-ui';
 import PCheckbox from 'pohon-ui/components/Checkbox.vue';
 import PCheckboxGroup from 'pohon-ui/components/CheckboxGroup.vue';
@@ -35,6 +36,7 @@ import PSeparator from 'pohon-ui/components/Separator.vue';
 import PSlider from 'pohon-ui/components/Slider.vue';
 import PSwitch from 'pohon-ui/components/Switch.vue';
 import PTextarea from 'pohon-ui/components/Textarea.vue';
+import TamanFormFieldArray from './components/form-field-array.vue';
 
 export interface BuiltInFormComponentPropsMap {
   Checkbox: CheckboxProps;
@@ -57,6 +59,7 @@ export interface BuiltInFormComponentPropsMap {
   Switch: SwitchProps;
   Textarea: TextareaProps;
   Separator: SeparatorProps;
+  TamanFormFieldArray: TamanFormFieldArrayProps;
 }
 
 export type BuiltInFormComponentType = keyof BuiltInFormComponentPropsMap;
@@ -82,5 +85,6 @@ export const BUILT_IN_COMPONENT_MAP = {
   Separator: PSeparator,
   Slider: PSlider,
   Switch: PSwitch,
+  TamanFormFieldArray,
   Textarea: PTextarea,
 } satisfies Record<BuiltInFormComponentType, Component>;

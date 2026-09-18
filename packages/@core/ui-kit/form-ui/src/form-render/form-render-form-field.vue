@@ -72,6 +72,8 @@ const {
   }
 >();
 
+const VALIDATION_LOADING_DELAY_MS = 150;
+
 const { componentBindEventMap, componentMap, isVertical } = useFormContext();
 const formRenderProps = injectRenderFormProps();
 const fieldComponentRef = useTemplateRef<HTMLInputElement>('fieldComponentRef');
@@ -214,15 +216,6 @@ async function validateFieldValue({ value }: { value: any }) {
 }
 
 const fieldValidators = computed(() => {
-  // No active rule means `validateFieldValue` would just no-op anyway —
-  // skip wiring it up so ruleless fields don't run through TanStack's
-  // async validation machinery (and briefly flash a loading state) on
-  // every submit/blur/change for nothing. Reactive: a field that becomes
-  // required later (via `dependencies.required`) picks this back up
-  // through `fieldRules`.
-  if (!fieldRules.value) {
-    return {};
-  }
   const validators: Record<string, typeof validateFieldValue> = {
     onSubmitAsync: validateFieldValue,
   };
@@ -360,6 +353,23 @@ function fieldBindEvent(
   };
 }
 
+const validationLoading = ref(false);
+let validationLoadingTimer: ReturnType<typeof setTimeout> | undefined;
+
+function getValidationLoading(isValidating: boolean) {
+  if (!isValidating) {
+    clearTimeout(validationLoadingTimer);
+    validationLoadingTimer = undefined;
+    validationLoading.value = false;
+  } else if (!validationLoading.value && validationLoadingTimer === undefined) {
+    validationLoadingTimer = setTimeout(() => {
+      validationLoading.value = true;
+      validationLoadingTimer = undefined;
+    }, VALIDATION_LOADING_DELAY_MS);
+  }
+  return validationLoading.value;
+}
+
 function createComponentProps(slotProps: RuntimeFieldSlotProps) {
   const normalizedSlotProps = createFieldSlotProps(slotProps);
   const bindEventField = resolveModelPropName();
@@ -380,10 +390,11 @@ function createComponentProps(slotProps: RuntimeFieldSlotProps) {
         ? { color: 'error', highlight: true }
         : {}
     ),
-    // Surface async validation (onBlurAsync/onChangeAsync/...) as the
-    // component's own `loading` prop so fields don't need to hand-manage a
-    // loading flag. Ignored (harmless) by components without a `loading` prop.
-    loading: Boolean(computedProps.value?.loading) || isFieldValidating,
+    // Surface sustained async validation as the component's own `loading`
+    // prop. The brief delay prevents fast validators from flashing a spinner.
+    loading:
+      Boolean(computedProps.value?.loading)
+      || getValidationLoading(isFieldValidating),
     ...normalizedSlotProps.componentField,
     ...bindEvents,
     disabled: shouldDisabled.value,
@@ -437,6 +448,7 @@ watch(fieldComponentRef, (componentRef) => {
   componentRefMap?.set(fieldName, componentRef);
 });
 onUnmounted(() => {
+  clearTimeout(validationLoadingTimer);
   if (componentRefMap?.has(fieldName)) {
     componentRefMap.delete(fieldName);
   }

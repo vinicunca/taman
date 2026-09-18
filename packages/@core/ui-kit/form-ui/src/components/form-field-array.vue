@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { FormCommonConfig, FormFieldSchema } from '../form.types';
-
-import { cn, get, set } from '@taman-core/shared/utils';
-import { TamanRenderContent } from '@taman-core/taman-ui';
+import type { TamanFormFieldArrayProps } from './form-field-array.types';
+import { get, set } from '@taman-core/shared/utils';
+import { TamanButtonIcon, TamanRenderContent } from '@taman-core/taman-ui';
+import PButton from 'pohon-ui/components/Button.vue';
 import { computed } from 'vue';
-
 import FormRenderFormField from '../form-render/form-render-form-field.vue';
 import { injectRenderFormProps } from '../form-render/form-render.context';
 import { createArrayChildSchema } from '../form-render/form-render.schema';
@@ -15,35 +14,7 @@ defineOptions({
 });
 
 const props = withDefaults(
-  defineProps<{
-    /** Action list header text */
-    actionText?: string;
-    /** "Add" button text */
-    addButtonText?: string;
-    /** Sub-field common configuration */
-    commonConfig?: FormCommonConfig;
-    /**
-     * Default data generated when a new row is added; if not specified, generate an empty object according to the fieldName of the schema
-     */
-    createRow?: () => Record<string, any>;
-    disabled?: boolean;
-    /** Empty data text */
-    emptyText?: string;
-    /** Sub-field global common configuration */
-    globalCommonConfig?: FormCommonConfig;
-    /** Maximum number of rows */
-    max?: number;
-    /** Minimum number of rows */
-    min?: number;
-    /** Field path, passed through componentField by the outer FormField */
-    name?: string;
-    /**
-     * Column definition, each column is a sub-field (reuse FormFieldSchema)
-     */
-    schema?: Array<FormFieldSchema>;
-    /** Whether to display the index column */
-    showIndex?: boolean;
-  }>(),
+  defineProps<TamanFormFieldArrayProps>(),
   {
     // TODO: implement i18n
     actionText: 'Action',
@@ -141,27 +112,30 @@ const normalizedRowSchemas = computed(() =>
 </script>
 
 <template>
-  <div :class="cn('w-full', $attrs.class as string)">
+  <div
+    class="w-full"
+    :class="[$attrs.class]"
+  >
     <div class="border border-border/70 rounded-md overflow-hidden">
       <div
-        class="bg-muted/30 px-2 border-b border-border hidden sm:grid"
+        class="px-2 border-b border-border bg-background-muted/30 hidden sm:grid"
         :style="gridStyle"
       >
         <div
           v-if="showIndex"
-          class="text-muted-foreground text-sm font-normal px-2 py-2 text-left"
+          class="text-sm color-text-muted font-normal px-2 py-2 text-left"
         >
           #
         </div>
         <div
           v-for="col in schema"
           :key="col.fieldName"
-          class="text-muted-foreground text-sm font-normal px-2 py-2 text-left"
+          class="text-sm color-text-muted font-normal px-2 py-2 text-left"
         >
           <TamanRenderContent :content="col.label" />
         </div>
         <div
-          class="text-muted-foreground text-sm font-normal px-2 py-2 text-left"
+          class="text-sm color-text-muted font-normal px-2 py-2 text-left"
         >
           {{ actionText }}
         </div>
@@ -175,7 +149,7 @@ const normalizedRowSchemas = computed(() =>
       >
         <div
           v-if="showIndex"
-          class="text-muted-foreground text-sm mb-2 sm:mb-0 sm:px-4 sm:py-3"
+          class="text-sm color-text-muted mb-2 sm:mb-0 sm:px-4 sm:py-3"
         >
           <span class="sm:hidden">#</span>
           {{ index + 1 }}
@@ -187,7 +161,7 @@ const normalizedRowSchemas = computed(() =>
         >
           <div class="py-2 min-w-0 sm:px-2">
             <div
-              class="text-muted-foreground text-xs font-medium mb-1 sm:hidden"
+              class="text-xs color-text-muted font-medium mb-1 sm:hidden"
             >
               <TamanRenderContent :content="schema?.[childIndex]?.label" />
             </div>
@@ -199,35 +173,31 @@ const normalizedRowSchemas = computed(() =>
         </template>
 
         <div class="pt-1 flex justify-end sm:px-2 sm:py-3 sm:block">
-          <VbenIconButton
-            type="button"
+          <TamanButtonIcon
             :disabled="disabled || !canRemove"
             :on-click="() => removeRow(index)"
-            class="text-muted-foreground hover:color-error"
-          >
-            <X class="size-4" />
-          </VbenIconButton>
+            icon="lucide:x"
+          />
         </div>
       </div>
 
       <div
         v-if="arrayLength === 0"
-        class="text-muted-foreground text-sm py-6 text-center"
+        class="text-sm color-text-muted py-6 text-center"
       >
         {{ emptyText }}
       </div>
     </div>
 
-    <VbenButton
+    <PButton
       variant="outline"
       size="sm"
-      type="button"
       :disabled="disabled || !canAdd"
       class="mt-3 border-dashed w-full"
+      icon="lucide:plus"
       @click="addRow"
     >
-      <Plus class="mr-1 size-4" />
       {{ addButtonText }}
-    </VbenButton>
+    </PButton>
   </div>
 </template>

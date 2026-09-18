@@ -1,4 +1,4 @@
-import { get, isPlainObject, set } from '@taman-core/shared/utils';
+import { addProp, isPlainObject, prop } from '@taman-core/shared/utils';
 
 export function deleteValueByFieldName(
   values: Record<string, any>,
@@ -35,7 +35,7 @@ export function getValueByFieldName(
   fieldName: string,
 ) {
   const { rawKey } = resolveFieldNamePath(fieldName);
-  return rawKey ? values[rawKey] : get(values, fieldName);
+  return rawKey ? values[rawKey] : prop(values, fieldName);
 }
 
 export function resolveChildUpdateFieldName(
@@ -102,5 +102,5 @@ export function setValueByFieldName(
     values[rawKey] = value;
     return;
   }
-  set(values, fieldName, value);
+  addProp(values, fieldName, value);
 }

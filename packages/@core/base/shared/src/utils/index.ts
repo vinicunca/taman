@@ -19,4 +19,4 @@ export * from './update-css-variables';
 export * from './util';
 export * from './window';
 export * from '@vinicunca/perkakas';
-export { get, isEqual, set } from 'es-toolkit/compat';
+export { get, set } from 'es-toolkit/compat';

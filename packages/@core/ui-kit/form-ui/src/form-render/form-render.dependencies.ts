@@ -12,10 +12,10 @@ import type {
 
 import {
   clone,
-  get,
   isBoolean,
-  isEqual,
+  isDeepEqual,
   isFunction,
+  prop,
 } from '@taman-core/shared/utils';
 import { computed, isRef, onScopeDispose, shallowRef, watch } from 'vue';
 
@@ -65,7 +65,7 @@ function resolveValueByFieldName(
     return values[rawKey];
   }
 
-  return get(values, fieldName);
+  return prop(values, fieldName);
 }
 
 function createDependencyState(
@@ -231,7 +231,7 @@ export default function useDependencies(
       if (
         dependencies === previousDependencies
         && previousTriggerValues
-        && isEqual(currentTriggerValues, previousTriggerValues)
+        && isDeepEqual(currentTriggerValues, previousTriggerValues)
       ) {
         return;
       }

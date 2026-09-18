@@ -243,7 +243,7 @@ describe('formApi', () => {
     expect(codecFormApi.isMounted).toBe(true);
     expect(codecFormApi.getLatestSubmissionValues()).toEqual({ name: 'Ada' });
     expect(warning).toHaveBeenCalledWith(
-      '[Vben Form] Failed to encode initial values. Falling back to raw form values.',
+      '[Taman Form] Failed to encode initial values. Falling back to raw form values.',
       expect.objectContaining({ phase: 'encode' }),
     );
     await expect(codecFormApi.getValues()).rejects.toBeInstanceOf(

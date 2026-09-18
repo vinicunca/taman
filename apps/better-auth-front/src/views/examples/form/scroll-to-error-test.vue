@@ -1,15 +1,8 @@
 <script lang="ts" setup>
+import { AppCard, AppCardAction, AppPage } from '@taman/app-ui';
 import { ref } from 'vue';
 
-import { Page } from '@taman/common-ui';
-
-import { Button, Card, Switch } from 'antdv-next';
-
 import { useTamanForm } from '#/adapter/form';
-
-defineOptions({
-  name: 'ScrollToErrorTest',
-});
 
 const scrollEnabled = ref(true);
 
@@ -19,77 +12,77 @@ const [Form, formApi] = useTamanForm({
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入用户名',
+        placeholder: 'Please enter username',
       },
       fieldName: 'username',
-      label: '用户名',
+      label: 'Username',
       rules: 'required',
     },
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入邮箱',
+        placeholder: 'Please enter email',
       },
       fieldName: 'email',
-      label: '邮箱',
+      label: 'Email',
       rules: 'required',
     },
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入手机号',
+        placeholder: 'Please enter phone number',
       },
       fieldName: 'phone',
-      label: '手机号',
+      label: 'Phone number',
       rules: 'required',
     },
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入地址',
+        placeholder: 'Please enter address',
       },
       fieldName: 'address',
-      label: '地址',
+      label: 'Address',
       rules: 'required',
     },
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入备注',
+        placeholder: 'Please enter remark',
       },
       fieldName: 'remark',
-      label: '备注',
+      label: 'Remark',
       rules: 'required',
     },
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入公司名称',
+        placeholder: 'Please enter company name',
       },
       fieldName: 'company',
-      label: '公司名称',
+      label: 'Company name',
       rules: 'required',
     },
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入职位',
+        placeholder: 'Please enter position',
       },
       fieldName: 'position',
-      label: '职位',
+      label: 'Position',
       rules: 'required',
     },
     {
       component: 'Select',
       componentProps: {
-        options: [
-          { label: '男', value: 'male' },
-          { label: '女', value: 'female' },
+        items: [
+          { label: 'Male', value: 'male' },
+          { label: 'Female', value: 'female' },
         ],
-        placeholder: '请选择性别',
+        placeholder: 'Please select gender',
       },
       fieldName: 'gender',
-      label: '性别',
+      label: 'Gender',
       rules: 'selectRequired',
     },
   ],
@@ -125,59 +118,75 @@ async function fillPartialData() {
 </script>
 
 <template>
-  <Page
-    description="测试表单验证失败时自动滚动到错误字段的功能"
-    title="滚动到错误字段测试"
+  <AppPage
+    description="Test the function of automatically scrolling to the first error field when the form validation fails."
+    title="Scroll to Error Test"
   >
-    <Card title="功能测试">
-      <template #extra>
-        <div class="flex items-center gap-2">
-          <Switch
-            v-model:checked="scrollEnabled"
+    <AppCard title="Function Test">
+      <template #trailingHeader>
+        <AppCardAction>
+          <PSwitch
+            v-model="scrollEnabled"
+            label="enable scroll to error"
             @change="toggleScrollToError"
           />
-          <span>启用滚动到错误字段</span>
-        </div>
+        </AppCardAction>
       </template>
 
       <div class="space-y-4">
-        <div class="rounded-sm bg-blue-50 dark:bg-blue-900 p-4">
-          <h3 class="mb-2 font-medium">测试说明：</h3>
-          <ul class="list-inside list-disc space-y-1 text-sm">
-            <li>所有验证方法在验证失败时都会自动滚动到第一个错误字段</li>
-            <li>可以通过右上角的开关控制是否启用自动滚动功能</li>
+        <div class="p-4 rounded-sm bg-blue-50 dark:bg-blue-900">
+          <h3 class="font-medium mb-2">
+            Test Description:
+          </h3>
+          <ul class="text-sm list-disc list-inside space-y-1">
+            <li>All validation methods will automatically scroll to the first error field when validation fails</li>
+            <li>The automatic scroll function can be enabled or disabled by the switch in the upper right corner</li>
           </ul>
         </div>
 
-        <div class="rounded-sm border p-4">
-          <h4 class="mb-3 font-medium">验证方法测试：</h4>
+        <div class="p-4 border rounded-sm">
+          <h4 class="font-medium mb-3">
+            Validation Method Test:
+          </h4>
           <div class="flex flex-wrap gap-2">
-            <Button type="primary" @click="testValidateAndSubmit">
-              测试 validateAndSubmitForm()
-            </Button>
-            <Button @click="testValidate"> 测试 validate() </Button>
-            <Button @click="testValidateField"> 测试 validateField() </Button>
+            <PButton
+              @click="testValidateAndSubmit"
+            >
+              Test validateAndSubmitForm()
+            </PButton>
+            <PButton @click="testValidate">
+              Test validate()
+            </PButton>
+            <PButton @click="testValidateField">
+              Test validateField()
+            </PButton>
           </div>
-          <div class="mt-2 text-xs text-gray-500">
-            <p>• validateAndSubmitForm(): 验证表单并提交</p>
-            <p>• validate(): 手动验证整个表单</p>
-            <p>• validateField(): 验证单个字段（这里测试用户名字段）</p>
+          <div class="text-xs text-gray-500 mt-2">
+            <p>• validateAndSubmitForm(): Validate the form and submit</p>
+            <p>• validate(): Manually validate the entire form</p>
+            <p>• validateField(): Validate a single field (here test the username field)</p>
           </div>
         </div>
 
-        <div class="rounded-sm border p-4">
-          <h4 class="mb-3 font-medium">数据填充测试：</h4>
+        <div class="p-4 border rounded-sm">
+          <h4 class="font-medium mb-3">
+            Data Filling Test:
+          </h4>
           <div class="flex flex-wrap gap-2">
-            <Button @click="fillPartialData"> 填充部分数据 </Button>
-            <Button @click="() => formApi.resetForm()"> 清空表单 </Button>
+            <PButton @click="fillPartialData">
+              Fill Partial Data
+            </PButton>
+            <PButton @click="() => formApi.resetForm()">
+              Clear Form
+            </PButton>
           </div>
-          <div class="mt-2 text-xs text-gray-500">
-            <p>• 填充部分数据后验证，会滚动到第一个错误字段</p>
+          <div class="text-xs text-gray-500 mt-2">
+            <p>• After filling partial data and validating, it will scroll to the first error field</p>
           </div>
         </div>
 
         <Form />
       </div>
-    </Card>
-  </Page>
+    </AppCard>
+  </AppPage>
 </template>

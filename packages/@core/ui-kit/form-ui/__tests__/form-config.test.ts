@@ -9,7 +9,7 @@ import {
   setupTamanForm,
 } from '../src/form.config';
 
-const builtInCheckbox = COMPONENT_MAP.VbenCheckbox;
+const builtInCheckbox = COMPONENT_MAP.Checkbox;
 const componentMapReference = COMPONENT_MAP;
 const bindEventMapReference = COMPONENT_BIND_EVENT_MAP;
 
@@ -41,8 +41,8 @@ describe('setupTamanForm', () => {
     expect(Reflect.has(COMPONENT_BIND_EVENT_MAP, 'FirstInput')).toBe(false);
     expect(COMPONENT_MAP.SecondInput).toBe(SecondInput);
     expect(COMPONENT_BIND_EVENT_MAP.SecondInput).toBeUndefined();
-    expect(COMPONENT_MAP.VbenCheckbox).toBe(builtInCheckbox);
-    expect(COMPONENT_BIND_EVENT_MAP.VbenCheckbox).toBe('checked');
+    expect(COMPONENT_MAP.Checkbox).toBe(builtInCheckbox);
+    expect(COMPONENT_BIND_EVENT_MAP.Checkbox).toBe('checked');
   });
 
   it('prefers component mappings over the base model prop name', () => {

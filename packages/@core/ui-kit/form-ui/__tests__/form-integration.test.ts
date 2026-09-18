@@ -28,6 +28,10 @@ const TestInput = defineComponent({
       default: 'model-value',
       type: String,
     },
+    loading: {
+      default: false,
+      type: Boolean,
+    },
   },
   emits: ['change', 'update:modelValue', 'update:value'],
   setup(props, { attrs, emit }) {
@@ -438,10 +442,11 @@ describe('useTamanForm integration', () => {
     wrappers.push(wrapper);
     await flushPromises();
 
-    expect(warning).toHaveBeenCalledOnce();
-    expect(warning).toHaveBeenCalledWith(
-      '[Vben Form] Legacy dependency callbacks are deprecated. Use `dependencies.resolve(context)` instead.',
-    );
+    const message
+      = '[Taman Form] Legacy dependency callbacks are deprecated. Use `dependencies.resolve(context)` instead.';
+    expect(
+      warning.mock.calls.filter(([warningMessage]) => warningMessage === message),
+    ).toHaveLength(1);
   });
 
   it('binds fields, renders accessible errors, and submits valid values', async () => {
@@ -970,7 +975,9 @@ describe('useTamanForm integration', () => {
 
     await input.trigger('blur');
     await flushPromises();
-    expect(wrapper.text()).toContain('Name is required');
+    await vi.waitFor(() => {
+      expect(wrapper.text()).toContain('Name is required');
+    });
 
     await input.setValue('Ada');
     await flushPromises();
@@ -979,6 +986,42 @@ describe('useTamanForm integration', () => {
     await input.trigger('blur');
     await flushPromises();
     expect(wrapper.text()).not.toContain('Name is required');
+  });
+
+  it('delays validation loading to avoid flashing for fast validators', async () => {
+    vi.useFakeTimers();
+    const validationResult = createDeferred<boolean>();
+    const [Form, formApi] = useTamanForm({
+      schema: [
+        {
+          component: TestInput,
+          defaultValue: 'valid',
+          fieldName: 'name',
+          label: 'Name',
+          rules: z.string().refine(async () => validationResult.promise),
+        },
+      ],
+    });
+    const wrapper = mount(Form);
+    wrappers.push(wrapper);
+    await flushPromises();
+    const input = wrapper.getComponent(TestInput);
+
+    const validation = formApi.validate();
+    await nextTick();
+    await Promise.resolve();
+    expect(input.props('loading')).toBe(false);
+
+    await vi.advanceTimersByTimeAsync(149);
+    expect(input.props('loading')).toBe(false);
+
+    await vi.advanceTimersByTimeAsync(1);
+    expect(input.props('loading')).toBe(true);
+
+    validationResult.resolve(true);
+    await validation;
+    await flushPromises();
+    expect(input.props('loading')).toBe(false);
   });
 
   it('ignores stale asynchronous validation results', async () => {

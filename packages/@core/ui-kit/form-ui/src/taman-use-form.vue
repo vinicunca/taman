@@ -2,7 +2,7 @@
 import type { ExtendedFormApi, TamanFormProps, TamanFormSlots } from './form.types';
 
 import { useForwardPriorityValues } from '@taman-core/composables';
-import { get, isEqual } from '@taman-core/shared/utils';
+import { isDeepEqual, prop } from '@taman-core/shared/utils';
 import { useDebounceFn } from '@vueuse/core';
 import { nextTick, onMounted, readonly, watch } from 'vue';
 
@@ -98,9 +98,9 @@ watch(values, (currentValues, previousValues) => {
   );
   if (handleValuesChange && fields.length > 0) {
     const changedFields = fields.filter((field) => {
-      return !isEqual(
-        get(currentValues, field),
-        get(previousValues ?? {}, field),
+      return !isDeepEqual(
+        prop(currentValues, field),
+        prop(previousValues ?? {}, field),
       );
     });
     if (changedFields.length > 0) {

@@ -114,7 +114,7 @@ if (hot) {
   hot.dispose((data) => {
     data.lastAdapterOptions = lastAdapterOptions;
   });
-  const resumed = hot.data.lastAdapterOptions as
+  const resumed = hot.data?.lastAdapterOptions as
     | TamanFormAdapterOptions
     | undefined;
   if (resumed) {

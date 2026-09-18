@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useSimpleLocale } from '@taman-core/composables';
 import { isFunction, triggerWindowResize } from '@taman-core/shared/utils';
-import { TamanExpandableArrow } from '@taman-core/taman-ui';
 import PButton from 'pohon-ui/components/Button.vue';
 import { computed, toRaw, unref, watch } from 'vue';
 
@@ -169,6 +168,7 @@ defineExpose({
     <!-- Before expand button -->
     <slot name="expand-before" />
 
+    <!-- TODO: how should we implement this? -->
     <!-- <VbenExpandableArrow
       v-if="rootProps.showCollapseButton"
       v-model:model-value="collapsed"

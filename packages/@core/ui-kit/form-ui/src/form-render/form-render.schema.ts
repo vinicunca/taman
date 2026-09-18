@@ -15,9 +15,9 @@ import type {
 } from '../form.types';
 
 import {
-  get,
   isFunctionType,
   mergeWithArrayOverride,
+  prop,
 } from '@taman-core/shared/utils';
 
 import { resolveChildUpdateFieldName } from '../form.field-name';
@@ -56,7 +56,7 @@ function createSchemaContext(
     rootValues,
     row:
       baseContext.rowPath && rootValues
-        ? get(rootValues, baseContext.rowPath)
+        ? prop(rootValues, baseContext.rowPath)
         : undefined,
   };
 }
@@ -81,15 +81,15 @@ function scopeRowFieldName(rowPath: string, fieldName: string) {
   return `${rowPath}.${fieldName}`;
 }
 
-function wrapComponentProps(
-  componentProps: AnyFormFieldSchema['componentProps'],
+function wrapSchemaContextRender<T>(
+  render: T,
   baseContext: FormSchemaContext,
-) {
-  if (!isFunctionType(componentProps)) {
-    return componentProps;
+): T {
+  if (!isFunctionType(render)) {
+    return render;
   }
 
-  return () => componentProps(baseContext);
+  return (() => render(baseContext)) as T;
 }
 
 function wrapCommonConfig(
@@ -102,34 +102,11 @@ function wrapCommonConfig(
 
   return {
     ...commonConfig,
-    componentProps: wrapComponentProps(
+    componentProps: wrapSchemaContextRender(
       commonConfig.componentProps,
       baseContext,
     ),
   };
-}
-
-function wrapCustomParamsRender(
-  render: AnyFormFieldSchema['help'],
-  baseContext: FormSchemaContext,
-) {
-  if (!isFunctionType(render)) {
-    return render;
-  }
-
-  return () => render(baseContext);
-}
-
-// FIXME: Refactor this
-function wrapRenderComponentContent(
-  render: AnyFormFieldSchema['renderComponentContent'],
-  baseContext: FormSchemaContext,
-) {
-  if (!isFunctionType(render)) {
-    return render;
-  }
-
-  return () => render(baseContext);
 }
 
 function wrapDependencyFn<T>(handler: T, baseContext: FormSchemaContext): T {
@@ -513,11 +490,14 @@ export function createArrayChildSchema(
   return createFormFieldSchema(
     {
       ...schema,
-      componentProps: wrapComponentProps(schema.componentProps, baseContext),
+      componentProps: wrapSchemaContextRender(
+        schema.componentProps,
+        baseContext,
+      ),
       dependencies: scopeDependencies(schema.dependencies, baseContext),
       fieldName,
-      help: wrapCustomParamsRender(schema.help, baseContext),
-      renderComponentContent: wrapRenderComponentContent(
+      help: wrapSchemaContextRender(schema.help, baseContext),
+      renderComponentContent: wrapSchemaContextRender(
         schema.renderComponentContent,
         baseContext,
       ),

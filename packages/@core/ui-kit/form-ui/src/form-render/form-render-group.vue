@@ -5,6 +5,7 @@ import {
   TamanRenderContent,
 } from '@taman-core/taman-ui';
 import PCollapsible from 'pohon-ui/components/Collapsible.vue';
+import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
 import { computed, ref, watch } from 'vue';
 
 import { injectRenderFormProps } from './form-render.context';
@@ -54,13 +55,6 @@ watch(hasInvalidField, (invalid) => {
     collapseOpen.value = true;
   }
 });
-
-function toggleCollapsed() {
-  if (!shouldCollapsible.value) {
-    return;
-  }
-  collapseOpen.value = !collapseOpen.value;
-}
 </script>
 
 <template>
@@ -75,57 +69,56 @@ function toggleCollapsed() {
   >
     <PCollapsible
       v-model:open="collapseOpen"
-      :show-trigger="false"
+      :unmount-on-hide="false"
     >
-      <template #label>
-        <div
-          class="form-group-header mb-2 flex flex-1 gap-2 min-h-7 items-center"
+      <div
+        class="mb-2 flex flex-1 gap-2 min-h-7 items-center"
+      >
+        <component
+          :is="shouldCollapsible ? 'button' : 'div'"
+          :aria-expanded="shouldCollapsible ? collapseOpen : undefined"
+          :class="
+            [{
+              'focus-visible:ring-ring cursor-pointer select-none rounded-sm outline-none focus-visible:ring-2':
+                shouldCollapsible,
+            }]
+          "
+          :type="shouldCollapsible ? 'button' : undefined"
+          class="text-left flex flex-1 gap-2 min-w-0 items-center"
         >
-          <component
-            :is="shouldCollapsible ? 'button' : 'div'"
-            :aria-expanded="shouldCollapsible ? collapseOpen : undefined"
+          <span
+            class="rounded-full bg-primary flex-none h-3.5 w-[3px]"
+          />
+          <span
+            v-if="props.schema.title"
+            class="text-sm leading-6 font-medium"
+          >
+            <TamanRenderContent :content="props.schema.title" />
+          </span>
+
+          <PIcon
+            v-if="shouldCollapsible"
+            name="lucide-chevron-down"
+            class="color-text-muted flex-none transition-transform"
             :class="
-              [{
-                'focus-visible:ring-ring cursor-pointer select-none rounded-sm outline-none focus-visible:ring-2':
-                  shouldCollapsible,
-              }]
+              [
+                {
+                  'rotate-180': collapseOpen,
+                },
+              ]
             "
-            :type="shouldCollapsible ? 'button' : undefined"
-            class="form-group-trigger text-left flex flex-1 gap-2 min-w-0 items-center"
-            @click="toggleCollapsed"
-          >
-            <span
-              class="rounded-full bg-primary flex-none h-3.5 w-[3px]"
-            />
-            <span
-              v-if="props.schema.title"
-              class="form-group-title text-sm leading-6 font-medium"
-            >
-              <TamanRenderContent :content="props.schema.title" />
-            </span>
-            <ChevronsDown
-              v-if="shouldCollapsible"
-              aria-hidden="true"
-              :size="16"
-              :class="
-                cn(
-                  'text-muted-foreground ml-auto flex-none transition-transform',
-                  {
-                    'rotate-180': collapseOpen,
-                  },
-                )
-              "
-            />
-          </component>
-          <div
-            v-if="props.schema.extra"
-            class="flex-none"
-          >
-            <TamanRenderContent :content="props.schema.extra" />
-          </div>
+          />
+        </component>
+
+        <div
+          v-if="props.schema.extra"
+          class="flex-none"
+        >
+          <TamanRenderContent :content="props.schema.extra" />
         </div>
-      </template>
-      <template #collapsibleContent>
+      </div>
+
+      <template #content>
         <div :class="props.contentClass">
           <slot />
         </div>
