@@ -56,6 +56,7 @@ re-litigation during implementation:
 | Composite field errors | The composite renders its own message. |
 | Disabling a form | New top-level `disabled` covering fields *and* action buttons. |
 | Asterisk | `after:` pseudo-element, matching `descriptions-cell.vue`'s `COLON_CLASS`. |
+| Label colon | Removed along with horizontal layout. |
 | vxe-table | Not migrated — the user is deleting those files. Strip invalid options only. |
 
 ## Section A — Rendering and layout
@@ -104,6 +105,20 @@ Call sites to migrate (remove `layout:`): `custom.vue`, `all-fields.vue`,
 `dept/modules/form.vue`, `auth-login.vue`, `auth-register.vue`,
 `base-setting.vue`, `password-setting.vue`, `form-api.test.ts`.
 
+One further call site binds `layout` in the **template** rather than as an
+options property, so it does not show up in a search for `layout:` —
+`menu/modules/form.vue:500`:
+
+```vue
+<Form class="mx-4" :layout="isHorizontal ? 'horizontal' : 'vertical'" />
+```
+
+This is the only responsive layout consumer in the repo: horizontal at `md` and
+above, vertical below. It becomes `<Form class="mx-4" />`, which leaves
+`isHorizontal` (line 432) and the `useBreakpoints` / `breakpointsTailwind`
+imports dead — remove those too. Risk is low: the form is *already* vertical on
+small screens, so this only makes desktop match what mobile does today.
+
 `descriptions.vue` has an unrelated `layout` prop of its own — leave it alone.
 
 ### A3. Asterisk via pseudo-element
@@ -116,11 +131,35 @@ after:content-['*'] after:color-error after:ml-0.5 after:order-1
 ```
 
 `FormLabel` is already `flex items-center`, so the pseudo-element is a flex item.
-Give the help tooltip `order-2` and the colon span `order-3` so the asterisk
-sits immediately right of the label text rather than after them. Rendered order:
-`Name * ⓘ :` — preserving today's help-before-colon relationship.
+Give the help tooltip `order-2` so the asterisk sits immediately right of the
+label text rather than after the tooltip. Rendered order: `Name * ⓘ`.
 
 `hideRequiredMark` continues to suppress it, now by omitting the class.
+
+### A4. Remove the label colon
+
+`colon` is **not** coupled to layout in code — there is no `isVertical` guard,
+and it defaults to `false` (`form-render.schema.ts:409`). It is removed anyway,
+on convention rather than coupling: a trailing colon exists to bind a label to a
+control on the *same line*, which is exactly the horizontal layout being
+deleted. Stacked above an input it reads oddly.
+
+Remove `colon` from `FormCommonConfig` (`form.types.ts:508-510`),
+`form-render.schema.ts` (409, 443), `form-render-form-field.vue` (49, 501), and
+the `<span>` in `form-render-form-label.vue` (14, 48). Two consumers:
+`all-fields.vue:61` and `menu/modules/form.vue:436`.
+
+This also leaves the label with only slot content plus the help tooltip, which
+is why A3 needs one `order` class rather than two.
+
+The `descriptions` component in `shadcn-ui` has its own separate `colon` prop,
+documented as non-bordered-horizontal-layout only. It is a different component
+and is not touched.
+
+**Known trade-off:** because the asterisk now occupies `after:`, a consumer
+wanting the colon back via `labelClass: "after:content-[':']"` would collide
+with it on required fields. Removal is therefore not cleanly reversible through
+`labelClass`. Accepted given two call sites and a `false` default.
 
 ## Section B — Collapse API
 
@@ -260,7 +299,8 @@ TDD: each behavior above gets its test before its implementation.
 New:
 
 - `form-layout.test.ts` — vertical-only rendering, no label-width styles
-- `form-label.test.ts` — asterisk pseudo-class applied/suppressed, ordering
+- `form-label.test.ts` — asterisk pseudo-class applied/suppressed, ordering, and
+  that no colon is rendered
 - `form-collapse.test.ts` — `collapsed: true` entries hide and show; toggle
   appears only when some entry is marked; groups can be marked too
 - `form-field-collapsible.test.ts` — no `PCollapsible` unless `collapsible` is set
@@ -288,7 +328,8 @@ Audit of all 10 examples found these features demonstrated **nowhere**: per-fiel
 | --- | --- |
 | `collapsible.vue` | Add both collapse modes: per-field `collapsible`, and form-level `collapsed: true` with the toggle |
 | `api.vue` | Drop `layout`/`labelWidth` demos; add `disabled`, `actionLayout`, `actionPosition` |
-| `all-fields.vue` | Add `compact`, `hideRequiredMark`, `emptyStateValue` |
+| `all-fields.vue` | Drop the `colon` demo; add `compact`, `hideRequiredMark`, `emptyStateValue` |
+| `menu/modules/form.vue` | Drop the template `:layout` binding, `commonConfig.colon`, and the now-dead `isHorizontal` / breakpoints imports |
 | `rules.vue` | Add an async validator showing the loading state |
 | `custom.vue` | Composite messages via `issues` + `hideMessage`; drop `fieldMappingTime` |
 | `dynamic.vue` | Add `submitOnChange` / `submitOnEnter` |
