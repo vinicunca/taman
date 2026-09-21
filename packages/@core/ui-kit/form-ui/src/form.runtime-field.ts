@@ -3,6 +3,23 @@ import type { Component } from 'vue';
 import { defineComponent, h, markRaw, onUnmounted } from 'vue';
 
 type AsyncFieldValidator = (...args: Array<any>) => Promise<unknown> | unknown;
+interface AsyncStandardSchemaValidator {
+  '~standard': {
+    validate: (value: unknown) =>
+      | Promise<{ issues?: ReadonlyArray<unknown> }>
+      | { issues?: ReadonlyArray<unknown> };
+  };
+}
+
+function isAsyncStandardSchemaValidator(
+  validator: unknown,
+): validator is AsyncStandardSchemaValidator {
+  return Boolean(
+    validator
+    && typeof validator === 'object'
+    && '~standard' in validator,
+  );
+}
 
 export type FieldValidationInvalidator = () => void;
 
@@ -19,7 +36,7 @@ export function createRuntimeFieldComponent(
     fieldName: string,
     invalidator: FieldValidationInvalidator,
   ) => () => void,
-  onValidatingChange: (delta: -1 | 1) => void,
+  onValidatingChange: (fieldName: string, delta: -1 | 1) => void,
 ) {
   return markRaw(
     defineComponent({
@@ -42,20 +59,26 @@ export function createRuntimeFieldComponent(
           for (const key of asyncValidatorKeys) {
             const validator = validators[key] as
               | AsyncFieldValidator
+              | AsyncStandardSchemaValidator
               | undefined;
-            if (!validator) {
+            if (
+              typeof validator !== 'function'
+              && !isAsyncStandardSchemaValidator(validator)
+            ) {
               continue;
             }
             wrappedValidators[key] = async (...args: Array<any>) => {
               const currentValidationRunId = ++validationRunId;
-              onValidatingChange(1);
+              onValidatingChange(fieldName, 1);
               try {
-                const result = await validator(...args);
+                const result = typeof validator === 'function'
+                  ? await validator(...args)
+                  : (await validator['~standard'].validate(args[0]?.value)).issues;
                 return currentValidationRunId === validationRunId
                   ? result
                   : undefined;
               } finally {
-                onValidatingChange(-1);
+                onValidatingChange(fieldName, -1);
               }
             };
           }

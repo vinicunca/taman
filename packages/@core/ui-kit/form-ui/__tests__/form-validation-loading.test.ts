@@ -164,17 +164,27 @@ describe('useDelayedFlag', () => {
 // component's `loading` prop through `createComponentProps`
 // (form-render-form-field.vue), not just the composable's own return value.
 describe('useFieldValidating reaching the field component', () => {
-  it('surfaces sustained async validation as the loading prop', async () => {
+  it('keeps the field and submit action busy across repeated async schema validation', async () => {
     vi.useFakeTimers();
-    const validationResult = createDeferred<boolean>();
-    const [Form, formApi] = useTamanForm({
+    const validationResults = [
+      createDeferred<boolean>(),
+      createDeferred<boolean>(),
+    ];
+    let currentValidation = validationResults[0]!;
+    const [Form] = useTamanForm({
       schema: [
         {
           component: TestInput,
           defaultValue: 'valid',
           fieldName: 'name',
+          formFieldProps: {
+            validators: {
+              onChangeAsync: z.string().refine(
+                async () => currentValidation.promise,
+              ),
+            },
+          },
           label: 'Name',
-          rules: z.string().refine(async () => validationResult.promise),
         },
       ],
     });
@@ -182,22 +192,30 @@ describe('useFieldValidating reaching the field component', () => {
     wrappers.push(wrapper);
     await flushPromises();
     const input = wrapper.getComponent(TestInput);
+    const submitButton = wrapper
+      .findAll('button')
+      .find((button) => button.text() === 'Submit');
+    expect(submitButton).toBeDefined();
 
-    const validation = formApi.validate();
-    await nextTick();
-    await Promise.resolve();
-    expect(input.props('loading')).toBe(false);
+    for (const [index, validationResult] of validationResults.entries()) {
+      currentValidation = validationResult;
+      await wrapper.get('input').setValue(`valid-${index}`);
+      await nextTick();
+      await Promise.resolve();
+      expect(input.props('loading')).toBe(false);
 
-    await vi.advanceTimersByTimeAsync(149);
-    expect(input.props('loading')).toBe(false);
+      await vi.advanceTimersByTimeAsync(149);
+      expect(input.props('loading')).toBe(false);
 
-    await vi.advanceTimersByTimeAsync(1);
-    expect(input.props('loading')).toBe(true);
+      await vi.advanceTimersByTimeAsync(1);
+      expect(input.props('loading')).toBe(true);
+      expect(submitButton?.attributes('disabled')).toBeDefined();
 
-    validationResult.resolve(true);
-    await validation;
-    await flushPromises();
-    expect(input.props('loading')).toBe(false);
+      validationResult.resolve(true);
+      await flushPromises();
+      expect(input.props('loading')).toBe(false);
+      expect(submitButton?.attributes('disabled')).toBeUndefined();
+    }
 
     vi.useRealTimers();
   });

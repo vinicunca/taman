@@ -937,8 +937,14 @@ describe('useTamanForm integration', () => {
           component: TestInput,
           defaultValue: 'valid',
           fieldName: 'name',
+          formFieldProps: {
+            validators: {
+              onChangeAsync: z.string().refine(
+                async () => validationResult.promise,
+              ),
+            },
+          },
           label: 'Name',
-          rules: z.string().refine(async () => validationResult.promise),
         },
       ],
     });
@@ -979,8 +985,12 @@ describe('useTamanForm integration', () => {
         {
           component: TestInput,
           fieldName: 'username',
+          formFieldProps: {
+            validators: {
+              onChangeAsync: usernameRule,
+            },
+          },
           label: 'Username',
-          rules: usernameRule,
         },
       ],
     });

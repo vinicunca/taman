@@ -60,6 +60,12 @@ describe('form public types', () => {
     };
     const fieldOptions: FormFieldOptions = {
       asyncDebounceMs: 200,
+      validators: {
+        onChange: ({ value }: { value: unknown }) => value ? undefined : 'Required',
+        onChangeAsync: async ({ value }: { value: unknown }) => {
+          return value ? undefined : 'Required';
+        },
+      },
       validateOn: ['blur', 'change'],
     };
 

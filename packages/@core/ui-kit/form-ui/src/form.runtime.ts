@@ -51,7 +51,6 @@ export function useFormRuntime<TValues extends FormValues>(
   const isValidating = rawForm.useSelector(
     (formState) => formState.isValidating,
   );
-  const manualErrors = shallowRef(new Map<string, string>());
   const validationInvalidators = new Map<
     string,
     Set<FieldValidationInvalidator>
@@ -63,10 +62,19 @@ export function useFormRuntime<TValues extends FormValues>(
   // Track it ourselves from the same wrapper that powers the per-field
   // loading state, so the two stay consistent.
   const pendingAsyncValidations = shallowRef(0);
+  const pendingFieldValidations = shallowRef(new Map<string, number>());
   const isAnyFieldValidating = computed(() => pendingAsyncValidations.value > 0);
 
-  function onFieldValidatingChange(delta: -1 | 1) {
+  function onFieldValidatingChange(fieldName: string, delta: -1 | 1) {
     pendingAsyncValidations.value += delta;
+    const nextPendingFieldValidations = new Map(pendingFieldValidations.value);
+    const nextCount = (nextPendingFieldValidations.get(fieldName) ?? 0) + delta;
+    if (nextCount > 0) {
+      nextPendingFieldValidations.set(fieldName, nextCount);
+    } else {
+      nextPendingFieldValidations.delete(fieldName);
+    }
+    pendingFieldValidations.value = nextPendingFieldValidations;
   }
 
   function registerValidationInvalidator(
@@ -108,9 +116,6 @@ export function useFormRuntime<TValues extends FormValues>(
         result[fieldName] = error;
       }
     }
-    for (const [fieldName, error] of manualErrors.value) {
-      result[fieldName] = error;
-    }
     return result;
   }
 
@@ -118,7 +123,7 @@ export function useFormRuntime<TValues extends FormValues>(
   const meta = computed(() => ({
     dirty: isDirty.value,
     submitting: isSubmitting.value,
-    valid: isValid.value && manualErrors.value.size === 0,
+    valid: isValid.value,
     validating: isValidating.value || isAnyFieldValidating.value,
   }));
   const runtimeState = computed<FormRuntimeState<TValues>>(() => ({
@@ -128,25 +133,21 @@ export function useFormRuntime<TValues extends FormValues>(
   }));
 
   function getFieldError(fieldName: string) {
-    return (
-      manualErrors.value.get(fieldName)
-      ?? normalizeFieldMetaError(Reflect.get(fieldMeta.value, fieldName))
-    );
+    return normalizeFieldMetaError(Reflect.get(fieldMeta.value, fieldName));
   }
 
   function useFieldError(fieldName: string) {
     const schemaError = rawForm.useSelector((formState) =>
       normalizeFieldMetaError(Reflect.get(formState.fieldMeta, fieldName)),
     );
-    return computed(
-      () => manualErrors.value.get(fieldName) ?? schemaError.value,
-    );
+    return schemaError;
   }
 
   function useFieldValidating(fieldName: string) {
     return computed(() =>
       Boolean(
-        (
+        pendingFieldValidations.value.get(fieldName)
+        || (
           Reflect.get(fieldMeta.value, fieldName) as
           | { isValidating?: boolean }
           | undefined
@@ -195,22 +196,12 @@ export function useFormRuntime<TValues extends FormValues>(
   }
 
   function setFieldError(fieldName: string, error?: string) {
-    invalidateFieldValidation(fieldName);
-
-    const nextManualErrors = new Map(manualErrors.value);
-    if (error) {
-      nextManualErrors.set(fieldName, error);
-    } else {
-      nextManualErrors.delete(fieldName);
-    }
-    manualErrors.value = nextManualErrors;
-
-    if (error || !rawForm.getFieldMeta(fieldName as never)) {
-      return;
-    }
     rawForm.setFieldMeta(fieldName as never, (meta) => ({
       ...meta,
-      errorMap: {},
+      errorMap: {
+        ...meta?.errorMap,
+        onServer: error,
+      },
     }));
   }
 
@@ -227,12 +218,15 @@ export function useFormRuntime<TValues extends FormValues>(
       ...new Set([
         ...validationInvalidators.keys(),
         ...Object.keys(rawForm.getAllErrors().fields),
-        ...manualErrors.value.keys(),
       ]),
     ];
 
     for (const fieldName of targetFieldNames) {
-      setFieldError(fieldName, undefined);
+      invalidateFieldValidation(fieldName);
+      rawForm.setFieldMeta(fieldName as never, (meta) => ({
+        ...meta,
+        errorMap: {},
+      }));
     }
   }
 
@@ -243,7 +237,6 @@ export function useFormRuntime<TValues extends FormValues>(
     for (const fieldName of validationInvalidators.keys()) {
       invalidateFieldValidation(fieldName);
     }
-    manualErrors.value = new Map();
     const partialValues = resetState?.values;
     let resetValues: TValues | undefined;
     if (partialValues) {

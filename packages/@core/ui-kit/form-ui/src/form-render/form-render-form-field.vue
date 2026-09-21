@@ -2,7 +2,6 @@
 import type { ZodType } from 'zod';
 
 import type {
-  FormActions,
   FormFieldProps,
   FormRuleContext,
   FormRuntimeField,
@@ -25,7 +24,6 @@ import {
   nextTick,
   onUnmounted,
   ref,
-  shallowRef,
   toRaw,
   useTemplateRef,
   watch,
@@ -75,18 +73,6 @@ if (!formApi) {
 const error = formApi.useFieldError(props.fieldName);
 const fieldValue = formApi.useFieldValue(props.fieldName);
 const isFieldValidating = formApi.useFieldValidating(props.fieldName);
-const fieldIssues = shallowRef<
-  Array<{ message: string; path: Array<PropertyKey> }>
->([]);
-// `error` can be cleared through routes that never re-run
-// `validateFieldValue` (handleChange's setFieldError(fieldName) on every
-// keystroke, reset(), clearValidation()) — keep `issues` from going stale
-// relative to `error` whenever that happens.
-watch(error, (value) => {
-  if (!value) {
-    fieldIssues.value = [];
-  }
-});
 const validationLoading = useDelayedFlag(
   () => isFieldValidating.value,
   VALIDATION_LOADING_DELAY_MS,
@@ -97,14 +83,6 @@ const shouldApplyInvalidStyle = computed(() => {
   return isInValid.value && props.component !== 'TamanFormFieldArray';
 });
 const collapseOpen = ref(!props.defaultCollapsed);
-
-function getFormApi(): FormActions {
-  if (!formApi) {
-    throw new Error('Form api is required in <FormField />');
-  }
-
-  return formApi;
-}
 
 const FieldComponent = computed(() => {
   const { component } = props;
@@ -189,19 +167,12 @@ const fieldRules = computed(() => {
   return rules as ZodType;
 });
 
-async function validateFieldValue({ value }: { value: any }) {
-  const activeRules = fieldRules.value;
-  if (!activeRules) {
-    fieldIssues.value = [];
-    return;
-  }
-
-  if (isString(activeRules)) {
-    const validator = getFormRule(activeRules);
+function createNamedRuleValidator(ruleName: string) {
+  return ({ value }: { value: any }) => {
+    const validator = getFormRule(ruleName);
     if (!validator) {
-      console.warn(`Form rule ${activeRules} is not registered`);
-      fieldIssues.value = [];
-      return;
+      console.warn(`Form rule ${ruleName} is not registered`);
+      return undefined;
     }
 
     const { label, fieldName } = props;
@@ -213,40 +184,100 @@ async function validateFieldValue({ value }: { value: any }) {
       label: isString(label) ? label : undefined,
       name: fieldName,
     };
-    const result = await validator(value, [], ruleContext);
-    if (result === true) {
-      fieldIssues.value = [];
-      return undefined;
-    }
-    fieldIssues.value = isString(result) ? [{ message: result, path: [] }] : [];
-    return result;
+    const result = validator(value, [], ruleContext);
+    return result === true ? undefined : result;
+  };
+}
+
+function validateDynamicRules({ value }: { value: any }) {
+  const activeRules = fieldRules.value;
+  if (!activeRules) {
+    return undefined;
+  }
+  if (isString(activeRules)) {
+    return createNamedRuleValidator(activeRules)({ value });
   }
 
-  const result = await activeRules.safeParseAsync(value);
-  if (result.success) {
-    fieldIssues.value = [];
-    return;
+  // Dependency resolvers can replace or disable a rule after the TanStack
+  // field mounts. Keep this adapter synchronous while reading the live rule.
+  const result = activeRules.safeParse(value);
+  return result.success ? undefined : result.error.issues;
+}
+
+function createRuleValidator() {
+  const activeRules = fieldRules.value;
+  if (!activeRules) {
+    return props.dependencies ? validateDynamicRules : undefined;
   }
-  fieldIssues.value = result.error.issues.map((issue) => ({
-    message: issue.message,
-    path: [...issue.path],
-  }));
-  return result.error.issues[0]?.message;
+
+  if (props.dependencies) {
+    return validateDynamicRules;
+  }
+
+  if (isString(activeRules)) {
+    return createNamedRuleValidator(activeRules);
+  }
+
+  return activeRules;
 }
 
 const fieldValidators = computed(() => {
-  const validators: Record<string, typeof validateFieldValue> = {
-    onSubmitAsync: validateFieldValue,
-  };
+  const validators: Record<string, unknown> = {};
+  const ruleValidator = createRuleValidator();
   const validateOn = new Set(props.formFieldProps?.validateOn ?? ['blur', 'change']);
-  if (validateOn.has('blur')) {
-    validators.onBlurAsync = validateFieldValue;
+  if (ruleValidator) {
+    if (validateOn.has('blur')) {
+      validators.onBlur = ruleValidator;
+    }
+    if (validateOn.has('change')) {
+      validators.onChange = ruleValidator;
+    }
+    if (validateOn.size === 0) {
+      validators.onSubmit = ruleValidator;
+    }
   }
-  if (validateOn.has('change')) {
-    validators.onChangeAsync = validateFieldValue;
-  }
-  return validators;
+  return {
+    ...validators,
+    ...props.formFieldProps?.validators,
+  };
 });
+
+interface NormalizedIssue {
+  message: string;
+  path: Array<PropertyKey>;
+}
+
+function normalizeIssues(errors: Array<unknown>): Array<NormalizedIssue> {
+  const issues: Array<NormalizedIssue> = [];
+  const seen = new Set<string>();
+
+  function visit(error: unknown) {
+    if (Array.isArray(error)) {
+      error.forEach(visit);
+      return;
+    }
+    const message = isString(error)
+      ? error
+      : error && typeof error === 'object' && 'message' in error
+        ? Reflect.get(error, 'message')
+        : undefined;
+    if (!isString(message)) {
+      return;
+    }
+    const rawPath = error && typeof error === 'object' && 'path' in error
+      ? Reflect.get(error, 'path')
+      : undefined;
+    const path = Array.isArray(rawPath) ? [...rawPath] : [];
+    const key = `${message}:${JSON.stringify(path)}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      issues.push({ message, path });
+    }
+  }
+
+  errors.forEach(visit);
+  return issues;
+}
 
 const computedProps = computed(() => {
   const { componentProps, commonComponentProps, fieldName } = props;
@@ -317,8 +348,13 @@ const fieldProps = computed(() => {
 function createFieldSlotProps(slotProps: RuntimeFieldSlotProps) {
   const { field } = slotProps;
   function handleChange(value: any) {
-    getFormApi().setFieldError(props.fieldName);
     field.handleChange(toFormFieldValue(value));
+    if (fieldRules.value) {
+      // Once editing resumes, the current change result (if configured)
+      // supersedes the stale blur copy. Blur-only fields remain quiet until
+      // they are blurred again.
+      field.setErrorMap({ onBlur: undefined });
+    }
   }
   return {
     ...slotProps,
@@ -406,7 +442,7 @@ function createFieldSlotScope(slotProps: RuntimeFieldSlotProps) {
     disabled: shouldDisabled.value,
     error: error.value,
     isInValid: isInValid.value,
-    issues: fieldIssues.value,
+    issues: normalizeIssues(slotProps.field.state.meta.errors),
     modelValue: fieldValue.value,
     name: props.fieldName,
   };

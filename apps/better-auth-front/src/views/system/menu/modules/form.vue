@@ -122,6 +122,18 @@ const schema: VbenFormSchema[] = [
       triggerFields: ['type'],
     },
     fieldName: 'path',
+    formFieldProps: {
+      validators: {
+        onChangeAsync: async ({ value }: { value: string }) => {
+          return await isMenuPathExists(value, formData.value?.id)
+            ? $t('ui.formRules.alreadyExists', [
+                $t('system.menu.path'),
+                value,
+              ])
+            : undefined;
+        },
+      },
+    },
     label: $t('system.menu.path'),
     rules: z
       .string()
@@ -132,17 +144,6 @@ const schema: VbenFormSchema[] = [
           return value.startsWith('/');
         },
         $t('ui.formRules.startWith', [$t('system.menu.path'), '/']),
-      )
-      .refine(
-        async (value: string) => {
-          return !(await isMenuPathExists(value, formData.value?.id));
-        },
-        (value) => ({
-          message: $t('ui.formRules.alreadyExists', [
-            $t('system.menu.path'),
-            value,
-          ]),
-        }),
       ),
   },
   {
@@ -154,6 +155,18 @@ const schema: VbenFormSchema[] = [
       triggerFields: ['type'],
     },
     fieldName: 'activePath',
+    formFieldProps: {
+      validators: {
+        onChangeAsync: async ({ value }: { value?: string }) => {
+          if (!value) {
+            return undefined;
+          }
+          return await isMenuPathExists(value, formData.value?.id)
+            ? undefined
+            : $t('system.menu.activePathMustExist');
+        },
+      },
+    },
     help: $t('system.menu.activePathHelp'),
     label: $t('system.menu.activePath'),
     rules: z
@@ -166,9 +179,6 @@ const schema: VbenFormSchema[] = [
         },
         $t('ui.formRules.startWith', [$t('system.menu.path'), '/']),
       )
-      .refine(async (value: string) => {
-        return await isMenuPathExists(value, formData.value?.id);
-      }, $t('system.menu.activePathMustExist'))
       .optional(),
   },
   {

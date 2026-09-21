@@ -181,29 +181,23 @@ const [Form, formApi] = useTamanForm({
       componentProps: {
         placeholder: 'Please input',
       },
+      defaultValue: '',
       fieldName: 'input-async',
-      label: 'Async Validation',
-      rules: z
-        .string()
-        .min(3, 'Username must be at least 3 characters')
-        .refine(
-          async (username) => {
+      formFieldProps: {
+        validators: {
+          onChangeAsync: async ({ value }: { value: string }) => {
             // Async validator simulating a username availability check
-            const checkUsernameExists = async (
-              username: string,
-            ): Promise<boolean> => {
-              await new Promise((resolve) => {
-                setTimeout(resolve, 1000);
-              });
-              return username === 'existingUser';
-            };
-            const exists = await checkUsernameExists(username);
-            return !exists;
+            await new Promise((resolve) => {
+              setTimeout(resolve, 1000);
+            });
+            return value === 'existingUser'
+              ? 'Username already exists'
+              : undefined;
           },
-          {
-            message: 'Username already exists',
-          },
-        ),
+        },
+      },
+      label: 'Async Validation',
+      rules: z.string().min(3, 'Username must be at least 3 characters'),
     },
   ],
   // 3 columns on large screens, 2 on medium, 1 on small

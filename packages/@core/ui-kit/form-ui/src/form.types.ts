@@ -1,4 +1,5 @@
 import type { MaybeComputedRef } from '@taman-core/typings';
+import type { AnyFieldApi } from '@tanstack/vue-form';
 import type { ButtonProps } from 'pohon-ui';
 import type { Component, HTMLAttributes, HtmlHTMLAttributes, Ref } from 'vue';
 import type { ZodType } from 'zod';
@@ -58,6 +59,8 @@ export type FormItemClassType
 
 export interface FormFieldOptions {
   asyncDebounceMs?: number;
+  /** Native TanStack Form validators. Use the `*Async` slots for async work. */
+  validators?: NonNullable<AnyFieldApi['options']['validators']>;
   validateOn?: ReadonlyArray<FormValidationTrigger>;
 }
 
@@ -76,6 +79,7 @@ export interface FormShape {
 export interface FormRuntimeField<TValue = unknown> {
   handleBlur: () => void;
   handleChange: (value: TValue) => void;
+  setErrorMap: (errorMap: Record<string, unknown>) => void;
   state: {
     meta: {
       errors: Array<unknown>;
@@ -244,13 +248,9 @@ export interface TamanFormFieldSlotProps<
   field: FormRuntimeField<FormFieldValue<TValues, TFieldName>>;
   isInValid: boolean;
   /**
-   * The issue list from the field's last validation, kept in sync with
-   * `error` (cleared whenever `error` clears). For zod (`ZodType`) rules
-   * this is the full `safeParseAsync` issue list; for a string-rule
-   * validator it is a single derived entry with `path: []`. A direct
-   * `formApi.setFieldError(name, 'msg')` call sets `error` while leaving
-   * this empty, since it bypasses the field's own validator and there is no
-   * issue list to derive it from.
+   * The unique issues currently held in TanStack's field metadata. Zod rules
+   * retain their full issue list and paths; string and server errors use an
+   * empty path.
    */
   issues: Array<{ message: string; path: Array<PropertyKey> }>;
   modelValue: FormFieldValue<TValues, TFieldName>;
@@ -877,4 +877,4 @@ export type FormRuleValidator = (
   value: any,
   params: any,
   context: FormRuleContext,
-) => boolean | Promise<boolean | string> | string;
+) => boolean | string;

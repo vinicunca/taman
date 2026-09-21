@@ -151,13 +151,7 @@ describe('composite field errors', () => {
     await flushPromises();
     expect((seen.at(-1)?.issues as Array<unknown>).length).toBeGreaterThan(0);
 
-    // setFieldError with no message wipes `error` directly — the same thing
-    // handleChange does on every keystroke (form-render-form-field.vue's
-    // handleChange calls `getFormApi().setFieldError(fieldName)` before
-    // delegating to the field's own onChange). Neither call re-runs
-    // validateFieldValue, so `issues` can only be kept in sync via the
-    // `error` watcher.
-    formApi.setFieldError('phone');
+    formApi.clearValidation('phone');
     await flushPromises();
 
     expect(seen.at(-1)?.error).toBeUndefined();
