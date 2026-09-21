@@ -48,7 +48,10 @@ function handleUploadError(error: unknown, options: ImageUploadOptions): void {
     options.onUploadError(error);
   } else {
     const message = error instanceof Error ? error.message : String(error);
-    tamanAlert(message, $t('ui.tiptap.upload.uploadFailed')).catch(() => {});
+    tamanAlert({
+      content: message,
+      title: $t('ui.tiptap.upload.uploadFailed'),
+    }).catch(() => {});
   }
 }
 

@@ -3,137 +3,45 @@ import type { Component, VNode } from 'vue';
 import type { AlertBeforeCloseScope, AlertPromptProps, AlertProps } from './alert';
 
 import { useSimpleLocale } from '@taman-core/composables';
-import { globalShareState } from '@taman-core/shared/global-state';
-import { isFunctionType, isString } from '@taman-core/shared/utils';
+import { isFunctionType } from '@taman-core/shared/utils';
 import { TamanRenderContent } from '@taman-core/taman-ui';
 import PInput from 'pohon-ui/components/Input.vue';
-import { h, nextTick, ref, render } from 'vue';
-import Alert from './alert.vue';
+import { useOverlay } from 'pohon-ui/composables';
+import { h, nextTick, ref } from 'vue';
+import AlertOverlay from './alert-overlay.vue';
 
-const alerts = ref<Array<{
-  container: HTMLElement;
-  instance: Component;
-}>>([]);
+const alertIds = new Set<symbol>();
 
 const { $t } = useSimpleLocale();
 
-export function tamanAlert(options: AlertProps): Promise<void>;
-export function tamanAlert(
-  message: string,
-  options?: Partial<AlertProps>,
-): Promise<void>;
-export function tamanAlert(
-  message: string,
-  title?: string,
-  options?: Partial<AlertProps>,
-): Promise<void>;
-
-export function tamanAlert(
-  arg0: AlertProps | string,
-  arg1?: Partial<AlertProps> | string,
-  arg2?: Partial<AlertProps>,
-): Promise<void> {
-  return new Promise((resolve, reject) => {
-    const options: AlertProps = isString(arg0)
-      ? {
-          content: arg0,
-        }
-      : { ...arg0 };
-    if (arg1) {
-      if (isString(arg1)) {
-        options.title = arg1;
-      } else if (!isString(arg1)) {
-        // If the second argument is an object, it is merged into the options.
-        Object.assign(options, arg1);
-      }
-    }
-
-    if (arg2 && !isString(arg2)) {
-      Object.assign(options, arg2);
-    }
-
-    const container = document.createElement('div');
-    document.body.append(container);
-
-    // Create a reference to access the instance in the callback.
-    const alertRef = { container, instance: null as any };
-
-    const props: AlertProps & Record<string, any> = {
-      onClosed: (isConfirm: boolean) => {
-        // Remove the component instance and all the DOM created (restore the page to the state before opening).
-        // Remove the instance from the alerts array.
-        alerts.value = alerts.value.filter((item) => item !== alertRef);
-
-        // Remove the container from the DOM.
-        render(null, container);
-        if (container.parentNode) {
-          container.remove();
-        }
-
-        // Parse the Promise, pass the user operation result.
-        if (isConfirm) {
-          resolve();
-        } else {
-          reject(new Error('dialog cancelled'));
-        }
-      },
+export function tamanAlert(options: AlertProps): Promise<void> {
+  const overlay = useOverlay().create(AlertOverlay, {
+    destroyOnClose: true,
+    props: {
       ...options,
-      open: true,
       title: options.title ?? $t.value('prompt'),
-    };
-
-    // Create the VNode for the Alert component.
-    const vnode = h(Alert, props);
-    // Imperative `render()` is outside the app tree. Without the app context,
-    // nested pohon `PButton` → `PLink` → `useRoute()` cannot resolve the router
-    // provide and warns: injection "Symbol(route location)" not found.
-    const appContext = globalShareState.getAppContext();
-    if (appContext) {
-      vnode.appContext = appContext;
-    }
-
-    // Render the component to the container.
-    render(vnode, container);
-
-    // Save the component instance reference.
-    alertRef.instance = vnode.component?.proxy as Component;
-
-    // Add the instance and container to the alerts array.
-    alerts.value.push(alertRef);
+    },
   });
+  alertIds.add(overlay.id);
+
+  return (async () => {
+    try {
+      const result = await overlay.open();
+
+      if (result?.isConfirm) {
+        return;
+      }
+      throw new Error('dialog cancelled');
+    } finally {
+      alertIds.delete(overlay.id);
+    }
+  })();
 }
 
-export function tamanConfirm(options: AlertProps): Promise<void>;
-export function tamanConfirm(
-  message: string,
-  options?: Partial<AlertProps>,
-): Promise<void>;
-export function tamanConfirm(
-  message: string,
-  title?: string,
-  options?: Partial<AlertProps>,
-): Promise<void>;
-
-export function tamanConfirm(
-  arg0: AlertProps | string,
-  arg1?: Partial<AlertProps> | string,
-  arg2?: Partial<AlertProps>,
-): Promise<void> {
-  const defaultProps: Partial<AlertProps> = {
+export function tamanConfirm(options: AlertProps): Promise<void> {
+  return tamanAlert({
     showCancel: true,
-  };
-  if (!arg1) {
-    return isString(arg0)
-      ? tamanAlert(arg0, defaultProps)
-      : tamanAlert({ ...defaultProps, ...arg0 });
-  } else if (!arg2) {
-    return isString(arg1)
-      ? tamanAlert(arg0 as string, arg1, defaultProps)
-      : tamanAlert(arg0 as string, { ...defaultProps, ...arg1 });
-  }
-  return tamanAlert(arg0 as string, arg1 as string, {
-    ...defaultProps,
-    ...arg2,
+    ...options,
   });
 }
 
@@ -238,12 +146,11 @@ export async function tamanPrompt<T = any>(
 }
 
 export function clearAllAlerts() {
-  alerts.value.forEach((alert) => {
-    // Remove the container from the DOM.
-    render(null, alert.container);
-    if (alert.container.parentNode) {
-      alert.container.remove();
-    }
-  });
-  alerts.value = [];
+  const overlay = useOverlay();
+
+  for (const id of [...alertIds]) {
+    overlay.close(id, { isConfirm: false });
+    overlay.unmount(id);
+    alertIds.delete(id);
+  }
 }
