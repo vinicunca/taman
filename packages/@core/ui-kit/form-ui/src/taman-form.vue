@@ -7,7 +7,6 @@ import { ref, watchEffect } from 'vue';
 import FormActions from './components/form-actions.vue';
 import { FormRenderForm } from './form-render';
 import {
-  COMPONENT_BIND_EVENT_MAP,
   DEFAULT_FORM_COMMON_CONFIG,
   getFormComponentMap,
 } from './form.config';
@@ -18,13 +17,10 @@ const props = withDefaults(
   {
     actionWrapperClass: '',
     collapsed: false,
-    collapsedRows: 1,
     commonConfig: () => ({}),
     handleReset: undefined,
     handleSubmit: undefined,
-    layout: 'horizontal',
     resetButtonOptions: () => ({}),
-    showCollapseButton: false,
     showDefaultActions: true,
     submitButtonOptions: () => ({}),
     wrapperClass: 'grid-cols-1',
@@ -56,10 +52,10 @@ watchEffect(() => {
   <FormRenderForm
     v-bind="forward"
     :collapsed="currentCollapsed"
-    :component-bind-event-map="COMPONENT_BIND_EVENT_MAP"
     :component-map="formComponentMap"
     :form="form"
     :global-common-config="DEFAULT_FORM_COMMON_CONFIG"
+    @update:collapsed="handleUpdateCollapsed"
   >
     <template
       v-for="slotName in delegatedSlots"
@@ -76,6 +72,7 @@ watchEffect(() => {
       <slot v-bind="slotProps">
         <FormActions
           v-if="showDefaultActions"
+          :grid-id="slotProps.gridId"
           :model-value="currentCollapsed"
           @update:model-value="handleUpdateCollapsed"
         />

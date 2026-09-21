@@ -10,7 +10,6 @@ import FormActions from './components/form-actions.vue';
 import { FormRenderForm } from './form-render';
 import { getFormFieldSchemas } from './form-render/form-render.schema';
 import {
-  COMPONENT_BIND_EVENT_MAP,
   DEFAULT_FORM_COMMON_CONFIG,
   getFormComponentMap,
 } from './form.config';
@@ -118,11 +117,11 @@ watch(values, (currentValues, previousValues) => {
   <FormRenderForm
     v-bind="forward"
     :collapsed="state?.collapsed"
-    :component-bind-event-map="COMPONENT_BIND_EVENT_MAP"
     :component-map="formComponentMap"
     :form="form"
     :global-common-config="DEFAULT_FORM_COMMON_CONFIG"
     @keydown.enter="handleKeyDownEnter"
+    @update:collapsed="handleUpdateCollapsed"
   >
     <template
       v-for="slotName in delegatedSlots"
@@ -147,6 +146,7 @@ watch(values, (currentValues, previousValues) => {
 
       <FormActions
         v-else-if="forward.showDefaultActions"
+        :grid-id="slotProps.gridId"
         :model-value="state?.collapsed"
         @update:model-value="handleUpdateCollapsed"
       >

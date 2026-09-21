@@ -61,7 +61,7 @@ const codec = {
 };
 
 const formValues = createFormValues();
-setupTamanForm({ config: {}, rules: {} });
+setupTamanForm({ rules: {} });
 const [CodecForm, codecFormApi] = useTamanForm<PerformanceFormValues>({
   codec,
   schema: [

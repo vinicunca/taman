@@ -25,7 +25,9 @@ const emits = defineEmits<{
   unpin: [TamanTabDefinition];
 }>();
 
-const active = defineModel<string>('active');
+const active = defineModel<string | undefined>('active', {
+  default: undefined,
+});
 
 const tabItems = computed(() => {
   return props.tabs.map((tab) => {
@@ -105,7 +107,7 @@ const styleTypeClasses = computed(() => {
               <!-- close-icon -->
               <button
                 v-show="!tab.affixTab && tabItems.length > 1 && tab.closable"
-                class="mt-1px rounded-full flex-center size-4 transition-colors group-[.is-active]:text-primary hover:bg-overlay/30 group-[.is-active]:dark:text-accent-foreground"
+                class="hover:bg-overlay/30 group-[.is-active]:dark:text-accent-foreground mt-1px rounded-full flex-center size-4 transition-colors group-[.is-active]:text-primary"
                 @click.stop="() => emits('close', tab.key)"
               >
                 <TamanIcon
@@ -116,7 +118,7 @@ const styleTypeClasses = computed(() => {
 
               <button
                 v-show="tab.affixTab && tabItems.length > 1 && tab.closable"
-                class="mt-1px rounded-full flex-center size-4.5 transition-colors group-[.is-active]:text-primary hover:bg-overlay/30 group-[.is-active]:dark:text-accent-foreground"
+                class="hover:bg-overlay/30 group-[.is-active]:dark:text-accent-foreground mt-1px rounded-full flex-center size-4.5 transition-colors group-[.is-active]:text-primary"
                 @click.stop="() => emits('unpin', tab)"
               >
                 <TamanIcon
@@ -128,7 +130,7 @@ const styleTypeClasses = computed(() => {
 
             <!-- tab-item-main -->
             <div
-              class="color-accent-foreground font-500 mx-3 mr-4 pr-3 rounded-tl-[5px] rounded-tr-[5px] flex h-full transition-all-300 items-center overflow-hidden group-[.is-active]:color-primary group-[.is-active]:dark:color-accent-foreground"
+              class="color-accent-foreground group-[.is-active]:dark:color-accent-foreground font-500 mx-3 mr-4 pr-3 rounded-tl-[5px] rounded-tr-[5px] flex h-full transition-all-300 items-center overflow-hidden group-[.is-active]:color-primary"
             >
               <TamanIcon
                 v-if="showIcon"

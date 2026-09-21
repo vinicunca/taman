@@ -13,7 +13,7 @@ const [Form, formApi] = useTamanForm({
   },
 
   handleSubmit: onSubmit,
-  layout: 'vertical',
+  submitOnEnter: true,
   schema: [
     {
       component: 'Input',
@@ -243,6 +243,13 @@ function onSubmit(values: Record<string, any>) {
           </PButton>
         </AppCardAction>
       </template>
+
+      <p class="text-muted-foreground text-sm mb-4">
+        The "Async Validation" field's validator shows a loading spinner, but only once
+        validation has been pending for 150ms &mdash; fast validators resolve before that
+        and never flash it. Pressing Enter in any field also submits the form
+        (<code>submitOnEnter</code>).
+      </p>
 
       <Form />
     </AppCard>

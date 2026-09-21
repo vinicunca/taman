@@ -1,5 +1,3 @@
-import type { AppContext } from 'vue';
-
 /**
  * Globally shared variables, components, and configuration used across modules.
  * Implemented as a singleton. Keep request-scoped data (such as user info) out of this store.
@@ -15,23 +13,13 @@ interface MessageState {
 }
 
 export interface IGlobalSharedState {
-  appContext?: AppContext;
   components: ComponentsState;
   message: MessageState;
 }
 
 class GlobalShareState {
-  #appContext?: AppContext;
   #components: ComponentsState = {};
   #message: MessageState = {};
-
-  public getAppContext(): AppContext | undefined {
-    return this.#appContext;
-  }
-
-  public setAppContext(value: AppContext) {
-    this.#appContext = value;
-  }
 
   public getComponents(): ComponentsState {
     return this.#components;

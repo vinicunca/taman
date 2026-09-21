@@ -143,6 +143,18 @@ export function useFormRuntime<TValues extends FormValues>(
     );
   }
 
+  function useFieldValidating(fieldName: string) {
+    return computed(() =>
+      Boolean(
+        (
+          Reflect.get(fieldMeta.value, fieldName) as
+          | { isValidating?: boolean }
+          | undefined
+        )?.isValidating,
+      ),
+    );
+  }
+
   function useFieldValue<TFieldName extends FormFieldName<TValues>>(
     fieldName: TFieldName,
   ) {
@@ -290,7 +302,6 @@ export function useFormRuntime<TValues extends FormValues>(
       await rawForm.removeFieldValue(fieldName as never, index);
     },
     reset,
-    resetForm: reset,
     setFieldError,
     async setFieldValue(fieldName, value, shouldValidate) {
       rawForm.setFieldValue(fieldName as never, value as never, {
@@ -313,11 +324,11 @@ export function useFormRuntime<TValues extends FormValues>(
       }
     },
     submit,
-    submitForm: submit,
     useSelector(selector) {
       return computed(() => selector(runtimeState.value));
     },
     useFieldError,
+    useFieldValidating,
     useFieldValue,
     useFieldValues,
     useValues() {

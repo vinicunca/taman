@@ -4,16 +4,15 @@ import { AppCard, AppCardAction, AppPage } from '@taman/app-ui';
 import { useTamanForm } from '#/adapter/form';
 
 const [Form, formApi] = useTamanForm({
-  layout: 'vertical',
-
   handleSubmit: onSubmit,
+  submitOnChange: true,
 
   schema: [
     {
       component: 'Input',
       defaultValue: 'hidden value',
       dependencies: {
-        show: false,
+        resolve: () => ({ show: false }),
         triggerFields: ['field1Switch'],
       },
       fieldName: 'hiddenField',
@@ -46,8 +45,8 @@ const [Form, formApi] = useTamanForm({
     {
       component: 'Input',
       dependencies: {
-        if(values) {
-          return !!values.field1Switch;
+        resolve({ values }) {
+          return { if: !!values.field1Switch };
         },
         triggerFields: ['field1Switch'],
       },
@@ -57,8 +56,8 @@ const [Form, formApi] = useTamanForm({
     {
       component: 'Input',
       dependencies: {
-        show(values) {
-          return !!values.field2Switch;
+        resolve({ values }) {
+          return { show: !!values.field2Switch };
         },
         triggerFields: ['field2Switch'],
       },
@@ -68,8 +67,8 @@ const [Form, formApi] = useTamanForm({
     {
       component: 'Input',
       dependencies: {
-        disabled(values) {
-          return !!values.field3Switch;
+        resolve({ values }) {
+          return { disabled: !!values.field3Switch };
         },
         triggerFields: ['field3Switch'],
       },
@@ -79,8 +78,8 @@ const [Form, formApi] = useTamanForm({
     {
       component: 'Input',
       dependencies: {
-        required(values) {
-          return !!values.field4Switch;
+        resolve({ values }) {
+          return { required: !!values.field4Switch };
         },
         triggerFields: ['field4Switch'],
       },
@@ -90,11 +89,11 @@ const [Form, formApi] = useTamanForm({
     {
       component: 'Input',
       dependencies: {
-        rules(values) {
+        resolve({ values }) {
           if (values.field1 === '123') {
-            return 'required';
+            return { rules: 'required' };
           }
-          return null;
+          return { rules: null };
         },
         triggerFields: ['field1'],
       },
@@ -119,26 +118,28 @@ const [Form, formApi] = useTamanForm({
         placeholder: 'Please select',
       },
       dependencies: {
-        componentProps(values) {
+        resolve({ values }) {
           if (values.field2 === '123') {
             return {
-              items: [
-                {
-                  label: 'Option 1',
-                  value: '1',
-                },
-                {
-                  label: 'Option 2',
-                  value: '2',
-                },
-                {
-                  label: 'Option 3',
-                  value: '3',
-                },
-              ],
+              componentProps: {
+                items: [
+                  {
+                    label: 'Option 1',
+                    value: '1',
+                  },
+                  {
+                    label: 'Option 2',
+                    value: '2',
+                  },
+                  {
+                    label: 'Option 3',
+                    value: '3',
+                  },
+                ],
+              },
             };
           }
-          return {};
+          return { componentProps: {} };
         },
         triggerFields: ['field2'],
       },
@@ -170,8 +171,8 @@ const [SyncForm] = useTamanForm({
         disabled: true,
       },
       dependencies: {
-        trigger(values, form) {
-          form.setFieldValue('field2', values.field1);
+        resolve({ actions, values }) {
+          actions.setFieldValue('field2', values.field1);
         },
         triggerFields: ['field1'],
       },
@@ -263,6 +264,11 @@ function handleUpdate() {
           </PButton>
         </AppCardAction>
       </template>
+
+      <p class="text-muted-foreground text-sm mb-4">
+        <code>submitOnChange</code> submits the form as field values change, debounced by
+        <code>changeDebouncedTime</code> (default 300ms) so rapid typing only submits once.
+      </p>
 
       <Form />
     </AppCard>

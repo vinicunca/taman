@@ -1,31 +1,31 @@
 <script lang="ts" setup>
-import { useTamanDrawer } from '@taman/common-ui';
+import { useTamanDrawer, useTamanToast } from '@taman/app-ui';
 
-import { Button, message } from 'antdv-next';
-
+const { toaster } = useTamanToast();
 const [Drawer, drawerApi] = useTamanDrawer({
   onCancel() {
     drawerApi.close();
   },
   onConfirm() {
-    message.info('onConfirm');
-    // drawerApi.close();
+    toaster.info('onConfirm');
   },
-  title: '动态修改配置示例',
+  title: 'Dynamic configuration example',
 });
 
-// const state = drawerApi.useStore();
-
 function handleUpdateTitle() {
-  drawerApi.setState({ title: '内部动态标题' });
+  drawerApi.setState({ title: 'Internal dynamic title' });
 }
 </script>
+
 <template>
   <Drawer>
     <div class="flex-col-center">
-      <Button class="mb-3" type="primary" @click="handleUpdateTitle()">
-        内部动态修改标题
-      </Button>
+      <PButton
+        class="mb-3"
+        @click="handleUpdateTitle()"
+      >
+        Internal dynamic modify title
+      </PButton>
     </div>
   </Drawer>
 </template>

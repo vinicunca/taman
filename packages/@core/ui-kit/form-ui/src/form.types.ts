@@ -1,14 +1,9 @@
 import type { MaybeComputedRef } from '@taman-core/typings';
 import type { ButtonProps } from 'pohon-ui';
-import type { Component, HTMLAttributes, HtmlHTMLAttributes, Ref, UnwrapNestedRefs } from 'vue';
+import type { Component, HTMLAttributes, HtmlHTMLAttributes, Ref } from 'vue';
 import type { ZodType } from 'zod';
-import type { useFormLabelWidth } from './form-render/form-render.utils';
 import type { FormApi } from './form.api';
 import type { BuiltInFormComponentType } from './form.built-ins';
-
-export type FormLabelWidthContext = UnwrapNestedRefs<
-  ReturnType<typeof useFormLabelWidth>
->;
 
 export type FormValues = Record<string, any>;
 
@@ -39,8 +34,6 @@ export type FormFieldValue<
   TValues extends FormValues,
   TFieldName extends string,
 > = TFieldName extends keyof TValues ? TValues[TFieldName] : unknown;
-
-export type FormLayout = 'horizontal' | 'inline' | 'vertical';
 
 export type { BuiltInFormComponentPropsMap, BuiltInFormComponentType } from './form.built-ins';
 
@@ -151,7 +144,7 @@ export interface FormResetOptions {
   keepDefaultValues?: boolean;
 }
 
-export interface FormContextApi<TValues extends FormValues = FormValues> {
+export interface FormActions<TValues extends FormValues = FormValues> {
   clearValidation: (
     fieldNames?: FormFieldName<TValues> | Array<FormFieldName<TValues>>,
   ) => void;
@@ -172,11 +165,6 @@ export interface FormContextApi<TValues extends FormValues = FormValues> {
     state?: FormResetState<TValues>,
     options?: FormResetOptions,
   ) => Promise<void>;
-  /** @deprecated Use `reset` instead. */
-  resetForm: (
-    state?: FormResetState<TValues>,
-    options?: FormResetOptions,
-  ) => Promise<void>;
   setFieldError: (fieldName: string, error?: string) => void;
   setFieldValue: <TFieldName extends FormFieldName<TValues>>(
     fieldName: TFieldName,
@@ -188,9 +176,8 @@ export interface FormContextApi<TValues extends FormValues = FormValues> {
     shouldValidate?: boolean,
   ) => Promise<void>;
   submit: () => Promise<void>;
-  /** @deprecated Use `submit` instead. */
-  submitForm: () => Promise<void>;
   useFieldError: (fieldName: string) => Readonly<Ref<string | undefined>>;
+  useFieldValidating: (fieldName: string) => Readonly<Ref<boolean>>;
   useFieldValue: <TFieldName extends FormFieldName<TValues>>(
     fieldName: TFieldName,
   ) => Readonly<Ref<FormFieldValue<TValues, TFieldName>>>;
@@ -205,10 +192,6 @@ export interface FormContextApi<TValues extends FormValues = FormValues> {
   validateField: (fieldName: string) => Promise<FormValidationResult>;
   readonly values: TValues;
 }
-
-/** @deprecated Use `FormContextApi` instead. */
-export type FormActions<TValues extends FormValues = FormValues>
-  = FormContextApi<TValues>;
 
 type ReservedFormSlotName
   = | 'default'
@@ -257,8 +240,19 @@ export interface TamanFormFieldSlotProps<
     TFieldName
   >;
   disabled: boolean;
+  error: string | undefined;
   field: FormRuntimeField<FormFieldValue<TValues, TFieldName>>;
   isInValid: boolean;
+  /**
+   * The issue list from the field's last validation, kept in sync with
+   * `error` (cleared whenever `error` clears). For zod (`ZodType`) rules
+   * this is the full `safeParseAsync` issue list; for a string-rule
+   * validator it is a single derived entry with `path: []`. A direct
+   * `formApi.setFieldError(name, 'msg')` call sets `error` while leaving
+   * this empty, since it bypasses the field's own validator and there is no
+   * issue list to derive it from.
+   */
+  issues: Array<{ message: string; path: Array<PropertyKey> }>;
   modelValue: FormFieldValue<TValues, TFieldName>;
   name: TFieldName;
 }
@@ -369,30 +363,6 @@ export type FormSchemaRuleType
     | (Record<never, never> & string)
     | ZodType;
 
-type FormItemDependenciesCondition<
-  TValues extends FormValues,
-  TResult = boolean | PromiseLike<boolean>,
-> = (
-  value: Partial<TValues>,
-  actions: FormActions<TValues>,
-  controller: ExtendedFormApi<TValues>, // Provide the ability to access `extendApi` within `dependencies`.
-  ctx?: FormSchemaContext<TValues>,
-) => TResult;
-
-type FormItemDependenciesConditionWithRules<TValues extends FormValues> = (
-  value: Partial<TValues>,
-  actions: FormActions<TValues>,
-  controller: ExtendedFormApi<TValues>, // Provide access to extendApi in dependencies
-  ctx?: FormSchemaContext<TValues>,
-) => FormSchemaRuleType | PromiseLike<FormSchemaRuleType>;
-
-type FormItemDependenciesConditionWithProps<TValues extends FormValues> = (
-  value: Partial<TValues>,
-  actions: FormActions<TValues>,
-  controller: ExtendedFormApi<TValues>, // Provide the ability to access `extendApi` within `dependencies`.
-  ctx?: FormSchemaContext<TValues>,
-) => MaybeComponentProps | PromiseLike<MaybeComponentProps>;
-
 interface FormItemDependenciesBase {
   /**
    * Trigger fields
@@ -420,73 +390,18 @@ export interface FormDependenciesResolvedState {
   show?: boolean;
 }
 
-export interface FormItemDependenciesLegacy<
-  TValues extends FormValues = FormValues,
-> extends FormItemDependenciesBase {
-  /**
-   * Component props
-   * @returns Component props
-   * @deprecated Use `dependencies.resolve` instead.
-   */
-  componentProps?: FormItemDependenciesConditionWithProps<TValues>;
-  /**
-   * Whether to disable
-   * @returns Whether to disable
-   * @deprecated Use `dependencies.resolve` instead.
-   */
-  disabled?: boolean | FormItemDependenciesCondition<TValues>;
-  /**
-   * Whether to render (delete dom)
-   * @returns Whether to render
-   * @deprecated Use `dependencies.resolve` instead.
-   */
-  if?: boolean | FormItemDependenciesCondition<TValues>;
-  /**
-   * Whether to be required
-   * @returns 是否必填
-   * @deprecated Use `dependencies.resolve` instead.
-   */
-  required?: FormItemDependenciesCondition<TValues>;
-  resolve?: never;
-  /**
-   * 字段规则
-   * @deprecated Use `dependencies.resolve` instead.
-   */
-  rules?: FormItemDependenciesConditionWithRules<TValues>;
-  /**
-   * 是否隐藏(Css)
-   * @returns 是否隐藏
-   * @deprecated Use `dependencies.resolve` instead.
-   */
-  show?: boolean | FormItemDependenciesCondition<TValues>;
-  /**
-   * 任意触发都会执行
-   * @deprecated Use `dependencies.resolve` instead.
-   */
-  trigger?: FormItemDependenciesCondition<TValues, void>;
-}
-
 export interface FormItemDependenciesResolve<
   TValues extends FormValues = FormValues,
 > extends FormItemDependenciesBase {
-  componentProps?: never;
-  disabled?: never;
-  if?: never;
-  required?: never;
   resolve: (
     context: FormDependenciesResolveContext<TValues>,
   ) =>
     | FormDependenciesResolvedState
     | PromiseLike<FormDependenciesResolvedState | undefined>
     | undefined;
-  rules?: never;
-  show?: never;
-  trigger?: never;
 }
 
-export type FormItemDependencies<TValues extends FormValues = FormValues>
-  = | FormItemDependenciesLegacy<TValues>
-    | FormItemDependenciesResolve<TValues>;
+export type FormItemDependencies<TValues extends FormValues = FormValues> = FormItemDependenciesResolve<TValues>;
 
 type ComponentProps<TValues extends FormValues = FormValues>
   = | ((ctx: FormSchemaContext<TValues>) => MaybeComponentProps)
@@ -494,20 +409,16 @@ type ComponentProps<TValues extends FormValues = FormValues>
 
 export interface FormCommonConfig<TValues extends FormValues = FormValues> {
   /**
-   * Whether to enable change event compatibility fallback.
-   * Only enable when the component does not send update:* and only sends change.
-   * @default false
-   */
-  changeEventFallback?: boolean;
-  /**
    * Whether to be collapsible
+   *
+   * Effectively static-schema-only: it is read once when the field control
+   * mounts. Flipping it at runtime remounts the control (per
+   * `form-render-field-collapsible.vue`'s `v-if`), which loses focus, IME
+   * composition state, and any open dropdown/popover the control was
+   * showing.
    * @default false
    */
   collapsible?: boolean;
-  /**
-   * Display a colon after the label
-   */
-  colon?: boolean;
   /**
    * All form item props
    */
@@ -527,10 +438,6 @@ export interface FormCommonConfig<TValues extends FormValues = FormValues> {
    */
   disabled?: boolean;
   /**
-   * All form item empty state value, default is undefined, the empty state value of naive-ui is null
-   */
-  emptyStateValue?: null;
-  /**
    * All form item component styles
    * @default {}
    */
@@ -546,6 +453,12 @@ export interface FormCommonConfig<TValues extends FormValues = FormValues> {
    */
   hideLabel?: boolean;
   /**
+   * Suppress the field-level validation message.
+   * Use when a composite component renders its own messages per sub-control.
+   * @default false
+   */
+  hideMessage?: boolean;
+  /**
    * Whether to hide the required mark
    * @default false
    */
@@ -555,11 +468,6 @@ export interface FormCommonConfig<TValues extends FormValues = FormValues> {
    * @default ""
    */
   labelClass?: string;
-  /**
-   * All form item label width
-   * When set to `auto`, the horizontal layout will automatically align the maximum width of the visible label of the current form
-   */
-  labelWidth?: number | string;
   /**
    * All form item model property name
    * @default "modelValue"
@@ -579,25 +487,25 @@ type MappedComponentProps<P, TValues extends FormValues = FormValues>
   = | ((ctx: FormSchemaContext<TValues>) => P & Record<string, any>)
     | (P & Record<string, any>);
 
-/**
- * Format the current field value in the `getValues()` output.
- * - Return `undefined`: Keep the current field removed state, usually combined with `setValue(key, nextValue)`
- *   to split a field into other fields, for example `startTime` / `endTime`
- * - Return other values: Will restore/write back the current field to the returned value
- * - `setValue` callback signature is `(key, nextValue) => void`
- * @deprecated Use the form-level `codec` instead.
- */
-export type FormValueFormat<TValues extends FormValues = FormValues> = (
-  value: any,
-  setValue: (fieldName: string, value: any) => void,
-  values: TValues,
-  ctx?: FormSchemaContext<TValues>,
-) => any;
-
 interface FormSchemaBody<TValues extends FormValues = FormValues> extends Omit<
   FormCommonConfig<TValues>,
   'componentProps'
 > {
+  /**
+   * Hide this entry while the form is collapsed.
+   * The collapse toggle appears only when at least one top-level entry sets it.
+   * Distinct from the form-level `collapsed` state, which asks whether the form
+   * is collapsed right now.
+   *
+   * The toggle only renders inside the default `<FormActions>` (gated by
+   * `showDefaultActions`, and by `taman-use-form.vue` falling back to it only
+   * when no custom `default` slot is supplied). Marking an entry `collapsed`
+   * while those defaults are off leaves it permanently hidden with no way to
+   * expand it — provide your own expand control (bound to the form's
+   * `collapsed` state) in that case.
+   * @default false
+   */
+  collapsed?: boolean;
   /** Default value */
   defaultValue?: any;
   /** Dependencies */
@@ -618,13 +526,6 @@ interface FormSchemaBody<TValues extends FormValues = FormValues> extends Omit<
   rules?: FormSchemaRuleType;
   /** Suffix */
   suffix?: FormCustomRenderType;
-  /**
-   * Format the current field value in the `getValues()` output.
-   * - Return value is not `undefined`: Will write back to the current fieldName
-   * - Return value is `undefined`: Can write one or more target fields through `setValue`
-   * @deprecated Use the form-level `codec` instead.
-   */
-  valueFormat?: FormValueFormat<TValues>;
 }
 
 type FormSchemaDiscriminated<
@@ -674,8 +575,8 @@ type FormArraySchema<
 } & FormSchemaBody<TValues>;
 
 /**
- * 表单分组，用于把若干字段组织成一个可折叠的区块。
- * 分组本身不是字段，不参与取值与校验。
+ * Form grouping, used to organize multiple fields into a collapsible section.
+ * The grouping itself is not a field; it does not participate in value retrieval or validation.
  */
 export interface FormGroupSchema<
   T extends FormBaseComponentType = FormBaseComponentType,
@@ -684,6 +585,21 @@ export interface FormGroupSchema<
 > {
   /** Fields defined within the group */
   children: Array<FormFieldSchema<T, P, TValues>>;
+  /**
+   * Hide this entry while the form is collapsed.
+   * The collapse toggle appears only when at least one top-level entry sets it.
+   * Distinct from the form-level `collapsed` state, which asks whether the form
+   * is collapsed right now.
+   *
+   * The toggle only renders inside the default `<FormActions>` (gated by
+   * `showDefaultActions`, and by `taman-use-form.vue` falling back to it only
+   * when no custom `default` slot is supplied). Marking an entry `collapsed`
+   * while those defaults are off leaves it permanently hidden with no way to
+   * expand it — provide your own expand control (bound to the form's
+   * `collapsed` state) in that case.
+   * @default false
+   */
+  collapsed?: boolean;
   /**
    * Whether to allow collapsing
    * @default true
@@ -780,28 +696,6 @@ export type FormHandleResetFn<TSubmitValues extends FormValues = FormValues> = (
   values: TSubmitValues,
 ) => Promise<void> | void;
 
-/** @deprecated Use the form-level `codec` instead. */
-export type FormFieldMappingTimeItem = [
-  string,
-  [string, string],
-  (
-    | ((value: any, fieldName: string) => any)
-    | [string, string]
-    | null
-    | string
-  )?,
-];
-
-/** @deprecated Use the form-level `codec` instead. */
-export type FormFieldMappingTime = Array<FormFieldMappingTimeItem>;
-
-/** @deprecated Use the form-level `codec` instead. */
-export type ArrayToStringFields = Array<
-  | [Array<string>, string?] // Nested array format, optional separator
-  | string // Single field, using default separator
-  | Array<string>
->;
-
 export interface FormFieldProps<
   T extends FormBaseComponentType = FormBaseComponentType,
   TValues extends FormValues = FormValues,
@@ -818,20 +712,10 @@ export interface FormRenderProps<
   TValues extends FormValues = FormValues,
 > {
   /**
-   * Form field array mapping string configuration, default is ","
-   * @deprecated Use the form-level `codec` instead.
-   */
-  arrayToStringFields?: ArrayToStringFields;
-  /**
-   * Whether to collapse, in effect when showCollapseButton=true
-   * true: collapse false: expand
+   * Whether the form is currently collapsed.
+   * true: collapsed false: expanded
    */
   collapsed?: boolean;
-  /**
-   * Number of rows kept when collapsed
-   * @default 1
-   */
-  collapsedRows?: number;
   /**
    * Whether to trigger resize event
    * @default false
@@ -846,34 +730,23 @@ export interface FormRenderProps<
    */
   compact?: boolean;
   /**
-   * Component v-model event binding
-   */
-  componentBindEventMap?: Partial<Record<FormBaseComponentType, string>>;
-  /**
    * Component collection
    */
   componentMap: Record<FormBaseComponentType, Component>;
   /**
-   * Form field mapping to time format
-   * @deprecated Use the form-level `codec` instead.
+   * Disable the whole form: every field plus the submit and reset buttons.
+   * Distinct from `commonConfig.disabled`, which only disables fields.
+   * @default false
    */
-  fieldMappingTime?: FormFieldMappingTime;
+  disabled?: boolean;
   /**
    * Form instance
    */
   form?: FormActions<TValues>;
   /**
-   * Form item layout
-   */
-  layout?: FormLayout;
-  /**
    * Form Definition
    */
   schema?: Array<FormSchema<T, P, TValues>>;
-  /**
-   * Whether to display expand/collapse
-   */
-  showCollapseButton?: boolean;
   /**
    * Form grid layout
    * @default "grid-cols-1"
@@ -893,7 +766,7 @@ export interface TamanFormProps<
   TSubmitValues extends FormValues = TValues,
 > extends Omit<
     FormRenderProps<T, P, TValues>,
-  'componentBindEventMap' | 'componentMap' | 'form'
+  'componentMap' | 'form'
   > {
   /**
    * Whether to reverse the operation buttons (submit button before)
@@ -913,22 +786,11 @@ export interface TamanFormProps<
    */
   actionWrapperClass?: HTMLAttributes['class'];
   /**
-   * Form field array mapping string configuration, default is ","
-   * @deprecated Use the form-level `codec` instead.
-   */
-  arrayToStringFields?: ArrayToStringFields;
-
-  /**
    * Time to debounce when submitOnChange changes | default is 300ms
    */
   changeDebouncedTime?: number;
   /** Bidirectional codec between form component values and submitted values. */
   codec?: FormCodec<TValues, TSubmitValues>;
-  /**
-   * Form field mapping
-   * @deprecated Use the form-level `codec` instead.
-   */
-  fieldMappingTime?: FormFieldMappingTime;
   /**
    * Form collapse expand state change callback
    */
@@ -998,22 +860,7 @@ export type ExtendedFormApi<
   ) => Readonly<Ref<TResult>>;
 };
 
-export interface TamanFormAdapterOptions<
-  T extends FormBaseComponentType = FormBaseComponentType,
-> {
-  config?: {
-    baseModelPropName?: string;
-    /**
-     * Whether to enable change event compatibility fallback.
-     * Only used for compatible components that only send change.
-     * @default false
-     */
-    changeEventFallback?: boolean;
-    emptyStateValue?: null;
-    modelPropNameMap?: Partial<Record<T, string>>;
-  };
-  /** @deprecated Use `rules` instead. */
-  defineRules?: Partial<Record<string, FormRuleValidator>>;
+export interface TamanFormAdapterOptions {
   rules?: Partial<Record<string, FormRuleValidator>>;
 }
 

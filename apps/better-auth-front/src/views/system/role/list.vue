@@ -8,8 +8,8 @@ import type {
 import type { SystemRoleApi } from '#/api';
 
 import { Page, useTamanDrawer } from '@taman/common-ui';
+import { formatDate } from '@taman/utils';
 import { Plus } from '@vben/icons';
-
 import { Button, message, Modal } from 'antdv-next';
 
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
@@ -26,7 +26,26 @@ const [FormDrawer, formDrawerApi] = useTamanDrawer({
 
 const [Grid, gridApi] = useVbenVxeGrid({
   formOptions: {
-    fieldMappingTime: [['createTime', ['startTime', 'endTime']]],
+    // Replaces the removed `fieldMappingTime` option: splits the
+    // `createTime` range field into `startTime` / `endTime` query params.
+    codec: {
+      decode(values: Recordable<any>) {
+        const { endTime, startTime, ...rest } = values;
+        return {
+          ...rest,
+          createTime: startTime || endTime ? [startTime, endTime] : undefined,
+        };
+      },
+      encode(values: Recordable<any>) {
+        const { createTime, ...rest } = values;
+        const [startTime, endTime] = createTime ?? [];
+        return {
+          ...rest,
+          endTime: endTime ? formatDate(endTime) : undefined,
+          startTime: startTime ? formatDate(startTime) : undefined,
+        };
+      },
+    },
     schema: useGridFormSchema(),
     submitOnChange: true,
   },

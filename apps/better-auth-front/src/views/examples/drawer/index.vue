@@ -1,41 +1,30 @@
 <script lang="ts" setup>
-import type { DrawerPlacement, DrawerState } from '@taman/common-ui';
+import type { DrawerPlacement, DrawerState } from '@taman/app-ui';
 
-import { Page, useTamanDrawer } from '@taman/common-ui';
-import { Button, Card } from 'antdv-next';
+import type { ExplicitDrawerData } from './typed-data-contract';
 
-import DocButton from '../doc-button.vue';
+import { AppCard, AppPage, useTamanDrawer } from '@taman/app-ui';
+
 import AutoHeightDemo from './auto-height-demo.vue';
 import BaseDemo from './base-demo.vue';
 import DynamicDemo from './dynamic-demo.vue';
 import FormDrawerDemo from './form-drawer-demo.vue';
 import inContentDemo from './in-content-demo.vue';
 import SharedDataDemo from './shared-data-demo.vue';
+import TypedDataAutoDemo from './typed-data-auto-demo.vue';
+import { useFactoryDrawer } from './typed-data-contract';
+import TypedDataExplicitDemo from './typed-data-explicit-demo.vue';
+import TypedDataFactoryDemo from './typed-data-factory-demo.vue';
 
-defineOptions({ name: 'DrawerExample' });
-const [, baseDrawerApi] = useTamanDrawer({
-  connectedComponent: BaseDemo,
-});
-
-const [, inContentDrawerApi] = useTamanDrawer({
-  connectedComponent: inContentDemo,
-});
-
-const [, autoHeightDrawerApi] = useTamanDrawer({
-  connectedComponent: AutoHeightDemo,
-});
-
-const [, dynamicDrawerApi] = useTamanDrawer({
-  connectedComponent: DynamicDemo,
-});
-
-const [, sharedDrawerApi] = useTamanDrawer({
-  connectedComponent: SharedDataDemo,
-});
-
-const [, formDrawerApi] = useTamanDrawer({
-  connectedComponent: FormDrawerDemo,
-});
+const [BaseDrawer, baseDrawerApi] = useTamanDrawer({ connectedComponent: BaseDemo });
+const [InContentDrawer, inContentDrawerApi] = useTamanDrawer({ connectedComponent: inContentDemo });
+const [AutoHeightDrawer, autoHeightDrawerApi] = useTamanDrawer({ connectedComponent: AutoHeightDemo });
+const [DynamicDrawer, dynamicDrawerApi] = useTamanDrawer({ connectedComponent: DynamicDemo });
+const [SharedDataDrawer, sharedDrawerApi] = useTamanDrawer({ connectedComponent: SharedDataDemo });
+const [FormDrawer, formDrawerApi] = useTamanDrawer({ connectedComponent: FormDrawerDemo });
+const [TypedDataAutoDrawer, typedDataAutoDrawerApi] = useTamanDrawer({ connectedComponent: TypedDataAutoDemo });
+const [TypedDataExplicitDrawer, typedDataExplicitDrawerApi] = useTamanDrawer<ExplicitDrawerData>({ connectedComponent: TypedDataExplicitDemo });
+const [TypedDataFactoryDrawer, typedDataFactoryDrawerApi] = useFactoryDrawer({ connectedComponent: TypedDataFactoryDemo });
 
 function openBaseDrawer(placement: DrawerPlacement = 'right') {
   baseDrawerApi.setState({ placement }).open();
@@ -55,7 +44,7 @@ function openInContentDrawer(placement: DrawerPlacement = 'right') {
 }
 
 function openMaxContentDrawer() {
-  // For demo convenience only. In real use, put these options directly on Drawer props
+  // This is just for demonstration purposes. In practice, you can simply write these configuration in the Drawer's properties.
   inContentDrawerApi.setState({ class: 'w-full', placement: 'right' }).open();
 }
 
@@ -68,14 +57,14 @@ function openDynamicDrawer() {
 }
 
 function handleUpdateTitle() {
-  dynamicDrawerApi.setState({ title: '外部动态标题' }).open();
+  dynamicDrawerApi.setState({ title: 'External dynamic title' }).open();
 }
 
 function openSharedDrawer() {
   sharedDrawerApi
     .setData({
-      content: '外部传递的数据 content',
-      payload: '外部传递的数据 payload',
+      content: 'External passed data content',
+      payload: 'External passed data payload',
     })
     .open();
 }
@@ -88,171 +77,231 @@ function openFormDrawer() {
     })
     .open();
 }
+
+function openTypedDataAutoDrawer() {
+  typedDataAutoDrawerApi
+    .setData({
+      message: 'External does not need to declare a generic, it is automatically inferred by the connected component.',
+      method: 'Automatic inference',
+    })
+    .open();
+}
+
+function openTypedDataExplicitDrawer() {
+  typedDataExplicitDrawerApi
+    .setData({
+      message: 'Parent and child components explicitly reference the same data type.',
+      method: 'Explicit generic',
+    })
+    .open();
+}
+
+function openTypedDataFactoryDrawer() {
+  typedDataFactoryDrawerApi
+    .setData({
+      message: 'Parent and child components reuse pre-bound typed composable.',
+      method: 'Contract factory',
+    })
+    .open();
+}
 </script>
 
 <template>
-  <Page
+  <AppPage
     auto-content-height
-    description="抽屉组件通常用于在当前页面上显示一个覆盖层，用以展示重要信息或提供用户交互界面。"
-    title="抽屉组件示例"
+    description="Drawer components are typically used to display a cover layer on the current page, to display important information or provide user interaction interfaces."
+    title="Drawer component examples"
   >
-    <template #extra>
-      <DocButton path="/components/common-ui/vben-drawer" />
-    </template>
+    <BaseDrawer />
+    <InContentDrawer />
+    <AutoHeightDrawer />
+    <DynamicDrawer />
+    <SharedDataDrawer />
+    <FormDrawer />
+    <TypedDataAutoDrawer />
+    <TypedDataExplicitDrawer />
+    <TypedDataFactoryDrawer />
 
-    <Card
+    <AppCard
       class="mb-4"
-      title="基本使用"
+      title="Basic usage"
     >
       <p class="mb-3">
-        一个基础的抽屉示例
+        A basic drawer example
       </p>
-      <Button
+      <PButton
         class="mb-2"
-        type="primary"
         @click="openBaseDrawer('right')"
       >
-        右侧打开
-      </Button>
-      <Button
+        Open on the right
+      </PButton>
+      <PButton
         class="mb-2 ml-2"
-        type="primary"
         @click="openBaseDrawer('bottom')"
       >
-        底部打开
-      </Button>
-      <Button
+        Open on the bottom
+      </PButton>
+      <PButton
         class="mb-2 ml-2"
-        type="primary"
         @click="openBaseDrawer('left')"
       >
-        左侧打开
-      </Button>
-      <Button
+        Open on the left
+      </PButton>
+      <PButton
         class="mb-2 ml-2"
-        type="primary"
         @click="openBaseDrawer('top')"
       >
-        顶部打开
-      </Button>
-      <Button
+        Open on the top
+      </PButton>
+      <PButton
         class="mb-2 ml-2"
-        type="primary"
         @click="openBlurDrawer"
       >
-        遮罩层模糊效果
-      </Button>
-    </Card>
+        Blur effect on the overlay
+      </PButton>
+    </AppCard>
 
-    <Card
+    <AppCard
       class="mb-4"
-      title="在内容区域打开"
+      title="Open in content area"
     >
       <p class="mb-3">
-        指定抽屉在内容区域打开，不会覆盖顶部和左侧菜单等区域
+        Specify the drawer to open in the content area, without covering the top and left menu areas
       </p>
-      <Button
+      <PButton
         class="mb-2"
-        type="primary"
         @click="openInContentDrawer('right')"
       >
-        右侧打开
-      </Button>
-      <Button
+        Open on the right
+      </PButton>
+      <PButton
         class="mb-2 ml-2"
-        type="primary"
         @click="openInContentDrawer('bottom')"
       >
-        底部打开
-      </Button>
-      <Button
+        Open on the bottom
+      </PButton>
+      <PButton
         class="mb-2 ml-2"
-        type="primary"
         @click="openInContentDrawer('left')"
       >
-        左侧打开
-      </Button>
-      <Button
+        Open on the left
+      </PButton>
+      <PButton
         class="mb-2 ml-2"
-        type="primary"
         @click="openInContentDrawer('top')"
       >
-        顶部打开
-      </Button>
-      <Button
+        Open on the top
+      </PButton>
+      <PButton
         class="mb-2 ml-2"
-        type="primary"
         @click="openMaxContentDrawer"
       >
-        内容区域全屏打开
-      </Button>
-    </Card>
+        Open in full screen content area
+      </PButton>
+    </AppCard>
 
-    <Card
+    <AppCard
       class="mb-4"
-      title="内容高度自适应滚动"
+      title="Content height adaptive scrolling"
     >
       <p class="mb-3">
-        可根据内容自动计算滚动高度
+        The height is automatically calculated based on the content
       </p>
-      <Button
-        type="primary"
+      <PButton
         @click="openAutoHeightDrawer"
       >
-        打开抽屉
-      </Button>
-    </Card>
+        Open the drawer
+      </PButton>
+    </AppCard>
 
-    <Card
+    <AppCard
       class="mb-4"
-      title="动态配置示例"
+      title="Dynamic configuration example"
     >
       <p class="mb-3">
-        通过 setState 动态调整抽屉数据
+        Dynamically adjust the drawer data through setState
       </p>
-      <Button
-        type="primary"
+      <PButton
         @click="openDynamicDrawer"
       >
-        打开抽屉
-      </Button>
-      <Button
+        Open the drawer
+      </PButton>
+      <PButton
         class="ml-2"
-        type="primary"
         @click="handleUpdateTitle"
       >
-        从外部修改标题并打开
-      </Button>
-    </Card>
+        Modify the title from the outside and open
+      </PButton>
+    </AppCard>
 
-    <Card
+    <AppCard
       class="mb-4"
-      title="内外数据共享示例"
+      title="Shared data example"
     >
       <p class="mb-3">
-        通过共享 sharedData 来进行数据交互
+        Data interaction through shared sharedData
       </p>
-      <Button
-        type="primary"
+      <PButton
         @click="openSharedDrawer"
       >
-        打开抽屉并传递数据
-      </Button>
-    </Card>
+        Open the drawer and pass data
+      </PButton>
+    </AppCard>
 
-    <Card
+    <AppCard
       class="mb-4"
-      title="表单抽屉示例"
+      title="Form drawer example"
     >
       <p class="mb-3">
-        打开抽屉并设置表单schema以及数据
+        Open the drawer and set the form schema and data
       </p>
-      <Button
-        type="primary"
+      <PButton
         @click="openFormDrawer"
       >
-        打开抽屉并设置表单schema以及数据
-      </Button>
-    </Card>
-  </Page>
+        Open the drawer and set the form schema and data
+      </PButton>
+    </AppCard>
+
+    <AppCard
+      class="mb-4"
+      title="Shared data: automatic inference"
+    >
+      <p class="mb-3">
+        Child components expose API, parent components infer the type from the connected component
+      </p>
+      <PButton
+        @click="openTypedDataAutoDrawer"
+      >
+        Open the automatic inference example
+      </PButton>
+    </AppCard>
+
+    <AppCard
+      class="mb-4"
+      title="Shared data: explicit generic"
+    >
+      <p class="mb-3">
+        When automatic inference is not possible, parent and child components explicitly reference the same data type
+      </p>
+      <PButton
+        @click="openTypedDataExplicitDrawer"
+      >
+        Open the explicit generic example
+      </PButton>
+    </AppCard>
+
+    <AppCard
+      class="mb-4"
+      title="Shared data: contract factory"
+    >
+      <p class="mb-3">
+        Pre-bind the type and reuse the typed composable through createTamanDrawer
+      </p>
+      <PButton
+        @click="openTypedDataFactoryDrawer"
+      >
+        Open the contract factory example
+      </PButton>
+    </AppCard>
+  </AppPage>
 </template>

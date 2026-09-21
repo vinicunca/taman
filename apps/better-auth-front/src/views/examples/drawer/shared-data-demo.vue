@@ -1,29 +1,36 @@
 <script lang="ts" setup>
+import { useTamanDrawer, useTamanToast } from '@taman/app-ui';
 import { ref } from 'vue';
 
-import { useTamanDrawer } from '@taman/common-ui';
+interface SharedData {
+  content: string;
+  payload: string;
+}
 
-import { message } from 'antdv-next';
+const { toaster } = useTamanToast();
+const data = ref<SharedData>();
 
-const data = ref();
-
-const [Drawer, drawerApi] = useTamanDrawer({
+const [Drawer, drawerApi] = useTamanDrawer<SharedData>({
   onCancel() {
     drawerApi.close();
   },
   onConfirm() {
-    message.info('onConfirm');
-    // drawerApi.close();
+    toaster.info('onConfirm');
   },
   onOpenChange(isOpen: boolean) {
     if (isOpen) {
-      data.value = drawerApi.getData<Record<string, any>>();
+      data.value = drawerApi.getData();
     }
   },
 });
+
+defineExpose({ drawerApi });
 </script>
+
 <template>
-  <Drawer title="数据共享示例">
-    <div class="flex-col-center">外部传递数据： {{ data }}</div>
+  <Drawer title="Shared data example">
+    <div class="flex-col-center">
+      External passed data: {{ data }}
+    </div>
   </Drawer>
 </template>

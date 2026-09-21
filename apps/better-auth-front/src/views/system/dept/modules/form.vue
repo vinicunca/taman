@@ -22,13 +22,12 @@ const getTitle = computed(() => {
 });
 
 const [Form, formApi] = useTamanForm({
-  layout: 'vertical',
   schema: useSchema(),
   showDefaultActions: false,
 });
 
 function resetForm() {
-  formApi.resetForm();
+  formApi.reset();
   formApi.setValues(formData.value || {});
 }
 

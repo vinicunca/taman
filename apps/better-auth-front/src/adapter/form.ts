@@ -9,7 +9,7 @@ import { calendarDateTimeCodec, isEmptyFormValue, setupTamanForm, useTamanForm a
 import { $t } from '#/locales';
 
 export async function initTamanForm() {
-  setupTamanForm<ComponentType>({
+  setupTamanForm({
     rules: {
       required: (value, _params, ctx) => {
         if (isEmptyFormValue(value)) {

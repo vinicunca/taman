@@ -74,21 +74,19 @@ const schema: Array<TamanFormSchema<ArrayFormValues>> = [
   {
     component: 'Textarea',
     dependencies: {
-      componentProps: (values) => {
+      resolve({ values }) {
         const planName = values.planName;
         return {
-          disabled: !planName,
-          placeholder: planName ? `${planName} additional description` : 'Please enter the plan name first',
-          rows: 2,
+          componentProps: {
+            disabled: !planName,
+            placeholder: planName ? `${planName} additional description` : 'Please enter the plan name first',
+            rows: 2,
+          },
+          required: String(values.planName ?? '').includes('On-Duty'),
+          rules: String(values.planName ?? '').includes('On-Duty')
+            ? z.string().min(2, 'Please enter at least 2 characters')
+            : z.string().optional(),
         };
-      },
-      required: (values) => {
-        return String(values.planName ?? '').includes('On-Duty');
-      },
-      rules: (values) => {
-        return String(values.planName ?? '').includes('On-Duty')
-          ? z.string().min(2, 'Please enter at least 2 characters')
-          : z.string().optional();
       },
       triggerFields: ['planName'],
     },
@@ -136,11 +134,15 @@ const schema: Array<TamanFormSchema<ArrayFormValues>> = [
       {
         component: 'Input',
         dependencies: {
-          componentProps: (_values, _form, _api, ctx) => ({
-            disabled: ctx?.row?.role === 'viewer',
-            placeholder:
-              ctx?.row?.role === 'viewer' ? 'Observer does not need a phone' : 'Please enter the phone',
-          }),
+          resolve({ schema }) {
+            return {
+              componentProps: {
+                disabled: schema?.row?.role === 'viewer',
+                placeholder:
+                  schema?.row?.role === 'viewer' ? 'Observer does not need a phone' : 'Please enter the phone',
+              },
+            };
+          },
           triggerFields: ['role'],
         },
         fieldName: 'phone',
@@ -179,9 +181,6 @@ const [Form, formApi] = useTamanForm({
   codec: {
     decode: decodeArrayFormValues,
     encode: encodeArrayFormValues,
-  },
-  commonConfig: {
-    labelWidth: 90,
   },
   handleSubmit: (values) => {
     submitValues.value = values;

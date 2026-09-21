@@ -34,7 +34,6 @@ const [FirstForm, firstFormApi] = useTamanForm({
     },
   },
   handleSubmit: onFirstSubmit,
-  layout: 'horizontal',
   resetButtonOptions: {
     show: false,
   },
@@ -62,7 +61,6 @@ const [SecondForm, secondFormApi] = useTamanForm({
   },
   handleReset: onSecondReset,
   handleSubmit: onSecondSubmit,
-  layout: 'horizontal',
   resetButtonOptions: {
     content: 'Previous',
   },

@@ -25,7 +25,10 @@ const emits = defineEmits<{
   close: [string];
   unpin: [TamanTabDefinition];
 }>();
-const active = defineModel<string>('active');
+
+const active = defineModel<string | undefined>('active', {
+  default: undefined,
+});
 
 const style = computed(() => {
   const { gap } = props;
@@ -109,14 +112,14 @@ function onMouseDown(event: MouseEvent, tab: TabConfig) {
                 class="tabs-chrome__background-content rounded-tl-$gap rounded-tr-$gap h-full duration-150 group-[.is-active]:bg-primary/15 group-[.is-active]:dark:bg-background-accented"
               />
               <svg
-                class="tabs-chrome__background-before transition-all-150 bottom-0 absolute fill-transparent -left-px group-[.is-active]:fill-primary/15 group-[.is-active]:dark:fill-accent"
+                class="tabs-chrome__background-before group-[.is-active]:dark:fill-accent transition-all-150 bottom-0 absolute fill-transparent -left-px group-[.is-active]:fill-primary/15"
                 height="7"
                 width="7"
               >
                 <path d="M 0 7 A 7 7 0 0 0 7 0 L 7 7 Z" />
               </svg>
               <svg
-                class="tabs-chrome__background-after transition-duration-150 bottom-0 absolute fill-transparent -right-px group-[.is-active]:fill-primary/15 group-[.is-active]:dark:fill-accent"
+                class="tabs-chrome__background-after group-[.is-active]:dark:fill-accent transition-duration-150 bottom-0 absolute fill-transparent -right-px group-[.is-active]:fill-primary/15"
                 height="7"
                 width="7"
               >
@@ -131,7 +134,7 @@ function onMouseDown(event: MouseEvent, tab: TabConfig) {
               <!-- close-icon -->
               <button
                 v-show="!tab.affixTab && tabItems.length > 1 && tab.closable"
-                class="rounded-full flex-center size-4 transition-colors group-[.is-active]:text-primary hover:bg-overlay/30 group-[.is-active]:dark:text-accent-foreground"
+                class="hover:bg-overlay/30 group-[.is-active]:dark:text-accent-foreground rounded-full flex-center size-4 transition-colors group-[.is-active]:text-primary"
                 tabindex="-1"
                 @click.stop="() => emits('close', tab.key)"
               >
@@ -143,7 +146,7 @@ function onMouseDown(event: MouseEvent, tab: TabConfig) {
 
               <button
                 v-show="tab.affixTab && tabItems.length > 1 && tab.closable"
-                class="rounded-full flex-center size-4.5 transition-colors group-[.is-active]:text-primary hover:bg-overlay/30 group-[.is-active]:dark:text-accent-foreground"
+                class="hover:bg-overlay/30 group-[.is-active]:dark:text-accent-foreground rounded-full flex-center size-4.5 transition-colors group-[.is-active]:text-primary"
                 tabindex="-1"
                 @click.stop="() => emits('unpin', tab)"
               >
@@ -156,7 +159,7 @@ function onMouseDown(event: MouseEvent, tab: TabConfig) {
 
             <!-- tab-item-main -->
             <div
-              class="tabs-chrome__item-main color-accent-foreground font-500 mx-[calc(var(--gap)*2)] my-0 pl-2 pr-4 rounded-tl-[5px] rounded-tr-[5px] flex h-full duration-150 items-center z-2 overflow-hidden group-[.is-active]:color-primary group-[.is-active]:dark:color-accent-foreground"
+              class="tabs-chrome__item-main color-accent-foreground group-[.is-active]:dark:color-accent-foreground font-500 mx-[calc(var(--gap)*2)] my-0 pl-2 pr-4 rounded-tl-[5px] rounded-tr-[5px] flex h-full duration-150 items-center z-2 overflow-hidden group-[.is-active]:color-primary"
             >
               <TamanIcon
                 v-if="showIcon"

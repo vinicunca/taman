@@ -23,8 +23,6 @@ const emits = defineEmits<{
 
 /**
  * PTooltip injects TooltipProviderContext even when disabled — only mount it when needed.
- * This case is needed for the alert dialogs in `alert-builder.ts` since it's being rendered outside of the base Vue app.
- * TODO: revisit this if we can render the alert dialogs inside the base Vue app.
  */
 const withTooltip = computed(
   () => Boolean(props.showTooltip && props.tooltipText),

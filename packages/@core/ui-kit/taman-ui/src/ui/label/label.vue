@@ -16,7 +16,7 @@ const delegatedProps = reactiveOmit(props, 'class');
   <Label
     data-slot="label"
     v-bind="delegatedProps"
-    class="text-sm leading-none font-500 flex gap-2 select-none items-center group-data-[disabled=true]:(opacity-50 pointer-events-none) peer-disabled:(opacity-50 cursor-not-allowed)"
+    class="text-sm leading-none font-500 flex gap-0.5 select-none items-center group-data-[disabled=true]:(opacity-50 pointer-events-none) peer-disabled:(opacity-50 cursor-not-allowed)"
     :class="
       [
         props.class,

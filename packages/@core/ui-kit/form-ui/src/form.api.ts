@@ -29,9 +29,7 @@ import {
   updateFormSchemaList,
 } from './form-render/form-render.schema';
 import { decodeFormValues, encodeFormValues } from './form.codec';
-import { warnDeprecatedOnce } from './form.deprecation';
 import { resolveFieldNamePath } from './form.field-name';
-import { formatFormValues } from './form.value-transform';
 
 type FormApiProps<
   TFormValues extends FormValues,
@@ -111,18 +109,15 @@ function getDefaultState<
   return {
     actionWrapperClass: '',
     collapsed: false,
-    collapsedRows: 1,
     collapseTriggerResize: false,
     commonConfig: {},
     handleReset: undefined,
     handleSubmit: undefined,
     handleValuesChange: undefined,
     handleCollapsedChange: undefined,
-    layout: 'horizontal',
     resetButtonOptions: {},
     schema: [],
     scrollToFirstError: false,
-    showCollapseButton: false,
     showDefaultActions: true,
     submitButtonOptions: {},
     submitOnChange: false,
@@ -153,11 +148,6 @@ export class FormApi<
 
   // The last time the form was submitted
   private latestSubmissionValues: null | Partial<TSubmitValues> = null;
-
-  private legacyTransformWarningState: null | Pick<
-    FormApiProps<TFormValues, T, P, TSubmitValues>,
-    'arrayToStringFields' | 'codec' | 'fieldMappingTime' | 'schema'
-  > = null;
 
   private prevState: FormApiProps<
     TFormValues,
@@ -200,8 +190,6 @@ export class FormApi<
     rawValues: Readonly<FormValues>,
   ): TResult;
   formatValues(rawValues: Readonly<FormValues>): FormValues {
-    this.warnLegacyValueTransforms();
-
     if (this.state?.codec) {
       return clone(
         encodeFormValues(
@@ -211,12 +199,7 @@ export class FormApi<
       );
     }
 
-    return formatFormValues(
-      toRaw(rawValues),
-      this.state?.schema ?? [],
-      this.state?.fieldMappingTime,
-      this.state?.arrayToStringFields,
-    );
+    return clone(toRaw(rawValues));
   }
 
   /**
@@ -412,27 +395,6 @@ export class FormApi<
     return form.reset(state, opts);
   }
 
-  /** @deprecated Use `reset` instead. */
-  async resetForm(
-    state?: FormResetState<TFormValues>,
-    opts?: FormResetOptions,
-  ) {
-    warnDeprecatedOnce(
-      'form-api-reset-form',
-      '[Taman Form] `formApi.resetForm()` is deprecated. Use `formApi.reset()` instead.',
-    );
-    return this.reset(state, opts);
-  }
-
-  /** @deprecated Use `clearValidation` instead. */
-  async resetValidate() {
-    warnDeprecatedOnce(
-      'form-api-reset-validate',
-      '[Taman Form] `formApi.resetValidate()` is deprecated. Use `formApi.clearValidation()` instead.',
-    );
-    return this.clearValidation();
-  }
-
   /**
    * Scroll to the first error field
    * @param errors Validation error object
@@ -592,15 +554,6 @@ export class FormApi<
     return this.submitValues();
   }
 
-  /** @deprecated Use `submit` instead. */
-  async submitForm(e?: Event) {
-    warnDeprecatedOnce(
-      'form-api-submit-form',
-      '[Taman Form] `formApi.submitForm()` is deprecated. Use `formApi.submit()` instead.',
-    );
-    return this.submit(e);
-  }
-
   unmount() {
     this.form?.reset?.();
     this.componentRefMap = new Map();
@@ -648,15 +601,6 @@ export class FormApi<
       return;
     }
     return this.submitValues();
-  }
-
-  /** @deprecated Use `validateAndSubmit` instead. */
-  async validateAndSubmitForm() {
-    warnDeprecatedOnce(
-      'form-api-validate-and-submit-form',
-      '[Taman Form] `formApi.validateAndSubmitForm()` is deprecated. Use `formApi.validateAndSubmit()` instead.',
-    );
-    return this.validateAndSubmit();
   }
 
   async validateField(fieldName: FormFieldName<TFormValues>) {
@@ -707,70 +651,6 @@ export class FormApi<
           undefined as FormFieldValue<TFormValues, string>,
         );
       }
-    }
-  }
-
-  private warnLegacyValueTransforms() {
-    const warningState = {
-      arrayToStringFields: this.state?.arrayToStringFields,
-      codec: this.state?.codec,
-      fieldMappingTime: this.state?.fieldMappingTime,
-      schema: this.state?.schema ?? [],
-    };
-    const previousState = this.legacyTransformWarningState;
-    if (
-      previousState
-      && previousState.arrayToStringFields === warningState.arrayToStringFields
-      && previousState.codec === warningState.codec
-      && previousState.fieldMappingTime === warningState.fieldMappingTime
-      && previousState.schema === warningState.schema
-    ) {
-      return;
-    }
-    this.legacyTransformWarningState = warningState;
-
-    const hasValueFormat = (
-      items: Array<FormApiFieldSchema<TFormValues, T, P>>,
-    ): boolean => {
-      return items.some((schema) => {
-        if (schema.valueFormat) {
-          return true;
-        }
-        const children = 'children' in schema ? schema.children : undefined;
-        return Array.isArray(children) && hasValueFormat(children);
-      });
-    };
-    const usesValueFormat = hasValueFormat(
-      getFormFieldSchemas(warningState.schema),
-    );
-    const usesFieldMappingTime = (warningState.fieldMappingTime?.length ?? 0) > 0;
-    const usesArrayToStringFields = (warningState.arrayToStringFields?.length ?? 0) > 0;
-    const usesLegacyTransform = usesValueFormat || usesFieldMappingTime || usesArrayToStringFields;
-
-    if (warningState.codec && usesLegacyTransform) {
-      warnDeprecatedOnce(
-        'form-codec-legacy-transform-conflict',
-        '[Taman Form] The form `codec` takes precedence over deprecated `valueFormat`, `fieldMappingTime`, and `arrayToStringFields` options.',
-      );
-      return;
-    }
-    if (usesValueFormat) {
-      warnDeprecatedOnce(
-        'form-schema-value-format',
-        '[Taman Form] `schema.valueFormat` is deprecated. Use the form-level `codec` instead.',
-      );
-    }
-    if (usesFieldMappingTime) {
-      warnDeprecatedOnce(
-        'form-field-mapping-time',
-        '[Taman Form] `fieldMappingTime` is deprecated. Use the form-level `codec` instead.',
-      );
-    }
-    if (usesArrayToStringFields) {
-      warnDeprecatedOnce(
-        'form-array-to-string-fields',
-        '[Taman Form] `arrayToStringFields` is deprecated. Use the form-level `codec` instead.',
-      );
     }
   }
 }

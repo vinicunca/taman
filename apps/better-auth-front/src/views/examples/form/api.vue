@@ -16,7 +16,6 @@ const [BaseForm, formApi] = useTamanForm({
     },
   },
   handleSubmit: onSubmit,
-  layout: 'horizontal',
   schema: [
     {
       component: 'Input',
@@ -70,6 +69,10 @@ function onSubmit(values: Record<string, any>) {
 
 function handleClick(
   action:
+    | 'actionCenter'
+    | 'actionNewLine'
+    | 'actionRight'
+    | 'actionRowEnd'
     | 'batchAddSchema'
     | 'batchDeleteSchema'
     | 'componentRef'
@@ -77,9 +80,7 @@ function handleClick(
     | 'hiddenAction'
     | 'hiddenResetButton'
     | 'hiddenSubmitButton'
-    | 'labelWidth'
     | 'resetDisabled'
-    | 'resetLabelWidth'
     | 'reverseActionButtons'
     | 'showAction'
     | 'showResetButton'
@@ -89,6 +90,22 @@ function handleClick(
     | 'updateSubmitButton',
 ) {
   switch (action) {
+    case 'actionCenter': {
+      formApi.setState({ actionPosition: 'center' });
+      break;
+    }
+    case 'actionNewLine': {
+      formApi.setState({ actionLayout: 'newLine' });
+      break;
+    }
+    case 'actionRight': {
+      formApi.setState({ actionPosition: 'right' });
+      break;
+    }
+    case 'actionRowEnd': {
+      formApi.setState({ actionLayout: 'rowEnd' });
+      break;
+    }
     case 'batchAddSchema': {
       formApi.setState((prev) => {
         const currentSchema = prev?.schema ?? [];
@@ -120,13 +137,13 @@ function handleClick(
       break;
     }
     case 'componentRef': {
-      const selectRef = formApi.getFieldComponentRef<{ triggerRef?: { focus?: () => void } }>('fieldOptions');
+      const selectRef = formApi.getFieldComponentRef<{ triggerRef?: HTMLElement }>('fieldOptions');
 
       selectRef?.triggerRef?.focus?.({ focusVisible: true });
       break;
     }
     case 'disabled': {
-      formApi.setState({ commonConfig: { disabled: true } });
+      formApi.setState({ disabled: true });
       break;
     }
     case 'hiddenAction': {
@@ -141,24 +158,8 @@ function handleClick(
       formApi.setState({ submitButtonOptions: { show: false } });
       break;
     }
-    case 'labelWidth': {
-      formApi.setState({
-        commonConfig: {
-          labelWidth: 150,
-        },
-      });
-      break;
-    }
     case 'resetDisabled': {
-      formApi.setState({ commonConfig: { disabled: false } });
-      break;
-    }
-    case 'resetLabelWidth': {
-      formApi.setState({
-        commonConfig: {
-          labelWidth: 100,
-        },
-      });
+      formApi.setState({ disabled: false });
       break;
     }
     case 'reverseActionButtons': {
@@ -233,12 +234,6 @@ function handleClick(
       <PButton @click="handleClick('updateSchema')">
         update Schema
       </PButton>
-      <PButton @click="handleClick('labelWidth')">
-        Change labelWidth
-      </PButton>
-      <PButton @click="handleClick('resetLabelWidth')">
-        Reset labelWidth
-      </PButton>
       <PButton @click="handleClick('disabled')">
         Disable form
       </PButton>
@@ -280,6 +275,18 @@ function handleClick(
       </PButton>
       <PButton @click="handleClick('componentRef')">
         Get focus of dropdown component
+      </PButton>
+      <PButton @click="handleClick('actionCenter')">
+        Center action buttons
+      </PButton>
+      <PButton @click="handleClick('actionRight')">
+        Right-align action buttons
+      </PButton>
+      <PButton @click="handleClick('actionNewLine')">
+        Action buttons on new line
+      </PButton>
+      <PButton @click="handleClick('actionRowEnd')">
+        Action buttons row-end
       </PButton>
     </div>
     <AppCard title="Example">

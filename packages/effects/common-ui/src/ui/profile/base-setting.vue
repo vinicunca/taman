@@ -30,7 +30,6 @@ const [Form, formApi] = useTamanForm(
         class: 'w-full',
       },
     },
-    layout: 'horizontal',
     schema: computed(() => props.formSchema),
     showDefaultActions: false,
   }),

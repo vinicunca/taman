@@ -1,5 +1,4 @@
 import type {
-  FormActions,
   FormBaseComponentType,
   FormCommonConfig,
   FormDependenciesResolveContext,
@@ -7,7 +6,6 @@ import type {
   FormFieldSchema,
   FormGroupSchema,
   FormItemDependencies,
-  FormItemDependenciesLegacy,
   FormSchema,
   FormSchemaContext,
   FormValues,
@@ -31,6 +29,12 @@ export type NormalizedFormFieldSchema = FormFieldProps & {
   commonComponentProps: MaybeComponentProps;
   formFieldProps: Record<string, any>;
   formItemClass: string;
+  /**
+   * Whether this entry is currently hidden while the form is collapsed.
+   * Consumed via `v-show` on the form item (kept in the DOM, not unmounted)
+   * so its value/instance survives toggling.
+   */
+  hidden?: boolean;
 };
 
 interface CreateFormFieldSchemaOptions {
@@ -109,24 +113,6 @@ function wrapCommonConfig(
   };
 }
 
-function wrapDependencyFn<T>(handler: T, baseContext: FormSchemaContext): T {
-  if (!isFunctionType(handler)) {
-    return handler;
-  }
-
-  return ((
-    values: Partial<Record<string, any>>,
-    actions: FormActions,
-    controller: any,
-  ) =>
-    handler(
-      values,
-      actions,
-      controller,
-      createSchemaContext(baseContext, values),
-    )) as T;
-}
-
 function scopeDependencies(
   dependencies: FormItemDependencies | undefined,
   baseContext: FormSchemaContext,
@@ -144,36 +130,18 @@ function scopeDependencies(
     = dependencies.triggerFields?.map((fieldName) =>
       scopeRowFieldName(rowPath, fieldName),
     ) ?? [];
-  if (isFunctionType(dependencies.resolve)) {
-    const resolve = dependencies.resolve;
-    return {
-      resolve(context: FormDependenciesResolveContext) {
-        return resolve({
-          ...context,
-          schema: createSchemaContext(
-            baseContext,
-            context.values as Partial<Record<string, any>>,
-          ),
-        });
-      },
-      triggerFields,
-    };
-  }
-
-  const legacyDependencies = dependencies as FormItemDependenciesLegacy;
+  const resolve = dependencies.resolve;
 
   return {
-    ...legacyDependencies,
-    componentProps: wrapDependencyFn(
-      legacyDependencies.componentProps,
-      baseContext,
-    ),
-    disabled: wrapDependencyFn(legacyDependencies.disabled, baseContext),
-    if: wrapDependencyFn(legacyDependencies.if, baseContext),
-    required: wrapDependencyFn(legacyDependencies.required, baseContext),
-    rules: wrapDependencyFn(legacyDependencies.rules, baseContext),
-    show: wrapDependencyFn(legacyDependencies.show, baseContext),
-    trigger: wrapDependencyFn(legacyDependencies.trigger, baseContext),
+    resolve(context: FormDependenciesResolveContext) {
+      return resolve({
+        ...context,
+        schema: createSchemaContext(
+          baseContext,
+          context.values as Partial<Record<string, any>>,
+        ),
+      });
+    },
     triggerFields,
   };
 }
@@ -405,18 +373,15 @@ export function createFormFieldSchema(
     options.globalCommonConfig ?? {},
   );
   const {
-    changeEventFallback = false,
-    colon = false,
     componentProps = {},
     controlClass = '',
     disabled,
-    emptyStateValue = undefined,
     formFieldProps = {},
     formItemClass = '',
     hideLabel = false,
+    hideMessage = false,
     hideRequiredMark = false,
     labelClass = '',
-    labelWidth = 100,
     modelPropName = '',
     wrapperClass = '',
   } = commonConfig;
@@ -439,11 +404,8 @@ export function createFormFieldSchema(
   }
 
   return {
-    changeEventFallback,
-    colon,
-    emptyStateValue,
+    hideMessage,
     hideRequiredMark,
-    labelWidth,
     modelPropName,
     wrapperClass,
     ...normalizedSchema,
@@ -458,12 +420,12 @@ export function createFormFieldSchema(
     },
     formItemClass: [
       'shrink-0',
-      options.hidden ? 'hidden' : '',
       formItemClass,
       resolvedSchemaFormItemClass,
     ]
       .filter(Boolean)
       .join(' '),
+    hidden: Boolean(options.hidden),
     labelClass: [labelClass, normalizedSchema.labelClass]
       .filter(Boolean)
       .join(' '),

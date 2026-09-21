@@ -9,7 +9,6 @@ const [CustomLayoutForm] = useTamanForm({
       class: 'w-full',
     },
   },
-  layout: 'horizontal',
   schema: [
     {
       component: 'Select',

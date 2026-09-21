@@ -121,6 +121,34 @@ async function handleSubmitGroupForm() {
 function handleResetGroupForm() {
   groupFormApi.reset(undefined, { force: true });
 }
+
+const [CollapseForm] = useTamanForm({
+  collapsed: true,
+  schema: [
+    { component: 'Input', fieldName: 'keyword', label: 'Keyword' },
+    { component: 'Input', fieldName: 'status', label: 'Status' },
+    { component: 'Input', collapsed: true, fieldName: 'owner', label: 'Owner' },
+    {
+      collapsed: true,
+      component: 'Input',
+      fieldName: 'createdAt',
+      label: 'Created At',
+    },
+  ],
+  wrapperClass: 'grid-cols-1 md:grid-cols-2',
+});
+
+const [FieldCollapseForm] = useTamanForm({
+  schema: [
+    {
+      collapsible: true,
+      component: 'Textarea',
+      defaultCollapsed: true,
+      fieldName: 'notes',
+      label: 'Notes',
+    },
+  ],
+});
 </script>
 
 <template>
@@ -128,8 +156,30 @@ function handleResetGroupForm() {
     auto-content-height
     content-class="flex flex-col gap-4"
     title="Collapsible Form Items"
-    description="Collapsible form items, collapsible parameter configuration components, and schema group folding examples<"
+    description="Three collapse mechanisms: schema group folding, a form-level collapsed toggle that hides entries marked collapsed: true (rendered automatically in the default actions), and a per-field collapsible toggle."
   >
+    <AppCard title="Form-Level Collapsed">
+      <p class="text-muted-foreground text-sm mb-4">
+        Marking top-level schema entries <code>collapsed: true</code> hides them while the
+        form is collapsed. Because at least one entry is marked, the collapse toggle renders
+        automatically inside the default actions below &mdash; no manual wiring required.
+      </p>
+      <div class="w-full overflow-hidden">
+        <CollapseForm />
+      </div>
+    </AppCard>
+
+    <AppCard title="Per-Field Collapsible">
+      <p class="text-muted-foreground text-sm mb-4">
+        A field can opt into its own collapse/expand toggle with <code>collapsible: true</code>
+        (and <code>defaultCollapsed</code> to start closed), independent of the form-level
+        collapse state.
+      </p>
+      <div class="w-full overflow-hidden">
+        <FieldCollapseForm />
+      </div>
+    </AppCard>
+
     <AppCard title="Group Collapsible">
       <template #trailingHeader>
         <AppCardAction class="flex gap-4 items-center">

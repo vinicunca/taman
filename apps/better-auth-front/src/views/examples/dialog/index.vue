@@ -4,14 +4,12 @@ import {
   AppCard,
   AppCardAction,
   AppPage,
-  clearAllAlerts,
   tamanAlert,
   tamanConfirm,
   tamanPrompt,
   useTamanDialog,
   useTamanToast,
 } from '@taman/app-ui';
-import { onBeforeUnmount } from 'vue';
 import AutoHeightDemo from './auto-height-demo.vue';
 import BasicDemo from './basic-demo.vue';
 import BlurDemo from './blur-demo.vue';
@@ -124,13 +122,10 @@ function openAlert() {
     icon: 'success',
   }).then(() => {
     toaster.info('User closed the dialog');
+  }).catch(() => {
+    // Dismissal preserves the alert API's cancellation rejection.
   });
 }
-
-onBeforeUnmount(() => {
-  // Clear all dialogs
-  clearAllAlerts();
-});
 
 function openConfirm() {
   tamanConfirm({

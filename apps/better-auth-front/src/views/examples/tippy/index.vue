@@ -209,9 +209,11 @@ const [Form] = useTamanForm({
       },
       defaultValue: tippyProps.hideOnClick?.toString(),
       dependencies: {
-        componentProps(_, formAction) {
+        resolve({ values }) {
           return {
-            disabled: !formAction.values.trigger.includes('click'),
+            componentProps: {
+              disabled: !values.trigger.includes('click'),
+            },
           };
         },
         triggerFields: ['trigger'],

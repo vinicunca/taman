@@ -55,15 +55,17 @@ const formSchema = computed<
         size: 'lg',
       },
       dependencies: {
-        rules(values) {
+        resolve({ values }) {
           const { password } = values;
-          return z
-            .string({ error: $t('authentication.passwordTip') })
-            .trim()
-            .min(1, $t('authentication.passwordTip'))
-            .refine((value) => value === password, {
-              message: $t('authentication.confirmPasswordTip'),
-            });
+          return {
+            rules: z
+              .string({ error: $t('authentication.passwordTip') })
+              .trim()
+              .min(1, $t('authentication.passwordTip'))
+              .refine((value) => value === password, {
+                message: $t('authentication.confirmPasswordTip'),
+              }),
+          };
         },
         triggerFields: ['password'],
       },

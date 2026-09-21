@@ -58,13 +58,10 @@ const [FormAllFields, formAllFieldsApi] = useTamanForm<
   wrapperClass: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
 
   commonConfig: {
-    colon: true,
     componentProps: {
       class: 'w-full',
     },
   },
-
-  layout: 'horizontal',
 
   schema: [
     {
@@ -386,6 +383,42 @@ function onSubmit(
 ) {
   console.warn('🚀 ~ onSubmit ~ values:', values);
 }
+
+function onCompactSubmit(values: Record<string, any>) {
+  console.warn('🚀 ~ onCompactSubmit ~ values:', values);
+}
+
+const [CompactForm] = useTamanForm({
+  compact: true,
+  commonConfig: {
+    componentProps: {
+      class: 'w-full',
+    },
+    hideRequiredMark: true,
+  },
+  handleSubmit: onCompactSubmit,
+  schema: [
+    {
+      component: 'Input',
+      componentProps: {
+        placeholder: 'Please enter your username',
+      },
+      fieldName: 'compactUsername',
+      label: 'Username',
+      rules: 'required',
+    },
+    {
+      component: 'Input',
+      componentProps: {
+        placeholder: 'name@example.com',
+      },
+      fieldName: 'compactEmail',
+      label: 'Email',
+      rules: 'required',
+    },
+  ],
+  wrapperClass: 'grid-cols-1 md:grid-cols-2',
+});
 </script>
 
 <template>
@@ -416,6 +449,18 @@ function onSubmit(
       </template>
 
       <FormAllFields />
+    </AppCard>
+
+    <AppCard title="Compact, Hidden Required Mark">
+      <p class="text-muted-foreground text-sm mb-4">
+        <code>compact</code> removes the space reserved under each field for its validation
+        message, and suppresses the inline validation message entirely &mdash; a compact form
+        must surface errors another way (here, the control's own error colour) since no
+        message renders. <code>commonConfig.hideRequiredMark</code> hides the asterisk on
+        required fields. Try submitting empty: both fields turn red with no message or
+        asterisk, which is <code>compact</code> working as designed, not a broken form.
+      </p>
+      <CompactForm />
     </AppCard>
   </AppPage>
 </template>

@@ -8,7 +8,6 @@ import { defineComponent, h, nextTick } from 'vue';
 import { z } from 'zod';
 
 import { setupTamanForm } from '../src/form.config';
-import { resetDeprecationWarnings } from '../src/form.deprecation';
 import { useTamanForm } from '../src/form.use-taman-form';
 
 const wrappers: Array<VueWrapper> = [];
@@ -40,10 +39,6 @@ const TestInput = defineComponent({
       if (!(target instanceof HTMLInputElement)) {
         return;
       }
-      if (props.eventMode === 'change-only') {
-        emit('change', event);
-        return;
-      }
       if (props.eventMode === 'value-and-change') {
         emit('update:value', target.value);
         emit('change', event);
@@ -63,7 +58,6 @@ const TestInput = defineComponent({
 
 beforeAll(() => {
   setupTamanForm({
-    config: {},
     rules: {
       required(value, _params, context) {
         return value ? true : `${context.label} is required`;
@@ -393,62 +387,6 @@ describe('useTamanForm integration', () => {
     );
   });
 
-  it('supports a field-level change event fallback for legacy components', async () => {
-    const [Form, formApi] = useTamanForm({
-      schema: [
-        {
-          component: TestInput,
-          componentProps: { eventMode: 'change-only' },
-          changeEventFallback: true,
-          fieldName: 'name',
-          modelPropName: 'value',
-        },
-      ],
-    });
-    const wrapper = mount(Form);
-    wrappers.push(wrapper);
-    await flushPromises();
-
-    await wrapper.get('input').setValue('fallback');
-    await flushPromises();
-
-    expect(await formApi.getValues()).toEqual({ name: 'fallback' });
-  });
-
-  it('warns once for legacy dependency callbacks', async () => {
-    resetDeprecationWarnings();
-    const warning = vi.spyOn(console, 'warn').mockImplementation(() => {});
-    const [Form] = useTamanForm({
-      schema: [
-        {
-          component: TestInput,
-          dependencies: {
-            show: true,
-            triggerFields: ['toggle'],
-          },
-          fieldName: 'first',
-        },
-        {
-          component: TestInput,
-          dependencies: {
-            disabled: false,
-            triggerFields: ['toggle'],
-          },
-          fieldName: 'second',
-        },
-      ],
-    });
-    const wrapper = mount(Form);
-    wrappers.push(wrapper);
-    await flushPromises();
-
-    const message
-      = '[Taman Form] Legacy dependency callbacks are deprecated. Use `dependencies.resolve(context)` instead.';
-    expect(
-      warning.mock.calls.filter(([warningMessage]) => warningMessage === message),
-    ).toHaveLength(1);
-  });
-
   it('binds fields, renders accessible errors, and submits valid values', async () => {
     const consoleError = vi
       .spyOn(console, 'error')
@@ -462,7 +400,6 @@ describe('useTamanForm integration', () => {
           fieldName: 'name',
           label: 'Name',
           rules: z.string().min(1, 'Name is required'),
-          valueFormat: (value) => value.trim(),
         },
         {
           component: TestInput,
@@ -532,7 +469,9 @@ describe('useTamanForm integration', () => {
         {
           component: TestInput,
           dependencies: {
-            if: dependency,
+            resolve({ values }) {
+              return { if: dependency(values) };
+            },
             triggerFields: ['toggle'],
           },
           fieldName: 'details',
@@ -626,8 +565,8 @@ describe('useTamanForm integration', () => {
         {
           component: TestInput,
           dependencies: {
-            required(values) {
-              return values.toggle === true;
+            resolve({ values }) {
+              return { required: values.toggle === true };
             },
             triggerFields: ['toggle'],
           },
@@ -664,10 +603,12 @@ describe('useTamanForm integration', () => {
         {
           component: TestInput,
           dependencies: {
-            rules(values) {
-              return values.toggle === true
-                ? z.string().min(1, 'Details is required')
-                : null;
+            resolve({ values }) {
+              return {
+                rules: values.toggle === true
+                  ? z.string().min(1, 'Details is required')
+                  : null,
+              };
             },
             triggerFields: ['toggle'],
           },
@@ -704,14 +645,14 @@ describe('useTamanForm integration', () => {
         {
           component: TestInput,
           dependencies: {
-            rules(values) {
+            async resolve({ values }) {
               if (values.mode === 'required') {
-                return requiredRules.promise;
+                return { rules: await requiredRules.promise };
               }
               if (values.mode === 'optional') {
-                return optionalRules.promise;
+                return { rules: await optionalRules.promise };
               }
-              return null;
+              return { rules: null };
             },
             triggerFields: ['mode'],
           },
@@ -918,7 +859,6 @@ describe('useTamanForm integration', () => {
           fieldName: 'name',
           label: 'Name',
           rules: z.string().min(1, 'Name is required'),
-          valueFormat: (value) => value.trim(),
         },
       ],
       submitOnChange: true,
@@ -942,9 +882,9 @@ describe('useTamanForm integration', () => {
     if (!valuesChangeCall) {
       return;
     }
-    expect(valuesChangeCall[2]()).toEqual({ name: 'Ada' });
+    expect(valuesChangeCall[2]()).toEqual({ name: ' Ada ' });
     expect(handleSubmit).toHaveBeenCalledWith(
-      { name: 'Ada' },
+      { name: ' Ada ' },
       { name: ' Ada ' },
     );
   });
@@ -1110,7 +1050,6 @@ describe('useTamanForm integration', () => {
           defaultValue: '',
           fieldName: 'name',
           rules: 'required',
-          valueFormat: (value) => value.trim().toUpperCase(),
         },
       ],
     });
@@ -1119,10 +1058,20 @@ describe('useTamanForm integration', () => {
     await flushPromises();
 
     await formApi.setFieldValue('name', ' raw ');
-    await wrapper.get('form').trigger('submit');
+    // Settle the `required` validator (triggered by the value change) before
+    // submitting natively, otherwise the native submit races an in-flight
+    // async validation cycle.
+    await formApi.validate();
     await flushPromises();
+    await wrapper.get('form').trigger('submit');
 
-    expect(onSubmit).toHaveBeenCalledOnce();
+    // `form.handleSubmit()`'s own internal validation pass (run again on
+    // submit) is itself async and not awaited by the native DOM submit
+    // event, so `onSubmit` can still land a tick or two after
+    // `flushPromises()` resolves — poll instead of asserting immediately.
+    await vi.waitFor(() => {
+      expect(onSubmit).toHaveBeenCalledOnce();
+    });
     expect(onSubmit).toHaveBeenCalledWith(undefined);
   });
 
@@ -1248,38 +1197,5 @@ describe('useTamanForm integration', () => {
       alias: 'keep',
       name: 'reset',
     });
-  });
-
-  it('applies valueFormat consistently across value APIs', async () => {
-    const handleSubmit = vi.fn();
-    const [Form, formApi] = useTamanForm({
-      handleSubmit,
-      schema: [
-        {
-          component: TestInput,
-          fieldName: 'name',
-          valueFormat: (value) => (value ? value.trim().toUpperCase() : ''),
-        },
-      ],
-    });
-    const wrapper = mount(Form);
-    wrappers.push(wrapper);
-    await flushPromises();
-
-    await formApi.setFieldValue('name', ' hello ');
-    await flushPromises();
-
-    expect(await formApi.getValues()).toEqual({ name: 'HELLO' });
-    expect(await formApi.getValueSnapshot()).toEqual({
-      rawValues: { name: ' hello ' },
-      values: { name: 'HELLO' },
-    });
-
-    await formApi.validateAndSubmit();
-    await flushPromises();
-    expect(handleSubmit).toHaveBeenCalledWith(
-      { name: 'HELLO' },
-      { name: ' hello ' },
-    );
   });
 });

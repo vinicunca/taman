@@ -1,6 +1,6 @@
 import type { ZodType } from 'zod';
 
-import { isFunctionType, isObjectType, isString } from '@taman-core/shared/utils';
+import { isString } from '@taman-core/shared/utils';
 import { toRaw } from 'vue';
 import { ZodPipe } from 'zod';
 
@@ -57,14 +57,4 @@ export function getDefaultValueInZodStack(
   } catch {
     return undefined;
   }
-}
-
-export function isEventObjectLike(obj: any) {
-  if (!isObjectType(obj)) {
-    return false;
-  }
-  return (
-    Reflect.has(obj, 'target')
-    && isFunctionType(Reflect.get(obj, 'stopPropagation'))
-  );
 }

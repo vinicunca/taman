@@ -89,9 +89,9 @@ const [Form, formApi] = useTamanForm({
   showDefaultActions: false,
 });
 
-// Test validateAndSubmitForm (validate and submit)
+// Test validateAndSubmit (validate and submit)
 async function testValidateAndSubmit() {
-  await formApi.validateAndSubmitForm();
+  await formApi.validateAndSubmit();
 }
 
 // Test validate (manually validate the entire form)
@@ -111,7 +111,7 @@ function toggleScrollToError() {
 
 // Fill partial data for testing
 async function fillPartialData() {
-  await formApi.resetForm();
+  await formApi.reset();
   await formApi.setFieldValue('username', '测试用户');
   await formApi.setFieldValue('email', 'test@example.com');
 }
@@ -152,7 +152,7 @@ async function fillPartialData() {
             <PButton
               @click="testValidateAndSubmit"
             >
-              Test validateAndSubmitForm()
+              Test validateAndSubmit()
             </PButton>
             <PButton @click="testValidate">
               Test validate()
@@ -162,7 +162,7 @@ async function fillPartialData() {
             </PButton>
           </div>
           <div class="text-xs text-gray-500 mt-2">
-            <p>• validateAndSubmitForm(): Validate the form and submit</p>
+            <p>• validateAndSubmit(): Validate the form and submit</p>
             <p>• validate(): Manually validate the entire form</p>
             <p>• validateField(): Validate a single field (here test the username field)</p>
           </div>
@@ -176,7 +176,7 @@ async function fillPartialData() {
             <PButton @click="fillPartialData">
               Fill Partial Data
             </PButton>
-            <PButton @click="() => formApi.resetForm()">
+            <PButton @click="() => formApi.reset()">
               Clear Form
             </PButton>
           </div>

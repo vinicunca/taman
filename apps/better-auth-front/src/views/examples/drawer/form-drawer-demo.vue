@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useTamanDrawer } from '@taman/common-ui';
+import { useTamanDrawer } from '@taman/app-ui';
 
 import { useTamanForm } from '#/adapter/form';
 
@@ -7,48 +7,57 @@ defineOptions({
   name: 'FormDrawerDemo',
 });
 
+interface FormDrawerData {
+  values?: Record<string, unknown>;
+}
+
 const [Form, formApi] = useTamanForm({
   schema: [
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please enter',
       },
       fieldName: 'field1',
-      label: '字段1',
+      label: 'Field 1',
       rules: 'required',
     },
     {
       component: 'Input',
       componentProps: {
-        placeholder: '请输入',
+        placeholder: 'Please enter',
       },
       fieldName: 'field2',
-      label: '字段2',
+      label: 'Field 2',
       rules: 'required',
     },
   ],
   showDefaultActions: false,
 });
-const [Drawer, drawerApi] = useTamanDrawer({
+const [Drawer, drawerApi] = useTamanDrawer<FormDrawerData>({
   onCancel() {
     drawerApi.close();
   },
   onConfirm: async () => {
-    await formApi.submitForm();
+    await formApi.submit();
     drawerApi.close();
   },
   onOpenChange(isOpen: boolean) {
     if (isOpen) {
-      const { values } = drawerApi.getData<Record<string, any>>();
-      if (values) {
-        formApi.setValues(values);
+      const data = drawerApi.getData();
+      if (data?.values) {
+        formApi.setValues(data.values);
+      } else {
+        formApi.reset();
       }
     }
   },
-  title: '内嵌表单示例',
+  title: 'Embedded form example',
 });
+
+defineExpose({ drawerApi });
 </script>
+
 <template>
   <Drawer>
     <Form />

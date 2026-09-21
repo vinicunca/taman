@@ -1,12 +1,10 @@
 <script lang="ts" setup>
+import { useTamanDrawer, useTamanToast } from '@taman/app-ui';
 import { ref } from 'vue';
-
-import { useTamanDrawer } from '@taman/common-ui';
-
-import { Input, message } from 'antdv-next';
 
 import { useTamanForm } from '#/adapter/form';
 
+const { toaster } = useTamanToast();
 const value = ref('');
 
 const [Form] = useTamanForm({
@@ -14,11 +12,11 @@ const [Form] = useTamanForm({
     {
       component: 'Input',
       componentProps: {
-        placeholder: 'KeepAlive测试：内部组件',
+        placeholder: 'KeepAlive test: internal component',
       },
       fieldName: 'field1',
       hideLabel: true,
-      label: '字段1',
+      label: 'Field 1',
     },
   ],
   showDefaultActions: false,
@@ -30,19 +28,29 @@ const [Drawer, drawerApi] = useTamanDrawer({
     drawerApi.close();
   },
   onConfirm() {
-    message.info('onConfirm');
+    toaster.info('onConfirm');
     // drawerApi.close();
   },
 });
 </script>
+
 <template>
-  <Drawer append-to-main title="基础抽屉示例" title-tooltip="标题提示内容">
-    <template #extra> extra </template>
-    此弹窗指定在内容区域打开，并且在关闭之后弹窗内容不会被销毁
-    <Input
-      v-model:value="value"
-      placeholder="KeepAlive测试:connectedComponent"
+  <Drawer
+    append-to-main
+    title="Basic drawer example"
+    title-tooltip="Title tooltip content"
+  >
+    <template #extra>
+      extra
+    </template>
+
+    This drawer is specified to open in the content area, and the content of the drawer will not be destroyed after closing
+
+    <PInput
+      v-model="value"
+      placeholder="KeepAlive test: connectedComponent"
     />
+
     <Form />
   </Drawer>
 </template>

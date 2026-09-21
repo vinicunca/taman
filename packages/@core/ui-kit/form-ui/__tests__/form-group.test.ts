@@ -28,7 +28,7 @@ const TestInput = defineComponent({
 });
 
 beforeAll(() => {
-  setupTamanForm({ config: {} });
+  setupTamanForm({});
 });
 
 afterEach(() => {
@@ -106,6 +106,51 @@ describe('form group rendering', () => {
 
     await wrapper.get('button.form-group-trigger').trigger('click');
     expect(getGroupState(wrapper)).toBe('closed');
+  });
+
+  it('does not toggle when clicking the extra region', async () => {
+    // Regression test: pohon's `Collapsible` wraps its entire default-slot
+    // root in Akar's `CollapsibleTrigger` (`as-child`). Passing the whole
+    // `.form-group-header` (trigger *and* `extra`) as that slot used to make
+    // the whole header clickable, including `extra` — contradicting the
+    // very assertion above that `extra` isn't part of the trigger.
+    const [Form] = useTamanForm({
+      schema: [createContactGroup({ defaultCollapsed: true, extra: 'Optional' })],
+    });
+    const wrapper = mount(Form);
+    wrappers.push(wrapper);
+    await flushPromises();
+
+    expect(getGroupState(wrapper)).toBe('closed');
+    expect(wrapper.text()).toContain('Optional');
+
+    // The `extra` region is rendered in its own `.flex-none` sibling of
+    // `.form-group-trigger`, not inside it.
+    await wrapper.get('.form-group-header > .flex-none').trigger('click');
+    await flushPromises();
+
+    expect(getGroupState(wrapper)).toBe('closed');
+  });
+
+  it('does not merge trigger-only ARIA attributes onto the header', async () => {
+    // Regression test: Akar's `CollapsibleTrigger` (via `as-child`) used to
+    // merge `aria-expanded`, `aria-controls=""`, and `type="button"` onto
+    // whichever element it wrapped — here, `.form-group-header`, a
+    // `role=generic` element, which fails axe's `aria-allowed-attr` /
+    // `aria-valid-attr-value`. The header must carry none of those; only
+    // the real `.form-group-trigger` button does.
+    const [Form] = useTamanForm({
+      schema: [createContactGroup()],
+    });
+    const wrapper = mount(Form);
+    wrappers.push(wrapper);
+    await flushPromises();
+
+    const header = wrapper.get('.form-group-header');
+    expect(header.attributes('aria-expanded')).toBeUndefined();
+    expect(header.attributes('aria-controls')).toBeUndefined();
+    expect(header.attributes('type')).toBeUndefined();
+    expect(header.attributes('data-state')).toBeUndefined();
   });
 
   it('keeps a non-collapsible group open despite defaultCollapsed', async () => {

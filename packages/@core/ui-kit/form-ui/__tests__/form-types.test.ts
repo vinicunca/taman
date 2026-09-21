@@ -2,7 +2,6 @@ import type {
   ExtendedFormApi,
   FormActions,
   FormBaseComponentType,
-  FormContextApi,
   FormFieldOptions,
   FormFieldSchema,
   FormGroupSchema,
@@ -11,7 +10,6 @@ import type {
   FormValidationResult,
   FormValuePatch,
   FormValueSnapshot,
-  TamanFormAdapterOptions,
   TamanFormProps,
 } from '../src/form.types';
 
@@ -34,8 +32,7 @@ interface AccountSubmitValues {
 }
 
 describe('form public types', () => {
-  it('keeps the compatibility alias and stable method signatures', () => {
-    expectTypeOf<FormActions>().toEqualTypeOf<FormContextApi>();
+  it('keeps stable method signatures', () => {
     expectTypeOf<FormActions['setFieldValue']>()
       .parameter(0)
       .toMatchTypeOf<string>();
@@ -48,14 +45,7 @@ describe('form public types', () => {
     >();
   });
 
-  it('accepts both new and deprecated rule registration options', () => {
-    expectTypeOf<TamanFormAdapterOptions>().toMatchTypeOf<{
-      defineRules?: Record<string, unknown>;
-      rules?: Record<string, unknown>;
-    }>();
-  });
-
-  it('supports resolve and legacy dependency contracts', () => {
+  it('supports the resolve dependency contract', () => {
     const resolveDependencies: FormItemDependencies<AccountFormValues> = {
       resolve({ actions, controller, schema, values }) {
         expectTypeOf(values).toEqualTypeOf<Readonly<AccountFormValues>>();
@@ -68,22 +58,12 @@ describe('form public types', () => {
       },
       triggerFields: ['email'],
     };
-    const legacyDependencies: FormItemDependencies<AccountFormValues> = {
-      show(values) {
-        expectTypeOf(values).toEqualTypeOf<Partial<AccountFormValues>>();
-        return Boolean(values.email);
-      },
-      triggerFields: ['email'],
-    };
     const fieldOptions: FormFieldOptions = {
       asyncDebounceMs: 200,
       validateOn: ['blur', 'change'],
     };
 
     expectTypeOf(resolveDependencies).toMatchTypeOf<
-      FormItemDependencies<AccountFormValues>
-    >();
-    expectTypeOf(legacyDependencies).toMatchTypeOf<
       FormItemDependencies<AccountFormValues>
     >();
     expectTypeOf(fieldOptions).toMatchTypeOf<FormFieldOptions>();
@@ -110,7 +90,7 @@ describe('form public types', () => {
     expectTypeOf(formApi).toEqualTypeOf<ExtendedFormApi<AccountFormValues>>();
 
     function assertContextApi(
-      contextApi: FormContextApi<AccountFormValues>,
+      contextApi: FormActions<AccountFormValues>,
       typedFormApi: ExtendedFormApi<AccountFormValues>,
     ) {
       expectTypeOf(
@@ -323,14 +303,5 @@ describe('form public types', () => {
 
     expectTypeOf(invalidGroup).toMatchTypeOf<FormSchema>();
     expectTypeOf(invalidArrayChildren).toMatchTypeOf<FormSchema>();
-  });
-
-  it('exposes canonical names alongside deprecated aliases', () => {
-    expectTypeOf<FormContextApi['reset']>().toEqualTypeOf<
-      FormContextApi['resetForm']
-    >();
-    expectTypeOf<FormContextApi['submit']>().toEqualTypeOf<
-      FormContextApi['submitForm']
-    >();
   });
 });

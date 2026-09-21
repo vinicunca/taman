@@ -36,7 +36,7 @@ function createFlatValues(prefix: string) {
   );
 }
 
-setupTamanForm({ config: {}, rules: {} });
+setupTamanForm({ rules: {} });
 
 const flatSchema = createFlatSchema(FIELD_COUNT);
 const [FlatForm, flatFormApi] = useTamanForm<Record<string, string>>({

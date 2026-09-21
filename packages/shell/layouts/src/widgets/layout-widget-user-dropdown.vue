@@ -69,6 +69,8 @@ async function handleLogout() {
     icon: 'question',
   }).then(() => {
     emits('logout');
+  }).catch(() => {
+    // Cancellation is an expected no-op.
   });
 }
 

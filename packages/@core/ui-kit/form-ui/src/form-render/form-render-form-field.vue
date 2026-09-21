@@ -10,9 +10,8 @@ import type {
 } from '../form.types';
 
 import { globalShareState } from '@taman-core/shared/global-state';
-import { isFunction, isPlainObject, isString } from '@taman-core/shared/utils';
+import { isFunction, isString } from '@taman-core/shared/utils';
 import {
-  FormControl,
   FormDescription,
   FormField,
   FormItem,
@@ -20,75 +19,84 @@ import {
   TamanRenderContent,
 } from '@taman-core/taman-ui';
 import PButton from 'pohon-ui/components/Button.vue';
-import PCollapsible from 'pohon-ui/components/Collapsible.vue';
 import {
   computed,
   markRaw,
   nextTick,
   onUnmounted,
   ref,
+  shallowRef,
   toRaw,
   useTemplateRef,
   watch,
 } from 'vue';
 import { toFormFieldValue } from '../form.empty-value';
 import { getFormRule } from '../form.rule-registry';
+import { useDelayedFlag } from '../form.use-delayed-flag';
 import { injectComponentRefMap } from '../form.use-form-context';
+import FormRenderFieldCollapsible from './form-render-field-collapsible.vue';
+import FormRenderFieldControl from './form-render-field-control.vue';
 import FormLabel from './form-render-form-label.vue';
 import { injectRenderFormProps, useFormContext } from './form-render.context';
 import useDependencies from './form-render.dependencies';
-import { getBaseRules, isEventObjectLike } from './form-render.helper';
-import { useFieldLabelWidth } from './form-render.utils';
+import { getBaseRules } from './form-render.helper';
 
 interface RuntimeFieldSlotProps {
   field: FormRuntimeField<any>;
 }
 
-const {
-  changeEventFallback,
-  colon,
-  commonComponentProps,
-  component,
-  componentProps,
-  dependencies,
-  description,
-  disabled,
-  emptyStateValue,
-  fieldName,
-  formFieldProps,
-  hide,
-  label,
-  labelClass,
-  labelWidth,
-  modelPropName,
-  renderComponentContent,
-  rules,
-  help,
-  collapsible,
-  defaultCollapsed = false,
-} = defineProps<
-  FormFieldProps & {
-    commonComponentProps: MaybeComponentProps;
-  }
->();
+const props = withDefaults(
+  defineProps<
+    FormFieldProps & {
+      commonComponentProps: MaybeComponentProps;
+      /**
+     * Whether this entry is currently hidden while the form is collapsed.
+     * Rendered via `v-show` so the field survives toggling.
+     */
+      hidden?: boolean;
+    }
+  >(),
+  {
+    hidden: false,
+    defaultCollapsed: false,
+    hideMessage: false,
+  },
+);
 
 const VALIDATION_LOADING_DELAY_MS = 150;
 
-const { componentBindEventMap, componentMap, isVertical } = useFormContext();
+const { componentMap } = useFormContext();
 const formRenderProps = injectRenderFormProps();
 const fieldComponentRef = useTemplateRef<HTMLInputElement>('fieldComponentRef');
 const formApi = formRenderProps.form;
 if (!formApi) {
   throw new Error('Form api is required in <FormField />');
 }
-const error = formApi.useFieldError(fieldName);
-const fieldValue = formApi.useFieldValue(fieldName);
+const error = formApi.useFieldError(props.fieldName);
+const fieldValue = formApi.useFieldValue(props.fieldName);
+const isFieldValidating = formApi.useFieldValidating(props.fieldName);
+const fieldIssues = shallowRef<
+  Array<{ message: string; path: Array<PropertyKey> }>
+>([]);
+// `error` can be cleared through routes that never re-run
+// `validateFieldValue` (handleChange's setFieldError(fieldName) on every
+// keystroke, reset(), clearValidation()) — keep `issues` from going stale
+// relative to `error` whenever that happens.
+watch(error, (value) => {
+  if (!value) {
+    fieldIssues.value = [];
+  }
+});
+const validationLoading = useDelayedFlag(
+  () => isFieldValidating.value,
+  VALIDATION_LOADING_DELAY_MS,
+);
 const compact = computed(() => formRenderProps.compact);
 const isInValid = computed(() => Boolean(error.value));
 const shouldApplyInvalidStyle = computed(() => {
-  return isInValid.value && component !== 'TamanFormFieldArray';
+  return isInValid.value && props.component !== 'TamanFormFieldArray';
 });
-const collapseOpen = ref(!defaultCollapsed);
+const collapseOpen = ref(!props.defaultCollapsed);
 
 function getFormApi(): FormActions {
   if (!formApi) {
@@ -99,6 +107,8 @@ function getFormApi(): FormActions {
 }
 
 const FieldComponent = computed(() => {
+  const { component } = props;
+
   const finalComponent = isString(component)
     ? componentMap.value[component]
     ?? globalShareState.getComponents()[component]
@@ -123,27 +133,19 @@ const {
   isRequired,
   isShow,
 } = useDependencies(
-  () => dependencies,
-  () => ({ fieldName }),
+  () => props.dependencies,
+  () => ({ fieldName: props.fieldName }),
 );
 
-// @ts-expect-error unused
-const { labelRef, labelStyle } = useFieldLabelWidth({
-  labelWidth: () => labelWidth,
-  labelClass: () => labelClass,
-  isVertical,
-  labelWidthContext: formRenderProps,
-});
-
 const currentRules = computed(() => {
-  const currentRule = dynamicRulesResolved.value ? dynamicRules.value : rules;
+  const currentRule = dynamicRulesResolved.value ? dynamicRules.value : props.rules;
   return currentRule && !isString(currentRule)
     ? toRaw(currentRule)
     : currentRule;
 });
 
 const visible = computed(() => {
-  return !hide && isIf.value && isShow.value;
+  return !props.hide && isIf.value && isShow.value;
 });
 
 const shouldRequired = computed(() => {
@@ -190,6 +192,7 @@ const fieldRules = computed(() => {
 async function validateFieldValue({ value }: { value: any }) {
   const activeRules = fieldRules.value;
   if (!activeRules) {
+    fieldIssues.value = [];
     return;
   }
 
@@ -197,8 +200,11 @@ async function validateFieldValue({ value }: { value: any }) {
     const validator = getFormRule(activeRules);
     if (!validator) {
       console.warn(`Form rule ${activeRules} is not registered`);
+      fieldIssues.value = [];
       return;
     }
+
+    const { label, fieldName } = props;
     const ruleContext: FormRuleContext = {
       field: {
         label: isString(label) ? label : undefined,
@@ -208,18 +214,31 @@ async function validateFieldValue({ value }: { value: any }) {
       name: fieldName,
     };
     const result = await validator(value, [], ruleContext);
-    return result === true ? undefined : result;
+    if (result === true) {
+      fieldIssues.value = [];
+      return undefined;
+    }
+    fieldIssues.value = isString(result) ? [{ message: result, path: [] }] : [];
+    return result;
   }
 
   const result = await activeRules.safeParseAsync(value);
-  return result.success ? undefined : result.error.issues[0]?.message;
+  if (result.success) {
+    fieldIssues.value = [];
+    return;
+  }
+  fieldIssues.value = result.error.issues.map((issue) => ({
+    message: issue.message,
+    path: [...issue.path],
+  }));
+  return result.error.issues[0]?.message;
 }
 
 const fieldValidators = computed(() => {
   const validators: Record<string, typeof validateFieldValue> = {
     onSubmitAsync: validateFieldValue,
   };
-  const validateOn = new Set(formFieldProps?.validateOn ?? ['blur', 'change']);
+  const validateOn = new Set(props.formFieldProps?.validateOn ?? ['blur', 'change']);
   if (validateOn.has('blur')) {
     validators.onBlurAsync = validateFieldValue;
   }
@@ -230,6 +249,8 @@ const fieldValidators = computed(() => {
 });
 
 const computedProps = computed(() => {
+  const { componentProps, commonComponentProps, fieldName } = props;
+
   const finalComponentProps = isFunction(componentProps)
     ? componentProps({ fieldName })
     : componentProps;
@@ -243,12 +264,12 @@ const computedProps = computed(() => {
 
 // Custom help information
 const computedHelp = computed(() => {
-  const helpContent = dynamicHelpResolved.value ? dynamicHelp.value : help;
+  const helpContent = dynamicHelpResolved.value ? dynamicHelp.value : props.help;
   if (!helpContent) {
     return undefined;
   }
   return () =>
-    isFunction(helpContent) ? helpContent({ fieldName }) : helpContent;
+    isFunction(helpContent) ? helpContent({ fieldName: props.fieldName }) : helpContent;
 });
 
 watch(
@@ -264,17 +285,22 @@ watch(
 );
 
 const shouldDisabled = computed(() => {
-  return Boolean(isDisabled.value || disabled || computedProps.value?.disabled);
+  return Boolean(
+    formRenderProps.disabled
+    || isDisabled.value
+    || props.disabled
+    || computedProps.value?.disabled,
+  );
 });
 
 const customContentRender = computed(() => {
   if (dynamicRenderComponentContentResolved.value) {
     return dynamicRenderComponentContent.value ?? {};
   }
-  if (!isFunction(renderComponentContent)) {
+  if (!isFunction(props.renderComponentContent)) {
     return {};
   }
-  return renderComponentContent({ fieldName });
+  return props.renderComponentContent({ fieldName: props.fieldName });
 });
 
 const renderContentKey = computed(() => {
@@ -283,7 +309,7 @@ const renderContentKey = computed(() => {
 
 const fieldProps = computed(() => {
   return {
-    asyncDebounceMs: formFieldProps?.asyncDebounceMs,
+    asyncDebounceMs: props.formFieldProps?.asyncDebounceMs,
     validators: fieldValidators.value,
   };
 });
@@ -291,13 +317,13 @@ const fieldProps = computed(() => {
 function createFieldSlotProps(slotProps: RuntimeFieldSlotProps) {
   const { field } = slotProps;
   function handleChange(value: any) {
-    getFormApi().setFieldError(fieldName);
+    getFormApi().setFieldError(props.fieldName);
     field.handleChange(toFormFieldValue(value));
   }
   return {
     ...slotProps,
     componentField: {
-      'name': fieldName,
+      'name': props.fieldName,
       'modelValue': fieldValue.value,
       'onBlur': field.handleBlur,
       'onChange': handleChange,
@@ -308,10 +334,7 @@ function createFieldSlotProps(slotProps: RuntimeFieldSlotProps) {
 }
 
 function resolveModelPropName() {
-  return (
-    modelPropName
-    || (isString(component) ? componentBindEventMap.value?.[component] : null)
-  );
+  return props.modelPropName;
 }
 
 function fieldBindEvent(
@@ -321,53 +344,18 @@ function fieldBindEvent(
   const modelValue = componentField.modelValue;
   const handler = componentField['onUpdate:modelValue'];
 
-  let value = modelValue;
-  // Some components of antd design will pass an event object
-  if (modelValue && isPlainObject(modelValue) && bindEventField) {
-    const record = modelValue as Record<string, any>;
-    value = isEventObjectLike(record)
-      ? record.target?.[bindEventField]
-      : (record[bindEventField] ?? record);
-  }
-
   if (bindEventField) {
-    const eventField = bindEventField;
-
-    function handleChangeEvent(event: Record<string, any>) {
-      const value = isEventObjectLike(event)
-        ? (event?.target?.[eventField] ?? event)
-        : event;
-      return handler?.(value);
-    }
-
     return {
-      [`onUpdate:${eventField}`]: handler,
-      [eventField]: value === undefined ? emptyStateValue : value,
-      onChange: changeEventFallback ? handleChangeEvent : undefined,
+      [`onUpdate:${bindEventField}`]: handler,
+      [bindEventField]: modelValue,
+      onChange: undefined,
       onInput: undefined,
     };
   }
   return {
-    onChange: changeEventFallback ? componentField.onChange : undefined,
+    onChange: undefined,
     onInput: undefined,
   };
-}
-
-const validationLoading = ref(false);
-let validationLoadingTimer: ReturnType<typeof setTimeout> | undefined;
-
-function getValidationLoading(isValidating: boolean) {
-  if (!isValidating) {
-    clearTimeout(validationLoadingTimer);
-    validationLoadingTimer = undefined;
-    validationLoading.value = false;
-  } else if (!validationLoading.value && validationLoadingTimer === undefined) {
-    validationLoadingTimer = setTimeout(() => {
-      validationLoading.value = true;
-      validationLoadingTimer = undefined;
-    }, VALIDATION_LOADING_DELAY_MS);
-  }
-  return validationLoading.value;
 }
 
 function createComponentProps(slotProps: RuntimeFieldSlotProps) {
@@ -377,7 +365,6 @@ function createComponentProps(slotProps: RuntimeFieldSlotProps) {
     normalizedSlotProps.componentField,
     bindEventField,
   );
-  const isFieldValidating = slotProps.field.state.meta.isValidating;
 
   const binds = {
     ...computedProps.value,
@@ -393,8 +380,7 @@ function createComponentProps(slotProps: RuntimeFieldSlotProps) {
     // Surface sustained async validation as the component's own `loading`
     // prop. The brief delay prevents fast validators from flashing a spinner.
     loading:
-      Boolean(computedProps.value?.loading)
-      || getValidationLoading(isFieldValidating),
+      Boolean(computedProps.value?.loading) || validationLoading.value,
     ...normalizedSlotProps.componentField,
     ...bindEvents,
     disabled: shouldDisabled.value,
@@ -418,9 +404,11 @@ function createFieldSlotScope(slotProps: RuntimeFieldSlotProps) {
     ...createFieldSlotProps(slotProps),
     componentProps: createComponentProps(slotProps),
     disabled: shouldDisabled.value,
+    error: error.value,
     isInValid: isInValid.value,
+    issues: fieldIssues.value,
     modelValue: fieldValue.value,
-    name: fieldName,
+    name: props.fieldName,
   };
 }
 
@@ -435,22 +423,17 @@ function autofocus() {
   }
 }
 
-const shouldCollapsible = computed(() => {
-  return collapsible; /* && isVertical.value; */
-});
-
 function toggleCollapsed() {
   collapseOpen.value = !collapseOpen.value;
 }
 
 const componentRefMap = injectComponentRefMap();
 watch(fieldComponentRef, (componentRef) => {
-  componentRefMap?.set(fieldName, componentRef);
+  componentRefMap?.set(props.fieldName, componentRef);
 });
 onUnmounted(() => {
-  clearTimeout(validationLoadingTimer);
-  if (componentRefMap?.has(fieldName)) {
-    componentRefMap.delete(fieldName);
+  if (componentRefMap?.has(props.fieldName)) {
+    componentRefMap.delete(props.fieldName);
   }
 });
 </script>
@@ -458,124 +441,106 @@ onUnmounted(() => {
 <template>
   <component
     :is="formApi.fieldComponent"
-    v-if="!hide && isIf"
+    v-if="!props.hide && isIf"
     v-slot="slotProps"
     v-bind="fieldProps"
-    :name="fieldName"
+    :name="props.fieldName"
   >
     <FormField
       :dirty="slotProps.field.state.meta.isDirty"
       :error="error"
-      :name="fieldName"
+      :name="props.fieldName"
       :touched="slotProps.field.state.meta.isTouched"
       :valid="slotProps.field.state.meta.isValid"
     >
       <FormItem
-        v-show="isShow"
+        v-show="isShow && !props.hidden"
         :class="{
           'form-valid-error': shouldApplyInvalidStyle,
           'form-is-required': shouldRequired,
-          'flex-col': isVertical,
-          'flex-row items-center': !isVertical,
-          'pb-6': !compact,
+          'pb-6': !compact && !props.hideMessage,
           'pb-2': compact,
         }"
-        class="flex relative"
+        class="flex flex-col gap-2 relative"
         v-bind="$attrs"
       >
-        <FormLabel
-          v-if="!hideLabel"
-          ref="labelRef"
-          class="leading-6 flex"
-          :class="
-            [
-              {
-                'flex-shrink-0 justify-end pr-3': !isVertical,
-                'mb-1 flex-row': isVertical,
-                'self-start': shouldCollapsible && !isVertical,
-              },
-              labelClass,
-            ]
-          "
-          :help="computedHelp"
-          :colon="colon"
-          :label="label"
-          :required="shouldRequired && !hideRequiredMark"
-          :style="labelStyle"
+        <div
+          v-if="!props.hideLabel || props.collapsible"
+          class="flex items-center"
         >
-          <template v-if="label">
-            <TamanRenderContent :content="label" />
-          </template>
-
-          <template #extra>
-            <PButton
-              v-if="shouldCollapsible"
-              class="ml-0.5"
-              icon="lucide:chevron-down"
-              :class="{
-                'rotate-180': !collapseOpen,
-              }"
-              @click.prevent="toggleCollapsed"
-            />
-          </template>
-        </FormLabel>
-
-        <div class="p-px flex-auto">
-          <PCollapsible
-            v-model:open="collapseOpen"
+          <FormLabel
+            v-if="!props.hideLabel"
+            class="leading-6 flex"
+            :class="props.labelClass"
+            :help="computedHelp"
+            :label="props.label"
+            :required="shouldRequired && !props.hideRequiredMark"
           >
-            <template #content>
-              <div
-                class="flex w-full items-center relative"
-                :class="[wrapperClass]"
-              >
-                <FormControl :class="controlClass">
-                  <slot v-bind="createFieldSlotScope(slotProps)">
-                    <component
-                      :is="FieldComponent"
-                      ref="fieldComponentRef"
-                      :class="{
-                        'border-error hover:border-error/80 focus:border-error focus:shadow-[0_0_0_2px_rgba(255,38,5,0.06)]':
-                          shouldApplyInvalidStyle,
-                      }"
-                      v-bind="createComponentProps(slotProps)"
-                    >
-                      <template
-                        v-for="name in renderContentKey"
-                        :key="name"
-                        #[name]="renderSlotProps"
-                      >
-                        <TamanRenderContent
-                          :content="customContentRender[name]"
-                          v-bind="{
-                            ...renderSlotProps,
-                            formContext: createFieldSlotProps(slotProps),
-                          }"
-                        />
-                      </template>
-                    </component>
-                  </slot>
-                </FormControl>
-                <!-- Custom suffix -->
-                <div
-                  v-if="suffix"
-                  class="ml-1"
-                >
-                  <TamanRenderContent :content="suffix" />
-                </div>
-              </div>
+            <template v-if="props.label">
+              <TamanRenderContent :content="props.label" />
             </template>
-          </PCollapsible>
+          </FormLabel>
+
+          <PButton
+            v-if="props.collapsible"
+            aria-label="Toggle field"
+            class="ml-0.5"
+            icon="lucide:chevron-down"
+            :aria-expanded="collapseOpen"
+            :class="{
+              'rotate-180': !collapseOpen,
+            }"
+            @click.prevent="toggleCollapsed"
+          />
+        </div>
+
+        <div class="p-px flex-auto w-full">
+          <FormRenderFieldCollapsible
+            v-model:open="collapseOpen"
+            :collapsible="props.collapsible"
+          >
+            <FormRenderFieldControl
+              :control-class="props.controlClass"
+              :suffix="props.suffix"
+              :wrapper-class="props.wrapperClass"
+            >
+              <slot v-bind="createFieldSlotScope(slotProps)">
+                <component
+                  :is="FieldComponent"
+                  ref="fieldComponentRef"
+                  :class="{
+                    'border-error hover:border-error/80 focus:border-error focus:shadow-[0_0_0_2px_rgba(255,38,5,0.06)]':
+                      shouldApplyInvalidStyle,
+                  }"
+                  v-bind="createComponentProps(slotProps)"
+                >
+                  <template
+                    v-for="name in renderContentKey"
+                    :key="name"
+                    #[name]="renderSlotProps"
+                  >
+                    <TamanRenderContent
+                      :content="customContentRender[name]"
+                      v-bind="{
+                        ...renderSlotProps,
+                        formContext: createFieldSlotProps(slotProps),
+                      }"
+                    />
+                  </template>
+                </component>
+              </slot>
+            </FormRenderFieldControl>
+          </FormRenderFieldCollapsible>
 
           <FormDescription
-            v-if="description"
+            v-if="props.description"
             class="text-xs"
           >
-            <TamanRenderContent :content="description" />
+            <TamanRenderContent :content="props.description" />
           </FormDescription>
 
           <Transition
-            v-if="!compact"
+            v-if="!compact && !props.hideMessage"
             enter-active-class="duration-250 ease-emphasized"
             leave-active-class="duration-250 ease-emphasized"
             enter-from-class="opacity-0 -translate-y-15px"

@@ -3,23 +3,14 @@ import type {
   FormDependenciesResolveContext,
   FormDependenciesResolvedState,
   FormItemDependencies,
-  FormItemDependenciesLegacy,
-  FormItemDependenciesResolve,
   FormSchemaContext,
   FormSchemaRuleType,
   MaybeComponentProps,
 } from '../form.types';
 
-import {
-  clone,
-  get,
-  isBoolean,
-  isDeepEqual,
-  isFunction,
-} from '@taman-core/shared/utils';
+import { clone, get, isDeepEqual } from '@taman-core/shared/utils';
 import { computed, isRef, onScopeDispose, shallowRef, watch } from 'vue';
 
-import { warnDeprecatedOnce } from '../form.deprecation';
 import { resolveFieldNamePath } from '../form.field-name';
 import { injectFormProps } from '../form.use-form-context';
 import { injectRenderFormProps } from './form-render.context';
@@ -37,18 +28,6 @@ interface DependencyState {
   isRequired: boolean;
   isShow: boolean;
 }
-
-const legacyDependencyKeys = [
-  'componentProps',
-  'disabled',
-  'if',
-  'required',
-  'rules',
-  'show',
-  'trigger',
-] as const;
-
-const mixedDependenciesWarnings = new WeakSet<object>();
 
 /**
  * Resolve the value of the nested objects corresponding to the field name
@@ -87,80 +66,6 @@ function createDependencyState(
     isRequired: patch.required ?? false,
     isShow: patch.show ?? true,
   };
-}
-
-function isResolveDependencies(
-  dependencies: FormItemDependencies,
-): dependencies is FormItemDependenciesResolve {
-  return isFunction(dependencies.resolve);
-}
-
-function warnMixedDependencies(dependencies: FormItemDependenciesResolve) {
-  if (
-    import.meta.env.PROD
-      || mixedDependenciesWarnings.has(dependencies)
-      || !legacyDependencyKeys.some(
-        (key) => Reflect.get(dependencies, key) !== undefined,
-      )
-  ) {
-    return;
-  }
-  mixedDependenciesWarnings.add(dependencies);
-  console.warn(
-    '[Taman Form] `dependencies.resolve` cannot be combined with legacy dependency callbacks. `resolve` takes precedence.',
-  );
-}
-
-async function resolveLegacyDependencies(
-  dependencies: FormItemDependenciesLegacy,
-  context: FormDependenciesResolveContext,
-): Promise<FormDependenciesResolvedState> {
-  const patch: FormDependenciesResolvedState = {};
-  const { actions, controller, values } = context;
-  const {
-    componentProps,
-    disabled,
-    if: whenIf,
-    required,
-    rules,
-    show,
-    trigger,
-  } = dependencies;
-
-  if (isFunction(whenIf)) {
-    patch.if = !!(await whenIf(values, actions, controller));
-  } else if (isBoolean(whenIf)) {
-    patch.if = whenIf;
-  }
-  if (patch.if === false) {
-    return patch;
-  }
-
-  if (isFunction(show)) {
-    patch.show = !!(await show(values, actions, controller));
-  } else if (isBoolean(show)) {
-    patch.show = show;
-  }
-
-  if (isFunction(componentProps)) {
-    patch.componentProps = await componentProps(values, actions, controller);
-  }
-  if (isFunction(rules)) {
-    patch.rules = await rules(values, actions, controller);
-  }
-  if (isFunction(disabled)) {
-    patch.disabled = !!(await disabled(values, actions, controller));
-  } else if (isBoolean(disabled)) {
-    patch.disabled = disabled;
-  }
-  if (isFunction(required)) {
-    patch.required = !!(await required(values, actions, controller));
-  }
-  if (isFunction(trigger)) {
-    await trigger(values, actions, controller);
-  }
-
-  return patch;
 }
 
 export default function useDependencies(
@@ -247,17 +152,7 @@ export default function useDependencies(
         },
         values: values.value,
       };
-      let patch: FormDependenciesResolvedState | undefined;
-      if (isResolveDependencies(dependencies)) {
-        warnMixedDependencies(dependencies);
-        patch = await dependencies.resolve(context);
-      } else {
-        warnDeprecatedOnce(
-          'form-dependencies-legacy-callbacks',
-          '[Taman Form] Legacy dependency callbacks are deprecated. Use `dependencies.resolve(context)` instead.',
-        );
-        patch = await resolveLegacyDependencies(dependencies, context);
-      }
+      const patch = await dependencies.resolve(context);
       if (currentEvaluationId !== dependencyEvaluationId) {
         return;
       }

@@ -25,13 +25,11 @@ const emit = defineEmits<{
 const [Form, formApi] = useTamanForm(
   reactive({
     commonConfig: {
-      labelWidth: 130,
       // All form fields
       componentProps: {
         class: 'w-full',
       },
     },
-    layout: 'horizontal',
     schema: computed(() => props.formSchema),
     showDefaultActions: false,
   }),

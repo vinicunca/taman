@@ -65,9 +65,6 @@ const [Form] = useTamanForm({
       }
     });
   },
-  commonConfig: {
-    labelWidth: 150,
-  },
   schema: [
     {
       component: 'RadioGroup',

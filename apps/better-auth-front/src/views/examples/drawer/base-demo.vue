@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import { useTamanDrawer } from '@taman/common-ui';
+import { useTamanDrawer, useTamanToast } from '@taman/app-ui';
 
-import { Button, message } from 'antdv-next';
-
+const { toaster } = useTamanToast();
 const [Drawer, drawerApi] = useTamanDrawer({
   onCancel() {
     drawerApi.close();
@@ -11,8 +10,7 @@ const [Drawer, drawerApi] = useTamanDrawer({
     drawerApi.setState({ overlayBlur: 0, placement: 'right' });
   },
   onConfirm() {
-    message.info('onConfirm');
-    // drawerApi.close();
+    toaster.info('onConfirm');
   },
 });
 
@@ -23,11 +21,21 @@ function lockDrawer() {
   }, 3000);
 }
 </script>
+
 <template>
-  <Drawer title="基础抽屉示例" title-tooltip="标题提示内容">
-    <template #extra> extra </template>
-    base demo
-    <Button type="primary" @click="lockDrawer">锁定抽屉状态</Button>
+  <Drawer
+    title="Basic drawer example"
+    title-tooltip="Title tooltip content"
+  >
+    <template #extra>
+      extra
+    </template>
+    Base demo
+    <PButton
+      @click="lockDrawer"
+    >
+      Lock drawer state
+    </PButton>
     <!-- <template #prepend-footer> slot </template> -->
     <!-- <template #append-footer> prepend slot </template> -->
     <!-- <template #center-footer> center slot </template> -->

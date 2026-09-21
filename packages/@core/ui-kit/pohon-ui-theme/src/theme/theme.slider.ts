@@ -40,7 +40,7 @@ export const themeSlider = {
     },
     orientation: {
       horizontal: {
-        root: 'w-full',
+        root: 'w-full py-2',
         range: 'h-full',
       },
       vertical: {

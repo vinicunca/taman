@@ -1,19 +1,16 @@
 <script lang="ts" setup>
+import { useTamanDrawer, useTamanToast } from '@taman/app-ui';
 import { ref } from 'vue';
 
-import { useTamanDrawer } from '@taman/common-ui';
-
-import { Button, message } from 'antdv-next';
-
-const list = ref<number[]>([]);
+const list = ref<Array<number>>([]);
+const { toaster } = useTamanToast();
 
 const [Drawer, drawerApi] = useTamanDrawer({
   onCancel() {
     drawerApi.close();
   },
   onConfirm() {
-    message.info('onConfirm');
-    // drawerApi.close();
+    toaster.info('onConfirm');
   },
   onOpenChange(isOpen) {
     if (isOpen) {
@@ -30,18 +27,24 @@ function handleUpdate(len: number) {
   }, 2000);
 }
 </script>
+
 <template>
-  <Drawer title="自动计算高度">
+  <Drawer title="Automatically calculate height">
     <div
       v-for="item in list"
       :key="item"
-      class="flex-center h-55 w-full bg-muted even:bg-heavy"
+      class="bg-muted even:bg-heavy flex-center h-55 w-full"
     >
       {{ item }}
     </div>
 
     <template #prepend-footer>
-      <Button type="link" @click="handleUpdate(6)">点击更新数据</Button>
+      <PButton
+        variant="link"
+        @click="handleUpdate(6)"
+      >
+        Update data
+      </PButton>
     </template>
   </Drawer>
 </template>

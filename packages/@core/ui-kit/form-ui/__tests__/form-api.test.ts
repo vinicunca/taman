@@ -17,14 +17,11 @@ describe('formApi', () => {
       expect.objectContaining({
         actionWrapperClass: '',
         collapsed: false,
-        collapsedRows: 1,
         commonConfig: {},
         handleReset: undefined,
         handleSubmit: undefined,
-        layout: 'horizontal',
         resetButtonOptions: {},
         schema: [],
-        showCollapseButton: false,
         showDefaultActions: true,
         submitButtonOptions: {},
         wrapperClass: 'grid-cols-1',
@@ -36,10 +33,10 @@ describe('formApi', () => {
   it('should mount form actions', async () => {
     const formActions: any = {
       meta: {},
-      resetForm: vi.fn(),
+      reset: vi.fn(),
       setFieldValue: vi.fn(),
       setValues: vi.fn(),
-      submitForm: vi.fn(),
+      submit: vi.fn(),
       validate: vi.fn(),
       values: { name: 'test' },
     };
@@ -73,54 +70,6 @@ describe('formApi', () => {
     await formApi.setFieldError('password', 'Invalid password');
 
     expect(setFieldError).toHaveBeenCalledWith('password', 'Invalid password');
-  });
-
-  it('should format schema values when getting values', async () => {
-    formApi.setState({
-      schema: [
-        {
-          component: 'range-picker',
-          fieldName: 'filters.range',
-          valueFormat: (value, setValue) => {
-            setValue('filters.startTime', value?.[0]);
-            setValue('filters.endTime', value?.[1]);
-          },
-        },
-      ],
-    });
-
-    const formActions: any = {
-      meta: {},
-      values: {
-        filters: {
-          range: [1_710_000_000_000, 1_720_000_000_000],
-        },
-      },
-    };
-    const originalValuesSnapshot = structuredClone(formActions.values);
-
-    await formApi.mount(formActions, new Map());
-
-    expect(formApi.getLatestSubmissionValues()).toEqual({
-      filters: {
-        endTime: 1_720_000_000_000,
-        startTime: 1_710_000_000_000,
-      },
-    });
-
-    const values = await formApi.getValues();
-    expect(values).toEqual({
-      filters: {
-        endTime: 1_720_000_000_000,
-        startTime: 1_710_000_000_000,
-      },
-    });
-    expect(await formApi.getRawValues()).toEqual(originalValuesSnapshot);
-    expect(await formApi.getValueSnapshot()).toEqual({
-      rawValues: originalValuesSnapshot,
-      values,
-    });
-    expect(formActions.values).toEqual(originalValuesSnapshot);
   });
 
   it('should encode submissions and decode complete values with a codec', async () => {
@@ -249,77 +198,6 @@ describe('formApi', () => {
     await expect(codecFormApi.getValues()).rejects.toBeInstanceOf(
       FormCodecError,
     );
-  });
-
-  it('should scan deprecated schema transforms once for unchanged state', async () => {
-    const getChildren = vi.fn(() => []);
-    const schema = {
-      component: 'text',
-      fieldName: 'name',
-      get children() {
-        return getChildren();
-      },
-    } as any;
-    const codecFormApi = new FormApi({
-      codec: {
-        decode: (values) => values,
-        encode: (values) => values,
-      },
-      schema: [schema],
-    });
-    const formActions: any = {
-      meta: {},
-      values: { name: 'Ada' },
-    };
-
-    await codecFormApi.mount(formActions, new Map());
-    expect(getChildren).toHaveBeenCalledTimes(1);
-
-    await codecFormApi.getValues();
-    await codecFormApi.getValues();
-
-    expect(getChildren).toHaveBeenCalledTimes(1);
-  });
-
-  it('should format child schema values inside array fields', async () => {
-    formApi.setState({
-      schema: [
-        {
-          children: [
-            {
-              component: 'text',
-              fieldName: 'name',
-              valueFormat: (
-                value: any,
-                setValue: any,
-                _values: any,
-                ctx: any,
-              ) => {
-                setValue('normalizedName', value?.trim());
-                setValue('$root.firstRow', ctx?.rowIndex);
-              },
-            },
-          ],
-          fieldName: 'contacts',
-          type: 'array',
-        } as any,
-      ],
-    });
-
-    const formActions: any = {
-      meta: {},
-      values: {
-        contacts: [{ name: ' Ada ' }, { name: ' Grace ' }],
-      },
-    };
-
-    await formApi.mount(formActions, new Map());
-
-    const values = await formApi.getValues();
-    expect(values).toEqual({
-      contacts: [{ normalizedName: 'Ada' }, { normalizedName: 'Grace' }],
-      firstRow: 1,
-    });
   });
 
   it('should set field value', async () => {
@@ -633,7 +511,7 @@ describe('formApi', () => {
   it('should clear component refs on unmount before mounting again', async () => {
     const formActions: any = {
       meta: {},
-      resetForm: vi.fn(),
+      reset: vi.fn(),
       values: { name: 'test' },
     };
     const staleMap = new Map<string, unknown>([

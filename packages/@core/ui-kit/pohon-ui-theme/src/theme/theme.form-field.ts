@@ -4,13 +4,13 @@ export const formField = {
   slots: {
     root: '',
     wrapper: '',
-    labelWrapper: 'flex content-center items-center justify-between gap-1',
-    label: 'block font-500 color-text',
+    labelWrapper: 'flex gap-1 content-center items-center justify-between',
+    label: 'color-text font-500 block',
     container: 'relative',
     description: 'color-text-muted',
-    error: 'mt-2 color-error',
+    error: 'color-error mt-2',
     hint: 'color-text-muted',
-    help: 'mt-2 color-text-muted',
+    help: 'color-text-muted mt-2',
   },
   variants: {
     size: {
@@ -22,7 +22,7 @@ export const formField = {
     },
     required: {
       true: {
-        label: 'after:(color-error ms-0.5 content-[\'*\'])',
+        label: 'after:(color-error ms-0.5 content-["*"])',
       },
     },
     orientation: {

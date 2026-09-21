@@ -11,7 +11,6 @@ import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
 
 interface Props {
   class?: HTMLAttributes['class'];
-  colon?: boolean;
   help?: FormCustomRenderType;
   label?: FormCustomRenderType;
   required?: boolean;
@@ -20,22 +19,25 @@ interface Props {
 const props = defineProps<Props>();
 
 const { forwardRef } = useForwardExpose();
+
+// eslint-disable-next-line style/quotes -- a template literal avoids escaping the embedded apostrophes in `'*'`
+const REQUIRED_CLASS = `after:content-['*'] after:color-error after:ml-0.5 after:order-1`;
 </script>
 
 <template>
   <FormLabel
     :ref="forwardRef"
     class="flex items-center"
-    :class="[props.class]"
+    :class="[
+      props.class,
+      props.required ? REQUIRED_CLASS : '',
+    ]"
   >
-    <span
-      v-if="required"
-      class="color-error mr-0.5"
-    >*</span>
     <slot />
 
     <PTooltip
       v-if="help"
+      class="order-2"
     >
       <PIcon name="lucide:circle-question-mark" />
 
@@ -43,10 +45,5 @@ const { forwardRef } = useForwardExpose();
         <TamanRenderContent :content="help" />
       </template>
     </PTooltip>
-
-    <span
-      v-if="colon && label"
-      class="ml-0.5"
-    >:</span>
   </FormLabel>
 </template>

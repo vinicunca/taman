@@ -52,32 +52,28 @@ const [Form, formApi] = useTamanForm({
     componentProps: {
       class: 'w-full asd',
     },
-    labelClass: 'w-2/6',
   },
-  fieldMappingTime: [['field4', ['phoneType', 'phoneNumber'], null]],
   handleSubmit: onSubmit,
-  layout: 'horizontal',
   schema: [
     {
       component: 'Input',
       fieldName: 'field',
       label: 'Custom Suffix',
-      suffix: () => h('span', { class: 'text-red-600' }, 'Rupiah'),
+      suffix: () => h('span', { class: 'color-error-600' }, 'Rupiah'),
     },
     {
       component: 'Input',
       fieldName: 'field1',
       label: 'Custom Component Slot',
       renderComponentContent: () => ({
-        prefix: () => 'prefix',
-        suffix: () => 'suffix',
+        leading: () => 'leading',
+        trailing: () => 'trailing',
       }),
     },
     {
       component: h(PInput as Component, { placeholder: 'Enter Field2' }),
       fieldName: 'field2',
       label: 'Custom Component',
-      modelPropName: 'value',
       rules: 'required',
     },
     {
@@ -91,6 +87,7 @@ const [Form, formApi] = useTamanForm({
       defaultValue: [undefined, ''],
       fieldName: 'field4',
       formItemClass: 'col-span-1',
+      hideMessage: true,
       label: 'Combined Fields',
       rules: z
         .array(z.string().optional())
@@ -112,7 +109,6 @@ const [Form, formApi] = useTamanForm({
       },
       fieldName: 'field5',
       label: 'Dynamic Component',
-      modelPropName: 'value',
     },
   ],
   wrapperClass: 'grid-cols-1 md:grid-cols-2',
@@ -135,7 +131,6 @@ function handleToggleDynamicComponent() {
           placeholder: 'Select Dynamic Component Value',
         },
         fieldName: 'field5',
-        modelPropName: 'value',
       },
     ]);
     return;
@@ -148,7 +143,6 @@ function handleToggleDynamicComponent() {
         placeholder: 'Enter Dynamic Component Value',
       },
       fieldName: 'field5',
-      modelPropName: 'value',
     },
   ]);
 }
@@ -187,6 +181,13 @@ function onSubmit(values: Record<string, any>) {
           <PInput
             placeholder="Enter Field3"
             v-bind="componentProps"
+          />
+        </template>
+        <template #field4="slotProps">
+          <TwoFields
+            v-model="slotProps.modelValue"
+            :issues="slotProps.issues"
+            @update:model-value="slotProps.componentField['onUpdate:modelValue']"
           />
         </template>
       </Form>
