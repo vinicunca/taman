@@ -7,8 +7,8 @@
     --radius-lg: var(--taman-radius);
     --radius-xl: calc(var(--taman-radius) + 4px);
 
-    --taman-color-z-popup: 2000;
-    --taman-color-z-toaster: 3000;
+    --taman-z-popup: 2000;
+    --taman-z-toaster: 3000;
   }
 
   :root,

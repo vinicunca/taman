@@ -1,75 +1,68 @@
 <script lang="ts" setup>
-import { useTamanDialog, useTamanForm, useTamanToast, z } from '@taman/common-ui';
+import { useTamanDialog, useTamanToast } from '@taman/app-ui';
+import { useTamanForm } from '#/adapter/form';
 
 defineOptions({
   name: 'FormModelDemo',
 });
 
+interface FormModalData {
+  values?: Record<string, unknown>;
+}
+
 const { toast } = useTamanToast();
 
 const [FormDemo, formDemoApi] = useTamanForm({
-  fields: [
+  handleSubmit: onSubmit,
+  schema: [
     {
       component: 'Input',
-      props: {
+      componentProps: {
         placeholder: 'type here',
       },
-      name: 'field1',
+      fieldName: 'field1',
       label: 'Field 1',
-      rules: z.string().min(1, { message: 'Field 1 is required' }),
+      rules: 'required',
+    },
+    {
+      component: 'Input',
+      componentProps: {
+        placeholder: 'type here',
+      },
+      fieldName: 'field2',
+      label: 'Field 2',
+      rules: 'required',
+    },
+    {
+      component: 'Select',
+      componentProps: {
+        items: [
+          { label: 'Option 1', value: '1' },
+          { label: 'Option 2', value: '2' },
+        ],
+        placeholder: 'type here',
+      },
+      fieldName: 'field3',
+      label: 'Field 3',
+      rules: 'required',
     },
   ],
-
-  handleSubmit: onSubmit,
-  // schema: [
-  //   {
-  //     component: 'Input',
-  //     componentProps: {
-  //       placeholder: '请输入',
-  //     },
-  //     fieldName: 'field1',
-  //     label: '字段1',
-  //     rules: 'required',
-  //   },
-  //   {
-  //     component: 'Input',
-  //     componentProps: {
-  //       placeholder: '请输入',
-  //     },
-  //     fieldName: 'field2',
-  //     label: '字段2',
-  //     rules: 'required',
-  //   },
-  //   {
-  //     component: 'Select',
-  //     componentProps: {
-  //       options: [
-  //         { label: '选项1', value: '1' },
-  //         { label: '选项2', value: '2' },
-  //       ],
-  //       placeholder: '请输入',
-  //     },
-  //     fieldName: 'field3',
-  //     label: '字段3',
-  //     rules: 'required',
-  //   },
-  // ],
   showDefaultActions: false,
 });
 
-const [Modal, modalApi] = useTamanDialog({
+const [Modal, modalApi] = useTamanDialog<FormModalData>({
   fullscreenButton: false,
   onCancel() {
     modalApi.close();
   },
   onConfirm: async () => {
-    await formDemoApi.submit();
+    await formDemoApi.validateAndSubmit();
   },
   onOpenChange(isOpen: boolean) {
     if (isOpen) {
-      const { values } = modalApi.getData<Record<string, any>>();
-      if (values) {
-        formDemoApi.setValues(values);
+      const data = modalApi.getData();
+      if (data?.values) {
+        formDemoApi.setValues(data.values);
       }
     }
   },

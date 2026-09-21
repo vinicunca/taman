@@ -119,6 +119,7 @@ export const defaultPreferences: Preferences = {
       success: 'oklch(0.7728 0.1523 154.19)',
       warning: 'oklch(0.8228 0.1423 85.03)',
       error: 'oklch(0.6586 0.2309 15.88)',
+      info: 'oklch(0.7535 0.1390 232.66)',
       neutral: 'oklch(0.5 0 0)',
     },
     radius: '0.5',

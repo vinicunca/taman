@@ -1,6 +1,16 @@
 <script lang="ts" setup>
-import { AppCard, AppCardAction, AppPage } from '@taman/app-ui';
-import { clearAllAlerts, tamanAlert, tamanConfirm, tamanPrompt, useTamanDialog, useTamanToast } from '@taman/common-ui';
+import type { ExplicitDialogData } from './typed-data-contract';
+import {
+  AppCard,
+  AppCardAction,
+  AppPage,
+  clearAllAlerts,
+  tamanAlert,
+  tamanConfirm,
+  tamanPrompt,
+  useTamanDialog,
+  useTamanToast,
+} from '@taman/app-ui';
 import { onBeforeUnmount } from 'vue';
 import AutoHeightDemo from './auto-height-demo.vue';
 import BasicDemo from './basic-demo.vue';
@@ -11,43 +21,114 @@ import FormDemo from './form-dialog-demo.vue';
 import InContentDemo from './in-content-demo.vue';
 import NestedDemo from './nested-demo.vue';
 import SharedDataDemo from './shared-data-demo.vue';
+import TypedDataAutoDemo from './typed-data-auto-demo.vue';
+import { useFactoryDialog } from './typed-data-contract';
+import TypedDataExplicitDemo from './typed-data-explicit-demo.vue';
+import TypedDataFactoryDemo from './typed-data-factory-demo.vue';
 
 const { toaster } = useTamanToast();
 
-const dialogBasicApi = useTamanDialog({ connectedComponent: BasicDemo });
-const dialogInContentApi = useTamanDialog({ connectedComponent: InContentDemo });
-const dialogAutoHeightApi = useTamanDialog({ connectedComponent: AutoHeightDemo });
-const dialogDragApi = useTamanDialog({ connectedComponent: DragDemo });
-const dialogDynamicApi = useTamanDialog({ connectedComponent: DynamicDemo });
-const dialogSharedDataApi = useTamanDialog({ connectedComponent: SharedDataDemo });
-const dialogNestedApi = useTamanDialog({ connectedComponent: NestedDemo });
-const dialogBlurApi = useTamanDialog({ connectedComponent: BlurDemo });
-const dialogFormApi = useTamanDialog({ connectedComponent: FormDemo });
+const [BaseDialog, baseDialogApi] = useTamanDialog({ connectedComponent: BasicDemo });
+const [InContentDialog, inContentDialogApi] = useTamanDialog({ connectedComponent: InContentDemo });
+const [AutoHeightDialog, autoHeightDialogApi] = useTamanDialog({ connectedComponent: AutoHeightDemo });
+const [DragDialog, dragDialogApi] = useTamanDialog({ connectedComponent: DragDemo });
+const [DynamicDialog, dynamicDialogApi] = useTamanDialog({ connectedComponent: DynamicDemo });
+const [SharedDataDialog, sharedDialogApi] = useTamanDialog({ connectedComponent: SharedDataDemo });
+const [FormDialog, formDialogApi] = useTamanDialog({ connectedComponent: FormDemo });
+const [TypedDataAutoDialog, typedDataAutoDialogApi] = useTamanDialog({ connectedComponent: TypedDataAutoDemo });
+const [TypedDataExplicitDialog, typedDataExplicitDialogApi] = useTamanDialog<ExplicitDialogData>({ connectedComponent: TypedDataExplicitDemo });
+const [TypedDataFactoryDialog, typedDataFactoryDialogApi] = useFactoryDialog({ connectedComponent: TypedDataFactoryDemo });
+const [NestedDialog, nestedDialogApi] = useTamanDialog({ connectedComponent: NestedDemo });
+const [BlurDialog, blurDialogApi] = useTamanDialog({ connectedComponent: BlurDemo });
 
-function handleUpdateTitle() {
-  dialogDynamicApi.setState({ title: 'External dynamic title' }).open();
+function openBaseDialog() {
+  baseDialogApi.open();
 }
 
-function openSharedModal() {
-  dialogSharedDataApi
+function openInContentDialog() {
+  inContentDialogApi.open();
+}
+
+function openAutoHeightDialog() {
+  autoHeightDialogApi.open();
+}
+
+function openDragDialog() {
+  dragDialogApi.open();
+}
+
+function openDynamicDialog() {
+  dynamicDialogApi.open();
+}
+
+function openSharedDialog() {
+  sharedDialogApi
     .setData({
-      content: 'External passed data content',
-      payload: 'External passed data payload',
+      content: 'Data passed from an external source content',
+      payload: 'Data passed from an external source payload',
+    })
+    .open();
+}
+
+function openNestedDialog() {
+  nestedDialogApi.open();
+}
+
+function openBlurDialog() {
+  blurDialogApi.open();
+}
+
+function handleUpdateTitle() {
+  dynamicDialogApi.setState({ title: 'External dynamic title' }).open();
+}
+
+function openFormDialog() {
+  formDialogApi
+    .setData({
+      // Form values
+      values: { field1: 'abc', field2: '123', field3: '1' },
+    })
+    .open();
+}
+
+function openTypedDataAutoDialog() {
+  typedDataAutoDialogApi
+    .setData({
+      message: 'External without declaring generics, automatically inferred by connected component.',
+      method: 'Automatic inference',
+    })
+    .open();
+}
+
+function openTypedDataExplicitDialog() {
+  typedDataExplicitDialogApi
+    .setData({
+      message: 'Parent and child components explicitly reference the same data type.',
+      method: 'Explicit generics',
+    })
+    .open();
+}
+
+function openTypedDataFactoryDialog() {
+  typedDataFactoryDialogApi
+    .setData({
+      message: 'Parent and child components reuse pre-bound typed composable.',
+      method: 'Factory contract',
     })
     .open();
 }
 
 function openAlert() {
   tamanAlert({
-    content: 'This is a pop-up window.',
+    content: 'This is a dialog',
     icon: 'success',
   }).then(() => {
-    toaster.info('The user closed the popup.');
+    toaster.info('User closed the dialog');
   });
 }
 
 onBeforeUnmount(() => {
-  // Clear all pop-ups
+  // Clear all dialogs
   clearAllAlerts();
 });
 
@@ -65,14 +146,14 @@ function openConfirm() {
       });
     },
     centered: false,
-    content: 'This is a confirmation pop-up.',
+    content: 'This is a confirmation dialog',
     icon: 'question',
   })
     .then(() => {
-      toaster.success('The user confirmed the operation.');
+      toaster.success('User confirmed the operation');
     })
     .catch(() => {
-      toaster.error('The user cancelled the operation.');
+      toaster.error('User cancelled the operation');
     });
 }
 
@@ -80,7 +161,7 @@ async function openPrompt() {
   tamanPrompt<string>({
     async beforeClose({ isConfirm, value }) {
       if (isConfirm && value === 'cheese') {
-        toaster.error('You cannot eat cheese.');
+        toaster.error('You cannot eat cheese');
         return false;
       }
     },
@@ -90,19 +171,11 @@ async function openPrompt() {
     overlayBlur: 3,
   })
     .then((res) => {
-      toaster.success(`The user entered: ${res}`);
+      toaster.success(`User input: ${res}`);
     })
     .catch(() => {
-      toaster.error('The user cancelled the input.');
+      toaster.error('User cancelled the input');
     });
-}
-
-function openFormModal() {
-  dialogFormApi
-    .setData({
-      values: { field1: 'abc', field2: '123', field3: '1' },
-    })
-    .open();
 }
 </script>
 
@@ -112,6 +185,19 @@ function openFormModal() {
     title="Dialog component example"
     description="Dialog components are often used to display additional information, forms, or operation prompts without leaving the current page. For more API information, please refer to the component documentation."
   >
+    <BaseDialog />
+    <InContentDialog />
+    <AutoHeightDialog />
+    <DragDialog />
+    <DynamicDialog />
+    <SharedDataDialog />
+    <FormDialog />
+    <TypedDataAutoDialog />
+    <TypedDataExplicitDialog />
+    <TypedDataFactoryDialog />
+    <NestedDialog />
+    <BlurDialog />
+
     <div class="gap-4 grid grid-cols-3">
       <AppCard title="Basic usage">
         <p>A basic dialog example</p>
@@ -119,7 +205,7 @@ function openFormModal() {
         <template #footer>
           <PButton
             class="mx-auto"
-            @click="dialogBasicApi.open()"
+            @click="openBaseDialog"
           >
             Open Dialog
           </PButton>
@@ -131,7 +217,7 @@ function openFormModal() {
         <template #footer>
           <PButton
             class="mx-auto"
-            @click="dialogInContentApi.open()"
+            @click="openInContentDialog"
           >
             Open Dialog
           </PButton>
@@ -143,7 +229,7 @@ function openFormModal() {
         <template #footer>
           <PButton
             class="mx-auto"
-            @click="dialogAutoHeightApi.open()"
+            @click="openAutoHeightDialog"
           >
             Open Dialog
           </PButton>
@@ -155,7 +241,7 @@ function openFormModal() {
         <template #footer>
           <PButton
             class="mx-auto"
-            @click="dialogDragApi.open()"
+            @click="openDragDialog"
           >
             Open Dialog
           </PButton>
@@ -167,7 +253,7 @@ function openFormModal() {
         <template #trailingHeader>
           <AppCardAction>
             <PButton
-              @click="dialogDynamicApi.open()"
+              @click="openDynamicDialog"
             >
               Open Dialog
             </PButton>
@@ -189,7 +275,7 @@ function openFormModal() {
         <template #footer>
           <PButton
             class="mx-auto"
-            @click="openSharedModal"
+            @click="openSharedDialog"
           >
             Open Dialog and pass data
           </PButton>
@@ -201,9 +287,45 @@ function openFormModal() {
         <template #footer>
           <PButton
             class="mx-auto"
-            @click="openFormModal"
+            @click="openFormDialog"
           >
             Open form dialog
+          </PButton>
+        </template>
+      </AppCard>
+
+      <AppCard title="Shared Data: Automatic Derivation">
+        <p>Child component exposes API, parent component derives type from connected component</p>
+        <template #footer>
+          <PButton
+            class="mx-auto"
+            @click="openTypedDataAutoDialog"
+          >
+            Open automatic derivation example
+          </PButton>
+        </template>
+      </AppCard>
+
+      <AppCard title="Shared Data: Explicit Generics">
+        <p>When automatic derivation is not possible, parent and child components explicitly reference the same data type</p>
+        <template #footer>
+          <PButton
+            class="mx-auto"
+            @click="openTypedDataExplicitDialog"
+          >
+            Open explicit generics example
+          </PButton>
+        </template>
+      </AppCard>
+
+      <AppCard title="Shared Data: Factory Contract">
+        <p>Pre-bind type and reuse typed composable through createTamanDialog</p>
+        <template #footer>
+          <PButton
+            class="mx-auto"
+            @click="openTypedDataFactoryDialog"
+          >
+            Open factory contract example
           </PButton>
         </template>
       </AppCard>
@@ -213,7 +335,7 @@ function openFormModal() {
         <template #footer>
           <PButton
             class="mx-auto"
-            @click="dialogNestedApi.open()"
+            @click="openNestedDialog"
           >
             Open nested dialog
           </PButton>
@@ -225,7 +347,7 @@ function openFormModal() {
         <template #footer>
           <PButton
             class="mx-auto"
-            @click="dialogBlurApi.open()"
+            @click="openBlurDialog"
           >
             Open Dialog
           </PButton>

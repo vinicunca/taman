@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useTamanDialog, useTamanToast } from '@taman/common-ui';
+import { useTamanDialog, useTamanToast } from '@taman/app-ui';
 
 const { toaster } = useTamanToast();
 
@@ -36,9 +36,9 @@ function handleToggleFullscreen() {
       >
         Internal dynamic modify title
       </PButton>
+
       <PButton
         class="mb-3"
-        type="primary"
         @click="handleToggleFullscreen()"
       >
         {{ state.fullscreen ? 'Exit fullscreen' : 'Open fullscreen' }}

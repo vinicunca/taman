@@ -77,8 +77,8 @@ export const presetCore = definePreset<VinicuncaTheme>(() => {
       {
         'flex-center': 'flex items-center justify-center',
         'flex-col-center': 'flex-center flex-col',
-        'z-popup': 'z-$ui-z-popup',
-        'z-toaster': 'z-$ui-z-toaster',
+        'z-popup': 'z-$taman-z-popup',
+        'z-toaster': 'z-$taman-z-toaster',
       },
     ],
 
@@ -184,6 +184,20 @@ export const presetCore = definePreset<VinicuncaTheme>(() => {
           800: 'var(--taman-color-warning-800)',
           900: 'var(--taman-color-warning-900)',
           950: 'var(--taman-color-warning-950)',
+        },
+        info: {
+          DEFAULT: 'var(--taman-color-info)',
+          50: 'var(--taman-color-info-50)',
+          100: 'var(--taman-color-info-100)',
+          200: 'var(--taman-color-info-200)',
+          300: 'var(--taman-color-info-300)',
+          400: 'var(--taman-color-info-400)',
+          500: 'var(--taman-color-info-500)',
+          600: 'var(--taman-color-info-600)',
+          700: 'var(--taman-color-info-700)',
+          800: 'var(--taman-color-info-800)',
+          900: 'var(--taman-color-info-900)',
+          950: 'var(--taman-color-info-950)',
         },
         error: {
           DEFAULT: 'var(--taman-color-error)',

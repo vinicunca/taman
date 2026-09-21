@@ -1,15 +1,16 @@
 // @unocss-include
+
 import type { PThemeProgress } from 'pohon-ui';
 import { POHON_THEME_BRANDS } from '../constants.ts';
 
-export const progress = {
+export const themeProgress = {
   slots: {
     root: 'gap-2',
-    base: 'relative overflow-hidden rounded-full bg-background-accented',
-    indicator: 'rounded-full size-full transition-transform duration-200 ease-out',
-    status: 'flex color-text-dimmed transition-[width] duration-200',
+    base: 'rounded-full bg-background-accented relative overflow-hidden',
+    indicator: 'rounded-full size-full transition-transform-280 ease-out motion-reduce:transition-none motion-reduce:data-[state=indeterminate]:animate-pulse',
+    status: 'color-text-dimmed flex duration-280 ease-out motion-reduce:transition-none',
     steps: 'grid items-end',
-    step: 'truncate text-end row-start-1 col-start-1 transition-opacity',
+    step: 'text-end col-start-1 row-start-1 truncate transition-opacity ease-out',
   },
   variants: {
     animation: {
@@ -25,7 +26,7 @@ export const progress = {
       }])),
       neutral: {
         indicator: 'bg-background-inverted',
-        steps: 'color-text-inverted',
+        steps: 'color-text-highlighted',
       },
     },
     size: {
@@ -63,7 +64,7 @@ export const progress = {
         step: 'opacity-100',
       },
       first: {
-        step: 'opacity-100 color-text-muted',
+        step: 'color-text-muted opacity-100',
       },
       other: {
         step: 'opacity-0',
@@ -74,14 +75,14 @@ export const progress = {
     },
     orientation: {
       horizontal: {
-        root: 'w-full flex flex-col',
+        root: 'flex flex-col w-full',
         base: 'w-full',
-        status: 'flex-row items-center justify-end min-w-fit',
+        status: 'flex-row min-w-fit w-$percent transition-[width] items-center justify-end',
       },
       vertical: {
-        root: 'h-full flex flex-row-reverse',
+        root: 'flex flex-row-reverse h-full',
         base: 'h-full',
-        status: 'flex-col justify-end min-h-fit',
+        status: 'flex-col h-$percent min-h-fit transition-[height] justify-end',
       },
     },
     inverted: {
@@ -181,56 +182,56 @@ export const progress = {
       orientation: 'horizontal',
       animation: 'carousel',
       class: {
-        indicator: 'data-[state=indeterminate]:animate-[carousel_2s_ease-in-out_infinite] data-[state=indeterminate]:rtl:animate-[carousel-rtl_2s_ease-in-out_infinite]',
+        indicator: 'motion-safe:data-[state=indeterminate]:animate-carousel motion-safe:data-[state=indeterminate]:rtl:animate-carousel-rtl',
       },
     },
     {
       orientation: 'vertical',
       animation: 'carousel',
       class: {
-        indicator: 'data-[state=indeterminate]:animate-[carousel-vertical_2s_ease-in-out_infinite]',
+        indicator: 'motion-safe:data-[state=indeterminate]:animate-carousel-vertical',
       },
     },
     {
       orientation: 'horizontal',
       animation: 'carousel-inverse',
       class: {
-        indicator: 'data-[state=indeterminate]:animate-[carousel-inverse_2s_ease-in-out_infinite] data-[state=indeterminate]:rtl:animate-[carousel-inverse-rtl_2s_ease-in-out_infinite]',
+        indicator: 'motion-safe:data-[state=indeterminate]:animate-carousel-inverse motion-safe:data-[state=indeterminate]:rtl:animate-carousel-inverse-rtl',
       },
     },
     {
       orientation: 'vertical',
       animation: 'carousel-inverse',
       class: {
-        indicator: 'data-[state=indeterminate]:animate-[carousel-inverse-vertical_2s_ease-in-out_infinite]',
+        indicator: 'motion-safe:data-[state=indeterminate]:animate-carousel-inverse-vertical',
       },
     },
     {
       orientation: 'horizontal',
       animation: 'swing',
       class: {
-        indicator: 'data-[state=indeterminate]:animate-[swing_2s_ease-in-out_infinite]',
+        indicator: 'motion-safe:data-[state=indeterminate]:animate-swing',
       },
     },
     {
       orientation: 'vertical',
       animation: 'swing',
       class: {
-        indicator: 'data-[state=indeterminate]:animate-[swing-vertical_2s_ease-in-out_infinite]',
+        indicator: 'motion-safe:data-[state=indeterminate]:animate-swing-vertical',
       },
     },
     {
       orientation: 'horizontal',
       animation: 'elastic',
       class: {
-        indicator: 'data-[state=indeterminate]:animate-[elastic_2s_ease-in-out_infinite]',
+        indicator: 'relative motion-safe:data-[state=indeterminate]:animate-elastic',
       },
     },
     {
       orientation: 'vertical',
       animation: 'elastic',
       class: {
-        indicator: 'data-[state=indeterminate]:animate-[elastic-vertical_2s_ease-in-out_infinite]',
+        indicator: 'relative motion-safe:data-[state=indeterminate]:animate-elastic-vertical',
       },
     },
   ],

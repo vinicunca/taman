@@ -27,7 +27,7 @@ const emit = defineEmits<{
 
 const [
   FormLock,
-  { resetForm, validate, getValues, getFieldComponentRef },
+  { reset, validate, getValues, getFieldComponentRef },
 ]
   = useTamanForm(
     reactive({
@@ -59,7 +59,7 @@ const [DialogLock] = useTamanDialog({
   },
   onOpenChange(isOpen) {
     if (isOpen) {
-      resetForm();
+      reset();
     }
   },
   onOpened() {

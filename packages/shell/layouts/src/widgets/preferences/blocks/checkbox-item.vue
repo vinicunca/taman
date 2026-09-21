@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import type { SelectOption } from '@taman/types';
 
-import { useSlots } from 'vue';
-
-import { CircleHelp } from '@vben/icons';
-
 import { VbenCheckButtonGroup, VbenTooltip } from '@vben-core/shadcn-ui';
+import { CircleHelp } from '@vben/icons';
+import { useSlots } from 'vue';
 
 defineOptions({
   name: 'PreferenceCheckboxItem',
@@ -14,7 +12,7 @@ defineOptions({
 withDefaults(
   defineProps<{
     disabled?: boolean;
-    items?: SelectOption[];
+    items?: Array<SelectOption>;
     multiple?: boolean;
     onBtnClick?: (value: string) => void;
     placeholder?: string;
@@ -28,7 +26,7 @@ withDefaults(
   },
 );
 
-const inputValue = defineModel<string[]>();
+const inputValue = defineModel<Array<string> | undefined>({ default: undefined });
 
 const slots = useSlots();
 </script>
@@ -39,16 +37,19 @@ const slots = useSlots();
       'hover:bg-background-accented': !slots.tip,
       'pointer-events-none opacity-50': disabled,
     }"
-    class="my-1 flex w-full items-center justify-between rounded-md px-2 py-1"
+    class="my-1 px-2 py-1 rounded-md flex w-full items-center justify-between"
   >
-    <span class="flex items-center text-sm">
-      <slot></slot>
+    <span class="text-sm flex items-center">
+      <slot />
 
-      <VbenTooltip v-if="slots.tip" side="bottom">
+      <VbenTooltip
+        v-if="slots.tip"
+        side="bottom"
+      >
         <template #trigger>
           <CircleHelp class="ml-1 size-3 cursor-help" />
         </template>
-        <slot name="tip"></slot>
+        <slot name="tip" />
       </VbenTooltip>
     </span>
     <VbenCheckButtonGroup

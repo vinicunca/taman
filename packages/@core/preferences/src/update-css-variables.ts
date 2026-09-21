@@ -99,6 +99,7 @@ function updateMainColorVariables(preference: Preferences) {
     { color: brands.success, name: 'success' },
     { color: brands.warning, name: 'warning' },
     { color: brands.error, name: 'error' },
+    { color: brands.info, name: 'info' },
   ]);
 
   applyCssVariables(colorVariables);

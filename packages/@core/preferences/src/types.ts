@@ -313,6 +313,8 @@ interface ThemeBrandColors {
   success: string;
   /** Warning brand color */
   warning: string;
+  /** Info brand color */
+  info: string;
   /** Error/danger brand color */
   error: string;
   /** Neutral brand color */

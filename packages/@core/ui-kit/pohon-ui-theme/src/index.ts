@@ -56,12 +56,12 @@ import { link } from './theme/theme.link.ts';
 import { listbox } from './theme/theme.listbox.ts';
 import { main } from './theme/theme.main.ts';
 import { marquee } from './theme/theme.marquee.ts';
-import { modal } from './theme/theme.modal.ts';
+import { themeModal } from './theme/theme.modal.ts';
 import { navigationMenu } from './theme/theme.navigation-menu.ts';
 import { pagination } from './theme/theme.pagination.ts';
 import { pinInput } from './theme/theme.pin-input.ts';
 import { popover } from './theme/theme.popover.ts';
-import { progress } from './theme/theme.progress.ts';
+import { themeProgress } from './theme/theme.progress.ts';
 import { prose } from './theme/theme.prose.ts';
 import { themeRadioGroup } from './theme/theme.radio-group.ts';
 import { scrollArea } from './theme/theme.scroll-area.ts';
@@ -143,12 +143,12 @@ export const ui = parseThemeClasses({
   listbox,
   main,
   marquee,
-  modal,
+  modal: themeModal,
   navigationMenu,
   pagination,
   pinInput,
   popover,
-  progress,
+  progress: themeProgress,
   prose,
   radioGroup: themeRadioGroup,
   scrollArea,

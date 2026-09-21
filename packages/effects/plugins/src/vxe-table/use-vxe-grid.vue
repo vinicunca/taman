@@ -129,7 +129,7 @@ const [Form, formApi] = useTableForm({
   },
   handleReset: async () => {
     const prevValues = await formApi.getValues();
-    await formApi.resetForm();
+    await formApi.reset();
     const formValues = await formApi.getValues();
     formApi.setLatestSubmissionValues(formValues);
     // When values change, submitOnChange triggers a refresh; only reload manually when submitOnChange is false or values are unchanged
@@ -142,7 +142,6 @@ const [Form, formApi] = useTableForm({
       class: 'w-full',
     },
   },
-  showCollapseButton: true,
   submitButtonOptions: {
     content: computed(() => $t('common.search')),
   },
@@ -367,7 +366,7 @@ watch(
       );
       return {
         ...finalFormOptions,
-        collapseTriggerResize: !!finalFormOptions.showCollapseButton,
+        collapseTriggerResize: true,
       };
     });
   },

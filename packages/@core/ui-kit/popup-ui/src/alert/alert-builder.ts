@@ -3,6 +3,7 @@ import type { Component, VNode } from 'vue';
 import type { AlertBeforeCloseScope, AlertPromptProps, AlertProps } from './alert';
 
 import { useSimpleLocale } from '@taman-core/composables';
+import { globalShareState } from '@taman-core/shared/global-state';
 import { isFunctionType, isString } from '@taman-core/shared/utils';
 import { TamanRenderContent } from '@taman-core/taman-ui';
 import PInput from 'pohon-ui/components/Input.vue';
@@ -83,6 +84,13 @@ export function tamanAlert(
 
     // Create the VNode for the Alert component.
     const vnode = h(Alert, props);
+    // Imperative `render()` is outside the app tree. Without the app context,
+    // nested pohon `PButton` → `PLink` → `useRoute()` cannot resolve the router
+    // provide and warns: injection "Symbol(route location)" not found.
+    const appContext = globalShareState.getAppContext();
+    if (appContext) {
+      vnode.appContext = appContext;
+    }
 
     // Render the component to the container.
     render(vnode, container);

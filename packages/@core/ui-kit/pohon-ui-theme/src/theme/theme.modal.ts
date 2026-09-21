@@ -2,17 +2,17 @@
 
 import type { PThemeModal } from 'pohon-ui';
 
-export const modal = {
+export const themeModal = {
   slots: {
-    overlay: 'fixed inset-0',
-    content: 'bg-background divide-y divide-divide flex flex-col focus:outline-none',
-    header: 'flex items-center gap-1.5 p-4 sm:px-6 min-h-$ui-header-height',
+    overlay: 'inset-0 fixed',
+    content: 'bg-background flex flex-col divide-divide divide-y focus:outline-none',
+    header: 'p-4 flex gap-1.5 min-h-$ui-header-height items-center sm:px-6',
     wrapper: '',
-    body: 'flex-1 p-4 sm:p-6',
-    footer: 'flex items-center gap-1.5 p-4 sm:px-6',
+    body: 'p-4 flex-1 sm:p-6',
+    footer: 'p-4 flex gap-1.5 items-center sm:px-6',
     title: 'color-text-highlighted font-600',
-    description: 'mt-1 color-text-muted text-sm',
-    close: 'absolute top-4 end-4',
+    description: 'text-sm color-text-muted mt-1',
+    close: 'end-4 top-4 absolute',
   },
   variants: {
     transition: {
@@ -26,7 +26,7 @@ export const modal = {
         content: 'inset-0',
       },
       false: {
-        content: 'w-[calc(100vw-2rem)] max-w-lg rounded-lg shadow-lg ring ring-ring',
+        content: 'rounded-lg max-w-lg w-[calc(100vw-2rem)] ring ring-ring shadow-lg',
       },
     },
     overlay: {

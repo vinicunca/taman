@@ -108,7 +108,7 @@ const getAppendTo = computed(() => {
 
 const { dragging, transform } = useDialogDraggable(
   {
-    targetRef: contentRef,
+    targetRef: dialogRef,
     dragRef: headerRef,
     draggable: shouldDraggable,
     containerSelector: getAppendTo,
@@ -306,8 +306,17 @@ function handleClosed() {
           </DialogDescription>
         </div>
 
-        <div class="flex-center">
+        <div class="flex-center gap-2">
           <slot name="extra" />
+
+          <PButton
+            v-if="fullscreenButton"
+            class="pohon:rounded-full"
+            :icon="shouldFullscreen ? 'lucide:shrink' : 'lucide:expand'"
+            color="neutral"
+            variant="ghost"
+            @click="handleFullscreen"
+          />
 
           <DialogClose
             v-if="closable"
@@ -347,15 +356,6 @@ function handleClosed() {
       <TamanSpinner
         v-if="showLoading || submitting"
         spinning
-      />
-
-      <PButton
-        v-if="fullscreenButton"
-        class="right-12 top-2.5 absolute pohon:rounded-full"
-        :icon="shouldFullscreen ? 'lucide:shrink' : 'lucide:expand'"
-        color="neutral"
-        variant="ghost"
-        @click="handleFullscreen"
       />
 
       <DialogFooter

@@ -73,8 +73,6 @@ const [FormAuth, formAuthApi] = useTamanForm<AuthLoginValues>(
       hideRequiredMark: true,
     },
 
-    layout: 'vertical',
-
     handleSubmit(values: AuthLoginValues) {
       emits('loginEmail', values);
     },

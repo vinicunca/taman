@@ -306,15 +306,15 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/auto-imports.d.ts": {
-    "mtime": 1789705095.9675796,
-    "seen": 1789705513.268873,
-    "ast_hash": "640be9b419da7ee46c6d2c6bd0bc3b4c",
+    "mtime": 1789718604.9107237,
+    "seen": 1789719363.935052,
+    "ast_hash": "1dcc3305a93730ef1340f0d4b6261b30",
     "semantic_hash": ""
   },
   "apps/better-auth-front/components.d.ts": {
-    "mtime": 1789701184.1748896,
-    "seen": 1789703910.294262,
-    "ast_hash": "aab8ad795a715aee3d00c7ed95286fb5",
+    "mtime": 1789723613.785621,
+    "seen": 1789731944.959884,
+    "ast_hash": "a45aec7732468c4beebb2a1eb1f3bd9d",
     "semantic_hash": ""
   },
   "apps/better-auth-front/package.json": {
@@ -750,9 +750,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/router/routes/modules/dev/examples.ts": {
-    "mtime": 1789704946.5182958,
-    "seen": 1789705513.268932,
-    "ast_hash": "a5d6efee17f11b64b1edeee58ed099ed",
+    "mtime": 1789714799.1784453,
+    "seen": 1789719363.9351091,
+    "ast_hash": "35c40fa9be8b7a13b14f35572e237201",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/router/routes/modules/dev/system.ts": {
@@ -798,9 +798,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/_core/authentication/register.vue": {
-    "mtime": 1787808781.9141908,
-    "seen": 1789448741.0231512,
-    "ast_hash": "4635f103ea50b9803babc0534803cccd",
+    "mtime": 1789718388.793732,
+    "seen": 1789719363.9351182,
+    "ast_hash": "07704400ec6c8a99eebb5329f151664a",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/_core/authentication/xlogin.vue": {
@@ -1128,33 +1128,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/button-group/index.vue": {
-    "mtime": 1787544491.2000396,
-    "seen": 1789448741.023187,
-    "ast_hash": "c5aaab5b058783c83b21df1d68a4ac87",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/views/examples/captcha/point-selection-captcha.vue": {
-    "mtime": 1786587065.8231046,
-    "seen": 1789448741.023187,
-    "ast_hash": "ea76a6cd36e1b4975e76fe305ae2783f",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/views/examples/captcha/slider-captcha.vue": {
-    "mtime": 1786587065.8233027,
-    "seen": 1789448741.0231879,
-    "ast_hash": "83c25c7fd5e74800f8e8a5c1f42834d8",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/views/examples/captcha/slider-rotate-captcha.vue": {
-    "mtime": 1786587065.8234909,
-    "seen": 1789448741.023189,
-    "ast_hash": "ed21756e233eb2320e90a85c52c6404b",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/views/examples/captcha/slider-translate-captcha.vue": {
-    "mtime": 1786587065.8236887,
-    "seen": 1789448741.023189,
-    "ast_hash": "47ffb262317dc6a013ca16ae50ed5148",
+    "mtime": 1789721645.8782647,
+    "seen": 1789731944.959987,
+    "ast_hash": "99e8233b482e848575fa2e5926d4a507",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/context-menu/index.vue": {
@@ -1176,69 +1152,63 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/dialog/auto-height-demo.vue": {
-    "mtime": 1786587065.8250031,
-    "seen": 1789448741.0231922,
-    "ast_hash": "6fce6abb86d291fef2ea0652068d6c69",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/views/examples/dialog/base-demo.vue": {
-    "mtime": 1787900303.1452658,
-    "seen": 1789448741.0231931,
-    "ast_hash": "2cb0d2c1356ac10e1f9f26ff4b5a2648",
+    "mtime": 1789717147.260641,
+    "seen": 1789719363.935165,
+    "ast_hash": "b2979ca6bb5bb870483cf4155053fa66",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/dialog/basic-demo.vue": {
-    "mtime": 1786587065.825352,
-    "seen": 1789448741.0231931,
-    "ast_hash": "52abb0a674f118924eae6e9de9148501",
+    "mtime": 1789718751.5126643,
+    "seen": 1789719363.935166,
+    "ast_hash": "465c867169955369dabfb6bc932c4bb5",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/dialog/blur-demo.vue": {
-    "mtime": 1786587065.8256588,
-    "seen": 1789448741.023194,
-    "ast_hash": "c93a6a55d8fe14a38c61c48ff9a1841d",
+    "mtime": 1789717147.3962765,
+    "seen": 1789719363.935166,
+    "ast_hash": "a9b46a547c8ff3f21b80b985e3d82b80",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/dialog/drag-demo.vue": {
-    "mtime": 1786587065.8259096,
-    "seen": 1789448741.023194,
-    "ast_hash": "487e1a7f2a4c2e4f18974096439cc3c1",
+    "mtime": 1789717147.165427,
+    "seen": 1789719363.935167,
+    "ast_hash": "b2f891b0117138042110dd4b9ce48961",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/dialog/dynamic-demo.vue": {
-    "mtime": 1786587065.8260994,
-    "seen": 1789448741.0231948,
-    "ast_hash": "fa74fc4637f39701e92d9a5cdc7f4797",
+    "mtime": 1789717147.3154845,
+    "seen": 1789719363.935168,
+    "ast_hash": "22386e35ae6378fcbe25b0fb06ec2ff1",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/dialog/form-dialog-demo.vue": {
-    "mtime": 1786587065.826317,
-    "seen": 1789448741.023196,
-    "ast_hash": "930a7af8b56b9a8f88981ad2316629cd",
+    "mtime": 1789717411.730018,
+    "seen": 1789719363.935168,
+    "ast_hash": "efae1c51d5937ccac77782245aa68d9b",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/dialog/in-content-demo.vue": {
-    "mtime": 1786587065.8264794,
-    "seen": 1789448741.023196,
-    "ast_hash": "ba0f73c12d4a50de42d08a54413cd82e",
+    "mtime": 1789717147.4909794,
+    "seen": 1789719363.935169,
+    "ast_hash": "b02992f5f6e542509b1b9fb69f6f4bdc",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/dialog/index.vue": {
-    "mtime": 1786587065.8267932,
-    "seen": 1789448741.023197,
-    "ast_hash": "49bd0124d573d8bec009fe9660ecc1a9",
+    "mtime": 1789717112.8623662,
+    "seen": 1789719363.93517,
+    "ast_hash": "604e222df09311e02884a1d26018ce09",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/dialog/nested-demo.vue": {
-    "mtime": 1786587065.8269753,
-    "seen": 1789448741.023197,
-    "ast_hash": "cd25b0ef327bd86703f92adccf135557",
+    "mtime": 1789717147.5270638,
+    "seen": 1789719363.93517,
+    "ast_hash": "c718188c6baa4a139c28be54f042db71",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/dialog/shared-data-demo.vue": {
-    "mtime": 1786587065.8271585,
-    "seen": 1789448741.023198,
-    "ast_hash": "aa0989efc26479bf409f34bc1b329fed",
+    "mtime": 1789717147.566709,
+    "seen": 1789719363.9351711,
+    "ast_hash": "471cb76ad923da374cd84b2a59f3bf6d",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/doc-button.vue": {
@@ -1266,9 +1236,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/drawer/form-drawer-demo.vue": {
-    "mtime": 1787544491.1401381,
-    "seen": 1789448741.023201,
-    "ast_hash": "ad1ad39bf1c179e984dec407482a3d65",
+    "mtime": 1789717568.6914604,
+    "seen": 1789719363.935179,
+    "ast_hash": "2794d05ad4bde5f369addd0e005bcae3",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/drawer/in-content-demo.vue": {
@@ -1296,63 +1266,63 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/form/all-fields.vue": {
-    "mtime": 1789551029.9454334,
-    "seen": 1789551098.42942,
-    "ast_hash": "ed2001ebf02a8806b6b3570984c7e556",
+    "mtime": 1789738297.0295162,
+    "seen": 1789738448.3870358,
+    "ast_hash": "3c22f00b91242a427117ec31d6cdbdad",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/form/api.vue": {
-    "mtime": 1789700573.072421,
-    "seen": 1789703910.294382,
-    "ast_hash": "bddbb10640ff794f8b55d4a38bfd9e26",
+    "mtime": 1789738021.6760488,
+    "seen": 1789738448.3870358,
+    "ast_hash": "06cad5311b68c8ea02c0ef5a04e9e227",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/form/collapsible.vue": {
-    "mtime": 1789702156.8226376,
-    "seen": 1789703910.294383,
-    "ast_hash": "d2bb86f8f4741ea0197b494bf7dc2599",
+    "mtime": 1789738045.9614189,
+    "seen": 1789738448.387038,
+    "ast_hash": "a88f1c7f6ef2490279132cd050e616db",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/form/custom-layout.vue": {
-    "mtime": 1789640324.6929438,
-    "seen": 1789684935.96001,
-    "ast_hash": "a9ca9a46895cf2f7aff9d17ca1714304",
+    "mtime": 1789721542.7794604,
+    "seen": 1789731944.96001,
+    "ast_hash": "b17ab25077d9b5b4996ab0a03c4a47bf",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/form/custom.vue": {
-    "mtime": 1789699160.6985376,
-    "seen": 1789703910.2943842,
-    "ast_hash": "580ef044b8e602754dad7567a1279cf6",
+    "mtime": 1789737950.4862244,
+    "seen": 1789738448.387039,
+    "ast_hash": "d0a484c78721fef6c799e0d477aad822",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/form/dynamic.vue": {
-    "mtime": 1789552281.2867758,
-    "seen": 1789552860.904672,
-    "ast_hash": "d9c4c82c5b32386bcbc18185f10e121a",
+    "mtime": 1789738156.8617532,
+    "seen": 1789738448.38704,
+    "ast_hash": "ea78a4874402aeddb2ea11d75f5bcf9e",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/form/merge.vue": {
-    "mtime": 1789701323.4850233,
-    "seen": 1789703910.294385,
-    "ast_hash": "d8e81979dab19e97eef12211cbcf6223",
+    "mtime": 1789721551.3346918,
+    "seen": 1789731944.960012,
+    "ast_hash": "b1062b44e4f38a3e5de27dadd9a3c8ed",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/form/modules/two-fields.vue": {
-    "mtime": 1789698712.7573183,
-    "seen": 1789698744.7808099,
-    "ast_hash": "f04ca9094cf342c3d652a424239519a2",
+    "mtime": 1789737939.4832501,
+    "seen": 1789738448.387041,
+    "ast_hash": "a2b88823a13c000edd65100649928b4b",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/form/rules.vue": {
-    "mtime": 1789551194.0135012,
-    "seen": 1789552860.904674,
-    "ast_hash": "ac39613d1d2ccba8a032cc8a6d01ce5d",
+    "mtime": 1789738133.4247203,
+    "seen": 1789738448.387042,
+    "ast_hash": "9342907497cdaa9b648bc34b7ec319fa",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/form/scroll-to-error-test.vue": {
-    "mtime": 1789701660.1437416,
-    "seen": 1789703910.2943869,
-    "ast_hash": "9cb1f4a1cbf151f3060318a14a279f74",
+    "mtime": 1789717397.4074173,
+    "seen": 1789719363.93519,
+    "ast_hash": "f3a715b38f68b91e19e812830bc69d85",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/json-viewer/data.ts": {
@@ -1392,81 +1362,15 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/tippy/index.vue": {
-    "mtime": 1787544491.2993257,
-    "seen": 1789448741.023217,
-    "ast_hash": "f9cf6adf57993745cf1aa79d0eff3cec",
+    "mtime": 1789718487.9174726,
+    "seen": 1789719363.935196,
+    "ast_hash": "b2c8acce1b71842ff092b027a6136ff9",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/tiptap/index.vue": {
     "mtime": 1786587065.836018,
     "seen": 1789448741.023217,
     "ast_hash": "a1d285da574eef025ffcea7e13e23425",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/views/examples/vxe-table/basic.vue": {
-    "mtime": 1786587102.142967,
-    "seen": 1789448741.023218,
-    "ast_hash": "ee831440fdb07a9ac91b8d3915209bca",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/views/examples/vxe-table/custom-cell.vue": {
-    "mtime": 1786587065.8365135,
-    "seen": 1789448741.023218,
-    "ast_hash": "40d5a22acd20391c8259cf16a23ca0ae",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/views/examples/vxe-table/edit-cell.vue": {
-    "mtime": 1786587065.836704,
-    "seen": 1789448741.0232189,
-    "ast_hash": "b8f581afab747930529f187d89b4a12d",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/views/examples/vxe-table/edit-row.vue": {
-    "mtime": 1786587065.8368945,
-    "seen": 1789448741.02322,
-    "ast_hash": "118ac30150fad5c465010eac208615e8",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/views/examples/vxe-table/fixed.vue": {
-    "mtime": 1786587065.8371878,
-    "seen": 1789448741.02322,
-    "ast_hash": "8b784982d1cf65c03160a0b63f8c0568",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/views/examples/vxe-table/form.vue": {
-    "mtime": 1786587065.8374407,
-    "seen": 1789448741.023221,
-    "ast_hash": "79a2b5951e14e5f6d7e47ccf608d7d8f",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/views/examples/vxe-table/remote.vue": {
-    "mtime": 1786587065.8379252,
-    "seen": 1789448741.023221,
-    "ast_hash": "3bb27ddd2a752f43de54628bb112c899",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/views/examples/vxe-table/table-data.ts": {
-    "mtime": 1786587065.838136,
-    "seen": 1789448741.023222,
-    "ast_hash": "1d76670093275f033248333f17533632",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/views/examples/vxe-table/tree.vue": {
-    "mtime": 1786587065.8383253,
-    "seen": 1789448741.023223,
-    "ast_hash": "cbfb5f75ad5050378f92a3f47e9289da",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/views/examples/vxe-table/viewed.vue": {
-    "mtime": 1787900303.1839585,
-    "seen": 1789448741.023223,
-    "ast_hash": "2a8c8eb2a17b0b8273441eee007c19a9",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/views/examples/vxe-table/virtual.vue": {
-    "mtime": 1786587065.838868,
-    "seen": 1789448741.023224,
-    "ast_hash": "7919b10c046370201f2fac0eb80ebae0",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/system/dept/data.ts": {
@@ -1482,9 +1386,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/system/dept/modules/form.vue": {
-    "mtime": 1787900303.3362994,
-    "seen": 1789448741.023226,
-    "ast_hash": "eaf162a554749300ca47b409afda4171",
+    "mtime": 1789721571.9812803,
+    "seen": 1789731944.960022,
+    "ast_hash": "73acb940c89527b48e99673af43d521b",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/system/menu/data.ts": {
@@ -1500,9 +1404,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/system/menu/modules/form.vue": {
-    "mtime": 1787895822.9427052,
-    "seen": 1789448741.023227,
-    "ast_hash": "1bf97277a23fdd38d242f818d6a8cd7d",
+    "mtime": 1789721610.1773882,
+    "seen": 1789731944.960024,
+    "ast_hash": "ab28fa5b7f3bc3775c48229dce709d1e",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/system/role/data.ts": {
@@ -1512,15 +1416,15 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/system/role/list.vue": {
-    "mtime": 1787895823.2774198,
-    "seen": 1789448741.023229,
-    "ast_hash": "eec7a52d2713db63de208a1dcfea6b91",
+    "mtime": 1789720673.8257604,
+    "seen": 1789731944.960025,
+    "ast_hash": "206a84cda1019d4fc8011af8803399cd",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/system/role/modules/form.vue": {
-    "mtime": 1787895823.2429292,
-    "seen": 1789448741.023229,
-    "ast_hash": "9036b71e8ce270b29839370e5a19611d",
+    "mtime": 1789717561.4043033,
+    "seen": 1789719363.935203,
+    "ast_hash": "c2080ed73d485a1e767403604a0df291",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/system/user/data.ts": {
@@ -1542,9 +1446,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/system/user/modules/form.vue": {
-    "mtime": 1787895822.9954877,
-    "seen": 1789448741.023232,
-    "ast_hash": "aa19eed2242356b0f58b648d903aa5ff",
+    "mtime": 1789717564.919147,
+    "seen": 1789719363.935206,
+    "ast_hash": "98214c9b306e7485b28cd89486b86b5f",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/talents/page.talents.list.vue": {
@@ -2004,8 +1908,8 @@
     "semantic_hash": ""
   },
   "packages/@core/base/shared/src/color/generator.ts": {
-    "mtime": 1787734373.1832929,
-    "seen": 1789448741.0232818,
+    "mtime": 1789718758.9537034,
+    "seen": 1789719363.935262,
     "ast_hash": "4543eca2b457a424f360abdca195bf79",
     "semantic_hash": ""
   },
@@ -2412,9 +2316,9 @@
     "semantic_hash": ""
   },
   "packages/@core/preferences/src/config.ts": {
-    "mtime": 1787904551.7670271,
-    "seen": 1789448741.023326,
-    "ast_hash": "b410e769a9abbbdd99b8037ad973169d",
+    "mtime": 1789718555.4797006,
+    "seen": 1789719363.935316,
+    "ast_hash": "57880f0a5fcb222152a199493a888577",
     "semantic_hash": ""
   },
   "packages/@core/preferences/src/constants.ts": {
@@ -2436,15 +2340,15 @@
     "semantic_hash": ""
   },
   "packages/@core/preferences/src/types.ts": {
-    "mtime": 1787888783.0196152,
-    "seen": 1789448741.023328,
-    "ast_hash": "f089e68f2576d3c9ca86b5bb7b9729d2",
+    "mtime": 1789718445.6683877,
+    "seen": 1789719363.935318,
+    "ast_hash": "60f0ad447ddecf5956754e8d0908ce09",
     "semantic_hash": ""
   },
   "packages/@core/preferences/src/update-css-variables.ts": {
-    "mtime": 1787734483.4188807,
-    "seen": 1789448741.023329,
-    "ast_hash": "2c0288033f3a17ef1a8ea785ee248431",
+    "mtime": 1789718735.1022215,
+    "seen": 1789719363.935319,
+    "ast_hash": "47f15a2d2b4056207314a04576dd36de",
     "semantic_hash": ""
   },
   "packages/@core/preferences/src/use-preferences.ts": {
@@ -2466,21 +2370,15 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/__tests__/form-api.test.ts": {
-    "mtime": 1789706485.3913653,
-    "seen": 1789707723.608416,
-    "ast_hash": "fc9d466cd2650cfd0c27623e4df668f9",
+    "mtime": 1789731281.648301,
+    "seen": 1789731944.960147,
+    "ast_hash": "31d94dbc0f759077db499b0852fbe19d",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/__tests__/form-codec.test.ts": {
     "mtime": 1789538582.1688783,
     "seen": 1789542637.121044,
     "ast_hash": "723fe673313101cbe4637e8dcb36bf38",
-    "semantic_hash": ""
-  },
-  "packages/@core/ui-kit/form-ui/__tests__/form-compatibility.test.ts": {
-    "mtime": 1787401292.5599515,
-    "seen": 1789448741.0233338,
-    "ast_hash": "9ee510cdbac646611921e8b2a04043a8",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/__tests__/form-component-performance.benchmark.ts": {
@@ -2496,9 +2394,9 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/__tests__/form-integration.test.ts": {
-    "mtime": 1789706380.6481316,
-    "seen": 1789706446.412432,
-    "ast_hash": "58c87afbaf3e57b4d99af3421c2d3df4",
+    "mtime": 1789720537.338412,
+    "seen": 1789731944.960154,
+    "ast_hash": "34ac67e0fe0c0d4d370a38a16ec3a161",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/__tests__/form-performance.benchmark.ts": {
@@ -2520,21 +2418,9 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/__tests__/form-types.test.ts": {
-    "mtime": 1789443061.103319,
-    "seen": 1789448741.023339,
-    "ast_hash": "54a4362790570059154dd12f8fc1254a",
-    "semantic_hash": ""
-  },
-  "packages/@core/ui-kit/form-ui/__tests__/form-value-transform.test.ts": {
-    "mtime": 1789441864.2430534,
-    "seen": 1789448741.02334,
-    "ast_hash": "5eba287db00ea11dbc7ef99fabeb07cb",
-    "semantic_hash": ""
-  },
-  "packages/@core/ui-kit/form-ui/__tests__/label-width.test.ts": {
-    "mtime": 1787401104.8250077,
-    "seen": 1789448741.023341,
-    "ast_hash": "0218498a66ffbea0edafe3df6dc02dd6",
+    "mtime": 1789719037.5144563,
+    "seen": 1789719363.9353302,
+    "ast_hash": "4f058dc1378fe19a310e54245478d406",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/__tests__/zod-v4-schema.test.ts": {
@@ -2550,9 +2436,9 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/components/form-actions.vue": {
-    "mtime": 1789706637.8401153,
-    "seen": 1789707723.608429,
-    "ast_hash": "fdd9114bb7439cd07c418348a5b39130",
+    "mtime": 1789737606.4158008,
+    "seen": 1789738448.387192,
+    "ast_hash": "a65283b49468e09a6d3cc4e26b19c403",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/components/form-field-array.vue": {
@@ -2562,39 +2448,33 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form-render/form-render-form-field.vue": {
-    "mtime": 1789706249.160128,
-    "seen": 1789706446.412443,
-    "ast_hash": "0685d6f351d10cc6fc054f04697ef91c",
+    "mtime": 1789736877.2421987,
+    "seen": 1789738448.3871949,
+    "ast_hash": "e68050252af139d11eb22ad460974fc5",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form-render/form-render-form-label.vue": {
-    "mtime": 1788145862.11086,
-    "seen": 1789448741.023346,
-    "ast_hash": "4d4209c70f32495d2475a72f3bb2ff76",
+    "mtime": 1789724361.8908772,
+    "seen": 1789731944.960168,
+    "ast_hash": "a5c4525b81a4b13d7a6bbf9980f9af11",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form-render/form-render-form.vue": {
-    "mtime": 1789702463.5549989,
-    "seen": 1789703910.294534,
-    "ast_hash": "1e941a82c128151377f3da80c983bbcb",
+    "mtime": 1789731240.934396,
+    "seen": 1789731944.960168,
+    "ast_hash": "886ee0e0e223cff28f9174e57fcbe15d",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form-render/form-render.context.ts": {
-    "mtime": 1787398935.780928,
-    "seen": 1789448741.0233479,
-    "ast_hash": "8b7ed3072a44ce8b3bc2baadb4bafffd",
+    "mtime": 1789721411.6463518,
+    "seen": 1789731944.96017,
+    "ast_hash": "17e110cb5be9460e28d7eef9fd4e7485",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form-render/form-render.dependencies.ts": {
-    "mtime": 1789707846.4179795,
-    "seen": 1789708196.710439,
-    "ast_hash": "82254796c2336055941e050f8633e237",
-    "semantic_hash": ""
-  },
-  "packages/@core/ui-kit/form-ui/src/form-render/form-render.expandable.ts": {
-    "mtime": 1787399155.8747478,
-    "seen": 1789448741.023349,
-    "ast_hash": "131422139be659c603904fd0ab2db74c",
+    "mtime": 1789718286.0232608,
+    "seen": 1789719363.9353411,
+    "ast_hash": "32535e00e5f065285520f996696e5441",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form-render/form-render.helper.ts": {
@@ -2604,15 +2484,9 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form-render/form-render.schema.ts": {
-    "mtime": 1789707835.0107436,
-    "seen": 1789708196.7104409,
-    "ast_hash": "afdd58cc8af4924162f2adde1dedd12f",
-    "semantic_hash": ""
-  },
-  "packages/@core/ui-kit/form-ui/src/form-render/form-render.utils.ts": {
-    "mtime": 1787551621.8549101,
-    "seen": 1789448741.023351,
-    "ast_hash": "d3072a61f739787b9df9d8eb2cfa2a3f",
+    "mtime": 1789732871.579373,
+    "seen": 1789733327.30917,
+    "ast_hash": "e8538d324d4fc5088cdf2facf3f618e7",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form-render/index.ts": {
@@ -2622,9 +2496,9 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.api.ts": {
-    "mtime": 1789703859.784618,
-    "seen": 1789703910.29454,
-    "ast_hash": "9566a736431a76d0f2d9c8c4ab0005ca",
+    "mtime": 1789731258.730364,
+    "seen": 1789731944.9601731,
+    "ast_hash": "e09c13d2f7be63f391c24ae20bf88aad",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.codec.ts": {
@@ -2634,21 +2508,15 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.config.ts": {
-    "mtime": 1789705980.4115024,
-    "seen": 1789706446.412454,
-    "ast_hash": "94ef8db014de57af1a5f8b4812c56e97",
-    "semantic_hash": ""
-  },
-  "packages/@core/ui-kit/form-ui/src/form.deprecation.ts": {
-    "mtime": 1787400149.7889047,
-    "seen": 1789448741.0233548,
-    "ast_hash": "b2c52f3b6d6c638037489d6e30484d5d",
+    "mtime": 1789718958.2147784,
+    "seen": 1789719363.9353468,
+    "ast_hash": "b4dcee13e048e598a663337dfbe29053",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.field-name.ts": {
-    "mtime": 1789708436.5210202,
-    "seen": 1789708487.010002,
-    "ast_hash": "86374099a94f7b5b8c855ee934dfcd51",
+    "mtime": 1789709051.8196232,
+    "seen": 1789709091.535869,
+    "ast_hash": "da82fb9eea706f0512fa69857d65b6b2",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.rule-registry.ts": {
@@ -2664,9 +2532,9 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.runtime.ts": {
-    "mtime": 1789551030.0573668,
-    "seen": 1789551098.4295838,
-    "ast_hash": "70108a759431711cc3d981401379c130",
+    "mtime": 1789734596.3491771,
+    "seen": 1789735668.1135201,
+    "ast_hash": "cb1ce80ca5331519145e3271625dddb2",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.schema-defaults.ts": {
@@ -2676,15 +2544,15 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.types.ts": {
-    "mtime": 1789551030.0592523,
-    "seen": 1789551098.429585,
-    "ast_hash": "7bfb735dad25d2cb6fc47553629fbdbe",
+    "mtime": 1789736867.7440872,
+    "seen": 1789738448.387208,
+    "ast_hash": "c471cd4f0aa290892f3f518cccacae38",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.use-form-context.ts": {
-    "mtime": 1789708441.4976156,
-    "seen": 1789708487.0100071,
-    "ast_hash": "f891f2d8cdcbf3628a06d7cbb72a6bff",
+    "mtime": 1789708862.5947464,
+    "seen": 1789709091.535873,
+    "ast_hash": "dd1e2a04bc3110e40fdc871871dd51aa",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form.use-taman-form.ts": {
@@ -2693,28 +2561,22 @@
     "ast_hash": "a5777f27dbe88d6fc29f554903cc4775",
     "semantic_hash": ""
   },
-  "packages/@core/ui-kit/form-ui/src/form.value-transform.ts": {
-    "mtime": 1789443251.2203565,
-    "seen": 1789448741.023361,
-    "ast_hash": "f63134509b9247729204da0f2c8e7ed5",
-    "semantic_hash": ""
-  },
   "packages/@core/ui-kit/form-ui/src/index.ts": {
-    "mtime": 1789538590.0401485,
-    "seen": 1789542637.121077,
-    "ast_hash": "3f93de95bee54319298e8b17cc910d3c",
+    "mtime": 1789721403.3293114,
+    "seen": 1789731944.9601831,
+    "ast_hash": "4a60f7b1b725e09a5db8cccd351a9ae5",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/taman-form.vue": {
-    "mtime": 1788235080.1440964,
-    "seen": 1789448741.023363,
-    "ast_hash": "061eb5626e9e38b1cfeaba440e3cc83e",
+    "mtime": 1789731263.9426184,
+    "seen": 1789731944.960184,
+    "ast_hash": "b3e4f219dda9374c4f09bb19a3f7697c",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/taman-use-form.vue": {
-    "mtime": 1789703921.0128276,
-    "seen": 1789705513.269187,
-    "ast_hash": "2deaa9e8fbed18b186dea34740e1c574",
+    "mtime": 1789709056.9591336,
+    "seen": 1789709091.535876,
+    "ast_hash": "4038805fbaa50f6a9639fcfe8352c407",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/tsconfig.json": {
@@ -2994,9 +2856,9 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/index.ts": {
-    "mtime": 1789537382.0887594,
-    "seen": 1789538478.544896,
-    "ast_hash": "4f41bcc5a767e57987d843f503d317d2",
+    "mtime": 1789718093.8640902,
+    "seen": 1789719363.93539,
+    "ast_hash": "b31bf6ce8096793432075a3d0c0dc2d8",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/parse-theme-classes.ts": {
@@ -3090,9 +2952,9 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/popup-ui/src/dialog/dialog.vue": {
-    "mtime": 1787908526.712254,
-    "seen": 1789448741.0234802,
-    "ast_hash": "95ca94984a930e28431fb5c09f370489",
+    "mtime": 1789720028.473186,
+    "seen": 1789731944.960332,
+    "ast_hash": "45266f2717b1f29595c3b4d249f61920",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/popup-ui/src/dialog/index.ts": {
@@ -3102,8 +2964,8 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/popup-ui/src/dialog/use-dialog-draggable.ts": {
-    "mtime": 1787894414.1870987,
-    "seen": 1789448741.0234811,
+    "mtime": 1789719332.0123699,
+    "seen": 1789719363.93551,
     "ast_hash": "a65dd47ea3064a56e64f12aa96f0ca07",
     "semantic_hash": ""
   },
@@ -5430,9 +5292,9 @@
     "semantic_hash": ""
   },
   "packages/designs/src/unocss/uno.preset.ts": {
-    "mtime": 1789512040.0619402,
-    "seen": 1789527831.231144,
-    "ast_hash": "2edd8af945823c6e23fedd962383e49b",
+    "mtime": 1789718581.5282516,
+    "seen": 1789719363.935841,
+    "ast_hash": "cd9f958b8ded244a691df37846507df3",
     "semantic_hash": ""
   },
   "packages/designs/tsconfig.json": {
@@ -5988,9 +5850,9 @@
     "semantic_hash": ""
   },
   "packages/effects/common-ui/src/ui/profile/base-setting.vue": {
-    "mtime": 1787544491.114916,
-    "seen": 1789448741.02388,
-    "ast_hash": "abcaa3ff5021f4b85e81c78b17e27c77",
+    "mtime": 1789721585.7961712,
+    "seen": 1789731944.960734,
+    "ast_hash": "efe52bd533b90fa5f9127eb55c9f07b4",
     "semantic_hash": ""
   },
   "packages/effects/common-ui/src/ui/profile/index.ts": {
@@ -6294,9 +6156,9 @@
     "semantic_hash": ""
   },
   "packages/effects/plugins/src/vxe-table/use-vxe-grid.vue": {
-    "mtime": 1789703406.5996828,
-    "seen": 1789703910.2951171,
-    "ast_hash": "fa4f5d170923b4ef74ad28774b82dff1",
+    "mtime": 1789731276.782587,
+    "seen": 1789731944.960771,
+    "ast_hash": "1a1f48d6e6db8aa83acb27a1f1bef18d",
     "semantic_hash": ""
   },
   "packages/effects/plugins/tsconfig.json": {
@@ -6588,21 +6450,21 @@
     "semantic_hash": ""
   },
   "packages/shell/app-ui/package.json": {
-    "mtime": 1788217112.8449712,
-    "seen": 1789448741.023946,
-    "ast_hash": "01170ff686a802e1c0810e4477fbe480",
+    "mtime": 1789715294.8226244,
+    "seen": 1789719363.9359748,
+    "ast_hash": "406e1982525be1ef90fabe1d36a72284",
     "semantic_hash": ""
   },
   "packages/shell/app-ui/src/components/auth/auth-login.vue": {
-    "mtime": 1787803720.1714387,
-    "seen": 1789448741.023947,
-    "ast_hash": "6524e47a4b4f97c7973de853e6e65696",
+    "mtime": 1789721576.6681163,
+    "seen": 1789731944.960808,
+    "ast_hash": "5930544a9b7ec61ab66eb19ad434e6f4",
     "semantic_hash": ""
   },
   "packages/shell/app-ui/src/components/auth/auth-register.vue": {
-    "mtime": 1787807239.5259995,
-    "seen": 1789448741.023947,
-    "ast_hash": "64695ea49ab934d2aff1104e2931eeb6",
+    "mtime": 1789721581.690093,
+    "seen": 1789731944.960808,
+    "ast_hash": "199a4d4edacad6c73ed74d12a6139c5a",
     "semantic_hash": ""
   },
   "packages/shell/app-ui/src/components/auth/auth.password.ts": {
@@ -6666,9 +6528,9 @@
     "semantic_hash": ""
   },
   "packages/shell/app-ui/src/components/index.ts": {
-    "mtime": 1788305909.2309167,
-    "seen": 1789448741.023956,
-    "ast_hash": "32e9630ec6a183132211f9afcc6a3adb",
+    "mtime": 1789715282.554373,
+    "seen": 1789719363.9359841,
+    "ast_hash": "af03fa47d965b49d70ee06488e7a324c",
     "semantic_hash": ""
   },
   "packages/shell/app-ui/src/components/page/app-page.types.ts": {
@@ -6690,9 +6552,9 @@
     "semantic_hash": ""
   },
   "packages/shell/app-ui/src/index.ts": {
-    "mtime": 1786586885.5054255,
-    "seen": 1789448741.023958,
-    "ast_hash": "b40b548eb7a008942fd7ae010c24cd77",
+    "mtime": 1789715646.8659925,
+    "seen": 1789719363.935988,
+    "ast_hash": "b323b26c25e64a526aabf5340f317945",
     "semantic_hash": ""
   },
   "packages/shell/app-ui/tsconfig.json": {
@@ -6978,9 +6840,9 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/lock-screen/layout-widget-lock-screen-modal.vue": {
-    "mtime": 1787886723.782507,
-    "seen": 1789448741.023992,
-    "ast_hash": "ef1251a1e3137a4f07be69e2a638ab7d",
+    "mtime": 1789717587.6978476,
+    "seen": 1789719363.936022,
+    "ast_hash": "e0d019109086183e1a9d82ec632b8c7c",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/lock-screen/layout-widget-lock-screen.vue": {
@@ -7932,9 +7794,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/_core/profile/password-setting.vue": {
-    "mtime": 1786587065.808985,
-    "seen": 1789448741.023158,
-    "ast_hash": "3a42bfe3a473eccfbb5900555b11a72a",
+    "mtime": 1789718379.2633903,
+    "seen": 1789719363.935128,
+    "ast_hash": "5ac03582b08cde666cbe4c292d8f77d1",
     "semantic_hash": ""
   },
   "packages/@core/preferences/__tests__/preferences-types.test.ts": {
@@ -7950,9 +7812,9 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/form-render/form-render-group.vue": {
-    "mtime": 1789702972.9490113,
-    "seen": 1789703910.294534,
-    "ast_hash": "ba17f7fa553a892b9f1a9af5487a7176",
+    "mtime": 1789733856.9959798,
+    "seen": 1789735668.11351,
+    "ast_hash": "c6bfb365d8d90546ccc6347133ad5dbb",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/shadcn-ui/src/components/input-password/input-password.vue": {
@@ -7992,9 +7854,9 @@
     "semantic_hash": ""
   },
   "packages/effects/common-ui/src/ui/profile/password-setting.vue": {
-    "mtime": 1787544491.1941648,
-    "seen": 1789448741.023882,
-    "ast_hash": "b9612b141bd80e1f36c27d92b14c8d4c",
+    "mtime": 1789721590.5319724,
+    "seen": 1789731944.960737,
+    "ast_hash": "6a1d1f1c6b9027e7cf35b88e7de34835",
     "semantic_hash": ""
   },
   "packages/@core/base/shared/src/utils/__tests__/calendar-date-codec.test.ts": {
@@ -8561,16 +8423,10 @@
     "ast_hash": "a17fced73a6646b3207b08fa62661e1e",
     "semantic_hash": ""
   },
-  "packages/@core/ui-kit/pohon-ui-theme/src/theme/theme.modal copy.ts": {
-    "mtime": 1789513190.8969002,
-    "seen": 1789527831.2307572,
-    "ast_hash": "c759d11f3c098634d41992b8ac25785e",
-    "semantic_hash": ""
-  },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/theme.modal.ts": {
-    "mtime": 1787909058.9261026,
-    "seen": 1789527831.2307572,
-    "ast_hash": "35af10b4865eb4ef6ba334d69ed42444",
+    "mtime": 1789717894.7655725,
+    "seen": 1789719363.935463,
+    "ast_hash": "b2ab29896c455e6c656a58c6eefd9688",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/theme.navigation-menu copy.ts": {
@@ -8627,12 +8483,6 @@
     "ast_hash": "cc947d9a95857adf746a8851e01f3317",
     "semantic_hash": ""
   },
-  "packages/@core/ui-kit/pohon-ui-theme/src/theme/theme.progress copy.ts": {
-    "mtime": 1789513429.2424574,
-    "seen": 1789527831.230763,
-    "ast_hash": "fbccc7971812618d48dc312d5e516139",
-    "semantic_hash": ""
-  },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/theme.progress-group.ts": {
     "mtime": 1789513429.1630578,
     "seen": 1789527831.2307642,
@@ -8640,9 +8490,9 @@
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/theme.progress.ts": {
-    "mtime": 1786676444.9941404,
-    "seen": 1789527831.2307642,
-    "ast_hash": "bb84d7163750d00ea26635079161486f",
+    "mtime": 1789718062.4438689,
+    "seen": 1789719363.935473,
+    "ast_hash": "fbccc7971812618d48dc312d5e516139",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/theme.prose.ts": {
@@ -8795,22 +8645,10 @@
     "ast_hash": "e0187658305795bc3b4963016a6ef7c7",
     "semantic_hash": ""
   },
-  "packages/@core/ui-kit/pohon-ui-theme/src/theme/theme.toast copy.ts": {
-    "mtime": 1789513428.606013,
-    "seen": 1789527831.230782,
-    "ast_hash": "fd78dc0ba573dad385da89a3eef19509",
-    "semantic_hash": ""
-  },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/theme.toast.ts": {
     "mtime": 1789513393.4160125,
     "seen": 1789527831.230783,
     "ast_hash": "f806eda8a770ad267f573d136b028943",
-    "semantic_hash": ""
-  },
-  "packages/@core/ui-kit/pohon-ui-theme/src/theme/theme.toaster copy.ts": {
-    "mtime": 1789513212.9120128,
-    "seen": 1789527831.230783,
-    "ast_hash": "4f84ad4d1850f9e9b719202b44e196fb",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/pohon-ui-theme/src/theme/theme.toaster.ts": {
@@ -8886,15 +8724,129 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/form/array-fields.vue": {
-    "mtime": 1789704976.9342344,
-    "seen": 1789705513.269004,
-    "ast_hash": "ec040ccc068226786453b37558527ab4",
+    "mtime": 1789721632.6943352,
+    "seen": 1789731944.9600089,
+    "ast_hash": "192dcb124c85995fd623225ac4e440ee",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/form-ui/src/components/form-field-array.types.ts": {
     "mtime": 1789704435.359277,
     "seen": 1789705513.269165,
     "ast_hash": "92a135a69361c34373b868f9331ae147",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/dialog/typed-data-auto-demo.vue": {
+    "mtime": 1789716381.9996514,
+    "seen": 1789719363.935172,
+    "ast_hash": "cc3949b2c88a0fb7743dd20c3c8c9953",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/dialog/typed-data-contract.ts": {
+    "mtime": 1789716329.0151582,
+    "seen": 1789719363.935173,
+    "ast_hash": "ffb230196d3291c6d941da4bf565396e",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/dialog/typed-data-explicit-demo.vue": {
+    "mtime": 1789716416.7666495,
+    "seen": 1789719363.935174,
+    "ast_hash": "e3e1126b5103876d0b4d2a5c6b0e42ac",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/dialog/typed-data-factory-demo.vue": {
+    "mtime": 1789716442.3528538,
+    "seen": 1789719363.935175,
+    "ast_hash": "6f66035def0db44d5f3adfa99f849a8c",
+    "semantic_hash": ""
+  },
+  "packages/@core/ui-kit/form-ui/__tests__/form-deprecation-removal.test.ts": {
+    "mtime": 1789719011.4456563,
+    "seen": 1789719363.935325,
+    "ast_hash": "1098a5eb3d95ea45c0b35df7cba34948",
+    "semantic_hash": ""
+  },
+  "packages/shell/app-ui/src/composables/index.ts": {
+    "mtime": 1789715636.5029826,
+    "seen": 1789719363.935987,
+    "ast_hash": "17e7951489d9dc2096497064807ab873",
+    "semantic_hash": ""
+  },
+  "packages/shell/app-ui/src/composables/use-taman-toast.ts": {
+    "mtime": 1789715636.5038152,
+    "seen": 1789719363.935988,
+    "ast_hash": "55a89d5da6c568b3728a61c7aa986b0a",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-09-18-form-ui-refactor.md": {
+    "mtime": 1789722737.458701,
+    "seen": 1789731944.9609401,
+    "ast_hash": "c5709a1ca252f61dedc64c28a624a993",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-09-18-form-ui-refactor-design.md": {
+    "mtime": 1789716615.38336,
+    "seen": 1789719363.9361,
+    "ast_hash": "448638075ae1c9aa7182a0cb469f909a",
+    "semantic_hash": ""
+  },
+  "packages/@core/ui-kit/form-ui/__tests__/form-collapse.test.ts": {
+    "mtime": 1789733064.754938,
+    "seen": 1789733327.3091478,
+    "ast_hash": "e88497c517944db653a77a4e13a25da8",
+    "semantic_hash": ""
+  },
+  "packages/@core/ui-kit/form-ui/__tests__/form-field-collapsible.test.ts": {
+    "mtime": 1789727256.846343,
+    "seen": 1789731944.9601521,
+    "ast_hash": "9dbee86ddea15a35956b86a1809e1fd0",
+    "semantic_hash": ""
+  },
+  "packages/@core/ui-kit/form-ui/__tests__/form-label.test.ts": {
+    "mtime": 1789722880.7279701,
+    "seen": 1789731944.9601548,
+    "ast_hash": "51b7ee45f93c2dcb9f85cbff96a58901",
+    "semantic_hash": ""
+  },
+  "packages/@core/ui-kit/form-ui/__tests__/form-layout.test.ts": {
+    "mtime": 1789721344.6524947,
+    "seen": 1789731944.960156,
+    "ast_hash": "29dbeeaf845e6cde8f8d914b291a5ede",
+    "semantic_hash": ""
+  },
+  "packages/@core/ui-kit/form-ui/src/form-render/form-render-field-collapsible.vue": {
+    "mtime": 1789724390.6876874,
+    "seen": 1789731944.960165,
+    "ast_hash": "4a97b0a478ef1d33ce2af59ae6a7515a",
+    "semantic_hash": ""
+  },
+  "packages/@core/ui-kit/form-ui/src/form-render/form-render-field-control.vue": {
+    "mtime": 1789723591.938915,
+    "seen": 1789731944.960166,
+    "ast_hash": "924e2dd0266d16e7ce1f85ac3f1db856",
+    "semantic_hash": ""
+  },
+  "packages/@core/ui-kit/form-ui/__tests__/form-composite-errors.test.ts": {
+    "mtime": 1789736246.1838794,
+    "seen": 1789736351.437071,
+    "ast_hash": "8837bbdf44c911646c59e6fd76d049d2",
+    "semantic_hash": ""
+  },
+  "packages/@core/ui-kit/form-ui/__tests__/form-validation-loading.test.ts": {
+    "mtime": 1789734564.1236992,
+    "seen": 1789735668.113499,
+    "ast_hash": "df94b93aaf013e175294a4a66c3261d3",
+    "semantic_hash": ""
+  },
+  "packages/@core/ui-kit/form-ui/src/form.use-delayed-flag.ts": {
+    "mtime": 1789734578.343306,
+    "seen": 1789735668.1135218,
+    "ast_hash": "3060c0c343c65866639e170cbf0dcc86",
+    "semantic_hash": ""
+  },
+  "packages/@core/ui-kit/form-ui/__tests__/form-disabled.test.ts": {
+    "mtime": 1789737537.5391889,
+    "seen": 1789738448.387179,
+    "ast_hash": "dc190281ca7fd11587ba419799e08fee",
     "semantic_hash": ""
   }
 }

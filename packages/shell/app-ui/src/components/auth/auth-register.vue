@@ -41,8 +41,6 @@ const [FormAuth, formAuthApi] = useTamanForm<AuthLoginValues>(
     commonConfig: {
       hideRequiredMark: true,
     },
-
-    layout: 'vertical',
   }) as unknown as TamanFormProps<FormBaseComponentType, Record<never, never>, AuthLoginValues>,
 );
 

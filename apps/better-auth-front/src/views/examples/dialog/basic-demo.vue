@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useTamanDialog, useTamanToast } from '@taman/common-ui';
+import { useTamanDialog, useTamanToast } from '@taman/app-ui';
 
 const { toaster } = useTamanToast();
 
@@ -29,11 +29,13 @@ function lockDialog() {
 <template>
   <DialogBasic
     class="pohon:w-150"
-    title="Basic dialog example Basic dialog example Basic dialog example Basic dialog example Basic dialog example"
+    title="Basic dialog"
     title-tooltip="Title Prompt"
   >
     <div class="flex flex-col items-start">
-      <p>click to lock</p>
+      <p>
+        click to lock
+      </p>
 
       <PButton @click="lockDialog">
         Lock
