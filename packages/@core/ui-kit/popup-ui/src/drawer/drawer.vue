@@ -169,12 +169,12 @@ const getForceMount = computed(() => {
   >
     <SheetContent
       :append-to="getAppendTo"
-      class="flex flex-col w-130 sm:max-w-md"
+      class="flex flex-col w-130"
       :class="
         [
 
           {
-            'w-full!':
+            'pohon:w-full':
               isMobile || placement === 'bottom' || placement === 'top',
             'max-h-screen': placement === 'bottom' || placement === 'top',
             'hidden': isClosed,
@@ -232,7 +232,7 @@ const getForceMount = computed(() => {
           <div class="flex flex-col gap-1">
             <SheetTitle
               v-if="title"
-              class="text-left"
+              class="text-left inline-flex gap-1"
             >
               <slot name="title">
                 {{ title }}

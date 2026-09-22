@@ -39,14 +39,14 @@ const [Drawer, drawerApi] = useTamanDrawer<FormDrawerData>({
     drawerApi.close();
   },
   onConfirm: async () => {
-    await formApi.submit();
+    await formApi.validateAndSubmit();
     drawerApi.close();
   },
   onOpenChange(isOpen: boolean) {
     if (isOpen) {
       const data = drawerApi.getData();
       if (data?.values) {
-        formApi.setValues(data.values);
+        formApi.reset({ values: data.values });
       } else {
         formApi.reset();
       }
