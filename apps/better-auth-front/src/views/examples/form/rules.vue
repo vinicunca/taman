@@ -184,8 +184,9 @@ const [Form, formApi] = useTamanForm({
       defaultValue: '',
       fieldName: 'input-async',
       formFieldProps: {
+        asyncDebounceMs: 400,
         validators: {
-          onChangeAsync: async ({ value }: { value: string }) => {
+          onDynamicAsync: async ({ value }: { value: string }) => {
             // Async validator simulating a username availability check
             await new Promise((resolve) => {
               setTimeout(resolve, 1000);

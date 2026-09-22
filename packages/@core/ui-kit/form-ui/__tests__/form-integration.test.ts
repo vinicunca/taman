@@ -141,6 +141,9 @@ describe('useTamanForm integration', () => {
           componentProps: { eventMode: 'value-and-change' },
           defaultValue: 'initial',
           fieldName: 'name',
+          formFieldProps: {
+            validateOn: ['change'],
+          },
           modelPropName: 'value',
           rules: z.string().superRefine((value) => validateValue(value)),
         },
@@ -1068,9 +1071,8 @@ describe('useTamanForm integration', () => {
     await flushPromises();
 
     await formApi.setFieldValue('name', ' raw ');
-    // Settle the `required` validator (triggered by the value change) before
-    // submitting natively, otherwise the native submit races an in-flight
-    // async validation cycle.
+    // Settle the `required` validator before submitting natively, otherwise
+    // the native submit races an in-flight async validation cycle.
     await formApi.validate();
     await flushPromises();
     await wrapper.get('form').trigger('submit');

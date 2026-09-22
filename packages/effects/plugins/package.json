@@ -36,6 +36,7 @@
     }
   },
   "dependencies": {
+    "@taman-core/form-ui": "workspace:*",
     "@taman-core/popup-ui": "workspace:*",
     "@taman-core/shared": "workspace:*",
     "@taman/composables": "workspace:*",
@@ -55,7 +56,6 @@
     "@tiptap/pm": "catalog:",
     "@tiptap/starter-kit": "catalog:",
     "@tiptap/vue-3": "catalog:",
-    "@taman-core/form-ui": "workspace:*",
     "@vben-core/shadcn-ui": "workspace:*",
     "@vben/icons": "workspace:*",
     "@vueuse/core": "catalog:",

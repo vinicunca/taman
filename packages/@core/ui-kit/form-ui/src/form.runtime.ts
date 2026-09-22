@@ -10,7 +10,14 @@ import type {
 
 import { mergeWithArrayOverride } from '@taman-core/shared/utils';
 import { batch } from '@tanstack/store';
-import { useForm } from '@tanstack/vue-form';
+import {
+  defaultValidationLogic,
+  useForm,
+} from '@tanstack/vue-form';
+import type {
+  ValidationLogicFn,
+  ValidationLogicValidatorsFn,
+} from '@tanstack/vue-form';
 import { computed, shallowRef } from 'vue';
 
 import { createRuntimeFieldComponent } from './form.runtime-field';
@@ -34,12 +41,58 @@ function normalizeFieldMetaError(meta: unknown) {
   return normalizeError(Array.isArray(errors) ? errors[0] : undefined);
 }
 
+function createProgressiveValidationLogic(
+  revealedFields: Set<string>,
+): ValidationLogicFn {
+  return (props) => {
+    let defaultValidators: Array<ValidationLogicValidatorsFn | undefined> = [];
+    defaultValidationLogic({
+      ...props,
+      runValidation: ({ validators }) => {
+        defaultValidators = validators;
+      },
+    });
+
+    const fieldName = props.event.fieldName;
+    const startsProgressiveValidation =
+      props.event.type === 'blur' || props.event.type === 'submit';
+    if (fieldName && startsProgressiveValidation) {
+      revealedFields.add(fieldName);
+    }
+    const shouldRunProgressiveValidator = Boolean(
+      fieldName
+      && (
+        startsProgressiveValidation
+        || (
+          props.event.type === 'change'
+          && revealedFields.has(fieldName)
+        )
+      ),
+    );
+    const dynamicValidator = props.event.async
+      ? props.validators?.onDynamicAsync
+      : props.validators?.onDynamic;
+
+    return props.runValidation({
+      form: props.form,
+      validators: shouldRunProgressiveValidator && dynamicValidator
+        ? [
+            ...defaultValidators,
+            { cause: 'dynamic', fn: dynamicValidator },
+          ]
+        : defaultValidators,
+    });
+  };
+}
+
 export function useFormRuntime<TValues extends FormValues>(
   defaultValues: TValues,
 ): FormActions<TValues> {
+  const revealedFields = new Set<string>();
   const rawForm = useForm({
     defaultValues,
     onSubmit: () => {},
+    validationLogic: createProgressiveValidationLogic(revealedFields),
   });
   const values = rawForm.useSelector((formState) => formState.values);
   const fieldMeta = rawForm.useSelector((formState) => formState.fieldMeta);
@@ -64,6 +117,11 @@ export function useFormRuntime<TValues extends FormValues>(
   const pendingAsyncValidations = shallowRef(0);
   const pendingFieldValidations = shallowRef(new Map<string, number>());
   const isAnyFieldValidating = computed(() => pendingAsyncValidations.value > 0);
+  const isAnyNativeFieldValidating = computed(() =>
+    Object.values(fieldMeta.value).some((meta) =>
+      Boolean((meta as { isValidating?: boolean }).isValidating),
+    ),
+  );
 
   function onFieldValidatingChange(fieldName: string, delta: -1 | 1) {
     pendingAsyncValidations.value += delta;
@@ -92,6 +150,7 @@ export function useFormRuntime<TValues extends FormValues>(
       fieldInvalidators.delete(invalidator);
       if (fieldInvalidators.size === 0) {
         validationInvalidators.delete(fieldName);
+        revealedFields.delete(fieldName);
       }
     };
   }
@@ -124,7 +183,10 @@ export function useFormRuntime<TValues extends FormValues>(
     dirty: isDirty.value,
     submitting: isSubmitting.value,
     valid: isValid.value,
-    validating: isValidating.value || isAnyFieldValidating.value,
+    validating:
+      isValidating.value
+      || isAnyFieldValidating.value
+      || isAnyNativeFieldValidating.value,
   }));
   const runtimeState = computed<FormRuntimeState<TValues>>(() => ({
     errors: errors.value,
@@ -223,6 +285,7 @@ export function useFormRuntime<TValues extends FormValues>(
 
     for (const fieldName of targetFieldNames) {
       invalidateFieldValidation(fieldName);
+      revealedFields.delete(fieldName);
       rawForm.setFieldMeta(fieldName as never, (meta) => ({
         ...meta,
         errorMap: {},
@@ -237,6 +300,7 @@ export function useFormRuntime<TValues extends FormValues>(
     for (const fieldName of validationInvalidators.keys()) {
       invalidateFieldValidation(fieldName);
     }
+    revealedFields.clear();
     const partialValues = resetState?.values;
     let resetValues: TValues | undefined;
     if (partialValues) {

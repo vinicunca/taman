@@ -164,6 +164,52 @@ describe('useDelayedFlag', () => {
 // component's `loading` prop through `createComponentProps`
 // (form-render-form-field.vue), not just the composable's own return value.
 describe('useFieldValidating reaching the field component', () => {
+  it('keeps submit disabled while progressive async validation is debouncing', async () => {
+    vi.useFakeTimers();
+    const checkAvailability = vi.fn(async () => undefined);
+    const [Form] = useTamanForm({
+      schema: [
+        {
+          component: TestInput,
+          defaultValue: 'available',
+          fieldName: 'name',
+          formFieldProps: {
+            asyncDebounceMs: 400,
+            validators: {
+              onDynamicAsync: checkAvailability,
+            },
+          },
+          label: 'Name',
+          rules: z.string().min(3, 'Too short'),
+        },
+      ],
+    });
+    const wrapper = mount(Form);
+    wrappers.push(wrapper);
+    await flushPromises();
+    const input = wrapper.getComponent(TestInput);
+    const submitButton = wrapper
+      .findAll('button')
+      .find((button) => button.text() === 'Submit');
+
+    await wrapper.get('input').trigger('blur');
+    await nextTick();
+    expect(submitButton?.attributes('disabled')).toBeDefined();
+    expect(checkAvailability).not.toHaveBeenCalled();
+
+    await vi.advanceTimersByTimeAsync(150);
+    expect(input.props('loading')).toBe(true);
+    expect(checkAvailability).not.toHaveBeenCalled();
+
+    await vi.advanceTimersByTimeAsync(250);
+    await flushPromises();
+    expect(checkAvailability).toHaveBeenCalledOnce();
+    expect(input.props('loading')).toBe(false);
+    expect(submitButton?.attributes('disabled')).toBeUndefined();
+
+    vi.useRealTimers();
+  });
+
   it('keeps the field and submit action busy across repeated async schema validation', async () => {
     vi.useFakeTimers();
     const validationResults = [

@@ -4,8 +4,7 @@
   "imports": {
     "#*": "./server/*"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "dependencies": {
     "@taman/constants": "workspace:*",
     "@taman/db-pg": "workspace:*",

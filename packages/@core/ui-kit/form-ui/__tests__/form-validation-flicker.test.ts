@@ -1,7 +1,7 @@
 import type { VueWrapper } from '@vue/test-utils';
 
 import { flushPromises, mount } from '@vue/test-utils';
-import { afterEach, beforeAll, describe, expect, it } from 'vitest';
+import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { defineComponent, h, watch } from 'vue';
 import { z } from 'zod';
 
@@ -36,6 +36,105 @@ afterEach(() => {
 });
 
 describe('validation error stability while typing', () => {
+  it('waits until blur before validating, then revalidates while correcting', async () => {
+    const [Form] = useTamanForm({
+      schema: [
+        {
+          component: TestInput,
+          defaultValue: '',
+          fieldName: 'name',
+          label: 'Name',
+          rules: z.string().min(5, 'Too short'),
+        },
+      ],
+    });
+    const wrapper = mount(Form, { attachTo: document.body });
+    wrappers.push(wrapper);
+    await flushPromises();
+    const input = wrapper.get('input');
+
+    await input.setValue('ab');
+    await flushPromises();
+    expect(wrapper.text()).not.toContain('Too short');
+
+    await input.trigger('blur');
+    await flushPromises();
+    expect(wrapper.text()).toContain('Too short');
+
+    await input.setValue('abc');
+    await flushPromises();
+    expect(wrapper.text()).toContain('Too short');
+
+    await input.setValue('long enough');
+    await flushPromises();
+    expect(wrapper.text()).not.toContain('Too short');
+  });
+
+  it('revalidates while correcting after submit reveals an error', async () => {
+    const [Form, formApi] = useTamanForm({
+      schema: [
+        {
+          component: TestInput,
+          defaultValue: '',
+          fieldName: 'name',
+          label: 'Name',
+          rules: z.string().min(5, 'Too short'),
+        },
+      ],
+    });
+    const wrapper = mount(Form, { attachTo: document.body });
+    wrappers.push(wrapper);
+    await flushPromises();
+    const input = wrapper.get('input');
+
+    await input.setValue('ab');
+    await flushPromises();
+    expect(wrapper.text()).not.toContain('Too short');
+
+    await formApi.validate();
+    await flushPromises();
+    expect(wrapper.text()).toContain('Too short');
+
+    await input.setValue('long enough');
+    await flushPromises();
+    expect(wrapper.text()).not.toContain('Too short');
+  });
+
+  it('runs progressive async validation only after local rules pass', async () => {
+    const checkAvailability = vi.fn(async () => undefined);
+    const [Form] = useTamanForm({
+      schema: [
+        {
+          component: TestInput,
+          defaultValue: '',
+          fieldName: 'name',
+          formFieldProps: {
+            validators: {
+              onDynamicAsync: checkAvailability,
+            },
+          },
+          label: 'Name',
+          rules: z.string().min(3, 'Too short'),
+        },
+      ],
+    });
+    const wrapper = mount(Form, { attachTo: document.body });
+    wrappers.push(wrapper);
+    await flushPromises();
+    const input = wrapper.get('input');
+
+    await input.setValue('ab');
+    await input.trigger('blur');
+    await flushPromises();
+    expect(wrapper.text()).toContain('Too short');
+    expect(checkAvailability).not.toHaveBeenCalled();
+
+    await input.setValue('available');
+    await flushPromises();
+    expect(wrapper.text()).not.toContain('Too short');
+    expect(checkAvailability).toHaveBeenCalledOnce();
+  });
+
   it('never passes through an empty error while the field stays invalid', async () => {
     const [Form, formApi] = useTamanForm({
       schema: [

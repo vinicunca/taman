@@ -59,8 +59,13 @@ export type FormItemClassType
 
 export interface FormFieldOptions {
   asyncDebounceMs?: number;
-  /** Native TanStack Form validators. Use the `*Async` slots for async work. */
+  /**
+   * Native TanStack Form validators. Use `onDynamicAsync` to follow the
+   * default progressive validation policy, or an explicit event slot to
+   * override it.
+   */
   validators?: NonNullable<AnyFieldApi['options']['validators']>;
+  /** Overrides the default blur/submit-first, then change validation policy. */
   validateOn?: ReadonlyArray<FormValidationTrigger>;
 }
 

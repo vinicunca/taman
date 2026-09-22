@@ -224,16 +224,21 @@ function createRuleValidator() {
 const fieldValidators = computed(() => {
   const validators: Record<string, unknown> = {};
   const ruleValidator = createRuleValidator();
-  const validateOn = new Set(props.formFieldProps?.validateOn ?? ['blur', 'change']);
   if (ruleValidator) {
-    if (validateOn.has('blur')) {
-      validators.onBlur = ruleValidator;
-    }
-    if (validateOn.has('change')) {
-      validators.onChange = ruleValidator;
-    }
-    if (validateOn.size === 0) {
-      validators.onSubmit = ruleValidator;
+    const configuredTriggers = props.formFieldProps?.validateOn;
+    if (configuredTriggers === undefined) {
+      validators.onDynamic = ruleValidator;
+    } else {
+      const validateOn = new Set(configuredTriggers);
+      if (validateOn.has('blur')) {
+        validators.onBlur = ruleValidator;
+      }
+      if (validateOn.has('change')) {
+        validators.onChange = ruleValidator;
+      }
+      if (validateOn.size === 0) {
+        validators.onSubmit = ruleValidator;
+      }
     }
   }
   return {
