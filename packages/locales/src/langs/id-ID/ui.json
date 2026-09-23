@@ -29,30 +29,9 @@
     "select": "Silakan pilih",
     "upload": "Klik untuk mengunggah"
   },
-  "captcha": {
-    "title": "Harap selesaikan verifikasi keamanan",
-    "sliderSuccessText": "Lulus",
-    "sliderDefaultText": "Geser dan tarik",
-    "alt": "Mendukung nilai atribut src tag img",
-    "sliderRotateDefaultTip": "Klik gambar untuk menyegarkan",
-    "sliderTranslateDefaultTip": "Klik gambar untuk menyegarkan",
-    "sliderRotateFailTip": "Validasi gagal",
-    "sliderRotateSuccessTip": "Validasi berhasil, waktu {0} detik",
-    "sliderTranslateFailTip": "Validasi gagal",
-    "sliderTranslateSuccessTip": "Validasi berhasil, waktu {0} detik",
-    "refreshAriaLabel": "Segarkan captcha",
-    "confirmAriaLabel": "Konfirmasi pilihan",
-    "confirm": "Konfirmasi",
-    "pointAriaLabel": "Klik titik",
-    "clickInOrder": "Silakan klik sesuai urutan"
-  },
   "iconPicker": {
     "placeholder": "Pilih ikon",
     "search": "Cari ikon..."
-  },
-  "jsonViewer": {
-    "copy": "Salin",
-    "copied": "Tersalin"
   },
   "crop": {
     "title": "Pangkas Gambar",

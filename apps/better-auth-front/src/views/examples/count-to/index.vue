@@ -1,26 +1,19 @@
 <script lang="ts" setup>
-import type { CountToProps, TransitionPresets } from '@taman/common-ui';
-
-import { reactive } from 'vue';
-
-import { CountTo, Page, TransitionPresetsKeys } from '@taman/common-ui';
-import { IconifyIcon } from '@vben/icons';
-
+import type { CountToProps, TransitionPresets } from '@taman/app-ui';
+import type { Component } from 'vue';
 import {
-  Button,
-  Card,
-  Col,
-  Form,
-  FormItem,
-  Input,
-  InputNumber,
-  message,
-  Row,
-  Select,
-  Switch,
-} from 'antdv-next';
+  AppCard,
+  AppCardAction,
+  AppPage,
+  CountTo,
+  TransitionPresetsKeys,
+  useTamanToast,
+} from '@taman/app-ui';
+import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
+import { h, reactive, ref } from 'vue';
+import { useTamanForm } from '#/adapter/form';
 
-const props = reactive<CountToProps & { transition: TransitionPresets }>({
+const state = reactive<CountToProps & { transition: TransitionPresets }>({
   decimal: '.',
   decimals: 2,
   decimalStyle: {
@@ -32,17 +25,17 @@ const props = reactive<CountToProps & { transition: TransitionPresets }>({
   duration: 2000,
   endVal: 100_000,
   mainStyle: {
-    color: 'hsl(var(--primary))',
+    color: 'var(--taman-color-primary)',
     fontSize: 'xx-large',
     fontWeight: 'bold',
   },
-  prefix: '￥',
+  prefix: 'Rp.',
   prefixStyle: {
     paddingRight: '0.5rem',
   },
   separator: ',',
   startVal: 0,
-  suffix: '元',
+  suffix: 'Rupiah',
   suffixStyle: {
     paddingLeft: '0.5rem',
   },
@@ -50,126 +43,176 @@ const props = reactive<CountToProps & { transition: TransitionPresets }>({
 });
 
 function changeNumber() {
-  props.endVal =
-    Math.floor(Math.random() * 100_000_000) / 10 ** (props.decimals || 0);
+  state.endVal = Math.floor(Math.random() * 100_000_000) / 10 ** (state.decimals || 0);
 }
 
-function openDocumentation() {
-  window.open('https://vueuse.org/core/useTransition/', '_blank');
-}
+const { toast, toaster } = useTamanToast();
 
 function onStarted() {
-  message.loading({
-    content: '动画已开始',
+  toast.add({
+    title: 'The animation has started.',
     duration: 0,
-    key: 'animator-info',
+    id: 'animator-info',
+    icon: 'svg-spinners:ring-resize',
   });
 }
 
 function onFinished() {
-  message.success({
-    content: '动画已结束',
-    duration: 2,
-    key: 'animator-info',
+  toaster.success('The animation has finished.', {
+    id: 'animator-info',
+    duration: 2_000,
   });
 }
-</script>
-<template>
-  <Page title="CountTo" description="数字滚动动画组件。使用">
-    <template #description>
-      <span>
-        使用useTransition封装的数字滚动动画组件，每次改变当前值都会产生过渡动画。
-      </span>
-      <Button type="link" @click="openDocumentation">
-        查看useTransition文档
-      </Button>
-    </template>
-    <Card title="基本用法">
-      <div class="flex-center w-full pb-4">
-        <CountTo v-bind="props" @started="onStarted" @finished="onFinished" />
-      </div>
-      <Form :model="props">
-        <Row :gutter="20">
-          <Col :span="8">
-            <FormItem label="初始值" name="startVal">
-              <InputNumber v-model:value="props.startVal" />
-            </FormItem>
-          </Col>
-          <Col :span="8">
-            <FormItem label="当前值" name="endVal">
-              <InputNumber
-                v-model:value="props.endVal"
-                class="w-full"
-                :precision="props.decimals"
-              >
-                <template #addonAfter>
-                  <IconifyIcon
-                    v-tippy="`设置一个随机值`"
-                    class="size-5 cursor-pointer outline-hidden"
-                    icon="ix:random-filled"
-                    @click="changeNumber"
-                  />
-                </template>
-              </InputNumber>
-            </FormItem>
-          </Col>
-          <Col :span="8">
-            <FormItem label="禁用动画" name="disabled">
-              <Switch v-model="props.disabled" />
-            </FormItem>
-          </Col>
-          <Col :span="8">
-            <FormItem label="延迟动画" name="delay">
-              <InputNumber v-model:value="props.delay" :min="0" />
-            </FormItem>
-          </Col>
-          <Col :span="8">
-            <FormItem label="持续时间" name="duration">
-              <InputNumber v-model:value="props.duration" :min="0" />
-            </FormItem>
-          </Col>
 
-          <Col :span="8">
-            <FormItem label="小数位数" name="decimals">
-              <InputNumber
-                v-model:value="props.decimals"
-                :min="0"
-                :precision="0"
-              />
-            </FormItem>
-          </Col>
-          <Col :span="8">
-            <FormItem label="分隔符" name="separator">
-              <Input v-model:value="props.separator" />
-            </FormItem>
-          </Col>
-          <Col :span="8">
-            <FormItem label="小数点" name="decimal">
-              <Input v-model:value="props.decimal" />
-            </FormItem>
-          </Col>
-          <Col :span="8">
-            <FormItem label="动画" name="transition">
-              <Select
-                v-model:value="props.transition"
-                :options="
-                  TransitionPresetsKeys.map((p) => ({ label: p, value: p }))
-                "
-              />
-            </FormItem>
-          </Col>
-          <Col :span="8">
-            <FormItem label="前缀" name="prefix">
-              <Input v-model:value="props.prefix" />
-            </FormItem>
-          </Col>
-          <Col :span="8">
-            <FormItem label="后缀" name="suffix">
-              <Input v-model:value="props.suffix" />
-            </FormItem>
-          </Col>
-        </Row>
-      </Form>
-    </Card>
-  </Page>
+const animationKey = ref(0);
+function reloadAnimation() {
+  animationKey.value += 1;
+}
+
+const [FormFields] = useTamanForm({
+  wrapperClass: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+
+  commonConfig: {
+    componentProps: {
+      class: 'w-full',
+    },
+  },
+
+  handleValuesChange(values) {
+    Object.assign(state, values);
+  },
+
+  showDefaultActions: false,
+  schema: [
+    {
+      component: 'InputNumber',
+      defaultValue: state.startVal,
+      fieldName: 'startVal',
+      label: 'Initial value',
+    },
+    {
+      component: 'InputNumber',
+      componentProps: {
+        precision: state.decimals,
+      },
+      defaultValue: state.endVal,
+      dependencies: {
+        resolve({ values }) {
+          return {
+            componentProps: {
+              precision: values.decimals,
+            },
+          };
+        },
+        triggerFields: ['decimals'],
+      },
+      fieldName: 'endVal',
+      label: 'Current value',
+      suffix: () =>
+        h(PIcon as Component, {
+          class: 'size-5 cursor-pointer outline-hidden',
+          name: 'ix:random-filled',
+          onClick: changeNumber,
+          title: 'Set a random value',
+        }),
+    },
+    {
+      component: 'Switch',
+      defaultValue: state.disabled,
+      fieldName: 'disabled',
+      label: 'Disable animations',
+    },
+    {
+      component: 'InputNumber',
+      componentProps: {
+        min: 0,
+      },
+      defaultValue: state.delay,
+      fieldName: 'delay',
+      label: 'Delayed animation',
+    },
+    {
+      component: 'InputNumber',
+      componentProps: {
+        min: 0,
+      },
+      defaultValue: state.duration,
+      fieldName: 'duration',
+      label: 'Duration',
+    },
+    {
+      component: 'InputNumber',
+      componentProps: {
+        min: 0,
+        precision: 0,
+      },
+      defaultValue: state.decimals,
+      fieldName: 'decimals',
+      label: 'Number of decimal places',
+    },
+    {
+      component: 'Input',
+      defaultValue: state.separator,
+      fieldName: 'separator',
+      label: 'Separator',
+    },
+    {
+      component: 'Input',
+      defaultValue: state.decimal,
+      fieldName: 'decimal',
+      label: 'decimal point',
+    },
+    {
+      component: 'Select',
+      componentProps: {
+        items: TransitionPresetsKeys.map((p) => ({ label: p, value: p })),
+      },
+      defaultValue: state.transition,
+      fieldName: 'transition',
+      label: 'Animation',
+    },
+    {
+      component: 'Input',
+      defaultValue: state.prefix,
+      fieldName: 'prefix',
+      label: 'Prefix',
+    },
+    {
+      component: 'Input',
+      defaultValue: state.suffix,
+      fieldName: 'suffix',
+      label: 'suffix',
+    },
+  ],
+});
+</script>
+
+<template>
+  <AppPage
+    title="CountTo"
+    description="The number scrolling animation component encapsulated using useTransition. Each time the current value is changed, a transition animation is generated."
+  >
+    <AppCard title="Basic Usage">
+      <template #trailingHeader>
+        <AppCardAction>
+          <PButton
+            @click="reloadAnimation"
+          >
+            Reload Animation
+          </PButton>
+        </AppCardAction>
+      </template>
+
+      <div class="pb-4 flex-center w-full">
+        <CountTo
+          :key="animationKey"
+          v-bind="state"
+          @started="onStarted"
+          @finished="onFinished"
+        />
+      </div>
+
+      <FormFields />
+    </AppCard>
+  </AppPage>
 </template>

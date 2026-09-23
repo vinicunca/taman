@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import type { CollapsibleParamSchema } from './type';
 
-import { computed } from 'vue';
-
 import { globalShareState } from '@taman-core/shared/global-state';
+import { computed } from 'vue';
 
 interface Props {
   data: CollapsibleParamSchema;
@@ -51,10 +50,10 @@ const FieldComponent = computed(() => {
 
 const limitDisplay = computed(() => {
   if (
-    props.data.option.min !== null &&
-    props.data.option.min !== undefined &&
-    props.data.option.max !== null &&
-    props.data.option.max !== undefined
+    props.data.option.min !== null
+    && props.data.option.min !== undefined
+    && props.data.option.max !== null
+    && props.data.option.max !== undefined
   ) {
     return `[${props.data.option.min},${props.data.option.max}]`;
   }
@@ -81,15 +80,15 @@ defineExpose({
 
 <template>
   <div
-    class="body-row flex items-center w-full flex-nowrap not-last-of-type:border-b"
+    class="body-row flex flex-nowrap w-full items-center not-last-of-type:border-b"
   >
     <div
-      class="body-cell pt-2 pb-2 px-5 leading-[1.5rem] flex items-center flex-nowrap"
+      class="body-cell leading-[1.5rem] px-5 pb-2 pt-2 flex flex-nowrap items-center"
     >
       {{ data.key }}
     </div>
     <div
-      class="body-cell pt-2 pb-2 px-5 leading-[1.5rem] flex items-center flex-nowrap"
+      class="body-cell leading-[1.5rem] px-5 pb-2 pt-2 flex flex-nowrap items-center"
     >
       <div class="flex-auto w-full">
         <component
@@ -98,7 +97,7 @@ defineExpose({
           v-model:value="modelValue"
         />
       </div>
-      <div class="flex items-center flex-none text-muted-foreground pl-2 gap-2">
+      <div class="text-muted-foreground pl-2 flex flex-none gap-2 items-center">
         <span v-if="limitDisplay">
           {{ limitDisplay }}
         </span>
@@ -108,13 +107,10 @@ defineExpose({
       </div>
     </div>
     <div
-      class="body-cell pt-2 pb-2 px-5 leading-[1.5rem] flex items-center flex-nowrap w-full"
+      class="body-cell leading-[1.5rem] px-5 pb-2 pt-2 flex flex-nowrap w-full items-center"
     >
       <p
         class="line-clamp-2"
-        v-tippy="{
-          content: data.description,
-        }"
       >
         {{ data.description }}
       </p>

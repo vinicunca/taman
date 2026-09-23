@@ -15,6 +15,7 @@
     "@taman-core/taman-ui": "workspace:*",
     "@taman/locales": "workspace:*",
     "@taman/types": "workspace:*",
+    "@vueuse/core": "catalog:",
     "pohon-ui": "catalog:",
     "vue": "catalog:"
   },

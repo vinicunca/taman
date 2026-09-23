@@ -126,62 +126,6 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
-        name: 'EllipsisExample',
-        path: 'ellipsis',
-        component: () => import('#/views/examples/ellipsis/index.vue'),
-        meta: {
-          icon: 'ion:ellipsis-horizontal',
-          title: $t('examples.ellipsis.title'),
-        },
-      },
-      {
-        name: 'VueResizeDemo',
-        path: 'resize/basic',
-        component: () => import('#/views/examples/resize/basic.vue'),
-        meta: {
-          icon: 'material-symbols:resize',
-          title: $t('examples.resize.title'),
-        },
-      },
-      {
-        name: 'ColPageDemo',
-        path: 'layout/col-page',
-        component: () => import('#/views/examples/layout/col-page.vue'),
-        meta: {
-          badge: 'Alpha',
-          badgeVariants: 'destructive',
-          icon: 'material-symbols:horizontal-distribute',
-          title: $t('examples.layout.col-page'),
-        },
-      },
-      {
-        name: 'TippyDemo',
-        path: 'tippy',
-        component: () => import('#/views/examples/tippy/index.vue'),
-        meta: {
-          icon: 'mdi:message-settings-outline',
-          title: 'Tippy',
-        },
-      },
-      {
-        name: 'JsonViewer',
-        path: 'json-viewer',
-        component: () => import('#/views/examples/json-viewer/index.vue'),
-        meta: {
-          icon: 'tabler:json',
-          title: 'JsonViewer',
-        },
-      },
-      {
-        name: 'Motion',
-        path: 'motion',
-        component: () => import('#/views/examples/motion/index.vue'),
-        meta: {
-          icon: 'mdi:animation-play',
-          title: 'Motion',
-        },
-      },
-      {
         name: 'CountTo',
         path: 'count-to',
         component: () => import('#/views/examples/count-to/index.vue'),

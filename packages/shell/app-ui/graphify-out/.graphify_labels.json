@@ -1,0 +1,12 @@
+{
+  "0": "app-fetch-component.vue",
+  "1": "dependencies",
+  "2": "auth-login.vue",
+  "3": "count-to.vue",
+  "4": "api-component.test.ts",
+  "5": "package.json",
+  "6": "tsconfig.json",
+  "7": "useTamanToast",
+  "8": "app-card.vue",
+  "9": "app-page.vue"
+}

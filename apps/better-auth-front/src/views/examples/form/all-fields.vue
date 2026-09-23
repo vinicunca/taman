@@ -54,7 +54,6 @@ const [FormAllFields, formAllFieldsApi] = useTamanForm<
   AllFieldsFormValues,
   AllFieldsSubmitValues
 >({
-  // 3 columns on large screens, 2 on medium, 1 on small
   wrapperClass: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
 
   commonConfig: {

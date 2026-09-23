@@ -7,10 +7,6 @@
       "types": "./src/index.ts",
       "default": "./src/index.ts"
     },
-    "./es/tippy": {
-      "types": "./src/components/tippy/index.ts",
-      "default": "./src/components/tippy/index.ts"
-    },
     "./es/loading": {
       "types": "./src/components/loading/index.ts",
       "default": "./src/components/loading/index.ts"
@@ -31,11 +27,8 @@
     "@vueuse/integrations": "catalog:",
     "json-bigint": "catalog:",
     "qrcode": "catalog:",
-    "tippy.js": "catalog:",
     "vue": "catalog:",
-    "vue-json-pretty": "catalog:",
-    "vue-router": "catalog:",
-    "vue-tippy": "catalog:"
+    "vue-router": "catalog:"
   },
   "devDependencies": {
     "@types/json-bigint": "catalog:",

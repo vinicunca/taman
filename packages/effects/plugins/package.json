@@ -29,10 +29,6 @@
     "./vxe-table": {
       "types": "./src/vxe-table/index.ts",
       "default": "./src/vxe-table/index.ts"
-    },
-    "./motion": {
-      "types": "./src/motion/index.ts",
-      "default": "./src/motion/index.ts"
     }
   },
   "dependencies": {
@@ -59,7 +55,6 @@
     "@vben-core/shadcn-ui": "workspace:*",
     "@vben/icons": "workspace:*",
     "@vueuse/core": "catalog:",
-    "@vueuse/motion": "catalog:",
     "echarts": "catalog:",
     "vue": "catalog:",
     "vxe-pc-ui": "catalog:",

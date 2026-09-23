@@ -6,9 +6,6 @@
   "drawer": {
     "title": "Laci"
   },
-  "ellipsis": {
-    "title": "TeksElipsis"
-  },
   "form": {
     "title": "Formulir",
     "basic": "Formulir Dasar",
@@ -40,39 +37,6 @@
     "custom-cell": "Sel Kustom",
     "form": "Tabel Formulir",
     "viewed": "Penanda Baris"
-  },
-  "captcha": {
-    "title": "Captcha",
-    "pointSelection": "Captcha Pilih Titik",
-    "sliderCaptcha": "Captcha Geser",
-    "sliderRotateCaptcha": "Captcha Putar",
-    "sliderTranslateCaptcha": "Captcha Geser Terjemahan",
-    "captchaCardTitle": "Harap selesaikan verifikasi keamanan",
-    "pageDescription": "Verifikasi identitas pengguna dengan mengklik lokasi tertentu pada gambar.",
-    "pageTitle": "Contoh Komponen Captcha",
-    "basic": "Penggunaan Dasar",
-    "titlePlaceholder": "Teks Judul Captcha",
-    "captchaImageUrlPlaceholder": "Gambar Captcha (mendukung nilai atribut src tag img)",
-    "hintImage": "Gambar Petunjuk",
-    "hintText": "Teks Petunjuk",
-    "hintImagePlaceholder": "Gambar Petunjuk (mendukung nilai atribut src tag img)",
-    "hintTextPlaceholder": "Teks Petunjuk",
-    "showConfirm": "Tampilkan Konfirmasi",
-    "hideConfirm": "Sembunyikan Konfirmasi",
-    "widthPlaceholder": "Lebar Gambar Captcha Default 300px",
-    "heightPlaceholder": "Tinggi Gambar Captcha Default 220px",
-    "paddingXPlaceholder": "Padding Horizontal Default 12px",
-    "paddingYPlaceholder": "Padding Vertikal Default 16px",
-    "index": "Indeks:",
-    "timestamp": "Stempel Waktu:",
-    "x": "x:",
-    "y": "y:"
-  },
-  "resize": {
-    "title": "Ubah Ukuran"
-  },
-  "layout": {
-    "col-page": "Tata Letak ColPage"
   },
   "button-group": {
     "title": "Grup Tombol"

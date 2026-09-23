@@ -99,7 +99,6 @@ catalog:
   '@vue/test-utils': ^2.5.1
   '@vueuse/core': ^15.0.0
   '@vueuse/integrations': ^15.0.0
-  '@vueuse/motion': ^3.0.3
   add: ^2.0.6
   ag-grid-community: ^36.2.0
   ag-grid-vue3: ^36.2.0
@@ -176,7 +175,6 @@ catalog:
   stylelint-scss: ^7.1.1
   tailwind-merge: ^3.6.0
   theme-colors: ^0.1.0
-  tippy.js: ^6.3.7
   tsdown: ^0.22.14
   tsx: ^4.23.15
   turbo: ^2.9.16
@@ -195,9 +193,7 @@ catalog:
   vitest: ^5.0.1
   vue: ^3.5.43
   vue-i18n: ^11.4.12
-  vue-json-pretty: ^2.6.0
   vue-router: ^5.3.1
-  vue-tippy: ^6.7.1
   vue-tsc: ^3.3.11
   vxe-pc-ui: ^4.14.26
   vxe-table: ^4.19.6

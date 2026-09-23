@@ -49,10 +49,6 @@ async function bootstrap(namespace: string) {
   // setup), which only occurs after the app is mounted.
   registerAccessDirective(app, () => useSessionStore().roles);
 
-  // Tippy tooltips
-  const { initTippy } = await import('@taman/common-ui/es/tippy');
-  initTippy(app);
-
   // Router and guards
   app.use(router);
 
@@ -60,10 +56,6 @@ async function bootstrap(namespace: string) {
   // guard, auth store) shares the same cache. See #/query-client.
   app.use(VueQueryPlugin, { queryClient });
   setQueryClientAppContext(app);
-
-  // Motion plugin
-  const { MotionPlugin } = await import('@vben/plugins/motion');
-  app.use(MotionPlugin);
 
   // Dynamic document title
   watchEffect(() => {

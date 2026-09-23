@@ -1,5 +1,6 @@
 export * from './auth';
 export * from './card';
+export * from './count-to';
 export * from './fetch-component';
 export * from './page';
 
