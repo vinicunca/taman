@@ -2,7 +2,7 @@ import type { PluginOption } from 'vite';
 
 import { EOL } from 'node:os';
 
-import { dateUtil, readPackageJSON } from '@taman/node-utils';
+import { formatNow, readPackageJSON } from '@taman/node-utils';
 
 /**
  * Injects a license/copyright banner into build output
@@ -22,7 +22,7 @@ async function viteLicensePlugin(
     enforce: 'post',
     generateBundle: {
       handler(_options, bundle) {
-        const date = dateUtil().format('YYYY-MM-DD ');
+        const date = formatNow('YYYY-MM-DD ');
         const copyrightText = `/*!
   * Vben Admin
   * Version: ${version}

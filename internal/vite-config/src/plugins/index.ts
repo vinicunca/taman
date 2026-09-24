@@ -18,7 +18,6 @@ import { VitePWA } from 'vite-plugin-pwa';
 import viteVueDevTools from 'vite-plugin-vue-devtools';
 
 import { viteArchiverPlugin } from './archiver';
-import { viteDayjsPlugin } from './dayjs';
 import { viteExtraAppConfigPlugin } from './extra-app-config';
 import { viteHtmlPlugin } from './html';
 import { viteImportMapPlugin } from './importmap';
@@ -109,7 +108,6 @@ async function loadApplicationPlugins(
     compressTypes,
     extraAppConfig,
     html,
-    dayjs,
     i18n,
     importmap,
     importmapOptions,
@@ -226,11 +224,6 @@ async function loadApplicationPlugins(
         return [await viteArchiverPlugin(archiverPluginOptions)];
       },
     },
-
-    {
-      condition: dayjs,
-      plugins: () => [viteDayjsPlugin()],
-    },
   ]);
 }
 
@@ -259,7 +252,6 @@ export {
   loadLibraryPlugins,
   viteArchiverPlugin,
   viteCompressPlugin,
-  viteDayjsPlugin,
   viteDtsPlugin,
   viteHtmlPlugin,
   viteVisualizerPlugin,

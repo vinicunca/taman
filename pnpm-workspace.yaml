@@ -67,18 +67,6 @@ catalog:
   '@tanstack/vue-query': ^5.103.2
   '@tanstack/vue-query-devtools': ^6.2.3
   '@tanstack/vue-store': ^0.11.1
-  '@tiptap/core': ^3.31.3
-  '@tiptap/extension-document': ^3.31.3
-  '@tiptap/extension-highlight': ^3.31.3
-  '@tiptap/extension-image': ^3.31.3
-  '@tiptap/extension-link': ^3.31.3
-  '@tiptap/extension-placeholder': ^3.31.3
-  '@tiptap/extension-text-align': ^3.31.3
-  '@tiptap/extension-text-style': ^3.31.3
-  '@tiptap/extension-underline': ^3.31.3
-  '@tiptap/pm': ^3.31.3
-  '@tiptap/starter-kit': ^3.31.3
-  '@tiptap/vue-3': ^3.31.3
   '@types/archiver': ^8.0.0
   '@types/html-minifier-terser': ^7.0.2
   '@types/json-bigint': ^1.0.4
@@ -116,13 +104,11 @@ catalog:
   csv: ^6.6.3
   cz-git: ^1.14.0
   czg: ^1.14.0
-  dayjs: ^1.11.21
   defu: ^6.1.7
   dotenv: ^18.0.2
   drizzle-kit: 0.31.11
   drizzle-orm: 0.45.3
   drizzle-zod: ^0.8.3
-  echarts: ^6.1.0
   es-toolkit: ^1.52.0
   eslint: ^10.11.0
   execa: ^10.0.1
@@ -178,8 +164,6 @@ catalog:
   vue-i18n: ^11.4.12
   vue-router: ^5.3.1
   vue-tsc: ^3.3.11
-  vxe-pc-ui: ^4.14.26
-  vxe-table: ^4.19.6
   watermark-js-plus: ^1.6.6
   zod: 4.6.5
   zod-defaults: 0.2.3

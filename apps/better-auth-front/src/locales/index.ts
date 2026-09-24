@@ -7,7 +7,6 @@ import {
   loadLocalesMapFromDir,
 } from '@taman/locales';
 import { preferences } from '@taman/preferences';
-import dayjs from 'dayjs';
 
 const modules = import.meta.glob('./langs/**/*.json');
 
@@ -21,47 +20,9 @@ const localesMap = loadLocalesMapFromDir(
  * @param lang
  */
 async function loadMessages(lang: SupportedLanguagesType) {
-  const [appLocaleMessages] = await Promise.all([
-    localesMap[lang]?.(),
-    loadThirdPartyMessage(lang),
-  ]);
+  const appLocaleMessages = await localesMap[lang]?.();
 
   return appLocaleMessages?.default;
-}
-
-/**
- * Load third-party component locale data.
- * @param lang
- */
-async function loadThirdPartyMessage(lang: SupportedLanguagesType) {
-  await Promise.all([loadDayjsLocale(lang)]);
-}
-
-/**
- * Load dayjs locale.
- * @param lang
- */
-async function loadDayjsLocale(lang: SupportedLanguagesType) {
-  let locale;
-  switch (lang) {
-    case 'en-US': {
-      locale = await import('dayjs/locale/en');
-      break;
-    }
-    case 'id-ID': {
-      locale = await import('dayjs/locale/id');
-      break;
-    }
-    // Default to English
-    default: {
-      locale = await import('dayjs/locale/en');
-    }
-  }
-  if (locale) {
-    dayjs.locale(locale);
-  } else {
-    console.error(`Failed to load dayjs locale for ${lang}`);
-  }
 }
 
 async function setupI18n(app: App, options: LocaleSetupOptions = {}) {

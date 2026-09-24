@@ -191,11 +191,6 @@ interface ApplicationPluginOptions extends CommonPluginOptions {
    */
   compressTypes?: Array<'brotli' | 'gzip'>;
   /**
-   * Enable dayjs plugin
-   * @default true
-   */
-  dayjs?: boolean;
-  /**
    * Extract app config file
    * @default false
    * @description Extracts config at build time

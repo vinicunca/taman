@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { ZodType } from 'zod';
-
 import type {
   FormFieldProps,
   FormRuleContext,
@@ -261,14 +260,19 @@ function normalizeIssues(errors: Array<unknown>): Array<NormalizedIssue> {
       error.forEach(visit);
       return;
     }
-    const message = isString(error)
-      ? error
-      : error && typeof error === 'object' && 'message' in error
-        ? Reflect.get(error, 'message')
-        : undefined;
+
+    let message;
+
+    if (isString(error)) {
+      message = error;
+    } else if (error && typeof error === 'object' && 'message' in error) {
+      message = Reflect.get(error, 'message');
+    }
+
     if (!isString(message)) {
       return;
     }
+
     const rawPath = error && typeof error === 'object' && 'path' in error
       ? Reflect.get(error, 'path')
       : undefined;
@@ -580,15 +584,12 @@ onUnmounted(() => {
             <TamanRenderContent :content="props.description" />
           </FormDescription>
 
-          <Transition
+          <div
             v-if="!compact && !props.hideMessage"
-            enter-active-class="duration-250 ease-emphasized"
-            leave-active-class="duration-250 ease-emphasized"
-            enter-from-class="opacity-0 -translate-y-15px"
-            leave-to-class="opacity-0 -translate-y-15px"
+            v-auto-animate
           >
-            <FormMessage class="absolute" />
-          </Transition>
+            <FormMessage />
+          </div>
         </div>
       </FormItem>
     </FormField>

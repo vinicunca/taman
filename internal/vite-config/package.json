@@ -4,13 +4,6 @@
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
-  "homepage": "https://github.com/vbenjs/vue-vben-admin",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vbenjs/vue-vben-admin.git",
-    "directory": "internal/vite-config"
-  },
-  "bugs": "https://github.com/vbenjs/vue-vben-admin/issues",
   "exports": {
     ".": {
       "types": "./src/index.ts",
@@ -46,7 +39,6 @@
     "@types/html-minifier-terser": "catalog:",
     "@vitejs/plugin-vue": "catalog:",
     "@vitejs/plugin-vue-jsx": "catalog:",
-    "dayjs": "catalog:",
     "dotenv": "catalog:",
     "rollup-plugin-visualizer": "catalog:",
     "unocss": "catalog:",

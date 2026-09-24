@@ -31,7 +31,6 @@
   },
   "dependencies": {
     "@taman-core/composables": "workspace:*",
-    "@taman-core/icons": "workspace:*",
     "@taman-core/preferences": "workspace:*",
     "@taman-core/shared": "workspace:*",
     "@taman-core/taman-ui": "workspace:*",

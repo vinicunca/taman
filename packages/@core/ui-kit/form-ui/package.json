@@ -30,8 +30,8 @@
     }
   },
   "dependencies": {
+    "@formkit/auto-animate": "catalog:",
     "@taman-core/composables": "workspace:*",
-    "@taman-core/icons": "workspace:*",
     "@taman-core/shared": "workspace:*",
     "@taman-core/taman-ui": "workspace:*",
     "@taman-core/typings": "workspace:*",

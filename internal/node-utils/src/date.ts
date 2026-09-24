@@ -1,12 +1,24 @@
-import dayjs from 'dayjs';
-import timezone from 'dayjs/plugin/timezone.js';
-import utc from 'dayjs/plugin/utc.js';
+import { getLocalTimeZone, now } from '@internationalized/date';
 
-dayjs.extend(utc);
-dayjs.extend(timezone);
+/**
+ * Formats the current local time.
+ * Supports the YYYY, MM, DD, HH, mm and ss tokens.
+ * @param format
+ */
+function formatNow(format: string) {
+  const zoned = now(getLocalTimeZone());
 
-dayjs.tz.setDefault('Asia/Shanghai');
+  return format
+    .replaceAll('YYYY', pad(zoned.year, 4))
+    .replaceAll('MM', pad(zoned.month))
+    .replaceAll('DD', pad(zoned.day))
+    .replaceAll('HH', pad(zoned.hour))
+    .replaceAll('mm', pad(zoned.minute))
+    .replaceAll('ss', pad(zoned.second));
+}
 
-const dateUtil = dayjs;
+function pad(value: number, length = 2) {
+  return String(value).padStart(length, '0');
+}
 
-export { dateUtil };
+export { formatNow };
