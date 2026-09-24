@@ -39,7 +39,6 @@
   "dependencies": {
     "@lucide/vue": "catalog:",
     "@taman-core/composables": "workspace:*",
-    "@taman-core/icons": "workspace:*",
     "@taman-core/shared": "workspace:*",
     "@taman-core/typings": "workspace:*",
     "@vueuse/core": "catalog:",

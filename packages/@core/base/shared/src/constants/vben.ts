@@ -1,9 +1,4 @@
 /**
- * GitHub repository URL
- */
-export const VBEN_GITHUB_URL = 'https://github.com/vbenjs/vue-vben-admin';
-
-/**
  * Documentation URL
  */
 export const VBEN_DOC_URL = 'https://doc.vben.pro';

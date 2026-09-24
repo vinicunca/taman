@@ -1,20 +1,16 @@
 <script setup lang="ts">
+import type { VbenFormSchema } from '@taman-core/form-ui';
 import type { Recordable } from '@taman/types';
 
-import type { VbenFormSchema } from '@taman-core/form-ui';
-
+import { useTamanForm } from '@taman-core/form-ui';
+import { $t } from '@taman/locales';
 import { computed, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-
-import { $t } from '@taman/locales';
-
-import { useTamanForm } from '@taman-core/form-ui';
-import { VbenButton } from '@vben-core/shadcn-ui';
 
 import Title from './auth-title.vue';
 
 interface Props {
-  formSchema?: VbenFormSchema[];
+  formSchema?: Array<VbenFormSchema>;
   /** Whether a loading state is active */
   loading?: boolean;
   /** Login route path */
@@ -101,9 +97,12 @@ defineExpose({
         {{ submitButtonText || $t('authentication.signUp') }}
       </slot>
     </VbenButton>
-    <div class="mt-4 text-center text-sm">
+    <div class="text-sm mt-4 text-center">
       {{ $t('authentication.alreadyHaveAccount') }}
-      <span class="vben-link text-sm font-normal" @click="goToLogin()">
+      <span
+        class="vben-link text-sm font-normal"
+        @click="goToLogin()"
+      >
         {{ $t('authentication.goToLogin') }}
       </span>
     </div>

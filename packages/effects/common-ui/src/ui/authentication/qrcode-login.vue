@@ -1,12 +1,8 @@
 <script setup lang="ts">
+import { $t } from '@taman/locales';
+import { useQRCode } from '@vueuse/integrations/useQRCode';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-
-import { $t } from '@taman/locales';
-
-import { VbenButton } from '@vben-core/shadcn-ui';
-
-import { useQRCode } from '@vueuse/integrations/useQRCode';
 
 import Title from './auth-title.vue';
 
@@ -71,8 +67,12 @@ function goToLogin() {
     </Title>
 
     <div class="mt-6 flex-col-center">
-      <img :src="qrcode" alt="qrcode" class="w-1/2" />
-      <p class="mt-4 text-sm text-muted-foreground">
+      <img
+        :src="qrcode"
+        alt="qrcode"
+        class="w-1/2"
+      >
+      <p class="text-muted-foreground text-sm mt-4">
         <slot name="description">
           {{ description || $t('authentication.qrcodePrompt') }}
         </slot>

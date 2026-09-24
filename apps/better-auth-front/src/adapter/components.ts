@@ -38,10 +38,7 @@ export type LegacyComponentType
     | 'Textarea'
     | 'TimePicker'
     | 'TreeSelect'
-    | 'Upload'
-    | 'VbenInput'
-    | 'VbenInputPassword'
-    | 'VbenPinInput';
+    | 'Upload';
 
 export type ComponentType = keyof ComponentPropsMap | LegacyComponentType;
 

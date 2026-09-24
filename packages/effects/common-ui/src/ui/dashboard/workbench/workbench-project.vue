@@ -6,11 +6,10 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-  VbenIcon,
 } from '@vben-core/shadcn-ui';
 
 interface Props {
-  items?: WorkbenchProjectItem[];
+  items?: Array<WorkbenchProjectItem>;
   title: string;
 }
 
@@ -28,10 +27,15 @@ defineEmits(['click']);
 <template>
   <Card>
     <CardHeader>
-      <CardTitle class="text-lg">{{ title }}</CardTitle>
+      <CardTitle class="text-lg">
+        {{ title }}
+      </CardTitle>
     </CardHeader>
-    <CardContent class="flex flex-wrap p-0">
-      <template v-for="(item, index) in items" :key="item.title">
+    <CardContent class="p-0 flex flex-wrap">
+      <template
+        v-for="(item, index) in items"
+        :key="item.title"
+      >
         <div
           :class="{
             'border-r-0': index % 3 === 2,
@@ -40,7 +44,7 @@ defineEmits(['click']);
             'rounded-bl-xl': index === items.length - 3,
             'rounded-br-xl': index === items.length - 1,
           }"
-          class="group w-full cursor-pointer border-t border-r border-border p-4 transition-all hover:shadow-xl md:w-1/2 lg:w-1/3"
+          class="group p-4 border-r border-t border-border w-full cursor-pointer transition-all lg:w-1/3 md:w-1/2 hover:shadow-xl"
         >
           <div class="flex items-center">
             <VbenIcon
@@ -49,12 +53,12 @@ defineEmits(['click']);
               class="size-8 transition-all duration-300 group-hover:scale-110"
               @click="$emit('click', item)"
             />
-            <span class="ml-4 text-lg font-medium">{{ item.title }}</span>
+            <span class="text-lg font-medium ml-4">{{ item.title }}</span>
           </div>
-          <div class="mt-4 flex h-10 color-text/80">
+          <div class="color-text/80 mt-4 flex h-10">
             {{ item.content }}
           </div>
-          <div class="flex justify-between color-text/80">
+          <div class="color-text/80 flex justify-between">
             <span>{{ item.group }}</span>
             <span>{{ item.date }}</span>
           </div>

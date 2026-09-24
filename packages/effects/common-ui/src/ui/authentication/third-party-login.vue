@@ -1,12 +1,6 @@
 <script setup lang="ts">
-import { VbenIconButton } from '@vben-core/shadcn-ui';
-import {
-  SvgGithubIcon,
-  SvgGoogleIcon,
-  SvgQQChatIcon,
-  SvgWeChatIcon,
-} from '@vben/icons';
 import { $t } from '@taman/locales';
+import { VbenIconButton } from '@vben-core/shadcn-ui';
 
 defineOptions({
   name: 'ThirdPartyLogin',

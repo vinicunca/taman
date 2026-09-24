@@ -1,12 +1,8 @@
 <script setup lang="ts">
 import type { IconPickerProps } from './types';
 
-import { computed, ref, useAttrs, watch, watchEffect } from 'vue';
-
-import { usePagination } from '../../../../composables/src';
-import { EmptyIcon, Grip, listIcons } from '@vben/icons';
+import { isFunction } from '@taman-core/shared/utils';
 import { $t } from '@taman/locales';
-
 import {
   Button,
   Input,
@@ -18,14 +14,12 @@ import {
   PaginationLast,
   PaginationNext,
   PaginationPrevious,
-  VbenIcon,
-  VbenIconButton,
   VbenPopover,
 } from '@vben-core/shadcn-ui';
-import { isFunction } from '@taman-core/shared/utils';
-
 import { objectOmit, refDebounced, watchDebounced } from '@vueuse/core';
+import { computed, ref, useAttrs, watch, watchEffect } from 'vue';
 
+import { usePagination } from '../../../../composables/src';
 import { fetchIconsData } from './icons';
 
 const props = withDefaults(defineProps<IconPickerProps>(), {
@@ -52,7 +46,7 @@ const visible = ref(false);
 const currentSelect = ref('');
 const keyword = ref('');
 const keywordDebounce = refDebounced(keyword, 300);
-const innerIcons = ref<string[]>([]);
+const innerIcons = ref<Array<string>>([]);
 
 watchDebounced(
   () => props.prefix,
@@ -68,9 +62,9 @@ const currentList = computed(() => {
   try {
     if (props.prefix) {
       if (
-        props.prefix !== 'svg' &&
-        props.autoFetchApi &&
-        props.icons.length === 0
+        props.prefix !== 'svg'
+        && props.autoFetchApi
+        && props.icons.length === 0
       ) {
         return innerIcons.value;
       }
@@ -110,15 +104,15 @@ watch(
   },
 );
 
-const handleClick = (icon: string) => {
+function handleClick(icon: string) {
   currentSelect.value = icon;
   modelValue.value = icon;
   close();
-};
+}
 
-const handlePageChange = (page: number) => {
+function handlePageChange(page: number) {
   setCurrentPage(page);
-};
+}
 
 function toggleOpenState() {
   visible.value = !visible.value;
@@ -161,6 +155,7 @@ const getBindAttrs = computed(() => {
 
 defineExpose({ toggleOpenState, open, close });
 </script>
+
 <template>
   <VbenPopover
     v-model:open="visible"
@@ -171,8 +166,8 @@ defineExpose({ toggleOpenState, open, close });
     <template #trigger>
       <template v-if="props.type === 'input'">
         <component
-          v-if="props.inputComponent"
           :is="inputComponent"
+          v-if="props.inputComponent"
           :[modelValueProp]="currentSelect"
           :placeholder="$t('ui.iconPicker.placeholder')"
           role="combobox"
@@ -189,46 +184,49 @@ defineExpose({ toggleOpenState, open, close });
             />
           </template>
         </component>
-        <div class="relative w-full" v-else>
+        <div
+          v-else
+          class="w-full relative"
+        >
           <Input
             v-bind="$attrs"
             v-model="currentSelect"
             :placeholder="$t('ui.iconPicker.placeholder')"
-            class="h-8 w-full pr-8"
+            class="pr-8 h-8 w-full"
             role="combobox"
             :aria-label="$t('ui.iconPicker.placeholder')"
             aria-expanded="visible"
           />
           <VbenIcon
             :icon="currentSelect || Grip"
-            class="absolute top-1 right-1 size-6"
+            class="size-6 right-1 top-1 absolute"
             aria-hidden="true"
           />
         </div>
       </template>
       <VbenIcon
-        :icon="currentSelect || Grip"
         v-else
+        :icon="currentSelect || Grip"
         class="size-4"
         v-bind="$attrs"
       />
     </template>
     <div class="mb-2 flex w-full">
       <component
-        v-if="inputComponent"
         :is="inputComponent"
+        v-if="inputComponent"
         v-bind="searchInputProps"
       />
       <Input
         v-else
+        v-model="keyword"
         class="mx-2 h-8 w-full"
         :placeholder="$t('ui.iconPicker.search')"
-        v-model="keyword"
       />
     </div>
 
     <template v-if="paginationList.length > 0">
-      <div class="grid max-h-90 w-full grid-cols-6 justify-items-center">
+      <div class="grid grid-cols-6 max-h-90 w-full justify-items-center">
         <VbenIconButton
           v-for="(item, index) in paginationList"
           :key="index"
@@ -246,7 +244,7 @@ defineExpose({ toggleOpenState, open, close });
       </div>
       <div
         v-if="total >= pageSize"
-        class="flex-center flex justify-end overflow-hidden border-t py-2 pr-3"
+        class="py-2 pr-3 border-t flex flex-center justify-end overflow-hidden"
       >
         <Pagination
           :items-per-page="36"
@@ -258,7 +256,7 @@ defineExpose({ toggleOpenState, open, close });
         >
           <PaginationContent
             v-slot="{ items }"
-            class="flex w-full items-center gap-1"
+            class="flex gap-1 w-full items-center"
           >
             <PaginationFirst class="size-5" />
             <PaginationPrevious class="size-5" />
@@ -271,7 +269,7 @@ defineExpose({ toggleOpenState, open, close });
               >
                 <Button
                   :variant="item.value === currentPage ? 'default' : 'outline'"
-                  class="size-5 p-0 text-sm"
+                  class="text-sm p-0 size-5"
                 >
                   {{ item.value }}
                 </Button>
@@ -291,9 +289,11 @@ defineExpose({ toggleOpenState, open, close });
     </template>
 
     <template v-else>
-      <div class="flex-col-center min-h-37.5 w-full text-muted-foreground">
+      <div class="text-muted-foreground flex-col-center min-h-37.5 w-full">
         <EmptyIcon class="size-10" />
-        <div class="mt-1 text-sm">{{ $t('common.noData') }}</div>
+        <div class="text-sm mt-1">
+          {{ $t('common.noData') }}
+        </div>
       </div>
     </template>
   </VbenPopover>

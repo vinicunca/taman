@@ -4,7 +4,6 @@ import type { Component } from 'vue';
 
 import { $t } from '@taman/locales';
 import { usePreferences } from '@taman/preferences';
-import { MoonStar, Sun, SunMoon } from '@vben/icons';
 import { watch } from 'vue';
 
 import SwitchItem from '../switch-item.vue';

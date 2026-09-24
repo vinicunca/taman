@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { BRANDS, presetCore } from '@taman/designs';
+import { presetCore } from '@taman/designs';
 import { defineConfig } from 'unocss';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -26,15 +26,6 @@ export default defineConfig({
 
   presets: [
     presetCore(),
-  ],
-
-  safelist: [
-    /**
-     * In select.ts theme, we have a function that replace the `focus-visible` from input theme.
-     * Therefore uno doesn't know about these dynamic classes, so we need to add them to the safelist.
-     */
-    () => ['focus:ring-2', 'focus:ring-inset'],
-    ...BRANDS.map((brand) => `focus:ring-${brand}`),
   ],
 });
 

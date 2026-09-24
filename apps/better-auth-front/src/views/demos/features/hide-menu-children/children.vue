@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import { Fallback, VbenButton } from '@taman/common-ui';
+import { Fallback } from '@taman/common-ui';
 import { useTabs } from '@taman/composables';
-import { X } from '@vben/icons';
 
 const { closeCurrentTab } = useTabs();
 </script>

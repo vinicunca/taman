@@ -6,11 +6,10 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-  VbenIcon,
 } from '@vben-core/shadcn-ui';
 
 interface Props {
-  items?: WorkbenchQuickNavItem[];
+  items?: Array<WorkbenchQuickNavItem>;
   title: string;
 }
 
@@ -28,10 +27,15 @@ defineEmits(['click']);
 <template>
   <Card>
     <CardHeader>
-      <CardTitle class="text-lg">{{ title }}</CardTitle>
+      <CardTitle class="text-lg">
+        {{ title }}
+      </CardTitle>
     </CardHeader>
-    <CardContent class="flex flex-wrap p-0">
-      <template v-for="(item, index) in items" :key="item.title">
+    <CardContent class="p-0 flex flex-wrap">
+      <template
+        v-for="(item, index) in items"
+        :key="item.title"
+      >
         <div
           :class="{
             'border-r-0': index % 3 === 2,
@@ -40,7 +44,7 @@ defineEmits(['click']);
             'rounded-bl-xl': index === items.length - 3,
             'rounded-br-xl': index === items.length - 1,
           }"
-          class="group flex-col-center w-1/3 cursor-pointer border-t border-r border-border py-8 hover:shadow-xl"
+          class="group py-8 border-r border-t border-border flex-col-center w-1/3 cursor-pointer hover:shadow-xl"
           @click="$emit('click', item)"
         >
           <VbenIcon

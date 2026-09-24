@@ -3,7 +3,7 @@ import type { AboutProps, DescriptionItem } from './about';
 
 import {
   VBEN_DOC_URL,
-  VBEN_GITHUB_URL,
+  TAMAN_GITHUB_URL,
   VBEN_PREVIEW_URL,
 } from '@taman/constants';
 import { VbenRenderContent } from '@vben-core/shadcn-ui';
@@ -87,7 +87,7 @@ const vbenDescriptionItems: Array<DescriptionItem> = [
     title: '预览地址',
   },
   {
-    content: renderLink(VBEN_GITHUB_URL, '点击查看'),
+    content: renderLink(TAMAN_GITHUB_URL, '点击查看'),
     title: 'Github',
   },
   {
@@ -115,7 +115,7 @@ const devDependenciesItems = Object.keys(devDependencies).map((key) => ({
     <template #description>
       <p class="text-sm/6 color-text mt-3">
         <a
-          :href="VBEN_GITHUB_URL"
+          :href="TAMAN_GITHUB_URL"
           class="vben-link"
           target="_blank"
         >

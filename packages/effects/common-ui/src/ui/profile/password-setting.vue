@@ -1,17 +1,13 @@
 <script setup lang="ts">
+import type { VbenFormSchema } from '@taman-core/form-ui';
 import type { Recordable } from '@taman/types';
 
-import type { VbenFormSchema } from '@taman-core/form-ui';
-
+import { useTamanForm } from '@taman-core/form-ui';
+import { $t } from '@taman/locales';
 import { computed, reactive } from 'vue';
 
-import { $t } from '@taman/locales';
-
-import { useTamanForm } from '@taman-core/form-ui';
-import { VbenButton } from '@vben-core/shadcn-ui';
-
 interface Props {
-  formSchema?: VbenFormSchema[];
+  formSchema?: Array<VbenFormSchema>;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -47,10 +43,15 @@ defineExpose({
   getFormApi: () => formApi,
 });
 </script>
+
 <template>
   <div>
     <Form />
-    <VbenButton type="submit" class="mt-4" @click="handleSubmit">
+    <VbenButton
+      type="submit"
+      class="mt-4"
+      @click="handleSubmit"
+    >
       {{ $t('profile.updatePassword') }}
     </VbenButton>
   </div>

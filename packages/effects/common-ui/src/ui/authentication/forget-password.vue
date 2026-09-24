@@ -1,18 +1,15 @@
 <script setup lang="ts">
 import type { VbenFormSchema } from '@taman-core/form-ui';
 
+import { useTamanForm } from '@taman-core/form-ui';
+import { $t } from '@taman/locales';
 import { computed, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-
-import { $t } from '@taman/locales';
-
-import { useTamanForm } from '@taman-core/form-ui';
-import { VbenButton } from '@vben-core/shadcn-ui';
 
 import Title from './auth-title.vue';
 
 interface Props {
-  formSchema: VbenFormSchema[];
+  formSchema: Array<VbenFormSchema>;
   /** Whether a loading state is active */
   loading?: boolean;
   /** Login route path */
@@ -98,7 +95,11 @@ defineExpose({
           {{ submitButtonText || $t('authentication.sendResetLink') }}
         </slot>
       </VbenButton>
-      <VbenButton class="mt-4 w-full" variant="outline" @click="goToLogin()">
+      <VbenButton
+        class="mt-4 w-full"
+        variant="outline"
+        @click="goToLogin()"
+      >
         {{ $t('common.back') }}
       </VbenButton>
     </div>

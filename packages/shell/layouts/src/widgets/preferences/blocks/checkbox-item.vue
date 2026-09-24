@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import type { TamanButtonCheckGroupValue } from '@taman-core/taman-ui';
 import type { SelectOption } from '@taman/types';
 
-import { VbenCheckButtonGroup, VbenTooltip } from '@vben-core/shadcn-ui';
-import { CircleHelp } from '@vben/icons';
+import { TamanButtonCheckGroup } from '@taman-core/taman-ui';
+import PIcon from 'pohon-ui/components/Icon.vue';
+import PTooltip from 'pohon-ui/components/Tooltip.vue';
 import { useSlots } from 'vue';
 
 defineOptions({
@@ -14,7 +16,7 @@ withDefaults(
     disabled?: boolean;
     items?: Array<SelectOption>;
     multiple?: boolean;
-    onBtnClick?: (value: string) => void;
+    onBtnClick?: (value: TamanButtonCheckGroupValue | undefined) => void;
     placeholder?: string;
   }>(),
   {
@@ -42,19 +44,24 @@ const slots = useSlots();
     <span class="text-sm flex items-center">
       <slot />
 
-      <VbenTooltip
+      <PTooltip
         v-if="slots.tip"
-        side="bottom"
+        :content="{ side: 'bottom' }"
       >
-        <template #trigger>
-          <CircleHelp class="ml-1 size-3 cursor-help" />
+        <PIcon
+          name="lucide:circle-help"
+          class="ml-1 size-3 cursor-help"
+        />
+
+        <template #content>
+          <slot name="tip" />
         </template>
-        <slot name="tip" />
-      </VbenTooltip>
+      </PTooltip>
     </span>
-    <VbenCheckButtonGroup
+    <TamanButtonCheckGroup
       v-model="inputValue"
       class="h-8 w-41.25"
+      size="sm"
       :options="items"
       :disabled="disabled"
       :multiple="multiple"

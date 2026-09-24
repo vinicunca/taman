@@ -1,20 +1,5 @@
 <script lang="ts" setup>
 import { IconPicker, Page } from '@taman/common-ui';
-import {
-  MdiKeyboardEsc,
-  SvgAvatar1Icon,
-  SvgAvatar2Icon,
-  SvgAvatar3Icon,
-  SvgAvatar4Icon,
-  SvgBellIcon,
-  SvgCakeIcon,
-  SvgCardIcon,
-  SvgDownloadIcon,
-  SvgGithubIcon,
-  SvgGoogleIcon,
-  SvgQQChatIcon,
-  SvgWeChatIcon,
-} from '@vben/icons';
 import { h, ref } from 'vue';
 
 const iconValue1 = ref('ant-design:trademark-outlined');

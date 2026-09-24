@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Switch, VbenTooltip } from '@vben-core/shadcn-ui';
-import { CircleHelp } from '@vben/icons';
 import { useSlots } from 'vue';
 
 defineOptions({
@@ -26,7 +25,7 @@ function handleClick() {
     :class="{
       'pointer-events-none opacity-50': disabled,
     }"
-    class="hover:bg-background-accented my-1 px-2 py-2.5 rounded-md flex w-full items-center justify-between"
+    class="my-1 px-2 py-2.5 rounded-md flex w-full items-center justify-between hover:bg-background-accented"
     @click="handleClick"
   >
     <span class="text-sm flex items-center">
