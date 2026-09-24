@@ -1,14 +1,6 @@
 <script setup lang="ts">
 import type { SelectOption } from '@taman/types';
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  VbenTooltip,
-} from '@vben-core/shadcn-ui';
 import { useSlots } from 'vue';
 
 defineOptions({

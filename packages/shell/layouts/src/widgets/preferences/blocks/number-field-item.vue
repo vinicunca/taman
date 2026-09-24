@@ -1,14 +1,5 @@
 <script setup lang="ts">
 import type { SelectOption } from '@taman/types';
-
-import {
-  NumberField,
-  NumberFieldContent,
-  NumberFieldDecrement,
-  NumberFieldIncrement,
-  NumberFieldInput,
-  VbenTooltip,
-} from '@vben-core/shadcn-ui';
 import { useSlots } from 'vue';
 
 defineOptions({

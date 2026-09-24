@@ -1,5 +1,4 @@
-import type { VbenScrollbar } from '@vben-core/shadcn-ui';
-
+import type { TamanScrollbar } from '@taman-core/taman-ui';
 import type { TabsProps } from './tabs.types';
 import { useDebounceFn } from '@vueuse/core';
 import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
@@ -10,7 +9,7 @@ export function useTabsViewScroll(props: TabsProps) {
   let resizeObserver: null | ResizeObserver = null;
   let mutationObserver: MutationObserver | null = null;
   let tabItemCount = 0;
-  const scrollbarRef = ref<InstanceType<typeof VbenScrollbar> | null>(null);
+  const scrollbarRef = ref<InstanceType<typeof TamanScrollbar> | null>(null);
   const scrollViewportEl = ref<DomElement>(null);
   const showScrollButton = ref(false);
   const scrollIsAtLeft = ref(true);

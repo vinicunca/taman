@@ -14,7 +14,6 @@
     "@taman-core/composables": "workspace:*",
     "@taman-core/taman-ui": "workspace:*",
     "@taman-core/typings": "workspace:*",
-    "@vben-core/shadcn-ui": "workspace:*",
     "@vueuse/core": "catalog:",
     "pohon-ui": "catalog:",
     "vue": "catalog:"

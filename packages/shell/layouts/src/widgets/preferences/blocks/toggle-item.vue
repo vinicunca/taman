@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import type { SelectOption } from '@taman/types';
 
-import { ToggleGroup, ToggleGroupItem } from '@vben-core/shadcn-ui';
-
 defineOptions({
   name: 'PreferenceToggleItem',
 });
 
-withDefaults(defineProps<{ disabled?: boolean; items?: SelectOption[] }>(), {
+withDefaults(defineProps<{ disabled?: boolean; items?: Array<SelectOption> }>(), {
   disabled: false,
   items: () => [],
 });
@@ -20,11 +18,11 @@ const modelValue = defineModel<string>();
     :class="{
       'pointer-events-none opacity-50': disabled,
     }"
-    class="flex w-full items-center justify-between rounded-md p-2 hover:bg-background-accented"
+    class="p-2 rounded-md flex w-full items-center justify-between hover:bg-background-accented"
     disabled
   >
     <span class="text-sm">
-      <slot></slot>
+      <slot />
     </span>
     <ToggleGroup
       v-model="modelValue"
@@ -33,10 +31,13 @@ const modelValue = defineModel<string>();
       type="single"
       variant="outline"
     >
-      <template v-for="item in items" :key="item.value">
+      <template
+        v-for="item in items"
+        :key="item.value"
+      >
         <ToggleGroupItem
           :value="item.value"
-          class="h-7 rounded-sm data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+          class="rounded-sm h-7 data-[state=on]:text-primary-foreground data-[state=on]:bg-primary"
         >
           {{ item.label }}
         </ToggleGroupItem>

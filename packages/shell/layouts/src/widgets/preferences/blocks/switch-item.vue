@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Switch, VbenTooltip } from '@vben-core/shadcn-ui';
 import { useSlots } from 'vue';
 
 defineOptions({

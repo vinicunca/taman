@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ToggleGroup, ToggleGroupItem } from '@vben-core/shadcn-ui';
-
 defineOptions({
   name: 'PreferenceColorMode',
 });
@@ -26,10 +24,13 @@ const items = [
     type="single"
     variant="outline"
   >
-    <template v-for="item in items" :key="item.value">
+    <template
+      v-for="item in items"
+      :key="item.value"
+    >
       <ToggleGroupItem
         :value="item.value"
-        class="h-7 w-16 rounded-sm data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+        class="rounded-sm h-7 w-16 data-[state=on]:text-primary-foreground data-[state=on]:bg-primary"
       >
         {{ item.label }}
       </ToggleGroupItem>

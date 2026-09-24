@@ -1,10 +1,10 @@
-## Effects 目录
+## The `effects` Directory
 
-`effects` 目录专门用于存放与轻微耦合相关的代码和逻辑。如果你的包具有以下特点，建议将其放置在 `effects` 目录下：
+The `effects` directory is dedicated to code and logic involving loose coupling. It is recommended to place code in the `effects` directory if your package exhibits the following characteristics:
 
-- **状态管理**：使用状态管理框架 `pinia`，并包含处理副作用（如异步操作、API 调用）的部分。
-- **用户偏好设置**：使用 `@taman-core/preferences` 处理用户偏好设置，涉及本地存储或浏览器缓存逻辑（如使用 `localStorage`）。
-- **导航和路由**：处理导航、页面跳转等场景，需要管理路由变化的逻辑。
-- **组件库依赖**：包含与特定组件库紧密耦合或依赖大型仓库的部分。
+- **State Management**: Uses the `pinia` state management framework and includes logic for handling side effects (such as asynchronous operations or API calls).
+- **User Preferences**: Uses `@taman-core/preferences` to handle user preferences, involving logic for local storage or browser caching (e.g., `localStorage`).
+- **Navigation and Routing**: Handles scenarios like navigation and page transitions, requiring logic to manage route changes.
+- **Component Library Dependencies**: Contains code that is tightly coupled with a specific component library or depends on large repositories.
 
-通过将相关代码归类到 `effects` 目录，可以使项目结构更加清晰，便于维护和扩展。
+Categorizing relevant code into the `effects` directory clarifies the project structure, making it easier to maintain and extend.

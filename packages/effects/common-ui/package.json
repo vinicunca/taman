@@ -21,7 +21,6 @@
     "@taman/constants": "workspace:*",
     "@taman/locales": "workspace:*",
     "@taman/types": "workspace:*",
-    "@vben-core/shadcn-ui": "workspace:*",
     "@vueuse/core": "catalog:",
     "@vueuse/integrations": "catalog:",
     "json-bigint": "catalog:",

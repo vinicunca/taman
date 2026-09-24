@@ -3,16 +3,6 @@ import type { Recordable } from '@taman/types';
 
 import type { SettingProps } from './types';
 
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  Switch,
-} from '@vben-core/shadcn-ui';
-
 withDefaults(defineProps<SettingProps>(), {
   formSchema: () => [],
 });
@@ -25,16 +15,25 @@ function handleChange(fieldName: string, value: boolean) {
   emit('change', { fieldName, value });
 }
 </script>
+
 <template>
   <Form class="space-y-8">
     <div class="space-y-4">
-      <template v-for="item in formSchema" :key="item.fieldName">
-        <FormField type="checkbox" :name="item.fieldName">
+      <template
+        v-for="item in formSchema"
+        :key="item.fieldName"
+      >
+        <FormField
+          type="checkbox"
+          :name="item.fieldName"
+        >
           <FormItem
-            class="flex flex-row items-center justify-between rounded-lg border p-4"
+            class="p-4 border rounded-lg flex flex-row items-center justify-between"
           >
             <div class="space-y-0.5">
-              <FormLabel class="text-base"> {{ item.label }} </FormLabel>
+              <FormLabel class="text-base">
+                {{ item.label }}
+              </FormLabel>
               <FormDescription>
                 {{ item.description }}
               </FormDescription>
