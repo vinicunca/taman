@@ -49,7 +49,7 @@ export default defineErrorHandler((error, event) => {
  * Walks the `cause` chain (errors can nest, and pg may throw an
  * `AggregateError`) looking for a known connection-failure code.
  */
-function findConnectionErrorCode(error: unknown, depth = 0): string | undefined {
+export function findConnectionErrorCode(error: unknown, depth = 0): string | undefined {
   if (!error || typeof error !== 'object' || depth > 5) {
     return undefined;
   }
