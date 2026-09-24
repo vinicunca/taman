@@ -306,7 +306,7 @@ type DefineLibraryOptions = (config?: ConfigEnv) => Promise<{
  */
 type DefineConfig = DefineApplicationOptions | DefineLibraryOptions;
 
-type VbenViteConfig = Promise<UserConfig> | UserConfig | UserConfigFnPromise;
+type TamanViteConfig = Promise<UserConfig> | UserConfig | UserConfigFnPromise;
 
 export type {
   ApplicationPluginOptions,
@@ -321,5 +321,5 @@ export type {
   ImportmapPluginOptions,
   LibraryPluginOptions,
   PrintPluginOptions,
-  VbenViteConfig,
+  TamanViteConfig,
 };

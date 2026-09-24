@@ -45,8 +45,5 @@
   },
   "button-group": {
     "title": "Button Group"
-  },
-  "tiptap": {
-    "title": "Rich Text Editor"
   }
 }

@@ -40,50 +40,6 @@
     "cancel": "Batalkan pemangkasan",
     "errorTip": "Kesalahan pemangkasan"
   },
-  "tiptap": {
-    "placeholder": "Silakan masukkan konten...",
-    "prompts": {
-      "image": "Masukkan URL gambar",
-      "link": "Masukkan URL tautan"
-    },
-    "toolbar": {
-      "bold": "Tebal",
-      "italic": "Miring",
-      "underline": "Garis Bawah",
-      "strike": "Coret",
-      "code": "Kode",
-      "codeBlock": "Blok Kode",
-      "heading": "Judul",
-      "paragraph": "Paragraf",
-      "heading1": "H1",
-      "heading2": "H2",
-      "heading3": "H3",
-      "heading4": "H4",
-      "bulletList": "Daftar Bullet",
-      "orderedList": "Penomoran",
-      "blockquote": "Kutipan",
-      "link": "Tautan",
-      "unlink": "Hapus Tautan",
-      "image": "Gambar",
-      "imageUrl": "URL Gambar",
-      "imageUpload": "Unggah Gambar",
-      "textColor": "Warna Teks",
-      "highlightColor": "Warna Sorotan",
-      "alignLeft": "Kiri",
-      "alignCenter": "Tengah",
-      "alignRight": "Kanan",
-      "preview": "Pratinjau",
-      "undo": "Urungkan",
-      "redo": "Ulangi",
-      "clear": "Bersihkan"
-    },
-    "upload": {
-      "fileTooLarge": "Ukuran file melebihi batas",
-      "fileTypeNotAllowed": "Jenis file tidak diizinkan",
-      "onlySingleImage": "Hanya mendukung unggah satu gambar, yang pertama dipilih",
-      "uploadFailed": "Unggah Gagal"
-    }
-  },
   "fallback": {
     "pageNotFound": "Ups! Halaman Tidak Ditemukan",
     "pageNotFoundDesc": "Maaf, kami tidak dapat menemukan halaman yang Anda cari.",

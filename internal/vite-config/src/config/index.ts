@@ -1,4 +1,4 @@
-import type { DefineConfig, VbenViteConfig } from '../typing';
+import type { DefineConfig, TamanViteConfig } from '../typing';
 
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
@@ -12,7 +12,7 @@ export * from './library';
 function defineConfig(
   userConfigPromise?: DefineConfig,
   type: 'application' | 'auto' | 'library' = 'auto',
-): VbenViteConfig {
+): TamanViteConfig {
   let projectType = type;
 
   // Auto-detect application vs library from presence of index.html

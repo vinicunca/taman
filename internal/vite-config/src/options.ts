@@ -8,7 +8,7 @@ function getDefaultPwaOptions(name: string): Partial<PwaPluginOptions> {
   return {
     manifest: {
       description:
-      'Vben Admin is a modern admin dashboard template based on Vue 3. ',
+      'Taman Admin is a modern admin dashboard template based on Vue 3. ',
       icons: [
         {
           sizes: '192x192',

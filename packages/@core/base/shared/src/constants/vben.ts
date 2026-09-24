@@ -9,13 +9,13 @@ export const VBEN_GITHUB_URL = 'https://github.com/vbenjs/vue-vben-admin';
 export const VBEN_DOC_URL = 'https://doc.vben.pro';
 
 /**
- * Vben logo URL
+ * Taman logo URL
  */
 export const VBEN_LOGO_URL
   = 'https://unpkg.com/@vbenjs/static-source@0.1.7/source/logo-v1.webp';
 
 /**
- * Vben Admin homepage URL
+ * Taman Admin homepage URL
  */
 export const VBEN_PREVIEW_URL = 'https://www.vben.pro';
 

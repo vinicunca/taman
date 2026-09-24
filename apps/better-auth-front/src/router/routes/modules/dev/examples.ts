@@ -152,15 +152,6 @@ const routes: Array<RouteRecordRaw> = [
           title: $t('examples.button-group.title'),
         },
       },
-      {
-        name: 'TiptapExample',
-        path: 'tiptap',
-        component: () => import('#/views/examples/tiptap/index.vue'),
-        meta: {
-          icon: 'lucide:square-pen',
-          title: $t('examples.tiptap.title'),
-        },
-      },
     ],
   },
 ];
