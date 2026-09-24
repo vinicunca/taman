@@ -229,9 +229,9 @@ passthrough).
 getTodoPublisher(): Publisher<Record<`todo:${string}`, TodoEvent>>
 ```
 
-- Returns a `DurablePublisher` (from `@orpc/cloudflare`) when the Durable
+- Returns a `DurablePublisher` (from `@orpc/experimental-publisher-durable-object`) when the Durable
   Object namespace binding is present in the Worker env, else a process-wide
-  `MemoryPublisher` with `resume: { enabled: true }`.
+  `MemoryPublisher` (`@orpc/experimental-publisher/memory`) with `resumeRetentionSeconds: 300`.
 - `todo.live`:
   ```ts
   async function* ({ context, signal, lastEventId }) {
@@ -332,10 +332,12 @@ views/examples/orpc/
 - `pnpm publish` rewrites `catalog:` / `workspace:` protocols.
 - Versions in **lockstep**. Root script `release:api`: bump both (`bumpp`) →
   build → `publint` + `attw` → `pnpm -r publish --filter` both packages.
-- `@orpc/*` pinned to a single version in the pnpm catalog. `@orpc/cloudflare`
-  and `@orpc/publisher` are at 1.14.11 while core is 1.15.4, and
-  `@orpc/cloudflare` pins `@orpc/client@1.14.11`; if mixing causes type
-  conflicts, pin every `@orpc/*` to 1.14.11. The 2.0 beta is not used.
+- Every `@orpc/*` pinned to exactly `1.15.4` in the pnpm catalog:
+  `contract`, `server`, `client`, `tanstack-query`, `experimental-publisher`,
+  `experimental-publisher-durable-object`. (Amended 2026-09-24 during
+  execution: `@orpc/publisher` / `@orpc/cloudflare` and every `@orpc/*@1.14.11`
+  are npm-deprecated as "Published by mistake (contains v2 code)"; the genuine
+  1.x pub/sub packages are the `experimental-*` ones.) The 2.0 beta is not used.
 
 ## 9. Testing & verification
 
