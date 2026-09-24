@@ -6,10 +6,13 @@
   },
   "scripts": {},
   "dependencies": {
+    "@orpc/experimental-publisher": "catalog:",
+    "@orpc/server": "catalog:",
     "@taman/constants": "workspace:*",
     "@taman/db-pg": "workspace:*",
     "@taman/rbac": "workspace:*",
     "@vinicunca/perkakas": "catalog:",
+    "@vinicunca/taman-api-contract": "workspace:*",
     "better-auth": "catalog:",
     "consola": "catalog:",
     "csv": "catalog:",
