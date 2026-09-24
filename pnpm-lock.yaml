@@ -197,6 +197,9 @@ catalogs:
     '@manypkg/get-packages':
       specifier: ^3.1.0
       version: 3.1.0
+    '@orpc/client':
+      specifier: 1.15.4
+      version: 1.15.4
     '@orpc/contract':
       specifier: 1.15.4
       version: 1.15.4
@@ -206,12 +209,18 @@ catalogs:
     '@orpc/server':
       specifier: 1.15.4
       version: 1.15.4
+    '@orpc/tanstack-query':
+      specifier: 1.15.4
+      version: 1.15.4
     '@playwright/test':
       specifier: ^1.63.0
       version: 1.63.0
     '@pnpm/workspace.read-manifest':
       specifier: ^1000.3.1
       version: 1000.3.1
+    '@tanstack/query-core':
+      specifier: ^5.103.2
+      version: 5.103.2
     '@tanstack/store':
       specifier: ^0.11.1
       version: 0.11.1
@@ -392,9 +401,6 @@ catalogs:
     nx:
       specifier: 23.2.1
       version: 23.2.1
-    ofetch:
-      specifier: ^1.5.1
-      version: 1.5.1
     ora:
       specifier: ^9.4.1
       version: 9.4.1
@@ -647,6 +653,9 @@ importers:
       '@types/node':
         specifier: 'catalog:'
         version: 26.6.2
+      '@vinicunca/taman-request':
+        specifier: workspace:*
+        version: link:../../packages/effects/request
       nitro:
         specifier: 'catalog:'
         version: 3.0.260903-beta
@@ -710,9 +719,6 @@ importers:
       '@taman/rbac':
         specifier: workspace:*
         version: link:../../packages/rbac
-      '@taman/request':
-        specifier: workspace:*
-        version: link:../../packages/effects/request
       '@taman/stores':
         specifier: workspace:*
         version: link:../../packages/stores
@@ -728,6 +734,9 @@ importers:
       '@vinicunca/perkakas':
         specifier: 'catalog:'
         version: 1.17.1
+      '@vinicunca/taman-request':
+        specifier: workspace:*
+        version: link:../../packages/effects/request
       '@vueuse/core':
         specifier: 'catalog:'
         version: 15.0.0(vue@3.5.43(typescript@6.0.3))
@@ -1383,9 +1392,25 @@ importers:
 
   packages/effects/request:
     dependencies:
-      ofetch:
+      '@orpc/client':
         specifier: 'catalog:'
-        version: 1.5.1
+        version: 1.15.4
+      '@orpc/tanstack-query':
+        specifier: 'catalog:'
+        version: 1.15.4(@orpc/client@1.15.4)(@tanstack/query-core@5.103.2)
+      '@vinicunca/taman-api-contract':
+        specifier: workspace:^
+        version: link:../../api-contract
+    devDependencies:
+      '@orpc/server':
+        specifier: 'catalog:'
+        version: 1.15.4(crossws@0.4.12(srvx@1.0.5))(ws@8.21.1)
+      '@tanstack/query-core':
+        specifier: 'catalog:'
+        version: 5.103.2
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
 
   packages/locales:
     dependencies:
@@ -3819,6 +3844,12 @@ packages:
 
   '@orpc/standard-server@1.15.4':
     resolution: {integrity: sha512-woaFpUJavYPiqRQ0Eh716jOHRZ7o84mPpmEPS79bBUJNDilGEj2OBSjbHV2ez4FYdVnEnlbg+rYy7sX3PwwENA==}
+
+  '@orpc/tanstack-query@1.15.4':
+    resolution: {integrity: sha512-oP4XuCI5AuelIhhv722sGXzZNYTH4Y6ueS4H4TtIICdG9Q6tJeiERqyEk0dm3ebh3yo+iM/NVmcRkpUrgzIZzw==}
+    peerDependencies:
+      '@orpc/client': 1.15.4
+      '@tanstack/query-core': '>=5.80.2'
 
   '@ota-meshi/ast-token-store@0.3.0':
     resolution: {integrity: sha512-XRO0zi2NIUKq2lUk3T1ecFSld1fMWRKE6naRFGkgkdeosx7IslyUKNv5Dcb5PJTja9tHJoFu0v/7yEpAkrkrTg==}
@@ -15235,6 +15266,14 @@ snapshots:
   '@orpc/standard-server@1.15.4':
     dependencies:
       '@orpc/shared': 1.15.4
+    transitivePeerDependencies:
+      - '@opentelemetry/api'
+
+  '@orpc/tanstack-query@1.15.4(@orpc/client@1.15.4)(@tanstack/query-core@5.103.2)':
+    dependencies:
+      '@orpc/client': 1.15.4
+      '@orpc/shared': 1.15.4
+      '@tanstack/query-core': 5.103.2
     transitivePeerDependencies:
       - '@opentelemetry/api'
 

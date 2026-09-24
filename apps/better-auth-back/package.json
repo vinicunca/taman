@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@types/node": "catalog:",
+    "@vinicunca/taman-request": "workspace:*",
     "nitro": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
