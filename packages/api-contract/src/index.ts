@@ -1,8 +1,7 @@
 import type {
-  ClientContext,
-  InferRouterContractInputs,
-  InferRouterContractOutputs,
-  RouterContractClient,
+  ContractRouterClient,
+  InferContractRouterInputs,
+  InferContractRouterOutputs,
 } from '@orpc/contract';
 import { menuContract } from './menu/menu.contract';
 import { todoContract } from './todo/todo.contract';
@@ -13,10 +12,11 @@ export const contract = {
 };
 
 export type TamanContract = typeof contract;
-export type TamanInputs = InferRouterContractInputs<TamanContract>;
-export type TamanOutputs = InferRouterContractOutputs<TamanContract>;
-export type TamanClient<TClientContext extends ClientContext = Record<never, never>>
-  = RouterContractClient<TamanContract, TClientContext>;
+export type TamanInputs = InferContractRouterInputs<TamanContract>;
+export type TamanOutputs = InferContractRouterOutputs<TamanContract>;
+/** `TClientContext` is the client's per-call context (e.g. retry options); same shape as oRPC's `ClientContext`. */
+export type TamanClient<TClientContext extends Record<PropertyKey, any> = Record<never, never>>
+  = ContractRouterClient<TamanContract, TClientContext>;
 
 export * from './menu/menu.contract';
 export * from './shared/errors';

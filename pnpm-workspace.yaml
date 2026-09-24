@@ -61,12 +61,12 @@ catalog:
   '@jspm/generator': ^2.16.3
   '@lucide/vue': ^1.47.0
   '@manypkg/get-packages': ^3.1.0
-  '@orpc/client': 1.14.11
-  '@orpc/cloudflare': 1.14.11
-  '@orpc/contract': 1.14.11
-  '@orpc/publisher': 1.14.11
-  '@orpc/server': 1.14.11
-  '@orpc/tanstack-query': 1.14.11
+  '@orpc/client': 1.15.4
+  '@orpc/contract': 1.15.4
+  '@orpc/experimental-publisher': 1.15.4
+  '@orpc/experimental-publisher-durable-object': 1.15.4
+  '@orpc/server': 1.15.4
+  '@orpc/tanstack-query': 1.15.4
   '@playwright/test': ^1.63.0
   '@pnpm/workspace.read-manifest': ^1000.3.1
   '@tanstack/query-core': ^5.103.2
