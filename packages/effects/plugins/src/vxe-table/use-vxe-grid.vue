@@ -40,8 +40,6 @@ import { extendProxyOptions } from './extends';
 import { useTableForm } from './init';
 import { applyViewedRowOptions, useViewedRow } from './use-viewed-row';
 
-import 'vxe-table/styles/cssvar.scss';
-import 'vxe-pc-ui/styles/cssvar.scss';
 import './style.css';
 
 interface Props extends VxeGridProps {

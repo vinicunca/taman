@@ -26,27 +26,39 @@ function handleClear() {
   modelValue.value = undefined;
 }
 </script>
+
 <template>
   <Select v-model="modelValue">
-    <SelectTrigger :class="props.class" class="flex w-full items-center">
-      <SelectValue class="flex-auto text-left" :placeholder="placeholder" />
+    <SelectTrigger
+      :class="props.class"
+      class="flex w-full items-center"
+    >
+      <SelectValue
+        class="text-left flex-auto"
+        :placeholder="placeholder"
+      />
       <CircleX
-        @pointerdown.stop
-        @click.stop.prevent="handleClear"
         v-if="allowClear && modelValue"
         data-clear-button
-        class="mr-1 size-4 cursor-pointer opacity-50 hover:opacity-100"
+        class="mr-1 opacity-50 size-4 cursor-pointer hover:opacity-100"
+        @pointerdown.stop
+        @click.stop.prevent="handleClear"
       />
     </SelectTrigger>
     <SelectContent>
-      <template v-for="item in options" :key="item.value">
-        <SelectItem :value="item.value"> {{ item.label }} </SelectItem>
+      <template
+        v-for="item in options"
+        :key="item.value"
+      >
+        <SelectItem :value="item.value">
+          {{ item.label }}
+        </SelectItem>
       </template>
     </SelectContent>
   </Select>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 button[role='combobox'][data-placeholder] {
   color: hsl(var(--muted-foreground));
 }

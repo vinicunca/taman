@@ -2,6 +2,7 @@ import { relations, sql } from 'drizzle-orm';
 import {
   boolean,
   index,
+  integer,
   pgTable,
   text,
   timestamp,
@@ -41,6 +42,7 @@ const sessionTable = pgTable(
       .references(() => userTable.id, { onDelete: 'cascade' }),
     impersonatedBy: text('impersonated_by'),
     activeOrganizationId: text('active_organization_id'),
+    activeTeamId: text('active_team_id'),
 
     ...generateTimestampColumns(),
   },
@@ -101,6 +103,7 @@ const teamTable = pgTable(
     organizationId: uuid('organization_id')
       .notNull()
       .references(() => organizationTable.id, { onDelete: 'cascade' }),
+    memberCount: integer('member_count').default(0).notNull(),
     ...generateTimestampColumns(),
   },
   (table) => [index('team_organizationId_idx').on(table.organizationId)],
@@ -116,6 +119,7 @@ const teamMemberTable = pgTable(
     userId: uuid('user_id')
       .notNull()
       .references(() => userTable.id, { onDelete: 'cascade' }),
+    membershipKey: text('membership_key').unique(),
     ...generateTimestampColumns(),
   },
   (table) => [

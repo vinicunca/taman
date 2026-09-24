@@ -40,7 +40,6 @@
     "@tanstack/vue-query": "catalog:",
     "@vben/icons": "workspace:*",
     "@vben/plugins": "workspace:*",
-    "@vben/request": "workspace:*",
     "@vinicunca/perkakas": "catalog:",
     "@vueuse/core": "catalog:",
     "ag-grid-community": "catalog:",

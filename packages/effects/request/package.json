@@ -1,5 +1,5 @@
 {
-  "name": "@vben/request",
+  "name": "@taman/request",
   "type": "module",
   "version": "1.0.0",
   "exports": {
@@ -9,13 +9,6 @@
     }
   },
   "dependencies": {
-    "@taman/locales": "workspace:*",
-    "@taman/utils": "workspace:*",
-    "axios": "catalog:",
-    "qs": "catalog:"
-  },
-  "devDependencies": {
-    "@types/qs": "catalog:",
-    "axios-mock-adapter": "catalog:"
+    "ofetch": "catalog:"
   }
 }

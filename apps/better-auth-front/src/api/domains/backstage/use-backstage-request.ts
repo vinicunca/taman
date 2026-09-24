@@ -1,4 +1,4 @@
-import type { ApiError, RequestOptions } from '@taman/request';
+import type { ApiError, RequestOptions } from '../../../../../../packages/effects/request/src';
 import type {
   MutationOptions,
   UseQueryOptions,

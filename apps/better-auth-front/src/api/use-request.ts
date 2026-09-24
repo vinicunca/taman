@@ -1,6 +1,6 @@
-import type { RequestOptions } from '@taman/request';
+import type { RequestOptions } from '../../../../packages/effects/request/src';
 import { useAppTamanConfig } from '@taman/composables';
-import { createFetchClient } from '@taman/request';
+import { createFetchClient } from '../../../../packages/effects/request/src';
 
 const { apiUrl } = useAppTamanConfig(
   import.meta.env,

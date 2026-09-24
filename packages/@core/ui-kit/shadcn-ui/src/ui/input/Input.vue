@@ -2,7 +2,6 @@
 import type { HTMLAttributes } from 'vue';
 
 import { cn } from '@taman-core/shared/utils';
-
 import { useVModel } from '@vueuse/core';
 
 const props = defineProps<{
@@ -30,9 +29,10 @@ const modelValue = useVModel(props, 'modelValue', emits, {
         props.class,
       )
     "
-  />
+  >
 </template>
-<style lang="scss" scoped>
+
+<style lang="postcss" scoped>
 input {
   --ring: var(--primary);
 

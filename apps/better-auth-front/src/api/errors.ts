@@ -9,8 +9,7 @@ interface FetchErrorLike {
 
 /**
  * Known HTTP status → i18n fallback message, used only when the error
- * itself carries no specific `message` (mirrors the old axios
- * `errorMessageResponseInterceptor`'s status switch).
+ * itself carries no specific `message`.
  */
 // TODO: move these status numbers into the locale's JSON instead.
 const HTTP_STATUS_MESSAGE_KEYS: Record<number, string> = {

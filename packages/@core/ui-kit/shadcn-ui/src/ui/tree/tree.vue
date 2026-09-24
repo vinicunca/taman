@@ -1,17 +1,14 @@
 <script lang="ts" setup>
+import type { ClassType, Recordable } from '@taman-core/typings';
 import type { Arrayable } from '@vueuse/core';
 import type { FlattenedItem } from 'reka-ui';
 
-import type { ClassType, Recordable } from '@taman-core/typings';
-
 import type { TreeProps } from './types';
-
-import { computed, onMounted, ref, watchEffect } from 'vue';
 
 import { ChevronRight, IconifyIcon } from '@taman-core/icons';
 import { cn, get } from '@taman-core/shared/utils';
-
 import { TreeItem, TreeRoot } from 'reka-ui';
+import { computed, onMounted, ref, watchEffect } from 'vue';
 
 import { Checkbox } from '../checkbox';
 import { treePropsDefaults } from './types';
@@ -28,18 +25,18 @@ interface InnerFlattenItem<T = Recordable<any>, P = number | string> {
   id: P;
   level: number;
   parentId: null | P;
-  parents: P[];
+  parents: Array<P>;
   value: T;
 }
 
 function flatten<T = Recordable<any>, P = number | string>(
-  items: T[],
+  items: Array<T>,
   childrenField: string = 'children',
   level = 0,
   parentId: null | P = null,
-  parents: P[] = [],
-): InnerFlattenItem<T, P>[] {
-  const result: InnerFlattenItem<T, P>[] = [];
+  parents: Array<P> = [],
+): Array<InnerFlattenItem<T, P>> {
+  const result: Array<InnerFlattenItem<T, P>> = [];
   items.forEach((item) => {
     const children = get(item, childrenField) as Array<T>;
     const id = get(item, props.valueField) as P;
@@ -52,10 +49,11 @@ function flatten<T = Recordable<any>, P = number | string>(
       value: item,
     };
     result.push(val);
-    if (val.hasChildren)
+    if (val.hasChildren) {
       result.push(
         ...flatten(children, childrenField, level + 1, id, [...parents, id]),
       );
+    }
   });
   return result;
 }
@@ -79,8 +77,8 @@ onMounted(() => {
     if (lastTreeData !== currentTreeData) {
       lastTreeData = currentTreeData;
       if (
-        props.defaultExpandedLevel !== undefined &&
-        props.defaultExpandedLevel > 0
+        props.defaultExpandedLevel !== undefined
+        && props.defaultExpandedLevel > 0
       ) {
         expandToLevel(props.defaultExpandedLevel);
       }
@@ -135,7 +133,7 @@ function updateModelValue(val: Arrayable<Recordable<any>>) {
 }
 
 function expandToLevel(level: number) {
-  const keys: string[] = [];
+  const keys: Array<string> = [];
   flattenData.value.forEach((item) => {
     if (item.level <= level - 1) {
       keys.push(get(item.value, props.valueField));
@@ -152,7 +150,9 @@ function collapseNodes(value: Arrayable<number | string>) {
 function expandNodes(value: Arrayable<number | string>) {
   const keys = [...(Array.isArray(value) ? value : [value])];
   keys.forEach((key) => {
-    if (expanded.value.includes(key)) return;
+    if (expanded.value.includes(key)) {
+      return;
+    }
     const item = getItemByValue(key);
     if (item) {
       expanded.value.push(key);
@@ -171,7 +171,9 @@ function collapseAll() {
 }
 
 function checkAll() {
-  if (!props.multiple) return;
+  if (!props.multiple) {
+    return;
+  }
   modelValue.value = [
     ...new Set(
       flattenData.value
@@ -183,7 +185,9 @@ function checkAll() {
 }
 
 function unCheckAll() {
-  if (!props.multiple) return;
+  if (!props.multiple) {
+    return;
+  }
   modelValue.value = [];
   updateTreeValue();
 }
@@ -194,19 +198,27 @@ function isNodeDisabled(item: FlattenedItem<Recordable<any>>) {
 
 // Compute select-all / indeterminate state
 const selectAllStatus = computed<'indeterminate' | boolean>(() => {
-  if (!props.multiple) return false;
-  if (!modelValue.value || !Array.isArray(modelValue.value)) return false;
+  if (!props.multiple) {
+    return false;
+  }
+  if (!modelValue.value || !Array.isArray(modelValue.value)) {
+    return false;
+  }
 
   const allValues = flattenData.value
     .filter((item) => !get(item.value, props.disabledField))
     .map((item) => get(item.value, props.valueField));
 
   const selectedCount = allValues.filter((v) =>
-    (modelValue.value as (number | string)[]).includes(v),
+    (modelValue.value as Array<number | string>).includes(v),
   ).length;
 
-  if (selectedCount === 0) return false;
-  if (selectedCount === allValues.length) return true;
+  if (selectedCount === 0) {
+    return false;
+  }
+  if (selectedCount === allValues.length) {
+    return true;
+  }
   return 'indeterminate';
 });
 
@@ -227,10 +239,10 @@ function onSelect(item: FlattenedItem<Recordable<any>>, isSelected: boolean) {
   }
 
   if (
-    !props.checkStrictly &&
-    props.multiple &&
-    props.autoCheckParent &&
-    isSelected
+    !props.checkStrictly
+    && props.multiple
+    && props.autoCheckParent
+    && isSelected
   ) {
     flattenData.value
       .find((i) => {
@@ -238,7 +250,8 @@ function onSelect(item: FlattenedItem<Recordable<any>>, isSelected: boolean) {
           get(i.value, props.valueField) === get(item.value, props.valueField)
         );
       })
-      ?.parents?.filter((item) => !get(item, props.disabledField))
+      ?.parents
+      ?.filter((item) => !get(item, props.disabledField))
       ?.forEach((p) => {
         if (Array.isArray(modelValue.value) && !modelValue.value.includes(p)) {
           modelValue.value.push(p);
@@ -246,10 +259,10 @@ function onSelect(item: FlattenedItem<Recordable<any>>, isSelected: boolean) {
       });
   }
   if (
-    !props.checkStrictly &&
-    props.multiple &&
-    props.autoCheckParent &&
-    !isSelected
+    !props.checkStrictly
+    && props.multiple
+    && props.autoCheckParent
+    && !isSelected
   ) {
     flattenData.value
       .find((i) => {
@@ -257,20 +270,21 @@ function onSelect(item: FlattenedItem<Recordable<any>>, isSelected: boolean) {
           get(i.value, props.valueField) === get(item.value, props.valueField)
         );
       })
-      ?.parents?.filter((item) => !get(item, props.disabledField))
+      ?.parents
+      ?.filter((item) => !get(item, props.disabledField))
       ?.toReversed()
       .forEach((p) => {
         const children = flattenData.value.filter((i) => {
           return (
-            i.parents.length > 0 &&
-            i.parents.includes(p) &&
-            i.id !== item._id &&
-            i.parentId === p
+            i.parents.length > 0
+            && i.parents.includes(p)
+            && i.id !== item._id
+            && i.parentId === p
           );
         });
         if (Array.isArray(modelValue.value)) {
           const hasSelectedChild = children.some((child) =>
-            (modelValue.value as unknown[]).includes(
+            (modelValue.value as Array<unknown>).includes(
               get(child.value, props.valueField),
             ),
           );
@@ -298,20 +312,20 @@ defineExpose({
   getItemByValue,
 });
 </script>
+
 <template>
   <TreeRoot
+    v-model:expanded="expanded as string[]"
+    v-slot="{ flattenItems }"
     :get-key="(item) => get(item, valueField)"
     :get-children="(item) => get(item, childrenField)"
     :items="treeData"
     :model-value="treeValue"
-    v-model:expanded="expanded as string[]"
     :default-expanded="defaultExpandedKeys as string[]"
     :propagate-select="!checkStrictly"
     :multiple="multiple"
     :disabled="disabled"
     :selection-behavior="allowClear || multiple ? 'toggle' : 'replace'"
-    @update:model-value="updateModelValue"
-    v-slot="{ flattenItems }"
     :class="
       cn(
         'text-blackA11 container list-none rounded-lg text-sm font-medium select-none',
@@ -319,30 +333,31 @@ defineExpose({
         bordered ? 'border' : '',
       )
     "
+    @update:model-value="updateModelValue"
   >
     <div
+      v-if="$slots.header"
       :class="
         cn('my-0.5 flex w-full items-center p-1', bordered ? 'border-b' : '')
       "
-      v-if="$slots.header"
     >
-      <slot name="header"> </slot>
+      <slot name="header" />
     </div>
     <div
+      v-if="treeData.length > 0"
       :class="
         cn('my-0.5 flex w-full items-center p-1', bordered ? 'border-b' : '')
       "
-      v-if="treeData.length > 0"
     >
       <div
-        class="flex size-5 flex-1 cursor-pointer items-center"
+        class="flex flex-1 size-5 cursor-pointer items-center"
         @click="() => (expanded?.length > 0 ? collapseAll() : expandAll())"
       >
         <ChevronRight
           :class="{ 'rotate-90': expanded?.length > 0 }"
-          class="color-text/80 hover:color-text size-4 cursor-pointer transition"
+          class="color-text/80 size-4 cursor-pointer transition hover:color-text"
         />
-        <div class="flex items-center gap-1 item-all-checkbox">
+        <div class="item-all-checkbox flex gap-1 items-center">
           <Checkbox
             v-if="multiple"
             :model-value="selectAllStatus"
@@ -378,6 +393,7 @@ defineExpose({
             disabled: isNodeDisabled(item),
           })
         "
+        class="tree-node focus:ring-grass8 my-0.5 p-1 outline-hidden rounded flex items-center"
         @select="
           (event: any) => {
             if (isNodeDisabled(item)) {
@@ -399,16 +415,15 @@ defineExpose({
             !isNodeDisabled(item) && onToggle(item);
           }
         "
-        class="tree-node focus:ring-grass8 my-0.5 flex items-center rounded p-1 outline-hidden"
       >
         <!-- class="hover:ring-2" 2px ring border on hover -->
         <ChevronRight
           v-if="
-            item.hasChildren &&
-            Array.isArray(item.value[childrenField]) &&
-            item.value[childrenField].length > 0
+            item.hasChildren
+              && Array.isArray(item.value[childrenField])
+              && item.value[childrenField].length > 0
           "
-          class="color-text/80 hover:color-text size-4 cursor-pointer transition"
+          class="color-text/80 size-4 cursor-pointer transition hover:color-text"
           :class="{ 'rotate-90': isExpanded }"
           @click.stop="
             () => {
@@ -417,8 +432,11 @@ defineExpose({
             }
           "
         />
-        <div v-else class="h-4 w-4"></div>
-        <div class="flex items-center gap-1 item-checkbox">
+        <div
+          v-else
+          class="h-4 w-4"
+        />
+        <div class="item-checkbox flex gap-1 items-center">
           <Checkbox
             v-if="multiple"
             :model-value="isSelected && !isNodeDisabled(item)"
@@ -436,7 +454,7 @@ defineExpose({
             "
           />
           <div
-            class="flex items-center gap-1 item-checkbox"
+            class="item-checkbox flex gap-1 items-center"
             :title="get(item.value, labelField)"
             @click="
               (event: MouseEvent) => {
@@ -449,30 +467,34 @@ defineExpose({
               }
             "
           >
-            <slot name="node" v-bind="item">
+            <slot
+              name="node"
+              v-bind="item"
+            >
               <IconifyIcon
-                class="size-4"
                 v-if="showIcon && get(item.value, iconField)"
+                class="size-4"
                 :icon="get(item.value, iconField)"
               />
               {{ get(item.value, labelField) }}
             </slot>
           </div>
         </div>
-        <div class="h-4 w-4"></div>
+        <div class="h-4 w-4" />
       </TreeItem>
     </TransitionGroup>
     <div
+      v-if="$slots.footer"
       :class="
         cn('my-0.5 flex w-full items-center p-1', bordered ? 'border-t' : '')
       "
-      v-if="$slots.footer"
     >
-      <slot name="footer"> </slot>
+      <slot name="footer" />
     </div>
   </TreeRoot>
 </template>
-<style lang="scss" scoped>
+
+<style lang="postcss" scoped>
 .container {
   position: relative;
   padding: 0;

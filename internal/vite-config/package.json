@@ -49,8 +49,6 @@
     "dayjs": "catalog:",
     "dotenv": "catalog:",
     "rollup-plugin-visualizer": "catalog:",
-    "sass": "catalog:",
-    "sass-embedded": "catalog:",
     "unocss": "catalog:",
     "unplugin-dts": "catalog:",
     "vite": "catalog:",

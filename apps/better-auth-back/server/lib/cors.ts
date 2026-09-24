@@ -35,6 +35,7 @@ export function createCorsOptions(
       'Authorization',
     ],
     credentials: true,
+    exposeHeaders: [],
     maxAge: '86400',
     methods: [
       'GET',

@@ -1,7 +1,7 @@
+import { fileURLToPath } from 'node:url';
 import Vue from '@vitejs/plugin-vue';
 import VueJsx from '@vitejs/plugin-vue-jsx';
 import vitePohon from 'pohon-ui/vite';
-import { fileURLToPath } from 'node:url';
 import { configDefaults, defineConfig } from 'vitest/config';
 
 const NUXT_ICON_STUB_ID = 'virtual:vitest-nuxt-icon';

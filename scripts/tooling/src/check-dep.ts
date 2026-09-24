@@ -13,8 +13,6 @@ const DEFAULT_CONFIG = {
   ignore: ['dist/**', 'docs/**', 'node_modules/**', 'public/**'],
   ignoreBinaries: [] as Array<string>,
   ignoreDependencies: [
-    '@iconify/json',
-    '@vben-core/design',
     '@taman/commitlint-config',
     '@vinicunca/eslint-config',
     '@taman/vite-config',

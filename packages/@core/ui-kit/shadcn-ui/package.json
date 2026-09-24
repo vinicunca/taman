@@ -42,7 +42,6 @@
     "@taman-core/icons": "workspace:*",
     "@taman-core/shared": "workspace:*",
     "@taman-core/typings": "workspace:*",
-    "@vben-core/design": "workspace:*",
     "@vueuse/core": "catalog:",
     "class-variance-authority": "catalog:",
     "reka-ui": "catalog:",
