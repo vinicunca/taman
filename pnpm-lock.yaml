@@ -194,12 +194,12 @@ catalogs:
     '@jspm/generator':
       specifier: ^2.16.3
       version: 2.16.3
-    '@lucide/vue':
-      specifier: ^1.47.0
-      version: 1.47.0
     '@manypkg/get-packages':
       specifier: ^3.1.0
       version: 3.1.0
+    '@orpc/contract':
+      specifier: 1.14.11
+      version: 1.14.11
     '@playwright/test':
       specifier: ^1.63.0
       version: 1.63.0
@@ -305,9 +305,6 @@ catalogs:
     circular-dependency-scanner:
       specifier: ^3.1.0
       version: 3.1.0
-    class-variance-authority:
-      specifier: ^0.7.1
-      version: 0.7.1
     commitlint-plugin-function-rules:
       specifier: ^5.0.1
       version: 5.0.1
@@ -419,9 +416,6 @@ catalogs:
     qs:
       specifier: ^6.16.0
       version: 6.16.0
-    reka-ui:
-      specifier: ^2.9.8
-      version: 2.10.1
     resolve.exports:
       specifier: ^2.0.3
       version: 2.0.3
@@ -467,9 +461,6 @@ catalogs:
     uuid:
       specifier: ^14.0.2
       version: 14.0.2
-    vee-validate:
-      specifier: ^4.15.1
-      version: 4.15.1
     vite:
       specifier: 8.3.0
       version: 8.3.0
@@ -1150,36 +1141,6 @@ importers:
         specifier: 'catalog:'
         version: 8.0.0(@types/node@26.6.2)(esbuild@0.28.1)(jiti@2.7.0)(rolldown@1.2.4)(rollup@4.62.2)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(tsx@4.23.15)(vue@3.5.43(typescript@6.0.3))(webpack@5.108.4(clean-css@5.3.3)(esbuild@0.28.1)(html-minifier-terser@7.2.0)(lightningcss@1.33.0)(postcss@8.5.26))(yaml@2.9.0)
 
-  packages/@core/ui-kit/shadcn-ui:
-    dependencies:
-      '@lucide/vue':
-        specifier: 'catalog:'
-        version: 1.47.0(vue@3.5.43(typescript@6.0.3))
-      '@taman-core/composables':
-        specifier: workspace:*
-        version: link:../../composables
-      '@taman-core/shared':
-        specifier: workspace:*
-        version: link:../../base/shared
-      '@taman-core/typings':
-        specifier: workspace:*
-        version: link:../../base/typings
-      '@vueuse/core':
-        specifier: 'catalog:'
-        version: 15.0.0(vue@3.5.43(typescript@6.0.3))
-      class-variance-authority:
-        specifier: 'catalog:'
-        version: 0.7.1
-      reka-ui:
-        specifier: 'catalog:'
-        version: 2.10.1(vue@3.5.43(typescript@6.0.3))
-      vee-validate:
-        specifier: 'catalog:'
-        version: 4.15.1(vue@3.5.43(typescript@6.0.3))
-      vue:
-        specifier: ^3.5.43
-        version: 3.5.43(typescript@6.0.3)
-
   packages/@core/ui-kit/tabs-ui:
     dependencies:
       '@taman-core/composables':
@@ -1191,9 +1152,6 @@ importers:
       '@taman-core/typings':
         specifier: workspace:*
         version: link:../../base/typings
-      '@vben-core/shadcn-ui':
-        specifier: workspace:*
-        version: link:../shadcn-ui
       '@vueuse/core':
         specifier: 'catalog:'
         version: 15.0.0(vue@3.5.43(typescript@6.0.3))
@@ -1234,6 +1192,19 @@ importers:
       '@vue/test-utils':
         specifier: 'catalog:'
         version: 2.5.1(@vue/compiler-dom@3.5.43)(@vue/server-renderer@3.5.43)(vue@3.5.43(typescript@6.0.3))
+
+  packages/api-contract:
+    dependencies:
+      '@orpc/contract':
+        specifier: 'catalog:'
+        version: 1.14.11
+      zod:
+        specifier: 'catalog:'
+        version: 4.6.5
+    devDependencies:
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
 
   packages/constants:
     dependencies:
@@ -1336,9 +1307,6 @@ importers:
       '@taman/types':
         specifier: workspace:*
         version: link:../../types
-      '@vben-core/shadcn-ui':
-        specifier: workspace:*
-        version: link:../../@core/ui-kit/shadcn-ui
       '@vueuse/core':
         specifier: 'catalog:'
         version: 15.0.0(vue@3.5.43(typescript@6.0.3))
@@ -3642,11 +3610,6 @@ packages:
     peerDependencies:
       solid-js: ^1.8.8
 
-  '@lucide/vue@1.47.0':
-    resolution: {integrity: sha512-S0/UX9zra4Z8xmqrA1MH5GiSKA8daAPFwkmORt/u+gUHAkYZoeOcr+DH3scZeyE9bdLWScGK+MJoDYi8rIU5Jg==}
-    peerDependencies:
-      vue: ^3.5.43
-
   '@manypkg/find-root@3.1.0':
     resolution: {integrity: sha512-BcSqCyKhBVZ5YkSzOiheMCV41kqAFptW6xGqYSTjkVTl9XQpr+pqHhwgGCOHQtjDCv7Is6EFyA14Sm5GVbVABA==}
     engines: {node: '>=20.0.0'}
@@ -3779,6 +3742,23 @@ packages:
   '@opentelemetry/semantic-conventions@1.43.0':
     resolution: {integrity: sha512-eSYWTm620tTk45EKSedaUL8MFYI8hW164hIXsgIHyxu3VobUB3fFCu5t0hQby6OoWRPsG1KkKUG2M5UadiLiVg==}
     engines: {node: '>=14'}
+
+  '@orpc/client@1.14.11':
+    resolution: {integrity: sha512-ZD2r8x07bycoqI/nGGFmIR1n4m/Mf2TsfVTPtuo5djKfWfSXmQPPAXhZsO6CN3eF+sl6g4sa5/fe1/T5zQoE1w==}
+    deprecated: Published by mistake (contains v2 code). Please upgrade to 1.14.12 or v2.
+
+  '@orpc/contract@1.14.11':
+    resolution: {integrity: sha512-TM5Bw5adKuxMUJWENYzVwaDVN8eamwF/+PV5xkCGCaKuyZXHlWCDFhoGOQN8ybbrEtlReT/QPUtDclLhM9Ny1A==}
+    deprecated: Published by mistake (contains v2 code). Please upgrade to 1.14.12 or v2.
+
+  '@orpc/shared@1.14.11':
+    resolution: {integrity: sha512-TNDa578Deju+vrCWEE/IbnDDsE/x2aEfOYVLUy+YPusZ9gx3FagcS9uxaBkJ2bdMrHEo1n5P0SjKdiEQttj9CQ==}
+    deprecated: Published by mistake (contains v2 code). Please upgrade to 1.14.12 or v2.
+    peerDependencies:
+      '@opentelemetry/api': '>=1.9.0'
+    peerDependenciesMeta:
+      '@opentelemetry/api':
+        optional: true
 
   '@ota-meshi/ast-token-store@0.3.0':
     resolution: {integrity: sha512-XRO0zi2NIUKq2lUk3T1ecFSld1fMWRKE6naRFGkgkdeosx7IslyUKNv5Dcb5PJTja9tHJoFu0v/7yEpAkrkrTg==}
@@ -5097,6 +5077,22 @@ packages:
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
 
+  '@standardserver/core@0.5.0':
+    resolution: {integrity: sha512-c6vIXiJtQNVHm0G8vJCCdZ7G4ObgWj71n89HvKvVR5RnajxEEb+wVcIn10rvrMJmd9sR9RtHR6HCubeCFY214A==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+
+  '@standardserver/fetch@0.5.0':
+    resolution: {integrity: sha512-0Sosn0v2Cl2Vhcc1st2FKGxwdK0qPq84K40TtZFAePLGq+Zu6hJZ4VsrwOWfm3S7iZ0EeRo9OByp0oUhm8NiPw==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+
+  '@standardserver/peer@0.5.0':
+    resolution: {integrity: sha512-gsOgvknhj8XirAqJksDZlrzkppGU2WH4PyxzISwfG8Ug3TJyOYwWvNCY81HNe5PJWjDdelIkgHSyjb2apkN2CA==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+
+  '@standardserver/shared@0.5.0':
+    resolution: {integrity: sha512-YPkkdqyKQ+6tvtP2pPLzIIrvhjrsvnI006tTTSWqFc2US6X8r1zfYVhfHf9Zpn4HsdhyhwpWwF4fIsN+nlr1Ow==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+
   '@stylistic/eslint-plugin@5.10.0':
     resolution: {integrity: sha512-nPK52ZHvot8Ju/0A4ucSX1dcPV2/1clx0kLcH5wDmrE4naKso7TUC/voUyU1O9OTKTrR6MYip6LP0ogEMQ9jPQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -5964,9 +5960,6 @@ packages:
   '@vue/devtools-api@6.6.4':
     resolution: {integrity: sha512-sGhTPMuXqZ1rVOk32RylztWkfXTRhuS7vgAKv0zjqk8gbsHkJ7xfFf+jbySxt7tWObEJwyKaHMikV/WGDiQm8g==}
 
-  '@vue/devtools-api@7.7.10':
-    resolution: {integrity: sha512-KxtEpUOOpFz/qOGRrAwA36QF7DqIA+FXgCYit9mk9wjbaZt0sXOFz81ElOZtKA4HbWHUdwNjZHBFsFFyp5BZiA==}
-
   '@vue/devtools-api@8.1.5':
     resolution: {integrity: sha512-YJipMVAKe5wT5CWf5kTYCaNV7NMNjFVxJkIkJaJ4W/nCxEBzlZzrOsYKeCymdCrFZmBS/+wTWFoUs3Jf/Q6XSQ==}
 
@@ -5975,14 +5968,8 @@ packages:
     peerDependencies:
       vue: ^3.5.43
 
-  '@vue/devtools-kit@7.7.10':
-    resolution: {integrity: sha512-3WNi2Kq4tbpVbmhml7RiphmAt0279oh3fKNeWMQIrltfX8Q91b4i5PL8DtyNKdwmcsGrV4fg+erwWOmD05CLIw==}
-
   '@vue/devtools-kit@8.2.1':
     resolution: {integrity: sha512-FIGIuq3AWReEpbAHY/cRGeHDfI0qOb8OCQ3YjbEAX04uaxIDbGc9rhkbVcG7rnfHPXE3RsU5KrWOu9V/okd8AQ==}
-
-  '@vue/devtools-shared@7.7.10':
-    resolution: {integrity: sha512-wOPslzB8vTvpxwdaOcR2qAbwmuSP0L+rhpoC6Cf56V3Jip+HWb7PQQXOUPgBNQARpXsbQX/+mvi8kKucmBGRwQ==}
 
   '@vue/devtools-shared@8.2.1':
     resolution: {integrity: sha512-Fkac7lUdGReh6pVOi3AYPRGe82LQqRmAfThW7RRligOAP0ZA/Z1z9XLHDM9dv34pV2HRc79DK8uKPeG2fLnA/g==}
@@ -6891,9 +6878,6 @@ packages:
 
   citty@0.2.2:
     resolution: {integrity: sha512-+6vJA3L98yv+IdfKGZHBNiGW5KHn22e/JwID0Strsz8h4S/csAu/OuICwxrg44k5MRiZHWIo8XXuJgQTriRP4w==}
-
-  class-variance-authority@0.7.1:
-    resolution: {integrity: sha512-Ka+9Trutv7G8M6WT6SeiRWz792K5qEqIGEGzXKhAE6xOWAY6pPH8U+9IY3oCMv6kqTmLsv7Xh/2w2RigkePMsg==}
 
   clean-css@5.3.3:
     resolution: {integrity: sha512-D5J+kHaVb/wKSFcyyV75uCn8fiY4sV38XJoe4CUyGQ+mOU/fMVYUdH1hJC+CJQ5uY3EnW27SbJYS4X8BiLrAFg==}
@@ -9577,9 +9561,6 @@ packages:
     resolution: {integrity: sha512-KZxYo1BUkWD2TVFLr0MQoM8vUUigWD3LlD83a/75BqC+4qE0Hb1Vo5v1FgcfaNXvfXzr+5EhQ6ing/CaBijTlw==}
     engines: {node: '>= 18'}
 
-  mitt@3.0.1:
-    resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
-
   mlly@1.8.2:
     resolution: {integrity: sha512-d+ObxMQFmbt10sretNDytwt85VrbkhhUA/JBGm1MPaWJ65Cl4wOgLaB1NYvJSZ0Ef03MMEU/0xpPMXUIQ29UfA==}
 
@@ -9982,9 +9963,6 @@ packages:
   pathe@2.0.3:
     resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
 
-  perfect-debounce@1.0.0:
-    resolution: {integrity: sha512-xCy9V055GLEqoFaHoC1SoLIaLmWctgCUaBaWxDZ7/Zx4CTyX7cJQLJOok/orfjZAh9kEYpjJa4d0KcJmCbctZA==}
-
   perfect-debounce@2.1.0:
     resolution: {integrity: sha512-LjgdTytVFXeUgtHZr9WYViYSM/g8MkcTPYDlPa3cDqMirHjKiSZPYd6DoL7pK8AJQr+uWkQvCjHNdiMqsrJs+g==}
 
@@ -10320,6 +10298,10 @@ packages:
     resolution: {integrity: sha512-Y3NoRtprEEZQD8RfxMCfS0ZTqc4e+i18OrXEXAvpM6TfC/3y+0L5rNbZiSnbBBEkDfFzbpd8o+cE8q3/anjMGA==}
     engines: {node: '>=22'}
 
+  radash@12.1.1:
+    resolution: {integrity: sha512-h36JMxKRqrAxVD8201FrCpyeNuUY9Y5zZwujr20fFO77tpUtGa6EZzfKw/3WaiBX95fq7+MpsuMLNdSnORAwSA==}
+    engines: {node: '>=14.18.0'}
+
   radix3@1.1.2:
     resolution: {integrity: sha512-b484I/7b8rDEdSDKckSSBA8knMpcdsXudlE/LNL639wFoHKwLbEkQFZHWEYwDC0wa0FKUcCY+GAF73Z7wxNVFA==}
 
@@ -10472,9 +10454,6 @@ packages:
   reusify@1.1.0:
     resolution: {integrity: sha512-g6QUff04oZpHs0eG5p83rFLhHeV00ug/Yf9nZM6fLeUrPguBTkTQOdpAWWspMh55TZfVQDPaN3NQJfbVRAxdIw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
-
-  rfdc@1.4.1:
-    resolution: {integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==}
 
   rimraf@6.1.3:
     resolution: {integrity: sha512-LKg+Cr2ZF61fkcaK1UdkH2yEBBKnYjTyWzTJT6KNPcSPaiT7HSdhtMXQuN5wkTX0Xu72KQ1l8S42rlmexS2hSA==}
@@ -10890,10 +10869,6 @@ packages:
 
   spdx-license-ids@3.0.23:
     resolution: {integrity: sha512-CWLcCCH7VLu13TgOH+r8p1O/Znwhqv/dbb6lqWy67G+pT1kHmeD/+V36AVb/vq8QMIQwVShJ6Ssl5FPh0fuSdw==}
-
-  speakingurl@14.0.1:
-    resolution: {integrity: sha512-1POYv7uv2gXoyGFpBCmpDVSNV74IfsWlDW216UPjbWufNf+bSU6GdbDsxdcxtfwb4xlI3yxzOTKClUosxARYrQ==}
-    engines: {node: '>=0.10.0'}
 
   split2@4.2.0:
     resolution: {integrity: sha512-UcjcJOWknrNkF6PLX83qcHM6KHgVKNkV62Y8a5uYDVv9ydGQVwAHMKqHdJje1VTWpljG0WYpCDhrCdAOYH4TWg==}
@@ -11686,11 +11661,6 @@ packages:
     resolution: {integrity: sha512-A6jOWOZX5yvyo1qMn7IveoWN91mJI5L3BUKsIwkg6qrTGgHs1Sb1JF/vyLJgnbN1rH4OOOxFbtqL9A46bOyGUQ==}
     peerDependencies:
       reka-ui: ^2.0.0
-      vue: ^3.5.43
-
-  vee-validate@4.15.1:
-    resolution: {integrity: sha512-DkFsiTwEKau8VIxyZBGdO6tOudD+QoUBPuHj3e6QFqmbfCRj1ArmYWue9lEp6jLSWBIw4XPlDLjFIZNLdRAMSg==}
-    peerDependencies:
       vue: ^3.5.43
 
   verkit@0.3.2:
@@ -14354,10 +14324,6 @@ snapshots:
       '@solid-primitives/utils': 6.4.1(solid-js@1.9.15)
       solid-js: 1.9.15
 
-  '@lucide/vue@1.47.0(vue@3.5.43(typescript@6.0.3))':
-    dependencies:
-      vue: 3.5.43(typescript@6.0.3)
-
   '@manypkg/find-root@3.1.0':
     dependencies:
       '@manypkg/tools': 2.1.2
@@ -15120,6 +15086,29 @@ snapshots:
   '@one-ini/wasm@0.2.1': {}
 
   '@opentelemetry/semantic-conventions@1.43.0': {}
+
+  '@orpc/client@1.14.11':
+    dependencies:
+      '@orpc/shared': 1.14.11
+      '@standardserver/core': 0.5.0
+      '@standardserver/fetch': 0.5.0
+      '@standardserver/peer': 0.5.0
+    transitivePeerDependencies:
+      - '@opentelemetry/api'
+
+  '@orpc/contract@1.14.11':
+    dependencies:
+      '@orpc/client': 1.14.11
+      '@orpc/shared': 1.14.11
+      '@standard-schema/spec': 1.1.0
+    transitivePeerDependencies:
+      - '@opentelemetry/api'
+
+  '@orpc/shared@1.14.11':
+    dependencies:
+      '@standardserver/shared': 0.5.0
+      radash: 12.1.1
+      type-fest: 5.8.0
 
   '@ota-meshi/ast-token-store@0.3.0': {}
 
@@ -15901,6 +15890,22 @@ snapshots:
   '@speed-highlight/core@1.2.17': {}
 
   '@standard-schema/spec@1.1.0': {}
+
+  '@standardserver/core@0.5.0':
+    dependencies:
+      '@standardserver/shared': 0.5.0
+
+  '@standardserver/fetch@0.5.0':
+    dependencies:
+      '@standardserver/core': 0.5.0
+      '@standardserver/shared': 0.5.0
+
+  '@standardserver/peer@0.5.0':
+    dependencies:
+      '@standardserver/core': 0.5.0
+      '@standardserver/shared': 0.5.0
+
+  '@standardserver/shared@0.5.0': {}
 
   '@stylistic/eslint-plugin@5.10.0(eslint@10.11.0(jiti@2.7.0)(supports-color@7.2.0))':
     dependencies:
@@ -17495,10 +17500,6 @@ snapshots:
 
   '@vue/devtools-api@6.6.4': {}
 
-  '@vue/devtools-api@7.7.10':
-    dependencies:
-      '@vue/devtools-kit': 7.7.10
-
   '@vue/devtools-api@8.1.5':
     dependencies:
       '@vue/devtools-kit': 8.2.1
@@ -17509,26 +17510,12 @@ snapshots:
       '@vue/devtools-shared': 8.2.1
       vue: 3.5.43(typescript@6.0.3)
 
-  '@vue/devtools-kit@7.7.10':
-    dependencies:
-      '@vue/devtools-shared': 7.7.10
-      birpc: 2.9.0
-      hookable: 5.5.3
-      mitt: 3.0.1
-      perfect-debounce: 1.0.0
-      speakingurl: 14.0.1
-      superjson: 2.2.6
-
   '@vue/devtools-kit@8.2.1':
     dependencies:
       '@vue/devtools-shared': 8.2.1
       birpc: 2.9.0
       hookable: 5.5.3
       perfect-debounce: 2.1.0
-
-  '@vue/devtools-shared@7.7.10':
-    dependencies:
-      rfdc: 1.4.1
 
   '@vue/devtools-shared@8.2.1': {}
 
@@ -18450,10 +18437,6 @@ snapshots:
       consola: 3.4.2
 
   citty@0.2.2: {}
-
-  class-variance-authority@0.7.1:
-    dependencies:
-      clsx: 2.1.1
 
   clean-css@5.3.3:
     dependencies:
@@ -21400,8 +21383,6 @@ snapshots:
     dependencies:
       minipass: 7.1.3
 
-  mitt@3.0.1: {}
-
   mlly@1.8.2:
     dependencies:
       acorn: 8.18.0
@@ -22113,8 +22094,6 @@ snapshots:
   pathe@1.1.2: {}
 
   pathe@2.0.3: {}
-
-  perfect-debounce@1.0.0: {}
 
   perfect-debounce@2.1.0: {}
 
@@ -23180,6 +23159,8 @@ snapshots:
 
   quote-js-string@0.1.0: {}
 
+  radash@12.1.1: {}
+
   radix3@1.1.2: {}
 
   range-parser@1.3.0: {}
@@ -23355,8 +23336,6 @@ snapshots:
       signal-exit: 4.1.0
 
   reusify@1.1.0: {}
-
-  rfdc@1.4.1: {}
 
   rimraf@6.1.3:
     dependencies:
@@ -23832,8 +23811,6 @@ snapshots:
       spdx-license-ids: 3.0.23
 
   spdx-license-ids@3.0.23: {}
-
-  speakingurl@14.0.1: {}
 
   split2@4.2.0: {}
 
@@ -25250,12 +25227,6 @@ snapshots:
       vue: 3.5.43(typescript@6.0.3)
     transitivePeerDependencies:
       - '@vue/composition-api'
-
-  vee-validate@4.15.1(vue@3.5.43(typescript@6.0.3)):
-    dependencies:
-      '@vue/devtools-api': 7.7.10
-      type-fest: 4.41.0
-      vue: 3.5.43(typescript@6.0.3)
 
   verkit@0.3.2: {}
 
