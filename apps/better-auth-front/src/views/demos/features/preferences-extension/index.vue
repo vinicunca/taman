@@ -1,15 +1,12 @@
 <script lang="ts" setup>
 import type { PlaygroundPreferencesExtension } from '#/preferences';
 
-import { computed } from 'vue';
-
 import { Page } from '@taman/common-ui';
 import {
   getCustomPreferences,
   updateCustomPreferences,
 } from '@taman/preferences';
-
-import { Alert, Button, Card, Space, Tag } from 'antdv-next';
+import { computed } from 'vue';
 
 import { $t } from '#/locales';
 
@@ -22,10 +19,10 @@ interface DemoTaskItem {
 
 type HighlightTone = PlaygroundPreferencesExtension['highlightTone'];
 
-const playgroundPreferences =
-  getCustomPreferences<PlaygroundPreferencesExtension>();
+const playgroundPreferences
+  = getCustomPreferences<PlaygroundPreferencesExtension>();
 
-const demoTasks: DemoTaskItem[] = [
+const demoTasks: Array<DemoTaskItem> = [
   { id: 1, owner: 'Luna', priority: 'P0', title: '同步租户配置到缓存' },
   { id: 2, owner: 'Aiden', priority: 'P1', title: '补充角色权限回归用例' },
   { id: 3, owner: 'Mia', priority: 'P0', title: '修复看板接口超时重试' },
@@ -77,8 +74,8 @@ const formattedPlaygroundPreferences = computed(() => {
   return JSON.stringify(playgroundPreferences, null, 2);
 });
 
-const preClasses =
-  'mt-4 overflow-auto rounded-lg border border-border bg-muted p-4 text-sm';
+const preClasses
+  = 'mt-4 overflow-auto rounded-lg border border-border bg-muted p-4 text-sm';
 
 function applyPreset(type: 'compact' | 'focus' | 'review') {
   const presetMap: Record<
@@ -126,7 +123,7 @@ function getPriorityColor(priority: DemoTaskItem['priority']) {
 <template>
   <Page :title="$t('demos.features.preferencesExtension')">
     <template #description>
-      <div class="mt-2 color-text/80">
+      <div class="color-text/80 mt-2">
         {{ $t('demos.preferencesExtensionDemo.description') }}
       </div>
     </template>
@@ -135,7 +132,10 @@ function getPriorityColor(priority: DemoTaskItem['priority']) {
       class="mb-5"
       :title="$t('demos.preferencesExtensionDemo.currentConfig')"
     >
-      <Alert :type="toneConfig.alertType" show-icon>
+      <Alert
+        :type="toneConfig.alertType"
+        show-icon
+      >
         <template #title>
           {{
             $t('demos.preferencesExtensionDemo.currentTitle', {
@@ -156,8 +156,11 @@ function getPriorityColor(priority: DemoTaskItem['priority']) {
         </template>
       </Alert>
 
-      <div class="mt-4 rounded-xl border p-4" :class="toneConfig.cardClass">
-        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+      <div
+        class="mt-4 p-4 border rounded-xl"
+        :class="toneConfig.cardClass"
+      >
+        <div class="mb-4 flex flex-wrap gap-3 items-center justify-between">
           <div>
             <div class="text-lg font-600">
               {{ playgroundPreferences.reportTitle }}
@@ -186,7 +189,10 @@ function getPriorityColor(priority: DemoTaskItem['priority']) {
             {{ $t('demos.preferencesExtensionDemo.quickActions.refresh') }}
           </Button>
         </Space>
-        <div v-else class="mb-4 text-sm color-text/60">
+        <div
+          v-else
+          class="text-sm color-text/60 mb-4"
+        >
           {{ $t('demos.preferencesExtensionDemo.quickActionsEnabled') }}
         </div>
 
@@ -194,10 +200,12 @@ function getPriorityColor(priority: DemoTaskItem['priority']) {
           <div
             v-for="task in visibleTasks"
             :key="task.id"
-            class="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-background px-4 py-3"
+            class="px-4 py-3 border border-border rounded-lg bg-background flex flex-wrap gap-3 items-center justify-between"
           >
             <div>
-              <div class="font-medium">{{ task.title }}</div>
+              <div class="font-medium">
+                {{ task.title }}
+              </div>
               <div class="text-sm color-text/60">
                 {{ $t('demos.preferencesExtensionDemo.owner') }}：{{
                   task.owner
@@ -220,7 +228,10 @@ function getPriorityColor(priority: DemoTaskItem['priority']) {
         <Button @click="applyPreset('compact')">
           {{ $t('demos.preferencesExtensionDemo.presetButtons.compact') }}
         </Button>
-        <Button type="primary" @click="applyPreset('review')">
+        <Button
+          type="primary"
+          @click="applyPreset('review')"
+        >
           {{ $t('demos.preferencesExtensionDemo.presetButtons.review') }}
         </Button>
       </Space>

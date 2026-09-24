@@ -1,21 +1,9 @@
 {
   "name": "@taman/commitlint-config",
+  "type": "module",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://github.com/vbenjs/vue-vben-admin",
-  "bugs": "https://github.com/vbenjs/vue-vben-admin/issues",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vbenjs/vue-vben-admin.git",
-    "directory": "internal/lint-configs/commitlint-config"
-  },
   "license": "MIT",
-  "type": "module",
-  "files": [
-    "dist"
-  ],
-  "main": "./index.mjs",
-  "module": "./index.mjs",
   "exports": {
     ".": {
       "types": "./index.d.ts",
@@ -23,9 +11,15 @@
       "default": "./index.mjs"
     }
   },
+  "main": "./index.mjs",
+  "module": "./index.mjs",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@commitlint/cli": "catalog:",
     "@commitlint/config-conventional": "catalog:",
+    "@commitlint/types": "catalog:",
     "@taman/node-utils": "workspace:*",
     "commitlint-plugin-function-rules": "catalog:",
     "cz-git": "catalog:",

@@ -43,7 +43,6 @@
   // editor
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
-    "source.fixAll.stylelint": "explicit",
     "source.organizeImports": "never"
   },
   "editor.formatOnSave": false,
@@ -102,7 +101,6 @@
     "**/.svn": true,
     "**/.hg": true,
     "**/CVS": true,
-    "**/.stylelintcache": true,
     "**/.DS_Store": true,
     "**/vite.config.mts.*": true,
     "**/tea.yaml": true
@@ -158,12 +156,6 @@
     "postcss": "css"
   },
 
-  "stylelint.enable": true,
-  "stylelint.packageManager": "pnpm",
-  "stylelint.validate": ["css", "less", "postcss", "scss", "vue"],
-  "stylelint.customSyntax": "postcss-html",
-  "stylelint.snippet": ["css", "less", "postcss", "scss", "vue"],
-
   "i18n-ally.localesPaths": [
     "packages/locales/src/langs",
     "playground/src/locales/langs",
@@ -186,6 +178,6 @@
     "*.env": "$(capture).env.*",
     "README.md": "README*,CHANGELOG*,LICENSE,CNAME",
     "package.json": "pnpm-lock.yaml,pnpm-workspace.yaml,.gitattributes,.gitignore,.gitpod.yml,.npmrc,.browserslistrc,.node-version,.git*,.tazerc.json",
-    "eslint.config.js": ".eslintignore,.stylelintignore,.commitlintrc.*,stylelint.config.*,.lintstagedrc.mjs,cspell.json,lefthook.yml"
+    "eslint.config.js": ".eslintignore,.commitlintrc.*,eslint.config.*,.lintstagedrc.mjs,cspell.json,lefthook.yml"
   }
 }

@@ -1,5 +1,4 @@
 export * from './count-to';
-export * from './cropper';
 export * from './icon-picker';
 export * from './loading';
 export * from './page';
@@ -13,10 +12,7 @@ export { globalShareState } from '@taman-core/shared/global-state';
 export {
   VbenAvatar,
   VbenButton,
-  VbenButtonGroup,
   VbenCheckbox,
-  VbenCheckButtonGroup,
-  VbenCollapsibleParams,
   VbenContextMenu,
   VbenCountToAnimator,
   VbenDescriptions,

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { Component } from 'vue';
-import type { AlertProps } from './alert';
+import type { TamanAlertProps } from './alert';
 
 import { useSimpleLocale } from '@taman-core/composables';
 import { usePreferences } from '@taman-core/preferences';
@@ -22,7 +22,7 @@ import { computed, h, nextTick, ref } from 'vue';
 import { provideAlertContext } from './alert';
 
 const props = withDefaults(
-  defineProps<AlertProps>(),
+  defineProps<TamanAlertProps>(),
   {
     bordered: true,
     buttonAlign: 'end',

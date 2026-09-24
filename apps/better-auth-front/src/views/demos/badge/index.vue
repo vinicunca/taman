@@ -1,13 +1,9 @@
 <script lang="ts" setup>
-import { reactive } from 'vue';
-import { useRoute } from 'vue-router';
-
+import { MenuBadge } from '@taman-core/menu-ui';
 import { Page } from '@taman/common-ui';
 import { useAccessStore } from '@taman/stores';
-
-import { MenuBadge } from '@taman-core/menu-ui';
-
-import { Button, Card, Radio, RadioGroup } from 'antdv-next';
+import { reactive } from 'vue';
+import { useRoute } from 'vue-router';
 
 import { useTamanForm } from '#/adapter/form';
 
@@ -109,7 +105,12 @@ function updateMenuBadge() {
           </RadioGroup>
         </template>
         <template #action>
-          <Button type="primary" @click="updateMenuBadge">更新徽标</Button>
+          <Button
+            type="primary"
+            @click="updateMenuBadge"
+          >
+            更新徽标
+          </Button>
         </template>
       </Form>
     </Card>

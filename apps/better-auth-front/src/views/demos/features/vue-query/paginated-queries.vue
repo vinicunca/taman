@@ -3,18 +3,16 @@ import type { Ref } from 'vue';
 
 import type { IProducts } from './typing';
 
+import { keepPreviousData, useQuery } from '@tanstack/vue-query';
 import { ref } from 'vue';
 
-import { keepPreviousData, useQuery } from '@tanstack/vue-query';
-import { Button } from 'antdv-next';
-
 const LIMIT = 10;
-const fetcher = async (page: Ref<number>): Promise<IProducts> => {
+async function fetcher(page: Ref<number>): Promise<IProducts> {
   const res = await fetch(
     `https://dummyjson.com/products?limit=${LIMIT}&skip=${(page.value - 1) * LIMIT}`,
   );
   return res.json();
-};
+}
 
 const page = ref(1);
 const { data, error, isError, isPending, isPlaceholderData } = useQuery({
@@ -23,28 +21,45 @@ const { data, error, isError, isPending, isPlaceholderData } = useQuery({
   queryFn: () => fetcher(page),
   queryKey: ['products', page],
 });
-const prevPage = () => {
+function prevPage() {
   page.value = Math.max(page.value - 1, 1);
-};
-const nextPage = () => {
+}
+function nextPage() {
   if (!isPlaceholderData.value) {
     page.value = page.value + 1;
   }
-};
+}
 </script>
 
 <template>
   <div class="flex gap-4">
-    <Button size="small" @click="prevPage">上一页</Button>
+    <Button
+      size="small"
+      @click="prevPage"
+    >
+      上一页
+    </Button>
     <p>当前页: {{ page }}</p>
-    <Button size="small" @click="nextPage">下一页</Button>
+    <Button
+      size="small"
+      @click="nextPage"
+    >
+      下一页
+    </Button>
   </div>
   <div class="p-4">
-    <div v-if="isPending">加载中...</div>
-    <div v-else-if="isError">出错了: {{ error }}</div>
+    <div v-if="isPending">
+      加载中...
+    </div>
+    <div v-else-if="isError">
+      出错了: {{ error }}
+    </div>
     <div v-else-if="data">
       <ul>
-        <li v-for="item in data.products" :key="item.id">
+        <li
+          v-for="item in data.products"
+          :key="item.id"
+        >
           {{ item.title }}
         </li>
       </ul>

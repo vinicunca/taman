@@ -226,11 +226,6 @@ interface ApplicationPluginOptions extends CommonPluginOptions {
    */
   injectAppLoading?: boolean;
   /**
-   * Inject global SCSS
-   * @default true
-   */
-  injectGlobalScss?: boolean;
-  /**
    * Inject license banner
    * @default true
    */

@@ -46,12 +46,6 @@
   "button-group": {
     "title": "Button Group"
   },
-  "function": {
-    "contentMenu": "Content Menu"
-  },
-  "cropper": {
-    "title": "Cropper"
-  },
   "tiptap": {
     "title": "Rich Text Editor"
   }

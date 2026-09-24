@@ -9,7 +9,7 @@ export interface AlertBeforeCloseScope {
   isConfirm: boolean;
 }
 
-export interface AlertProps {
+export interface TamanAlertProps {
   /** Callback before close; return false to abort closing */
   beforeClose?: (
     scope: AlertBeforeCloseScope,
@@ -72,7 +72,7 @@ export type AlertPromptProps<T = any> = {
   defaultValue?: T;
   /** Value prop name for the input component */
   modelPropName?: string;
-} & Omit<AlertProps, 'beforeClose'>;
+} & Omit<TamanAlertProps, 'beforeClose'>;
 
 /**
  * Alert context

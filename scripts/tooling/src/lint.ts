@@ -1,7 +1,7 @@
 import { execSync } from 'node:child_process';
 import { parseArgs } from 'node:util';
 
-import { execaCommand } from '@taman/node-utils';
+import { execa } from '@taman/node-utils';
 
 interface LintCommandOptions {
   /**
@@ -12,19 +12,13 @@ interface LintCommandOptions {
 
 async function runLint({ format }: LintCommandOptions) {
   if (format) {
-    await execaCommand('stylelint "**/*.{vue,css,less,scss}" --cache --fix', {
-      stdio: 'inherit',
-    });
-    await execaCommand('eslint . --cache --fix', {
+    await execa('eslint . --cache --fix', {
       stdio: 'inherit',
     });
     return;
   }
   const subprocesses = [
-    execaCommand('eslint . --cache', { stdio: 'inherit' }),
-    execaCommand('stylelint "**/*.{vue,css,less,scss}" --cache', {
-      stdio: 'inherit',
-    }),
+    execa('eslint . --cache', { stdio: 'inherit' }),
   ];
 
   try {

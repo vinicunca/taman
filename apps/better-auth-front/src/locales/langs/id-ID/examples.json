@@ -41,12 +41,6 @@
   "button-group": {
     "title": "Grup Tombol"
   },
-  "function": {
-    "contentMenu": "Menu Konten"
-  },
-  "cropper": {
-    "title": "Pemangkas"
-  },
   "tiptap": {
     "title": "Editor Teks Kaya"
   }

@@ -1,3 +1,4 @@
+/* eslint-disable regexp/no-unused-capturing-group */
 import { execSync } from 'node:child_process';
 
 import { getPackagesSync } from '@taman/node-utils';
@@ -20,7 +21,7 @@ const scopeComplete = execSync('git status --porcelain || true')
   .toString()
   .trim()
   .split('\n')
-  .find((r) => ~r.indexOf('M  src'))
+  .find((r) => r.includes('M  src'))
   ?.replaceAll(/(\/)/g, '%%')
   ?.match(/src%%((\w|-)*)/)?.[1]
   ?.replace(/s$/, '');

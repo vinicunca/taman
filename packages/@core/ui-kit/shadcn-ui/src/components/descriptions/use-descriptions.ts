@@ -8,9 +8,8 @@ import type {
   ScreenMap,
 } from './types';
 
-import { Comment, computed, Fragment } from 'vue';
-
 import { useBreakpoints } from '@vueuse/core';
+import { Comment, computed, Fragment } from 'vue';
 
 /** Default column count per breakpoint */
 export const DEFAULT_COLUMN_MAP: Record<DescriptionsBreakpoint, number> = {
@@ -24,7 +23,7 @@ export const DEFAULT_COLUMN_MAP: Record<DescriptionsBreakpoint, number> = {
 };
 
 /** Breakpoints largest-first; matchScreen uses first match in this order */
-const RESPONSIVE_ARRAY: DescriptionsBreakpoint[] = [
+const RESPONSIVE_ARRAY: Array<DescriptionsBreakpoint> = [
   'xxxl',
   'xxl',
   'xl',
@@ -51,7 +50,9 @@ export function matchScreen(
   screens: ScreenMap,
   screenSizes?: Partial<Record<DescriptionsBreakpoint, number>>,
 ): number | undefined {
-  if (!screenSizes) return undefined;
+  if (!screenSizes) {
+    return undefined;
+  }
   for (const breakpoint of RESPONSIVE_ARRAY) {
     if (screens[breakpoint] && screenSizes[breakpoint] !== undefined) {
       return screenSizes[breakpoint];
@@ -83,7 +84,9 @@ export function resolveColumn(
   column: DescriptionsColumn | undefined,
   screens: ScreenMap,
 ): number {
-  if (typeof column === 'number') return column;
+  if (typeof column === 'number') {
+    return column;
+  }
   return matchScreen(screens, { ...DEFAULT_COLUMN_MAP, ...column }) ?? 3;
 }
 
@@ -91,9 +94,9 @@ export function resolveColumn(
  * Normalize list items: resolve span to number; mark 'filled' as filled
  */
 export function normalizeItems(
-  items: DescriptionsItemType[],
+  items: Array<DescriptionsItemType>,
   screens: ScreenMap,
-): InternalDescriptionsItem[] {
+): Array<InternalDescriptionsItem> {
   return items.map((item, index) => {
     const { span, ...rest } = item;
     if (span === 'filled') {
@@ -109,14 +112,14 @@ export function normalizeItems(
 
 /**
  * Row packing: split items into rows by column count and span,
- * and pad the last item in each row to fill the row. Ported from antdv-next useRow.
+ * and pad the last item in each row to fill the row.
  */
 export function calcRows(
-  items: InternalDescriptionsItem[],
+  items: Array<InternalDescriptionsItem>,
   column: number,
-): InternalDescriptionsItem[][] {
-  let rows: InternalDescriptionsItem[][] = [];
-  let tmpRow: InternalDescriptionsItem[] = [];
+): Array<Array<InternalDescriptionsItem>> {
+  let rows: Array<Array<InternalDescriptionsItem>> = [];
+  let tmpRow: Array<InternalDescriptionsItem> = [];
   let count = 0;
 
   items.filter(Boolean).forEach((item) => {
@@ -144,7 +147,9 @@ export function calcRows(
     }
   });
 
-  if (tmpRow.length > 0) rows.push(tmpRow);
+  if (tmpRow.length > 0) {
+    rows.push(tmpRow);
+  }
 
   // Pad: if row total span is less than column count, extend the last item
   rows = rows.map((row) => {
@@ -167,16 +172,16 @@ export const DESCRIPTIONS_ITEM_NAME = 'VbenDescriptionsItem';
 function isItemVNode(node: VNode): boolean {
   const type = node.type as any;
   return (
-    !!type &&
-    (type.__isDescriptionsItem === true || type.name === DESCRIPTIONS_ITEM_NAME)
+    !!type
+    && (type.__isDescriptionsItem === true || type.name === DESCRIPTIONS_ITEM_NAME)
   );
 }
 
-function flattenVNodes(nodes: VNode[]): VNode[] {
-  const result: VNode[] = [];
+function flattenVNodes(nodes: Array<VNode>): Array<VNode> {
+  const result: Array<VNode> = [];
   for (const node of nodes) {
     if (node.type === Fragment && Array.isArray(node.children)) {
-      result.push(...flattenVNodes(node.children as VNode[]));
+      result.push(...flattenVNodes(node.children as Array<VNode>));
     } else if (node.type !== Comment) {
       result.push(node);
     }
@@ -188,18 +193,18 @@ function flattenVNodes(nodes: VNode[]): VNode[] {
  * Parse list items from default slot vnodes; supports
  * <VbenDescriptionsItem label="..." :span="2">content</VbenDescriptionsItem>
  */
-export function parseItemsFromSlot(nodes: VNode[]): DescriptionsItemType[] {
+export function parseItemsFromSlot(nodes: Array<VNode>): Array<DescriptionsItemType> {
   return flattenVNodes(nodes)
     .filter((node) => isItemVNode(node))
     .map((node) => {
       const props = (node.props ?? {}) as Record<string, any>;
       const children = (node.children ?? {}) as Record<string, any>;
-      const labelSlot =
-        typeof children.label === 'function' ? children.label : undefined;
-      const contentDefaultSlot =
-        typeof children.default === 'function' ? children.default : undefined;
-      const contentSlot =
-        typeof children.content === 'function'
+      const labelSlot
+        = typeof children.label === 'function' ? children.label : undefined;
+      const contentDefaultSlot
+        = typeof children.default === 'function' ? children.default : undefined;
+      const contentSlot
+        = typeof children.content === 'function'
           ? children.content
           : contentDefaultSlot;
       return {

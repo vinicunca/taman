@@ -1,11 +1,7 @@
-import type { CSSOptions, UserConfig } from 'vite';
+import type { UserConfig } from 'vite';
 
 import type { DefineApplicationOptions } from '../typing';
 
-import path, { relative } from 'node:path';
-
-import { findMonorepoRoot } from '@taman/node-utils';
-import { NodePackageImporter } from 'sass-embedded';
 import { defineConfig, loadEnv, mergeConfig } from 'vite';
 
 import { defaultImportmapOptions, getDefaultPwaOptions } from '../options';
@@ -52,8 +48,6 @@ function defineApplicationConfig(userConfigPromise?: DefineApplicationOptions) {
       ...application,
     });
 
-    const { injectGlobalScss = true } = application;
-
     const applicationConfig: UserConfig = {
       base,
       build: {
@@ -74,7 +68,6 @@ function defineApplicationConfig(userConfigPromise?: DefineApplicationOptions) {
         },
         target: 'es2015',
       },
-      css: createCssOptions(injectGlobalScss),
       plugins,
       server: {
         host: true,
@@ -97,28 +90,6 @@ function defineApplicationConfig(userConfigPromise?: DefineApplicationOptions) {
 
     return mergeConfig(mergedCommonConfig, vite);
   });
-}
-
-function createCssOptions(injectGlobalScss = true): CSSOptions {
-  const root = findMonorepoRoot();
-  return {
-    preprocessorOptions: injectGlobalScss
-      ? {
-          scss: {
-            additionalData: (content: string, filepath: string) => {
-              const relativePath = relative(root, filepath);
-              // Inject global styles for packages under apps/
-              if (relativePath.startsWith(`apps${path.sep}`)) {
-                return `@use "@vben/styles/global" as *;\n${content}`;
-              }
-              return content;
-            },
-            // api: 'modern',
-            importers: [new NodePackageImporter()],
-          },
-        }
-      : {},
-  };
 }
 
 export { defineApplicationConfig };

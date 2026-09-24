@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import type { VbenFormSchema } from '#/adapter/form';
-
+import { useTamanToast } from '@taman/app-ui';
+import { ProfilePasswordSetting, z } from '@taman/common-ui';
 import { computed } from 'vue';
 
-import { ProfilePasswordSetting, z } from '@taman/common-ui';
-
-import { message } from 'antdv-next';
-
-const formSchema = computed((): VbenFormSchema[] => {
+const formSchema = computed((): Array<VbenFormSchema> => {
   return [
     {
       fieldName: 'oldPassword',
@@ -52,10 +49,13 @@ const formSchema = computed((): VbenFormSchema[] => {
   ];
 });
 
+const { toaster } = useTamanToast();
+
 function handleSubmit() {
-  message.success('密码修改成功');
+  toaster.success('密码修改成功');
 }
 </script>
+
 <template>
   <ProfilePasswordSetting
     class="w-1/3"

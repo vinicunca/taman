@@ -66,15 +66,6 @@ const coreRoutes: Array<RouteRecordRaw> = [
         },
       },
       {
-        name: 'CodeLogin',
-        path: 'code-login',
-        component: () => import('#/views/_core/authentication/code-login.vue'),
-        meta: {
-          auth: { only: 'guest' },
-          title: $t('page.auth.codeLogin'),
-        },
-      },
-      {
         name: 'QrCodeLogin',
         path: 'qrcode-login',
         component: () =>

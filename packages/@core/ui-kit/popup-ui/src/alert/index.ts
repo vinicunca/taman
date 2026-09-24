@@ -2,8 +2,8 @@ export { useAlertContext } from './alert';
 export type {
   AlertBeforeCloseScope,
   AlertPromptProps,
-  AlertProps,
   IconType,
+  TamanAlertProps,
 } from './alert';
 export {
   clearAllAlerts,

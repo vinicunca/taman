@@ -1,6 +1,6 @@
 import type { Component, CSSProperties } from 'vue';
 
-/** Responsive breakpoints; aligned with antdv-next */
+/** Responsive breakpoints; */
 export type DescriptionsBreakpoint
   = | 'lg'
     | 'md'

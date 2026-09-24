@@ -2,7 +2,7 @@ import type { Component } from 'vue';
 
 import type {
   DrawerApiOptions,
-  DrawerProps,
+  TamanDrawerProps,
   ExtendedDrawerApi,
   InferDrawerData,
 } from './drawer.types';
@@ -51,9 +51,9 @@ const { globalEscapeShortcutKey } = usePreferences();
 /**
  * Default configuration
  */
-const DEFAULT_DRAWER_PROPS: Partial<DrawerProps> = {};
+const DEFAULT_DRAWER_PROPS: Partial<TamanDrawerProps> = {};
 
-export function setDefaultDrawerProps(props: Partial<DrawerProps>) {
+export function setDefaultDrawerProps(props: Partial<TamanDrawerProps>) {
   Object.assign(DEFAULT_DRAWER_PROPS, props);
 }
 
@@ -76,7 +76,7 @@ export function useTamanDrawer<
     const extendedApi = shallowReactive({}) as ExtendedDrawerApi<TResolvedData>;
     const isDrawerReady = ref(true);
     const Drawer = defineComponent(
-      (props: DrawerProps, { attrs, slots }) => {
+      (props: TamanDrawerProps, { attrs, slots }) => {
         function rebindApi(api: ExtendedDrawerApi<TResolvedData>) {
           Object.setPrototypeOf(extendedApi, markRaw(api));
         }
@@ -160,7 +160,7 @@ export function useTamanDrawer<
   };
 
   const Drawer = defineComponent(
-    (props: DrawerProps, { attrs, slots }) => {
+    (props: TamanDrawerProps, { attrs, slots }) => {
       return () =>
         h(TamanDrawer, { ...props, ...attrs, drawerApi: extendedApi }, slots);
     },

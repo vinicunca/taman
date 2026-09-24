@@ -1,9 +1,6 @@
 <script lang="ts" setup>
-import { useRouter } from 'vue-router';
-
 import { Fallback } from '@taman/common-ui';
-
-import { Button } from 'antdv-next';
+import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
@@ -19,7 +16,12 @@ function details() {
     title="面包屑导航-平级模式"
   >
     <template #action>
-      <Button type="primary" @click="details">点击查看详情</Button>
+      <Button
+        type="primary"
+        @click="details"
+      >
+        点击查看详情
+      </Button>
     </template>
   </Fallback>
 </template>

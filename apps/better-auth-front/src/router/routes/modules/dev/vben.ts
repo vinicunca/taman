@@ -1,8 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router';
 
 import {
-  VBEN_ANT_PREVIEW_URL,
-  VBEN_ANTDV_NEXT_PREVIEW_URL,
   VBEN_DOC_URL,
   VBEN_ELE_PREVIEW_URL,
   VBEN_GITHUB_URL,
@@ -11,8 +9,6 @@ import {
   VBEN_TD_PREVIEW_URL,
 } from '@taman/constants';
 import {
-  SvgAntdvLogoIcon,
-  SvgAntdvNextLogoIcon,
   SvgTDesignIcon,
 } from '@vben/icons';
 
@@ -51,29 +47,6 @@ const routes: Array<RouteRecordRaw> = [
           title: 'Github',
         },
       },
-      {
-        name: 'VbenAntdv',
-        path: 'antdv',
-        component: IFrameView,
-        meta: {
-          badgeType: 'dot',
-          icon: SvgAntdvLogoIcon,
-          link: VBEN_ANT_PREVIEW_URL,
-          title: $t('demos.vben.antdv'),
-        },
-      },
-      {
-        name: 'VbenAntdVNext',
-        path: 'antdv-next',
-        component: IFrameView,
-        meta: {
-          badgeType: 'dot',
-          icon: SvgAntdvNextLogoIcon,
-          link: VBEN_ANTDV_NEXT_PREVIEW_URL,
-          title: $t('demos.vben.antdv-next'),
-        },
-      },
-
       {
         name: 'VbenNaive',
         path: 'naive',

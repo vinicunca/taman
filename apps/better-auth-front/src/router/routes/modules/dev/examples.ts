@@ -153,24 +153,6 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
-        name: 'ContextMenu',
-        path: 'context-menu',
-        component: () => import('#/views/examples/context-menu/index.vue'),
-        meta: {
-          icon: 'mdi:menu',
-          title: $t('examples.function.contentMenu'),
-        },
-      },
-      {
-        name: 'CropperDemo',
-        path: 'cropper',
-        component: () => import('#/views/examples/cropper/index.vue'),
-        meta: {
-          icon: 'mdi:crop',
-          title: $t('examples.cropper.title'),
-        },
-      },
-      {
         name: 'TiptapExample',
         path: 'tiptap',
         component: () => import('#/views/examples/tiptap/index.vue'),

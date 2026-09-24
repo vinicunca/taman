@@ -17,7 +17,6 @@ const DEFAULT_CONFIG = {
     '@vben-core/design',
     '@taman/commitlint-config',
     '@vinicunca/eslint-config',
-    '@vben/stylelint-config',
     '@taman/vite-config',
     'playwright',
     'rimraf',

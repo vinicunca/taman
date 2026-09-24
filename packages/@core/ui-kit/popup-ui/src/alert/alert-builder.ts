@@ -1,6 +1,6 @@
 import type { Component, VNode } from 'vue';
 
-import type { AlertBeforeCloseScope, AlertPromptProps, AlertProps } from './alert';
+import type { AlertBeforeCloseScope, AlertPromptProps, TamanAlertProps } from './alert';
 
 import { useSimpleLocale } from '@taman-core/composables';
 import { isFunctionType } from '@taman-core/shared/utils';
@@ -14,7 +14,7 @@ const alertIds = new Set<symbol>();
 
 const { $t } = useSimpleLocale();
 
-export function tamanAlert(options: AlertProps): Promise<void> {
+export function tamanAlert(options: TamanAlertProps): Promise<void> {
   const overlay = useOverlay().create(AlertOverlay, {
     destroyOnClose: true,
     props: {
@@ -38,7 +38,7 @@ export function tamanAlert(options: AlertProps): Promise<void> {
   })();
 }
 
-export function tamanConfirm(options: AlertProps): Promise<void> {
+export function tamanConfirm(options: TamanAlertProps): Promise<void> {
   return tamanAlert({
     showCancel: true,
     ...options,
@@ -91,7 +91,7 @@ export async function tamanPrompt<T = any>(
     );
   };
 
-  const props: AlertProps & Record<string, any> = {
+  const props: TamanAlertProps & Record<string, any> = {
     ...delegated,
     async beforeClose(scope: AlertBeforeCloseScope) {
       if (delegated.beforeClose) {

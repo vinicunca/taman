@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { DrawerProps, ExtendedDrawerApi } from './drawer.types';
+import type { TamanDrawerProps, ExtendedDrawerApi } from './drawer.types';
 
 import {
   useBreakpoints,
@@ -33,7 +33,7 @@ import {
   watch,
 } from 'vue';
 
-interface Props extends DrawerProps {
+interface Props extends TamanDrawerProps {
   drawerApi?: ExtendedDrawerApi;
 }
 

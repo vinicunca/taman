@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import type { AlertProps } from './alert';
+import type { TamanAlertProps } from './alert';
 
 import { computed, useAttrs } from 'vue';
 import Alert from './alert.vue';
 
 defineOptions({ inheritAttrs: false });
 
-const props = defineProps<AlertProps>();
+const props = defineProps<TamanAlertProps>();
 const emits = defineEmits<{
   'after:leave': [];
   'close': [result: { isConfirm: boolean }];

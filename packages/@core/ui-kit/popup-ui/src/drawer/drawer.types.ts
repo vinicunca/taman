@@ -7,7 +7,7 @@ export type DrawerPlacement = 'bottom' | 'left' | 'right' | 'top';
 
 export type CloseIconPlacement = 'left' | 'right';
 
-export interface DrawerProps {
+export interface TamanDrawerProps {
   /**
    * Whether to mount to the content area
    * @default false
@@ -126,7 +126,7 @@ export interface DrawerProps {
   zIndex?: number;
 }
 
-export interface DrawerState extends DrawerProps {
+export interface DrawerState extends TamanDrawerProps {
   /** Drawer open state */
   isOpen?: boolean;
 }

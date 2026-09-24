@@ -2,8 +2,6 @@
 import { Page } from '@taman/common-ui';
 import { useWatermark } from '@taman/composables';
 
-import { Button, Card } from 'antdv-next';
-
 const { destroyWatermark, updateWatermark, watermark } = useWatermark();
 
 async function recreateWaterMark() {
@@ -48,7 +46,7 @@ async function createWaterMark() {
 <template>
   <Page title="水印">
     <template #description>
-      <div class="mt-2 color-text/80">
+      <div class="color-text/80 mt-2">
         水印使用了
         <a
           class="text-primary"
@@ -78,7 +76,11 @@ async function createWaterMark() {
       >
         更新水印
       </Button>
-      <Button :disabled="!watermark" danger @click="destroyWatermark">
+      <Button
+        :disabled="!watermark"
+        danger
+        @click="destroyWatermark"
+      >
         移除水印
       </Button>
     </Card>

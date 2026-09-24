@@ -1,6 +1,7 @@
 import Vue from '@vitejs/plugin-vue';
 import VueJsx from '@vitejs/plugin-vue-jsx';
 import vitePohon from 'pohon-ui/vite';
+import { fileURLToPath } from 'node:url';
 import { configDefaults, defineConfig } from 'vitest/config';
 
 const NUXT_ICON_STUB_ID = 'virtual:vitest-nuxt-icon';
@@ -44,6 +45,9 @@ export default defineConfig({
     alias: {
       '#build/nuxt-icon-client-bundle': 'virtual:pohon-ui-icons',
       '@nuxt/icon/runtime/components/index.js': NUXT_ICON_STUB_ID,
+      '@formkit/auto-animate/vue': fileURLToPath(
+        new URL('./tests/mocks/auto-animate.ts', import.meta.url),
+      ),
     },
   },
   ssr: {
@@ -66,7 +70,7 @@ export default defineConfig({
       '**/dist/**',
       '**/.{idea,git,cache,output,temp}/**',
       '**/node_modules/**',
-      '**/{stylelint,eslint}.config.*',
+      '**/{eslint}.config.*',
     ],
   },
 });
