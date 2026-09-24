@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { TamanSpinner } from '@taman-core/taman-ui';
+import { TamanLoading } from '@taman-core/taman-ui';
 
 import { useContentSpinner } from './use-content-spinner';
 
@@ -9,5 +9,5 @@ const { spinning } = useContentSpinner();
 </script>
 
 <template>
-  <TamanSpinner :spinning="spinning" />
+  <TamanLoading :spinning="spinning" />
 </template>

@@ -5,7 +5,7 @@ import {
   TamanRenderContent,
 } from '@taman-core/taman-ui';
 import PCollapsible from 'pohon-ui/components/Collapsible.vue';
-import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
+import PIcon from 'pohon-ui/components/Icon.vue';
 import { computed, ref, watch } from 'vue';
 
 import { injectRenderFormProps } from './form-render.context';

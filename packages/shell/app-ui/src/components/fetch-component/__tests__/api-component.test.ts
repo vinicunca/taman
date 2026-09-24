@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { defineComponent, h, markRaw, nextTick, ref } from 'vue';
 import ApiComponent from '../app-fetch-component.vue';
 
-vi.mock('pohon-ui/runtime/vue/components/Icon.vue', () => ({
+vi.mock('pohon-ui/components/Icon.vue', () => ({
   default: {
     name: 'PIconStub',
     render() {

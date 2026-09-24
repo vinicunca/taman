@@ -8,7 +8,7 @@ import {
   omit,
   prop,
 } from '@taman-core/shared/utils';
-import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
+import PIcon from 'pohon-ui/components/Icon.vue';
 import { computed, nextTick, ref, unref, useAttrs, watch } from 'vue';
 
 defineOptions({

@@ -144,9 +144,9 @@
     "semantic_hash": ""
   },
   "src/components/loading/directive.ts": {
-    "mtime": 1790202346.5492394,
-    "seen": 1790202354.7748532,
-    "ast_hash": "718d3b88c4ddd62fe916f9fbd1c41c96",
+    "mtime": 1790202208.4110396,
+    "seen": 1790202235.284797,
+    "ast_hash": "1eb6826b3652c37c412141d6a397ec31",
     "semantic_hash": ""
   },
   "src/components/loading/index.ts": {

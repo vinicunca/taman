@@ -1,6 +1,6 @@
 import { autoAnimatePlugin } from '@formkit/auto-animate/vue';
 import { registerAccessDirective } from '@taman/access';
-import { registerLoadingDirective } from '@taman/common-ui';
+import { registerLoadingDirective } from '@taman/app-ui';
 import { preferences } from '@taman/preferences';
 import { initStores } from '@taman/stores';
 import { VueQueryPlugin } from '@tanstack/vue-query';
@@ -30,10 +30,7 @@ async function bootstrap(namespace: string) {
   const app = createApp(App);
 
   // Register v-loading directive
-  registerLoadingDirective(app, {
-    loading: 'loading', // Custom directive name; pass false to skip registration
-    spinning: 'spinning',
-  });
+  registerLoadingDirective(app);
 
   // i18n setup
   await setupI18n(app);

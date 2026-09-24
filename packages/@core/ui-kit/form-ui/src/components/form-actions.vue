@@ -2,7 +2,7 @@
 import { useSimpleLocale } from '@taman-core/composables';
 import { isFunction, triggerWindowResize } from '@taman-core/shared/utils';
 import PButton from 'pohon-ui/components/Button.vue';
-import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
+import PIcon from 'pohon-ui/components/Icon.vue';
 import { computed, toRaw, unref, watch } from 'vue';
 
 import { injectFormProps } from '../form.use-form-context';

@@ -4,7 +4,7 @@ import {
   isHttpUrl,
   isString,
 } from '@taman-core/shared/utils';
-import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
+import PIcon from 'pohon-ui/components/Icon.vue';
 import { computed } from 'vue';
 
 defineOptions({ name: 'TamanIcon' });

@@ -14,10 +14,10 @@ import {
   AlertDialogTitle,
   TamanButtonIcon,
   TamanRenderContent,
-  TamanSpinner,
+  TamanLoading,
 } from '@taman-core/taman-ui';
 import PButton from 'pohon-ui/components/Button.vue';
-import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
+import PIcon from 'pohon-ui/components/Icon.vue';
 import { computed, h, nextTick, ref } from 'vue';
 import { provideAlertContext } from './alert';
 
@@ -215,7 +215,7 @@ async function handleOpenChange(val: boolean) {
             />
           </div>
 
-          <TamanSpinner
+          <TamanLoading
             v-if="loading && contentMasking"
             :spinning="loading"
           />

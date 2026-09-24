@@ -3,7 +3,7 @@ import type { TamanLayoutType } from '@taman/types';
 import type { Component } from 'vue';
 import { $t } from '@taman/locales';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
-import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
+import PIcon from 'pohon-ui/components/Icon.vue';
 import { computed } from 'vue';
 
 import {

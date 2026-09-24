@@ -6,7 +6,7 @@ import { storeToRefs, useAccessStore } from '@taman/stores';
 import { useDateFormat, useNow } from '@vueuse/core';
 import PAvatar from 'pohon-ui/components/Avatar.vue';
 import PButton from 'pohon-ui/components/Button.vue';
-import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
+import PIcon from 'pohon-ui/components/Icon.vue';
 import { computed, reactive, ref } from 'vue';
 
 defineOptions({

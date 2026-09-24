@@ -7,7 +7,7 @@ import {
   TamanRenderContent,
 } from '@taman-core/taman-ui';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
-import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
+import PIcon from 'pohon-ui/components/Icon.vue';
 
 interface Props {
   class?: HTMLAttributes['class'];

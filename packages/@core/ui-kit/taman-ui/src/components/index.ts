@@ -6,7 +6,7 @@ export * from './full-screen';
 export * from './icon';
 export * from './input';
 export * from './input-date';
+export * from './loading';
 export * from './logo';
 export * from './render-content';
 export * from './scrollbar';
-export * from './spinner';

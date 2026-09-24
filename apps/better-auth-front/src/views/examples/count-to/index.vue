@@ -9,7 +9,7 @@ import {
   TransitionPresetsKeys,
   useTamanToast,
 } from '@taman/app-ui';
-import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
+import PIcon from 'pohon-ui/components/Icon.vue';
 import { h, reactive, ref } from 'vue';
 import { useTamanForm } from '#/adapter/form';
 

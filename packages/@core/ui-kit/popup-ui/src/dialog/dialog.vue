@@ -11,12 +11,12 @@ import {
   DialogRoot,
   DialogTitle,
   TamanButtonIcon,
-  TamanSpinner,
+  TamanLoading,
   VisuallyHidden,
 } from '@taman-core/taman-ui';
 import PButton from 'pohon-ui/components/Button.vue';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
-import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
+import PIcon from 'pohon-ui/components/Icon.vue';
 import {
   computed,
   nextTick,
@@ -353,7 +353,7 @@ function handleClosed() {
         <slot />
       </div>
 
-      <TamanSpinner
+      <TamanLoading
         v-if="showLoading || submitting"
         spinning
       />

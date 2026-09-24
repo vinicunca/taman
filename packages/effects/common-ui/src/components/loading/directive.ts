@@ -1,9 +1,8 @@
 import type { App, Directive, DirectiveBinding } from 'vue';
 
-import { h, render } from 'vue';
-
-import { VbenLoading, VbenSpinner } from '@vben-core/shadcn-ui';
 import { isString } from '@taman-core/shared/utils';
+import { VbenLoading, VbenSpinner } from '@vben-core/shadcn-ui';
+import { h, render } from 'vue';
 
 const LOADING_INSTANCE_KEY = Symbol('loading');
 const SPINNER_INSTANCE_KEY = Symbol('spinner');
@@ -92,12 +91,12 @@ const spinningDirective: Directive = {
   },
 };
 
-type loadingDirectiveParams = {
+interface loadingDirectiveParams {
   /** Register loading directive; string value sets the directive name */
   loading?: boolean | string;
   /** Register spinning directive; string value sets the directive name */
   spinning?: boolean | string;
-};
+}
 
 /**
  * Register loading directives

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { RouteLocationNormalized } from 'vue-router';
 
-import { TamanSpinner } from '@taman-core/taman-ui';
+import { TamanLoading } from '@taman-core/taman-ui';
 import { preferences } from '@taman/preferences';
 import { useTabbarStore } from '@taman/stores';
 import { computed, ref } from 'vue';
@@ -76,7 +76,7 @@ function showSpinning(index: number) {
         v-show="routeShow(item)"
         class="size-full relative"
       >
-        <TamanSpinner :spinning="showSpinning(index)" />
+        <TamanLoading :spinning="showSpinning(index)" />
 
         <iframe
           :src="item.meta.iframeSrc as string"

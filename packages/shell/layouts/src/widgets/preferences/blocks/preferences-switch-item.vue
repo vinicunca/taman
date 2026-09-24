@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import PSwitch from 'pohon-ui/components/Switch.vue';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
-import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
+import PIcon from 'pohon-ui/components/Icon.vue';
 
 defineOptions({
   name: 'PreferenceSwitchItem',

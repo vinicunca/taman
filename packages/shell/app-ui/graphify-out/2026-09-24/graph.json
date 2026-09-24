@@ -13,7 +13,7 @@
       "community_name": "auth-login.vue",
       "file_type": "code",
       "norm_label": "strongpasswordmessages",
-      "source_file": "packages/shell/app-ui/src/components/auth/auth.password.ts",
+      "source_file": "src/components/auth/auth.password.ts",
       "source_location": "L4"
     },
     {
@@ -26,7 +26,7 @@
       "community_name": "auth-login.vue",
       "file_type": "code",
       "norm_label": "authloginvalues",
-      "source_file": "packages/shell/app-ui/src/components/auth/auth.types.ts",
+      "source_file": "src/components/auth/auth.types.ts",
       "source_location": "L1"
     },
     {
@@ -39,7 +39,7 @@
       "community_name": "count-to.vue",
       "file_type": "code",
       "norm_label": "counttoprops",
-      "source_file": "packages/shell/app-ui/src/components/count-to/types.ts",
+      "source_file": "src/components/count-to/types.ts",
       "source_location": "L12"
     },
     {
@@ -52,7 +52,7 @@
       "community_name": "count-to.vue",
       "file_type": "code",
       "norm_label": "transitionpresets",
-      "source_file": "packages/shell/app-ui/src/components/count-to/types.ts",
+      "source_file": "src/components/count-to/types.ts",
       "source_location": "L6"
     },
     {
@@ -65,7 +65,7 @@
       "community_name": "api-component.test.ts",
       "file_type": "code",
       "norm_label": "apicomponentlabelfn",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.types.ts",
+      "source_file": "src/components/fetch-component/app-fetch-component.types.ts",
       "source_location": "L12"
     },
     {
@@ -78,7 +78,7 @@
       "community_name": "api-component.test.ts",
       "file_type": "code",
       "norm_label": "appfetchcomponentoptionsitem",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.types.ts",
+      "source_file": "src/components/fetch-component/app-fetch-component.types.ts",
       "source_location": "L4"
     },
     {
@@ -91,7 +91,7 @@
       "community_name": "api-component.test.ts",
       "file_type": "code",
       "norm_label": "appfetchcomponentprops",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.types.ts",
+      "source_file": "src/components/fetch-component/app-fetch-component.types.ts",
       "source_location": "L14"
     },
     {
@@ -104,7 +104,7 @@
       "community_name": "api-component.test.ts",
       "file_type": "code",
       "norm_label": "appfetchcomponentsharedprops",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.types.ts",
+      "source_file": "src/components/fetch-component/app-fetch-component.types.ts",
       "source_location": "L71"
     },
     {
@@ -117,7 +117,7 @@
       "community_name": "components/index.ts",
       "file_type": "code",
       "norm_label": "apppageprops",
-      "source_file": "packages/shell/app-ui/src/components/card/app-card.vue",
+      "source_file": "src/components/card/app-card.vue",
       "source_location": "L24"
     },
     {
@@ -143,7 +143,7 @@
       "community_name": "app-page.vue",
       "file_type": "code",
       "norm_label": "apppageprops",
-      "source_file": "packages/shell/app-ui/src/components/page/app-page.types.ts",
+      "source_file": "src/components/page/app-page.types.ts",
       "source_location": "L1"
     },
     {
@@ -155,7 +155,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "emitchange()",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L211"
     },
     {
@@ -167,7 +167,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "fetchapi()",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L152"
     },
     {
@@ -179,7 +179,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "handlefetchforvisible()",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L135"
     },
     {
@@ -191,7 +191,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "updatemodelvalue()",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L122"
     },
     {
@@ -203,7 +203,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "updateparam()",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L268"
     },
     {
@@ -215,7 +215,7 @@
       "community_name": "auth-login.vue",
       "file_type": "code",
       "norm_label": "createstrongpasswordschema()",
-      "source_file": "packages/shell/app-ui/src/components/auth/auth.password.ts",
+      "source_file": "src/components/auth/auth.password.ts",
       "source_location": "L13"
     },
     {
@@ -227,7 +227,7 @@
       "community_name": "auth-login.vue",
       "file_type": "code",
       "norm_label": "handlesubmit()",
-      "source_file": "packages/shell/app-ui/src/components/auth/auth-register.vue",
+      "source_file": "src/components/auth/auth-register.vue",
       "source_location": "L47"
     },
     {
@@ -239,7 +239,7 @@
       "community_name": "api-component.test.ts",
       "file_type": "code",
       "norm_label": "render()",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/__tests__/api-component.test.ts",
+      "source_file": "src/components/fetch-component/__tests__/api-component.test.ts",
       "source_location": "L10"
     },
     {
@@ -251,7 +251,7 @@
       "community_name": "api-component.test.ts",
       "file_type": "code",
       "norm_label": "setup()",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/__tests__/api-component.test.ts",
+      "source_file": "src/components/fetch-component/__tests__/api-component.test.ts",
       "source_location": "L71"
     },
     {
@@ -263,7 +263,7 @@
       "community_name": "useTamanToast",
       "file_type": "code",
       "norm_label": "usetamantoast()",
-      "source_file": "packages/shell/app-ui/src/composables/use-taman-toast.ts",
+      "source_file": "src/composables/use-taman-toast.ts",
       "source_location": "L4"
     },
     {
@@ -275,7 +275,7 @@
       "community_name": "useTamanToast",
       "file_type": "code",
       "norm_label": "error()",
-      "source_file": "packages/shell/app-ui/src/composables/use-taman-toast.ts",
+      "source_file": "src/composables/use-taman-toast.ts",
       "source_location": "L25"
     },
     {
@@ -287,7 +287,7 @@
       "community_name": "useTamanToast",
       "file_type": "code",
       "norm_label": "info()",
-      "source_file": "packages/shell/app-ui/src/composables/use-taman-toast.ts",
+      "source_file": "src/composables/use-taman-toast.ts",
       "source_location": "L7"
     },
     {
@@ -299,7 +299,7 @@
       "community_name": "useTamanToast",
       "file_type": "code",
       "norm_label": "success()",
-      "source_file": "packages/shell/app-ui/src/composables/use-taman-toast.ts",
+      "source_file": "src/composables/use-taman-toast.ts",
       "source_location": "L16"
     },
     {
@@ -311,8 +311,8 @@
       "community_name": "components/index.ts",
       "file_type": "code",
       "norm_label": "getoptions()",
-      "source_file": "packages/shell/app-ui/src/components/loading/directive.ts",
-      "source_location": "L46"
+      "source_file": "src/components/loading/directive.ts",
+      "source_location": "L47"
     },
     {
       "id": "src_components_loading_directive_registerloadingdirective",
@@ -323,8 +323,8 @@
       "community_name": "components/index.ts",
       "file_type": "code",
       "norm_label": "registerloadingdirective()",
-      "source_file": "packages/shell/app-ui/src/components/loading/directive.ts",
-      "source_location": "L59"
+      "source_file": "src/components/loading/directive.ts",
+      "source_location": "L65"
     },
     {
       "id": "src_components_fetch_component_app_fetch_component",
@@ -334,7 +334,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "app-fetch-component.vue",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L1"
     },
     {
@@ -345,7 +345,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "attrs",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L50"
     },
     {
@@ -356,7 +356,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "bindprops",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L103"
     },
     {
@@ -367,7 +367,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "componentref",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L258"
     },
     {
@@ -378,7 +378,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "currentmodelvalue",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L55"
     },
     {
@@ -389,7 +389,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "emits",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L45"
     },
     {
@@ -400,7 +400,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "getoptions",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L67"
     },
     {
@@ -411,7 +411,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "haspendingrequest",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L65"
     },
     {
@@ -422,7 +422,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "innerparams",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L61"
     },
     {
@@ -433,7 +433,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "isfirstloaded",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L64"
     },
     {
@@ -444,7 +444,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "isloading",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L62"
     },
     {
@@ -455,7 +455,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "mergedparams",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L145"
     },
     {
@@ -466,7 +466,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "modelvalue",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L49"
     },
     {
@@ -477,7 +477,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "props",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L19"
     },
     {
@@ -488,7 +488,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "refoptions",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L63"
     },
     {
@@ -499,7 +499,7 @@
       "community_name": "app-fetch-component.vue",
       "file_type": "code",
       "norm_label": "usesdefaultmodelvalue",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue",
+      "source_file": "src/components/fetch-component/app-fetch-component.vue",
       "source_location": "L52"
     },
     {
@@ -510,7 +510,7 @@
       "community_name": "dependencies",
       "file_type": "code",
       "norm_label": "dependencies",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L11"
     },
     {
@@ -521,7 +521,7 @@
       "community_name": "dependencies",
       "file_type": "code",
       "norm_label": "pohon-ui",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L19"
     },
     {
@@ -532,7 +532,7 @@
       "community_name": "dependencies",
       "file_type": "code",
       "norm_label": "@taman-core/form-ui",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L12"
     },
     {
@@ -543,7 +543,7 @@
       "community_name": "dependencies",
       "file_type": "code",
       "norm_label": "@taman-core/popup-ui",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L13"
     },
     {
@@ -554,7 +554,7 @@
       "community_name": "dependencies",
       "file_type": "code",
       "norm_label": "@taman-core/shared",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L14"
     },
     {
@@ -565,7 +565,7 @@
       "community_name": "dependencies",
       "file_type": "code",
       "norm_label": "@taman-core/taman-ui",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L15"
     },
     {
@@ -576,7 +576,7 @@
       "community_name": "dependencies",
       "file_type": "code",
       "norm_label": "@taman/locales",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L16"
     },
     {
@@ -587,7 +587,7 @@
       "community_name": "dependencies",
       "file_type": "code",
       "norm_label": "@taman/types",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L17"
     },
     {
@@ -598,7 +598,7 @@
       "community_name": "dependencies",
       "file_type": "code",
       "norm_label": "vue",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L20"
     },
     {
@@ -609,7 +609,7 @@
       "community_name": "dependencies",
       "file_type": "code",
       "norm_label": "@vueuse/core",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L18"
     },
     {
@@ -620,7 +620,7 @@
       "community_name": "dependencies",
       "file_type": "concept",
       "norm_label": "pohon-ui",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L19"
     },
     {
@@ -631,7 +631,7 @@
       "community_name": "dependencies",
       "file_type": "concept",
       "norm_label": "@taman-core/form-ui",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L12"
     },
     {
@@ -642,7 +642,7 @@
       "community_name": "dependencies",
       "file_type": "concept",
       "norm_label": "@taman-core/popup-ui",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L13"
     },
     {
@@ -653,7 +653,7 @@
       "community_name": "dependencies",
       "file_type": "concept",
       "norm_label": "@taman-core/shared",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L14"
     },
     {
@@ -664,7 +664,7 @@
       "community_name": "dependencies",
       "file_type": "concept",
       "norm_label": "@taman-core/taman-ui",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L15"
     },
     {
@@ -675,7 +675,7 @@
       "community_name": "dependencies",
       "file_type": "concept",
       "norm_label": "@taman/locales",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L16"
     },
     {
@@ -686,7 +686,7 @@
       "community_name": "dependencies",
       "file_type": "concept",
       "norm_label": "@taman/types",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L17"
     },
     {
@@ -697,7 +697,7 @@
       "community_name": "dependencies",
       "file_type": "concept",
       "norm_label": "vue",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L20"
     },
     {
@@ -708,7 +708,7 @@
       "community_name": "dependencies",
       "file_type": "concept",
       "norm_label": "@vueuse/core",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L18"
     },
     {
@@ -719,7 +719,7 @@
       "community_name": "auth-login.vue",
       "file_type": "code",
       "norm_label": "auth-login.vue",
-      "source_file": "packages/shell/app-ui/src/components/auth/auth-login.vue",
+      "source_file": "src/components/auth/auth-login.vue",
       "source_location": "L1"
     },
     {
@@ -730,7 +730,7 @@
       "community_name": "auth-login.vue",
       "file_type": "code",
       "norm_label": "emits",
-      "source_file": "packages/shell/app-ui/src/components/auth/auth-login.vue",
+      "source_file": "src/components/auth/auth-login.vue",
       "source_location": "L38"
     },
     {
@@ -741,7 +741,7 @@
       "community_name": "auth-login.vue",
       "file_type": "code",
       "norm_label": "[formauth, formauthapi]",
-      "source_file": "packages/shell/app-ui/src/components/auth/auth-login.vue",
+      "source_file": "src/components/auth/auth-login.vue",
       "source_location": "L67"
     },
     {
@@ -752,7 +752,7 @@
       "community_name": "auth-login.vue",
       "file_type": "code",
       "norm_label": "props",
-      "source_file": "packages/shell/app-ui/src/components/auth/auth-login.vue",
+      "source_file": "src/components/auth/auth-login.vue",
       "source_location": "L12"
     },
     {
@@ -763,7 +763,7 @@
       "community_name": "auth-login.vue",
       "file_type": "code",
       "norm_label": "providers",
-      "source_file": "packages/shell/app-ui/src/components/auth/auth-login.vue",
+      "source_file": "src/components/auth/auth-login.vue",
       "source_location": "L43"
     },
     {
@@ -774,7 +774,7 @@
       "community_name": "auth-login.vue",
       "file_type": "code",
       "norm_label": "rememberme",
-      "source_file": "packages/shell/app-ui/src/components/auth/auth-login.vue",
+      "source_file": "src/components/auth/auth-login.vue",
       "source_location": "L60"
     },
     {
@@ -785,7 +785,7 @@
       "community_name": "auth-login.vue",
       "file_type": "code",
       "norm_label": "auth.password.ts",
-      "source_file": "packages/shell/app-ui/src/components/auth/auth.password.ts",
+      "source_file": "src/components/auth/auth.password.ts",
       "source_location": "L1"
     },
     {
@@ -796,7 +796,7 @@
       "community_name": "auth-login.vue",
       "file_type": "code",
       "norm_label": "auth-register.vue",
-      "source_file": "packages/shell/app-ui/src/components/auth/auth-register.vue",
+      "source_file": "src/components/auth/auth-register.vue",
       "source_location": "L1"
     },
     {
@@ -807,7 +807,7 @@
       "community_name": "auth-login.vue",
       "file_type": "code",
       "norm_label": "emits",
-      "source_file": "packages/shell/app-ui/src/components/auth/auth-register.vue",
+      "source_file": "src/components/auth/auth-register.vue",
       "source_location": "L27"
     },
     {
@@ -818,7 +818,7 @@
       "community_name": "auth-login.vue",
       "file_type": "code",
       "norm_label": "[formauth, formauthapi]",
-      "source_file": "packages/shell/app-ui/src/components/auth/auth-register.vue",
+      "source_file": "src/components/auth/auth-register.vue",
       "source_location": "L36"
     },
     {
@@ -829,7 +829,7 @@
       "community_name": "auth-login.vue",
       "file_type": "code",
       "norm_label": "props",
-      "source_file": "packages/shell/app-ui/src/components/auth/auth-register.vue",
+      "source_file": "src/components/auth/auth-register.vue",
       "source_location": "L10"
     },
     {
@@ -840,7 +840,7 @@
       "community_name": "auth-login.vue",
       "file_type": "code",
       "norm_label": "auth.types.ts",
-      "source_file": "packages/shell/app-ui/src/components/auth/auth.types.ts",
+      "source_file": "src/components/auth/auth.types.ts",
       "source_location": "L1"
     },
     {
@@ -851,7 +851,7 @@
       "community_name": "auth-login.vue",
       "file_type": "code",
       "norm_label": "auth/index.ts",
-      "source_file": "packages/shell/app-ui/src/components/auth/index.ts",
+      "source_file": "src/components/auth/index.ts",
       "source_location": "L1"
     },
     {
@@ -862,7 +862,7 @@
       "community_name": "count-to.vue",
       "file_type": "code",
       "norm_label": "count-to.vue",
-      "source_file": "packages/shell/app-ui/src/components/count-to/count-to.vue",
+      "source_file": "src/components/count-to/count-to.vue",
       "source_location": "L1"
     },
     {
@@ -873,7 +873,7 @@
       "community_name": "count-to.vue",
       "file_type": "code",
       "norm_label": "currentvalue",
-      "source_file": "packages/shell/app-ui/src/components/count-to/count-to.vue",
+      "source_file": "src/components/count-to/count-to.vue",
       "source_location": "L38"
     },
     {
@@ -884,7 +884,7 @@
       "community_name": "count-to.vue",
       "file_type": "code",
       "norm_label": "emit",
-      "source_file": "packages/shell/app-ui/src/components/count-to/count-to.vue",
+      "source_file": "src/components/count-to/count-to.vue",
       "source_location": "L18"
     },
     {
@@ -895,7 +895,7 @@
       "community_name": "count-to.vue",
       "file_type": "code",
       "norm_label": "lastvalue",
-      "source_file": "packages/shell/app-ui/src/components/count-to/count-to.vue",
+      "source_file": "src/components/count-to/count-to.vue",
       "source_location": "L25"
     },
     {
@@ -906,7 +906,7 @@
       "community_name": "count-to.vue",
       "file_type": "code",
       "norm_label": "numdec",
-      "source_file": "packages/shell/app-ui/src/components/count-to/count-to.vue",
+      "source_file": "src/components/count-to/count-to.vue",
       "source_location": "L66"
     },
     {
@@ -917,7 +917,7 @@
       "community_name": "count-to.vue",
       "file_type": "code",
       "norm_label": "nummain",
-      "source_file": "packages/shell/app-ui/src/components/count-to/count-to.vue",
+      "source_file": "src/components/count-to/count-to.vue",
       "source_location": "L58"
     },
     {
@@ -928,7 +928,7 @@
       "community_name": "count-to.vue",
       "file_type": "code",
       "norm_label": "props",
-      "source_file": "packages/shell/app-ui/src/components/count-to/count-to.vue",
+      "source_file": "src/components/count-to/count-to.vue",
       "source_location": "L8"
     },
     {
@@ -939,7 +939,7 @@
       "community_name": "count-to.vue",
       "file_type": "code",
       "norm_label": "count-to/index.ts",
-      "source_file": "packages/shell/app-ui/src/components/count-to/index.ts",
+      "source_file": "src/components/count-to/index.ts",
       "source_location": "L1"
     },
     {
@@ -950,7 +950,7 @@
       "community_name": "count-to.vue",
       "file_type": "code",
       "norm_label": "types.ts",
-      "source_file": "packages/shell/app-ui/src/components/count-to/types.ts",
+      "source_file": "src/components/count-to/types.ts",
       "source_location": "L1"
     },
     {
@@ -961,7 +961,7 @@
       "community_name": "count-to.vue",
       "file_type": "code",
       "norm_label": "transitionpresetskeys",
-      "source_file": "packages/shell/app-ui/src/components/count-to/types.ts",
+      "source_file": "src/components/count-to/types.ts",
       "source_location": "L8"
     },
     {
@@ -972,7 +972,7 @@
       "community_name": "api-component.test.ts",
       "file_type": "code",
       "norm_label": "app-fetch-component.types.ts",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.types.ts",
+      "source_file": "src/components/fetch-component/app-fetch-component.types.ts",
       "source_location": "L1"
     },
     {
@@ -983,7 +983,7 @@
       "community_name": "api-component.test.ts",
       "file_type": "code",
       "norm_label": "fetch-component/index.ts",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/index.ts",
+      "source_file": "src/components/fetch-component/index.ts",
       "source_location": "L1"
     },
     {
@@ -994,7 +994,7 @@
       "community_name": "api-component.test.ts",
       "file_type": "code",
       "norm_label": "api-component.test.ts",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/__tests__/api-component.test.ts",
+      "source_file": "src/components/fetch-component/__tests__/api-component.test.ts",
       "source_location": "L1"
     },
     {
@@ -1005,7 +1005,7 @@
       "community_name": "api-component.test.ts",
       "file_type": "code",
       "norm_label": "kebabmodelinput",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/__tests__/api-component.test.ts",
+      "source_file": "src/components/fetch-component/__tests__/api-component.test.ts",
       "source_location": "L48"
     },
     {
@@ -1016,7 +1016,7 @@
       "community_name": "api-component.test.ts",
       "file_type": "code",
       "norm_label": "modelvalueinput",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/__tests__/api-component.test.ts",
+      "source_file": "src/components/fetch-component/__tests__/api-component.test.ts",
       "source_location": "L32"
     },
     {
@@ -1027,7 +1027,7 @@
       "community_name": "api-component.test.ts",
       "file_type": "code",
       "norm_label": "valueinput",
-      "source_file": "packages/shell/app-ui/src/components/fetch-component/__tests__/api-component.test.ts",
+      "source_file": "src/components/fetch-component/__tests__/api-component.test.ts",
       "source_location": "L16"
     },
     {
@@ -1038,7 +1038,7 @@
       "community_name": "package.json",
       "file_type": "code",
       "norm_label": "package.json",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L1"
     },
     {
@@ -1049,7 +1049,7 @@
       "community_name": "package.json",
       "file_type": "code",
       "norm_label": "devdependencies",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L22"
     },
     {
@@ -1060,7 +1060,7 @@
       "community_name": "package.json",
       "file_type": "code",
       "norm_label": "@vue/test-utils",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L23"
     },
     {
@@ -1071,7 +1071,7 @@
       "community_name": "package.json",
       "file_type": "code",
       "norm_label": "exports",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L5"
     },
     {
@@ -1082,7 +1082,7 @@
       "community_name": "package.json",
       "file_type": "code",
       "norm_label": "name",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L2"
     },
     {
@@ -1093,7 +1093,7 @@
       "community_name": "package.json",
       "file_type": "code",
       "norm_label": "type",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L3"
     },
     {
@@ -1104,7 +1104,7 @@
       "community_name": "package.json",
       "file_type": "code",
       "norm_label": "version",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L4"
     },
     {
@@ -1115,7 +1115,7 @@
       "community_name": "package.json",
       "file_type": "concept",
       "norm_label": "@vue/test-utils",
-      "source_file": "packages/shell/app-ui/package.json",
+      "source_file": "package.json",
       "source_location": "L23"
     },
     {
@@ -1126,7 +1126,7 @@
       "community_name": "tsconfig.json",
       "file_type": "code",
       "norm_label": "tsconfig.json",
-      "source_file": "packages/shell/app-ui/tsconfig.json",
+      "source_file": "tsconfig.json",
       "source_location": "L1"
     },
     {
@@ -1137,7 +1137,7 @@
       "community_name": "tsconfig.json",
       "file_type": "code",
       "norm_label": "exclude",
-      "source_file": "packages/shell/app-ui/tsconfig.json",
+      "source_file": "tsconfig.json",
       "source_location": "L5"
     },
     {
@@ -1148,7 +1148,7 @@
       "community_name": "tsconfig.json",
       "file_type": "code",
       "norm_label": "extends",
-      "source_file": "packages/shell/app-ui/tsconfig.json",
+      "source_file": "tsconfig.json",
       "source_location": "L3"
     },
     {
@@ -1159,7 +1159,7 @@
       "community_name": "tsconfig.json",
       "file_type": "code",
       "norm_label": "include",
-      "source_file": "packages/shell/app-ui/tsconfig.json",
+      "source_file": "tsconfig.json",
       "source_location": "L4"
     },
     {
@@ -1170,7 +1170,7 @@
       "community_name": "tsconfig.json",
       "file_type": "code",
       "norm_label": "$schema",
-      "source_file": "packages/shell/app-ui/tsconfig.json",
+      "source_file": "tsconfig.json",
       "source_location": "L2"
     },
     {
@@ -1181,7 +1181,7 @@
       "community_name": "tsconfig.json",
       "file_type": "concept",
       "norm_label": "node_modules",
-      "source_file": "packages/shell/app-ui/tsconfig.json",
+      "source_file": "tsconfig.json",
       "source_location": "L5"
     },
     {
@@ -1192,7 +1192,7 @@
       "community_name": "tsconfig.json",
       "file_type": "concept",
       "norm_label": "src",
-      "source_file": "packages/shell/app-ui/tsconfig.json",
+      "source_file": "tsconfig.json",
       "source_location": "L4"
     },
     {
@@ -1203,7 +1203,7 @@
       "community_name": "tsconfig.json",
       "file_type": "concept",
       "norm_label": "@taman/tsconfig/web.json",
-      "source_file": "packages/shell/app-ui/tsconfig.json",
+      "source_file": "tsconfig.json",
       "source_location": "L3"
     },
     {
@@ -1214,7 +1214,7 @@
       "community_name": "useTamanToast",
       "file_type": "code",
       "norm_label": "composables/index.ts",
-      "source_file": "packages/shell/app-ui/src/composables/index.ts",
+      "source_file": "src/composables/index.ts",
       "source_location": "L1"
     },
     {
@@ -1225,7 +1225,7 @@
       "community_name": "useTamanToast",
       "file_type": "code",
       "norm_label": "use-taman-toast.ts",
-      "source_file": "packages/shell/app-ui/src/composables/use-taman-toast.ts",
+      "source_file": "src/composables/use-taman-toast.ts",
       "source_location": "L1"
     },
     {
@@ -1236,7 +1236,7 @@
       "community_name": "useTamanToast",
       "file_type": "code",
       "norm_label": "src/index.ts",
-      "source_file": "packages/shell/app-ui/src/index.ts",
+      "source_file": "src/index.ts",
       "source_location": "L1"
     },
     {
@@ -1247,7 +1247,7 @@
       "community_name": "components/index.ts",
       "file_type": "code",
       "norm_label": "app-card.vue",
-      "source_file": "packages/shell/app-ui/src/components/card/app-card.vue",
+      "source_file": "src/components/card/app-card.vue",
       "source_location": "L1"
     },
     {
@@ -1258,7 +1258,7 @@
       "community_name": "components/index.ts",
       "file_type": "code",
       "norm_label": "app-card-action.vue",
-      "source_file": "packages/shell/app-ui/src/components/card/app-card-action.vue",
+      "source_file": "src/components/card/app-card-action.vue",
       "source_location": "L1"
     },
     {
@@ -1269,7 +1269,7 @@
       "community_name": "components/index.ts",
       "file_type": "code",
       "norm_label": "slots",
-      "source_file": "packages/shell/app-ui/src/components/card/app-card.vue",
+      "source_file": "src/components/card/app-card.vue",
       "source_location": "L16"
     },
     {
@@ -1280,7 +1280,7 @@
       "community_name": "components/index.ts",
       "file_type": "code",
       "norm_label": "{\n  title,\n  description,\n  contentclass,\n  headerclass,\n  footerclass,\n}",
-      "source_file": "packages/shell/app-ui/src/components/card/app-card.vue",
+      "source_file": "src/components/card/app-card.vue",
       "source_location": "L8"
     },
     {
@@ -1291,7 +1291,7 @@
       "community_name": "components/index.ts",
       "file_type": "code",
       "norm_label": "card/index.ts",
-      "source_file": "packages/shell/app-ui/src/components/card/index.ts",
+      "source_file": "src/components/card/index.ts",
       "source_location": "L1"
     },
     {
@@ -1302,7 +1302,7 @@
       "community_name": "components/index.ts",
       "file_type": "code",
       "norm_label": "components/index.ts",
-      "source_file": "packages/shell/app-ui/src/components/index.ts",
+      "source_file": "src/components/index.ts",
       "source_location": "L1"
     },
     {
@@ -1313,7 +1313,7 @@
       "community_name": "components/index.ts",
       "file_type": "code",
       "norm_label": "directive.ts",
-      "source_file": "packages/shell/app-ui/src/components/loading/directive.ts",
+      "source_file": "src/components/loading/directive.ts",
       "source_location": "L1"
     },
     {
@@ -1324,8 +1324,8 @@
       "community_name": "components/index.ts",
       "file_type": "code",
       "norm_label": "loading_instance_key",
-      "source_file": "packages/shell/app-ui/src/components/loading/directive.ts",
-      "source_location": "L6"
+      "source_file": "src/components/loading/directive.ts",
+      "source_location": "L7"
     },
     {
       "id": "src_components_loading_directive_loadingdirective",
@@ -1335,8 +1335,8 @@
       "community_name": "components/index.ts",
       "file_type": "code",
       "norm_label": "loadingdirective",
-      "source_file": "packages/shell/app-ui/src/components/loading/directive.ts",
-      "source_location": "L10"
+      "source_file": "src/components/loading/directive.ts",
+      "source_location": "L11"
     },
     {
       "id": "src_components_loading_index",
@@ -1346,7 +1346,7 @@
       "community_name": "components/index.ts",
       "file_type": "code",
       "norm_label": "loading/index.ts",
-      "source_file": "packages/shell/app-ui/src/components/loading/index.ts",
+      "source_file": "src/components/loading/index.ts",
       "source_location": "L1"
     },
     {
@@ -1357,7 +1357,7 @@
       "community_name": "components/index.ts",
       "file_type": "code",
       "norm_label": "page/index.ts",
-      "source_file": "packages/shell/app-ui/src/components/page/index.ts",
+      "source_file": "src/components/page/index.ts",
       "source_location": "L1"
     },
     {
@@ -1368,7 +1368,7 @@
       "community_name": "app-page.vue",
       "file_type": "code",
       "norm_label": "app-page.vue",
-      "source_file": "packages/shell/app-ui/src/components/page/app-page.vue",
+      "source_file": "src/components/page/app-page.vue",
       "source_location": "L1"
     },
     {
@@ -1379,7 +1379,7 @@
       "community_name": "app-page.vue",
       "file_type": "code",
       "norm_label": "contentstyle",
-      "source_file": "packages/shell/app-ui/src/components/page/app-page.vue",
+      "source_file": "src/components/page/app-page.vue",
       "source_location": "L27"
     },
     {
@@ -1390,7 +1390,7 @@
       "community_name": "app-page.vue",
       "file_type": "code",
       "norm_label": "props",
-      "source_file": "packages/shell/app-ui/src/components/page/app-page.vue",
+      "source_file": "src/components/page/app-page.vue",
       "source_location": "L10"
     },
     {
@@ -1401,7 +1401,7 @@
       "community_name": "app-page.vue",
       "file_type": "code",
       "norm_label": "slots",
-      "source_file": "packages/shell/app-ui/src/components/page/app-page.vue",
+      "source_file": "src/components/page/app-page.vue",
       "source_location": "L19"
     },
     {
@@ -1412,7 +1412,7 @@
       "community_name": "app-page.vue",
       "file_type": "code",
       "norm_label": "app-page.types.ts",
-      "source_file": "packages/shell/app-ui/src/components/page/app-page.types.ts",
+      "source_file": "src/components/page/app-page.types.ts",
       "source_location": "L1"
     }
   ],

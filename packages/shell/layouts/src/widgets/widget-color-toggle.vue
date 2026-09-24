@@ -4,7 +4,7 @@ import { TamanButtonIcon } from '@taman-core/taman-ui';
 import { COLOR_PRESETS, preferences, updatePreferences } from '@taman/preferences';
 import PButton from 'pohon-ui/components/Button.vue';
 import PCollapsible from 'pohon-ui/components/Collapsible.vue';
-import PIcon from 'pohon-ui/runtime/vue/components/Icon.vue';
+import PIcon from 'pohon-ui/components/Icon.vue';
 
 defineOptions({
   name: 'WidgetColorToggle',
