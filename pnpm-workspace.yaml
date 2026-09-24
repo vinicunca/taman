@@ -52,7 +52,6 @@ catalog:
   '@commitlint/types': ^21.2.3
   '@ctrl/tinycolor': ^4.2.1
   '@formkit/auto-animate': ^0.10.0
-  '@iconify/vue': ^5.0.3
   '@internationalized/date': ^3.12.4
   '@internationalized/number': ^3.6.8
   '@intlify/core-base': ^11.4.12

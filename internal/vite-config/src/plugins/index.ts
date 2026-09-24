@@ -25,7 +25,6 @@ import { viteInjectAppLoadingPlugin } from './inject-app-loading';
 import { viteMetadataPlugin } from './inject-metadata';
 import { viteLicensePlugin } from './license';
 import { vitePrintPlugin } from './print';
-import { viteVxeTableImportsPlugin } from './vxe-table';
 
 /**
  * Load Vite plugins whose conditions are satisfied
@@ -118,7 +117,6 @@ async function loadApplicationPlugins(
     printInfoMap,
     pwa,
     pwaOptions,
-    vxeTableLazyImport,
     ...commonOptions
   } = options;
 
@@ -143,13 +141,6 @@ async function loadApplicationPlugins(
       condition: print,
       plugins: async () => {
         return [await vitePrintPlugin({ infoMap: printInfoMap })];
-      },
-    },
-
-    {
-      condition: vxeTableLazyImport,
-      plugins: async () => {
-        return [await viteVxeTableImportsPlugin()];
       },
     },
 
@@ -255,5 +246,4 @@ export {
   viteDtsPlugin,
   viteHtmlPlugin,
   viteVisualizerPlugin,
-  viteVxeTableImportsPlugin,
 };

@@ -30,19 +30,6 @@
     "collapsible": "Collapsible Form Field",
     "setFormValues": "Set form values"
   },
-  "vxeTable": {
-    "title": "Vxe Table",
-    "basic": "Basic Table",
-    "remote": "Remote Load",
-    "tree": "Tree Table",
-    "fixed": "Fixed Header/Column",
-    "virtual": "Virtual Scroll",
-    "editCell": "Edit Cell",
-    "editRow": "Edit Row",
-    "custom-cell": "Custom Cell",
-    "form": "Form Table",
-    "viewed": "Row Marker"
-  },
   "button-group": {
     "title": "Button Group"
   }

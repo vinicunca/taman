@@ -43,7 +43,6 @@ function defineApplicationConfig(userConfigPromise?: DefineApplicationOptions) {
       },
       pwa: true,
       pwaOptions: getDefaultPwaOptions(appTitle),
-      vxeTableLazyImport: true,
       ...envConfig,
       ...application,
     });

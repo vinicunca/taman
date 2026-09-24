@@ -25,19 +25,6 @@
     "upload-image": "Klik untuk mengunggah gambar",
     "collapsible": "Field Formulir yang Dapat Diciutkan"
   },
-  "vxeTable": {
-    "title": "Tabel Vxe",
-    "basic": "Tabel Dasar",
-    "remote": "Muat Jarak Jauh",
-    "tree": "Tabel Pohon",
-    "fixed": "Header/Kolom Tetap",
-    "virtual": "Gulir Virtual",
-    "editCell": "Edit Sel",
-    "editRow": "Edit Baris",
-    "custom-cell": "Sel Kustom",
-    "form": "Tabel Formulir",
-    "viewed": "Penanda Baris"
-  },
   "button-group": {
     "title": "Grup Tombol"
   }

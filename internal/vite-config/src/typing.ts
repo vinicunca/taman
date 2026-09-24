@@ -248,11 +248,6 @@ interface ApplicationPluginOptions extends CommonPluginOptions {
    * PWA plugin options
    */
   pwaOptions?: Partial<PwaPluginOptions>;
-  /**
-   * Enable VXE Table lazy import
-   * @default false
-   */
-  vxeTableLazyImport?: boolean;
 }
 
 /**
