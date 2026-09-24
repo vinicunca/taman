@@ -152,6 +152,34 @@ const routes: Array<RouteRecordRaw> = [
           title: $t('examples.button-group.title'),
         },
       },
+      {
+        name: 'OrpcExample',
+        path: 'orpc',
+        meta: {
+          icon: 'mdi:api',
+          title: $t('examples.orpc.title'),
+        },
+        children: [
+          {
+            name: 'OrpcPlainCrudExample',
+            path: 'plain/crud',
+            component: () => import('#/views/examples/orpc/plain/crud.vue'),
+            meta: { title: $t('examples.orpc.plainCrud') },
+          },
+          {
+            name: 'OrpcPlainPaginationExample',
+            path: 'plain/pagination',
+            component: () => import('#/views/examples/orpc/plain/pagination.vue'),
+            meta: { title: $t('examples.orpc.plainPagination') },
+          },
+          {
+            name: 'OrpcPlainLiveExample',
+            path: 'plain/live',
+            component: () => import('#/views/examples/orpc/plain/live.vue'),
+            meta: { title: $t('examples.orpc.plainLive') },
+          },
+        ],
+      },
     ],
   },
 ];

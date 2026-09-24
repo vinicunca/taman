@@ -27,5 +27,14 @@
   },
   "button-group": {
     "title": "Grup Tombol"
+  },
+  "orpc": {
+    "title": "oRPC",
+    "plainCrud": "Plain · CRUD",
+    "plainPagination": "Plain · Paginasi",
+    "plainLive": "Plain · Realtime",
+    "queryCrud": "Vue Query · CRUD",
+    "queryPagination": "Vue Query · Paginasi",
+    "queryLive": "Vue Query · Realtime"
   }
 }
