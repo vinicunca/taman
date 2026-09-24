@@ -16,6 +16,7 @@ export const sharedStatements = {
   talent: ['create', 'update', 'delete', 'manage'],
   eventCredit: ['create', 'delete', 'read'],
   bookingTalent: ['create', 'update', 'delete', 'read'],
+  todo: ['create', 'read', 'update', 'delete'],
 } as const;
 
 /** Every resource/action pair a caller can be asked about. */

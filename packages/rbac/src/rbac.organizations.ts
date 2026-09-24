@@ -25,6 +25,7 @@ const ownerRole = organizationAc.newRole({
   talent: ['create', 'update', 'delete', 'manage'],
   eventCredit: ['create', 'delete', 'read'],
   bookingTalent: ['create', 'update', 'delete', 'read'],
+  todo: ['create', 'read', 'update', 'delete'],
 });
 
 const memberRole = organizationAc.newRole({
@@ -34,6 +35,8 @@ const memberRole = organizationAc.newRole({
   // Crediting/booking is an org-management action, not a self-serve one.
   eventCredit: [],
   bookingTalent: [],
+  // Todos are collaborative: every member may manage them.
+  todo: ['create', 'read', 'update', 'delete'],
 });
 
 const organizationRoles = {
