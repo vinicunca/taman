@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { VbenFormSchema } from '#/adapter/form';
 import { useTamanToast } from '@taman/app-ui';
-import { ProfilePasswordSetting, z } from '@taman/common-ui';
+import { ProfilePasswordSetting, z } from '@taman/app-ui';
 import { computed } from 'vue';
 
 const formSchema = computed((): Array<VbenFormSchema> => {

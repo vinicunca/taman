@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { TamanDrawerProps, ExtendedDrawerApi } from './drawer.types';
+import type { ExtendedDrawerApi, TamanDrawerProps } from './drawer.types';
 
 import {
   useBreakpoints,
@@ -20,9 +20,9 @@ import {
   VisuallyHidden,
 } from '@taman-core/taman-ui';
 import PButton from 'pohon-ui/components/Button.vue';
+import PIcon from 'pohon-ui/components/Icon.vue';
 import PSeparator from 'pohon-ui/components/Separator.vue';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
-import PIcon from 'pohon-ui/components/Icon.vue';
 import {
   computed,
   onDeactivated,

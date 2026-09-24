@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Page } from '@taman/common-ui';
+import { Page } from '@taman/app-ui';
 import { refAutoReset } from '@vueuse/core';
 
 import ConcurrencyCaching from './concurrency-caching.vue';

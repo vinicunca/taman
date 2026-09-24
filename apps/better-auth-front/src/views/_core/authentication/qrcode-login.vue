@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { AuthenticationQrCodeLogin } from '@taman/common-ui';
+import { AuthenticationQrCodeLogin } from '@taman/app-ui';
 import { LOGIN_PATH } from '@taman/constants';
 
 defineOptions({ name: 'QrCodeLogin' });

@@ -4,7 +4,7 @@ import type {
   WorkbenchQuickNavItem,
   WorkbenchTodoItem,
   WorkbenchTrendItem,
-} from '@taman/common-ui';
+} from '@taman/app-ui';
 
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -16,7 +16,7 @@ import {
   WorkbenchQuickNav,
   WorkbenchTodo,
   WorkbenchTrends,
-} from '@taman/common-ui';
+} from '@taman/app-ui';
 import { preferences } from '@taman/preferences';
 import { useUserStore } from '@taman/stores';
 import { openWindow } from '@taman/utils';

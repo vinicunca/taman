@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { MenuBadge } from '@taman-core/menu-ui';
-import { Page } from '@taman/common-ui';
+import { Page } from '@taman/app-ui';
 import { useAccessStore } from '@taman/stores';
 import { reactive } from 'vue';
 import { useRoute } from 'vue-router';

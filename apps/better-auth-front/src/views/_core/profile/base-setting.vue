@@ -5,7 +5,7 @@ import type { VbenFormSchema } from '#/adapter/form';
 
 import { computed, onMounted, ref } from 'vue';
 
-import { ProfileBaseSetting } from '@taman/common-ui';
+import { ProfileBaseSetting } from '@taman/app-ui';
 
 import { getUserInfoApi } from '#/api';
 

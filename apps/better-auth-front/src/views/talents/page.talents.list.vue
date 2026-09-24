@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { ColDef } from 'ag-grid-community';
 import { AppCard, AppPage } from '@taman/app-ui';
-import { useTamanDrawer } from '@taman/common-ui';
+import { useTamanDrawer } from '@taman/app-ui';
 import { AgGridVue } from 'ag-grid-vue3';
 import { ref } from 'vue';
 import { TalentForm, useTalentsQuery } from '#/domains/talents';

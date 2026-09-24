@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Page } from '@taman/common-ui';
+import { Page } from '@taman/app-ui';
 import {
   downloadFileFromBase64,
   downloadFileFromBlobPart,

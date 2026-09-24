@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Fallback } from '@taman/common-ui';
+import { Fallback } from '@taman/app-ui';
 </script>
 
 <template>

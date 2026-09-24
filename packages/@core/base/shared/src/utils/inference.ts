@@ -1,4 +1,3 @@
-import { isDefined } from '@vinicunca/perkakas';
 import { isFunction } from '@vue/shared';
 
 /**
@@ -9,49 +8,6 @@ import { isFunction } from '@vue/shared';
  */
 function isUndefined(value?: unknown): value is undefined {
   return value === undefined;
-}
-
-/**
- * Checks whether the given value is a boolean.
- * @param value
- * @returns True if the value is a boolean, otherwise false.
- */
-function isBoolean(value: unknown): value is boolean {
-  return typeof value === 'boolean';
-}
-
-/**
- * Checks whether the given value is empty.
- *
- * The following are considered empty:
- * - null
- * - undefined
- * - an empty string
- * - an array with length 0
- * - a Map or Set with no elements
- * - an object with no own properties
- *
- * @param value The value to check.
- * @returns True if the value is empty, otherwise false.
- */
-function isEmpty<T = unknown>(value?: T): value is T {
-  if (value === null || value === undefined) {
-    return true;
-  }
-
-  if (Array.isArray(value) || isString(value)) {
-    return value.length === 0;
-  }
-
-  if (value instanceof Map || value instanceof Set) {
-    return value.size === 0;
-  }
-
-  if (isObject(value)) {
-    return Object.keys(value).length === 0;
-  }
-
-  return false;
 }
 
 /**
@@ -108,14 +64,6 @@ function isWindowsOs(): boolean {
 }
 
 /**
- * Checks whether the given value is a finite number.
- * @param value
- */
-function isNumber(value: any): value is number {
-  return typeof value === 'number' && Number.isFinite(value);
-}
-
-/**
  * Returns the first value in the provided list that is neither `null` nor `undefined`.
  *
  * This function iterates over the input values and returns the first one that is
@@ -151,14 +99,9 @@ function getFirstNonNullOrUndefined<T>(
 
 export {
   getFirstNonNullOrUndefined,
-  // isBoolean,
-  // isEmpty,
   isFunction as isFunctionType,
   isHttpUrl,
   isMacOs,
-  // isNumber,
-  // isObject,
-  // isString,
   isUndefined,
   isWindow,
   isWindowsOs,

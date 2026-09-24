@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { VbenFormSchema } from '@taman/common-ui';
+import type { VbenFormSchema } from '@taman/app-ui';
 
 import { computed, ref } from 'vue';
 
-import { AuthenticationForgetPassword, z } from '@taman/common-ui';
+import { AuthenticationForgetPassword, z } from '@taman/app-ui';
 import { $t } from '@taman/locales';
 
 defineOptions({ name: 'ForgetPassword' });

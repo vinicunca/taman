@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { AuthFormField, ButtonProps, FormSubmitEvent } from 'pohon-ui';
-import { z } from '@taman/common-ui';
+import { z } from '@taman/app-ui';
 import { $t } from '@taman/locales';
 import { computed } from 'vue';
 

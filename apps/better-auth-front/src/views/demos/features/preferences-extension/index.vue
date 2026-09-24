@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { PlaygroundPreferencesExtension } from '#/preferences';
 
-import { Page } from '@taman/common-ui';
+import { Page } from '@taman/app-ui';
 import {
   getCustomPreferences,
   updateCustomPreferences,

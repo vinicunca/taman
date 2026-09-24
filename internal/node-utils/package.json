@@ -25,7 +25,6 @@
     "chalk": "catalog:",
     "consola": "catalog:",
     "execa": "catalog:",
-    "find-up": "catalog:",
     "ora": "catalog:",
     "pkg-types": "catalog:",
     "rimraf": "catalog:"

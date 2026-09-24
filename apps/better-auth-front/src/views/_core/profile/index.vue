@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import { Profile } from '@taman/common-ui';
+import { Profile } from '@taman/app-ui';
 import { useUserStore } from '@taman/stores';
 
 import ProfileBase from './base-setting.vue';

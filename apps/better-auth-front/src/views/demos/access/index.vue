@@ -2,7 +2,7 @@
 import type { Recordable } from '@taman/types';
 
 import { useAccess } from '@taman/access';
-import { Page } from '@taman/common-ui';
+import { Page } from '@taman/app-ui';
 import { resetAllStores, useUserStore } from '@taman/stores';
 import { useRouter } from 'vue-router';
 

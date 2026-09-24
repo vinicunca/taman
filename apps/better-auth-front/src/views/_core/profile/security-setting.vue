@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-import { ProfileSecuritySetting } from '@taman/common-ui';
+import { ProfileSecuritySetting } from '@taman/app-ui';
 
 const formSchema = computed(() => {
   return [

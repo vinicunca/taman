@@ -24,7 +24,6 @@
     "@taman-core/pohon-ui-theme": "workspace:*",
     "@taman/access": "workspace:*",
     "@taman/app-ui": "workspace:*",
-    "@taman/common-ui": "workspace:*",
     "@taman/composables": "workspace:*",
     "@taman/constants": "workspace:*",
     "@taman/db-pg": "workspace:*",

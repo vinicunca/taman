@@ -2,7 +2,6 @@
 import { useEventListener, useThrottleFn } from '@vueuse/core';
 import PButton from 'pohon-ui/components/Button.vue';
 import { computed, onMounted, ref, shallowRef } from 'vue';
-import { TamanButtonIcon } from '../button';
 
 const props = withDefaults(
   defineProps<{

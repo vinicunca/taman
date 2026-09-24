@@ -1,5 +1,5 @@
 import type { App } from 'vue';
-import { useTamanToast } from '@taman/common-ui';
+import { useTamanToast } from '@taman/app-ui';
 import { QueryCache, QueryClient } from '@tanstack/vue-query';
 import { getErrors } from '#/api/errors';
 

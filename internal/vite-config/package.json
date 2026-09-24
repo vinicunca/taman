@@ -26,10 +26,7 @@
     "@taman/node-utils": "workspace:*",
     "archiver": "catalog:",
     "cheerio": "catalog:",
-    "get-port": "catalog:",
     "html-minifier-terser": "catalog:",
-    "nitropack": "catalog:",
-    "resolve.exports": "catalog:",
     "vite-plugin-pwa": "catalog:",
     "vite-plugin-vue-devtools": "catalog:"
   },
@@ -44,7 +41,6 @@
     "unocss": "catalog:",
     "unplugin-dts": "catalog:",
     "vite": "catalog:",
-    "vite-plugin-compression": "catalog:",
-    "vite-plugin-lazy-import": "catalog:"
+    "vite-plugin-compression": "catalog:"
   }
 }

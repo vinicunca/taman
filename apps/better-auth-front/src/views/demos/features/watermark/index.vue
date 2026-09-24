@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Page } from '@taman/common-ui';
+import { Page } from '@taman/app-ui';
 import { useWatermark } from '@taman/composables';
 
 const { destroyWatermark, updateWatermark, watermark } = useWatermark();

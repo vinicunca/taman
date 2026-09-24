@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Page } from '@taman/common-ui';
+import { Page } from '@taman/app-ui';
 import { computed, ref, watchEffect } from 'vue';
 
 import { getParamsData } from '#/api/examples/params';

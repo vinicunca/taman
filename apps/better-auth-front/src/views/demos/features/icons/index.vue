@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { IconPicker, Page } from '@taman/common-ui';
+import { IconPicker, Page } from '@taman/app-ui';
 import { h, ref } from 'vue';
 
 const iconValue1 = ref('ant-design:trademark-outlined');

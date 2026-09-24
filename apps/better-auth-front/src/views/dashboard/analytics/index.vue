@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import type { AnalysisOverviewItem } from '@taman/common-ui';
+import type { AnalysisOverviewItem } from '@taman/app-ui';
 import type { TabOption } from '@taman/types';
 
 import {
   AnalysisChartCard,
   AnalysisChartsTabs,
   AnalysisOverview,
-} from '@taman/common-ui';
+} from '@taman/app-ui';
 
 import AnalyticsTrends from './analytics-trends.vue';
 import AnalyticsVisitsData from './analytics-visits-data.vue';

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Page } from '@taman/common-ui';
+import { Page } from '@taman/app-ui';
 import { ref } from 'vue';
 
 import { getBigIntData } from '#/api/examples/json-bigint';

@@ -1,11 +1,5 @@
 import type {
-  eventTable,
-  orderTable,
-  ticketCategoryTable,
-  ticketTable,
-  transactionTable,
   userTable,
-  venueTable,
 } from './schema';
 
 /**
@@ -26,9 +20,3 @@ export type Serialized<T> = T extends Date
       : T;
 
 export type DbUser = Serialized<typeof userTable.$inferSelect>;
-export type DbVenue = Serialized<typeof venueTable.$inferSelect>;
-export type DbEvent = Serialized<typeof eventTable.$inferSelect>;
-export type DbTicketCategory = Serialized<typeof ticketCategoryTable.$inferSelect>;
-export type DbOrder = Serialized<typeof orderTable.$inferSelect>;
-export type DbTransaction = Serialized<typeof transactionTable.$inferSelect>;
-export type DbTicket = Serialized<typeof ticketTable.$inferSelect>;

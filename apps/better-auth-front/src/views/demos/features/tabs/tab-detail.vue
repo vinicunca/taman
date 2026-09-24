@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 
-import { Page } from '@taman/common-ui';
+import { Page } from '@taman/app-ui';
 import { useTabs } from '@taman/composables';
 
 const route = useRoute();

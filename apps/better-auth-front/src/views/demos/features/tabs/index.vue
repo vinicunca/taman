@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Page } from '@taman/common-ui';
+import { Page } from '@taman/app-ui';
 import { useTabs } from '@taman/composables';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';

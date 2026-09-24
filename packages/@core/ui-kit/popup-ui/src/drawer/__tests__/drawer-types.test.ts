@@ -1,5 +1,5 @@
 import type { ExtendedDrawerApi, InferDrawerData } from '../drawer.types';
-import type { createVbenDrawer, useTamanDrawer } from '../use-taman-drawer';
+import type { createTamanDrawer, useTamanDrawer } from '../use-taman-drawer';
 import type TypedDrawer from './fixtures/typed-drawer.vue';
 
 import { describe, expectTypeOf, it } from 'vitest';
@@ -11,7 +11,7 @@ interface TypedDrawerData {
 
 type DrawerData = null | TypedDrawerData;
 
-declare const createDrawer: typeof createVbenDrawer;
+declare const createDrawer: typeof createTamanDrawer;
 declare const useDrawer: typeof useTamanDrawer;
 
 describe('drawer public data types', () => {

@@ -23,28 +23,19 @@ const pohonOptions: PohonUiOptions = {
   },
   scanPackages: [
     '@taman-core/popup-ui',
-    '@taman/common-ui',
+    '@taman/app-ui',
   ],
 };
 
 export default defineConfig(async () => {
   return {
     vite: {
-      // pnpm can install two pohon-ui copies (different oxc-parser peers). The
-      // Vue Icon override then misses, and @nuxt/icon imports this Nuxt-only
-      // virtual module. Dedupe + alias keep resolution on the app copy.
-      optimizeDeps: {
-        exclude: ['pohon-ui', '@nuxt/icon'],
-      },
       plugins: [
         vitePohon(pohonOptions),
         vitePohonThemePlugin(pohonOptions?.ui),
       ],
       resolve: {
-        alias: {
-          '#build/nuxt-icon-client-bundle': 'virtual:pohon-ui-icons',
-        },
-        dedupe: ['pohon-ui', '@nuxt/icon'],
+        dedupe: ['pohon-ui'],
       },
     },
   };

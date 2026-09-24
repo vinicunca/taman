@@ -2,7 +2,7 @@
 import type { TamanLoginExpiredModeType } from '@taman/types';
 
 import { preferences, updatePreferences } from '@taman/preferences';
-import { Page } from '@taman/common-ui';
+import { Page } from '@taman/app-ui';
 
 import { getMockStatusApi } from '#/api';
 
