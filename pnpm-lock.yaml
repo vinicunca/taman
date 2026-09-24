@@ -734,6 +734,9 @@ importers:
       '@vinicunca/perkakas':
         specifier: 'catalog:'
         version: 1.17.1
+      '@vinicunca/taman-api-contract':
+        specifier: workspace:*
+        version: link:../../packages/api-contract
       '@vinicunca/taman-request':
         specifier: workspace:*
         version: link:../../packages/effects/request

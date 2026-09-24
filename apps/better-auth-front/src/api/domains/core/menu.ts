@@ -1,10 +1,8 @@
-import type { RouteRecordStringComponent } from '@taman/types';
-
-import { doRequest } from '#/api/use-request';
+import { client } from '#/api/orpc';
 
 /**
  * Get all menus for the current user
  */
 export async function getAllMenusApi() {
-  return doRequest<Array<RouteRecordStringComponent>>('/menu/all');
+  return client.menu.all();
 }
