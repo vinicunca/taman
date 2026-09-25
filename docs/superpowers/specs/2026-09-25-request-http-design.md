@@ -132,6 +132,9 @@ export interface HttpClient {
 ```
 
 - Per-request options override client options (headers merge; others replace).
+- The client owns the timeout (`AbortSignal.any([signal, AbortSignal.timeout(timeout)])`) instead of
+  passing `timeout` to ofetch, because ofetch ignores its own `timeout` whenever a `signal` is given
+  (and `./http-query` always passes TanStack's signal). `timeout: 0` disables it.
 - Return value by `responseReturn`: `raw` → `HttpResponse`; `body` and
   `data` → `HttpResponse.data` (after interceptors; the envelope preset makes
   `data` the unwrapped payload).
@@ -205,6 +208,7 @@ export class HttpError extends Error {
   readonly code?: unknown;
   readonly data?: unknown;
   readonly request: { url: string; method: string };
+  readonly context?: HttpRequestContext;          // full request context, used to re-issue (token refresh)
   readonly response?: Response;
   readonly cause?: unknown;
 }
@@ -237,7 +241,8 @@ envelopeInterceptor({
 })
 ```
 
-Acts only when the request's `responseReturn` is `'data'`: success →
+Acts only when the request's `responseReturn` is `'data'`. An empty body
+(`204`, or no content) resolves to `undefined` without a code check. Success →
 `response.data = body[dataField]` (or `dataField(body)`); mismatch → throws
 `HttpError{ kind: 'envelope' }`. `raw` and `body` requests pass through.
 
@@ -281,6 +286,14 @@ Always rethrows after notifying.
 
 ## 5. `./http-query` — TanStack Query options builder
 
+> Amended during planning (2026-09-25): a path builder
+> (`api.get<TData>(path).queryOptions(options)`) replaces
+> `queryOptions<TData>(path, options)`. With `TData` given explicitly,
+> TypeScript cannot also infer the TanStack options, so `select` loses its
+> contextual type; fixing `TData` on the builder first (as oRPC's utils do
+> with the procedure) restores full inference and vue-query compatibility.
+> Verified against `@tanstack/vue-query` 5.103 `useQuery(computed(() => …))`.
+
 ```ts
 export function createHttpQueryUtils(
   client: HttpClient,
@@ -288,29 +301,50 @@ export function createHttpQueryUtils(
 ): HttpQueryUtils;
 
 export interface HttpQueryUtils {
-  key: (path?: string) => readonly unknown[];      // [...root] or [...root, 'GET', path]
-  queryOptions: <TData = unknown, TSelected = TData>(
-    path: string,
-    options?: HttpRequestOptions & QueryOptionsPassthrough<TData, TSelected>,
-  ) => QueryOptions;                                // queryKey: [...root, 'GET', path, { query }]
-  mutationOptions: <TData = unknown, TVariables = unknown>(
-    method: Exclude<HttpMethod, 'GET'>,
+  key: (path?: string) => QueryKey;                // [...root] or [...root, 'GET', path]
+  get: <TData = unknown>(path: string) => HttpQueryEndpoint<TData>;
+  post / put / patch / delete: <TData = unknown, TVariables = void>(
     path: string | ((variables: TVariables) => string),
-    options?: HttpRequestOptions & MutationOptionsPassthrough<TData, TVariables> & {
-      body?: (variables: TVariables) => unknown;   // default: variables are the body
-    },
-  ) => MutationOptions;                             // mutationKey: [...root, method, path-if-string]
+  ) => HttpMutationEndpoint<TData, TVariables>;
 }
+
+export interface HttpQueryEndpoint<TData> {
+  key: () => QueryKey;                             // [...root, 'GET', path]
+  queryOptions: <U, TSelected = TData>(options?: U & HttpQueryOptionsIn<TData, TSelected>)
+    => Omit<U, RequestOptionKey> & { queryKey; queryFn; enabled?: boolean };
+}                                                  // queryKey: [...root, 'GET', path, { query }]
+
+export interface HttpMutationEndpoint<TData, TVariables> {
+  key: () => QueryKey;                             // [...root, METHOD, path-if-string]
+  mutationOptions: <TContext = unknown>(options?: HttpMutationOptionsIn<TData, TVariables, TContext>)
+    => MutationObserverOptions<TData, HttpError, TVariables, TContext>;
+}                                                  // options.body?: (variables) => unknown; default: variables are the body
 ```
 
-- Request options (`query`, `headers`, `responseReturn`, `arrayFormat`,
-  `timeout`, `responseType`, …) and TanStack options (`select`,
-  `placeholderData`, `staleTime`, `enabled`, `onSuccess`, …) share one object
-  and are split by known request-option names.
+- Request options forwarded to the client: `query`, `headers`, `credentials`,
+  `timeout`, `responseReturn`, `responseType`, `arrayFormat`,
+  `querySerializer`, `parseResponse`. Everything else is a TanStack option.
+  `retry`, `retryDelay` and `meta` exist on both sides and belong to TanStack
+  here; HTTP-level retries are configured on the client.
 - `queryFn` forwards TanStack's `signal`, so cancelled or superseded queries
   abort the fetch (`HttpError{ kind: 'abort' }`).
+- `URLSearchParams` queries are normalized to strings in the key.
 - Types come from `@tanstack/query-core` (optional peer); results are plain
   options objects usable with `@tanstack/vue-query` (`useQuery(computed(() => …))`).
+
+Usage:
+
+```ts
+const dummy = createHttpQueryUtils(http, { key: ['dummyjson'] });
+useQuery(computed(() => dummy.get<ProductPage>('/products').queryOptions({
+  query: { limit: 10, skip },
+  placeholderData: keepPreviousData,
+  select: (page) => page.products,
+})));
+useMutation(dummy.post<User, NewUser>('/users/add').mutationOptions({
+  onSuccess: () => queryClient.invalidateQueries({ queryKey: dummy.get('/users').key() }),
+}));
+```
 
 ## 6. Package metadata
 
@@ -345,7 +379,7 @@ export interface HttpQueryUtils {
   (`createHttpClient({ baseURL: 'https://dummyjson.com' })`) and its
   `createHttpQueryUtils(…, { key: ['dummyjson'] })`.
 - `apps/better-auth-front/src/views/demos/features/vue-query/paginated-queries.vue`
-  uses `dummy.queryOptions('/products', { query, placeholderData: keepPreviousData })`.
+  uses `dummy.get<IProducts>('/products').queryOptions({ query, placeholderData: keepPreviousData })`.
 - `apps/better-auth-front/src/api/errors.ts`: `HttpError` branch —
   `network` → `ui.fallback.http.networkError`, `timeout` →
   `ui.fallback.http.requestTimeout`, otherwise the existing status mapping.
@@ -365,7 +399,7 @@ Vitest; HTTP tests inject `fetch` into ofetch and run in-process
 | envelope preset | success unwrap; function `dataField`/`successCode`; mismatch → `kind: 'envelope'`; no effect for `raw`/`body` |
 | refresh preset | 3 concurrent 401s → 1 `refresh` call, each retried once with the new token; refresh failure → `onAuthFailure` once and all reject; second 401 after retry → no loop; disabled → `onAuthFailure` immediately; non-401 untouched |
 | error-message preset | server message preferred; `messages` overrides; status mapping; network/timeout keys; abort skipped; always rethrows |
-| `./http-query` | key shapes and partial matching; `queryFn` passes query + signal; abort surfaces `kind: 'abort'`; `mutationOptions` body mapping and path function; TanStack options passthrough |
+| `./http-query` | key shapes and partial matching; `queryFn` passes query + signal; cancellation aborts the fetch; `URLSearchParams` key normalization; `mutationOptions` body mapping and path function; TanStack options passthrough |
 | app | `getErrors` for `HttpError` kinds; existing oRPC tests still pass after the API change |
 | packaging | `pnpm check:api-packages` green (publint, attw esm-only, consumer tsc importing all four entries) |
 
