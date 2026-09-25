@@ -31,6 +31,7 @@
     }
   },
   "scripts": {
+    "build": "tsdown",
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
@@ -49,6 +50,7 @@
   "devDependencies": {
     "@orpc/server": "catalog:",
     "@tanstack/query-core": "catalog:",
+    "tsdown": "catalog:",
     "typescript": "catalog:"
   }
 }
