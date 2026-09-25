@@ -45,11 +45,33 @@ export async function demo(): Promise<Date | undefined> {
   void createRpcQueryUtils(client, { path: ['taman'] }).todo.list.queryOptions({ input: { page: 1 } });
   return page.items[0]?.createdAt;
 }
+
+import { createHttpClient, envelopeInterceptor, errorMessageInterceptor, isHttpError, refreshTokenInterceptor } from '@vinicunca/request/http';
+import { createHttpQueryUtils } from '@vinicunca/request/http-query';
+
+const http = createHttpClient({ baseURL: 'https://api.example.com', responseReturn: 'data' });
+http.addResponseInterceptor(envelopeInterceptor());
+http.addResponseInterceptor(refreshTokenInterceptor({ client: http, refresh: async () => 'token', applyToken: (context, token) => context.options.headers.set('authorization', token), onAuthFailure: () => {} }));
+http.addResponseInterceptor(errorMessageInterceptor({ notify: () => {} }));
+const api = createHttpQueryUtils(http, { key: ['example'] });
+export const products = api.get<{ items: Array<{ id: number }> }>('/products').queryOptions({ query: { page: 1 }, select: (page) => page.items });
+export const create = api.post<{ id: number }, { title: string }>('/products').mutationOptions();
+export async function load(): Promise<number | undefined> {
+  try {
+    return (await http.get<{ total: number }>('/stats')).total;
+  } catch (error) {
+    return isHttpError(error) ? error.status : undefined;
+  }
+}
 TS
 
 # @tanstack/query-core is @orpc/tanstack-query's real (optional) peer; @opentelemetry/api
 # is @orpc/shared's real (optional) peer, whose types are imported at the top of its
 # root d.mts and therefore need to resolve even though tracing is never used here.
-(cd "$consumer" && npm install --silent --no-audit --no-fund "${TARBALLS[@]}" @tanstack/query-core @opentelemetry/api typescript >/dev/null && npx tsc -p .)
+# undici is ofetch's own devDependency, whose types ofetch's node.d.mts/index.d.mts
+# side-effect-import for global fetch/Headers/etc. augmentation; it must resolve too
+# under skipLibCheck: false even though this consumer never calls into undici, and
+# undici's own .d.ts files in turn need @types/node (node:url, Buffer, NodeJS, …).
+(cd "$consumer" && npm install --silent --no-audit --no-fund "${TARBALLS[@]}" @tanstack/query-core ofetch @opentelemetry/api undici @types/node typescript >/dev/null && npx tsc -p .)
 
 echo "API packages OK. Artifacts in $OUT"
