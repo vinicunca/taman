@@ -33,6 +33,11 @@ export interface HttpRequestOptions extends Omit<HttpClientOptions, 'baseURL' | 
   body?: unknown;
   responseType?: HttpResponseType;
   signal?: AbortSignal;
+  /**
+   * Skip the refresh-token preset for this request — use it for the refresh
+   * call itself, so its own 401 never re-enters the refresh flow.
+   */
+  skipAuthRefresh?: boolean;
 }
 
 export interface HttpRequestContext {
@@ -58,7 +63,14 @@ export interface HttpResponse<T = unknown> {
 export type RequestInterceptor = (context: HttpRequestContext) => void | Promise<void>;
 
 export interface ResponseInterceptor {
-  /** May transform the response. Throw to turn it into an error. */
+  /**
+   * May transform the response. Throw to turn it into an error.
+   *
+   * Return the response you received (or a spread of it, e.g.
+   * `{ ...response, data }`) rather than a freshly built object — a new
+   * object loses the internal brand, so later `fulfilled` handlers are
+   * skipped and `responseReturn` no longer unwraps it.
+   */
   fulfilled?: (response: HttpResponse) => HttpResponse | Promise<HttpResponse>;
   /**
    * May recover: return an `HttpResponse` to continue through the remaining
@@ -79,6 +91,10 @@ export interface HttpClient {
   addRequestInterceptor: (interceptor: RequestInterceptor) => () => void;
   /** Returns a function that removes the interceptor. */
   addResponseInterceptor: (interceptor: ResponseInterceptor) => () => void;
-  /** The configured ofetch instance, for anything the client doesn't cover. */
+  /**
+   * The configured ofetch instance, for anything the client doesn't cover.
+   * It only inherits `baseURL` (and the injected `fetch`) — no client
+   * headers, credentials, timeout or interceptors.
+   */
   readonly raw: $Fetch;
 }

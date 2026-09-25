@@ -19,11 +19,15 @@ function setup(options: { refresh?: () => Promise<string>; enabled?: boolean } =
     context.options.headers.set('authorization', `Bearer ${token}`);
   });
 
+  // Deliberately does NOT set `token` here: the retry must succeed purely
+  // because `applyToken` writes the new value onto the re-issued request
+  // (I1) — if `applyToken` were overwritten by the re-run request
+  // interceptor (which still reads the stale `token` closure), the retry
+  // would carry `Bearer old` and fail again.
   const refresh = vi.fn(options.refresh ?? (async () => {
     await new Promise((resolve) => {
       setTimeout(resolve, 20);
     });
-    token = 'new';
     return 'new';
   }));
   const onAuthFailure = vi.fn();
@@ -99,5 +103,53 @@ describe('refreshTokenInterceptor', () => {
     await expect(http.get('/forbidden')).rejects.toMatchObject({ status: 403 });
     expect(refresh).not.toHaveBeenCalled();
     expect(onAuthFailure).not.toHaveBeenCalled();
+  });
+
+  it('does not deadlock when refresh (with skipAuthRefresh) hits the same client and gets 401', async () => {
+    const fake = createFakeFetch({
+      '/secure': () => Response.json({}, { status: 401 }),
+      '/refresh': () => Response.json({}, { status: 401 }),
+    });
+    const http = createHttpClient({ baseURL: 'http://api.test', fetch: fake.fetch, retry: false });
+    const onAuthFailure = vi.fn();
+    http.addResponseInterceptor(refreshTokenInterceptor({
+      client: http,
+      refresh: () => http.post<string>('/refresh', undefined, { skipAuthRefresh: true, responseReturn: 'data' }),
+      applyToken: (context, value) => context.options.headers.set('authorization', `Bearer ${value}`),
+      onAuthFailure,
+    }));
+
+    const outcome = await Promise.race([
+      http.get('/secure').then((value) => ({ status: 'resolved', value }), (error: unknown) => ({ status: 'rejected', error })),
+      new Promise((resolve) => {
+        setTimeout(resolve, 200, { status: 'timed-out' });
+      }),
+    ]);
+
+    expect(outcome).toMatchObject({ status: 'rejected', error: { kind: 'http', status: 401 } });
+    expect(onAuthFailure).toHaveBeenCalledTimes(1);
+  });
+
+  it('still rejects with the original error when onAuthFailure throws (disabled, retried-out and refresh-failed paths)', async () => {
+    const onAuthFailure = vi.fn(() => {
+      throw new Error('notifier is broken');
+    });
+    const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    try {
+      const disabled = setup({ enabled: false });
+      disabled.onAuthFailure.mockImplementation(onAuthFailure);
+      await expect(disabled.http.get('/secure')).rejects.toMatchObject({ kind: 'http', status: 401 });
+
+      const refreshFails = setup({
+        refresh: async () => {
+          throw new Error('refresh denied');
+        },
+      });
+      refreshFails.onAuthFailure.mockImplementation(onAuthFailure);
+      await expect(refreshFails.http.get('/secure')).rejects.toMatchObject({ kind: 'http', status: 401 });
+    } finally {
+      consoleError.mockRestore();
+    }
   });
 });
