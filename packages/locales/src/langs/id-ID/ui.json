@@ -58,7 +58,8 @@
       "unauthorized": "Tidak Terotorisasi. Silakan masuk untuk melanjutkan.",
       "forbidden": "Dilarang. Anda tidak memiliki izin untuk mengakses sumber daya ini.",
       "notFound": "Tidak Ditemukan. Sumber daya yang diminta tidak dapat ditemukan.",
-      "internalServerError": "Kesalahan Server Internal. Terjadi kesalahan di sisi kami. Silakan coba lagi nanti."
+      "internalServerError": "Kesalahan Server Internal. Terjadi kesalahan di sisi kami. Silakan coba lagi nanti.",
+      "serviceUnavailable": "Layanan tidak tersedia. Silakan coba lagi nanti."
     }
   },
   "widgets": {

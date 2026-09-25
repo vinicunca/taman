@@ -1,14 +1,56 @@
 {
-  "name": "@taman/request",
+  "name": "@vinicunca/taman-request",
   "type": "module",
-  "version": "1.0.0",
+  "version": "0.1.0",
+  "description": "Typed oRPC clients (plain + TanStack Query) for the Taman API.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinicunca/taman.git",
+    "directory": "packages/effects/request"
+  },
+  "sideEffects": false,
   "exports": {
-    ".": {
-      "types": "./src/index.ts",
-      "default": "./src/index.ts"
+    "./orpc": "./src/orpc.ts",
+    "./orpc-query": "./src/orpc-query.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      "./orpc": {
+        "types": "./dist/orpc.d.mts",
+        "default": "./dist/orpc.mjs"
+      },
+      "./orpc-query": {
+        "types": "./dist/orpc-query.d.mts",
+        "default": "./dist/orpc-query.mjs"
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@tanstack/query-core": ">=5.80.2"
+  },
+  "peerDependenciesMeta": {
+    "@tanstack/query-core": {
+      "optional": true
     }
   },
   "dependencies": {
-    "ofetch": "catalog:"
+    "@orpc/client": "catalog:",
+    "@orpc/tanstack-query": "catalog:",
+    "@vinicunca/taman-api-contract": "workspace:^"
+  },
+  "devDependencies": {
+    "@orpc/server": "catalog:",
+    "@tanstack/query-core": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
   }
 }

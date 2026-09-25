@@ -1,2 +1,2 @@
-export * from './domains/backstage';
 export * from './domains/core';
+export { client, orpc } from './orpc';

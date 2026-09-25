@@ -31,6 +31,16 @@
         "envFile": "apps/better-auth-back/.env"
       },
       "cache": false
+    },
+
+    "seed:todos": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx ./scripts/seed-todos.ts",
+        "cwd": "apps/better-auth-back",
+        "envFile": "apps/better-auth-back/.env"
+      },
+      "cache": false
     }
   },
   "tags": []

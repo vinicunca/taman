@@ -2,8 +2,8 @@
 import type { TodoEvent } from '@vinicunca/taman-api-contract';
 import type { TamanContext } from '#lib/context.ts';
 import type { TodoPublisher } from '#realtime/publisher.ts';
-import { ORPCError } from '@orpc/server';
 import { MemoryPublisher } from '@orpc/experimental-publisher/memory';
+import { ORPCError } from '@orpc/server';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { FakeTodoRepo } from './todo.repo.fake.ts';
 import { TodoService } from './todo.service.ts';
@@ -30,7 +30,7 @@ async function collect(publisher: TodoPublisher, channel: string) {
   return events;
 }
 
-describe('TodoService', () => {
+describe('todoService', () => {
   let repo: FakeTodoRepo;
   let publisher: TodoPublisher;
 
@@ -56,9 +56,9 @@ describe('TodoService', () => {
 
   it('pages results and computes totals', async () => {
     const service = new TodoService(makeCtx(), { publisher, repo });
-    for (let index = 0; index < 5; index++) {
-      await service.create({ title: `Todo ${index}` });
-    }
+    await Promise.all(
+      Array.from({ length: 5 }, (_, index) => service.create({ title: `Todo ${index}` })),
+    );
 
     const page = await service.list({ page: 2, pageSize: 2 });
 

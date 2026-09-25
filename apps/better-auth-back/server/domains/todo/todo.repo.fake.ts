@@ -10,8 +10,6 @@ export class FakeTodoRepo implements TodoRepoPort {
   static sequence = 0;
   lastListQuery: TodoListQuery | undefined;
 
-  constructor(_db?: unknown) {}
-
   static reset() {
     FakeTodoRepo.rows = [];
     FakeTodoRepo.sequence = 0;

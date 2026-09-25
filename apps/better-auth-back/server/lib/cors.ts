@@ -33,6 +33,7 @@ export function createCorsOptions(
     allowHeaders: [
       'Content-Type',
       'Authorization',
+      'Last-Event-ID',
     ],
     credentials: true,
     exposeHeaders: [],
