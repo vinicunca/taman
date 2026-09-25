@@ -35,6 +35,9 @@ let publisherPromise: Promise<TodoPublisher> | undefined;
  *
  * `@orpc/experimental-publisher-durable-object` imports `cloudflare:workers`, so it is loaded lazily and
  * never evaluated under Node.
+ *
+ * Every Workers request context passes `cloudflareEnv(event)` here, so the first call
+ * on a given isolate always sees the binding and memoizes the right publisher for it.
  */
 export function getTodoPublisher(env?: TodoPublisherEnv): Promise<TodoPublisher> {
   publisherPromise ??= createTodoPublisher(env);

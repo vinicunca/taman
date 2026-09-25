@@ -10,6 +10,7 @@ export default defineConfig({
         bindings: [{ name: 'TODO_PUBLISHER', class_name: 'TodoPublisherObject' }],
       },
       migrations: [{ tag: 'v1', new_sqlite_classes: ['TodoPublisherObject'] }],
+      name: 'taman-better-auth-back',
     },
   },
 
