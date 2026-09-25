@@ -6,6 +6,10 @@ export default defineConfig({
     skipNodeModulesBundle: true,
   },
   dts: true,
-  entry: ['src/orpc.ts', 'src/orpc-query.ts'],
+  entry: {
+    'orpc': 'src/orpc.ts',
+    'orpc-query': 'src/orpc-query.ts',
+    'http': 'src/http/index.ts',
+  },
   format: ['esm'],
 });
