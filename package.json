@@ -33,7 +33,7 @@
     "preview": "pnpm --filter @taman/director preview",
     "publint": "pnpm nx run tooling:publint",
     "reinstall": "pnpm run clean -- --del-lock && pnpm install",
-    "release:api": "bumpp packages/api-contract/package.json packages/effects/request/package.json --commit \"chore(release): api packages v%s\" --tag \"api-v%s\" --no-push && pnpm check:api-packages && pnpm -r --filter @vinicunca/taman-api-contract --filter @vinicunca/taman-request publish --access public",
+    "release:api": "pnpm check:api-packages && bumpp packages/api-contract/package.json packages/effects/request/package.json --commit \"chore(release): api packages v%s\" --tag \"api-v%s\" --no-push && pnpm -r --filter @vinicunca/taman-api-contract --filter @vinicunca/taman-request publish --access public",
     "test:unit": "vitest run --dom",
     "test:core": "vitest packages",
     "test": "vitest",

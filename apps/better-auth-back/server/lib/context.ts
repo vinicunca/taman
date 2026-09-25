@@ -41,9 +41,9 @@ export interface TamanContext {
   auth: DirectorAuthPayload;
   /**
    * The caller's membership in their active organization. `null` when the
-   * session has no active org — which `middleware/2.context.ts` only permits
-   * for platform admins — or when no matching `member` row exists. Consumers
-   * must fail closed on `null`.
+   * session has no active org — which the oRPC `authed` middleware
+   * (`server/rpc/base.ts`) only permits for platform admins — or when no
+   * matching `member` row exists. Consumers must fail closed on `null`.
    */
   member: DirectorMember | null;
 }
