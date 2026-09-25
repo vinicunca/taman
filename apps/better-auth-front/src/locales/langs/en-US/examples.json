@@ -41,5 +41,9 @@
     "queryCrud": "Vue Query · CRUD",
     "queryPagination": "Vue Query · Pagination",
     "queryLive": "Vue Query · Realtime"
+  },
+  "http": {
+    "title": "HTTP client",
+    "paginatedProducts": "Vue Query · Pagination"
   }
 }

@@ -1,3 +1,4 @@
+import { HttpError } from '@vinicunca/request/http';
 import { ORPCError } from '@vinicunca/request/orpc';
 import { describe, expect, it, vi } from 'vitest';
 import { getErrors } from './errors';
@@ -35,5 +36,18 @@ describe('getErrors with oRPC errors', () => {
 
   it('still maps network TypeErrors', () => {
     expect(getErrors(new TypeError('Failed to fetch'))).toBe('ui.fallback.http.networkError');
+  });
+});
+
+describe('getErrors with HttpError', () => {
+  const request = { url: '/products', method: 'GET' };
+
+  it('maps network and timeout kinds to the localized fallbacks', () => {
+    expect(getErrors(new HttpError({ kind: 'network', message: 'offline', request }))).toBe('ui.fallback.http.networkError');
+    expect(getErrors(new HttpError({ kind: 'timeout', message: 'slow', request }))).toBe('ui.fallback.http.requestTimeout');
+  });
+
+  it('maps HTTP statuses like any other status-bearing error', () => {
+    expect(getErrors(new HttpError({ kind: 'http', status: 404, message: 'GET /products failed', request }))).toBe('ui.fallback.http.notFound');
   });
 });

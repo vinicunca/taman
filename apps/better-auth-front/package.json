@@ -44,6 +44,7 @@
     "ag-grid-vue3": "catalog:",
     "better-auth": "catalog:",
     "json-bigint": "catalog:",
+    "ofetch": "catalog:",
     "pinia": "catalog:",
     "pohon-ui": "catalog:",
     "vue": "catalog:",

@@ -1,5 +1,6 @@
 import { $t } from '@taman/locales';
 import { ORG_REQUIRED } from '@vinicunca/taman-api-contract';
+import { isHttpError } from '@vinicunca/request/http';
 import { ORPCError } from '@vinicunca/request/orpc';
 
 interface FetchErrorLike {
@@ -61,6 +62,7 @@ function getORPCErrorMessage(error: ORPCError<string, unknown>): string {
  * Handles three shapes:
  * - `TypeError` — fetch rejected (network down / CORS blocked).
  * - `ORPCError` — from the oRPC client (`#/api/orpc`).
+ * - `HttpError` — from the REST client (`#/api/http`).
  * - Better Auth client error object / `AuthError` — `{ status, statusText,
  *   message?, code? }`. A bodyless 500 only carries `status`/`statusText`,
  *   so fall back through those.
@@ -79,6 +81,15 @@ export function getErrors(error: unknown): string {
 
   if (error instanceof ORPCError) {
     return getORPCErrorMessage(error);
+  }
+
+  if (isHttpError(error)) {
+    if (error.kind === 'network') {
+      return $t('ui.fallback.http.networkError');
+    }
+    if (error.kind === 'timeout') {
+      return $t('ui.fallback.http.requestTimeout');
+    }
   }
 
   if (error && typeof error === 'object') {
