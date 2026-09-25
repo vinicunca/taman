@@ -31,6 +31,18 @@ useMutation(orpc.todo.create.mutationOptions());
 queryClient.invalidateQueries({ queryKey: orpc.todo.key() });
 ```
 
+### TypeScript
+
+`@orpc/shared`'s type declarations reference `@opentelemetry/api` (a real,
+optional peer of `@orpc/shared` itself, used only for tracing types this
+package never calls). If your `tsconfig.json` has `skipLibCheck: false`,
+also install `@opentelemetry/api` as a type-only devDependency, or you'll
+see `TS2307: Cannot find module '@opentelemetry/api'` when type-checking:
+
+```sh
+pnpm add -D @opentelemetry/api
+```
+
 ## Realtime
 
 ```ts
