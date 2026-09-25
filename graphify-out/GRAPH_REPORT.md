@@ -1,16 +1,16 @@
 # Graph Report - taman  (2026-09-25)
 
 ## Corpus Check
-- 1012 files · ~249,292 words
+- 1036 files · ~254,083 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 5633 nodes · 8437 edges · 411 communities (284 shown, 107 thin omitted)
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 121 edges (avg confidence: 0.85)
+- 5798 nodes · 8779 edges · 415 communities (282 shown, 111 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 123 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `43fc4fd6`
+- Built from commit: `c32fdc71`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -41,17 +41,17 @@
 - StorageManager
 - admin-menu-layouts.spec.ts
 - dependencies
-- use-backstage-request.ts
+- types/global.d.ts
 - types/src/index.ts
 - form-render.schema.ts
-- sidebar.vue
+- src/orpc.ts
 - devDependencies
 - DialogApi
 - todo.repo.ts
 - db-pg/project.json
 - all-fields.vue
-- taman-menu-item.vue
-- form-actions.vue
+- query/live.vue
+- @core/composables/src/index.ts
 - form.api.ts
 - popup-ui/package.json
 - TamanMenuRecordRaw
@@ -59,12 +59,12 @@
 - Cache 模块
 - download.ts
 - DrawerApi
-- taman-menu-sub-menu-content.vue
+- taman-menu-item.vue
 - todo.service.ts
 - useTamanDialog
 - layout-core-header.vue
 - use-layout-scroll.test.ts
-- switch-item.vue
+- form-field-array.vue
 - layout-ui/package.json
 - dependencies
 - dialog-content.vue
@@ -80,14 +80,14 @@
 - node-utils/package.json
 - PreferenceManager
 - bindMethods
-- preferences
+- src/directive.ts
 - form.config.ts
-- form-render.dependencies.ts
-- core.vue
+- taman-description-cell.vue
+- constants/index.ts
 - layout-core.vue
 - dialog/index.vue
 - commitlint-config/package.json
-- form-component-performance.benchmark.ts
+- api/errors.ts
 - Detailed package audit inventory
 - use-taman-drawer.ts
 - Implementation Plan: Native TanStack Form Validation
@@ -95,26 +95,25 @@
 - taman-menu-sub-menu.vue
 - preferences/src/types.ts
 - helper.d.ts
-- widget.vue
+- switch-item.vue
 - @core/composables/package.json
 - drawer.vue
 - db-pg/package.json
-- general.vue
-- icons/index.ts
+- plain/live.vue
 - useTamanDrawer
 - taman-core-layout-sidebar.vue
 - drawer/index.vue
 - node-utils/src/index.ts
 - preferences-sidebar.vue
-- dev/vben.ts
+- preferences-extension/index.vue
 - better-auth.instance.ts
 - devDependencies
 - form-integration.test.ts
 - menu.types.ts
 - dependencies
-- routes/index.ts
+- app-ui/src/components/index.ts
 - better-auth-back/project.json
-- constants/index.ts
+- globals.ts
 - Form UI Refactor Implementation Plan
 - radius.vue
 - bootstrap.ts
@@ -133,27 +132,27 @@
 - dependencies
 - utils/date.ts
 - preferences-theme.vue
-- alert-overlay.vue
+- preferences-content.vue
 - dependencies
-- use-watermark.ts
+- watermark/index.vue
 - dependencies
 - dependencies
 - taman-button-check-group.vue
-- theme.vue
-- breadcrumb.vue
+- tabs/index.vue
+- preferences-layout.vue
 - merge.vue
 - taman-input-password.vue
-- button/index.ts
+- TodoRepo
 - typings/src/index.ts
 - IndexedDBDriver
 - drag-demo.vue
-- StateHandler
+- request-params-serializer/index.vue
 - taman-ui/src/ui/alert-dialog/index.ts
 - cors.ts
 - request/package.json
-- collapsible.vue
-- color/index.ts
-- form.ts
+- drawer/shared-data-demo.vue
+- loading/directive.ts
+- useTamanForm
 - pohon-ui-theme/package.json
 - layout-auth.vue
 - time-codec.ts
@@ -162,17 +161,17 @@
 - shared/tsconfig.json
 - typings/tsconfig.json
 - auth.result.ts
-- taman-logo.vue
+- setup.ts
 - compilerOptions
-- @core/composables/src/index.ts
+- exports.cloudflare.ts
 - alert-dialog-content.vue
 - app-page.vue
 - layout-widget-check-updates.vue
 - dialog/typed-data-auto-demo.vue
-- layout-widget-breadcrumb.vue
+- full-screen/index.vue
 - use-content-spinner.test.ts
-- context.ts
-- xlogin.vue
+- TamanContext
+- login.vue
 - include
 - exports
 - diff.ts
@@ -180,15 +179,15 @@
 - layout-widget-lock-screen.vue
 - @taman/access
 - @taman/stores
-- vue-router
+- tab-detail.vue
 - alert-builder.ts
 - dependencies
 - @pnpm/workspace.read-manifest
 - uno.config.ts
 - taman-ui/src/ui/sheet/index.ts
 - taman-ui/src/components/scrollbar/scrollbar.vue
-- useUserStore
-- db-pg/src/index.ts
+- button-control.vue
+- DrizzleClient
 - useTamanToast
 - tooling/package.json
 - compilerOptions
@@ -198,7 +197,7 @@
 - taman-input-date.vue
 - designs/package.json
 - unplugin-dts
-- auth.access.ts
+- context.ts
 - scripts
 - tsconfig.node.json
 - vite-config/package.json
@@ -210,44 +209,53 @@
 - ./store
 - ./utils
 - form/custom.vue
-- header-scroll-state.ts
-- array-fields.vue
+- dialog/shared-data-demo.vue
+- loading/index.vue
 - locales/src/index.ts
-- blur-demo.vue
+- json-bigint
 - badge/index.vue
 - types/package.json
 - utils/package.json
 - devDependencies
-- unique.ts
+- @taman-core/form-ui
 - compilerOptions
 - copyright.vue
 - vue-router.d.ts
 - layout-iframe-router-view.vue
+- @taman/layouts
 - @formkit/auto-animate
-- pinia
-- @taman/composables
+- @taman/rbac
+- @tanstack/vue-query
+- @vinicunca/taman-api-contract
+- @vinicunca/taman-request
 - taman-menu-badge.vue
 - better-auth-front/project.json
 - Taman Form UI
+- bumpp
 - shared/package.json
-- locales/index.ts
+- examples.ts
+- cspell
 - tabbar.vue
-- taman-ui/src/index.ts
+- app-card.vue
+- nx
 - components/widgets/index.ts
-- inference.ts
+- global.vue
 - button-group/index.vue
 - taman-loading.vue
 - effects/composables/tsconfig.json
+- @taman/tsconfig
 - packages/preferences/package.json
 - check-circular.ts
 - components.d.ts
 - paginated-queries.vue
-- @taman-core/menu-ui
+- @types/node
+- vue
 - files
 - constants/package.json
-- @taman/request
+- api-contract/README.md
 - @vueuse/core
 - layout-ui/src/components/index.ts
+- check-api-packages.sh
 - Values
 - taman-back-to-top.vue
 - utils/tsconfig.json
@@ -260,7 +268,7 @@
 - sheet-content.vue
 - taman-ui/tsconfig.json
 - db-pg/tsconfig.json
-- `@taman/request`
+- @vinicunca/taman-request
 - tabbar.ts
 - `FormApi` reference
 - check-dep.ts
@@ -272,7 +280,7 @@
 - dependencies
 - tooling/tsconfig.json
 - publint.ts
-- all.get.ts
+- base.ts
 - node-utils/tsconfig.json
 - constants/tsconfig.json
 - @core/composables/tsconfig.json
@@ -296,7 +304,6 @@
 - Validation and errors
 - layout-widget-notification.vue
 - taman-use-form.vue
-- global.vue
 - Common use cases
 - Form configuration and schema
 - taman-ui/src/ui/index.ts
@@ -323,18 +330,13 @@
 - vite-config/tsdown.config.ts
 - run-studio.sh
 - @taman/tooling
-- happy-dom
-- playwright
 - pohon-ui
 - @taman/app-ui
 - @taman/constants
-- tsdown
-- @vitejs/plugin-vue
 - vitest
 - taman-ui/src/components/index.ts
 - @taman/locales
 - vue
-- @taman/types
 - pohon-theme.d.ts
 - @taman/utils
 - _core/README.md
@@ -420,39 +422,39 @@
 ## God Nodes (most connected - your core abstractions)
 1. `POHON_THEME_BRANDS` - 55 edges
 2. `FormApi` - 38 edges
-3. `scripts` - 33 edges
+3. `scripts` - 35 edges
 4. `PreferenceManager` - 32 edges
 5. `preferences` - 31 edges
 6. `useTamanDialog()` - 29 edges
 7. `compilerOptions` - 28 edges
-8. `useTamanDrawer()` - 25 edges
-9. `useFormRuntime()` - 23 edges
-10. `useTamanForm()` - 23 edges
+8. `useTamanToast()` - 26 edges
+9. `useTamanDrawer()` - 25 edges
+10. `useFormRuntime()` - 23 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `seedAdmin()` --calls--> `getDrizzleClient()`  [EXTRACTED]
-  apps/better-auth-back/scripts/seed-admin.ts → packages/db-pg/src/client.ts
-- `createBetterAuth()` --calls--> `getDrizzleClient()`  [EXTRACTED]
-  apps/better-auth-back/server/auth/better-auth.instance.ts → packages/db-pg/src/client.ts
-- `CoreService` --references--> `DrizzleClient`  [EXTRACTED]
-  apps/better-auth-back/server/domains/core/core.service.ts → packages/db-pg/src/client.ts
-- `TamanContext` --references--> `DrizzleClient`  [EXTRACTED]
-  apps/better-auth-back/server/lib/context.ts → packages/db-pg/src/client.ts
-- `resolveContext()` --calls--> `getDrizzleClient()`  [EXTRACTED]
-  apps/better-auth-back/server/lib/context.ts → packages/db-pg/src/client.ts
+- `openAlert()` --calls--> `tamanAlert()`  [EXTRACTED]
+  apps/better-auth-front/src/views/examples/dialog/index.vue → packages/@core/ui-kit/popup-ui/src/alert/alert-builder.ts
+- `openConfirm()` --calls--> `tamanConfirm()`  [EXTRACTED]
+  apps/better-auth-front/src/views/examples/dialog/index.vue → packages/@core/ui-kit/popup-ui/src/alert/alert-builder.ts
+- `openPrompt()` --calls--> `tamanPrompt()`  [EXTRACTED]
+  apps/better-auth-front/src/views/examples/dialog/index.vue → packages/@core/ui-kit/popup-ui/src/alert/alert-builder.ts
+- `onRemove()` --calls--> `tamanConfirm()`  [EXTRACTED]
+  apps/better-auth-front/src/views/examples/orpc/plain/crud.vue → packages/@core/ui-kit/popup-ui/src/alert/alert-builder.ts
+- `onRemove()` --calls--> `tamanConfirm()`  [EXTRACTED]
+  apps/better-auth-front/src/views/examples/orpc/query/crud.vue → packages/@core/ui-kit/popup-ui/src/alert/alert-builder.ts
 
 ## Import Cycles
 - 3-file cycle: `packages/@core/preferences/src/preferences.ts -> packages/@core/preferences/src/update-css-variables.ts -> packages/@core/preferences/src/use-preferences.ts -> packages/@core/preferences/src/preferences.ts`
 
-## Communities (411 total, 107 thin omitted)
+## Communities (415 total, 111 thin omitted)
 
 ### Community 0 - "pohon-ui-theme/src/index.ts"
 Cohesion: 0.03
 Nodes (46): parseThemeClasses(), themeAccordion, themeAvatar, themeAvatarGroup, card, carousel, changelogVersion, changelogVersions (+38 more)
 
 ### Community 1 - "packages/preferences/src/index.ts"
-Cohesion: 0.07
-Nodes (21): overridesPreferences, PlaygroundPreferencesExtension, preferencesExtension, DemoTaskItem, demoTasks, formattedPlaygroundPreferences, HighlightTone, playgroundPreferences (+13 more)
+Cohesion: 0.06
+Nodes (33): overridesPreferences, PlaygroundPreferencesExtension, preferencesExtension, preferences, getTimezoneOptions(), defineOverridesPreferences(), definePreferencesExtension(), breadcrumbs (+25 more)
 
 ### Community 2 - "plugins/index.ts"
 Cohesion: 0.06
@@ -463,30 +465,26 @@ Cohesion: 0.03
 Nodes (49): POHON_THEME_BRANDS, themeAlert, themeBanner, breadcrumb, themeBreadcrumb, calendar, daySizes, pickerSizes (+41 more)
 
 ### Community 4 - "app-ui/src/index.ts"
-Cohesion: 0.07
-Nodes (17): routes, router, router, { copy, text }, source, domRef, { enter, exit, isFullscreen, toggle }, { isFullscreen: isDomFullscreen, toggle: toggleDom } (+9 more)
+Cohesion: 0.10
+Nodes (7): routes, router, router, { copy, text }, source, { closeCurrentTab }, response
 
 ### Community 5 - "todo/todo.schema.ts"
-Cohesion: 0.09
-Nodes (27): contract, TamanClient, TamanContract, TamanInputs, TamanOutputs, menuContract, MenuRecord, menuRecordSchema (+19 more)
+Cohesion: 0.17
+Nodes (16): DEFAULT_PAGE_SIZE, PAGE_SIZE_MAX, paginated(), PaginationInput, toOffset(), toTotalPages(), todoContract, withNotFound (+8 more)
 
 ### Community 6 - "theme.field-group.ts"
 Cohesion: 0.12
 Nodes (18): themeBadge, button, themeButton, fieldGroupVariant, fieldGroupVariantWithRoot, themeFieldGroup, replaceFocus(), themeInputDate (+10 more)
 
 ### Community 7 - "useTabs"
-Cohesion: 0.05
-Nodes (21): buttonProps, modelValue, props, {
-  closeAllTabs,
-  closeCurrentTab,
-  closeLeftTabs,
-  closeOtherTabs,
-  closeRightTabs,
-  closeTabByKey,
-  refreshTab,
-  resetTabTitle,
-  setTabTitle,
-}, newTabTitle, router, index, route (+13 more)
+Cohesion: 0.06
+Nodes (14): buttonProps, modelValue, props, useTabs(), closeAllTabs(), { contentIsMaximize, toggleMaximize }, {
+  createContextMenus,
+  currentActive,
+  currentTabs,
+  handleClick,
+  handleClose,
+}, menus (+6 more)
 
 ### Community 8 - "icons/index.vue"
 Cohesion: 0.33
@@ -494,15 +492,18 @@ Nodes (5): iconValue1, iconValue2, iconValue3, iconValue4, inputComponent
 
 ### Community 9 - "form-types.test.ts"
 Cohesion: 0.07
-Nodes (19): collapseOpen, formRenderProps, hasInvalidField, Props, shouldCollapsible, FormFieldOptions, FormGroupSchema, FormValidationResult (+11 more)
+Nodes (18): collapseOpen, formRenderProps, hasInvalidField, Props, shouldCollapsible, FormFieldOptions, FormGroupSchema, FormValidationResult (+10 more)
 
 ### Community 10 - "form.types.ts"
 Cohesion: 0.05
-Nodes (47): addRow(), arrayLength, arrayPath, buildDefaultRow(), canAdd, canRemove, formRenderProps, gridStyle (+39 more)
+Nodes (48): deleteValueByFieldName(), getValueByFieldName(), resolveFieldNamePath(), setValueByFieldName(), [
+  injectRenderFormProps,
+  provideFormRenderProps,
+], useFormContext(), createDependencyState(), DependencyState (+40 more)
 
 ### Community 11 - "taman-core-layout.vue"
 Cohesion: 0.04
-Nodes (50): useLayout(), activeSidebarCollapse, {
+Nodes (53): useLayout(), HeaderScrollStateOptions, resolveHeaderHiddenOnScroll(), activeSidebarCollapse, {
   arrivedState,
   directions,
   y: scrollY,
@@ -513,31 +514,31 @@ Nodes (50): useLayout(), activeSidebarCollapse, {
   isHeaderNav,
   isMixedNav,
   isSidebarMixedNav,
-}, emits, footerWidth (+42 more)
+} (+45 more)
 
 ### Community 12 - "utils/index.ts"
-Cohesion: 0.12
-Nodes (10): defaultPreferences, preferencesManager, STORAGE_KEYS, updateCssVariables(), updateMainColorVariables(), usePreferences(), ProjectPreferences, generatorColorVariables() (+2 more)
+Cohesion: 0.11
+Nodes (10): defaultPreferences, preferencesManager, STORAGE_KEYS, updateCssVariables(), updateMainColorVariables(), ProjectPreferences, generatorColorVariables(), loadScript() (+2 more)
 
 ### Community 13 - "analytics/index.vue"
 Cohesion: 0.10
 Nodes (12): chartRef, { renderEcharts }, chartRef, chartRef, { renderEcharts }, { renderEcharts }, chartRef, { renderEcharts } (+4 more)
 
 ### Community 14 - "taman-description.vue"
-Cohesion: 0.07
-Nodes (42): BORDERED_PADDING, cellClass, displayContent, displayLabel, hasContent, hasLabel, labelClass, PLAIN_PADDING (+34 more)
+Cohesion: 0.10
+Nodes (29): hasHeader, mergedColumn, mergedItems, props, resolvedItems, rows, screens, slots (+21 more)
 
 ### Community 15 - "scripts"
 Cohesion: 0.06
-Nodes (33): scripts, bootstrap, build, build:analyze, build:docker, catalog, check, check:circular (+25 more)
+Nodes (35): scripts, bootstrap, build, build:analyze, build:docker, catalog, check, check:api-packages (+27 more)
 
 ### Community 16 - "oRPC API layer — design"
 Cohesion: 0.07
 Nodes (28): 10. Out of scope / follow-ups, 1. Goal, 2. Decisions, 3.1 Shared pagination, 3.2 Todo schemas, 3.3 Procedures, 3.4 Exports, 3. Package: `@vinicunca/taman-api-contract` (+20 more)
 
 ### Community 17 - "mapTree"
-Cohesion: 0.11
-Nodes (25): initApplication(), resetRoutes(), CustomNode, Node, TreeNode, filterTree(), mapTree(), sortTree() (+17 more)
+Cohesion: 0.09
+Nodes (27): initApplication(), resetRoutes(), CustomNode, Node, TreeNode, filterTree(), mapTree(), sortTree() (+19 more)
 
 ### Community 18 - "useBreakpoints"
 Cohesion: 0.22
@@ -549,15 +550,15 @@ Nodes (27): A1. Per-field collapsible becomes opt-in, A2. Vertical-only layout, 
 
 ### Community 20 - "api-contract/package.json"
 Cohesion: 0.07
-Nodes (26): @orpc/contract, dependencies, @orpc/contract, zod, description, devDependencies, typescript, exports (+18 more)
+Nodes (29): @orpc/contract, dependencies, @orpc/contract, zod, description, devDependencies, tsdown, typescript (+21 more)
 
 ### Community 21 - "form-render-form-field.vue"
-Cohesion: 0.04
-Nodes (54): isEmptyFormValue(), toFormFieldValue(), open, Props, Props, collapseOpen, compact, { componentMap } (+46 more)
+Cohesion: 0.05
+Nodes (49): toFormFieldValue(), open, Props, Props, collapseOpen, compact, { componentMap }, componentRefMap (+41 more)
 
 ### Community 22 - "auth-login.vue"
-Cohesion: 0.11
-Nodes (15): formSchema, sessionStore, formSchema, FormBaseComponentType, emits, [FormAuth, formAuthApi], props, providers (+7 more)
+Cohesion: 0.15
+Nodes (13): formSchema, FormBaseComponentType, emits, [FormAuth, formAuthApi], props, providers, rememberMe, createStrongPasswordSchema() (+5 more)
 
 ### Community 23 - "StorageManager"
 Cohesion: 0.08
@@ -571,53 +572,53 @@ Nodes (37): config, authLogin(), e2eCredentials(), hasE2eCredentials(), Preferen
 Cohesion: 0.04
 Nodes (47): dependencies, @formkit/auto-animate, pohon-ui, @taman-core/composables, @taman-core/shared, @taman-core/taman-ui, @taman-core/typings, @tanstack/store (+39 more)
 
-### Community 26 - "use-backstage-request.ts"
-Cohesion: 0.06
-Nodes (28): buildQueryKey(), QueryParams, useBackstageMutation(), UseBackstageMutationOptions, useBackstageQuery(), UseBackstageQueryOptions, getAllMenusApi(), getUserInfoApi() (+20 more)
+### Community 26 - "types/global.d.ts"
+Cohesion: 0.32
+Nodes (6): useAppTamanConfig(), ApplicationConfig, RouteMeta, TamanAdminDevConfigRaw, vue-router, Window
 
 ### Community 27 - "types/src/index.ts"
-Cohesion: 0.12
-Nodes (19): navTo(), projectItems, quickNavItems, router, todoItems, trendItems, userStore, openRouteInNewWindow() (+11 more)
+Cohesion: 0.10
+Nodes (23): navTo(), projectItems, quickNavItems, router, todoItems, trendItems, userStore, isHttpUrl() (+15 more)
 
 ### Community 28 - "form-render.schema.ts"
-Cohesion: 0.09
-Nodes (39): resolveChildUpdateFieldName(), computedSchema, emits, formComponentProps, formFieldSchemas, getGroupWrapperClass(), getWrapperClass(), gridId (+31 more)
+Cohesion: 0.10
+Nodes (38): resolveChildUpdateFieldName(), computedSchema, emits, formComponentProps, formFieldSchemas, getGroupWrapperClass(), getWrapperClass(), gridId (+30 more)
 
-### Community 29 - "sidebar.vue"
-Cohesion: 0.13
-Nodes (12): inputValue, slots, sidebarAutoActivateChild, sidebarButtons, sidebarCollapsed, sidebarCollapsedButton, sidebarCollapsedShowTitle, sidebarDraggable (+4 more)
+### Community 29 - "src/orpc.ts"
+Cohesion: 0.09
+Nodes (27): applyTodoEvent(), isFilteredListKey(), now, utils, TodoListInput, { entries, status }, contract, TamanClient (+19 more)
 
 ### Community 30 - "devDependencies"
-Cohesion: 0.08
-Nodes (25): cross-env, cspell, eslint, lefthook, nx, devDependencies, cross-env, cspell (+17 more)
+Cohesion: 0.07
+Nodes (27): @arethetypeswrong/cli, cross-env, eslint, happy-dom, lefthook, devDependencies, @arethetypeswrong/cli, cross-env (+19 more)
 
 ### Community 31 - "DialogApi"
-Cohesion: 0.13
-Nodes (4): DialogApi, DialogApiOptions, DialogState, DialogInjectData
+Cohesion: 0.14
+Nodes (5): DialogApi, DialogApiOptions, DialogComponentInstance, DialogProps, DialogState
 
 ### Community 32 - "todo.repo.ts"
-Cohesion: 0.14
-Nodes (8): escapeLike(), FakeTodoRepo, TodoInsert, TodoListQuery, TodoPatch, TodoRepo, TodoRepoPort, TodoRow
+Cohesion: 0.13
+Nodes (11): escapeLike(), FakeTodoRepo, TodoInsert, TodoListQuery, TodoPatch, TodoRow, RPC_PREFIX, rpcHandler (+3 more)
 
 ### Community 33 - "db-pg/project.json"
 Cohesion: 0.05
 Nodes (44): dev, prod, uat, commands, env, envFile, MODE_ENV, cache (+36 more)
 
 ### Community 34 - "all-fields.vue"
-Cohesion: 0.14
-Nodes (7): AllFieldsDateRange, AllFieldsEncodedDateRange, AllFieldsFormValues, AllFieldsSubmitValues, [CompactForm], [FormAllFields, formAllFieldsApi], toast
+Cohesion: 0.11
+Nodes (11): getAllMenusApi(), { apiUrl }, client, orpc, AllFieldsDateRange, AllFieldsEncodedDateRange, AllFieldsFormValues, AllFieldsSubmitValues (+3 more)
 
-### Community 35 - "taman-menu-item.vue"
-Cohesion: 0.13
-Nodes (16): isHttpUrl(), active, collapseShowTitle, emit, handleClick(), isHttp, isTopLevelMenuItem, item (+8 more)
+### Community 35 - "query/live.vue"
+Cohesion: 0.11
+Nodes (25): { data, isLoading }, { params, setParams }, { list }, { params, setParams }, queryClient, { list }, { params, setParams }, useTodosQuery() (+17 more)
 
-### Community 36 - "form-actions.vue"
-Cohesion: 0.15
-Nodes (10): actionWrapperClass, collapsed, hasCollapsibleFields, isFormBusy, isFormDisabled, Props, resetButtonOptions, [rootProps, form] (+2 more)
+### Community 36 - "@core/composables/src/index.ts"
+Cohesion: 0.09
+Nodes (18): useSimpleLocale, getMessages(), Locale, messages, triggerWindowResize(), actionWrapperClass, collapsed, hasCollapsibleFields (+10 more)
 
 ### Community 37 - "form.api.ts"
-Cohesion: 0.10
-Nodes (13): cloneFormValues(), FormApi, FormApiFieldSchema, FormApiProps, FormApiSchema, getDefaultState(), isPlainFormObject(), mergeFormValuePatch() (+5 more)
+Cohesion: 0.07
+Nodes (16): StateHandler, cloneFormValues(), FormApi, FormApiFieldSchema, FormApiProps, FormApiSchema, getDefaultState(), isPlainFormObject() (+8 more)
 
 ### Community 38 - "popup-ui/package.json"
 Cohesion: 0.05
@@ -629,7 +630,7 @@ Nodes (21): TamanMenuRecordRaw, emit, NormalMenuProps, Props, Props, MenuProps, 
 
 ### Community 40 - "form-ui/src/index.ts"
 Cohesion: 0.10
-Nodes (23): calendarDateCodec, calendarDateTimeCodec, createCalendarDateCodec(), createCalendarDateTimeCodec(), createTimeCodec(), decodeFormValues(), encodeFormValues(), FormCodecError (+15 more)
+Nodes (22): TamanFormProps, calendarDateCodec, calendarDateTimeCodec, createCalendarDateCodec(), createCalendarDateTimeCodec(), createTimeCodec(), decodeFormValues(), encodeFormValues() (+14 more)
 
 ### Community 41 - "Cache 模块"
 Cohesion: 0.08
@@ -641,19 +642,19 @@ Nodes (10): downloadResult, downloadFileFromBase64(), downloadFileFromBlob(), do
 
 ### Community 43 - "DrawerApi"
 Cohesion: 0.14
-Nodes (6): DrawerApi, CloseIconPlacement, DrawerApiOptions, DrawerComponentInstance, DrawerPlacement, DrawerState
+Nodes (3): DrawerApi, DrawerApiOptions, DrawerState
 
-### Community 44 - "taman-menu-sub-menu-content.vue"
-Cohesion: 0.13
-Nodes (14): Props, collapse, getCollapseShowTitle, hiddenTitle, iconArrowStyle, iconName, isFirstLevel, mode (+6 more)
+### Community 44 - "taman-menu-item.vue"
+Cohesion: 0.08
+Nodes (25): active, collapseShowTitle, emit, handleClick(), isTopLevelMenuItem, item, menuIcon, { parentMenu, parentPaths } (+17 more)
 
 ### Community 45 - "todo.service.ts"
-Cohesion: 0.22
-Nodes (8): TodoAction, TodoService, TodoServiceDeps, toTodo(), todoChannel(), TodoPublisher, Todo, TodoEvent
+Cohesion: 0.16
+Nodes (12): TodoRepoPort, TodoAction, TodoService, TodoServiceDeps, toTodo(), createTodoPublisher(), DurableObjectNamespaceLike, getTodoPublisher() (+4 more)
 
 ### Community 46 - "useTamanDialog"
 Cohesion: 0.11
-Nodes (20): Props, DialogComponentInstance, DialogProps, ExtendedDialogApi, InferDialogData, mountDialog(), [, dialogApi], TypedDialogData (+12 more)
+Nodes (19): Props, ExtendedDialogApi, InferDialogData, mountDialog(), [, dialogApi], TypedDialogData, DialogData, TypedDialogData (+11 more)
 
 ### Community 47 - "layout-core-header.vue"
 Cohesion: 0.11
@@ -668,25 +669,25 @@ Nodes (17): accessStore, clearPreferencesAndLogout(), emits, enableLockScreenSho
 Cohesion: 0.23
 Nodes (6): createRouterMock(), mountLayoutScroll(), getHashTarget(), getHistoryPosition(), LayoutScrollRouter, useLayoutScroll()
 
-### Community 49 - "switch-item.vue"
-Cohesion: 0.12
-Nodes (11): transitionEnable, transitionLoading, transitionName, transitionPreset, transitionProgress, footerEnable, footerFixed, checked (+3 more)
+### Community 49 - "form-field-array.vue"
+Cohesion: 0.13
+Nodes (18): addRow(), arrayLength, arrayPath, buildDefaultRow(), canAdd, canRemove, formRenderProps, gridStyle (+10 more)
 
 ### Community 50 - "layout-ui/package.json"
 Cohesion: 0.06
 Nodes (33): dependencies, pohon-ui, @taman-core/composables, @taman-core/shared, @taman-core/taman-ui, @taman-core/typings, vue, @vueuse/core (+25 more)
 
 ### Community 51 - "dependencies"
-Cohesion: 0.05
-Nodes (40): dependencies, better-auth, consola, csv, drizzle-orm, @orpc/experimental-publisher, @orpc/server, @taman/constants (+32 more)
+Cohesion: 0.04
+Nodes (48): dependencies, better-auth, consola, csv, drizzle-orm, @orpc/experimental-publisher, @orpc/experimental-publisher-durable-object, @orpc/server (+40 more)
 
 ### Community 52 - "dialog-content.vue"
-Cohesion: 0.28
-Nodes (8): contentRef, delegatedProps, emits, forwarded, { handleAnimationEvent }, isAppendToBody(), position, props
+Cohesion: 0.18
+Nodes (11): DISMISSABLE_DIALOG_ID, contentRef, delegatedProps, emits, forwarded, { handleAnimationEvent }, isAppendToBody(), position (+3 more)
 
 ### Community 53 - "access/index.vue"
-Cohesion: 0.10
-Nodes (18): { accessMode, hasAccessByCodes }, accounts, changeAccount(), router, sessionStore, userStore, { accessMode, toggleAccessMode }, accounts (+10 more)
+Cohesion: 0.22
+Nodes (9): changeAccount(), { accessMode, toggleAccessMode }, accounts, changeAccount(), handleToggleAccessMode(), router, sessionStore, userStore (+1 more)
 
 ### Community 54 - "custom/custom.vue"
 Cohesion: 0.36
@@ -701,8 +702,8 @@ Cohesion: 0.08
 Nodes (27): activePath, calcMenuItemWidth(), calcSliceIndex(), close(), closeMenu(), debounce(), emit, enableScroll (+19 more)
 
 ### Community 57 - "guard.ts"
-Cohesion: 0.17
-Nodes (17): ensureSession(), AUTH_LAYOUT_ROUTE_NAMES, AuthAllowDecisionType, AuthDecision, AuthRedirectDecisionType, MatchedRouteRecord, resolveAuthDecision(), resolveAuthMetaFromMatched() (+9 more)
+Cohesion: 0.10
+Nodes (26): ensureSession(), AUTH_LAYOUT_ROUTE_NAMES, AuthAllowDecisionType, AuthDecision, AuthRedirectDecisionType, MatchedRouteRecord, resolveAuthDecision(), resolveAuthMetaFromMatched() (+18 more)
 
 ### Community 58 - "for the TanStack Query helpers, also your adapter, e.g."
 Cohesion: 0.10
@@ -714,7 +715,7 @@ Nodes (14): doCancel(), doConfirm(), emits, getIconRender, { globalEscapeShortcu
 
 ### Community 60 - "app-fetch-component.vue"
 Cohesion: 0.08
-Nodes (26): attrs, bindProps, componentRef, currentModelValue, emitChange(), emits, fetchApi(), getOptions (+18 more)
+Nodes (27): ComponentPropsMap, attrs, bindProps, componentRef, currentModelValue, emitChange(), emits, fetchApi() (+19 more)
 
 ### Community 61 - "taman-file-upload.vue"
 Cohesion: 0.24
@@ -732,21 +733,21 @@ Nodes (6): PreferenceManager, CustomPreferencesField, CustomPreferencesRecord, P
 Cohesion: 0.16
 Nodes (7): Data, TestClass, TestWithGetterSetter, UserProfile, UserSettings, bindMethods(), getNestedValue()
 
-### Community 65 - "preferences"
-Cohesion: 0.18
-Nodes (12): preferences, { hasAccessByCodes, hasAccessByRoles }, hasAuth, Props, ACCESS_ROLES_KEY, isAccessible(), registerAccessDirective(), mountWithAccessDirective() (+4 more)
+### Community 65 - "src/directive.ts"
+Cohesion: 0.19
+Nodes (11): { hasAccessByCodes, hasAccessByRoles }, hasAuth, Props, ACCESS_ROLES_KEY, isAccessible(), registerAccessDirective(), mountWithAccessDirective(), matchesAnyRole() (+3 more)
 
 ### Community 66 - "form.config.ts"
-Cohesion: 0.06
-Nodes (32): ComponentsState, GlobalShareState, IGlobalSharedState, MessageState, COMPONENT_MAP, rehydrateFormComponentMaps(), replaceRecord(), setupTamanForm() (+24 more)
+Cohesion: 0.04
+Nodes (51): COMPONENT_MAP, rehydrateFormComponentMaps(), replaceRecord(), setupTamanForm(), registerFormRules(), FormSchema, TamanFormAdapterOptions, TamanFormComponent (+43 more)
 
-### Community 67 - "form-render.dependencies.ts"
+### Community 67 - "taman-description-cell.vue"
 Cohesion: 0.17
-Nodes (15): deleteValueByFieldName(), getValueByFieldName(), resolveFieldNamePath(), setValueByFieldName(), createDependencyState(), DependencyState, resolveValueByFieldName(), useDependencies() (+7 more)
+Nodes (13): BORDERED_PADDING, cellClass, displayContent, displayLabel, hasContent, hasLabel, labelClass, PLAIN_PADDING (+5 more)
 
-### Community 68 - "core.vue"
-Cohesion: 0.10
-Nodes (16): menus, sessionStore, { setMenuList }, { user }, CoreLayout(), coreRoutes, fallbackNotFoundRoute, formSchema (+8 more)
+### Community 68 - "constants/index.ts"
+Cohesion: 0.06
+Nodes (30): appName, menus, sessionStore, { setMenuList }, { user }, AuthPageLayout(), CoreLayout(), IFrameView() (+22 more)
 
 ### Community 69 - "layout-core.vue"
 Cohesion: 0.07
@@ -761,24 +762,24 @@ Nodes (26): accessStore, clearPreferencesAndLogout(), emits, {
 }, finalLogoSrc, finalLogoSrcDark, finalLogoText, handleClickLogo() (+18 more)
 
 ### Community 70 - "dialog/index.vue"
-Cohesion: 0.06
-Nodes (20): [AutoHeightDialog, autoHeightDialogApi], [BaseDialog, baseDialogApi], [BlurDialog, blurDialogApi], [DragDialog, dragDialogApi], [DynamicDialog, dynamicDialogApi], [FormDialog, formDialogApi], [InContentDialog, inContentDialogApi], [NestedDialog, nestedDialogApi] (+12 more)
+Cohesion: 0.05
+Nodes (25): blur, [DialogBlur, dialogBlurApi], [AutoHeightDialog, autoHeightDialogApi], [BaseDialog, baseDialogApi], [BlurDialog, blurDialogApi], [DragDialog, dragDialogApi], [DynamicDialog, dynamicDialogApi], [FormDialog, formDialogApi] (+17 more)
 
 ### Community 71 - "commitlint-config/package.json"
 Cohesion: 0.08
 Nodes (25): @commitlint/cli, @commitlint/config-conventional, commitlint-plugin-function-rules, @commitlint/types, czg, dependencies, @commitlint/cli, @commitlint/config-conventional (+17 more)
 
-### Community 72 - "form-component-performance.benchmark.ts"
-Cohesion: 0.08
-Nodes (21): TestInput, batchValues, BENCHMARK_OPTIONS, [DependencyForm, dependencyFormApi], dependencySchema, dependencyWrapper, [FlatForm, flatFormApi], flatSchema (+13 more)
+### Community 72 - "api/errors.ts"
+Cohesion: 0.19
+Nodes (11): FetchErrorLike, getErrors(), getORPCErrorMessage(), HTTP_STATUS_MESSAGE_KEYS, ORPC_CODE_MESSAGE_KEYS, TODO: move these status numbers into the locale's JSON instead., useTodosPlain(), reload() (+3 more)
 
 ### Community 73 - "Detailed package audit inventory"
 Cohesion: 0.11
 Nodes (16): Compiler-confirmed unused local declarations, Detailed package audit inventory, Other compiler diagnostics outside apps, Raw dependency candidates, Raw export and type candidates — advisory only, Reproduction, Unreachable-file candidates, Before consumption from a separate repository (+8 more)
 
 ### Community 74 - "use-taman-drawer.ts"
-Cohesion: 0.13
-Nodes (14): ExtendedDrawerApi, InferDrawerData, DrawerData, TypedDrawerData, [, drawerApi], TypedDrawerData, createTamanDrawer(), DEFAULT_DRAWER_PROPS (+6 more)
+Cohesion: 0.12
+Nodes (17): CloseIconPlacement, DrawerComponentInstance, DrawerPlacement, ExtendedDrawerApi, InferDrawerData, DrawerData, TypedDrawerData, [, drawerApi] (+9 more)
 
 ### Community 75 - "Implementation Plan: Native TanStack Form Validation"
 Cohesion: 0.10
@@ -786,7 +787,7 @@ Nodes (20): Architecture Decisions, Checkpoint: Complete, Checkpoint: Native Val
 
 ### Community 76 - "useFormRuntime"
 Cohesion: 0.09
-Nodes (27): createProgressiveValidationLogic(), AsyncFieldValidator, AsyncStandardSchemaValidator, asyncValidatorKeys, createRuntimeFieldComponent(), wrapValidators(), FieldValidationInvalidator, isAsyncStandardSchemaValidator() (+19 more)
+Nodes (25): createProgressiveValidationLogic(), AsyncFieldValidator, AsyncStandardSchemaValidator, asyncValidatorKeys, createRuntimeFieldComponent(), wrapValidators(), FieldValidationInvalidator, isAsyncStandardSchemaValidator() (+17 more)
 
 ### Community 77 - "taman-menu-sub-menu.vue"
 Cohesion: 0.07
@@ -800,9 +801,9 @@ Nodes (26): AnyCustomPreferencesField, AppPreferences, BaseCustomPreferencesFiel
 Cohesion: 0.11
 Nodes (18): AnyFunction, AnyNormalFunction, AnyPromiseFunction, DeepReadonly, EmitType, Increment, IntervalHandle, MaybeComputedRef (+10 more)
 
-### Community 80 - "widget.vue"
-Cohesion: 0.10
-Nodes (18): headerEnable, headerMenuAlign, headerMenuAlignItems, headerMode, localeItems, appPreferencesButtonPosition, positionItems, widgetFullscreen (+10 more)
+### Community 80 - "switch-item.vue"
+Cohesion: 0.03
+Nodes (47): transitionEnable, transitionLoading, transitionName, transitionPreset, transitionProgress, breadcrumbEnable, breadcrumbHideOnlyOne, breadcrumbShowHome (+39 more)
 
 ### Community 81 - "@core/composables/package.json"
 Cohesion: 0.07
@@ -844,17 +845,13 @@ Nodes (11): {
 Cohesion: 0.07
 Nodes (26): drizzle-kit, drizzle-zod, dependencies, drizzle-orm, drizzle-zod, pg, uuid, zod (+18 more)
 
-### Community 84 - "general.vue"
-Cohesion: 0.20
-Nodes (10): getTimezoneOptions(), timezoneOptions, appDynamicTitle, appEnableCheckUpdates, appEnableCopyPreferences, appLocale, appTimezone, appWatermark (+2 more)
-
-### Community 85 - "icons/index.ts"
-Cohesion: 0.09
-Nodes (8): components, CONTENT_PRESET, modelValue, components, LAYOUT_PRESET, modelValue, PresetItem, { title = '' }
+### Community 84 - "plain/live.vue"
+Cohesion: 0.23
+Nodes (7): { data, isLoading, reload }, { entries, status }, STATUS_LABEL, timeFormat, TodoLogEntry, useTodoLive(), TodoEvent
 
 ### Community 86 - "useTamanDrawer"
-Cohesion: 0.12
-Nodes (11): data, [Drawer, drawerApi], SharedData, { toaster }, AutoDrawerData, data, [Drawer, drawerApi], mountPreopenedDrawer() (+3 more)
+Cohesion: 0.14
+Nodes (9): [Drawer, drawerApi], { toaster }, AutoDrawerData, data, [Drawer, drawerApi], mountPreopenedDrawer(), mountRebindingHarness(), checkProps() (+1 more)
 
 ### Community 87 - "taman-core-layout-sidebar.vue"
 Cohesion: 0.05
@@ -872,13 +869,13 @@ Nodes (13): UNICODE, FAILURE, SUCCESS, formatNow(), pad(), getStagedFiles(), gen
 Cohesion: 0.17
 Nodes (11): props, sidebarAutoActivateChild, sidebarButtons, sidebarCollapsed, sidebarCollapsedButton, sidebarCollapsedShowTitle, sidebarDraggable, sidebarEnable (+3 more)
 
-### Community 91 - "dev/vben.ts"
-Cohesion: 0.13
-Nodes (15): appName, AuthPageLayout(), CoreLayout(), IFrameView(), forbiddenComponent(), generateAccess(), TODO: Implement fetching menu from backend, AuthPageLayout() (+7 more)
+### Community 91 - "preferences-extension/index.vue"
+Cohesion: 0.18
+Nodes (8): DemoTaskItem, demoTasks, formattedPlaygroundPreferences, HighlightTone, playgroundPreferences, toneConfig, toneMap, visibleTasks
 
 ### Community 92 - "better-auth.instance.ts"
-Cohesion: 0.11
-Nodes (21): resolveActiveOrganizationId(), createBetterAuth(), DirectorAuthPayload, auth, accountRelations, invitationRelations, invitationTable, memberRelations (+13 more)
+Cohesion: 0.09
+Nodes (29): seedAdmin(), NOUNS, seedTodos(), VERBS, resolveActiveOrganizationId(), createBetterAuth(), DirectorAuthPayload, getDrizzleClient() (+21 more)
 
 ### Community 93 - "devDependencies"
 Cohesion: 0.12
@@ -889,32 +886,32 @@ Cohesion: 0.11
 Nodes (7): DisabledFormValues, ModelProtocolValues, NestedFormValues, SlotFormValues, TestInput, wrappers, handleInput()
 
 ### Community 95 - "menu.types.ts"
-Cohesion: 0.16
-Nodes (16): createMenuContext(), createSubMenuContext(), menuContextKey, useSubMenuContext(), useMenu(), useMenuStyle(), TAMAN_MENU_ROOT_NAME, TAMAN_MENU_SUB_MENU_NAME (+8 more)
+Cohesion: 0.15
+Nodes (17): createMenuContext(), createSubMenuContext(), menuContextKey, useMenuContext(), useSubMenuContext(), useMenu(), useMenuStyle(), TAMAN_MENU_ROOT_NAME (+9 more)
 
 ### Community 96 - "dependencies"
 Cohesion: 0.08
 Nodes (24): dependencies, qs, @taman-core/composables, @taman-core/shared, @taman-core/taman-ui, @taman-core/typings, vue, @vueuse/core (+16 more)
 
-### Community 97 - "routes/index.ts"
-Cohesion: 0.18
-Nodes (10): router, accessRoutes, componentKeys, devRouteFiles, devRoutes, externalRoutes, routes, staticRoutes (+2 more)
+### Community 97 - "app-ui/src/components/index.ts"
+Cohesion: 0.22
+Nodes (4): ComponentsState, GlobalShareState, IGlobalSharedState, MessageState
 
 ### Community 98 - "better-auth-back/project.json"
-Cohesion: 0.09
-Nodes (23): cache, command, options, cache, command, options, NODE_OPTIONS, name (+15 more)
+Cohesion: 0.08
+Nodes (27): cache, command, options, cache, command, options, NODE_OPTIONS, name (+19 more)
 
-### Community 99 - "constants/index.ts"
-Cohesion: 0.15
-Nodes (12): setup(), useLayoutContentStyle(), useLayoutFooterStyle(), useLayoutHeaderStyle(), CSS_VARIABLE_LAYOUT_CONTENT_HEIGHT, CSS_VARIABLE_LAYOUT_CONTENT_WIDTH, CSS_VARIABLE_LAYOUT_FOOTER_HEIGHT, CSS_VARIABLE_LAYOUT_HEADER_HEIGHT (+4 more)
+### Community 99 - "globals.ts"
+Cohesion: 0.21
+Nodes (9): setup(), useLayoutContentStyle(), useLayoutFooterStyle(), useLayoutHeaderStyle(), CSS_VARIABLE_LAYOUT_CONTENT_HEIGHT, CSS_VARIABLE_LAYOUT_CONTENT_WIDTH, CSS_VARIABLE_LAYOUT_FOOTER_HEIGHT, CSS_VARIABLE_LAYOUT_HEADER_HEIGHT (+1 more)
 
 ### Community 100 - "Form UI Refactor Implementation Plan"
 Cohesion: 0.07
 Nodes (26): Deviation from the spec, File Structure, Form UI Refactor Implementation Plan, Global Constraints, Phase 1 — Deprecation removal, Phase 2 — Vertical-only layout, Phase 3 — Per-field collapsible opt-in, Phase 4 — Collapse API (+18 more)
 
 ### Community 102 - "bootstrap.ts"
-Cohesion: 0.20
-Nodes (11): initTamanForm(), FetchErrorLike, getErrors(), HTTP_STATUS_MESSAGE_KEYS, TODO: move these status numbers into the locale's JSON instead., bootstrap(), notifyQueryError(), queryClient (+3 more)
+Cohesion: 0.21
+Nodes (11): ComponentType, initComponentAdapter(), LegacyComponentType, withDefaultPlaceholder(), initTamanForm(), bootstrap(), notifyQueryError(), queryClient (+3 more)
 
 ### Community 103 - "typings/package.json"
 Cohesion: 0.14
@@ -941,12 +938,16 @@ Cohesion: 0.09
 Nodes (23): clsx, @colordx/core, @ctrl/tinycolor, dependencies, clsx, @colordx/core, @ctrl/tinycolor, defu (+15 more)
 
 ### Community 109 - "useScrollLock"
-Cohesion: 0.15
-Nodes (16): mountScrollLock(), getLayoutFixedNodes(), getScrollLockTarget(), SCROLL_FIXED_CLASS, ScrollLockOptions, useScrollLock(), applyScrollbarCompensation(), resetScrollbarCompensation() (+8 more)
+Cohesion: 0.16
+Nodes (15): mountScrollLock(), getLayoutFixedNodes(), getScrollLockTarget(), SCROLL_FIXED_CLASS, ScrollLockOptions, useScrollLock(), applyScrollbarCompensation(), resetScrollbarCompensation() (+7 more)
 
 ### Community 110 - "builtin.vue"
-Cohesion: 0.15
-Nodes (11): BUILT_IN_THEME_PRESETS, BuiltinThemePreset, convertToHsl(), builtinThemePresets, colorInput, handleInputChange(), inputValue, modelValue (+3 more)
+Cohesion: 0.14
+Nodes (12): BUILT_IN_THEME_PRESETS, BuiltinThemePreset, COLOR_PRESETS, convertToHsl(), builtinThemePresets, colorInput, handleInputChange(), inputValue (+4 more)
+
+### Community 111 - "Stack"
+Cohesion: 0.18
+Nodes (3): createStack(), Stack, TabbarState
 
 ### Community 112 - "taman-ui/package.json"
 Cohesion: 0.07
@@ -976,17 +977,17 @@ Nodes (8): checked, {
   tip = '',
 }, { colorMode, layout }, PresetItem, THEME_PRESET, themeSemiDarkHeader, themeSemiDarkSidebar, themeSemiDarkSidebarSub
 
-### Community 118 - "alert-overlay.vue"
-Cohesion: 0.22
-Nodes (7): alertAttrs, attrs, emits, onClosed(), open, props, TamanAlertProps
+### Community 118 - "preferences-content.vue"
+Cohesion: 0.25
+Nodes (4): components, CONTENT_PRESET, modelValue, { title = '' }
 
 ### Community 119 - "dependencies"
 Cohesion: 0.11
 Nodes (17): dependencies, pohon-ui, @taman-core/composables, @taman-core/taman-ui, @taman-core/typings, vue, @vueuse/core, exports (+9 more)
 
-### Community 120 - "use-watermark.ts"
-Cohesion: 0.29
-Nodes (6): cachedOptions, unmountedHooked, useWatermark(), initWatermark(), updateWatermark(), watermark
+### Community 120 - "watermark/index.vue"
+Cohesion: 0.20
+Nodes (9): createWaterMark(), { destroyWatermark, updateWatermark, watermark }, recreateWaterMark(), cachedOptions, unmountedHooked, useWatermark(), initWatermark(), updateWatermark() (+1 more)
 
 ### Community 121 - "dependencies"
 Cohesion: 0.09
@@ -994,19 +995,29 @@ Nodes (21): dependencies, pinia, pinia-plugin-persistedstate, secure-ls, @taman-
 
 ### Community 122 - "dependencies"
 Cohesion: 0.10
-Nodes (21): ag-grid-community, ag-grid-vue3, dependencies, ag-grid-community, ag-grid-vue3, @internationalized/date, @internationalized/number, json-bigint (+13 more)
+Nodes (21): ag-grid-community, ag-grid-vue3, dependencies, ag-grid-community, ag-grid-vue3, @internationalized/date, @internationalized/number, pinia (+13 more)
 
 ### Community 123 - "taman-button-check-group.vue"
-Cohesion: 0.18
-Nodes (16): fromCheckGroupSelection(), toCheckGroupSelection(), toggleCheckGroupSelection(), ToggleOptions, emits, getLeadingIcon(), hasIconSlot, isChecked() (+8 more)
-
-### Community 124 - "theme.vue"
-Cohesion: 0.22
-Nodes (6): { layout }, modelValue, THEME_PRESET, themeSemiDarkHeader, themeSemiDarkSidebar, themeSemiDarkSidebarSub
-
-### Community 125 - "breadcrumb.vue"
 Cohesion: 0.13
-Nodes (12): breadcrumbEnable, breadcrumbHideOnlyOne, breadcrumbShowHome, breadcrumbShowIcon, disableItem, props, typeItems, navigationAccordion (+4 more)
+Nodes (22): fromCheckGroupSelection(), toCheckGroupSelection(), toggleCheckGroupSelection(), ToggleOptions, emits, getLeadingIcon(), hasIconSlot, isChecked() (+14 more)
+
+### Community 124 - "tabs/index.vue"
+Cohesion: 0.29
+Nodes (3): {
+  closeAllTabs,
+  closeCurrentTab,
+  closeLeftTabs,
+  closeOtherTabs,
+  closeRightTabs,
+  closeTabByKey,
+  refreshTab,
+  resetTabTitle,
+  setTabTitle,
+}, newTabTitle, router
+
+### Community 125 - "preferences-layout.vue"
+Cohesion: 0.29
+Nodes (4): components, LAYOUT_PRESET, modelValue, PresetItem
 
 ### Community 126 - "merge.vue"
 Cohesion: 0.18
@@ -1016,44 +1027,44 @@ Nodes (6): currentTab, [FirstForm, firstFormApi], needMerge, [SecondForm, second
 Cohesion: 0.12
 Nodes (20): isPasswordStrong(), PASSWORD_STRENGTH_CHECKS, PASSWORD_STRENGTH_MAX, passwordStrengthScore(), displayValue, formatOptions, formatter, inputProps (+12 more)
 
-### Community 128 - "button/index.ts"
-Cohesion: 0.27
-Nodes (6): TamanButtonCheckGroupModel, TamanButtonCheckGroupOption, TamanButtonCheckGroupProps, TamanButtonCheckGroupValue, options, ui
-
 ### Community 129 - "typings/src/index.ts"
 Cohesion: 0.11
-Nodes (24): TamanTabDefinition, active, active, emits, onMouseDown(), Props, style, tabItems (+16 more)
+Nodes (23): TamanTabDefinition, active, active, emits, onMouseDown(), Props, style, tabItems (+15 more)
 
 ### Community 131 - "drag-demo.vue"
 Cohesion: 0.29
 Nodes (4): [DialogDrag, dialogDragApi], { toaster }, [NestedDialog, nestedDialogApi], [ParentDialog]
+
+### Community 132 - "request-params-serializer/index.vue"
+Cohesion: 0.40
+Nodes (4): params, paramsSerializer, paramsStr, response
 
 ### Community 133 - "taman-ui/src/ui/alert-dialog/index.ts"
 Cohesion: 0.10
 Nodes (11): props, props, delegatedProps, forwardedProps, props, emits, forwarded, props (+3 more)
 
 ### Community 134 - "cors.ts"
-Cohesion: 0.16
-Nodes (8): CONNECTION_ERROR_CODES, ErrorBody, jsonError(), body, applyCorsToResponse(), createCorsOptions(), resolveAllowedOrigin(), resolveTrustedOrigins()
+Cohesion: 0.13
+Nodes (9): CONNECTION_ERROR_CODES, ErrorBody, jsonError(), body, applyCorsToResponse(), createCorsOptions(), resolveAllowedOrigin(), resolveTrustedOrigins() (+1 more)
 
 ### Community 135 - "request/package.json"
-Cohesion: 0.25
-Nodes (7): ofetch, dependencies, ofetch, exports, name, type, version
+Cohesion: 0.05
+Nodes (46): @orpc/client, @orpc/tanstack-query, dependencies, @orpc/client, @orpc/tanstack-query, @vinicunca/taman-api-contract, description, devDependencies (+38 more)
 
-### Community 136 - "collapsible.vue"
-Cohesion: 0.25
-Nodes (4): [CollapseForm], [FieldCollapseForm], [GroupForm, groupFormApi], toast
+### Community 136 - "drawer/shared-data-demo.vue"
+Cohesion: 0.40
+Nodes (4): data, [Drawer, drawerApi], SharedData, { toaster }
 
-### Community 138 - "form.ts"
-Cohesion: 0.06
-Nodes (31): ComponentPropsMap, ComponentType, initComponentAdapter(), LegacyComponentType, withDefaultPlaceholder(), TamanFormProps, TamanFormSchema, useTamanForm() (+23 more)
+### Community 138 - "useTamanForm"
+Cohesion: 0.03
+Nodes (38): TamanFormSchema, useTamanForm(), { dataUpdatedAt, promise: fetchDataFn }, [Form], queryKey, schema, [Drawer, drawerApi], [Form, formApi] (+30 more)
 
 ### Community 139 - "pohon-ui-theme/package.json"
 Cohesion: 0.11
 Nodes (18): dependencies, defu, pohon-ui, @taman-core/shared, unocss, exports, files, defu (+10 more)
 
 ### Community 140 - "layout-auth.vue"
-Cohesion: 0.14
+Cohesion: 0.16
 Nodes (10): {
   authPanelCenter,
   authPanelLeft,
@@ -1082,25 +1093,16 @@ Cohesion: 0.25
 Nodes (7): exclude, extends, include, node_modules, src, @taman/tsconfig/library.json, $schema
 
 ### Community 146 - "auth.result.ts"
-Cohesion: 0.43
-Nodes (4): AuthClientResult, AuthError, unwrapAuthResult(), useListUsersQuery()
-
-### Community 147 - "taman-logo.vue"
 Cohesion: 0.29
-Nodes (5): fullLogoStyle, logoSrc, props, shouldShowText, shouldUseFullLogo
+Nodes (6): AUTH_QUERY_KEY, AuthClientResult, AuthError, unwrapAuthResult(), authQueryKeys, useListUsersQuery()
+
+### Community 147 - "setup.ts"
+Cohesion: 0.40
+Nodes (4): InitStoreOptions, SecureLSCtor, secureLSModule, SecureLSStorage
 
 ### Community 148 - "compilerOptions"
 Cohesion: 0.11
 Nodes (17): compilerOptions, allowArbitraryExtensions, declaration, jsx, jsxImportSource, lib, moduleResolution, types (+9 more)
-
-### Community 149 - "@core/composables/src/index.ts"
-Cohesion: 0.21
-Nodes (7): useSimpleLocale, getMessages(), Locale, messages, collapsed, { $t }, {
-  position = 'fixed',
-  zIndex,
-  overlayBlur,
-  open,
-}
 
 ### Community 150 - "alert-dialog-content.vue"
 Cohesion: 0.24
@@ -1118,21 +1120,21 @@ Nodes (11): checkForUpdates(), currentVersionTag, [DialogUpdate, dialogUpdateApi
 Cohesion: 0.50
 Nodes (3): AutoDialogData, data, [Dialog, dialogApi]
 
-### Community 154 - "layout-widget-breadcrumb.vue"
+### Community 154 - "full-screen/index.vue"
 Cohesion: 0.50
-Nodes (3): breadcrumbs, props, route
+Nodes (3): domRef, { enter, exit, isFullscreen, toggle }, { isFullscreen: isDomFullscreen, toggle: toggleDom }
 
 ### Community 155 - "use-content-spinner.test.ts"
 Cohesion: 0.15
 Nodes (9): { spinning }, createRouterMock(), makeRoute(), mockPreferences, mountSpinner(), routerHolder, runAfter(), runBefore() (+1 more)
 
-### Community 156 - "context.ts"
-Cohesion: 0.10
-Nodes (25): CoreService, DirectorMember, KNOWN_ORGANIZATION_ROLES, resolveContext(), resolveMember(), TamanContext, toOrganizationRole(), H3EventContext (+17 more)
+### Community 156 - "TamanContext"
+Cohesion: 0.12
+Nodes (19): CoreService, DirectorMember, TamanContext, adminAc, adminRole, adminRoles, statement, userRole (+11 more)
 
-### Community 157 - "xlogin.vue"
-Cohesion: 0.33
-Nodes (4): fields, providers, schema, sessionStore
+### Community 157 - "login.vue"
+Cohesion: 0.17
+Nodes (6): formSchema, sessionStore, fields, providers, schema, sessionStore
 
 ### Community 158 - "include"
 Cohesion: 0.12
@@ -1151,15 +1153,19 @@ Cohesion: 0.33
 Nodes (5): BasicOption, BasicUserInfo, ClassType, SelectOption, TabOption
 
 ### Community 162 - "layout-widget-lock-screen.vue"
-Cohesion: 0.11
-Nodes (14): accessStore, date, [
+Cohesion: 0.09
+Nodes (18): dropdownItems, emits, handleLogout(), Props, accessStore, date, [
   FormLock,
   { getFieldComponentRef, getRawValues, setFieldError, validate },
-], hour, { locale }, { lockScreenPassword }, meridiem, minute (+6 more)
+], hour (+10 more)
+
+### Community 165 - "tab-detail.vue"
+Cohesion: 0.50
+Nodes (3): index, route, { setTabTitle }
 
 ### Community 166 - "alert-builder.ts"
-Cohesion: 0.16
-Nodes (16): openAlert(), openConfirm(), openPrompt(), AlertBeforeCloseScope, AlertContext, AlertPromptProps, alertIds, clearAllAlerts() (+8 more)
+Cohesion: 0.12
+Nodes (20): AlertBeforeCloseScope, AlertContext, AlertPromptProps, alertIds, clearAllAlerts(), { $t }, tamanAlert(), tamanConfirm() (+12 more)
 
 ### Community 167 - "dependencies"
 Cohesion: 0.12
@@ -1177,29 +1183,29 @@ Nodes (9): props, delegatedProps, props, emits, forwarded, props, delegatedProps
 Cohesion: 0.17
 Nodes (12): computedShadowClasses, emits, handleScroll(), isAtBottom, isAtLeft, isAtRight, isAtTop, Props (+4 more)
 
-### Community 172 - "useUserStore"
-Cohesion: 0.40
-Nodes (3): AccessState, BasicUserInfo, useUserStore
+### Community 172 - "button-control.vue"
+Cohesion: 0.17
+Nodes (8): { accessMode, hasAccessByCodes }, accounts, router, sessionStore, userStore, AccessState, BasicUserInfo, useUserStore
 
-### Community 173 - "db-pg/src/index.ts"
-Cohesion: 0.13
-Nodes (11): seedAdmin(), CoreRepo, HealthRepo, HealthService, OrganizationRepo, DrizzleClient, getDrizzleClient(), accountTable (+3 more)
+### Community 173 - "DrizzleClient"
+Cohesion: 0.25
+Nodes (5): CoreRepo, HealthRepo, HealthService, OrganizationRepo, DrizzleClient
 
 ### Community 174 - "useTamanToast"
 Cohesion: 0.05
-Nodes (22): [DialogAutoHeight, dialogAutoHeightApi], list, { toaster }, [DialogBasic, dialogBasicApi], { toaster }, [DialogDynamic, dialogDynamicApi], state, { toaster } (+14 more)
+Nodes (21): [DialogAutoHeight, dialogAutoHeightApi], list, { toaster }, [DialogBasic, dialogBasicApi], { toaster }, [DialogDynamic, dialogDynamicApi], state, { toaster } (+13 more)
 
 ### Community 175 - "tooling/package.json"
 Cohesion: 0.13
-Nodes (14): circular-dependency-scanner, knip, publint, dependencies, circular-dependency-scanner, knip, publint, @taman/node-utils (+6 more)
+Nodes (14): circular-dependency-scanner, knip, dependencies, circular-dependency-scanner, knip, publint, @taman/node-utils, publint (+6 more)
 
 ### Community 176 - "compilerOptions"
 Cohesion: 0.13
 Nodes (14): compilerOptions, declaration, jsx, lib, moduleResolution, noEmit, useDefineForClassFields, display (+6 more)
 
 ### Community 178 - "profile/index.vue"
-Cohesion: 0.12
-Nodes (10): formSchema, MOCK_ROLES_OPTIONS, profileBaseSettingRef, tabs, tabsValue, userStore, formSchema, formSchema (+2 more)
+Cohesion: 0.10
+Nodes (12): getUserInfoApi(), formSchema, MOCK_ROLES_OPTIONS, profileBaseSettingRef, tabs, tabsValue, userStore, formSchema (+4 more)
 
 ### Community 179 - "package.json"
 Cohesion: 0.22
@@ -1213,9 +1219,9 @@ Nodes (29): CalendarDateCodecOptions, createCalendarDateCodec(), decodeCalendarD
 Cohesion: 0.13
 Nodes (14): devDependencies, unocss, @unocss/preset-wind4, @vinicunca/unocss-preset, exports, ./styles, unocss, name (+6 more)
 
-### Community 183 - "auth.access.ts"
-Cohesion: 0.22
-Nodes (9): getAuthAccess(), isLoggedIn(), DirectorAuth, useBetterAuth(), httpError(), parseContext, readValidatedBody(), readValidatedBodyWithFiles() (+1 more)
+### Community 183 - "context.ts"
+Cohesion: 0.19
+Nodes (13): getAuthAccess(), isLoggedIn(), DirectorAuth, useBetterAuth(), KNOWN_ORGANIZATION_ROLES, resolveContext(), resolveMember(), toOrganizationRole() (+5 more)
 
 ### Community 184 - "scripts"
 Cohesion: 0.14
@@ -1274,17 +1280,13 @@ Nodes (5): ./utils, default, development, production, types
 Cohesion: 0.12
 Nodes (11): CustomFormValues, CustomSubmitValues, dynamicComponentType, [Form, formApi], toast, modelValue, phoneError, phoneValue (+3 more)
 
-### Community 195 - "header-scroll-state.ts"
+### Community 195 - "dialog/shared-data-demo.vue"
 Cohesion: 0.50
-Nodes (3): HeaderScrollStateOptions, resolveHeaderHiddenOnScroll(), baseOptions
-
-### Community 196 - "array-fields.vue"
-Cohesion: 0.13
-Nodes (9): ArrayFormValues, ArraySubmitValues, ContactFormValues, [Form, formApi], formattedSubmitValues, outputClass, schema, submitValues (+1 more)
+Nodes (3): data, [DialogSharedData, dialogSharedDataApi], { toaster }
 
 ### Community 197 - "locales/src/index.ts"
 Cohesion: 0.11
-Nodes (24): loadMessages(), setupI18n(), i18n, loadLocaleMessages(), loadLocalesMap(), loadLocalesMapFromDir(), localesMap, modules (+16 more)
+Nodes (24): loadMessages(), localesMap, modules, setupI18n(), columnDefs, { data: talents }, [, talentFormDrawer], i18n (+16 more)
 
 ### Community 199 - "badge/index.vue"
 Cohesion: 0.25
@@ -1319,8 +1321,8 @@ Cohesion: 0.15
 Nodes (9): canRender(), enableTabbar, iframeRoutes, route, routeShow(), showIframe, spinningList, tabbarStore (+1 more)
 
 ### Community 215 - "taman-menu-badge.vue"
-Cohesion: 0.20
-Nodes (9): isValidColor(), ExRouteRecordRaw, TamanMenuRecordBadgeRaw, badgeClass, badgeStyle, Props, isDot, Props (+1 more)
+Cohesion: 0.12
+Nodes (10): isValidColor(), ColorItem, ExRouteRecordRaw, TamanMenuRecordBadgeRaw, badgeClass, badgeStyle, Props, isDot (+2 more)
 
 ### Community 216 - "better-auth-front/project.json"
 Cohesion: 0.17
@@ -1334,31 +1336,31 @@ Nodes (12): Async validation, Codecs, Exported utilities and types, Form options
 Cohesion: 0.17
 Nodes (11): devDependencies, @types/nprogress, files, dist, name, scripts, build, stub (+3 more)
 
-### Community 220 - "locales/index.ts"
-Cohesion: 0.07
-Nodes (15): localesMap, modules, routes, routes, ROUTE_ORDER, [Form, formApi], [SyncForm], toast (+7 more)
+### Community 220 - "examples.ts"
+Cohesion: 0.09
+Nodes (15): routes, routes, ROUTE_ORDER, createForm, { data, isLoading, create, update, remove }, editing, onRemove(), submitting (+7 more)
 
 ### Community 222 - "tabbar.vue"
-Cohesion: 0.12
-Nodes (14): styleItems, tabbarDraggable, tabbarEnable, tabbarMaxCount, tabbarMiddleClickToClose, tabbarPersist, tabbarShowIcon, tabbarShowMaximize (+6 more)
+Cohesion: 0.07
+Nodes (24): sidebarAutoActivateChild, sidebarButtons, sidebarCollapsed, sidebarCollapsedButton, sidebarCollapsedShowTitle, sidebarDraggable, sidebarEnable, sidebarExpandOnHover (+16 more)
 
-### Community 223 - "taman-ui/src/index.ts"
-Cohesion: 0.12
-Nodes (9): AppPageProps, slots, {
+### Community 223 - "app-card.vue"
+Cohesion: 0.33
+Nodes (3): AppPageProps, slots, {
   title,
   description,
   contentClass,
   headerClass,
   footerClass,
-}, LOADING_INSTANCE_KEY, loadingDirective, dropdownItems, emits, handleLogout() (+1 more)
+}
 
 ### Community 225 - "components/widgets/index.ts"
 Cohesion: 0.25
 Nodes (4): props, emit, handleRefresh(), screen
 
-### Community 226 - "inference.ts"
-Cohesion: 0.27
-Nodes (5): useForwardPriorityValues(), usePriorityValue(), usePriorityValues(), getFirstNonNullOrUndefined(), isMacOs()
+### Community 226 - "global.vue"
+Cohesion: 0.15
+Nodes (12): useForwardPriorityValues(), usePriorityValue(), usePriorityValues(), getFirstNonNullOrUndefined(), isMacOs(), isWindowsOs(), altView, shortcutKeysEnable (+4 more)
 
 ### Community 227 - "button-group/index.vue"
 Cohesion: 0.20
@@ -1443,8 +1445,8 @@ Nodes (15): {
 }, { formDescriptionId }, props, { dirty, error, name, touched, valid }, props, id, props, { error, formItemId } (+7 more)
 
 ### Community 255 - "session.store.ts"
-Cohesion: 0.23
-Nodes (11): { apiUrl }, AppSession, AppSessionUser, authClient, AUTH_QUERY_KEY, clearAuthCache(), refreshSession(), SESSION_QUERY_KEY (+3 more)
+Cohesion: 0.28
+Nodes (9): { apiUrl }, AppSession, AppSessionUser, authClient, clearAuthCache(), refreshSession(), SESSION_QUERY_KEY, sessionQueryOptions (+1 more)
 
 ### Community 256 - "pohon-ui-theme/tsconfig.json"
 Cohesion: 0.20
@@ -1462,13 +1464,13 @@ Nodes (9): compilerOptions, allowArbitraryExtensions, exclude, extends, include,
 Cohesion: 0.20
 Nodes (9): exclude, extends, include, node_modules, src, @taman/tsconfig/node.json, $schema, drizzle.config.ts (+1 more)
 
-### Community 261 - "`@taman/request`"
-Cohesion: 0.20
-Nodes (9): Auth headers, retries, and other ofetch options, Calling convention, Errors (`ApiError`), Escape hatch: `fetch`, Gotchas, Setup, Table of contents, `@taman/request` (+1 more)
+### Community 261 - "@vinicunca/taman-request"
+Cohesion: 0.33
+Nodes (5): Plain client, Realtime, TanStack Query, TypeScript, @vinicunca/taman-request
 
 ### Community 262 - "tabbar.ts"
-Cohesion: 0.08
-Nodes (25): useRefresh(), transformComponent(), useLayoutComposable(), { getCachedTabs, getExcludeCachedTabs, renderRouteView }, { getEnabledTransition, getTransitionName }, { keepAlive }, tabbarStore, { addCachedRoute } (+17 more)
+Cohesion: 0.07
+Nodes (27): usePreferences(), useContentMaximize(), useRefresh(), transformComponent(), useLayoutComposable(), { getCachedTabs, getExcludeCachedTabs, renderRouteView }, { getEnabledTransition, getTransitionName }, { keepAlive } (+19 more)
 
 ### Community 263 - "`FormApi` reference"
 Cohesion: 0.25
@@ -1510,9 +1512,9 @@ Nodes (8): env.d.ts, exclude, extends, include, node_modules, src, @taman/tsconf
 Cohesion: 0.36
 Nodes (8): CACHE_FILE, getCacheFile(), getLintFiles(), main(), printResult(), PubLintCommandOptions, readCache(), runPublint()
 
-### Community 279 - "all.get.ts"
-Cohesion: 0.32
-Nodes (4): ApiEnvelope, defineApiHandler(), dashboardMenus, MOCK_MENUS
+### Community 279 - "base.ts"
+Cohesion: 0.20
+Nodes (12): findConnectionErrorCode(), cloudflareEnv(), authed, implementer, os, RpcInitialContext, menuRouter, todo (+4 more)
 
 ### Community 280 - "node-utils/tsconfig.json"
 Cohesion: 0.25
@@ -1559,8 +1561,8 @@ Cohesion: 0.25
 Nodes (7): Decisions required before implementation, Native TanStack Form Validation, Phase 1: Contract, Phase 2: Native validator execution, Phase 3: Native error state, Phase 4: Runtime cleanup, Standing constraints
 
 ### Community 302 - "request/tsconfig.json"
-Cohesion: 0.25
-Nodes (7): exclude, extends, include, node_modules, src, @taman/tsconfig/web.json, $schema
+Cohesion: 0.14
+Nodes (13): compilerOptions, lib, types, exclude, extends, include, DOM, DOM.Iterable (+5 more)
 
 ### Community 304 - "locales/tsconfig.json"
 Cohesion: 0.25
@@ -1603,12 +1605,8 @@ Cohesion: 0.33
 Nodes (7): close(), emits, handleClear(), handleMakeAll(), handleViewAll(), [open, toggle], LayoutWidgetNotificationItem
 
 ### Community 315 - "taman-use-form.vue"
-Cohesion: 0.11
-Nodes (21): DEFAULT_FORM_COMMON_CONFIG, getFormComponentMap(), getCustomDefaultValue(), normalizeSchemaForDefaults(), schemaForZodDefaults(), ExtendedFormApi, TamanFormProps, TamanFormSlots (+13 more)
-
-### Community 316 - "global.vue"
-Cohesion: 0.29
-Nodes (7): isWindowsOs(), altView, shortcutKeysEnable, shortcutKeysEscape, shortcutKeysGlobalSearch, shortcutKeysLockScreen, shortcutKeysLogout
+Cohesion: 0.09
+Nodes (25): DEFAULT_FORM_COMMON_CONFIG, getFormComponentMap(), fieldRules, shapes, getBaseRules(), getDefaultValueInZodStack(), UnwrappableZodType, getCustomDefaultValue() (+17 more)
 
 ### Community 317 - "Common use cases"
 Cohesion: 0.29
@@ -1721,32 +1719,32 @@ Cohesion: 0.67
 Nodes (3): scripts, stub, watch
 
 ### Community 399 - "taman-ui/src/components/index.ts"
-Cohesion: 0.14
-Nodes (3): props, slots, { isFullscreen, toggle }
+Cohesion: 0.10
+Nodes (8): props, slots, { isFullscreen, toggle }, fullLogoStyle, logoSrc, props, shouldShowText, shouldUseFullLogo
 
 ### Community 431 - "theme.drawer copy.ts"
 Cohesion: 0.29
 Nodes (6): TODO: remove the important when vaul is replaced by the built in drawer, TODO: remove the important when vaul is replaced by the built in drawer, TODO: remove the important when vaul is replaced by the built in drawer, TODO: remove the important when vaul is replaced by the built in drawer, TODO: remove the important when vaul is replaced by the built in drawer, themeDrawer
 
 ## Knowledge Gaps
-- **2493 isolated node(s):** `name`, `type`, `imports`, `scripts`, `@orpc/experimental-publisher` (+2488 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 3004 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **107 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **2561 isolated node(s):** `PublisherObjectArgs`, `name`, `type`, `imports`, `scripts` (+2556 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 3078 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **111 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `useTamanDrawer()` connect `useTamanDrawer` to `locales/src/index.ts`, `form.ts`, `use-taman-drawer.ts`, `DrawerApi`, `useTamanToast`, `layout-widget-preferences-drawer.vue`, `drawer/index.vue`, `locales/index.ts`?**
-  _High betweenness centrality (0.013) - this node is a cross-community bridge._
-- **Why does `useTamanDialog()` connect `useTamanDialog` to `packages/preferences/src/index.ts`, `layout-widget-lock-screen.vue`, `drag-demo.vue`, `dialog/index.vue`, `blur-demo.vue`, `form.ts`, `useTamanToast`, `layout-core-header.vue`, `layout-widget-check-updates.vue`, `dialog/typed-data-auto-demo.vue`, `DialogApi`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
-- **Why does `Stack` connect `Stack` to `typings/src/index.ts`, `tabbar.ts`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
-- **What connects `name`, `type`, `imports` to the rest of the system?**
-  _2493 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `useTamanDialog()` connect `useTamanDialog` to `packages/preferences/src/index.ts`, `layout-widget-lock-screen.vue`, `drag-demo.vue`, `dialog/shared-data-demo.vue`, `dialog/index.vue`, `useTamanToast`, `layout-core-header.vue`, `layout-widget-check-updates.vue`, `dialog/typed-data-auto-demo.vue`, `DialogApi`?**
+  _High betweenness centrality (0.023) - this node is a cross-community bridge._
+- **Why does `usePreferences()` connect `tabbar.ts` to `diff.ts`, `packages/preferences/src/index.ts`, `layout-core.vue`, `types/src/index.ts`, `use-taman-drawer.ts`, `utils/index.ts`, `layout-auth.vue`, `useTamanDialog`, `layout-core-header.vue`, `switch-item.vue`, `preferences-theme.vue`, `alert.vue`, `layout-widget-preferences-drawer.vue`?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+- **Why does `useTamanForm()` connect `form.config.ts` to `layout-widget-lock-screen.vue`, `form.api.ts`, `form-ui/src/index.ts`, `form-types.test.ts`, `auth-login.vue`, `form-integration.test.ts`?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+- **What connects `PublisherObjectArgs`, `name`, `type` to the rest of the system?**
+  _2561 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `pohon-ui-theme/src/index.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.03368370759675107 - nodes in this community are weakly interconnected._
 - **Should `packages/preferences/src/index.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.07057057057057058 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.055152394775036286 - nodes in this community are weakly interconnected._
 - **Should `plugins/index.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.060041407867494824 - nodes in this community are weakly interconnected._

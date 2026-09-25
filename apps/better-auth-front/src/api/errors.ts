@@ -1,6 +1,6 @@
 import { $t } from '@taman/locales';
 import { ORG_REQUIRED } from '@vinicunca/taman-api-contract';
-import { ORPCError } from '@vinicunca/taman-request/orpc';
+import { ORPCError } from '@vinicunca/request/orpc';
 
 interface FetchErrorLike {
   code?: string;
@@ -69,7 +69,7 @@ function getORPCErrorMessage(error: ORPCError<string, unknown>): string {
  * better-auth's own error messages are hardcoded English, never localized,
  * so they'd leak untranslated text into non-English locales otherwise.
  * Falls back to the server-provided `message` (e.g. from
- * `@vinicunca/taman-request`, where messages may already be localized),
+ * `@vinicunca/request`, where messages may already be localized),
  * then `statusText`, then a fully generic fallback.
  */
 export function getErrors(error: unknown): string {

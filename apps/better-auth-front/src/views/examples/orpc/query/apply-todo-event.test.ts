@@ -1,7 +1,7 @@
-import type { Todo, TodoPage } from '@vinicunca/taman-request/orpc';
+import type { Todo, TodoPage } from '@vinicunca/request/orpc';
 import { QueryClient } from '@tanstack/vue-query';
-import { createTamanClient } from '@vinicunca/taman-request/orpc';
-import { createTamanQueryUtils } from '@vinicunca/taman-request/orpc-query';
+import { createTamanClient } from '@vinicunca/request/orpc';
+import { createTamanQueryUtils } from '@vinicunca/request/orpc-query';
 import { describe, expect, it, vi } from 'vitest';
 import { applyTodoEvent } from './apply-todo-event';
 

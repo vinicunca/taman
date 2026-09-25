@@ -1,8 +1,8 @@
 {
   "package.json": {
-    "mtime": 1790219343.907131,
-    "seen": 1790220379.726079,
-    "ast_hash": "a8f9a335806f174df38bdd177deb76ec",
+    "mtime": 1790302349.8031974,
+    "seen": 1790302518.0840378,
+    "ast_hash": "abe4b400d681c87aca9107396765084e",
     "semantic_hash": ""
   },
   ".codex/hooks.json": {
@@ -18,21 +18,21 @@
     "semantic_hash": ""
   },
   "apps/better-auth-back/nitro.config.ts": {
-    "mtime": 1787830820.5151281,
-    "seen": 1789448741.023065,
-    "ast_hash": "13b481248e7ceaff1567618afd56cbd6",
+    "mtime": 1790302349.793474,
+    "seen": 1790302518.083812,
+    "ast_hash": "529e18c1bc09e08c17876412378f51ef",
     "semantic_hash": ""
   },
   "apps/better-auth-back/package.json": {
-    "mtime": 1790256340.4818141,
-    "seen": 1790301156.900251,
-    "ast_hash": "5ee561d44f2a02cbb71c5eabc9a211be",
+    "mtime": 1790302349.7936473,
+    "seen": 1790302518.0838132,
+    "ast_hash": "ad8c4de67463d94c158530f09074ae0b",
     "semantic_hash": ""
   },
   "apps/better-auth-back/project.json": {
-    "mtime": 1787217386.1672611,
-    "seen": 1789448741.023067,
-    "ast_hash": "e180336eec2c56ffd0b7cd8bc3323005",
+    "mtime": 1790302349.793805,
+    "seen": 1790302518.083814,
+    "ast_hash": "944e9e08da2ccfe07e9c3c793e86a67c",
     "semantic_hash": ""
   },
   "apps/better-auth-back/scripts/seed-admin.ts": {
@@ -96,9 +96,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-back/server/errors/error.db.ts": {
-    "mtime": 1786588304.363351,
-    "seen": 1789448741.023075,
-    "ast_hash": "35b13c9dd2181a9a062d3288d2d47ae0",
+    "mtime": 1790302349.7954247,
+    "seen": 1790302518.083831,
+    "ast_hash": "26c83ff711f8054f0e929616464cbd54",
     "semantic_hash": ""
   },
   "apps/better-auth-back/server/errors/error.handler.ts": {
@@ -125,22 +125,16 @@
     "ast_hash": "827ea68bbe21df2de2690f143430fde6",
     "semantic_hash": ""
   },
-  "apps/better-auth-back/server/lib/api.ts": {
-    "mtime": 1786588304.3648193,
-    "seen": 1789448741.0230799,
-    "ast_hash": "2c5745392ae09cc8210e520a7df67a6c",
-    "semantic_hash": ""
-  },
   "apps/better-auth-back/server/lib/context.ts": {
-    "mtime": 1786598495.5387628,
-    "seen": 1789448741.0230799,
-    "ast_hash": "bda4258ccd54bdedcd9cbd1ae46fd1e6",
+    "mtime": 1790302349.79569,
+    "seen": 1790302518.083835,
+    "ast_hash": "49101565f6d5b4f1e2530f685e8ded4c",
     "semantic_hash": ""
   },
   "apps/better-auth-back/server/lib/cors.ts": {
-    "mtime": 1790220265.4822898,
-    "seen": 1790220379.725893,
-    "ast_hash": "a9cd060637f0c0bc5a0b1040dd7308ad",
+    "mtime": 1790302349.7963798,
+    "seen": 1790302518.083837,
+    "ast_hash": "d98ef77d7c8e1aa7cb2e8db1d73b1f5a",
     "semantic_hash": ""
   },
   "apps/better-auth-back/server/lib/http.ts": {
@@ -149,22 +143,10 @@
     "ast_hash": "6341a084417a1db132c7d84d79e3cc3b",
     "semantic_hash": ""
   },
-  "apps/better-auth-back/server/lib/validate.ts": {
-    "mtime": 1786678980.2941682,
-    "seen": 1789448741.023082,
-    "ast_hash": "95da15805ea93d3302ed6fa4c52be6ba",
-    "semantic_hash": ""
-  },
   "apps/better-auth-back/server/middleware/1.cors.ts": {
     "mtime": 1786597575.3210406,
     "seen": 1789448741.023083,
     "ast_hash": "b706a27161ac8f0e2785b03a539bfa33",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-back/server/middleware/2.context.ts": {
-    "mtime": 1786591724.3307414,
-    "seen": 1789448741.023084,
-    "ast_hash": "b199f62b43df3e3a55d227f78bd415e0",
     "semantic_hash": ""
   },
   "apps/better-auth-back/server/plugins/logger.ts": {
@@ -183,12 +165,6 @@
     "mtime": 1786588304.3807342,
     "seen": 1789448741.023086,
     "ast_hash": "99898444a5438f38e2d6c4715a94401b",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-back/server/routes/menu/all.get.ts": {
-    "mtime": 1788218651.9775064,
-    "seen": 1789448741.023087,
-    "ast_hash": "e665e07846338ed935ceacb5f9ab9bbb",
     "semantic_hash": ""
   },
   "apps/better-auth-back/server/routes/readyz/index.get.ts": {
@@ -276,8 +252,8 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/auto-imports.d.ts": {
-    "mtime": 1790289514.3787496,
-    "seen": 1790301156.900299,
+    "mtime": 1790301326.024227,
+    "seen": 1790302518.083863,
     "ast_hash": "e0472eac96571f5e3e12e95d4f811571",
     "semantic_hash": ""
   },
@@ -288,9 +264,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/package.json": {
-    "mtime": 1790288916.6154304,
-    "seen": 1790301156.9003,
-    "ast_hash": "4a397077666130ad32d9f89a89724ee4",
+    "mtime": 1790302349.798516,
+    "seen": 1790302518.0838652,
+    "ast_hash": "b908ecdd7c2977722d5c1e381dea3980",
     "semantic_hash": ""
   },
   "apps/better-auth-front/playwright.config.ts": {
@@ -324,21 +300,15 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/api/errors.ts": {
-    "mtime": 1790220751.8951197,
-    "seen": 1790222112.214487,
-    "ast_hash": "4d76e382c1a2b4028dfaf678d3b96393",
+    "mtime": 1790302349.7993312,
+    "seen": 1790302518.083873,
+    "ast_hash": "228b7a7e56593233fc83814cc2c1b0e7",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/api/index.ts": {
-    "mtime": 1790220284.391071,
-    "seen": 1790220379.7259278,
-    "ast_hash": "462052a8e8ce80b8106408ff74ebd379",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/api/use-request.ts": {
-    "mtime": 1790220348.6978,
-    "seen": 1790220379.7259278,
-    "ast_hash": "d42a337cfcf91ca82ced998af230a112",
+    "mtime": 1790302349.7994175,
+    "seen": 1790302518.083874,
+    "ast_hash": "2846d5f2669e634aa0a9e51803cf3e30",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/app.vue": {
@@ -444,9 +414,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/locales/langs/en-US/examples.json": {
-    "mtime": 1790231574.600179,
-    "seen": 1790301156.9003332,
-    "ast_hash": "1549482a4a2e81971df98d8861d624a3",
+    "mtime": 1790302349.8000054,
+    "seen": 1790302518.083889,
+    "ast_hash": "5d2b627ff54955435ab74c34ad7227a1",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/locales/langs/en-US/form.json": {
@@ -468,9 +438,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/locales/langs/id-ID/examples.json": {
-    "mtime": 1790231579.379378,
-    "seen": 1790301156.900335,
-    "ast_hash": "bdfc105cfb33b73aaef69b7af0844310",
+    "mtime": 1790302349.8001158,
+    "seen": 1790302518.0838919,
+    "ast_hash": "537a018c7c32255e179938791e006d41",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/locales/langs/id-ID/page.json": {
@@ -552,9 +522,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/router/routes/modules/dev/examples.ts": {
-    "mtime": 1790222893.887278,
-    "seen": 1790301156.900345,
-    "ast_hash": "0d1949bd61db402b6e7826ee61d1b347",
+    "mtime": 1790302349.8002994,
+    "seen": 1790302518.083903,
+    "ast_hash": "a81b180d961fcf4f5f6595b72a17d777",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/router/routes/modules/dev/vben.ts": {
@@ -2988,21 +2958,15 @@
     "semantic_hash": ""
   },
   "packages/effects/request/package.json": {
-    "mtime": 1790051017.931125,
-    "seen": 1790220379.7268229,
-    "ast_hash": "b72f188e9f0eb0610decdc1f58e08d2e",
-    "semantic_hash": ""
-  },
-  "packages/effects/request/src/index.ts": {
-    "mtime": 1786586885.5717356,
-    "seen": 1790220379.726829,
-    "ast_hash": "4fc02b05669838b175434a54d3db2d40",
+    "mtime": 1790302349.8042345,
+    "seen": 1790302518.084492,
+    "ast_hash": "67eaa0ecc20f510ec3e632397eb37b76",
     "semantic_hash": ""
   },
   "packages/effects/request/tsconfig.json": {
-    "mtime": 1786586885.5720224,
-    "seen": 1790220379.72683,
-    "ast_hash": "b7c99ed8df5e07b8f4091689053034a5",
+    "mtime": 1790302349.804924,
+    "seen": 1790302518.084495,
+    "ast_hash": "c5f39059d62f64c16cd7f6b1d32e31d4",
     "semantic_hash": ""
   },
   "packages/locales/package.json": {
@@ -3048,9 +3012,9 @@
     "semantic_hash": ""
   },
   "packages/locales/src/langs/en-US/ui.json": {
-    "mtime": 1790222874.5171883,
-    "seen": 1790301156.900963,
-    "ast_hash": "ee3f596eca10386d1c4d01930818f3e6",
+    "mtime": 1790302349.8054101,
+    "seen": 1790302518.084502,
+    "ast_hash": "f45ed6d73f81639e964418c511f4c941",
     "semantic_hash": ""
   },
   "packages/locales/src/langs/id-ID/authentication.json": {
@@ -3078,9 +3042,9 @@
     "semantic_hash": ""
   },
   "packages/locales/src/langs/id-ID/ui.json": {
-    "mtime": 1790222880.149475,
-    "seen": 1790301156.900967,
-    "ast_hash": "db1b2a211d645a6bb526951105e6e1db",
+    "mtime": 1790302349.8076732,
+    "seen": 1790302518.084506,
+    "ast_hash": "63b0299752bcc77526ae893d2ada5327",
     "semantic_hash": ""
   },
   "packages/locales/src/typing.ts": {
@@ -3138,9 +3102,9 @@
     "semantic_hash": ""
   },
   "packages/rbac/src/rbac.organizations.ts": {
-    "mtime": 1790255993.747985,
-    "seen": 1790301156.900975,
-    "ast_hash": "5d59f39a7be6e677756f85726f27a9cc",
+    "mtime": 1790302349.808302,
+    "seen": 1790302518.0845141,
+    "ast_hash": "22573dacd7a4f341fa668a0df6662d2d",
     "semantic_hash": ""
   },
   "packages/rbac/src/rbac.shared.ts": {
@@ -4194,9 +4158,9 @@
     "semantic_hash": ""
   },
   "pnpm-workspace.yaml": {
-    "mtime": 1790290468.611856,
-    "seen": 1790301156.901133,
-    "ast_hash": "9b577d3a97ded25996ef00a779835542",
+    "mtime": 1790302367.5464003,
+    "seen": 1790302518.084664,
+    "ast_hash": "a034d02ffddedcb9662fc63ed281b015",
     "semantic_hash": ""
   },
   "scripts/tooling/README.md": {
@@ -5454,39 +5418,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-back/server/lib/cors.test.ts": {
-    "mtime": 1790220135.5038643,
-    "seen": 1790220379.725892,
-    "ast_hash": "1fb529186c30147a63dcbf27b72a0f6d",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/api/domains/backstage/index.ts": {
-    "mtime": 1786587065.7732818,
-    "seen": 1790220379.72592,
-    "ast_hash": "08f5b1d17836d0dceb876f1108ddd18f",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/api/domains/backstage/query-key.test.ts": {
-    "mtime": 1786587065.7737546,
-    "seen": 1790220379.725921,
-    "ast_hash": "5a56a1449c52b80b243122ae0f32ce66",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/api/domains/backstage/query-key.ts": {
-    "mtime": 1786587065.774059,
-    "seen": 1790220379.725922,
-    "ast_hash": "95604f003e8cc18bec22111b6e9d4e03",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/api/domains/backstage/test-utils.ts": {
-    "mtime": 1786587065.7790027,
-    "seen": 1790220379.725923,
-    "ast_hash": "547379505b5ddb75cc7ce5ed4d51e311",
-    "semantic_hash": ""
-  },
-  "apps/better-auth-front/src/api/domains/backstage/use-backstage-request.ts": {
-    "mtime": 1790220348.640068,
-    "seen": 1790220379.725923,
-    "ast_hash": "6d6c7a309b030a15bcfb7b10a15f0000",
+    "mtime": 1790302349.7961762,
+    "seen": 1790302518.0838358,
+    "ast_hash": "1f87382bcced9dd1ec502edda6739dc0",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/api/domains/core/index.ts": {
@@ -5496,14 +5430,14 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/api/domains/core/menu.ts": {
-    "mtime": 1788229924.4469259,
-    "seen": 1790220379.7259252,
-    "ast_hash": "782421f229cbd185cda46cf2e12387f8",
+    "mtime": 1790302349.7989483,
+    "seen": 1790302518.08387,
+    "ast_hash": "efe7e543db218407c7a89a1050598066",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/api/domains/core/timezone.ts": {
-    "mtime": 1786587065.781219,
-    "seen": 1790220379.7259252,
+    "mtime": 1790302324.7881117,
+    "seen": 1790302518.083871,
     "ast_hash": "6077a3bd34f2bad9eef1dd34fd2e2c40",
     "semantic_hash": ""
   },
@@ -5513,46 +5447,10 @@
     "ast_hash": "8ea01db8004eb444fb3e012184deae34",
     "semantic_hash": ""
   },
-  "packages/effects/request/src/client/create-client.test.ts": {
-    "mtime": 1786586885.5692458,
-    "seen": 1790220379.726824,
-    "ast_hash": "8fc124d18ffce08359465cdee691a4ba",
-    "semantic_hash": ""
-  },
-  "packages/effects/request/src/client/create-client.ts": {
-    "mtime": 1788218539.8763947,
-    "seen": 1790220379.726825,
-    "ast_hash": "de445ba1500f405799b2a712acdfe088",
-    "semantic_hash": ""
-  },
-  "packages/effects/request/src/client/errors.test.ts": {
-    "mtime": 1786586885.5700037,
-    "seen": 1790220379.726826,
-    "ast_hash": "a59ee40a7fc96fec7fac6516fcd0ff78",
-    "semantic_hash": ""
-  },
-  "packages/effects/request/src/client/errors.ts": {
-    "mtime": 1786586885.570532,
-    "seen": 1790220379.726827,
-    "ast_hash": "099beba8be248dcc3edd65256edf1bf8",
-    "semantic_hash": ""
-  },
-  "packages/effects/request/src/client/index.ts": {
-    "mtime": 1786586885.5710526,
-    "seen": 1790220379.726828,
-    "ast_hash": "3c46162ee3857f5750f9d4cb53ffe287",
-    "semantic_hash": ""
-  },
-  "packages/effects/request/src/client/types.ts": {
-    "mtime": 1786586885.5713618,
-    "seen": 1790220379.726828,
-    "ast_hash": "90e04aa8cc217ad6c3e4f11f395bb962",
-    "semantic_hash": ""
-  },
   "packages/effects/request/README.md": {
-    "mtime": 1786679107.4692032,
-    "seen": 1790220379.7270741,
-    "ast_hash": "35448c3e819ca023d935f4b4380021fd",
+    "mtime": 1790302349.8040948,
+    "seen": 1790302518.084662,
+    "ast_hash": "7477a6718ca77d3b92c568d4d2a9db90",
     "semantic_hash": ""
   },
   "internal/node-utils/src/__tests__/date.test.ts": {
@@ -5568,9 +5466,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-back/server/domains/todo/todo.repo.fake.ts": {
-    "mtime": 1790256286.009464,
-    "seen": 1790301156.900265,
-    "ast_hash": "ed161d309819af5d3d688cfa587a1b70",
+    "mtime": 1790302349.7942498,
+    "seen": 1790302518.0838258,
+    "ast_hash": "4ca6cb7fc62a60df2b2c248420e54ce7",
     "semantic_hash": ""
   },
   "apps/better-auth-back/server/domains/todo/todo.repo.test.ts": {
@@ -5586,9 +5484,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-back/server/domains/todo/todo.service.test.ts": {
-    "mtime": 1790256423.4102442,
-    "seen": 1790301156.900269,
-    "ast_hash": "60f844929cad46870409966ef91ad575",
+    "mtime": 1790302349.7949321,
+    "seen": 1790302518.083829,
+    "ast_hash": "1f7aefe3f0cf9a3b20e6d549a3dae183",
     "semantic_hash": ""
   },
   "apps/better-auth-back/server/domains/todo/todo.service.ts": {
@@ -5598,9 +5496,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-back/server/realtime/publisher.ts": {
-    "mtime": 1790256256.7383378,
-    "seen": 1790301156.9002838,
-    "ast_hash": "e3b2de232f2814cc81c8c7966ba57d66",
+    "mtime": 1790302349.796971,
+    "seen": 1790302518.083841,
+    "ast_hash": "86479204c0d6d8be0403b3466dab2f62",
     "semantic_hash": ""
   },
   "packages/@core/ui-kit/taman-ui/src/components/descriptions/index.ts": {
@@ -5646,9 +5544,9 @@
     "semantic_hash": ""
   },
   "packages/api-contract/package.json": {
-    "mtime": 1790254880.5046966,
-    "seen": 1790301156.9008498,
-    "ast_hash": "2e58527e8ecbb1d9a5adf63aef1b58c4",
+    "mtime": 1790302349.8035402,
+    "seen": 1790302518.084406,
+    "ast_hash": "7ffb36766bc4b02b15b8c78cc1ba9864",
     "semantic_hash": ""
   },
   "packages/api-contract/src/index.ts": {
@@ -6153,6 +6051,252 @@
     "mtime": 1786586885.1387413,
     "seen": 1790301221.910866,
     "ast_hash": "e1023e01339e42bf0d3d892fb4826be1",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-back/exports.cloudflare.ts": {
+    "mtime": 1790302349.7932887,
+    "seen": 1790302518.08381,
+    "ast_hash": "0c0e212d8902356e5e715aba07ad9ed7",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-back/scripts/seed-todos.ts": {
+    "mtime": 1790302349.793916,
+    "seen": 1790302518.083816,
+    "ast_hash": "24c1cba1cc94716395d6fc022991caa9",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-back/server/realtime/publisher.test.ts": {
+    "mtime": 1790302349.7964842,
+    "seen": 1790302518.08384,
+    "ast_hash": "425645bee315b6baf0f999869e5a347f",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-back/server/routes/api/rpc/[...path].ts": {
+    "mtime": 1790302349.79714,
+    "seen": 1790302518.083843,
+    "ast_hash": "36ce2b0e3dade559de837e3a6e359f5d",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-back/server/rpc/base.test.ts": {
+    "mtime": 1790302349.797295,
+    "seen": 1790302518.0838459,
+    "ast_hash": "f350a4fa1472919312499c9a453e5c16",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-back/server/rpc/base.ts": {
+    "mtime": 1790302349.797373,
+    "seen": 1790302518.0838459,
+    "ast_hash": "e6d38c4a43fb3232069e37d2339b8155",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-back/server/rpc/handler.ts": {
+    "mtime": 1790302349.7974508,
+    "seen": 1790302518.0838468,
+    "ast_hash": "0cd458dcdfd00ec392dba05ed2538e3f",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-back/server/rpc/procedures/menu.ts": {
+    "mtime": 1790302349.7975569,
+    "seen": 1790302518.083848,
+    "ast_hash": "ad71ddf5e3590f5af8e5fe9cb6bf7512",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-back/server/rpc/procedures/todo.test.ts": {
+    "mtime": 1790302349.7976646,
+    "seen": 1790302518.083849,
+    "ast_hash": "b5b3b85c2256303a0d9c84e313f821fa",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-back/server/rpc/procedures/todo.ts": {
+    "mtime": 1790302349.797796,
+    "seen": 1790302518.08385,
+    "ast_hash": "d697239ab0154e494e8fe37e16fe44ca",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-back/server/rpc/round-trip.test.ts": {
+    "mtime": 1790302349.7978988,
+    "seen": 1790302518.083851,
+    "ast_hash": "515c6a731cf1918f0b6387ae0130a5ec",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-back/server/rpc/router.auth.test.ts": {
+    "mtime": 1790302349.7982097,
+    "seen": 1790302518.083851,
+    "ast_hash": "4d74711758b8c7726a6e9f0c33b388ad",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-back/server/rpc/router.ts": {
+    "mtime": 1790302349.798334,
+    "seen": 1790302518.083852,
+    "ast_hash": "82c6d9c9034bb83c70f50270e66b534b",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/api/errors.test.ts": {
+    "mtime": 1790302349.799138,
+    "seen": 1790302518.083872,
+    "ast_hash": "5fd6a45fb66442fff16f1cf3a2685d02",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/api/orpc.ts": {
+    "mtime": 1790302349.799479,
+    "seen": 1790302518.0838752,
+    "ast_hash": "d46ad5fd0c2baa50efdfa05850224a62",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/orpc/plain/crud.vue": {
+    "mtime": 1790302349.8004875,
+    "seen": 1790302518.083982,
+    "ast_hash": "562c516c94db777776ee06d970c34de5",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/orpc/plain/live.vue": {
+    "mtime": 1790302349.8005652,
+    "seen": 1790302518.0839832,
+    "ast_hash": "866eeee197012ec5f42c2fb9fc9a182b",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/orpc/plain/pagination.vue": {
+    "mtime": 1790302349.8006384,
+    "seen": 1790302518.083984,
+    "ast_hash": "57d392d9cec088dcbd315f92117d63f7",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/orpc/plain/use-todos-plain.ts": {
+    "mtime": 1790302349.800777,
+    "seen": 1790302518.0839849,
+    "ast_hash": "24c3b76fddc933f4e746c0252c2aa9e5",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/orpc/query/apply-todo-event.test.ts": {
+    "mtime": 1790302349.8011255,
+    "seen": 1790302518.0839858,
+    "ast_hash": "74c02df66380903769ea118e8c6d1411",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/orpc/query/apply-todo-event.ts": {
+    "mtime": 1790302349.8013017,
+    "seen": 1790302518.083987,
+    "ast_hash": "7f85e81271738387cab176be69f0f60b",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/orpc/query/crud.vue": {
+    "mtime": 1790302349.801379,
+    "seen": 1790302518.083987,
+    "ast_hash": "995d0ad7e3aa33f456229c5c1b06ff6c",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/orpc/query/live.vue": {
+    "mtime": 1790302349.801537,
+    "seen": 1790302518.083988,
+    "ast_hash": "2b3713ca779e2817b0271e0f8b47d28d",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/orpc/query/pagination.vue": {
+    "mtime": 1790302349.8016322,
+    "seen": 1790302518.083989,
+    "ast_hash": "2c503de8e18298e2e93e9e1b97e1e274",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/orpc/query/use-todos-query.ts": {
+    "mtime": 1790302349.801779,
+    "seen": 1790302518.083989,
+    "ast_hash": "f378ab2f18ffc22753edd738202998c4",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/orpc/shared/todo-event-log.vue": {
+    "mtime": 1790302349.8019671,
+    "seen": 1790302518.08399,
+    "ast_hash": "d018f35c77f6882efe96aca36c4026e1",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/orpc/shared/todo-filters.vue": {
+    "mtime": 1790302349.8020468,
+    "seen": 1790302518.083991,
+    "ast_hash": "1e5dd16adf5f97e748340c6b0a7adc5d",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/orpc/shared/todo-form.vue": {
+    "mtime": 1790302349.8021264,
+    "seen": 1790302518.083992,
+    "ast_hash": "01e82b9d3b5ecd459d0531a85077880c",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/orpc/shared/todo-list-params.test.ts": {
+    "mtime": 1790302349.8023183,
+    "seen": 1790302518.083992,
+    "ast_hash": "a3a6196c2afa317a49b0c2e9957909ab",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/orpc/shared/todo-list-params.ts": {
+    "mtime": 1790302349.8024714,
+    "seen": 1790302518.0839932,
+    "ast_hash": "1f874d8fd44511e3cc54dbdd75649bbc",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/orpc/shared/todo-pager.vue": {
+    "mtime": 1790302349.8025475,
+    "seen": 1790302518.0839942,
+    "ast_hash": "0b55ac851fc808b0c073a78cb7486b95",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/orpc/shared/todo-table.vue": {
+    "mtime": 1790302349.8026206,
+    "seen": 1790302518.0839949,
+    "ast_hash": "8d3454b9ec49849bdf7d926bddc93d41",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/orpc/shared/use-todo-list-params.ts": {
+    "mtime": 1790302349.8026884,
+    "seen": 1790302518.0839949,
+    "ast_hash": "30af460bf7362142dc97f64bbb0fdaec",
+    "semantic_hash": ""
+  },
+  "apps/better-auth-front/src/views/examples/orpc/shared/use-todo-live.ts": {
+    "mtime": 1790302349.8028743,
+    "seen": 1790302518.0839958,
+    "ast_hash": "8dcb8d0d43a514f3fab89b6b1e55a0a5",
+    "semantic_hash": ""
+  },
+  "packages/api-contract/tsdown.config.ts": {
+    "mtime": 1790302349.803697,
+    "seen": 1790302518.084414,
+    "ast_hash": "79e989ea56d961328eefda8780eca4c1",
+    "semantic_hash": ""
+  },
+  "packages/effects/request/src/orpc-query.ts": {
+    "mtime": 1790302349.8043733,
+    "seen": 1790302518.0844932,
+    "ast_hash": "7cfd4e1fe86ddc0e4b9aeca9a769270a",
+    "semantic_hash": ""
+  },
+  "packages/effects/request/src/orpc.test.ts": {
+    "mtime": 1790302349.804596,
+    "seen": 1790302518.084494,
+    "ast_hash": "680b6030bfd75fae5171eb01f98eef19",
+    "semantic_hash": ""
+  },
+  "packages/effects/request/src/orpc.ts": {
+    "mtime": 1790302349.8047779,
+    "seen": 1790302518.084495,
+    "ast_hash": "e263568c97e283c716764a6147d00846",
+    "semantic_hash": ""
+  },
+  "packages/effects/request/tsdown.config.ts": {
+    "mtime": 1790302349.8050122,
+    "seen": 1790302518.0844958,
+    "ast_hash": "f83994b0ec8986868ee3e9f5c5c5afc4",
+    "semantic_hash": ""
+  },
+  "scripts/release/check-api-packages.sh": {
+    "mtime": 1790302349.8120773,
+    "seen": 1790302518.084637,
+    "ast_hash": "d2cf29c224287f4d2b767323bc37291e",
+    "semantic_hash": ""
+  },
+  "packages/api-contract/README.md": {
+    "mtime": 1790302349.8032875,
+    "seen": 1790302518.08466,
+    "ast_hash": "5726ccc4b45c5cbde4a3fe84edb6970f",
     "semantic_hash": ""
   }
 }

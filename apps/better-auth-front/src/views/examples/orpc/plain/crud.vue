@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Todo } from '@vinicunca/taman-request/orpc';
+import type { Todo } from '@vinicunca/request/orpc';
 import { AppCard, AppPage, tamanConfirm } from '@taman/app-ui';
 import { ref } from 'vue';
 import TodoForm from '../shared/todo-form.vue';

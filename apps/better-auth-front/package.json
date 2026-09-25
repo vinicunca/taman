@@ -32,7 +32,7 @@
     "@taman/locales": "workspace:*",
     "@taman/preferences": "workspace:*",
     "@taman/rbac": "workspace:*",
-    "@vinicunca/taman-request": "workspace:*",
+    "@vinicunca/request": "workspace:*",
     "@taman/stores": "workspace:*",
     "@taman/types": "workspace:*",
     "@taman/utils": "workspace:*",

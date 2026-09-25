@@ -1,6 +1,6 @@
 import { useAppTamanConfig } from '@taman/composables';
-import { createTamanClient } from '@vinicunca/taman-request/orpc';
-import { createTamanQueryUtils } from '@vinicunca/taman-request/orpc-query';
+import { createTamanClient } from '@vinicunca/request/orpc';
+import { createTamanQueryUtils } from '@vinicunca/request/orpc-query';
 
 const { apiUrl } = useAppTamanConfig(
   import.meta.env,

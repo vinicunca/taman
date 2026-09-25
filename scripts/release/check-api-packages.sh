@@ -31,8 +31,8 @@ cat > "$consumer/tsconfig.json" <<'JSON'
 JSON
 cat > "$consumer/index.ts" <<'TS'
 import type { TamanOutputs } from '@vinicunca/taman-api-contract';
-import { createTamanClient, isDefinedError, safe } from '@vinicunca/taman-request/orpc';
-import { createTamanQueryUtils } from '@vinicunca/taman-request/orpc-query';
+import { createTamanClient, isDefinedError, safe } from '@vinicunca/request/orpc';
+import { createTamanQueryUtils } from '@vinicunca/request/orpc-query';
 
 const client = createTamanClient({ baseUrl: 'https://api.example.com' });
 export async function demo(): Promise<Date | undefined> {

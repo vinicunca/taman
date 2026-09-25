@@ -1,5 +1,5 @@
 {
-  "name": "@vinicunca/taman-request",
+  "name": "@vinicunca/request",
   "type": "module",
   "version": "0.1.0",
   "description": "Typed oRPC clients (plain + TanStack Query) for the Taman API.",

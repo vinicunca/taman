@@ -1,7 +1,7 @@
 // @vitest-environment node
 import type { H3Event } from 'nitro';
 import type { TamanContext } from '#lib/context.ts';
-import { createTamanClient, isDefinedError, safe } from '@vinicunca/taman-request/orpc';
+import { createTamanClient, isDefinedError, safe } from '@vinicunca/request/orpc';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { FakeTodoRepo } from '#domains/todo/todo.repo.fake.ts';
 import { resolveContext } from '#lib/context.ts';

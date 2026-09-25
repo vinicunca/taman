@@ -24,7 +24,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "catalog:",
     "@types/node": "catalog:",
-    "@vinicunca/taman-request": "workspace:*",
+    "@vinicunca/request": "workspace:*",
     "nitro": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:",

@@ -1,8 +1,8 @@
-import type { TamanInputs, Todo, TodoPage } from '@vinicunca/taman-request/orpc';
+import type { TamanInputs, Todo, TodoPage } from '@vinicunca/request/orpc';
 import type { MaybeRefOrGetter } from 'vue';
 import type { TodoListParams } from '../shared/todo-list-params';
 import { useTamanToast } from '@taman/app-ui';
-import { isDefinedError, safe } from '@vinicunca/taman-request/orpc';
+import { isDefinedError, safe } from '@vinicunca/request/orpc';
 import { ref, shallowRef, toValue, watch } from 'vue';
 import { getErrors } from '#/api/errors';
 import { client } from '#/api/orpc';

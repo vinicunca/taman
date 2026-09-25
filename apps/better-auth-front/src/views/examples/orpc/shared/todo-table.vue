@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Todo } from '@vinicunca/taman-request/orpc';
+import type { Todo } from '@vinicunca/request/orpc';
 
 withDefaults(defineProps<{
   todos: Array<Todo>;

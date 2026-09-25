@@ -1,4 +1,4 @@
-import { ORPCError } from '@vinicunca/taman-request/orpc';
+import { ORPCError } from '@vinicunca/request/orpc';
 import { describe, expect, it, vi } from 'vitest';
 import { getErrors } from './errors';
 
