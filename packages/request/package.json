@@ -13,7 +13,8 @@
   "exports": {
     "./orpc": "./src/orpc.ts",
     "./orpc-query": "./src/orpc-query.ts",
-    "./http": "./src/http/index.ts"
+    "./http": "./src/http/index.ts",
+    "./http-query": "./src/http-query.ts"
   },
   "files": [
     "dist"
@@ -32,6 +33,10 @@
       "./http": {
         "types": "./dist/http.d.mts",
         "default": "./dist/http.mjs"
+      },
+      "./http-query": {
+        "types": "./dist/http-query.d.mts",
+        "default": "./dist/http-query.mjs"
       }
     }
   },
