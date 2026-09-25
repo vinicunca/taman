@@ -1,6 +1,6 @@
 // @vitest-environment node
 import type { HttpResponse } from './types';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { createHttpClient, isHttpResponse } from './client';
 import { HttpError, isHttpError } from './errors';
 import { createFakeFetch, respondAfter } from './testing';
@@ -13,6 +13,7 @@ function setup() {
     '/echo': (request) => Response.json({ search: new URL(request.url).search }),
     '/boom': () => Response.json({ error: 'Kaboom' }, { status: 500 }),
     '/slow': (request) => respondAfter(request, 500),
+    '/unparsable': () => Response.json({ ok: true }),
   });
   const http = createHttpClient({ baseURL: 'http://api.test', fetch: fake.fetch, retry: false, headers: { 'x-client': '1' } });
   return { http, calls: fake.calls };
@@ -63,6 +64,17 @@ describe('createHttpClient', () => {
     await http.get('/echo', { credentials: 'include' });
     expect(calls[0]!.credentials).not.toBe('include');
     expect(calls[1]!.credentials).toBe('include');
+  });
+
+  it('does not let an explicit undefined request option override a client default', async () => {
+    const fake = createFakeFetch({ '/echo': () => Response.json({ ok: true }), '/slow': (request) => respondAfter(request, 500) });
+    const http = createHttpClient({ baseURL: 'http://api.test', fetch: fake.fetch, retry: false, credentials: 'include', timeout: 20 });
+
+    await http.get('/echo', { credentials: undefined });
+    expect(fake.calls.at(-1)!.credentials).toBe('include');
+
+    const error = await rejection(http.get('/slow', { timeout: undefined }));
+    expect(error.kind).toBe('timeout');
   });
 
   it('hands query objects to ofetch by default (repeated arrays)', async () => {
@@ -146,6 +158,60 @@ describe('createHttpClient', () => {
     const error = await rejection(http.get('/slow', { signal: controller.signal, timeout: 10_000 }));
     expect(error.kind).toBe('abort');
     expect(Date.now() - started).toBeLessThan(400);
+  });
+
+  it('classifies any abort reason as kind abort', async () => {
+    const { http } = setup();
+    const controller = new AbortController();
+    setTimeout(() => controller.abort('navigated'), 10);
+    const error = await rejection(http.get('/slow', { signal: controller.signal }));
+    expect(error.kind).toBe('abort');
+  });
+
+  it('combines signals manually when AbortSignal.any is unavailable', async () => {
+    const { http } = setup();
+    const original = AbortSignal.any;
+    // @ts-expect-error deliberately removing a global for this test only
+    delete AbortSignal.any;
+    try {
+      const controller = new AbortController();
+      setTimeout(() => controller.abort(), 20);
+      const started = Date.now();
+      const error = await rejection(http.get('/slow', { signal: controller.signal, timeout: 10_000 }));
+      expect(error.kind).toBe('abort');
+      expect(Date.now() - started).toBeLessThan(400);
+    } finally {
+      AbortSignal.any = original;
+    }
+  });
+
+  it('classifies an unparsable response as kind http, not network', async () => {
+    const { http } = setup();
+    const error = await rejection(http.get('/unparsable', {
+      parseResponse: () => {
+        throw new Error('not JSON');
+      },
+    }));
+    expect(error.kind).toBe('http');
+    expect(error.status).toBeUndefined();
+    expect(error.message).toBe('GET /unparsable returned a response that could not be parsed');
+    expect(error.cause).toBeInstanceOf(Error);
+  });
+
+  it('propagates a bug in a fulfilled handler unchanged and skips the remaining handlers', async () => {
+    const { http } = setup();
+    const remaining = vi.fn();
+    http.addResponseInterceptor({
+      fulfilled: () => {
+        throw new TypeError('boom');
+      },
+    });
+    http.addResponseInterceptor({ rejected: remaining });
+
+    const error = await http.get('/env').then(() => undefined, (error_: unknown) => error_);
+    expect(error).toBeInstanceOf(TypeError);
+    expect(isHttpError(error)).toBe(false);
+    expect(remaining).not.toHaveBeenCalled();
   });
 
   it('rejects with kind network when fetch itself fails', async () => {

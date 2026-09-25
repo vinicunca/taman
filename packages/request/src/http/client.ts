@@ -10,8 +10,8 @@ import type {
   ResponseInterceptor,
 } from './types';
 import { ofetch } from 'ofetch';
-import { toHttpError } from './errors';
-import { RETRIED } from './internal';
+import { isHttpError, toHttpError } from './errors';
+import { AFTER_REQUEST_INTERCEPTORS, RETRIED } from './internal';
 import { appendQueryString, serializeQuery } from './query';
 
 export const DEFAULT_TIMEOUT = 10_000;
@@ -20,6 +20,30 @@ const HTTP_RESPONSE = Symbol.for('vinicunca.request.http-response');
 
 export function isHttpResponse(value: unknown): value is HttpResponse {
   return typeof value === 'object' && value !== null && HTTP_RESPONSE in value;
+}
+
+/** Combines signals manually for environments without `AbortSignal.any`. */
+function combineSignalsManually(signals: Array<AbortSignal>): AbortSignal {
+  const controller = new AbortController();
+  const cleanups: Array<() => void> = [];
+
+  function onAbort(this: AbortSignal): void {
+    controller.abort(this.reason);
+    for (const cleanup of cleanups) {
+      cleanup();
+    }
+  }
+
+  for (const signal of signals) {
+    if (signal.aborted) {
+      controller.abort(signal.reason);
+      break;
+    }
+    signal.addEventListener('abort', onAbort);
+    cleanups.push(() => signal.removeEventListener('abort', onAbort));
+  }
+
+  return controller.signal;
 }
 
 function combineSignals(signal: AbortSignal | undefined, timeout: number): AbortSignal | undefined {
@@ -31,7 +55,19 @@ function combineSignals(signal: AbortSignal | undefined, timeout: number): Abort
   if (signals.length <= 1) {
     return signals[0];
   }
-  return AbortSignal.any(signals);
+  return typeof AbortSignal.any === 'function' ? AbortSignal.any(signals) : combineSignalsManually(signals);
+}
+
+/** Drops own keys (string or symbol) whose value is `undefined`, so a later merge doesn't override a default with it. */
+function omitUndefined<T extends object>(value: T): T {
+  const result = {} as Record<PropertyKey, unknown>;
+  for (const key of Reflect.ownKeys(value)) {
+    const item = (value as Record<PropertyKey, unknown>)[key];
+    if (item !== undefined) {
+      result[key] = item;
+    }
+  }
+  return result as T;
 }
 
 /**
@@ -54,7 +90,7 @@ export function createHttpClient(clientOptions: HttpClientOptions = {}): HttpCli
       url,
       options: {
         ...defaults,
-        ...options,
+        ...omitUndefined(options),
         method: options.method ?? 'GET',
         headers,
         responseReturn: options.responseReturn ?? defaults.responseReturn ?? 'body',
@@ -127,15 +163,24 @@ export function createHttpClient(clientOptions: HttpClientOptions = {}): HttpCli
       await interceptor(context);
     }
 
+    // Presets that re-issue a request (e.g. token refresh) use this to apply
+    // state onto the freshly built context, after request interceptors have
+    // already run and would otherwise clobber it.
+    (options as InternalRequestOptions)[AFTER_REQUEST_INTERCEPTORS]?.(context);
+
+    // `send` always rejects with an `HttpError`. From here on, only
+    // `HttpError`s continue through `rejected` handlers — a bug in a
+    // `fulfilled`/`rejected` handler (a non-`HttpError`) skips the rest of
+    // the chain and propagates unchanged.
     let chain: Promise<unknown> = send(context);
     for (const { fulfilled, rejected } of [...responseInterceptors]) {
       chain = chain.then(
         (value) => (fulfilled && isHttpResponse(value) ? fulfilled(value) : value),
         (error: unknown) => {
-          if (!rejected) {
+          if (!rejected || !isHttpError(error)) {
             throw error;
           }
-          return rejected(toHttpError(error, context));
+          return rejected(error);
         },
       );
     }

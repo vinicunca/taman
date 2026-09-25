@@ -70,7 +70,28 @@ export function toHttpError(error: unknown, context: HttpRequestContext): HttpEr
   }
 
   const request = { url: context.url, method: context.options.method };
+
+  // The caller's own signal was aborted (any reason) — this always wins over
+  // however the underlying fetch happened to shape the error.
+  if (context.options.signal?.aborted) {
+    return new HttpError({ kind: 'abort', message: `${request.method} ${request.url} was aborted`, request, context, cause: error });
+  }
+
   const fetchError = (error ?? {}) as FetchErrorLike;
+  const isFetchError = (error as { name?: unknown } | null | undefined)?.name === 'FetchError';
+
+  if (!isFetchError) {
+    // ofetch only wraps transport failures in a `FetchError`; anything else
+    // thrown out of `$fetch.raw` (e.g. a custom `parseResponse` throwing on
+    // an unparsable 200 body) is a response-parsing failure, not a network one.
+    return new HttpError({
+      kind: 'http',
+      message: `${request.method} ${request.url} returned a response that could not be parsed`,
+      request,
+      context,
+      cause: error,
+    });
+  }
 
   if (fetchError.response) {
     const { status } = fetchError.response;
