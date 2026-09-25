@@ -24,12 +24,14 @@ export const RPC_PATH = '/api/rpc';
 
 /**
  * Pass as `context` when consuming `todo.live` (or any stream): reconnects
- * forever after network drops and resumes from the last event id, but stops
- * on a server-sent error such as UNAUTHORIZED instead of hammering the API.
+ * forever after network drops and resumes from the last event id. A 5xx
+ * (proxy hiccup, Worker restart) is retried too, since that's transient —
+ * only a 4xx server-sent error such as UNAUTHORIZED stops the stream instead
+ * of hammering the API.
  */
 export const LIVE_RETRY: TamanClientContext = {
   retry: Number.POSITIVE_INFINITY,
-  shouldRetry: ({ error }) => !(error instanceof ORPCError),
+  shouldRetry: ({ error }) => !(error instanceof ORPCError) || error.status >= 500,
 };
 
 export function createTamanClient(options: TamanClientOptions): TamanRpcClient {

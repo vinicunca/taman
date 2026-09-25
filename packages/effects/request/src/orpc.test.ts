@@ -61,12 +61,17 @@ describe('createTamanClient', () => {
   });
 });
 
-describe('lIVE_RETRY', () => {
-  it('retries transport failures but not server-sent ORPCErrors', async () => {
+describe('live retry policy', () => {
+  it('retries transport failures but not a 4xx server-sent ORPCError', async () => {
     const shouldRetry = LIVE_RETRY.shouldRetry as (options: { error: unknown }) => boolean;
     expect(LIVE_RETRY.retry).toBe(Number.POSITIVE_INFINITY);
     expect(shouldRetry({ error: new TypeError('Failed to fetch') })).toBe(true);
     expect(shouldRetry({ error: new ORPCError('UNAUTHORIZED') })).toBe(false);
+  });
+
+  it('retries a 5xx server-sent ORPCError (transient proxy/Worker restart)', async () => {
+    const shouldRetry = LIVE_RETRY.shouldRetry as (options: { error: unknown }) => boolean;
+    expect(shouldRetry({ error: new ORPCError('SERVICE_UNAVAILABLE', { status: 503 }) })).toBe(true);
   });
 });
 
