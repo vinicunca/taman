@@ -19,7 +19,7 @@ const DEFAULT_CONFIG = {
     '.cache',
     'scripts',
     'internal',
-    'packages/effects/request/src/',
+    'packages/request/src/',
     'packages/@core/ui-kit/menu-ui/src/',
     'packages/@core/ui-kit/popup-ui/src/',
   ],

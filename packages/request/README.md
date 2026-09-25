@@ -68,7 +68,10 @@ http.addRequestInterceptor((context) => {
 http.addResponseInterceptor(envelopeInterceptor({ codeField: 'code', dataField: 'data', successCode: 0 }));
 http.addResponseInterceptor(refreshTokenInterceptor({
   client: http,
-  refresh: () => refreshAccessToken(),          // returns the new token
+  // `skipAuthRefresh: true` is required: without it, the refresh call's own
+  // 401 would re-enter this interceptor and await the very attempt it's
+  // part of, deadlocking forever.
+  refresh: () => http.post<string>('/auth/refresh', undefined, { skipAuthRefresh: true, responseReturn: 'data' }),
   applyToken: (context, token) => context.options.headers.set('Authorization', `Bearer ${token}`),
   onAuthFailure: () => logout(),
 }));
@@ -88,10 +91,15 @@ await http.post('/users', { name: 'Ana' });
   `envelopeInterceptor`), throwing `HttpError{ kind: 'envelope' }` on a bad code.
 - **Errors:** every request rejects with `HttpError` (`kind`: `network`,
   `timeout`, `abort`, `http`, `envelope`; plus `status`, `code`, `data`, `request`).
+  Transport and HTTP failures reject with `HttpError`; exceptions thrown by
+  your own interceptors propagate unchanged (not wrapped as `HttpError`).
 - **Interceptors:** request interceptors may mutate `context.options`;
   response interceptors are a promise chain — `fulfilled` may transform,
   `rejected` may recover by returning a value (or an `HttpResponse`).
-  Both `add*` functions return a remover.
+  Both `add*` functions return a remover. A `fulfilled` handler must return
+  the response it received (or a spread of it, `{ ...response, data }`) — a
+  freshly built object loses the internal brand, so later `fulfilled`
+  handlers are skipped and `responseReturn` no longer unwraps it.
 - **Token refresh:** concurrent 401s share one `refresh()`; each request is
   retried once; a second 401, a failed refresh or `enabled: false` calls
   `onAuthFailure` and rejects.
@@ -119,7 +127,9 @@ strings, `null` is `key=`, `undefined` is omitted. Values are encoded by
 `URLSearchParams` query is used as-is.
 
 Uploads: `body: formData`. Downloads: `responseType: 'blob'`. For anything
-else, `http.raw` is the configured ofetch instance.
+else, `http.raw` is the configured ofetch instance — it only inherits
+`baseURL` (and the injected `fetch`), not the client's headers, credentials,
+timeout or interceptors.
 
 ## HTTP + TanStack Query
 
@@ -148,4 +158,10 @@ api.delete<void, { id: number }>((variables) => `/products/${variables.id}`)
   `responseReturn`, `responseType`, `arrayFormat`, `querySerializer`,
   `parseResponse`) and TanStack options share one object. `retry`,
   `retryDelay` and `meta` belong to TanStack here; set HTTP retries on the client.
+  Note: `queryOptions({...})` doesn't reject unknown keys — a typo like
+  `quer` for `query` passes through silently, same as oRPC's utils.
 - Cancelled or superseded queries abort the underlying fetch.
+- TanStack retries queries 3× by default, and **each attempt runs the full
+  interceptor chain** (toasts, refresh), so a persistent 4xx can notify
+  repeatedly. Pass a `retry` that only retries server errors, e.g.
+  `retry: (count, error) => !(isHttpError(error) && error.status !== undefined && error.status < 500) && count < 3`.
