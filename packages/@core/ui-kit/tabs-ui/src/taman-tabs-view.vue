@@ -3,18 +3,17 @@ import type { TabsEmits, TabsProps } from './tabs.types';
 
 import { useForwardPropsEmits } from '@taman-core/composables';
 import { TamanScrollbar } from '@taman-core/taman-ui';
-import { TamanTabs, TamanTabsChrome } from './components';
+import PButton from 'pohon-ui/components/Button.vue';
+import { TamanTabsChrome } from './components';
 import { useTabsDrag } from './use-tabs-drag';
 import { useTabsViewScroll } from './use-tabs-view-scroll';
-
-interface Props extends TabsProps {}
 
 defineOptions({
   name: 'TamanTabsView',
 });
 
 const props = withDefaults(
-  defineProps<Props>(),
+  defineProps<TabsProps>(),
   {
     contentClass: 'taman-tabs-content',
     draggable: true,
@@ -63,12 +62,7 @@ useTabsDrag(props, emit);
       @click="scrollDirection('left')"
     />
 
-    <div
-      :class="{
-        'pt-0.75': styleType === 'chrome',
-      }"
-      class="flex-1 size-full overflow-hidden"
-    >
+    <div class="pt-0.75 flex-1 size-full overflow-hidden">
       <TamanScrollbar
         ref="scrollbarRef"
         :shadow-bottom="false"
@@ -83,12 +77,6 @@ useTabsDrag(props, emit);
         @wheel="onWheel"
       >
         <TamanTabsChrome
-          v-if="styleType === 'chrome'"
-          v-bind="{ ...forward, ...$attrs, ...$props }"
-        />
-
-        <TamanTabs
-          v-else
           v-bind="{ ...forward, ...$attrs, ...$props }"
         />
       </TamanScrollbar>

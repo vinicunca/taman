@@ -7,7 +7,7 @@ import { computed, inject, toValue } from 'vue';
 import { ACCESS_ROLES_KEY } from './directive';
 import { matchesAnyRole } from './matches-any-role';
 
-function useAccess() {
+export function useAccess() {
   const accessStore = useAccessStore();
   const injectedRoles = inject(ACCESS_ROLES_KEY);
   if (!injectedRoles) {
@@ -55,5 +55,3 @@ function useAccess() {
     toggleAccessMode,
   };
 }
-
-export { useAccess };

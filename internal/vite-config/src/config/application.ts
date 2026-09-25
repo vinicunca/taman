@@ -39,7 +39,7 @@ function defineApplicationConfig(userConfigPromise?: DefineApplicationOptions) {
       nitroMock: !isBuild,
       print: !isBuild,
       printInfoMap: {
-        'Taman Admin Docs': 'https://doc.vben.pro',
+        'Taman Admin Docs': 'https://taman.vinicunca.dev',
       },
       pwa: true,
       pwaOptions: getDefaultPwaOptions(appTitle),

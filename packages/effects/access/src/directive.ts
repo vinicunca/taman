@@ -23,14 +23,16 @@ export const ACCESS_ROLES_KEY: InjectionKey<MaybeRefOrGetter<Array<string>>>
 
 function isAccessible(
   el: Element,
-  binding: DirectiveBinding<string | string[]>,
+  binding: DirectiveBinding<string | Array<string>>,
   roles: Array<string>,
 ) {
   const accessStore = useAccessStore(); // Pinia: module-level singleton, safe outside component context
 
   const value = binding.value;
 
-  if (!value) return;
+  if (!value) {
+    return;
+  }
   const authMethod
     = preferences.app.accessMode === 'frontend' && binding.arg === 'role'
       ? (values: Array<string>) => matchesAnyRole(roles, values)
@@ -47,7 +49,7 @@ export function registerAccessDirective(
   app: App,
   roles: MaybeRefOrGetter<Array<string>>,
 ): void {
-  const mounted = (el: Element, binding: DirectiveBinding<string | string[]>) => {
+  const mounted = (el: Element, binding: DirectiveBinding<string | Array<string>>) => {
     isAccessible(el, binding, toValue(roles));
   };
 

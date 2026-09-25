@@ -20,9 +20,6 @@ const loadingV = refAutoReset(false, 3000);
     <AppCard
       v-loading="{
         spinning: loadingV,
-        icon: {
-          size: 32,
-        },
       }"
       title="Taman Loading"
       class="mt-4"
@@ -72,10 +69,7 @@ const loadingV = refAutoReset(false, 3000);
             <TamanLoading
               :spinning="loading"
               text="Loading..."
-              :icon="{
-                name: 'svg-spinners:blocks-wave',
-                size: 32,
-              }"
+              icon="svg-spinners:blocks-wave"
             />
           </div>
         </div>
@@ -93,10 +87,7 @@ const loadingV = refAutoReset(false, 3000);
             <TamanLoading
               :spinning="loading"
               text="Loading..."
-              :icon="{
-                name: 'svg-spinners:bars-scale',
-                size: 32,
-              }"
+              icon="svg-spinners:bars-scale"
             />
           </div>
         </div>

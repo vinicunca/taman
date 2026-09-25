@@ -80,13 +80,6 @@
     "wheelable": "Dukung Roda Mouse",
     "middleClickClose": "Tutup Tab saat Klik Tengah Mouse",
     "wheelableTip": "Saat diaktifkan, area Tabbar merespons guliran vertikal roda scroll.",
-    "styleType": {
-      "title": "Gaya Tab",
-      "chrome": "Chrome",
-      "card": "Kartu",
-      "plain": "Polos",
-      "brisk": "Ringan"
-    },
     "contextMenu": {
       "reload": "Muat Ulang",
       "close": "Tutup",

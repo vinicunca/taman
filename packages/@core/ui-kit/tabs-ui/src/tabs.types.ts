@@ -1,4 +1,4 @@
-import type { TamanTabDefinition, TamanTabsStyleType } from '@taman-core/typings';
+import type { TamanTabDefinition } from '@taman-core/typings';
 
 import type { StrictContextMenuItem } from './strict-context-menu';
 
@@ -51,10 +51,6 @@ export interface TabsProps {
    * Whether to show tab icons
    */
   showIcon?: boolean;
-  /**
-   * Tab visual style
-   */
-  styleType?: TamanTabsStyleType;
 
   /**
    * Tab data

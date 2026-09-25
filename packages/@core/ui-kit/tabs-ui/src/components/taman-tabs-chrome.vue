@@ -2,9 +2,8 @@
 import type { TamanTabDefinition } from '@taman-core/typings';
 import type { TabConfig, TabsProps } from '../tabs.types';
 import { TamanIcon } from '@taman-core/taman-ui';
+import PContextMenu from 'pohon-ui/components/ContextMenu.vue';
 import { computed } from 'vue';
-
-interface Props extends TabsProps {}
 
 defineOptions({
   name: 'TamanTabsChrome',
@@ -12,7 +11,7 @@ defineOptions({
 });
 
 const props = withDefaults(
-  defineProps<Props>(),
+  defineProps<TabsProps>(),
   {
     contentClass: 'taman-tabs-content',
     contextMenus: () => [],
@@ -74,7 +73,7 @@ function onMouseDown(event: MouseEvent, tab: TabConfig) {
   <div
     :class="contentClass"
     :style="style"
-    class="tabs-chrome pr-6 flex h-full w-max overflow-y-hidden"
+    class="tabs-chrome pr-6 h-full w-max overflow-y-hidden flex!"
   >
     <TransitionGroup name="slide-left">
       <div
@@ -109,17 +108,17 @@ function onMouseDown(event: MouseEvent, tab: TabConfig) {
               class="tabs-chrome__background px-[calc(var(--gap)-1px)] py-0 size-full transition-opacity duration-150 absolute z-[-1]"
             >
               <div
-                class="tabs-chrome__background-content rounded-tl-$gap rounded-tr-$gap h-full duration-150 group-[.is-active]:bg-primary/15 group-[.is-active]:dark:bg-background-accented"
+                class="tabs-chrome__background-content rounded-tl-$gap rounded-tr-$gap h-full duration-150 group-[.is-active]:bg-primary/15 dark:group-[.is-active]:bg-background-accented"
               />
               <svg
-                class="tabs-chrome__background-before group-[.is-active]:dark:fill-accent transition-all-150 bottom-0 absolute fill-transparent -left-px group-[.is-active]:fill-primary/15"
+                class="tabs-chrome__background-before transition-all-150 bottom-0 absolute fill-transparent -left-px group-[.is-active]:fill-primary/15 dark:group-[.is-active]:fill-background-accented"
                 height="7"
                 width="7"
               >
                 <path d="M 0 7 A 7 7 0 0 0 7 0 L 7 7 Z" />
               </svg>
               <svg
-                class="tabs-chrome__background-after group-[.is-active]:dark:fill-accent transition-duration-150 bottom-0 absolute fill-transparent -right-px group-[.is-active]:fill-primary/15"
+                class="tabs-chrome__background-after transition-duration-150 bottom-0 absolute fill-transparent -right-px group-[.is-active]:fill-primary/15 dark:group-[.is-active]:fill-background-accented"
                 height="7"
                 width="7"
               >
@@ -134,7 +133,7 @@ function onMouseDown(event: MouseEvent, tab: TabConfig) {
               <!-- close-icon -->
               <button
                 v-show="!tab.affixTab && tabItems.length > 1 && tab.closable"
-                class="hover:bg-overlay/30 group-[.is-active]:dark:text-accent-foreground rounded-full flex-center size-4 transition-colors group-[.is-active]:text-primary"
+                class="rounded-full flex-center size-4 transition-colors group-[.is-active]:text-primary hover:bg-background/30 dark:group-[.is-active]:color-text"
                 tabindex="-1"
                 @click.stop="() => emits('close', tab.key)"
               >
@@ -159,7 +158,7 @@ function onMouseDown(event: MouseEvent, tab: TabConfig) {
 
             <!-- tab-item-main -->
             <div
-              class="tabs-chrome__item-main color-accent-foreground group-[.is-active]:dark:color-accent-foreground font-500 mx-[calc(var(--gap)*2)] my-0 pl-2 pr-4 rounded-tl-[5px] rounded-tr-[5px] flex h-full duration-150 items-center z-2 overflow-hidden group-[.is-active]:color-primary"
+              class="tabs-chrome__item-main color-accent-foreground font-500 mx-[calc(var(--gap)*2)] my-0 pl-2 pr-4 rounded-tl-[5px] rounded-tr-[5px] flex h-full duration-150 items-center z-2 overflow-hidden group-[.is-active]:color-primary dark:group-[.is-active]:color-text"
             >
               <TamanIcon
                 v-if="showIcon"

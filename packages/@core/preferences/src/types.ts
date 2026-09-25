@@ -11,7 +11,6 @@ import type {
   TamanNavigationStyleType,
   TamanPageTransitionType,
   TamanPreferencesButtonPositionType,
-  TamanTabsStyleType,
 } from '@taman-core/typings';
 
 type SupportedLanguagesType = 'en-US' | 'id-ID';
@@ -298,8 +297,6 @@ interface TabbarPreferences {
   showMore: boolean;
   /** Whether refresh button is shown */
   showRefresh: boolean;
-  /** Tab bar style */
-  styleType: TamanTabsStyleType;
   /** Whether visit history is enabled */
   visitHistory: boolean;
   /** Whether mouse wheel scrolling is enabled */

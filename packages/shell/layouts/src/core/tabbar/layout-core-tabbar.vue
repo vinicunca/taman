@@ -17,7 +17,7 @@ defineOptions({
   name: 'LayoutCoreTabbar',
 });
 
-defineProps<{
+const props = defineProps<{
   showIcon?: boolean;
   theme?: string;
 }>();

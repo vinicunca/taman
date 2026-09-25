@@ -110,14 +110,6 @@ export function useTabsDrag(props: TabsProps, emit: EmitType) {
     init();
   });
 
-  watch(
-    () => props.styleType,
-    () => {
-      sortableInstance.value?.destroy();
-      init();
-    },
-  );
-
   onUnmounted(() => {
     sortableInstance.value?.destroy();
   });

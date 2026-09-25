@@ -6,7 +6,6 @@ import { formatNow, readPackageJSON } from '@taman/node-utils';
 
 /**
  * Injects a license/copyright banner into build output
- * @returns
  */
 async function viteLicensePlugin(
   root = process.cwd(),
@@ -26,13 +25,13 @@ async function viteLicensePlugin(
         const copyrightText = `/*!
   * Taman Admin
   * Version: ${version}
-  * Author: vben
-  * Copyright (C) 2024 Taman
+  * Author: praburangki
+  * Copyright (C) 2024 Vinicunca
   * License: MIT License
   * Description: ${description}
   * Date Created: ${date}
   * Homepage: ${homepage}
-  * Contact: ann.vben@gmail.com
+  * Contact: praburangki@gmail.com
 */
               `.trim();
 

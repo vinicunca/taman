@@ -1,10 +1,9 @@
 import type { RouteRecordNormalized } from 'vue-router';
 
+import { isHttpUrl, openRouteInNewWindow, openWindow } from '@taman/utils';
 import { useRouter } from 'vue-router';
 
-import { isHttpUrl, openRouteInNewWindow, openWindow } from '@taman/utils';
-
-function useNavigation() {
+export function useNavigation() {
   const router = useRouter();
   const routeMetaMap = new Map<string, RouteRecordNormalized>();
 
@@ -70,5 +69,3 @@ function useNavigation() {
 
   return { navigation, willOpenedByWindow };
 }
-
-export { useNavigation };

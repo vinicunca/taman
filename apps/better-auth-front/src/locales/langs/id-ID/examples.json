@@ -1,14 +1,18 @@
 {
   "title": "Contoh",
-  "modal": {
-    "title": "Modal"
+  "dialog": {
+    "title": "Dialog"
   },
   "drawer": {
-    "title": "Laci"
+    "title": "Drawer"
   },
   "form": {
     "title": "Formulir",
     "basic": "Formulir Dasar",
+    "allFields": {
+      "title": "Formulir Semua Field",
+      "description": "Ini adalah contoh dasar dari komponen formulir. Silakan perhatikan bahwa parameter kode yang digunakan pada halaman ini akan memiliki beberapa komentar sederhana untuk memudahkan pemahaman. Silakan periksa komentar-komentar tersebut dengan cermat."
+    },
     "layout": "Tata Letak Kustom",
     "query": "Formulir Pencarian",
     "valueFormat": "Format Nilai",

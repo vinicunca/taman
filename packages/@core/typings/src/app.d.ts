@@ -70,15 +70,6 @@ type TamanAccessModeType = 'backend' | 'frontend' | 'mixed';
 type TamanNavigationStyleType = 'plain' | 'rounded';
 
 /**
- * Tab bar style
- * brisk - light
- * card - card
- * chrome - Chrome-style
- * plain - flat
- */
-type TamanTabsStyleType = 'brisk' | 'card' | 'chrome' | 'plain';
-
-/**
  * Page transition animation
  */
 type TamanPageTransitionType = 'fade' | 'fade-down' | 'fade-slide' | 'fade-up';
@@ -103,6 +94,5 @@ export type {
   TamanNavigationStyleType,
   TamanPageTransitionType,
   TamanPreferencesButtonPositionType,
-  TamanTabsStyleType,
   TamanThemeModeType,
 };

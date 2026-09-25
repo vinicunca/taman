@@ -81,7 +81,7 @@ const [CustomLayoutForm] = useTamanForm({
 <template>
   <AppPage
     content-class="flex flex-col gap-4"
-    description="Use tailwind to customize the layout of the form items, use Divider to split the form."
+    description="Use uno to customize the layout of the form items, use Divider to split the form."
     title="Custom Layout"
   >
     <AppCard title="Custom Layout">

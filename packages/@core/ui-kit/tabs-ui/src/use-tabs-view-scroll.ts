@@ -165,13 +165,6 @@ export function useTabsViewScroll(props: TabsProps) {
     },
   );
 
-  watch(
-    () => props.styleType,
-    () => {
-      initScrollbar();
-    },
-  );
-
   onMounted(() => {
     initScrollbar();
   });

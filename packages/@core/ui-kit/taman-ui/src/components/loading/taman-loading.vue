@@ -81,6 +81,7 @@ function onTransitionEnd() {
   >
     <PIcon
       v-if="renderSpinner"
+      size="32"
       v-bind="iconProps"
     />
 

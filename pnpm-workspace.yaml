@@ -27,6 +27,7 @@ packages:
 overrides:
   '@ast-grep/napi': 'catalog:'
   '@ctrl/tinycolor': 'catalog:'
+  '@vue/compiler-sfc': 'catalog:'
   clsx: 'catalog:'
   pinia: 'catalog:'
   pohon-ui: 'catalog:'
@@ -88,6 +89,7 @@ catalog:
   '@vinicunca/unocss-preset': 2.4.0
   '@vitejs/plugin-vue': ^6.0.9
   '@vitejs/plugin-vue-jsx': ^5.1.6
+  '@vue/compiler-sfc': 3.5.43
   '@vue/shared': ^3.5.43
   '@vue/test-utils': ^2.5.1
   '@vueuse/core': ^15.0.0
@@ -141,7 +143,6 @@ catalog:
   rollup-plugin-visualizer: ^7.1.1
   secure-ls: ^2.0.0
   sortablejs: ^1.15.7
-  tailwind-merge: ^3.6.0
   theme-colors: ^0.1.0
   tsdown: ^0.22.14
   tsx: ^4.23.15

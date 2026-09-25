@@ -12,12 +12,12 @@ function getDefaultPwaOptions(name: string): Partial<PwaPluginOptions> {
       icons: [
         {
           sizes: '192x192',
-          src: 'https://unpkg.com/@vbenjs/static-source@0.1.7/source/pwa-icon-192.png',
+          src: 'https://raw.githubusercontent.com/vinicunca/static-resources/refs/heads/main/taman-192x192.png',
           type: 'image/png',
         },
         {
           sizes: '512x512',
-          src: 'https://unpkg.com/@vbenjs/static-source@0.1.7/source/pwa-icon-512.png',
+          src: 'https://raw.githubusercontent.com/vinicunca/static-resources/refs/heads/main/taman-512x512.png',
           type: 'image/png',
         },
       ],

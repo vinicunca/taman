@@ -1,7 +1,8 @@
 import type { ComputedRef, Ref } from 'vue';
 import {
   getFirstNonNullOrUndefined,
-  kebabToCamelCase,
+  toCamelCase,
+  toKebabCase,
 } from '@taman-core/shared/utils';
 import { computed, getCurrentInstance, unref, useAttrs, useSlots } from 'vue';
 
@@ -27,7 +28,7 @@ export function usePriorityValue<
     const standardRawProps = {} as T;
 
     for (const [key, value] of Object.entries(rawProps)) {
-      standardRawProps[kebabToCamelCase(key) as K] = value;
+      standardRawProps[toCamelCase(toKebabCase(key)) as K] = value;
     }
     const propsKey
       = standardRawProps?.[key] === undefined ? undefined : props[key];

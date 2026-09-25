@@ -3,7 +3,7 @@
  * Lives here instead of inside the app tag in index.html to avoid a harsh cut-off
  * when paint is fast (which can flash). Hides via CSS transition first, then
  * removes the node after the animation ends. Adds a bit of code; see
- * https://doc.vben.pro/guide/in-depth/loading.html for custom loading.
+ * https://taman.vinicunca.dev/guide/in-depth/loading.html for custom loading.
  */
 export function unmountGlobalLoading() {
   // Find the global loading element
@@ -23,7 +23,9 @@ export function unmountGlobalLoading() {
       'transitionend',
       () => {
         loadingElement.remove();
-        injectLoadingElements.forEach((el) => el.remove());
+        injectLoadingElements.forEach((el) => {
+          el.remove();
+        });
       },
       { once: true },
     );

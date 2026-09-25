@@ -1,10 +1,9 @@
-import type { RouteRecordRaw } from 'vue-router';
-
 import type {
   ComponentRecordType,
   GenerateMenuAndRoutesOptions,
   RouteRecordStringComponent,
 } from '@taman-core/typings';
+import type { RouteRecordRaw } from 'vue-router';
 
 import { mapTree } from '@taman-core/shared/utils';
 
@@ -23,7 +22,7 @@ function menuHasVisibleWithForbidden(route: RouteRecordRaw): boolean {
  */
 async function generateRoutesByBackend(
   options: GenerateMenuAndRoutesOptions,
-): Promise<RouteRecordRaw[]> {
+): Promise<Array<RouteRecordRaw>> {
   const {
     fetchMenuListAsync,
     layoutMap = {},
@@ -62,10 +61,10 @@ async function generateRoutesByBackend(
 }
 
 function convertRoutes(
-  routes: RouteRecordStringComponent[],
+  routes: Array<RouteRecordStringComponent>,
   layoutMap: ComponentRecordType,
   pageMap: ComponentRecordType,
-): RouteRecordRaw[] {
+): Array<RouteRecordRaw> {
   return mapTree(routes, (node) => {
     const route = node as unknown as RouteRecordRaw;
     const { component, name } = node;
@@ -104,7 +103,7 @@ function normalizeViewPath(path: string): string {
     ? normalizedPath
     : `/${normalizedPath}`;
 
-  // Coupled to vben-admin view directory layout
+  // Coupled to taman-admin view directory layout
   return viewPath.replace(/^\/views/, '');
 }
 export { generateRoutesByBackend };

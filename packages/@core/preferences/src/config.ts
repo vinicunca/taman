@@ -108,7 +108,6 @@ export const defaultPreferences: Preferences = {
     showMaximize: true,
     showMore: true,
     showRefresh: true,
-    styleType: 'chrome',
     visitHistory: true,
     wheelable: true,
   },
