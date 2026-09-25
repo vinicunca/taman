@@ -56,7 +56,9 @@ function appendArray(params: URLSearchParams, key: string, items: Array<unknown>
   }
 
   if (arrayFormat === 'indices' || present.some(isPlainObjectItem)) {
-    items.forEach((item, index) => appendValue(params, `${key}[${index}]`, item, arrayFormat));
+    items.forEach((item, index) => {
+      appendValue(params, `${key}[${index}]`, item, arrayFormat);
+    });
     return;
   }
 

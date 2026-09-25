@@ -74,7 +74,7 @@ function splitOptions(options: object): [HttpQueryRequestOptions, Record<string,
   for (const key of REQUEST_OPTION_KEYS) {
     if (key in rest) {
       request[key] = rest[key];
-      delete rest[key];
+      Reflect.deleteProperty(rest, key);
     }
   }
   return [request as HttpQueryRequestOptions, rest];

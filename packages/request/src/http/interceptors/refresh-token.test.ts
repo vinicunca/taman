@@ -20,7 +20,9 @@ function setup(options: { refresh?: () => Promise<string>; enabled?: boolean } =
   });
 
   const refresh = vi.fn(options.refresh ?? (async () => {
-    await new Promise((resolve) => setTimeout(resolve, 20));
+    await new Promise((resolve) => {
+      setTimeout(resolve, 20);
+    });
     token = 'new';
     return 'new';
   }));
@@ -36,7 +38,16 @@ function setup(options: { refresh?: () => Promise<string>; enabled?: boolean } =
   }));
   http.addResponseInterceptor(errorMessageInterceptor({ notify }));
 
-  return { http, calls: fake.calls, refresh, onAuthFailure, notify, setToken: (value: string) => { token = value; } };
+  return {
+    http,
+    calls: fake.calls,
+    refresh,
+    onAuthFailure,
+    notify,
+    setToken: (value: string) => {
+      token = value;
+    },
+  };
 }
 
 describe('refreshTokenInterceptor', () => {
@@ -46,12 +57,21 @@ describe('refreshTokenInterceptor', () => {
     expect(results).toEqual([{ ok: true }, { ok: true }, { ok: true }]);
     expect(refresh).toHaveBeenCalledTimes(1);
     expect(calls.map((call) => call.headers.get('authorization'))).toEqual([
-      'Bearer old', 'Bearer old', 'Bearer old', 'Bearer new', 'Bearer new', 'Bearer new',
+      'Bearer old',
+      'Bearer old',
+      'Bearer old',
+      'Bearer new',
+      'Bearer new',
+      'Bearer new',
     ]);
   });
 
   it('calls onAuthFailure once and rejects every waiting request when refresh fails', async () => {
-    const { http, onAuthFailure } = setup({ refresh: async () => { throw new Error('refresh denied'); } });
+    const { http, onAuthFailure } = setup({
+      refresh: async () => {
+        throw new Error('refresh denied');
+      },
+    });
     const outcomes = await Promise.allSettled([http.get('/secure'), http.get('/secure')]);
     expect(outcomes.map((outcome) => outcome.status)).toEqual(['rejected', 'rejected']);
     expect(onAuthFailure).toHaveBeenCalledTimes(1);

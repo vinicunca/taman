@@ -149,7 +149,13 @@ describe('createHttpClient', () => {
   });
 
   it('rejects with kind network when fetch itself fails', async () => {
-    const http = createHttpClient({ baseURL: 'http://api.test', retry: false, fetch: async () => { throw new TypeError('fetch failed'); } });
+    const http = createHttpClient({
+      baseURL: 'http://api.test',
+      retry: false,
+      fetch: async () => {
+        throw new TypeError('fetch failed');
+      },
+    });
     expect((await rejection(http.get('/x'))).kind).toBe('network');
   });
 

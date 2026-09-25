@@ -1,5 +1,5 @@
-import type { TamanContract } from '@vinicunca/taman-api-contract';
 import type { ContractClient } from '@vinicunca/request/orpc';
+import type { TamanContract } from '@vinicunca/taman-api-contract';
 import { useAppTamanConfig } from '@taman/composables';
 import { createRpcClient } from '@vinicunca/request/orpc';
 import { createRpcQueryUtils } from '@vinicunca/request/orpc-query';

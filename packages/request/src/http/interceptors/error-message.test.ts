@@ -39,7 +39,9 @@ describe('errorMessageInterceptor', () => {
   });
 
   it('uses the network and timeout messages', async () => {
-    const network = setup({}, async () => { throw new TypeError('fetch failed'); });
+    const network = setup({}, async () => {
+      throw new TypeError('fetch failed');
+    });
     await network.http.get('/x').catch(() => {});
     expect(network.notify).toHaveBeenCalledWith(DEFAULT_ERROR_MESSAGES.network, expect.anything());
 

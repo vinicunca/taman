@@ -1,7 +1,7 @@
+import type { ContractClient } from '@vinicunca/request/orpc';
+import type { TamanContract } from '@vinicunca/taman-api-contract';
 // @vitest-environment node
 import type { H3Event } from 'nitro';
-import type { TamanContract } from '@vinicunca/taman-api-contract';
-import type { ContractClient } from '@vinicunca/request/orpc';
 import type { TamanContext } from '#lib/context.ts';
 import { createRpcClient, isDefinedError, safe } from '@vinicunca/request/orpc';
 import { beforeEach, describe, expect, it, vi } from 'vitest';

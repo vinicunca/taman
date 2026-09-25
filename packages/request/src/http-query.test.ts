@@ -1,10 +1,10 @@
 // @vitest-environment node
 import { QueryClient } from '@tanstack/query-core';
 import { describe, expect, it } from 'vitest';
+import { createHttpQueryUtils } from './http-query';
 import { createHttpClient } from './http/client';
 import { isHttpError } from './http/errors';
 import { createFakeFetch, respondAfter } from './http/testing';
-import { createHttpQueryUtils } from './http-query';
 
 function setup() {
   const network = { aborted: false };
@@ -49,7 +49,9 @@ describe('createHttpQueryUtils', () => {
   it('aborts the network request when the query is cancelled', async () => {
     const { api, client, network } = setup();
     const pending = client.fetchQuery(api.get('/slow').queryOptions()).catch((error: unknown) => error);
-    await new Promise((resolve) => setTimeout(resolve, 20));
+    await new Promise((resolve) => {
+      setTimeout(resolve, 20);
+    });
     await client.cancelQueries({ queryKey: api.key() });
     const error = await pending;
     expect(isHttpError(error)).toBe(false);

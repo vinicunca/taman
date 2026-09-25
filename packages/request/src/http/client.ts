@@ -1,4 +1,5 @@
 import type { FetchOptions } from 'ofetch';
+import type { InternalRequestOptions } from './internal';
 import type {
   HttpClient,
   HttpClientOptions,
@@ -9,7 +10,6 @@ import type {
   ResponseInterceptor,
 } from './types';
 import { ofetch } from 'ofetch';
-import type { InternalRequestOptions } from './internal';
 import { toHttpError } from './errors';
 import { RETRIED } from './internal';
 import { appendQueryString, serializeQuery } from './query';
@@ -46,7 +46,9 @@ export function createHttpClient(clientOptions: HttpClientOptions = {}): HttpCli
 
   function createContext(url: string, options: InternalRequestOptions): HttpRequestContext {
     const headers = new Headers(defaultHeaders);
-    new Headers(options.headers).forEach((value, key) => headers.set(key, value));
+    new Headers(options.headers).forEach((value, key) => {
+      headers.set(key, value);
+    });
 
     return {
       url,
