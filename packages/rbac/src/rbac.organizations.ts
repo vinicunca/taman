@@ -13,7 +13,7 @@ const organizationAc = createAccessControl(statement);
 /**
  * Deliberately only `owner` and `member` — better-auth's default `admin`
  * organization role is dropped. Passing `roles` to the organization plugin
- * *replaces* its defaults rather than merging with them, so any role missing
+ * replaces* its defaults rather than merging with them, so any role missing
  * here has no permissions at all. See `resolveMember`, which fails closed on
  * a `member.role` value that is not one of these.
  *

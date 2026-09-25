@@ -56,11 +56,12 @@ describe('createTamanClient', () => {
     const { fetch } = inProcessFetch();
     const client = createTamanClient({ baseUrl: 'http://api.test', fetch });
     await expect(client.todo.get({ id: '01920000-0000-7000-8000-0000000000ff' }))
-      .rejects.toMatchObject({ code: 'NOT_FOUND' });
+      .rejects
+      .toMatchObject({ code: 'NOT_FOUND' });
   });
 });
 
-describe('LIVE_RETRY', () => {
+describe('lIVE_RETRY', () => {
   it('retries transport failures but not server-sent ORPCErrors', async () => {
     const shouldRetry = LIVE_RETRY.shouldRetry as (options: { error: unknown }) => boolean;
     expect(LIVE_RETRY.retry).toBe(Number.POSITIVE_INFINITY);

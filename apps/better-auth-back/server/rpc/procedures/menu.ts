@@ -1,5 +1,5 @@
-import { MOCK_MENUS } from '#utils/mock-data.ts';
 import { authed, os } from '#rpc/base.ts';
+import { MOCK_MENUS } from '#utils/mock-data.ts';
 
 export const menuRouter = {
   // Moved from the old unauthenticated `/menu/all` route; now requires a session.

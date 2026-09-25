@@ -15,6 +15,16 @@ function first(value: LocationQueryValue | Array<LocationQueryValue> | undefined
   return single ?? undefined;
 }
 
+function parseCompleted(value: string | undefined): boolean | undefined {
+  if (value === 'true') {
+    return true;
+  }
+  if (value === 'false') {
+    return false;
+  }
+  return undefined;
+}
+
 /**
  * URL → params. Anything a user could type into the address bar degrades to
  * a default instead of reaching the server as a BAD_REQUEST.
@@ -29,7 +39,7 @@ export function parseTodoListQuery(query: LocationQuery): TodoListParams {
     page: Number.isFinite(page) && page >= 1 ? page : 1,
     pageSize: (PAGE_SIZES as ReadonlyArray<number>).includes(pageSize) ? pageSize : DEFAULT_PAGE_SIZE,
     search: search || undefined,
-    completed: completed === 'true' ? true : completed === 'false' ? false : undefined,
+    completed: parseCompleted(completed),
   };
 }
 

@@ -59,7 +59,8 @@ describe('todo procedures', () => {
 
   it('rejects invalid input with BAD_REQUEST before the handler runs', async () => {
     await expect(call(router.todo.create, { title: '   ' }, { context: eventFor('org-1') }))
-      .rejects.toMatchObject({ code: 'BAD_REQUEST' });
+      .rejects
+      .toMatchObject({ code: 'BAD_REQUEST' });
   });
 
   it('streams only the subscriber\'s own organization events', async () => {
@@ -71,10 +72,14 @@ describe('todo procedures', () => {
     const nextA = streamA.next();
     const nextB = Promise.race([
       streamB.next().then(() => 'received'),
-      new Promise((resolve) => setTimeout(resolve, 150, 'nothing')),
+      new Promise((resolve) => {
+        setTimeout(resolve, 150, 'nothing');
+      }),
     ]);
     // The generator subscribes lazily on the first next(); let both subscriptions register.
-    await new Promise((resolve) => setTimeout(resolve, 20));
+    await new Promise((resolve) => {
+      setTimeout(resolve, 20);
+    });
 
     const created = await call(router.todo.create, { title: 'Only A' }, { context: eventFor('org-a') });
 

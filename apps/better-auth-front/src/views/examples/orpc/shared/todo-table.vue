@@ -27,10 +27,16 @@ const dateFormat = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', tim
   >
     <table class="text-sm w-full">
       <thead>
-        <tr class="text-left border-b border-default">
-          <th class="font-medium px-2 py-2">Title</th>
-          <th class="font-medium px-2 py-2">Done</th>
-          <th class="font-medium px-2 py-2">Created</th>
+        <tr class="border-default text-left border-b">
+          <th class="font-medium px-2 py-2">
+            Title
+          </th>
+          <th class="font-medium px-2 py-2">
+            Done
+          </th>
+          <th class="font-medium px-2 py-2">
+            Created
+          </th>
           <th
             v-if="actions"
             class="px-2 py-2"
@@ -41,7 +47,7 @@ const dateFormat = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', tim
         <tr
           v-for="todo in todos"
           :key="todo.id"
-          class="border-b border-default"
+          class="border-default border-b"
         >
           <td
             class="px-2 py-2"
