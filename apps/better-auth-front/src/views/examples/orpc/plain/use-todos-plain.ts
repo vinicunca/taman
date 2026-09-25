@@ -1,4 +1,4 @@
-import type { TamanInputs, Todo, TodoPage } from '@vinicunca/request/orpc';
+import type { TamanInputs, Todo, TodoPage } from '@vinicunca/taman-api-contract';
 import type { MaybeRefOrGetter } from 'vue';
 import type { TodoListParams } from '../shared/todo-list-params';
 import { useTamanToast } from '@taman/app-ui';

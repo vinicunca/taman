@@ -1,6 +1,6 @@
 import type { QueryClient, QueryKey } from '@tanstack/vue-query';
-import type { TamanInputs, TodoEvent, TodoPage } from '@vinicunca/request/orpc';
-import type { TamanQueryUtils } from '@vinicunca/request/orpc-query';
+import type { TamanInputs, TodoEvent, TodoPage } from '@vinicunca/taman-api-contract';
+import type { TamanQueryUtils } from '#/api/orpc';
 
 type TodoListInput = TamanInputs['todo']['list'];
 

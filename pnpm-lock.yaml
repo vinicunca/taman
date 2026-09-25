@@ -650,9 +650,9 @@ importers:
       '@types/node':
         specifier: 'catalog:'
         version: 26.6.2
-      '@vinicunca/taman-request':
+      '@vinicunca/request':
         specifier: workspace:*
-        version: link:../../packages/effects/request
+        version: link:../../packages/request
       nitro:
         specifier: 'catalog:'
         version: 3.0.260903-beta
@@ -731,12 +731,12 @@ importers:
       '@vinicunca/perkakas':
         specifier: 'catalog:'
         version: 1.17.1
+      '@vinicunca/request':
+        specifier: workspace:*
+        version: link:../../packages/request
       '@vinicunca/taman-api-contract':
         specifier: workspace:*
         version: link:../../packages/api-contract
-      '@vinicunca/taman-request':
-        specifier: workspace:*
-        version: link:../../packages/effects/request
       '@vueuse/core':
         specifier: 'catalog:'
         version: 15.0.0(vue@3.5.43(typescript@6.0.3))
@@ -1323,31 +1323,6 @@ importers:
         specifier: 'catalog:'
         version: 1.6.6
 
-  packages/effects/request:
-    dependencies:
-      '@orpc/client':
-        specifier: 'catalog:'
-        version: 1.15.4
-      '@orpc/tanstack-query':
-        specifier: 'catalog:'
-        version: 1.15.4(@orpc/client@1.15.4)(@tanstack/query-core@5.103.2)
-      '@vinicunca/taman-api-contract':
-        specifier: workspace:^
-        version: link:../../api-contract
-    devDependencies:
-      '@orpc/server':
-        specifier: 'catalog:'
-        version: 1.15.4(crossws@0.4.12(srvx@1.0.5))(ws@8.21.1)
-      '@tanstack/query-core':
-        specifier: 'catalog:'
-        version: 5.103.2
-      tsdown:
-        specifier: 'catalog:'
-        version: 0.22.14(@arethetypeswrong/core@0.18.5)(@volar/typescript@2.4.28(typescript@6.0.3))(oxc-resolver@11.24.2)(publint@0.3.24)(tsx@4.23.15)(typescript@6.0.3)(vue-tsc@3.3.11(typescript@6.0.3))
-      typescript:
-        specifier: 'catalog:'
-        version: 6.0.3
-
   packages/locales:
     dependencies:
       '@intlify/core-base':
@@ -1380,6 +1355,34 @@ importers:
       better-auth:
         specifier: 'catalog:'
         version: 1.7.5(drizzle-kit@0.31.10)(drizzle-orm@0.45.2(@cloudflare/workers-types@5.20260925.1)(@neondatabase/serverless@1.1.0)(@types/pg@8.21.0)(kysely@0.29.3)(pg@8.23.0))(pg@8.23.0)(solid-js@1.9.15)(vitest@5.0.1(@types/node@26.6.2)(happy-dom@20.14.5)(vite@8.3.0(@types/node@26.6.2)(esbuild@0.28.1)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(tsx@4.23.15)(yaml@2.9.0)))(vue@3.5.43(typescript@6.0.3))
+
+  packages/request:
+    dependencies:
+      '@orpc/client':
+        specifier: 'catalog:'
+        version: 1.15.4
+      '@orpc/contract':
+        specifier: 'catalog:'
+        version: 1.15.4
+      '@orpc/tanstack-query':
+        specifier: 'catalog:'
+        version: 1.15.4(@orpc/client@1.15.4)(@tanstack/query-core@5.103.2)
+    devDependencies:
+      '@orpc/server':
+        specifier: 'catalog:'
+        version: 1.15.4(crossws@0.4.12(srvx@1.0.5))(ws@8.21.1)
+      '@tanstack/query-core':
+        specifier: 'catalog:'
+        version: 5.103.2
+      tsdown:
+        specifier: 'catalog:'
+        version: 0.22.14(@arethetypeswrong/core@0.18.5)(@volar/typescript@2.4.28(typescript@6.0.3))(oxc-resolver@11.24.2)(publint@0.3.24)(tsx@4.23.15)(typescript@6.0.3)(vue-tsc@3.3.11(typescript@6.0.3))
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+      zod:
+        specifier: 'catalog:'
+        version: 4.6.5
 
   packages/shell/app-ui:
     dependencies:

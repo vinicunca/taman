@@ -1,7 +1,9 @@
 // @vitest-environment node
 import type { H3Event } from 'nitro';
+import type { TamanContract } from '@vinicunca/taman-api-contract';
+import type { ContractClient } from '@vinicunca/request/orpc';
 import type { TamanContext } from '#lib/context.ts';
-import { createTamanClient, isDefinedError, safe } from '@vinicunca/request/orpc';
+import { createRpcClient, isDefinedError, safe } from '@vinicunca/request/orpc';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { FakeTodoRepo } from '#domains/todo/todo.repo.fake.ts';
 import { resolveContext } from '#lib/context.ts';
@@ -23,8 +25,8 @@ const ctx: TamanContext = {
   member: { role: 'owner', organizationId: 'org-1' },
 };
 
-const client = createTamanClient({
-  baseUrl: 'http://api.test',
+const client = createRpcClient<ContractClient<TamanContract>>({
+  url: `http://api.test${RPC_PREFIX}`,
   fetch: async (request, init) => {
     const { response } = await rpcHandler.handle(new Request(request, init), {
       prefix: RPC_PREFIX,

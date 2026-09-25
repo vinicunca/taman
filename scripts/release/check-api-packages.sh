@@ -6,7 +6,7 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 OUT="$(mktemp -d)"
-PACKAGES=(packages/api-contract packages/effects/request)
+PACKAGES=(packages/api-contract packages/request)
 TARBALLS=()
 
 for pkg in "${PACKAGES[@]}"; do
@@ -30,11 +30,11 @@ cat > "$consumer/tsconfig.json" <<'JSON'
 { "compilerOptions": { "target": "ES2022", "module": "ESNext", "moduleResolution": "Bundler", "strict": true, "noEmit": true, "skipLibCheck": false, "lib": ["ES2022", "DOM", "DOM.Iterable"], "types": [] }, "include": ["index.ts"] }
 JSON
 cat > "$consumer/index.ts" <<'TS'
-import type { TamanOutputs } from '@vinicunca/taman-api-contract';
-import { createTamanClient, isDefinedError, safe } from '@vinicunca/request/orpc';
-import { createTamanQueryUtils } from '@vinicunca/request/orpc-query';
+import type { TamanContract, TamanOutputs } from '@vinicunca/taman-api-contract';
+import { createRpcClient, isDefinedError, safe, type ContractClient } from '@vinicunca/request/orpc';
+import { createRpcQueryUtils } from '@vinicunca/request/orpc-query';
 
-const client = createTamanClient({ baseUrl: 'https://api.example.com' });
+const client = createRpcClient<ContractClient<TamanContract>>({ url: 'https://api.example.com/api/rpc', credentials: 'include' });
 export async function demo(): Promise<Date | undefined> {
   const page: TamanOutputs['todo']['list'] = await client.todo.list({ page: 1 });
   const [error] = await safe(client.todo.get({ id: page.items[0]!.id }));
@@ -42,7 +42,7 @@ export async function demo(): Promise<Date | undefined> {
     const code: 'NOT_FOUND' = error.code;
     void code;
   }
-  void createTamanQueryUtils(client).todo.list.queryOptions({ input: { page: 1 } });
+  void createRpcQueryUtils(client, { path: ['taman'] }).todo.list.queryOptions({ input: { page: 1 } });
   return page.items[0]?.createdAt;
 }
 TS

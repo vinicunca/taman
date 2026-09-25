@@ -1,11 +1,15 @@
-import type { Todo, TodoPage } from '@vinicunca/request/orpc';
+import type { Todo, TodoPage } from '@vinicunca/taman-api-contract';
+import type { TamanRpcClient } from '#/api/orpc';
 import { QueryClient } from '@tanstack/vue-query';
-import { createTamanClient } from '@vinicunca/request/orpc';
-import { createTamanQueryUtils } from '@vinicunca/request/orpc-query';
+import { createRpcClient } from '@vinicunca/request/orpc';
+import { createRpcQueryUtils } from '@vinicunca/request/orpc-query';
 import { describe, expect, it, vi } from 'vitest';
 import { applyTodoEvent } from './apply-todo-event';
 
-const utils = createTamanQueryUtils(createTamanClient({ baseUrl: 'http://api.test', fetch: vi.fn() }));
+const utils = createRpcQueryUtils(
+  createRpcClient<TamanRpcClient>({ url: 'http://api.test/api/rpc', fetch: vi.fn() }),
+  { path: ['taman'] },
+);
 const now = new Date('2026-09-24T10:00:00.000Z');
 
 function todo(id: string, title: string): Todo {

@@ -2,12 +2,12 @@
   "name": "@vinicunca/request",
   "type": "module",
   "version": "0.1.0",
-  "description": "Typed oRPC clients (plain + TanStack Query) for the Taman API.",
+  "description": "Generic typed request clients: oRPC and ofetch-based REST, each with TanStack Query helpers.",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vinicunca/taman.git",
-    "directory": "packages/effects/request"
+    "directory": "packages/request"
   },
   "sideEffects": false,
   "exports": {
@@ -44,13 +44,14 @@
   },
   "dependencies": {
     "@orpc/client": "catalog:",
-    "@orpc/tanstack-query": "catalog:",
-    "@vinicunca/taman-api-contract": "workspace:^"
+    "@orpc/contract": "catalog:",
+    "@orpc/tanstack-query": "catalog:"
   },
   "devDependencies": {
     "@orpc/server": "catalog:",
     "@tanstack/query-core": "catalog:",
     "tsdown": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "zod": "catalog:"
   }
 }

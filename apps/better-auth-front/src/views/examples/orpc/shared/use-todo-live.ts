@@ -1,4 +1,4 @@
-import type { TodoEvent } from '@vinicunca/request/orpc';
+import type { TodoEvent } from '@vinicunca/taman-api-contract';
 import { LIVE_RETRY } from '@vinicunca/request/orpc';
 import { onScopeDispose, ref } from 'vue';
 import { client } from '#/api/orpc';
