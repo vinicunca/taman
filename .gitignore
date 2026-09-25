@@ -171,3 +171,14 @@ secrets.*.json
 
 # Local git worktrees used for isolated feature work
 .worktrees/
+
+### Graphify ###
+# Keep the current graph, report, shared labels, portable manifest, and maintained wiki.
+/graphify-out/cache/
+/graphify-out/.graphify_*
+!/graphify-out/.graphify_labels.json
+/graphify-out/.vocab.txt
+/graphify-out/.rebuild.lock
+/graphify-out/.needs_update
+/graphify-out/graph.html
+/graphify-out/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/

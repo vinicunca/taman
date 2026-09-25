@@ -9,4 +9,5 @@ Rules:
 - Dirty graphify-out/ files are expected after hooks or incremental updates; dirty graph files are not a reason to skip graphify. Only skip graphify if the task is about stale or incorrect graph output, or the user explicitly says not to use it.
 - If graphify-out/wiki/index.md exists, use it for broad navigation instead of raw source browsing.
 - Read graphify-out/GRAPH_REPORT.md only for broad architecture review or when query/path/explain do not surface enough context.
-- After modifying code, run `graphify update .` to keep the graph current (AST-only, no API cost).
+- After each coherent batch of code changes, run `graphify update .` to keep the graph current (AST-only, no API cost), and include meaningful graph updates with the corresponding commit.
+- Track the current `graphify-out/graph.json`, `GRAPH_REPORT.md`, shared labels, and portable `manifest.json`; track the wiki only if intentionally maintained. Keep caches, machine-specific files, temporary extraction files, `.vocab.txt`, `graph.html`, and dated snapshots ignored and untracked. Git history preserves older graph versions.

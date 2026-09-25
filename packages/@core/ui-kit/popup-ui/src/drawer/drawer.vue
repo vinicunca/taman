@@ -52,7 +52,6 @@ const props = withDefaults(
 const id = useId();
 provide(DISMISSABLE_DRAWER_ID, id);
 
-const wrapperRef = ref<HTMLElement>();
 const { $t } = useSimpleLocale();
 const { isMobile } = useBreakpoints();
 
@@ -290,7 +289,6 @@ const getForceMount = computed(() => {
       </template>
 
       <div
-        ref="wrapperRef"
         class="p-3 flex-1 relative overflow-y-auto"
         :class="
           [

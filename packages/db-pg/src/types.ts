@@ -1,6 +1,6 @@
 import type {
   userTable,
-} from './schema';
+} from './schemas';
 
 /**
  * Based from this docs:
