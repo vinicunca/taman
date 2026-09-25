@@ -95,6 +95,9 @@ await http.post('/users', { name: 'Ana' });
 - **Token refresh:** concurrent 401s share one `refresh()`; each request is
   retried once; a second 401, a failed refresh or `enabled: false` calls
   `onAuthFailure` and rejects.
+- **TypeScript:** with `skipLibCheck: false`, also install `undici` and
+  `@types/node` (types only; ofetch's type declarations import `undici`,
+  whose own types need `@types/node`).
 
 ### Query strings
 
