@@ -1,5 +1,11 @@
 export { createHttpClient, DEFAULT_TIMEOUT, isHttpResponse } from './client';
 export { HttpError, isHttpError } from './errors';
 export type { HttpErrorInit, HttpErrorKind } from './errors';
+export { envelopeInterceptor } from './interceptors/envelope';
+export type { EnvelopeInterceptorOptions } from './interceptors/envelope';
+export { DEFAULT_ERROR_MESSAGES, errorMessageInterceptor } from './interceptors/error-message';
+export type { ErrorMessageInterceptorOptions, ErrorMessageKey } from './interceptors/error-message';
+export { refreshTokenInterceptor } from './interceptors/refresh-token';
+export type { RefreshTokenInterceptorOptions } from './interceptors/refresh-token';
 export { serializeQuery } from './query';
 export type * from './types';
