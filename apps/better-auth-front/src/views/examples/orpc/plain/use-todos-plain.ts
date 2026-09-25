@@ -34,6 +34,9 @@ export function useTodosPlain(params: MaybeRefOrGetter<TodoListParams>) {
     if (page) {
       data.value = page;
     }
+    if (listError) {
+      toaster.error(getErrors(listError));
+    }
   }
 
   // Kept generic (rather than a `() => Promise<unknown>` thunk) so the real
