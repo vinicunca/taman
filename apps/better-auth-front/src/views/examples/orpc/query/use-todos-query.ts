@@ -2,6 +2,7 @@ import type { MaybeRefOrGetter } from 'vue';
 import type { TodoListParams } from '../shared/todo-list-params';
 import { useTamanToast } from '@taman/app-ui';
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/vue-query';
+import { isDefinedError } from '@vinicunca/taman-request/orpc';
 import { computed, toValue } from 'vue';
 import { getErrors } from '#/api/errors';
 import { orpc } from '#/api/orpc';
@@ -22,9 +23,21 @@ export function useTodosQuery(params: MaybeRefOrGetter<TodoListParams>) {
     placeholderData: keepPreviousData,
   })));
 
+  // Kept generic (rather than an `(error: unknown) => void` callback) so each
+  // mutation's real defined-error type survives into `isDefinedError`'s
+  // narrowing — erasing it to `unknown` at this boundary makes
+  // `isDefinedError` always narrow to `never`. See `use-todos-plain.ts`.
+  function onMutationError<TError>(error: TError) {
+    if (isDefinedError(error) && error.code === 'NOT_FOUND') {
+      toaster.error('That todo no longer exists.');
+      return;
+    }
+    toaster.error(getErrors(error));
+  }
+
   const mutationCallbacks = {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: orpc.todo.key() }),
-    onError: (error: unknown) => toaster.error(getErrors(error)),
+    onError: onMutationError,
   };
 
   const create = useMutation(orpc.todo.create.mutationOptions(mutationCallbacks));

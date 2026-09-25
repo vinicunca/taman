@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { AppCard, AppPage } from '@taman/app-ui';
 import { useQueryClient } from '@tanstack/vue-query';
+import { watch } from 'vue';
 import { orpc } from '#/api/orpc';
 import TodoEventLog from '../shared/todo-event-log.vue';
+import { clampPage } from '../shared/todo-list-params';
 import TodoPager from '../shared/todo-pager.vue';
 import TodoTable from '../shared/todo-table.vue';
 import { useTodoListParams } from '../shared/use-todo-list-params';
@@ -15,6 +17,12 @@ const { params, setParams } = useTodoListParams();
 const { list } = useTodosQuery(params);
 // Query style: events are folded into the cache, so the table updates itself.
 const { entries, status } = useTodoLive((event) => applyTodoEvent(queryClient, orpc, event));
+
+watch(list.data, (page) => {
+  if (page && !list.isPlaceholderData.value && page.page !== clampPage(page.page, page.totalPages)) {
+    setParams({ page: clampPage(page.page, page.totalPages) });
+  }
+});
 </script>
 
 <template>

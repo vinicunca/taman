@@ -23,9 +23,14 @@ describe('getErrors with oRPC errors', () => {
     expect(getErrors(new ORPCError('NOT_FOUND'))).toBe('ui.fallback.http.notFound');
   });
 
-  it('falls back to the server message for other codes', () => {
+  it('maps a 5xx SERVICE_UNAVAILABLE (proxy/Worker restart) to a localized fallback', () => {
     expect(getErrors(new ORPCError('SERVICE_UNAVAILABLE', { message: 'Unable to reach the database. Is it running?' })))
-      .toBe('Unable to reach the database. Is it running?');
+      .toBe('ui.fallback.http.serviceUnavailable');
+  });
+
+  it('falls back to the server message for other, unmapped codes', () => {
+    expect(getErrors(new ORPCError('CONFLICT', { message: 'Todo already completed.' })))
+      .toBe('Todo already completed.');
   });
 
   it('still maps network TypeErrors', () => {

@@ -1,3 +1,4 @@
+import { TODO_TITLE_MAX } from '@vinicunca/taman-api-contract';
 import { describe, expect, it } from 'vitest';
 import { clampPage, parseTodoListQuery, toTodoListQuery } from './todo-list-params';
 
@@ -17,6 +18,18 @@ describe('parseTodoListQuery', () => {
   it('ignores blank search and takes the first value of repeated keys', () => {
     expect(parseTodoListQuery({ search: '   ' }).search).toBeUndefined();
     expect(parseTodoListQuery({ page: ['4', '9'] }).page).toBe(4);
+  });
+
+  it('caps an over-long hand-edited search at the server max instead of letting it become a BAD_REQUEST', () => {
+    const overLong = 'x'.repeat(TODO_TITLE_MAX + 50);
+    expect(parseTodoListQuery({ search: overLong }).search).toBe(overLong.slice(0, TODO_TITLE_MAX));
+    expect(parseTodoListQuery({ search: overLong }).search).toHaveLength(TODO_TITLE_MAX);
+  });
+
+  it('treats a page that is not a safe integer (e.g. 1e20) as page 1', () => {
+    expect(parseTodoListQuery({ page: '1e20' })).toMatchObject({ page: 1 });
+    expect(parseTodoListQuery({ page: 'Infinity' })).toMatchObject({ page: 1 });
+    expect(parseTodoListQuery({ page: String(Number.MAX_SAFE_INTEGER + 10) })).toMatchObject({ page: 1 });
   });
 });
 

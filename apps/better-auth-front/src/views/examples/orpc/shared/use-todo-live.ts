@@ -17,7 +17,7 @@ const MAX_ENTRIES = 50;
  */
 export function useTodoLive(onEvent?: (event: TodoEvent) => void) {
   const entries = ref<Array<TodoLogEntry>>([]);
-  const status = ref<'connecting' | 'open' | 'error'>('connecting');
+  const status = ref<'closed' | 'connecting' | 'error' | 'open'>('connecting');
   const controller = new AbortController();
 
   async function run() {
@@ -28,6 +28,13 @@ export function useTodoLive(onEvent?: (event: TodoEvent) => void) {
       for await (const event of stream) {
         entries.value = [{ at: new Date(), event }, ...entries.value].slice(0, MAX_ENTRIES);
         onEvent?.(event);
+      }
+
+      // The iterator ended without throwing (server closed the stream
+      // cleanly) — `LIVE_RETRY` only reconnects on error, so reflect that
+      // there is no live connection anymore instead of staying 'open'.
+      if (!controller.signal.aborted) {
+        status.value = 'closed';
       }
     } catch (error) {
       if (!controller.signal.aborted) {

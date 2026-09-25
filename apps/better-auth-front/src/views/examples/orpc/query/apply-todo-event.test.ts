@@ -12,7 +12,11 @@ function todo(id: string, title: string): Todo {
   return { id, title, completed: false, createdBy: null, createdAt: now, updatedAt: now };
 }
 
-function seed(queryClient: QueryClient, input: { page: number; pageSize: number }, items: Array<Todo>) {
+function seed(
+  queryClient: QueryClient,
+  input: { page: number; pageSize: number; completed?: boolean; search?: string },
+  items: Array<Todo>,
+) {
   const key = utils.todo.list.queryKey({ input });
   const page: TodoPage = { items, page: input.page, pageSize: input.pageSize, total: 3, totalPages: 2 };
   queryClient.setQueryData(key, page);
@@ -20,17 +24,28 @@ function seed(queryClient: QueryClient, input: { page: number; pageSize: number 
 }
 
 describe('applyTodoEvent', () => {
-  it('patches an updated todo in every cached list page without refetching', () => {
+  it('patches an updated todo in every cached list page without refetching (unfiltered lists)', () => {
     const queryClient = new QueryClient();
     const first = seed(queryClient, { page: 1, pageSize: 2 }, [todo('a', 'A'), todo('b', 'B')]);
     const second = seed(queryClient, { page: 2, pageSize: 2 }, [todo('c', 'C')]);
-    const invalidate = vi.spyOn(queryClient, 'invalidateQueries');
 
     applyTodoEvent(queryClient, utils, { type: 'updated', todo: { ...todo('b', 'B!'), completed: true } });
 
     expect(queryClient.getQueryData<TodoPage>(first)?.items[1]).toMatchObject({ title: 'B!', completed: true });
     expect(queryClient.getQueryData<TodoPage>(second)?.items[0]?.title).toBe('C');
-    expect(invalidate).not.toHaveBeenCalled();
+    expect(queryClient.getQueryState(first)?.isInvalidated).toBe(false);
+    expect(queryClient.getQueryState(second)?.isInvalidated).toBe(false);
+  });
+
+  it('invalidates a filtered list (search or completed) on update, since the patched row may no longer match', () => {
+    const queryClient = new QueryClient();
+    const searchKey = seed(queryClient, { page: 1, pageSize: 2, search: 'b' }, [todo('b', 'B')]);
+    const completedKey = seed(queryClient, { page: 1, pageSize: 2, completed: false }, [todo('b', 'B')]);
+
+    applyTodoEvent(queryClient, utils, { type: 'updated', todo: { ...todo('b', 'B!'), completed: true } });
+
+    expect(queryClient.getQueryState(searchKey)?.isInvalidated).toBe(true);
+    expect(queryClient.getQueryState(completedKey)?.isInvalidated).toBe(true);
   });
 
   it('invalidates list queries when rows are created or removed', () => {

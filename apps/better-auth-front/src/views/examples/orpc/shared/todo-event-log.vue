@@ -3,10 +3,10 @@ import type { TodoLogEntry } from './use-todo-live';
 
 defineProps<{
   entries: Array<TodoLogEntry>;
-  status: 'connecting' | 'open' | 'error';
+  status: 'closed' | 'connecting' | 'error' | 'open';
 }>();
 
-const STATUS_LABEL = { connecting: 'Connecting…', open: 'Live', error: 'Disconnected' } as const;
+const STATUS_LABEL = { closed: 'Disconnected', connecting: 'Connecting…', error: 'Disconnected', open: 'Live' } as const;
 const timeFormat = new Intl.DateTimeFormat(undefined, { timeStyle: 'medium' });
 
 function describe(entry: TodoLogEntry): string {
@@ -23,7 +23,7 @@ function describe(entry: TodoLogEntry): string {
     >
       <span
         class="rounded-full size-2"
-        :class="{ 'bg-success': status === 'open', 'bg-warning': status === 'connecting', 'bg-error': status === 'error' }"
+        :class="{ 'bg-success': status === 'open', 'bg-warning': status === 'connecting', 'bg-error': status === 'error' || status === 'closed' }"
       />
       {{ STATUS_LABEL[status] }}
     </div>

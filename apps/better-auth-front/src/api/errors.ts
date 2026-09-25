@@ -21,6 +21,7 @@ const HTTP_STATUS_MESSAGE_KEYS: Record<number, string> = {
   404: 'ui.fallback.http.notFound',
   408: 'ui.fallback.http.requestTimeout',
   500: 'ui.fallback.http.internalServerError',
+  503: 'ui.fallback.http.serviceUnavailable',
 };
 
 /** oRPC error code → i18n fallback, mirroring the HTTP status map above. */
@@ -31,6 +32,7 @@ const ORPC_CODE_MESSAGE_KEYS: Record<string, string> = {
   NOT_FOUND: 'ui.fallback.http.notFound',
   TIMEOUT: 'ui.fallback.http.requestTimeout',
   INTERNAL_SERVER_ERROR: 'ui.fallback.http.internalServerError',
+  SERVICE_UNAVAILABLE: 'ui.fallback.http.serviceUnavailable',
 };
 
 function getORPCErrorMessage(error: ORPCError<string, unknown>): string {

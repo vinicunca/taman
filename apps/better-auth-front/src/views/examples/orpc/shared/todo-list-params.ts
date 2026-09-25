@@ -1,4 +1,5 @@
 import type { LocationQuery, LocationQueryValue } from 'vue-router';
+import { TODO_TITLE_MAX } from '@vinicunca/taman-api-contract';
 
 export const PAGE_SIZES = [10, 20, 50] as const;
 const DEFAULT_PAGE_SIZE = PAGE_SIZES[0];
@@ -36,9 +37,14 @@ export function parseTodoListQuery(query: LocationQuery): TodoListParams {
   const completed = first(query.completed);
 
   return {
-    page: Number.isFinite(page) && page >= 1 ? page : 1,
+    // Anything that isn't a safe integer (e.g. `1e20`, `Infinity`, `NaN`) would
+    // still pass a naive `>= 1` check but fail the server's schema — treat it
+    // the same as any other unparsable page.
+    page: Number.isSafeInteger(page) && page >= 1 ? page : 1,
     pageSize: (PAGE_SIZES as ReadonlyArray<number>).includes(pageSize) ? pageSize : DEFAULT_PAGE_SIZE,
-    search: search || undefined,
+    // Cap at the server's max instead of letting an over-long hand-edited URL
+    // reach the API as a BAD_REQUEST.
+    search: search ? search.slice(0, TODO_TITLE_MAX) : undefined,
     completed: parseCompleted(completed),
   };
 }
