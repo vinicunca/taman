@@ -1,6 +1,7 @@
 // @vitest-environment node
-import { QueryClient } from '@tanstack/query-core';
-import { describe, expect, it } from 'vitest';
+import type { HttpError } from './http/errors';
+import { QueryClient, QueryObserver } from '@tanstack/query-core';
+import { describe, expect, expectTypeOf, it } from 'vitest';
 import { createHttpQueryUtils } from './http-query';
 import { createHttpClient } from './http/client';
 import { isHttpError } from './http/errors';
@@ -18,7 +19,7 @@ function setup() {
       return respondAfter(request, 500);
     },
   });
-  const http = createHttpClient({ baseURL: 'http://api.test', fetch: fake.fetch, retry: false });
+  const http = createHttpClient({ baseURL: 'http://api.test', fetch: fake.fetch, retry: false, credentials: 'include' });
   return { api: createHttpQueryUtils(http, { key: ['ext'] }), calls: fake.calls, client: new QueryClient(), network };
 }
 
@@ -44,6 +45,20 @@ describe('createHttpQueryUtils', () => {
     const { api } = setup();
     expect(api.get('/items').queryOptions({ query: new URLSearchParams('a=1') }).queryKey)
       .toEqual(['ext', 'GET', '/items', { query: 'a=1' }]);
+  });
+
+  it('does not forward an explicit undefined request option, so the client default still applies', async () => {
+    const { api, client, calls } = setup();
+    await client.fetchQuery(api.get('/items').queryOptions({ credentials: undefined }));
+    expect(calls.at(-1)!.credentials).toBe('include');
+  });
+
+  it('types the query error as HttpError', () => {
+    const { api, client } = setup();
+    const options = api.get<{ search: string }>('/items').queryOptions();
+    const observer = new QueryObserver(client, options);
+    expectTypeOf(observer.getCurrentResult().error).toEqualTypeOf<HttpError | null>();
+    observer.destroy();
   });
 
   it('aborts the network request when the query is cancelled', async () => {

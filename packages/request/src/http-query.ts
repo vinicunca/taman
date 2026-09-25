@@ -31,6 +31,12 @@ export interface HttpQueryOptionsBase<TData> {
   queryKey: QueryKey;
   queryFn: QueryFunction<TData>;
   enabled?: boolean;
+  /**
+   * Never set at runtime — a type-only anchor (the way oRPC's utils do it)
+   * so `useQuery(api.get(path).queryOptions())` infers its `error` as
+   * `HttpError` instead of TanStack's default `Error`.
+   */
+  throwOnError?: (error: HttpError) => boolean;
 }
 
 /** Options accepted by `post(path).mutationOptions()` and friends. */
@@ -73,7 +79,11 @@ function splitOptions(options: object): [HttpQueryRequestOptions, Record<string,
   const rest = { ...options } as Record<string, unknown>;
   for (const key of REQUEST_OPTION_KEYS) {
     if (key in rest) {
-      request[key] = rest[key];
+      // An explicit `undefined` (e.g. from a spread) must not override the
+      // client's default — only forward keys that carry a real value.
+      if (rest[key] !== undefined) {
+        request[key] = rest[key];
+      }
       Reflect.deleteProperty(rest, key);
     }
   }
