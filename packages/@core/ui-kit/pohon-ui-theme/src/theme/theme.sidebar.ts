@@ -1,32 +1,35 @@
 // @unocss-include
-
-import type { PThemeSidebar } from 'pohon-ui';
-
-export const sidebar = {
+export const themeSidebar = {
   slots: {
-    root: 'peer [--sidebar-width:16rem] [--sidebar-width-icon:4rem]',
-    gap: 'relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear',
-    container: 'fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear lg:flex',
-    inner: 'flex size-full flex-col overflow-hidden divide-y divide-divide',
-    header: 'flex items-center gap-1.5 overflow-hidden px-4 min-h-$ui-header-height',
-    wrapper: 'min-w-0 flex-1',
+    root: 'peer [--sidebar-width-icon:4rem] [--sidebar-width:16rem]',
+    gap: 'bg-transparent w-$sidebar-width relative',
+    container: 'w-$sidebar-width hidden inset-y-0 fixed z-10 h-svh lg:flex',
+    inner: 'flex flex-col size-full overflow-hidden divide-divide divide-y',
+    header: 'px-4 flex gap-1.5 min-h-$ui-header-height items-center overflow-hidden',
+    wrapper: 'flex-1 min-w-0',
     title: 'color-text-highlighted font-600 truncate',
-    description: 'color-text-muted text-sm truncate',
-    actions: 'flex items-center gap-1.5 shrink-0',
+    description: 'text-sm color-text-muted truncate',
+    actions: 'flex shrink-0 gap-1.5 items-center',
     close: '',
-    body: 'flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto p-4',
-    footer: 'flex items-center gap-1.5 overflow-hidden p-4',
-    rail: 'absolute inset-y-0 z-20 hidden w-4 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-px lg:flex hover:after:bg-border-accented after:transition-colors',
+    body: 'p-4 flex flex-1 flex-col gap-4 min-h-0 overflow-y-auto',
+    footer: 'p-4 flex gap-1.5 items-center overflow-hidden',
+    rail: 'w-4 hidden inset-y-0 absolute z-20 lg:flex after:(w-px content-empty transition-colors inset-y-0 left-1/2 absolute) hover:after:bg-$ui-border-accented',
   },
   variants: {
+    transition: {
+      true: {
+        gap: 'transition-[width]-280 ease-out motion-reduce:transition-none',
+        container: 'duration-280 ease-out [transition-property:inset-inline-start,inset-inline-end,width] motion-reduce:transition-none',
+      },
+    },
     side: {
       left: {
-        container: 'left-0 border-e border-border',
-        rail: 'end-0 translate-x-1/2',
+        container: 'border-e border-border start-0',
+        rail: 'translate-x-1/2 end-0 rtl:-translate-x-1/2',
       },
       right: {
-        container: 'right-0 border-s border-border',
-        rail: '-start-px -translate-x-1/2',
+        container: 'border-s border-border end-0',
+        rail: '-translate-x-1/2 rtl:translate-x-1/2 -start-px',
       },
     },
     collapsible: {
@@ -36,13 +39,13 @@ export const sidebar = {
       },
       icon: {
         root: 'group/sidebar hidden lg:block',
-        gap: 'data-[state=collapsed]:w-(--sidebar-width-icon)',
-        container: 'data-[state=collapsed]:w-(--sidebar-width-icon)',
+        gap: 'data-[state=collapsed]:w-$sidebar-width-icon',
+        container: 'data-[state=collapsed]:w-$sidebar-width-icon',
         actions: 'group-data-[state=collapsed]/sidebar:hidden',
         body: 'group-data-[state=collapsed]/sidebar:overflow-hidden',
       },
       none: {
-        root: 'h-full w-(--sidebar-width)',
+        root: 'h-full w-$sidebar-width',
       },
     },
     variant: {
@@ -64,14 +67,14 @@ export const sidebar = {
       side: 'left',
       collapsible: ['offcanvas', 'icon'],
       class: {
-        rail: 'cursor-w-resize data-[state=collapsed]:cursor-e-resize',
+        rail: 'cursor-w-resize rtl:cursor-e-resize data-[state=collapsed]:cursor-e-resize data-[state=collapsed]:rtl:cursor-w-resize',
       },
     },
     {
       side: 'right',
       collapsible: ['offcanvas', 'icon'],
       class: {
-        rail: 'cursor-e-resize data-[state=collapsed]:cursor-w-resize',
+        rail: 'cursor-e-resize rtl:cursor-w-resize data-[state=collapsed]:cursor-w-resize data-[state=collapsed]:rtl:cursor-e-resize',
       },
     },
     {
@@ -92,14 +95,14 @@ export const sidebar = {
       side: 'left',
       collapsible: 'offcanvas',
       class: {
-        container: 'data-[state=collapsed]:-left-(--sidebar-width)',
+        container: 'data-[state=collapsed]:-start-$sidebar-width',
       },
     },
     {
       side: 'right',
       collapsible: 'offcanvas',
       class: {
-        container: 'data-[state=collapsed]:-right-(--sidebar-width)',
+        container: 'data-[state=collapsed]:-end-$sidebar-width',
       },
     },
     {
@@ -139,4 +142,4 @@ export const sidebar = {
       },
     },
   ],
-} satisfies PThemeSidebar;
+};

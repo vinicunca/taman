@@ -1,42 +1,41 @@
-// @unocss-include
-
 import type { PThemeEmpty } from 'pohon-ui';
 
-export const empty = {
+// @unocss-include
+export const themeEmpty = {
   slots: {
-    root: 'relative flex flex-col items-center justify-center gap-4 rounded-lg p-4 sm:p-6 lg:p-8 min-w-0',
-    header: 'flex flex-col items-center gap-2 max-w-sm text-center',
-    avatar: 'shrink-0 mb-2',
-    title: 'color-text-highlighted text-pretty font-500',
-    description: 'text-balance text-center',
-    body: 'flex flex-col items-center gap-4 max-w-sm',
-    actions: 'flex flex-wrap justify-center gap-2 shrink-0',
-    footer: 'flex flex-col items-center gap-2 max-w-sm',
+    root: 'p-4 rounded-lg flex flex-col gap-4 min-w-0 items-center justify-center relative lg:p-8 sm:p-6',
+    header: 'text-center flex flex-col gap-2 max-w-sm items-center',
+    avatar: 'mb-2 shrink-0',
+    title: 'color-text-highlighted font-500 text-pretty',
+    description: 'text-center text-balance',
+    body: 'flex flex-col gap-4 max-w-sm items-center',
+    actions: 'flex shrink-0 flex-wrap gap-2 justify-center',
+    footer: 'flex flex-col gap-2 max-w-sm items-center',
   },
   variants: {
     size: {
       xs: {
-        avatar: 'size-8 text-base',
+        avatar: 'text-base pohon:size-8',
         title: 'text-sm',
         description: 'text-xs',
       },
       sm: {
-        avatar: 'size-9 text-lg',
+        avatar: 'text-lg pohon:size-9',
         title: 'text-sm',
         description: 'text-xs',
       },
       md: {
-        avatar: 'size-10 text-xl',
+        avatar: 'text-xl pohon:size-10',
         title: 'text-base',
         description: 'text-sm',
       },
       lg: {
-        avatar: 'size-11 text-[22px]',
+        avatar: 'text-[22px] pohon:size-11',
         title: 'text-base',
         description: 'text-sm',
       },
       xl: {
-        avatar: 'size-12 text-2xl',
+        avatar: 'text-2xl pohon:size-12',
         title: 'text-lg',
         description: 'text-base',
       },
@@ -61,6 +60,11 @@ export const empty = {
       },
       naked: {
         description: 'color-text-muted',
+      },
+    },
+    loading: {
+      true: {
+        avatar: '[&>[data-slot=icon]]:animate-spin',
       },
     },
   },

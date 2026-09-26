@@ -1,12 +1,13 @@
 // @unocss-include
+
 import type { PThemeSeparator } from 'pohon-ui';
 import { POHON_THEME_BRANDS } from '../constants.ts';
 
-export const separator = {
+export const themeSeparator = {
   slots: {
-    root: 'flex items-center align-center text-center',
+    root: 'text-center flex items-center items-center',
     border: '',
-    container: 'font-500 color-text flex',
+    container: 'color-text font-500 flex',
     icon: 'shrink-0 size-5',
     avatar: 'shrink-0',
     avatarSize: '2xs',
@@ -19,12 +20,12 @@ export const separator = {
     },
     orientation: {
       horizontal: {
-        root: 'w-full flex-row',
+        root: 'flex-row w-full',
         border: 'w-full',
         container: 'whitespace-nowrap',
       },
       vertical: {
-        root: 'h-full flex-col',
+        root: 'flex-col h-full',
         border: 'h-full',
         container: '',
       },
@@ -92,22 +93,22 @@ export const separator = {
     {
       orientation: 'horizontal',
       size: 'sm',
-      class: { border: 'border-t-[2px]' },
+      class: { border: 'border-t-2' },
     },
     {
       orientation: 'horizontal',
       size: 'md',
-      class: { border: 'border-t-[3px]' },
+      class: { border: 'border-t-3' },
     },
     {
       orientation: 'horizontal',
       size: 'lg',
-      class: { border: 'border-t-[4px]' },
+      class: { border: 'border-t-4' },
     },
     {
       orientation: 'horizontal',
       size: 'xl',
-      class: { border: 'border-t-[5px]' },
+      class: { border: 'border-t-5' },
     },
     {
       orientation: 'vertical',
@@ -117,22 +118,22 @@ export const separator = {
     {
       orientation: 'vertical',
       size: 'sm',
-      class: { border: 'border-s-[2px]' },
+      class: { border: 'border-s-2' },
     },
     {
       orientation: 'vertical',
       size: 'md',
-      class: { border: 'border-s-[3px]' },
+      class: { border: 'border-s-3' },
     },
     {
       orientation: 'vertical',
       size: 'lg',
-      class: { border: 'border-s-[4px]' },
+      class: { border: 'border-s-4' },
     },
     {
       orientation: 'vertical',
       size: 'xl',
-      class: { border: 'border-s-[5px]' },
+      class: { border: 'border-s-5' },
     },
   ],
 } satisfies PThemeSeparator;

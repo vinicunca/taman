@@ -1,10 +1,11 @@
 // @unocss-include
-import type { PThemeUser } from 'pohon-ui';
+import type {
+  PThemeUser,
+} from 'pohon-ui';
 
-export const user = {
+export const themeUser = {
   slots: {
-    root: 'relative group/user',
-    wrapper: '',
+    root: 'group/user relative',
     name: 'font-500',
     description: 'color-text-muted',
     avatar: 'shrink-0',
@@ -20,31 +21,31 @@ export const user = {
     },
     to: {
       true: {
-        name: 'color-text peer-hover:color-text-highlighted peer-focus-visible:color-text-highlighted transition-colors',
-        description: 'peer-hover:color-text-toned peer-focus-visible:color-text-toned transition-colors',
-        avatar: 'transform transition-transform-200 group-hover/user:scale-115 group-has-focus-visible/user:scale-115',
+        root: 'outline-primary/25 rounded-md transition has-[>a:focus-visible]:outline-3',
+        name: 'color-text transition-colors peer-focus-visible:color-text-highlighted peer-hover:color-text-highlighted',
+        description: 'transition-colors peer-focus-visible:color-text-toned peer-hover:color-text-toned',
+        avatar: 'transform transition-transform ease-out group-has-focus-visible/user:scale-115 group-hover/user:scale-115 motion-reduce:transition-none',
       },
       false: {
         name: 'color-text-highlighted',
-        description: '',
       },
     },
     size: {
       '3xs': {
         root: 'gap-1',
-        wrapper: 'flex items-center gap-1',
+        wrapper: 'flex gap-1 items-center',
         name: 'text-xs',
         description: 'text-xs',
       },
       '2xs': {
         root: 'gap-1.5',
-        wrapper: 'flex items-center gap-1.5',
+        wrapper: 'flex gap-1.5 items-center',
         name: 'text-xs',
         description: 'text-xs',
       },
       'xs': {
         root: 'gap-1.5',
-        wrapper: 'flex items-center gap-1.5',
+        wrapper: 'flex gap-1.5 items-center',
         name: 'text-xs',
         description: 'text-xs',
       },

@@ -4,9 +4,9 @@ import type { PThemeButton } from 'pohon-ui';
 import { POHON_THEME_BRANDS } from '../constants.ts';
 import { fieldGroupVariant } from './theme.field-group.ts';
 
-export const button = {
+export const themeButton = {
   slots: {
-    base: 'rounded-md font-500 inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors',
+    base: 'font-500 rounded-md inline-flex transition-colors items-center aria-disabled:(opacity-75 cursor-not-allowed) disabled:(opacity-75 cursor-not-allowed)',
     label: 'truncate',
     leadingIcon: 'shrink-0',
     leadingAvatar: 'shrink-0',
@@ -30,31 +30,31 @@ export const button = {
     },
     size: {
       xs: {
-        base: 'px-2 py-1 text-xs gap-1',
+        base: 'text-xs gap-1',
         leadingIcon: 'size-4',
         leadingAvatarSize: '3xs',
         trailingIcon: 'size-4',
       },
       sm: {
-        base: 'px-2.5 py-1.5 text-xs gap-1.5',
+        base: 'text-xs gap-1.5',
         leadingIcon: 'size-4',
         leadingAvatarSize: '3xs',
         trailingIcon: 'size-4',
       },
       md: {
-        base: 'px-2.5 py-1.5 text-sm gap-1.5',
+        base: 'text-sm gap-1.5',
         leadingIcon: 'size-5',
         leadingAvatarSize: '2xs',
         trailingIcon: 'size-5',
       },
       lg: {
-        base: 'px-3 py-2 text-sm gap-2',
+        base: 'text-sm gap-2',
         leadingIcon: 'size-5',
         leadingAvatarSize: '2xs',
         trailingIcon: 'size-5',
       },
       xl: {
-        base: 'px-3 py-2 text-base gap-2',
+        base: 'text-base gap-2',
         leadingIcon: 'size-6',
         leadingAvatarSize: 'xs',
         trailingIcon: 'size-6',
@@ -91,7 +91,7 @@ export const button = {
     ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'solid',
-      class: `color-text-inverted bg-${color} hover:bg-${color}/75 active:bg-${color}/75 disabled:bg-${color} aria-disabled:bg-${color} outline-${color}/25 focus-visible:outline-3`,
+      class: `color-${color}-foreground bg-${color} hover:bg-${color}/75 active:bg-${color}/75 disabled:bg-${color} aria-disabled:bg-${color} outline-${color}/25 focus-visible:outline-3`,
     })),
     ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
@@ -150,28 +150,53 @@ export const button = {
     },
     {
       size: 'xs',
+      square: false,
+      class: 'px-2 py-1',
+    },
+    {
+      size: 'xs',
       square: true,
-      class: 'pohon:p-1',
+      class: 'p-1',
+    },
+    {
+      size: 'sm',
+      square: false,
+      class: 'px-2.5 py-1.5',
     },
     {
       size: 'sm',
       square: true,
-      class: 'pohon:p-1.5',
+      class: 'p-1.5',
+    },
+    {
+      size: 'md',
+      square: false,
+      class: 'px-2.5 py-1.5',
     },
     {
       size: 'md',
       square: true,
-      class: 'pohon:p-1.5',
+      class: 'p-1.5',
+    },
+    {
+      size: 'lg',
+      square: false,
+      class: 'px-3 py-2',
     },
     {
       size: 'lg',
       square: true,
-      class: 'pohon:p-2',
+      class: 'p-2',
+    },
+    {
+      size: 'xl',
+      square: false,
+      class: 'px-3 py-2',
     },
     {
       size: 'xl',
       square: true,
-      class: 'pohon:p-2',
+      class: 'p-2',
     },
     {
       loading: true,

@@ -1,17 +1,16 @@
-// @unocss-include
-
 import type { PThemeScrollArea } from 'pohon-ui';
 
-export const scrollArea = {
+// @unocss-include
+export const themeScrollArea = {
   slots: {
-    root: 'relative outline-primary/25 focus-visible:outline-3',
-    viewport: 'relative flex',
+    root: 'outline-primary/25 relative focus-visible:outline-3',
+    viewport: 'flex relative',
     item: '',
   },
   variants: {
     orientation: {
       vertical: {
-        root: 'overflow-y-auto overflow-x-hidden',
+        root: 'overflow-x-hidden overflow-y-auto',
         viewport: 'flex-col',
         item: '',
       },
@@ -19,6 +18,11 @@ export const scrollArea = {
         root: 'overflow-x-auto overflow-y-hidden',
         viewport: 'flex-row',
         item: '',
+      },
+    },
+    externalScroll: {
+      true: {
+        root: 'overflow-visible',
       },
     },
   },

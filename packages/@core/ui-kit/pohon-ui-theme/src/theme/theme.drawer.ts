@@ -1,18 +1,21 @@
 // @unocss-include
-
 import type { PThemeDrawer } from 'pohon-ui';
 
-export const drawer = {
+export const themeDrawer = {
   slots: {
-    overlay: 'fixed inset-0 bg-background-elevated/75',
-    content: 'fixed bg-background ring ring-ring flex focus:outline-none',
-    handle: 'shrink-0 !bg-background-accented transition-opacity',
-    container: 'w-full flex flex-col gap-4 p-4 overflow-y-auto',
-    header: '',
+    overlay: 'bg-background-elevated/75 inset-0 fixed',
+    content: 'bg-background flex ring ring-ring fixed focus:outline-none',
+    // TODO: remove the important when vaul is replaced by the built in drawer
+    handle: 'shrink-0 transition-opacity ease-out !bg-background-accented',
+    container: 'p-4 flex flex-col gap-4 w-full overflow-y-auto',
+    header: 'flex gap-1.5 min-h-8 items-center',
+    wrapper: 'flex-1 min-w-0',
     title: 'color-text-highlighted font-600',
-    description: 'mt-1 color-text-muted text-sm',
+    description: 'text-sm color-text-muted mt-1',
+    actions: 'ms-auto flex shrink-0 gap-1.5 items-center',
     body: 'flex-1',
     footer: 'flex flex-col gap-1.5',
+    close: '',
   },
   variants: {
     direction: {
@@ -22,6 +25,7 @@ export const drawer = {
       },
       right: {
         content: 'flex-row rtl:flex-row-reverse',
+        // TODO: remove the important when vaul is replaced by the built in drawer
         handle: '!ml-4',
       },
       bottom: {
@@ -30,12 +34,13 @@ export const drawer = {
       },
       left: {
         content: 'flex-row-reverse rtl:flex-row',
+        // TODO: remove the important when vaul is replaced by the built in drawer
         handle: '!mr-4',
       },
     },
     inset: {
       true: {
-        content: 'rounded-lg after:hidden overflow-hidden [--initial-transform:calc(100%+1.5rem)]',
+        content: 'rounded-lg [--initial-transform:calc(100%+1.5rem)] overflow-hidden after:hidden',
       },
     },
     snapPoints: {
@@ -47,7 +52,8 @@ export const drawer = {
       direction: ['top', 'bottom'],
       class: {
         content: 'h-auto max-h-[96%]',
-        handle: '!w-12 !h-1.5 mx-auto',
+        // TODO: remove the important when vaul is replaced by the built in drawer
+        handle: 'mx-auto !h-1.5 !w-12',
       },
     },
     {
@@ -61,7 +67,8 @@ export const drawer = {
       direction: ['right', 'left'],
       class: {
         content: 'w-auto max-w-[calc(100%-2rem)]',
-        handle: '!h-12 !w-1.5 mt-auto mb-auto',
+        // TODO: remove the important when vaul is replaced by the built in drawer
+        handle: '!h-12 !w-1.5 my-auto',
       },
     },
     {

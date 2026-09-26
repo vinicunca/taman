@@ -2,6 +2,6 @@
 
 import type { PThemeForm } from 'pohon-ui';
 
-export const form = {
+export const themeForm = {
   base: '',
 } satisfies PThemeForm;

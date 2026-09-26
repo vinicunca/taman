@@ -3,35 +3,36 @@
 import type { PThemePinInput } from 'pohon-ui';
 import { POHON_THEME_BRANDS } from '../constants.ts';
 
-export const pinInput = {
+export const themePinInput = {
   slots: {
-    root: 'relative inline-flex items-center gap-1.5',
-    base: 'rounded-md border-0 placeholder:color-text-dimmed text-center focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors',
+    root: 'inline-flex gap-1.5 items-center relative',
+    base: 'text-center border-0 rounded-md transition-colors placeholder:color-text-dimmed disabled:(opacity-75 cursor-not-allowed)',
+    separator: 'color-text-dimmed flex items-center justify-center',
   },
   variants: {
     size: {
       xs: {
-        base: 'size-6 text-sm/4',
+        base: 'text-sm/4 size-6',
       },
       sm: {
-        base: 'size-7 text-sm/4',
+        base: 'text-sm/4 size-7',
       },
       md: {
-        base: 'size-8 text-base/5',
+        base: 'text-base/5 size-8',
       },
       lg: {
-        base: 'size-9 text-base/5',
+        base: 'text-base/5 size-9',
       },
       xl: {
-        base: 'size-10 text-base',
+        base: 'text-base size-10',
       },
     },
     variant: {
-      outline: 'color-text-highlighted bg-background ring ring-inset ring-ring-accented',
-      soft: 'color-text-highlighted bg-background-elevated/50 hover:bg-background-elevated focus:bg-background-elevated disabled:bg-background-elevated/50',
-      subtle: 'color-text-highlighted bg-background-elevated ring ring-inset ring-ring-accented',
-      ghost: 'color-text-highlighted bg-transparent hover:bg-background-elevated focus:bg-background-elevated disabled:bg-transparent dark:disabled:bg-transparent',
-      none: 'color-text-highlighted bg-transparent',
+      outline: 'color-text-highlighted bg-background ring ring-ring-accented ring-inset',
+      soft: 'color-text-highlighted bg-background-elevated/50 disabled:bg-background-elevated/50 focus:bg-background-elevated hover:bg-background-elevated',
+      subtle: 'color-text-highlighted bg-background-elevated ring ring-ring-accented ring-inset',
+      ghost: 'color-text-highlighted bg-transparent disabled:bg-transparent focus:bg-background-elevated hover:bg-background-elevated dark:disabled:bg-transparent',
+      none: 'color-text-highlighted bg-transparent focus:outline-none',
     },
     color: {
       ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, ''])),
@@ -48,17 +49,27 @@ export const pinInput = {
     ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: ['outline', 'subtle'],
-      class: `focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-${color}`,
+      class: `outline-${color}/25 focus-visible:outline-3 focus-visible:ring-${color}`,
+    })),
+    ...POHON_THEME_BRANDS.map((color: string) => ({
+      color,
+      variant: ['soft', 'ghost'],
+      class: `outline-${color}/25 focus-visible:outline-3`,
     })),
     ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       highlight: true,
-      class: `ring ring-inset ring-${color}`,
+      class: `ring ring-inset pohon:ring-${color}`,
     })),
     {
       color: 'neutral',
       variant: ['outline', 'subtle'],
-      class: 'focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring-inverted',
+      class: 'outline-outline-inverted/25 focus-visible:outline-3 focus-visible:ring-ring-inverted',
+    },
+    {
+      color: 'neutral',
+      variant: ['soft', 'ghost'],
+      class: 'outline-outline-inverted/25 focus-visible:outline-3',
     },
     {
       color: 'neutral',

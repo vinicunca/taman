@@ -2,19 +2,19 @@
 
 import type { PThemeHeader } from 'pohon-ui';
 
-export const header = {
+export const themeHeader = {
   slots: {
-    root: 'bg-background/75 backdrop-blur border-b border-border h-$ui-header-height sticky top-0 z-50',
-    container: 'flex items-center justify-between gap-3 h-full',
-    left: 'lg:flex-1 flex items-center gap-1.5',
+    root: 'border-b border-border bg-background/75 h-$ui-header-height top-0 sticky z-50 backdrop-blur-sm',
+    container: 'flex gap-3 h-full items-center justify-between',
+    left: 'flex gap-1.5 items-center lg:flex-1',
     center: 'hidden lg:flex',
-    right: 'flex items-center justify-end lg:flex-1 gap-1.5',
-    title: 'shrink-0 font-bold text-xl color-text-highlighted flex items-end gap-1.5',
+    right: 'flex gap-1.5 items-center justify-end lg:flex-1',
+    title: 'text-xl color-text-highlighted font-700 flex shrink-0 gap-1.5 items-end',
     toggle: 'lg:hidden',
     content: 'lg:hidden',
     overlay: 'lg:hidden',
-    header: 'px-4 sm:px-6 h-$ui-header-height shrink-0 flex items-center justify-between gap-3',
-    body: 'p-4 sm:p-6 overflow-y-auto',
+    header: 'px-4 flex shrink-0 gap-3 h-$ui-header-height items-center justify-between sm:px-6',
+    body: 'p-4 overflow-y-auto sm:p-6',
   },
   variants: {
     toggleSide: {

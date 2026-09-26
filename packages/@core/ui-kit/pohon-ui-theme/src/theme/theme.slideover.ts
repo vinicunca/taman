@@ -1,17 +1,17 @@
 // @unocss-include
 import type { PThemeSlideover } from 'pohon-ui';
 
-export const slideover = {
+export const themeSlideover = {
   slots: {
-    overlay: 'fixed inset-0 bg-background-elevated/75',
-    content: 'fixed bg-background divide-y divide-divide sm:ring ring-ring sm:shadow-lg flex flex-col focus:outline-none',
-    header: 'flex items-center gap-1.5 p-4 sm:px-6 min-h-$ui-header-height',
+    overlay: 'bg-background-elevated/75 inset-0 fixed',
+    content: 'bg-background flex flex-col ring-ring fixed divide-divide divide-y focus:outline-none sm:(ring shadow-lg)',
+    header: 'p-4 flex gap-1.5 min-h-$ui-header-height items-center sm:px-6',
     wrapper: '',
-    body: 'flex-1 overflow-y-auto p-4 sm:p-6',
-    footer: 'flex items-center gap-1.5 p-4 sm:px-6',
+    body: 'p-4 flex-1 overflow-y-auto sm:p-6',
+    footer: 'p-4 flex gap-1.5 items-center sm:px-6',
     title: 'color-text-highlighted font-600',
-    description: 'mt-1 color-text-muted text-sm',
-    close: 'absolute top-4 end-4',
+    description: 'text-sm color-text-muted mt-1',
+    close: 'end-4 top-4 absolute',
   },
   variants: {
     side: {
@@ -35,7 +35,7 @@ export const slideover = {
     },
     transition: {
       true: {
-        overlay: 'data-[state=open]:animate-[fade-in_200ms_ease-out] data-[state=closed]:animate-[fade-out_200ms_ease-in]',
+        overlay: 'data-[state=closed]:(animate-out fade-out-0) data-[state=open]:(animate-in fade-in-0)',
       },
     },
   },
@@ -100,28 +100,28 @@ export const slideover = {
       transition: true,
       side: 'top',
       class: {
-        content: 'data-[state=open]:animate-[slide-in-from-top_200ms_ease-in-out] data-[state=closed]:animate-[slide-out-to-top_200ms_ease-in-out]',
+        content: 'data-[state=open]:(animate-in slide-in-from-top) data-[state=closed]:(animate-out slide-out-to-top)',
       },
     },
     {
       transition: true,
       side: 'right',
       class: {
-        content: 'data-[state=open]:animate-[slide-in-from-right_200ms_ease-in-out] data-[state=closed]:animate-[slide-out-to-right_200ms_ease-in-out]',
+        content: 'data-[state=open]:(animate-in slide-in-from-right) data-[state=closed]:(animate-out slide-out-to-right)',
       },
     },
     {
       transition: true,
       side: 'bottom',
       class: {
-        content: 'data-[state=open]:animate-[slide-in-from-bottom_200ms_ease-in-out] data-[state=closed]:animate-[slide-out-to-bottom_200ms_ease-in-out]',
+        content: 'data-[state=open]:(animate-in slide-in-from-bottom) data-[state=closed]:(animate-out slide-out-to-bottom)',
       },
     },
     {
       transition: true,
       side: 'left',
       class: {
-        content: 'data-[state=open]:animate-[slide-in-from-left_200ms_ease-in-out] data-[state=closed]:animate-[slide-out-to-left_200ms_ease-in-out]',
+        content: 'data-[state=open]:(animate-in slide-in-left) data-[state=closed]:(animate-out slide-out-left)',
       },
     },
   ],

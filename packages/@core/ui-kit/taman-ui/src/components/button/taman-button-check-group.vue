@@ -120,7 +120,7 @@ async function onOptionClick(value: TamanButtonCheckGroupValue) {
         v-if="hasIconSlot"
         #leading="{ ui }"
       >
-        <span :class="ui.leadingIcon({ class: 'inline-flex *:size-full' })">
+        <span :class="ui.leadingIcon?.({ class: 'inline-flex *:size-full' })">
           <slot
             name="icon"
             :checked="isChecked(option.value)"
@@ -130,7 +130,7 @@ async function onOptionClick(value: TamanButtonCheckGroupValue) {
       </template>
 
       <template #default="{ ui }">
-        <span :class="ui.label()">
+        <span :class="ui.label?.()">
           <slot
             name="option"
             :data="option"

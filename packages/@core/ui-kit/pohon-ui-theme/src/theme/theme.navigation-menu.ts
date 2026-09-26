@@ -1,14 +1,15 @@
 // @unocss-include
+
 import type { PThemeNavigationMenu } from 'pohon-ui';
 import { POHON_THEME_BRANDS } from '../constants.ts';
 
-export const navigationMenu = {
+export const themeNavigationMenu = {
   slots: {
-    root: 'relative flex gap-1.5 [&>div]:min-w-0',
-    list: 'isolate min-w-0',
-    label: 'w-full flex items-center gap-1.5 font-600 text-xs/5 color-text-highlighted px-2.5 py-1.5',
+    root: 'flex gap-1.5 relative [&>div]:min-w-0',
+    list: 'min-w-0 isolate',
+    label: 'text-xs/5 color-text-highlighted font-600 px-2.5 py-1.5 flex gap-1.5 w-full items-center',
     item: 'min-w-0',
-    link: 'group relative w-full flex items-center gap-1.5 font-500 text-sm before:(absolute content-empty -z-1 rounded-md) focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-2',
+    link: 'group text-sm font-500 flex gap-1.5 w-full items-center relative focus-visible:outline-none focus:outline-none before:(rounded-md content-empty absolute -z-1) focus-visible:before:outline-3',
     linkLeadingIcon: 'shrink-0 size-5',
     linkLeadingAvatar: 'shrink-0',
     linkLeadingAvatarSize: '2xs',
@@ -16,32 +17,34 @@ export const navigationMenu = {
     linkTrailing: 'group ms-auto inline-flex gap-1.5 items-center',
     linkTrailingBadge: 'shrink-0',
     linkTrailingBadgeSize: 'sm',
-    linkTrailingIcon: 'size-5 transform shrink-0 group-data-[state=open]:rotate-180 transition-transform-200',
+    linkTrailingIcon: 'shrink-0 size-5 transform transition-transform-280 ease-out group-data-[state=open]:rotate-180 motion-reduce:transition-none',
     linkLabel: 'truncate',
-    linkLabelExternalIcon: 'inline-block size-3 align-top color-text-dimmed',
+    linkLabelExternalIcon: 'color-text-dimmed align-top size-3 inline-block',
     childList: 'isolate',
     childLabel: 'text-xs color-text-highlighted',
-    childLink: 'group relative size-full flex items-start text-start text-sm before:(content-empty absolute -z-1 rounded-md) focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-2',
+    childItem: '',
+    childLink: 'group text-sm text-start flex size-full items-start relative focus-visible:outline-none focus:outline-none before:(rounded-md content-empty absolute -z-1) focus-visible:before:outline-3',
     childLinkWrapper: 'min-w-0',
-    childLinkIcon: 'size-5 shrink-0',
+    childLinkIcon: 'shrink-0 size-5',
     childLinkLabel: 'truncate',
-    childLinkLabelExternalIcon: 'inline-block size-3 align-top color-text-dimmed',
+    childLinkLabelExternalIcon: 'color-text-dimmed align-top size-3 inline-block',
     childLinkDescription: 'color-text-muted',
-    separator: 'px-2 h-px bg-border',
-    viewportWrapper: 'absolute top-full left-0 flex w-full',
-    viewport: 'relative overflow-hidden bg-background shadow-lg rounded-md ring ring-ring h-$akar-navigation-menu-viewport-height w-full transition-[width,height,left]-280 origin-[top_center] data-[state=open]:(animate-in zoom-in-90) data-[state=closed]:(animate-out fade-out-0 zoom-out-95) z-1',
-    indicator: 'absolute data-[state=visible]:(animate-in fade-in) data-[state=hidden]:(animate-out fade-out) bottom-0 z-2 w-$akar-navigation-menu-indicator-size translate-x-$akar-navigation-menu-indicator-position flex h-2.5 items-end justify-center overflow-hidden transition-[transform,width]-280',
-    arrow: 'relative top-[50%] size-2.5 rotate-45 border border-border bg-background z-1 rounded-xs',
+    separator: 'px-2 bg-border h-px',
+    viewportWrapper: 'flex w-full start-0 top-full absolute',
+    viewport: 'rounded-md bg-background h-$akar-navigation-menu-viewport-height w-full ring ring-ring shadow-lg origin-[top_center] transition-[width,height,left,right]-280 ease-out relative z-1 overflow-hidden motion-reduce:transition-none data-[state=closed]:(animate-out zoom-out-95) data-[state=open]:(animate-in zoom-in-90)',
+    content: '',
+    indicator: 'flex h-2.5 w-$akar-navigation-menu-indicator-size translate-x-$akar-navigation-menu-indicator-position transition-[transform,width]-280 ease-out items-end bottom-0 left-0 justify-center absolute z-2 overflow-hidden data-[state=hidden]:(opacity-0 animate-out fade-out) motion-reduce:transition-none data-[state=visible]:(animate-in fade-in)',
+    arrow: 'border border-border rounded-xs bg-background size-2.5 rotate-45 top-[50%] relative z-1',
   },
   variants: {
     color: {
       ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
-        link: `focus-visible:before:ring-${color}`,
-        childLink: `focus-visible:before:ring-${color}`,
+        link: `before:outline-${color}/25`,
+        childLink: `before:outline-${color}/25`,
       }])),
       neutral: {
-        link: 'focus-visible:before:ring-ring-inverted',
-        childLink: 'focus-visible:before:ring-ring-inverted',
+        link: 'before:outline-outline-inverted/25',
+        childLink: 'before:outline-outline-inverted/25',
       },
     },
     highlightColor: {
@@ -58,16 +61,16 @@ export const navigationMenu = {
         list: 'flex items-center',
         item: 'py-2',
         link: 'px-2.5 py-1.5 before:inset-x-px before:inset-y-0',
-        childList: 'grid p-2',
+        childList: 'p-2 grid',
         childLink: 'px-3 py-2 gap-2 before:inset-x-px before:inset-y-0',
         childLinkLabel: 'font-500',
-        content: 'absolute top-0 left-0 w-full max-h-[70vh] overflow-y-auto',
+        content: 'max-h-[70vh] w-full start-0 top-0 absolute overflow-y-auto',
       },
       vertical: {
         root: 'flex-col',
-        link: 'flex-row px-2.5 py-1.5 before:inset-y-px before:inset-x-0',
+        link: 'px-2.5 py-1.5 flex-row before:inset-x-0 before:inset-y-px',
         childLabel: 'px-1.5 py-0.5',
-        childLink: 'p-1.5 gap-1.5 before:inset-y-px before:inset-x-0',
+        childLink: 'p-1.5 gap-1.5 before:inset-x-0 before:inset-y-px',
       },
     },
     contentOrientation: {
@@ -76,24 +79,24 @@ export const navigationMenu = {
         content: 'data-[motion^=from-]:(animate-in fade-in) data-[motion^=to-]:(animate-out fade-out) data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52',
       },
       vertical: {
-        viewport: 'sm:w-$akar-navigation-menu-viewport-width left-$akar-navigation-menu-viewport-left rtl:left-auto rtl:right-[calc(100%-var(--akar-navigation-menu-viewport-left)-var(--akar-navigation-menu-viewport-width))]',
+        viewport: 'left-$akar-navigation-menu-viewport-left sm:w-$akar-navigation-menu-viewport-width rtl:left-auto rtl:right-[calc(100%-var(--akar-navigation-menu-viewport-left)-var(--akar-navigation-menu-viewport-width))]',
       },
     },
     active: {
       true: {
-        childLink: 'before:bg-background-elevated color-text-highlighted',
+        childLink: 'color-text-highlighted before:bg-background-elevated',
         childLinkIcon: 'color-text',
       },
       false: {
         link: 'color-text-muted',
         linkLeadingIcon: 'color-text-dimmed',
-        childLink: 'hover:before:bg-background-elevated/50 color-text hover:color-text-highlighted transition-colors before:transition-colors',
-        childLinkIcon: 'color-text-dimmed group-hover:color-text transition-colors',
+        childLink: 'color-text transition-colors hover:color-text-highlighted before:transition-colors hover:before:bg-background-elevated/50',
+        childLinkIcon: 'color-text-dimmed transition-colors group-hover:color-text',
       },
     },
     disabled: {
       true: {
-        link: 'cursor-not-allowed opacity-75',
+        link: 'opacity-75 cursor-not-allowed',
       },
     },
     highlight: {
@@ -119,7 +122,7 @@ export const navigationMenu = {
       contentOrientation: 'vertical',
       class: {
         childList: 'gap-1',
-        content: 'w-60',
+        content: 'pohon:w-60',
       },
     },
     {
@@ -128,7 +131,7 @@ export const navigationMenu = {
       class: {
         childList: 'ms-5 border-s border-border',
         childItem: 'ps-1.5 -ms-px',
-        content: 'data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up overflow-hidden',
+        content: 'data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up data-[state=closed]:overflow-hidden',
       },
     },
     {
@@ -145,7 +148,7 @@ export const navigationMenu = {
       orientation: 'horizontal',
       highlight: true,
       class: {
-        link: 'after:absolute after:-bottom-2 after:inset-x-2.5 after:block after:h-px after:rounded-full after:transition-colors',
+        link: 'after:(rounded-full h-px block content-empty transition-colors inset-x-2.5 absolute -bottom-2)',
       },
     },
     {
@@ -153,7 +156,7 @@ export const navigationMenu = {
       highlight: true,
       level: true,
       class: {
-        link: 'after:absolute after:-start-1.5 after:inset-y-0.5 after:block after:w-px after:rounded-full after:transition-colors',
+        link: 'after:(content-empty rounded-full w-px block transition-colors inset-y-0.5 absolute -start-1.5)',
       },
     },
     {

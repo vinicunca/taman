@@ -1,5 +1,7 @@
 // @unocss-include
-import type { PThemeCalendar } from 'pohon-ui';
+import type {
+  PThemeCalendar,
+} from 'pohon-ui';
 import { POHON_THEME_BRANDS } from '../constants.ts';
 
 const daySizes = {
@@ -18,39 +20,32 @@ const pickerSizes = {
   xl: 'h-10 px-5',
 };
 
-export const calendar = {
+export const themeCalendar = {
   slots: {
-    root: '',
     header: 'flex items-center justify-between',
-    body: 'flex flex-col space-y-4 pt-4 sm:flex-row sm:space-x-4 sm:space-y-0',
-    heading: 'flex-1 min-w-0 text-center',
-    headingLabel: 'font-500 block truncate p-1.5',
-    grid: 'w-full border-collapse select-none space-y-1 focus:outline-none',
+    body: 'pt-4 flex flex-col space-y-4 sm:(flex-row space-x-4 space-y-0)',
+    heading: 'text-center flex-1 min-w-0',
+    headingLabel: 'font-500 p-1.5 block truncate',
+    grid: 'w-full select-none border-collapse space-y-1 focus:outline-none',
     gridRow: 'grid',
-    gridWeekDaysRow: 'mb-1 grid w-full grid-cols-7',
+    gridWeekDaysRow: 'mb-1 grid grid-cols-7 w-full',
     gridBody: 'grid',
     headCell: 'rounded-md',
-    headCellWeek: 'rounded-md color-text-muted',
-    cell: 'relative text-center',
-    cellTrigger: 'm-0.5 relative flex items-center justify-center whitespace-nowrap focus-visible:outline-3 data-[disabled]:color-text-muted data-[unavailable]:(line-through color-text-muted pointer-events-none) data-[today]:font-600 transition',
-    cellWeek: 'relative text-center color-text-muted',
+    headCellWeek: 'color-text-muted rounded-md',
+    cell: 'text-center relative',
+    cellTrigger: 'm-0.5 flex whitespace-nowrap transition items-center justify-center relative data-[disabled]:color-text-muted data-[unavailable]:(color-text-muted line-through pointer-events-none) data-[today]:font-600 focus-visible:outline-3',
+    cellWeek: 'color-text-muted text-center relative',
   },
   variants: {
     color: {
-      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color) => [color, {
         headCell: `color-${color}`,
-        cellTrigger: `focus-visible:ring-${color}`,
+        cellTrigger: `outline-${color}/25`,
       }])),
       neutral: {
         headCell: 'color-text-highlighted',
-        cellTrigger: 'focus-visible:ring-ring-inverted',
+        cellTrigger: 'outline-outline-inverted/25',
       },
-    },
-    variant: {
-      solid: '',
-      outline: '',
-      soft: '',
-      subtle: '',
     },
     size: {
       xs: {
@@ -59,7 +54,7 @@ export const calendar = {
         cellWeek: 'text-xs',
         headCell: 'text-[10px]',
         headCellWeek: 'text-[10px]',
-        body: 'space-y-2 pt-2',
+        body: 'pt-2 space-y-2',
       },
       sm: {
         headingLabel: 'text-xs',
@@ -104,16 +99,13 @@ export const calendar = {
         cellTrigger: 'rounded-md',
       },
     },
-    weekNumbers: {
-      true: '',
-    },
   },
   compoundVariants: [
     ...POHON_THEME_BRANDS.map((color: string) => ({
       color,
       variant: 'solid',
       class: {
-        cellTrigger: `pohon:data-[selected]:bg-${color} data-[selected]:color-text-inverted data-[today]:not-[[data-selected]]:color-${color} data-[highlighted]:bg-${color}/20 hover:not-[[data-selected]]:bg-${color}/20`,
+        cellTrigger: `data-[selected]:bg-${color} data-[selected]:color-text-inverted data-[today]:not-[[data-selected]]:color-${color} data-[highlighted]:bg-${color}/20 hover:not-[[data-selected]]:bg-${color}/20`,
       },
     })),
     ...POHON_THEME_BRANDS.map((color: string) => ({

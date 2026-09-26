@@ -1,76 +1,82 @@
 // @unocss-include
-import type { PThemeTabs } from 'pohon-ui';
 import { POHON_THEME_BRANDS } from '../constants.ts';
 
-export const tabs = {
+// Active-tab highlight shown before akar's `TabsIndicator` mounts (SSR / pre-hydration).
+// akar only renders the real indicator on the client (it needs DOM measurements), so we gate
+// a CSS-only pseudo-element fallback on the active trigger by the *absence* of the indicator
+// element — the instant akar's measured indicator appears, this selector stops matching.
+// use this variant class: `list-no-indicator:data-[state=active]:`
+
+export const themeTabs = {
   slots: {
-    root: 'flex items-center gap-2',
-    list: 'relative flex p-1 group',
-    indicator: 'absolute transition-[transform,width] duration-200',
-    trigger: 'group relative inline-flex items-center min-w-0 font-600 data-[state=inactive]:color-text-muted hover:data-[state=inactive]:not-disabled:color-text font-500 rounded-md disabled:cursor-not-allowed disabled:opacity-75 transition-colors',
+    root: 'flex gap-2 items-center',
+    list: 'group p-1 flex relative',
+    indicator: 'transition-[transform,width]-280 ease-out absolute motion-reduce:transition-none',
+    trigger: 'group font-500 rounded-md inline-flex min-w-0 transition-colors items-center relative data-[state=inactive]:color-text-muted disabled:(opacity-75 cursor-not-allowed) hover:data-[state=inactive]:not-disabled:color-text',
     leadingIcon: 'shrink-0',
     leadingAvatar: 'shrink-0',
     leadingAvatarSize: '',
     label: 'truncate',
     trailingBadge: 'shrink-0',
     trailingBadgeSize: 'sm',
-    content: 'focus:outline-none w-full',
+    content: 'rounded-md w-full focus-visible:outline-3',
   },
   variants: {
     color: {
-      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, ''])),
-      neutral: '',
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
+        content: `outline-${color}/25`,
+      }])),
+      neutral: {
+        content: 'outline-outline-inverted/25',
+      },
     },
-
     variant: {
       pill: {
-        list: 'bg-background-elevated rounded-lg',
-        trigger: 'grow',
+        list: 'rounded-lg bg-background-elevated',
+        trigger: 'list-no-indicator:data-[state=active]:isolate list-no-indicator:data-[state=active]:before:content-empty list-no-indicator:data-[state=active]:before:absolute list-no-indicator:data-[state=active]:before:inset-0 list-no-indicator:data-[state=active]:before:rounded-md list-no-indicator:data-[state=active]:before:shadow-xs list-no-indicator:data-[state=active]:before:-z-10 grow',
         indicator: 'rounded-md shadow-xs',
       },
       link: {
         list: 'border-border',
         indicator: 'rounded-full',
-        trigger: 'focus:outline-none',
+        trigger: 'list-no-indicator:data-[state=active]:after:content-empty list-no-indicator:data-[state=active]:after:absolute list-no-indicator:data-[state=active]:after:rounded-full',
       },
     },
-
     orientation: {
       horizontal: {
         root: 'flex-col',
         list: 'w-full',
-        indicator: 'left-0 w-$akar-tabs-indicator-size translate-x-$akar-tabs-indicator-position',
+        indicator: 'w-$akar-tabs-indicator-size translate-x-$akar-tabs-indicator-position left-0',
         trigger: 'justify-center',
       },
       vertical: {
         list: 'flex-col',
-        indicator: 'top-0 h-$akar-tabs-indicator-size translate-y-$akar-tabs-indicator-position',
+        indicator: 'h-$akar-tabs-indicator-size translate-y-$akar-tabs-indicator-position top-0',
       },
     },
-
     size: {
       xs: {
-        trigger: 'px-2 py-1 text-xs gap-1',
+        trigger: 'text-xs px-2 py-1 gap-1',
         leadingIcon: 'size-4',
         leadingAvatarSize: '3xs',
       },
       sm: {
-        trigger: 'px-2.5 py-1.5 text-xs gap-1.5',
+        trigger: 'text-xs px-2.5 py-1.5 gap-1.5',
         leadingIcon: 'size-4',
         leadingAvatarSize: '3xs',
       },
       md: {
-        trigger: 'px-3 py-1.5 text-sm gap-1.5',
+        trigger: 'text-sm px-3 py-1.5 gap-1.5',
         leadingIcon: 'size-5',
         leadingAvatarSize: '2xs',
       },
       lg: {
-        trigger: 'px-3 py-2 text-sm gap-2',
+        trigger: 'text-sm px-3 py-2 gap-2',
         leadingIcon: 'size-5',
         leadingAvatarSize: '2xs',
       },
       xl: {
-        trigger: 'px-3 py-2 text-base gap-2',
+        trigger: 'text-base px-3 py-2 gap-2',
         leadingIcon: 'size-6',
         leadingAvatarSize: 'xs',
       },
@@ -90,6 +96,7 @@ export const tabs = {
       class: {
         list: 'border-b -mb-px',
         indicator: '-bottom-px h-px',
+        trigger: 'list-no-indicator:data-[state=active]:after:inset-x-0 list-no-indicator:data-[state=active]:after:-bottom-[calc(var(--spacing)+1px)] list-no-indicator:data-[state=active]:after:h-px',
       },
     },
     {
@@ -98,6 +105,7 @@ export const tabs = {
       class: {
         indicator: 'inset-x-1',
         list: 'items-center',
+        trigger: 'w-full justify-center',
       },
     },
     {
@@ -106,6 +114,7 @@ export const tabs = {
       class: {
         list: 'border-s -ms-px',
         indicator: '-start-px w-px',
+        trigger: 'list-no-indicator:data-[state=active]:after:inset-y-0 list-no-indicator:data-[state=active]:after:-start-[calc(var(--spacing)+1px)] list-no-indicator:data-[state=active]:after:w-px',
       },
     },
     ...POHON_THEME_BRANDS.map((color: string) => ({
@@ -113,7 +122,10 @@ export const tabs = {
       variant: 'pill',
       class: {
         indicator: `bg-${color}`,
-        trigger: `data-[state=active]:color-text-inverted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-${color}`,
+        trigger: [
+          `data-[state=active]:color-text-inverted outline-${color}/25 focus-visible:outline-3`,
+          `list-no-indicator:data-[state=active]:before:bg-${color}`,
+        ],
       },
     })),
     {
@@ -121,7 +133,10 @@ export const tabs = {
       variant: 'pill',
       class: {
         indicator: 'bg-background-inverted',
-        trigger: 'data-[state=active]:color-text-inverted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-inverted',
+        trigger: [
+          'data-[state=active]:color-text-inverted outline-outline-inverted/25 focus-visible:outline-3',
+          'list-no-indicator:data-[state=active]:before:bg-background-inverted',
+        ],
       },
     },
     ...POHON_THEME_BRANDS.map((color: string) => ({
@@ -129,7 +144,10 @@ export const tabs = {
       variant: 'link',
       class: {
         indicator: `bg-${color}`,
-        trigger: `data-[state=active]:color-${color} focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-${color}`,
+        trigger: [
+          `data-[state=active]:color-${color} outline-${color}/25 focus-visible:outline-3`,
+          `list-no-indicator:data-[state=active]:after:bg-${color}`,
+        ],
       },
     })),
     {
@@ -137,8 +155,11 @@ export const tabs = {
       variant: 'link',
       class: {
         indicator: 'bg-background-inverted',
-        trigger: 'data-[state=active]:color-text-highlighted focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring-inverted',
+        trigger: [
+          'data-[state=active]:color-text-highlighted outline-outline-inverted/25 focus-visible:outline-3',
+          'list-no-indicator:data-[state=active]:after:bg-background-inverted',
+        ],
       },
     },
   ],
-} satisfies PThemeTabs;
+};

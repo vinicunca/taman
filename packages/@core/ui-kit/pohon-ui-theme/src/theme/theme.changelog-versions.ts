@@ -2,11 +2,11 @@
 
 import type { PThemeChangelogVersions } from 'pohon-ui';
 
-export const changelogVersions = {
+export const themeChangelogVersions = {
   slots: {
     root: 'relative',
-    container: 'flex flex-col gap-y-8 sm:gap-y-12 lg:gap-y-16',
-    indicator: 'absolute hidden lg:block overflow-hidden inset-y-3 start-32 h-full w-px bg-border -ms-[8.5px]',
-    beam: 'absolute start-0 top-0 w-full bg-primary will-change-[height]',
+    container: 'flex flex-col gap-y-8 lg:gap-y-16 sm:gap-y-12',
+    indicator: 'bg-border h-full w-px hidden start-32 inset-y-3 absolute overflow-hidden -ms-[8.5px] lg:block',
+    beam: 'will-change-[height] bg-primary w-full start-0 top-0 absolute',
   },
 } satisfies PThemeChangelogVersions;

@@ -1,10 +1,8 @@
 // @unocss-include
-
 import type { PThemeCollapsible } from 'pohon-ui';
 
-export const collapsible = {
+export const themeCollapsible = {
   slots: {
-    root: '',
-    content: 'data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up overflow-hidden transition-all p-1 -mx-1',
+    content: 'data-[state=closed]:overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down',
   },
 } satisfies PThemeCollapsible;

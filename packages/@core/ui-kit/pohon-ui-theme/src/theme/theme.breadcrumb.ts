@@ -3,18 +3,18 @@
 import type { PThemeBreadcrumb } from 'pohon-ui';
 import { POHON_THEME_BRANDS } from '../constants.ts';
 
-export const breadcrumb = {
+export const themeBreadcrumb = {
   slots: {
-    root: 'relative min-w-0',
-    list: 'flex items-center gap-1.5',
+    root: 'min-w-0 relative',
+    list: 'flex gap-1.5 items-center',
     item: 'flex min-w-0',
-    link: 'group relative flex items-center gap-1.5 text-sm min-w-0',
+    link: 'group text-sm rounded-md flex gap-1.5 min-w-0 items-center relative',
     linkLeadingIcon: 'shrink-0 size-5',
     linkLeadingAvatar: 'shrink-0',
     linkLeadingAvatarSize: '2xs',
     linkLabel: 'truncate',
     separator: 'flex',
-    separatorIcon: 'shrink-0 size-5 color-text-muted',
+    separatorIcon: 'color-text-muted shrink-0 size-5',
   },
   variants: {
     active: {
@@ -27,15 +27,18 @@ export const breadcrumb = {
     },
     disabled: {
       true: {
-        link: 'cursor-not-allowed opacity-75',
+        link: 'opacity-75 cursor-not-allowed',
       },
     },
     to: {
       true: '',
     },
     color: {
-      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, { link: `focus-visible:outline-${color}` }])),
-      neutral: { link: 'focus-visible:outline-inverted' },
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color) => [
+        color,
+        { link: `outline-${color}/25 focus-visible:outline-3` },
+      ])),
+      neutral: { link: 'outline-outline-inverted/25 focus-visible:outline-3' },
     },
   },
   compoundVariants: [

@@ -1,22 +1,24 @@
 // @unocss-include
-import type { PThemeBanner } from 'pohon-ui';
+import type {
+  PThemeBanner,
+} from 'pohon-ui';
 import { POHON_THEME_BRANDS } from '../constants.ts';
 
-export const banner = {
+export const themeBanner = {
   slots: {
-    root: 'relative z-50 w-full transition-colors',
-    container: 'flex items-center justify-between gap-3 h-12',
-    left: 'hidden lg:flex-1 lg:flex lg:items-center',
-    center: 'flex items-center gap-1.5 min-w-0',
-    right: 'lg:flex-1 flex items-center justify-end',
-    icon: 'size-5 shrink-0 color-text-inverted pointer-events-none',
+    root: 'w-full transition-colors relative z-50',
+    container: 'flex gap-3 h-12 items-center justify-between',
+    left: 'hidden lg:(flex flex-1 items-center)',
+    center: 'flex gap-1.5 min-w-0 items-center',
+    right: 'flex items-center justify-end lg:flex-1',
+    icon: 'color-text-inverted shrink-0 size-5 pointer-events-none',
     title: 'text-sm color-text-inverted font-500 truncate',
-    actions: 'flex gap-1.5 shrink-0 isolate',
-    close: 'color-text-inverted hover:bg-background/10 focus-visible:bg-background/10 -me-1.5 lg:me-0',
+    actions: 'flex shrink-0 gap-1.5 isolate',
+    close: 'color-text-inverted -me-1.5 lg:me-0 focus-visible:bg-background/10 hover:bg-background/10',
   },
   variants: {
     color: {
-      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color) => [color, {
         root: `bg-${color}`,
       }])),
       neutral: {
@@ -24,11 +26,13 @@ export const banner = {
       },
     },
     to: {
-      true: '',
+      true: {
+        root: 'outline-$ui-color-bg/25 has-[>a:focus-visible]:outline-3 -outline-offset-3',
+      },
     },
   },
   compoundVariants: [
-    ...POHON_THEME_BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color) => ({
       color,
       to: true,
       class: {

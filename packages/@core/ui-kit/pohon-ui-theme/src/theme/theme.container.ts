@@ -2,6 +2,6 @@
 
 import type { PThemeContainer } from 'pohon-ui';
 
-export const container = {
-  base: 'w-full max-w-$ui-container mx-auto px-4 sm:px-6 lg:px-8',
+export const themeContainer = {
+  base: 'mx-auto px-4 max-w-$ui-container w-full lg:px-8 sm:px-6',
 } satisfies PThemeContainer;

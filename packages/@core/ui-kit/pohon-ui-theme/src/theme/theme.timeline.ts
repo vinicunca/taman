@@ -2,17 +2,17 @@
 import type { PThemeTimeline } from 'pohon-ui';
 import { POHON_THEME_BRANDS } from '../constants.ts';
 
-export const timeline = {
+export const themeTimeline = {
   slots: {
     root: 'flex gap-1.5',
-    item: 'group relative flex flex-1 gap-3',
-    container: 'relative flex items-center gap-1.5',
-    indicator: 'group-data-[state=completed]:color-text-inverted group-data-[state=active]:color-text-inverted color-text-muted',
-    separator: 'flex-1 rounded-full bg-background-elevated',
+    item: 'group flex flex-1 gap-3 relative',
+    container: 'flex gap-1.5 items-center relative',
+    indicator: 'color-text-muted group-data-[state=active]:color-text-inverted group-data-[state=completed]:color-text-inverted',
+    separator: 'rounded-full bg-background-elevated flex-1',
     wrapper: 'w-full',
-    date: 'color-text-dimmed text-xs/5',
-    title: 'font-500 color-text-highlighted text-sm',
-    description: 'color-text-muted text-wrap text-sm',
+    date: 'text-xs/5 color-text-dimmed',
+    title: 'text-sm color-text-highlighted font-500',
+    description: 'text-sm color-text-muted text-wrap',
   },
 
   variants: {
@@ -30,41 +30,25 @@ export const timeline = {
     },
 
     color: {
-      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color) => [color, {
         indicator: `group-data-[state=completed]:bg-${color} group-data-[state=active]:bg-${color}`,
 
       }])),
       neutral: {
-        indicator: 'group-data-[state=completed]:bg-background-inverted group-data-[state=active]:bg-background-inverted',
+        indicator: 'group-data-[state=active]:bg-background-inverted group-data-[state=completed]:bg-background-inverted',
       },
-    },
-
-    size: {
-      '3xs': '',
-      '2xs': '',
-      'xs': '',
-      'sm': '',
-      'md': '',
-      'lg': '',
-      'xl': '',
-      '2xl': '',
-      '3xl': '',
-    },
-
-    reverse: {
-      true: '',
     },
   },
 
   compoundVariants: [
-    ...POHON_THEME_BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color) => ({
       color,
       reverse: false,
       class: {
         separator: `group-data-[state=completed]:bg-${color}`,
       },
     })),
-    ...POHON_THEME_BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color) => ({
       color,
       reverse: true,
       class: {

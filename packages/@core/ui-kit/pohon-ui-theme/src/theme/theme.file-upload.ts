@@ -1,18 +1,18 @@
 // @unocss-include
-
 import type { PThemeFileUpload } from 'pohon-ui';
+
 import { POHON_THEME_BRANDS } from '../constants.ts';
 
-export const fileUpload = {
+export const themeFileUpload = {
   slots: {
-    root: 'relative flex flex-col',
-    base: 'w-full flex-1 bg-background border border-border flex flex-col gap-2 items-stretch justify-center rounded-lg focus-visible:outline-2 transition-[background]',
-    wrapper: 'flex flex-col items-center justify-center text-center',
+    root: 'flex flex-col relative',
+    base: 'border border-border rounded-lg bg-background flex flex-1 flex-col gap-2 w-full transition-[background-color] ease-out items-stretch justify-center focus-visible:outline-3',
+    wrapper: 'text-center flex flex-col items-center justify-center',
     icon: 'shrink-0',
     avatar: 'shrink-0',
-    label: 'font-500 color-text mt-2',
+    label: 'color-text font-500 mt-2',
     description: 'color-text-muted mt-1',
-    actions: 'flex flex-wrap gap-1.5 shrink-0 mt-4',
+    actions: 'mt-4 flex shrink-0 flex-wrap gap-1.5',
     files: '',
     file: 'relative',
     fileLeadingAvatar: 'shrink-0',
@@ -23,7 +23,7 @@ export const fileUpload = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, ''])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color) => [color, ''])),
       neutral: '',
     },
     variant: {
@@ -67,14 +67,14 @@ export const fileUpload = {
     layout: {
       list: {
         root: 'gap-2 items-start',
-        files: 'flex flex-col w-full gap-2',
-        file: 'min-w-0 flex items-center border border-border rounded-md w-full',
+        files: 'flex flex-col gap-2 w-full',
+        file: 'border border-border rounded-md flex min-w-0 w-full items-center',
         fileTrailingButton: 'ms-auto',
       },
       grid: {
         fileWrapper: 'hidden',
-        fileLeadingAvatar: 'size-full rounded-lg',
-        fileTrailingButton: 'absolute -top-1.5 -end-1.5 p-0 pohon:rounded-full border-2 border-bg',
+        fileLeadingAvatar: 'pohon:rounded-lg pohon:size-full',
+        fileTrailingButton: 'border-2 border-border-bg absolute -end-1.5 -top-1.5 pohon:p-0 pohon:rounded-full',
       },
     },
     position: {
@@ -94,22 +94,22 @@ export const fileUpload = {
       true: '',
     },
     disabled: {
-      true: 'cursor-not-allowed opacity-75',
+      true: 'opacity-75 cursor-not-allowed',
     },
   },
   compoundVariants: [
-    ...POHON_THEME_BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color) => ({
       color,
-      class: `focus-visible:outline-${color}`,
+      class: `outline-${color}/25 focus-visible:outline-3 focus-visible:border-${color}`,
     })),
-    ...POHON_THEME_BRANDS.map((color: string) => ({
+    ...POHON_THEME_BRANDS.map((color) => ({
       color,
       highlight: true,
       class: `border-${color}`,
     })),
     {
       color: 'neutral',
-      class: 'focus-visible:outline-inverted',
+      class: 'outline-outline-inverted/25 focus-visible:outline-3 focus-visible:border-border-inverted',
     },
     {
       color: 'neutral',
@@ -191,14 +191,14 @@ export const fileUpload = {
       multiple: true,
       class: {
         files: 'grid grid-cols-2 md:grid-cols-3 gap-4 w-full',
-        file: 'p-0 aspect-square',
+        file: 'pohon:p-0 aspect-square',
       },
     },
     {
       layout: 'grid',
       multiple: false,
       class: {
-        file: 'pohon:absolute inset-0 p-0',
+        file: 'pohon:absolute inset-0 pohon:p-0',
       },
     },
     {

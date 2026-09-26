@@ -1,24 +1,21 @@
 // @unocss-include
-
 import type { PThemeChangelogVersion } from 'pohon-ui';
 
-export const changelogVersion = {
+export const themeChangelogVersion = {
   slots: {
     root: 'relative',
-    container: 'flex flex-col mx-auto max-w-2xl',
-    header: '',
-    meta: 'flex items-center gap-3 mb-2',
+    container: 'mx-auto flex flex-col max-w-2xl',
+    meta: 'mb-2 flex gap-3 items-center',
     date: 'text-sm/6 color-text-toned truncate',
-    badge: '',
-    title: 'relative text-xl text-pretty font-600 color-text-highlighted',
-    description: 'text-base text-pretty color-text-muted mt-1',
-    imageWrapper: 'relative overflow-hidden rounded-lg aspect-[16/9] mt-5 group/changelog-version-image',
-    image: 'object-cover object-top w-full h-full',
+    title: 'text-xl color-text-highlighted font-600 text-pretty relative',
+    description: 'text-base color-text-muted mt-1 text-pretty',
+    imageWrapper: 'group/changelog-version-image mt-5 rounded-lg aspect-[16/9] relative overflow-hidden',
+    image: 'h-full w-full object-cover object-top',
     authors: 'flex flex-wrap gap-x-4 gap-y-1.5',
-    footer: 'border-t border-border pt-5 flex items-center justify-between',
-    indicator: 'absolute start-0 top-0 w-32 hidden lg:flex items-center justify-end gap-3 min-w-0',
-    dot: 'size-4 rounded-full bg-background ring ring-ring flex items-center justify-center my-1',
-    dotInner: 'size-2 rounded-full bg-primary',
+    footer: 'pt-5 border-t border-border flex items-center justify-between',
+    indicator: 'gap-3 min-w-0 w-32 hidden items-center start-0 top-0 justify-end absolute lg:flex',
+    dot: 'my-1 rounded-full bg-background flex size-4 ring ring-ring items-center justify-center',
+    dotInner: 'rounded-full bg-primary size-2',
   },
   variants: {
     body: {
@@ -33,8 +30,8 @@ export const changelogVersion = {
     },
     to: {
       true: {
-        title: 'has-focus-visible:ring-2 has-focus-visible:ring-primary rounded-xs transition',
-        image: 'transform transition-transform duration-200 group-hover/changelog-version-image:scale-105 group-has-focus-visible/changelog-version-image:scale-105',
+        title: 'outline-primary/25 rounded-xs transition has-focus-visible:outline-3',
+        image: 'transform transition-transform ease-out group-has-focus-visible/changelog-version-image:scale-105 group-hover/changelog-version-image:scale-105 motion-reduce:transition-none',
       },
     },
     hidden: {

@@ -1,29 +1,30 @@
 // @unocss-include
 
+import type { PThemeDropdownMenu } from 'pohon-ui';
 import { POHON_THEME_BRANDS } from '../constants.ts';
 
-export const dropdownMenu = {
+export const themeDropdownMenu = {
   slots: {
-    content: 'min-w-32 max-h-$akar-context-menu-content-available-height bg-background shadow-lg rounded-md ring ring-ring overflow-hidden origin-$akar-dropdown-menu-content-transform-origin flex flex-col data-[state=closed]:(animate-out fade-out-0 zoom-out-95) data-[state=open]:(animate-in fade-in-0 zoom-in-95) data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+    content: 'rounded-md bg-background flex flex-col max-h-$akar-dropdown-menu-content-available-height min-w-32 ring ring-ring shadow-lg origin-$akar-dropdown-menu-content-transform-origin overflow-hidden data-[state=closed]:(animate-out fade-out-0 zoom-out-95) data-[state=open]:(animate-in fade-in-0 zoom-in-95) data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
     input: 'border-b border-border',
-    empty: 'text-center color-text-muted',
-    viewport: 'relative divide-y divide-border scroll-py-1 overflow-y-auto flex-1',
-    arrow: 'fill-background stroke-stroke',
+    empty: 'color-text-muted text-center',
+    viewport: 'flex-1 relative overflow-y-auto scroll-py-1 divide-divide divide-y',
+    arrow: 'fill-fill-bg stroke-stroke',
     group: 'p-1 isolate',
-    label: 'w-full flex items-center font-600 color-text-highlighted',
-    separator: '-mx-1 my-1 h-px bg-border',
-    item: 'group cursor-pointer outline-none flex w-full select-none items-start relative before:(content-empty rounded-md inset-px absolute -z-1) data-[disabled]:(opacity-50 cursor-not-allowed) data-[state=checked]:before:bg-background-elevated data-[state=checked]:(color-text-highlighted font-500)',
+    label: 'color-text-highlighted font-600 flex w-full items-center',
+    separator: 'my-1 bg-border h-px -mx-1',
+    item: 'group outline-none flex w-full select-none items-start relative before:(rounded-md content-empty inset-px absolute -z-1) data-[disabled]:(opacity-75 cursor-not-allowed)',
     itemLeadingIcon: 'shrink-0',
     itemLeadingAvatar: 'shrink-0',
     itemLeadingAvatarSize: '',
     itemTrailing: 'ms-auto inline-flex gap-1.5 items-center',
     itemTrailingIcon: 'shrink-0',
-    itemTrailingKbds: 'hidden lg:inline-flex items-center shrink-0',
+    itemTrailingKbds: 'shrink-0 hidden items-center lg:inline-flex',
     itemTrailingKbdsSize: '',
-    itemWrapper: 'flex-1 flex flex-col text-start min-w-0',
+    itemWrapper: 'text-start flex flex-1 flex-col min-w-0',
     itemLabel: 'truncate',
-    itemDescription: 'truncate color-text-muted',
-    itemLabelExternalIcon: 'inline-block size-3 align-top color-text-dimmed',
+    itemDescription: 'color-text-muted truncate',
+    itemLabelExternalIcon: 'color-text-dimmed align-top size-3 inline-block',
   },
   variants: {
     color: {
@@ -36,8 +37,8 @@ export const dropdownMenu = {
         itemLeadingIcon: 'color-text',
       },
       false: {
-        item: 'color-text data-[highlighted]:color-text-highlighted data-[state=open]:color-text-highlighted data-[highlighted]:before:bg-background-elevated/80 data-[state=open]:before:bg-background-elevated/50 transition-colors before:transition-colors',
-        itemLeadingIcon: 'color-text-dimmed group-data-[highlighted]:color-text group-data-[state=open]:color-text transition-colors',
+        item: ['color-text data-[highlighted]:color-text-highlighted data-[state=open]:color-text-highlighted data-[highlighted]:before:bg-background-elevated/50 data-[state=open]:before:bg-background-elevated/50', 'transition-colors before:transition-colors'],
+        itemLeadingIcon: 'color-text-dimmed transition-colors group-data-[highlighted]:color-text group-data-[state=open]:color-text before:transition-colors',
       },
     },
     loading: {
@@ -47,9 +48,9 @@ export const dropdownMenu = {
     },
     size: {
       xs: {
-        label: 'p-1 text-xs gap-1',
-        item: 'p-1 text-xs gap-1',
-        empty: 'p-2 text-xs',
+        label: 'text-xs p-1 gap-1',
+        item: 'text-xs p-1 gap-1',
+        empty: 'text-xs p-2',
         itemLeadingIcon: 'size-4',
         itemLeadingAvatarSize: '3xs',
         itemTrailingIcon: 'size-4',
@@ -57,9 +58,9 @@ export const dropdownMenu = {
         itemTrailingKbdsSize: 'sm',
       },
       sm: {
-        label: 'p-1.5 text-xs gap-1.5',
-        item: 'p-1.5 text-xs gap-1.5',
-        empty: 'p-2.5 text-xs',
+        label: 'text-xs p-1.5 gap-1.5',
+        item: 'text-xs p-1.5 gap-1.5',
+        empty: 'text-xs p-2.5',
         itemLeadingIcon: 'size-4',
         itemLeadingAvatarSize: '3xs',
         itemTrailingIcon: 'size-4',
@@ -67,9 +68,9 @@ export const dropdownMenu = {
         itemTrailingKbdsSize: 'sm',
       },
       md: {
-        label: 'p-1.5 text-sm gap-1.5',
-        item: 'p-1.5 text-sm gap-1.5',
-        empty: 'p-2.5 text-sm',
+        label: 'text-sm p-1.5 gap-1.5',
+        item: 'text-sm p-1.5 gap-1.5',
+        empty: 'text-sm p-2.5',
         itemLeadingIcon: 'size-5',
         itemLeadingAvatarSize: '2xs',
         itemTrailingIcon: 'size-5',
@@ -77,9 +78,9 @@ export const dropdownMenu = {
         itemTrailingKbdsSize: 'md',
       },
       lg: {
-        label: 'p-2 text-sm gap-2',
-        item: 'p-2 text-sm gap-2',
-        empty: 'p-3 text-sm',
+        label: 'text-sm p-2 gap-2',
+        item: 'text-sm p-2 gap-2',
+        empty: 'text-sm p-3',
         itemLeadingIcon: 'size-5',
         itemLeadingAvatarSize: '2xs',
         itemTrailingIcon: 'size-5',
@@ -87,9 +88,9 @@ export const dropdownMenu = {
         itemTrailingKbdsSize: 'md',
       },
       xl: {
-        label: 'p-2 text-base gap-2',
-        item: 'p-2 text-base gap-2',
-        empty: 'p-3 text-base',
+        label: 'text-base p-2 gap-2',
+        item: 'text-base p-2 gap-2',
+        empty: 'text-base p-3',
         itemLeadingIcon: 'size-6',
         itemLeadingAvatarSize: 'xs',
         itemTrailingIcon: 'size-6',
@@ -103,8 +104,8 @@ export const dropdownMenu = {
       color,
       active: false,
       class: {
-        item: `color-${color} data-[highlighted]:color-${color} data-[highlighted]:before:bg-${color}/10 data-[state=open]:before:bg-${color}/10`,
-        itemLeadingIcon: `color-${color}/75 group-data-[highlighted]:color-${color} group-data-[state=open]:color-${color}`,
+        item: `color-${color} data-highlighted:color-${color} data-highlighted:before:bg-${color}/10 data-[state=open]:before:bg-${color}/10`,
+        itemLeadingIcon: `color-${color}/75 group-data-highlighted:color-${color} group-data-[state=open]:color-${color}`,
       },
     })),
     ...POHON_THEME_BRANDS.map((color: string) => ({
@@ -116,4 +117,4 @@ export const dropdownMenu = {
       },
     })),
   ],
-};
+} satisfies PThemeDropdownMenu;

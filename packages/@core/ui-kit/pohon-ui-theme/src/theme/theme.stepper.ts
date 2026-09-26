@@ -1,19 +1,19 @@
-import type { PThemeStepper } from 'pohon-ui';
 // @unocss-include
+import type { PThemeStepper } from 'pohon-ui';
 import { POHON_THEME_BRANDS } from '../constants.ts';
 
-export const stepper = {
+export const themeStepper = {
   slots: {
     root: 'flex gap-4',
     header: 'flex',
-    item: 'group text-center relative w-full',
+    item: 'group text-center w-full relative',
     container: 'relative',
-    trigger: 'rounded-full font-500 text-center align-middle flex items-center justify-center font-600 group-data-[state=completed]:color-text-inverted group-data-[state=active]:color-text-inverted color-text-muted bg-background-elevated focus-visible:outline-2 focus-visible:outline-offset-2',
-    indicator: 'flex items-center justify-center size-full',
+    trigger: 'color-text-muted font-600 text-center align-middle rounded-full bg-background-elevated flex items-center justify-center group-data-[state=active]:color-text-inverted group-data-[state=completed]:color-text-inverted focus-visible:outline-3',
+    indicator: 'flex size-full items-center justify-center',
     icon: 'shrink-0',
-    separator: 'absolute rounded-full group-data-[disabled]:opacity-75 bg-background-accented',
+    separator: 'rounded-full bg-background-accented absolute group-data-[disabled]:opacity-75',
     wrapper: '',
-    title: 'font-500 color-text',
+    title: 'color-text font-500',
     description: 'color-text-muted text-wrap',
     content: 'size-full',
   },
@@ -23,47 +23,47 @@ export const stepper = {
       horizontal: {
         root: 'flex-col',
         container: 'flex justify-center',
-        separator: 'top-[calc(50%-2px)] h-0.5',
+        separator: 'h-0.5 top-[calc(50%-2px)]',
         wrapper: 'mt-1',
       },
       vertical: {
         header: 'flex-col gap-4',
-        item: 'flex text-start',
-        separator: 'start-[calc(50%-1px)] -bottom-[10px] w-0.5',
+        item: 'text-start flex',
+        separator: 'w-0.5 start-[calc(50%-1px)] -bottom-[10px]',
       },
     },
 
     size: {
       xs: {
-        trigger: 'size-6 text-xs',
+        trigger: 'text-xs size-6',
         icon: 'size-3',
         title: 'text-xs',
         description: 'text-xs',
         wrapper: 'mt-1.5',
       },
       sm: {
-        trigger: 'size-8 text-sm',
+        trigger: 'text-sm size-8',
         icon: 'size-4',
         title: 'text-xs',
         description: 'text-xs',
         wrapper: 'mt-2',
       },
       md: {
-        trigger: 'size-10 text-base',
+        trigger: 'text-base size-10',
         icon: 'size-5',
         title: 'text-sm',
         description: 'text-sm',
         wrapper: 'mt-2.5',
       },
       lg: {
-        trigger: 'size-12 text-lg',
+        trigger: 'text-lg size-12',
         icon: 'size-6',
         title: 'text-base',
         description: 'text-base',
         wrapper: 'mt-3',
       },
       xl: {
-        trigger: 'size-14 text-xl',
+        trigger: 'text-xl size-14',
         icon: 'size-7',
         title: 'text-lg',
         description: 'text-lg',
@@ -73,11 +73,11 @@ export const stepper = {
 
     color: {
       ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
-        trigger: `group-data-[state=completed]:bg-${color} group-data-[state=active]:bg-${color} focus-visible:outline-${color}`,
+        trigger: `group-data-[state=completed]:bg-${color} group-data-[state=active]:bg-${color} outline-${color}/25`,
         separator: `group-data-[state=completed]:bg-${color}`,
       }])),
       neutral: {
-        trigger: 'group-data-[state=completed]:bg-background-inverted group-data-[state=active]:bg-background-inverted focus-visible:outline-inverted',
+        trigger: 'outline-outline-inverted/25 group-data-[state=active]:bg-background-inverted group-data-[state=completed]:bg-background-inverted',
         separator: 'group-data-[state=completed]:bg-background-inverted',
       },
     },
@@ -135,5 +135,4 @@ export const stepper = {
       class: { separator: 'top-[62px]', item: 'gap-3.5' },
     },
   ],
-
 } satisfies PThemeStepper;

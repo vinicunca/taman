@@ -1,16 +1,15 @@
 // @unocss-include
-
 import type { PThemeLink } from 'pohon-ui';
 
-export const link = {
-  base: 'focus-visible:outline-primary',
+export const themeLink = {
+  base: 'outline-primary/25 rounded-md focus-visible:outline-3',
   variants: {
     active: {
       true: 'color-primary',
       false: 'color-text-muted',
     },
     disabled: {
-      true: 'cursor-not-allowed opacity-75',
+      true: 'opacity-75 cursor-not-allowed',
     },
   },
   compoundVariants: [
@@ -20,4 +19,4 @@ export const link = {
       class: 'hover:color-text transition-colors',
     },
   ],
-} satisfies PThemeLink;
+} as PThemeLink;

@@ -13,7 +13,7 @@ import { POHON_THEME_BRANDS } from '../constants.ts';
 export const themeChatMessages = {
   slots: {
     root: 'px-2.5 flex flex-1 flex-col gap-1 w-full [&>article]:last-of-type:min-h-(--last-message-height)',
-    indicator: '*:bg-background-elevated py-3 flex gap-1 h-6 items-center *:rounded-full *:size-2 motion-safe:[&>*:nth-child(1)]:animate-[bounce_1s_infinite] motion-safe:[&>*:nth-child(2)]:animate-[bounce_1s_0.15s_infinite] motion-safe:[&>*:nth-child(3)]:animate-[bounce_1s_0.3s_infinite]',
+    indicator: 'py-3 flex gap-1 h-6 items-center *:rounded-full *:bg-background-elevated *:size-2 motion-safe:[&>*:nth-child(1)]:animate-[bounce_1s_infinite] motion-safe:[&>*:nth-child(2)]:animate-[bounce_1s_0.15s_infinite] motion-safe:[&>*:nth-child(3)]:animate-[bounce_1s_0.3s_infinite]',
     viewport: 'inset-x-0 top-[86%] absolute data-[state=closed]:animate-[fade-out_200ms_var(--ease-out)] data-[state=open]:animate-[fade-in_200ms_var(--ease-out)]',
     autoScroll: 'rounded-full translate-x-1/2 bottom-0 right-1/2 absolute',
   },
@@ -158,15 +158,15 @@ export const themeChatMessage = {
 
 export const themeChatTool = {
   slots: {
-    trigger: 'group color-text-muted disabled:hover:color-text-muted hover:color-text text-sm flex gap-1.5 min-w-0 w-full transition-colors items-center disabled:cursor-default',
+    trigger: 'group text-sm color-text-muted flex gap-1.5 min-w-0 w-full transition-colors items-center hover:color-text disabled:cursor-default disabled:hover:color-text-muted',
     leading: 'shrink-0 size-4 relative',
     leadingIcon: 'shrink-0 size-4',
     chevronIcon: 'shrink-0 size-4 transition-transform-280 ease-out group-data-[state=open]:rotate-180 motion-reduce:transition-none',
     label: 'truncate',
     suffix: 'color-text-dimmed ms-1',
     trailingIcon: 'shrink-0 size-4 transition-transform-280 ease-out group-data-[state=open]:rotate-180 motion-reduce:transition-none',
-    content: 'data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down data-[state=closed]:overflow-hidden',
-    body: 'color-text-dimmed text-sm whitespace-pre-wrap',
+    content: 'data-[state=closed]:overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down',
+    body: 'text-sm color-text-dimmed whitespace-pre-wrap',
     actions: 'flex gap-1.5 items-center justify-end',
   },
   variants: {
@@ -177,11 +177,11 @@ export const themeChatTool = {
         actions: 'pt-2',
       },
       card: {
-        root: 'ring-ring outline-primary/25 has-focus-visible:ring-primary rounded-md ring overflow-hidden has-focus-visible:outline-3',
+        root: 'outline-primary/25 rounded-md ring ring-ring overflow-hidden has-focus-visible:outline-3 has-focus-visible:ring-primary',
         trigger: 'px-2 py-1 focus:outline-none',
         trailingIcon: 'ms-auto',
-        body: 'border-border p-2 border-t max-h-[200px] overflow-y-auto focus:outline-none',
-        actions: 'border-border p-2 border-t',
+        body: 'p-2 border-t border-border max-h-[200px] overflow-y-auto focus:outline-none',
+        actions: 'p-2 border-t border-border',
       },
     },
     loading: {
@@ -199,19 +199,19 @@ export const themeChatTool = {
 } satisfies PThemeChatTool;
 
 export const themeChatShimmer = {
-  base: 'motion-reduce:color-text-muted text-transparent will-change-[background-position] bg-[image:linear-gradient(90deg,#0000_calc(50%-var(--spread)),var(--ui-color-text-highlighted),#0000_calc(50%+var(--spread))),linear-gradient(var(--ui-color-text-muted),var(--ui-color-text-muted))] bg-size-[calc(200%+var(--spread)*2+2px)_100%,auto] bg-clip-text bg-no-repeat motion-safe:animate-[shimmer_var(--duration)_linear_infinite] motion-reduce:bg-none motion-safe:rtl:animate-[shimmer-rtl_var(--duration)_linear_infinite]',
+  base: 'text-transparent will-change-[background-position] bg-[image:linear-gradient(90deg,#0000_calc(50%-var(--spread)),var(--taman-color-text-highlighted),#0000_calc(50%+var(--spread))),linear-gradient(var(--taman-color-text-muted),var(--taman-color-text-muted))] bg-size-[calc(200%+var(--spread)*2+2px)_100%,auto] bg-clip-text bg-no-repeat motion-reduce:color-text-muted motion-safe:animate-[shimmer_var(--duration)_linear_infinite] motion-reduce:bg-none motion-safe:rtl:animate-[shimmer-rtl_var(--duration)_linear_infinite]',
 } satisfies PThemeChatShimmer;
 
 export const themeChatReasoning = {
   slots: {
-    trigger: 'group color-text-muted disabled:hover:color-text-muted hover:color-text outline-primary/25 text-sm rounded-sm flex gap-1.5 min-w-0 w-full transition-colors items-center focus-visible:outline-3 disabled:cursor-default',
+    trigger: 'group text-sm color-text-muted outline-primary/25 rounded-sm flex gap-1.5 min-w-0 w-full transition-colors items-center hover:color-text focus-visible:outline-3 disabled:cursor-default disabled:hover:color-text-muted',
     leading: 'shrink-0 size-4 relative',
     leadingIcon: 'shrink-0 size-4',
     chevronIcon: 'shrink-0 size-4 transition-transform-280 ease-out group-data-[state=open]:rotate-180 motion-reduce:transition-none',
     label: 'truncate',
     trailingIcon: 'shrink-0 size-4 transition-transform-280 ease-out group-data-[state=open]:rotate-180 motion-reduce:transition-none',
-    content: 'outline-primary/25 data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down rounded-sm has-focus-visible:outline-3 data-[state=closed]:overflow-hidden',
-    body: 'color-text-dimmed text-sm pt-2 max-h-[200px] whitespace-pre-wrap overflow-y-auto focus:outline-none',
+    content: 'outline-primary/25 rounded-sm has-focus-visible:outline-3 data-[state=closed]:overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down',
+    body: 'text-sm color-text-dimmed pt-2 max-h-[200px] whitespace-pre-wrap overflow-y-auto focus:outline-none',
   },
   variants: {
     chevron: {
@@ -246,13 +246,13 @@ export const themeChatPrompt = {
   variants: {
     variant: {
       outline: {
-        root: 'bg-background/75 ring-ring ring',
+        root: 'bg-background/75 ring ring-ring',
       },
       soft: {
         root: 'bg-background-elevated/50',
       },
       subtle: {
-        root: 'bg-background-elevated/50 ring-ring ring',
+        root: 'bg-background-elevated/50 ring ring-ring',
       },
     },
   },
@@ -283,7 +283,7 @@ export const themeChatPrompt = {
 export const themeChatPalette = {
   slots: {
     root: 'flex flex-1 flex-col min-h-0 min-w-0 relative',
-    prompt: 'border-border px-0 border-t rounded-t-none',
+    prompt: 'px-0 border-t border-border rounded-t-none',
     content: 'py-3 flex flex-1 flex-col overflow-y-auto',
   },
 } satisfies PThemeChatPalette;

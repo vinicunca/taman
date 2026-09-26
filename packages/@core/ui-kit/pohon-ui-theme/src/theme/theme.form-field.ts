@@ -1,6 +1,6 @@
 // @unocss-include
 
-export const formField = {
+export const themeFormField = {
   slots: {
     root: '',
     wrapper: '',
@@ -30,7 +30,7 @@ export const formField = {
         container: 'mt-1',
       },
       horizontal: {
-        root: 'flex justify-between place-items-baseline gap-2',
+        root: 'flex gap-2 justify-between place-items-baseline',
       },
     },
   },

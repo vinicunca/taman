@@ -1,43 +1,45 @@
 // @unocss-include
+
+import type { PThemeTable } from 'pohon-ui';
 import { POHON_THEME_BRANDS } from '../constants.ts';
 
-export const table = {
+export const themeTable = {
   slots: {
-    root: 'relative overflow-auto h-full min-h-0',
-    base: 'min-w-full overflow-clip table-fixed border-separate border-spacing-0',
+    root: 'outline-primary/25 relative overflow-auto focus-visible:outline-3',
+    base: 'min-w-full overflow-clip',
     caption: 'sr-only',
-    thead: 'relative [&>tr]:bg-background-elevated [&>tr]:after:content-none',
-    tbody: 'isolate [&>tr]:data-[selectable=true]:hover:bg-background-elevated/50 [&>tr]:data-[selectable=true]:focus-visible:outline-primary divide-y divide-divide [&>tr]:last:[&>td]:border-b-0',
+    thead: 'relative',
+    tbody: 'isolate divide-divide divide-y [&>tr]:data-[selectable=true]:outline-primary/25 [&>tr]:data-[selectable=true]:focus-visible:outline-3 [&>tr]:data-[selectable=true]:hover:bg-background-elevated/50',
     tfoot: 'relative',
     tr: 'data-[selected=true]:bg-background-elevated/50',
-    th: 'px-4 py-3.5 text-sm color-text-highlighted text-left rtl:text-right font-600 [&:has([role=checkbox])]:pe-0 py-2 first:rounded-l-lg last:rounded-r-lg border-y border-border first:border-l last:border-r',
-    td: 'p-4 text-sm color-text-muted whitespace-nowrap [&:has([role=checkbox])]:pe-0 border-b border-border',
-    separator: 'absolute z-1 left-0 w-full h-px bg-border-accented',
-    empty: 'py-6 text-center text-sm color-text-muted',
+    th: 'text-sm color-text-highlighted font-600 px-4 py-3.5 text-start [&:has([role=checkbox])]:pe-0',
+    td: 'text-sm color-text-muted p-4 whitespace-nowrap [&:has([role=checkbox])]:pe-0',
+    separator: 'bg-border-accented h-px w-full start-0 absolute z-1',
+    empty: 'text-sm color-text-muted py-6 text-center',
     loading: 'py-6 text-center',
   },
   variants: {
     pinned: {
       true: {
-        th: 'sticky bg-background/75 z-1',
-        td: 'sticky bg-background/75 z-1',
+        th: 'bg-background/75 sticky z-1',
+        td: 'bg-background/75 sticky z-1',
       },
     },
     sticky: {
       true: {
-        thead: 'sticky top-0 inset-x-0 bg-background/75 backdrop-blur z-1',
-        tfoot: 'sticky bottom-0 inset-x-0 bg-background/75 backdrop-blur z-1',
+        thead: 'bg-background/75 inset-x-0 top-0 sticky z-1 backdrop-blur-sm',
+        tfoot: 'bg-background/75 inset-x-0 bottom-0 sticky z-1 backdrop-blur-sm',
       },
       header: {
-        thead: 'sticky top-0 inset-x-0 bg-background/75 backdrop-blur z-1',
+        thead: 'bg-background/75 inset-x-0 top-0 sticky z-1 backdrop-blur-sm',
       },
       footer: {
-        tfoot: 'sticky bottom-0 inset-x-0 bg-background/75 backdrop-blur z-1',
+        tfoot: 'bg-background/75 inset-x-0 bottom-0 sticky z-1 backdrop-blur-sm',
       },
     },
     loading: {
       true: {
-        thead: 'after:absolute after:z-1 after:h-px',
+        thead: 'after:(h-px content-empty absolute z-1) motion-reduce:after:inset-x-0 motion-reduce:after:animate-pulse',
       },
     },
     externalScroll: {
@@ -75,29 +77,29 @@ export const table = {
       loading: true,
       loadingAnimation: 'carousel',
       class: {
-        thead: 'after:animate-[carousel_2s_ease-in-out_infinite] rtl:after:animate-[carousel-rtl_2s_ease-in-out_infinite]',
+        thead: 'motion-safe:after:animate-carousel motion-safe:rtl:after:animate-carousel-rtl',
       },
     },
     {
       loading: true,
       loadingAnimation: 'carousel-inverse',
       class: {
-        thead: 'after:animate-[carousel-inverse_2s_ease-in-out_infinite] rtl:after:animate-[carousel-inverse-rtl_2s_ease-in-out_infinite]',
+        thead: 'motion-safe:after:animate-carousel-inverse motion-safe:rtl:after:animate-carousel-inverse-rtl',
       },
     },
     {
       loading: true,
       loadingAnimation: 'swing',
       class: {
-        thead: 'after:animate-[swing_2s_ease-in-out_infinite]',
+        thead: 'motion-safe:after:animate-swing',
       },
     },
     {
       loading: true,
       loadingAnimation: 'elastic',
       class: {
-        thead: 'after:animate-[elastic_2s_ease-in-out_infinite]',
+        thead: 'motion-safe:after:animate-elastic',
       },
     },
   ],
-};
+} satisfies PThemeTable;
