@@ -198,6 +198,22 @@ const routes: Array<RouteRecordRaw> = [
           },
         ],
       },
+      {
+        name: 'HttpExample',
+        path: 'http',
+        meta: {
+          icon: 'mdi:web',
+          title: $t('examples.http.title'),
+        },
+        children: [
+          {
+            name: 'HttpPaginatedProductsExample',
+            path: 'paginated-products',
+            component: () => import('#/views/examples/http/paginated-products.vue'),
+            meta: { title: $t('examples.http.paginatedProducts') },
+          },
+        ],
+      },
     ],
   },
 ];

@@ -398,6 +398,9 @@ catalogs:
     nx:
       specifier: 23.2.1
       version: 23.2.1
+    ofetch:
+      specifier: ^1.5.1
+      version: 1.5.1
     ora:
       specifier: ^9.4.1
       version: 9.4.1
@@ -750,6 +753,9 @@ importers:
       json-bigint:
         specifier: 'catalog:'
         version: 1.0.0
+      ofetch:
+        specifier: 'catalog:'
+        version: 1.5.1
       pinia:
         specifier: ^4.0.3
         version: 4.0.3(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.5.43(typescript@6.0.3))
@@ -1359,12 +1365,12 @@ importers:
       '@orpc/client':
         specifier: 'catalog:'
         version: 1.15.4
+      '@orpc/contract':
+        specifier: 'catalog:'
+        version: 1.15.4
       '@orpc/tanstack-query':
         specifier: 'catalog:'
         version: 1.15.4(@orpc/client@1.15.4)(@tanstack/query-core@5.103.2)
-      '@vinicunca/taman-api-contract':
-        specifier: workspace:^
-        version: link:../api-contract
     devDependencies:
       '@orpc/server':
         specifier: 'catalog:'
@@ -1372,12 +1378,18 @@ importers:
       '@tanstack/query-core':
         specifier: 'catalog:'
         version: 5.103.2
+      ofetch:
+        specifier: 'catalog:'
+        version: 1.5.1
       tsdown:
         specifier: 'catalog:'
         version: 0.22.14(@arethetypeswrong/core@0.18.5)(@volar/typescript@2.4.28(typescript@6.0.3))(oxc-resolver@11.24.2)(publint@0.3.24)(tsx@4.23.15)(typescript@6.0.3)(vue-tsc@3.3.11(typescript@6.0.3))
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
+      zod:
+        specifier: 'catalog:'
+        version: 4.6.5
 
   packages/shell/app-ui:
     dependencies:

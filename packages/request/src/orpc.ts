@@ -1,58 +1,51 @@
+import type { NestedClient } from '@orpc/client';
 import type { ClientRetryPluginContext } from '@orpc/client/plugins';
-import type { TamanClient } from '@vinicunca/taman-api-contract';
+import type { AnyContractRouter, ContractRouterClient } from '@orpc/contract';
 import { createORPCClient, ORPCError } from '@orpc/client';
 import { RPCLink } from '@orpc/client/fetch';
 import { ClientRetryPlugin } from '@orpc/client/plugins';
 
-export type TamanFetch = (request: Request, init?: RequestInit) => Promise<Response>;
+export type RpcFetch = (request: Request, init?: RequestInit) => Promise<Response>;
+export type RpcClientContext = ClientRetryPluginContext;
+
+/** Client type for a contract-first API: `ContractClient<typeof contract>`. */
+export type ContractClient<TContract extends AnyContractRouter> = ContractRouterClient<TContract, RpcClientContext>;
 
 type HeaderRecord = Record<string, string>;
 
-export interface TamanClientOptions {
-  /** Backend origin, e.g. `https://api.example.com`. `/api/rpc` is appended. */
-  baseUrl: string;
+export interface RpcClientOptions {
+  /** Full RPC endpoint, e.g. `https://api.example.com/api/rpc`. */
+  url: string;
   /** Override `fetch` (tests, SSR, Worker-to-Worker calls). */
-  fetch?: TamanFetch;
-  /** Extra headers per request, e.g. `Authorization: Bearer …` for non-cookie clients. */
+  fetch?: RpcFetch;
+  /** Extra headers per request, e.g. `Authorization: Bearer …`. */
   headers?: HeaderRecord | (() => HeaderRecord | Promise<HeaderRecord>);
+  /** No default. Pass `'include'` for cross-origin cookie auth. */
+  credentials?: RequestCredentials;
 }
 
-export type TamanClientContext = ClientRetryPluginContext;
-export type TamanRpcClient = TamanClient<TamanClientContext>;
-
-export const RPC_PATH = '/api/rpc';
-
 /**
- * Pass as `context` when consuming `todo.live` (or any stream): reconnects
- * forever after network drops and resumes from the last event id. A 5xx
- * (proxy hiccup, Worker restart) is retried too, since that's transient —
- * only a 4xx server-sent error such as UNAUTHORIZED stops the stream instead
- * of hammering the API.
+ * Pass as `context` when consuming a stream: reconnects forever after network
+ * drops and resumes from the last event id. A 5xx (proxy hiccup, Worker
+ * restart) is retried too; a 4xx such as UNAUTHORIZED stops the stream.
  */
-export const LIVE_RETRY: TamanClientContext = {
+export const LIVE_RETRY: RpcClientContext = {
   retry: Number.POSITIVE_INFINITY,
   shouldRetry: ({ error }) => !(error instanceof ORPCError) || error.status >= 500,
 };
 
-export function createTamanClient(options: TamanClientOptions): TamanRpcClient {
-  const baseFetch: TamanFetch = options.fetch ?? ((request, init) => globalThis.fetch(request, init));
+export function createRpcClient<TClient extends NestedClient<RpcClientContext>>(options: RpcClientOptions): TClient {
+  const baseFetch: RpcFetch = options.fetch ?? ((request, init) => globalThis.fetch(request, init));
+  const { credentials } = options;
 
-  const link = new RPCLink<TamanClientContext>({
-    url: `${options.baseUrl.replace(/\/+$/, '')}${RPC_PATH}`,
+  const link = new RPCLink<RpcClientContext>({
+    url: options.url,
     headers: async () => (typeof options.headers === 'function' ? await options.headers() : options.headers ?? {}),
-    // Session cookies live on the backend's origin; fetch defaults to `same-origin`.
-    fetch: (request, init) => baseFetch(request, { ...init, credentials: 'include' }),
+    fetch: (request, init) => baseFetch(request, credentials ? { ...init, credentials } : init),
     plugins: [new ClientRetryPlugin()],
   });
 
-  return createORPCClient(link);
+  return createORPCClient<TClient>(link);
 }
 
 export { isDefinedError, ORPCError, safe } from '@orpc/client';
-export type {
-  TamanInputs,
-  TamanOutputs,
-  Todo,
-  TodoEvent,
-  TodoPage,
-} from '@vinicunca/taman-api-contract';
