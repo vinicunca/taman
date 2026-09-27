@@ -8,9 +8,6 @@
     "moduleDetection": "force",
     "experimentalDecorators": true,
 
-    "module": "ESNext",
-
-    "moduleResolution": "node",
     "resolveJsonModule": true,
 
     "strict": true,

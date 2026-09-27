@@ -1,15 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-
 import { Profile } from '@taman/app-ui';
-import { useUserStore } from '@taman/stores';
+import { ref } from 'vue';
 
 import ProfileBase from './base-setting.vue';
 import ProfileNotificationSetting from './notification-setting.vue';
 import ProfilePasswordSetting from './password-setting.vue';
 import ProfileSecuritySetting from './security-setting.vue';
-
-const userStore = useUserStore();
 
 const tabsValue = ref<string>('basic');
 
@@ -32,11 +28,11 @@ const tabs = ref([
   },
 ]);
 </script>
+
 <template>
   <Profile
     v-model:model-value="tabsValue"
     title="个人中心"
-    :user-info="userStore.userInfo"
     :tabs="tabs"
   >
     <template #content>

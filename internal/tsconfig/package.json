@@ -1,13 +1,13 @@
 {
-  "name": "@taman/tsconfig",
+  "name": "@vinicunca/tsconfig",
   "type": "module",
   "version": "1.0.0",
   "private": true,
   "files": [
     "base.json",
     "library.json",
+    "node-bundler.json",
     "node.json",
-    "web-app.json",
     "web.json"
   ]
 }

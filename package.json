@@ -47,7 +47,7 @@
   "devDependencies": {
     "@arethetypeswrong/cli": "catalog:",
     "@taman/commitlint-config": "workspace:*",
-    "@taman/tsconfig": "workspace:*",
+    "@vinicunca/tsconfig": "workspace:*",
     "@taman/vite-config": "workspace:*",
     "@types/node": "catalog:",
     "@vinicunca/eslint-config": "catalog:",
