@@ -2,6 +2,7 @@ import type { UserConfig } from 'vite';
 
 import type { DefineApplicationOptions } from '../typing';
 
+import { readPackageJSON } from '@vinicunca/node-utils';
 import { defineConfig, loadEnv, mergeConfig } from 'vite';
 
 import { defaultImportmapOptions, getDefaultPwaOptions } from '../options';
@@ -14,11 +15,14 @@ function defineApplicationConfig(userConfigPromise?: DefineApplicationOptions) {
     const options = await userConfigPromise?.(config);
 
     const { command, mode } = config;
-    const { appTitle, base, port, ...envConfig } = await loadAndConvertEnv(mode);
+    const { appTitle: envAppTitle, base, port, ...envConfig } = await loadAndConvertEnv(mode);
     const { application = {}, vite = {} } = options || {};
     const root = process.cwd();
     const isBuild = command === 'build';
     const env = loadEnv(mode, root);
+    // VITE_APP_TITLE wins; otherwise fall back to the consumer's package name
+    const appTitle = envAppTitle || (await readPackageJSON(root)).name || '';
+    const defaultPwaOptions = getDefaultPwaOptions(appTitle);
 
     const plugins = await loadApplicationPlugins({
       archiver: true,
@@ -38,13 +42,19 @@ function defineApplicationConfig(userConfigPromise?: DefineApplicationOptions) {
       mode,
       nitroMock: !isBuild,
       print: !isBuild,
-      printInfoMap: {
-        'Taman Admin Docs': 'https://taman.vinicunca.dev',
-      },
       pwa: true,
-      pwaOptions: getDefaultPwaOptions(appTitle),
       ...envConfig,
       ...application,
+      // Merge instead of replace so a consumer setting e.g. only `description`
+      // keeps the manifest name derived from the app title
+      pwaOptions: {
+        ...defaultPwaOptions,
+        ...application.pwaOptions,
+        manifest: {
+          ...defaultPwaOptions.manifest,
+          ...application.pwaOptions?.manifest,
+        },
+      },
     });
 
     const applicationConfig: UserConfig = {
@@ -72,12 +82,9 @@ function defineApplicationConfig(userConfigPromise?: DefineApplicationOptions) {
         host: true,
         port,
         warmup: {
-          // Warmup files
-          clientFiles: [
-            './index.html',
-            './src/bootstrap.ts',
-            './src/{views,layouts,router,store,api,adapter}/*',
-          ],
+          // Consumers add app-specific entries via `vite.server.warmup`;
+          // mergeConfig appends them to this list
+          clientFiles: ['./index.html'],
         },
       },
     };

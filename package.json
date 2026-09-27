@@ -47,10 +47,10 @@
   "devDependencies": {
     "@arethetypeswrong/cli": "catalog:",
     "@taman/commitlint-config": "workspace:*",
-    "@vinicunca/tsconfig": "workspace:*",
-    "@taman/vite-config": "workspace:*",
     "@types/node": "catalog:",
     "@vinicunca/eslint-config": "catalog:",
+    "@vinicunca/tsconfig": "workspace:*",
+    "@vinicunca/vite-config": "workspace:*",
     "@vitejs/plugin-vue": "catalog:",
     "@vitejs/plugin-vue-jsx": "catalog:",
     "bumpp": "catalog:",

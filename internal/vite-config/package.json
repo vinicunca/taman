@@ -1,9 +1,18 @@
 {
-  "name": "@taman/vite-config",
+  "name": "@vinicunca/vite-config",
   "type": "module",
   "version": "1.0.0",
-  "private": true,
+  "description": "Opinionated Vite config for Vue applications and libraries.",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      }
+    }
+  },
   "exports": {
     ".": {
       "types": "./src/index.ts",
@@ -17,30 +26,36 @@
     "dist"
   ],
   "scripts": {
+    "build": "pnpm exec tsdown",
+    "prepublishOnly": "pnpm build",
     "stub": "pnpm exec tsdown",
     "watch": "pnpm exec tsdown --watch"
+  },
+  "peerDependencies": {
+    "unocss": "^66.0.0",
+    "vite": "^8.0.0"
   },
   "dependencies": {
     "@intlify/unplugin-vue-i18n": "catalog:",
     "@jspm/generator": "catalog:",
+    "@pnpm/workspace.read-manifest": "catalog:",
+    "@types/html-minifier-terser": "catalog:",
     "@vinicunca/node-utils": "workspace:*",
+    "@vitejs/plugin-vue": "catalog:",
+    "@vitejs/plugin-vue-jsx": "catalog:",
     "archiver": "catalog:",
     "cheerio": "catalog:",
+    "dotenv": "catalog:",
     "html-minifier-terser": "catalog:",
+    "rollup-plugin-visualizer": "catalog:",
+    "unplugin-dts": "catalog:",
+    "vite-plugin-compression": "catalog:",
     "vite-plugin-pwa": "catalog:",
     "vite-plugin-vue-devtools": "catalog:"
   },
   "devDependencies": {
-    "@pnpm/workspace.read-manifest": "catalog:",
     "@types/archiver": "catalog:",
-    "@types/html-minifier-terser": "catalog:",
-    "@vitejs/plugin-vue": "catalog:",
-    "@vitejs/plugin-vue-jsx": "catalog:",
-    "dotenv": "catalog:",
-    "rollup-plugin-visualizer": "catalog:",
     "unocss": "catalog:",
-    "unplugin-dts": "catalog:",
-    "vite": "catalog:",
-    "vite-plugin-compression": "catalog:"
+    "vite": "catalog:"
   }
 }

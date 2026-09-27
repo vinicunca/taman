@@ -15,7 +15,7 @@ const DEFAULT_CONFIG = {
   ignoreDependencies: [
     '@taman/commitlint-config',
     '@vinicunca/eslint-config',
-    '@taman/vite-config',
+    '@vinicunca/vite-config',
     'playwright',
     'rimraf',
     'unocss',

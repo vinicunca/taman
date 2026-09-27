@@ -16,7 +16,7 @@ const HTML_MINIFY_OPTIONS = {
 
 function viteHtmlPlugin(options: HtmlMinifierOptions = {}): PluginOption {
   return {
-    name: 'taman-native-html',
+    name: 'vite:html-minify',
     transformIndexHtml: {
       order: 'post',
       async handler(html, ctx) {

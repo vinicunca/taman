@@ -25,9 +25,27 @@ function resolvePackageVersion(
   return value;
 }
 
-async function resolveMonorepoDependencies() {
-  const { packages } = await getPackages();
-  const manifest = await readWorkspaceManifest(findMonorepoRoot());
+/**
+ * Collects dependency versions for the metadata. Inside a pnpm workspace this
+ * merges every workspace package and resolves `catalog:` / `workspace:`
+ * versions; anywhere else (standalone app, npm or yarn project) it falls back
+ * to the project's own package.json instead of throwing.
+ */
+async function resolveDependencies(root: string) {
+  let workspaceRoot: string | undefined;
+  try {
+    workspaceRoot = findMonorepoRoot(root);
+  } catch {
+    // No pnpm-workspace.yaml / pnpm-lock.yaml above `root`
+  }
+
+  if (!workspaceRoot) {
+    const { dependencies = {}, devDependencies = {} } = await readPackageJSON(root);
+    return { dependencies, devDependencies };
+  }
+
+  const { packages } = await getPackages(workspaceRoot);
+  const manifest = await readWorkspaceManifest(workspaceRoot);
   const catalog = manifest?.catalog || {};
 
   const resultDevDependencies: Record<string, string | undefined> = {};
@@ -77,7 +95,7 @@ async function viteMetadataPlugin(
   return {
     async config() {
       const { dependencies, devDependencies }
-        = await resolveMonorepoDependencies();
+        = await resolveDependencies(root);
 
       const isAuthorObject = typeof author === 'object';
       const authorName = isAuthorObject ? author.name : author;

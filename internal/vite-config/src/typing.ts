@@ -72,6 +72,39 @@ interface ArchiverPluginOptions {
 }
 
 /**
+ * License plugin options
+ * @description Configures the banner prepended to entry chunks. Unset fields
+ * fall back to the consumer's package.json; empty fields are omitted.
+ */
+interface LicensePluginOptions {
+  /**
+   * Author shown in the banner
+   * @default package.json `author` (its `name` when it is an object)
+   */
+  author?: string;
+  /**
+   * Contact line, e.g. an email address
+   * @default package.json `author.email`
+   */
+  contact?: string;
+  /**
+   * Copyright line, e.g. `Copyright (C) 2024 Vinicunca`
+   * @default omitted
+   */
+  copyright?: string;
+  /**
+   * License shown in the banner
+   * @default package.json `license`
+   */
+  license?: string;
+  /**
+   * Banner title
+   * @default package.json `name`
+   */
+  name?: string;
+}
+
+/**
  * HTML plugin options
  * @description Configures HTML minification via transformIndexHtml
  */
@@ -226,6 +259,10 @@ interface ApplicationPluginOptions extends CommonPluginOptions {
    */
   license?: boolean;
   /**
+   * License plugin options
+   */
+  licenseOptions?: LicensePluginOptions;
+  /**
    * Enable Nitro Mock
    * @default false
    */
@@ -315,6 +352,7 @@ export type {
   IImportMap,
   ImportmapPluginOptions,
   LibraryPluginOptions,
+  LicensePluginOptions,
   PrintPluginOptions,
   TamanViteConfig,
 };

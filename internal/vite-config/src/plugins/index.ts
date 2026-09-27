@@ -112,6 +112,7 @@ async function loadApplicationPlugins(
     importmapOptions,
     injectAppLoading,
     license,
+    licenseOptions,
     nitroMock,
     print,
     printInfoMap,
@@ -151,7 +152,7 @@ async function loadApplicationPlugins(
 
     {
       condition: license,
-      plugins: async () => [await viteLicensePlugin()],
+      plugins: async () => [await viteLicensePlugin(licenseOptions)],
     },
 
     {
