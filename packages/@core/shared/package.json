@@ -2,6 +2,7 @@
   "name": "@taman-core/shared",
   "type": "module",
   "version": "1.0.0",
+  "private": true,
   "exports": {
     "./constants": {
       "types": "./src/constants/index.ts",

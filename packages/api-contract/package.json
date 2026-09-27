@@ -2,6 +2,7 @@
   "name": "@vinicunca/taman-api-contract",
   "type": "module",
   "version": "0.1.0",
+  "private": true,
   "description": "oRPC contract (zod schemas + procedure signatures) for the Taman API.",
   "license": "MIT",
   "repository": {

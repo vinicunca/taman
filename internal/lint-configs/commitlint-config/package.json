@@ -4,6 +4,11 @@
   "version": "1.0.0",
   "description": "Shared commitlint and cz-git config with workspace-aware scopes.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinicunca/taman.git",
+    "directory": "internal/lint-configs/commitlint-config"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -32,7 +37,7 @@
   "dependencies": {
     "@commitlint/config-conventional": "catalog:",
     "@commitlint/types": "catalog:",
-    "@vinicunca/node-utils": "workspace:*",
+    "@vinicunca/node-utils": "workspace:^",
     "commitlint-plugin-function-rules": "catalog:"
   },
   "devDependencies": {

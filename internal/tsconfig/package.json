@@ -6,6 +6,11 @@
     "access": "public"
   },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinicunca/taman.git",
+    "directory": "internal/tsconfig"
+  },
   "files": [
     "base.json",
     "library.json",

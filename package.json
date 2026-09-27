@@ -46,6 +46,7 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "catalog:",
+    "@changesets/cli": "catalog:",
     "@commitlint/cli": "catalog:",
     "@types/node": "catalog:",
     "@vinicunca/commitlint-config": "workspace:*",

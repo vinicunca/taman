@@ -48,6 +48,7 @@ allowBuilds:
 catalog:
   '@arethetypeswrong/cli': ^0.18.5
   '@ast-grep/napi': ^0.45.3
+  '@changesets/cli': ^3.0.3
   '@cloudflare/workers-types': ^5.20260924.1
   '@colordx/core': 6.6.0
   '@commitlint/cli': ^21.2.3

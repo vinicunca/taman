@@ -2,6 +2,7 @@
   "name": "@taman/stores",
   "type": "module",
   "version": "1.0.0",
+  "private": true,
   "exports": {
     ".": {
       "types": "./src/index.ts",

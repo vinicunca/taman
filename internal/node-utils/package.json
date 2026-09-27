@@ -4,6 +4,11 @@
   "version": "1.0.0",
   "description": "Node.js build helpers and explicit pnpm workspace utilities.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinicunca/taman.git",
+    "directory": "internal/node-utils"
+  },
   "publishConfig": {
     "access": "public"
   },

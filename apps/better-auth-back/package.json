@@ -1,5 +1,6 @@
 {
   "name": "@taman/better-auth-back",
+  "private": true,
   "type": "module",
   "imports": {
     "#*": "./server/*"

@@ -2,6 +2,7 @@
   "name": "@vinicunca/request",
   "type": "module",
   "version": "0.1.0",
+  "private": true,
   "description": "Generic typed request clients: oRPC and ofetch-based REST, each with TanStack Query helpers.",
   "license": "MIT",
   "repository": {

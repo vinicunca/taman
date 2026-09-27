@@ -4,6 +4,11 @@
   "version": "1.0.0",
   "description": "Opinionated Vite config for Vue applications and libraries.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinicunca/taman.git",
+    "directory": "internal/vite-config"
+  },
   "publishConfig": {
     "access": "public",
     "exports": {
@@ -40,7 +45,7 @@
     "@jspm/generator": "catalog:",
     "@pnpm/workspace.read-manifest": "catalog:",
     "@types/html-minifier-terser": "catalog:",
-    "@vinicunca/node-utils": "workspace:*",
+    "@vinicunca/node-utils": "workspace:^",
     "@vitejs/plugin-vue": "catalog:",
     "@vitejs/plugin-vue-jsx": "catalog:",
     "archiver": "catalog:",
