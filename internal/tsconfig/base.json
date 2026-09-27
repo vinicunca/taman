@@ -32,5 +32,11 @@
     "skipLibCheck": true,
     "preserveWatchOutput": true
   },
-  "exclude": ["**/node_modules/**", "**/dist/**", "**/.nx/**"]
+  // `${configDir}` is the directory of the consuming tsconfig. Plain relative
+  // globs would resolve against this preset's own folder and exclude nothing.
+  "exclude": [
+    "${configDir}/**/node_modules",
+    "${configDir}/**/dist",
+    "${configDir}/**/.nx"
+  ]
 }

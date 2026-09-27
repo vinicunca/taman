@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Web Application",
+  "display": "Library",
   "extends": "./base.json",
   "compilerOptions": {
     "jsx": "preserve",
