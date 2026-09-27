@@ -1,7 +1,7 @@
 {
   "name": "@vinicunca/node-utils",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node.js build helpers and explicit pnpm workspace utilities.",
   "license": "MIT",
   "repository": {
