@@ -17,5 +17,6 @@
     "node-bundler.json",
     "node.json",
     "web.json"
-  ]
+  ],
+  "license": "MIT"
 }

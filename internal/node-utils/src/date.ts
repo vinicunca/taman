@@ -5,7 +5,7 @@ import { getLocalTimeZone, now } from '@internationalized/date';
  * Supports the YYYY, MM, DD, HH, mm and ss tokens.
  * @param format
  */
-function formatNow(format: string) {
+function formatNow(format: string): string {
   const zoned = now(getLocalTimeZone());
 
   return format

@@ -6,7 +6,7 @@ import {
   formatNow,
   getPackages,
   readPackageJSON,
-} from '@taman/node-utils';
+} from '@vinicunca/node-utils';
 
 function resolvePackageVersion(
   pkgsMeta: Record<string, string>,

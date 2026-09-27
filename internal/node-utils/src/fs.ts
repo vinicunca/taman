@@ -28,7 +28,7 @@ export async function ensureFile(filePath: string) {
   }
 }
 
-export async function readJSON(filePath: string) {
+export async function readJSON(filePath: string): Promise<any> {
   try {
     const data = await fs.readFile(filePath, 'utf8');
     return JSON.parse(data);

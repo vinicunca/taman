@@ -13,7 +13,7 @@ import {
   outputJSON,
   readJSON,
   UNICODE,
-} from '@taman/node-utils';
+} from '@vinicunca/node-utils';
 
 import { publint } from 'publint';
 import { formatMessage } from 'publint/utils';

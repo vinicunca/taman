@@ -23,7 +23,7 @@
   "dependencies": {
     "@intlify/unplugin-vue-i18n": "catalog:",
     "@jspm/generator": "catalog:",
-    "@taman/node-utils": "workspace:*",
+    "@vinicunca/node-utils": "workspace:*",
     "archiver": "catalog:",
     "cheerio": "catalog:",
     "html-minifier-terser": "catalog:",

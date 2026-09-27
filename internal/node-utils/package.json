@@ -1,8 +1,12 @@
 {
-  "name": "@taman/node-utils",
+  "name": "@vinicunca/node-utils",
   "type": "module",
   "version": "1.0.0",
-  "private": true,
+  "description": "Node.js build helpers and explicit pnpm workspace utilities.",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -17,7 +21,10 @@
     "dist"
   ],
   "scripts": {
-    "stub": "node ./scripts/build.mjs"
+    "stub": "node ./scripts/build.mjs",
+    "build": "node ./scripts/build.mjs",
+    "test": "vitest run --config vitest.config.ts",
+    "prepublishOnly": "pnpm build"
   },
   "dependencies": {
     "@internationalized/date": "catalog:",
@@ -25,8 +32,6 @@
     "chalk": "catalog:",
     "consola": "catalog:",
     "execa": "catalog:",
-    "ora": "catalog:",
-    "pkg-types": "catalog:",
-    "rimraf": "catalog:"
+    "pkg-types": "catalog:"
   }
 }

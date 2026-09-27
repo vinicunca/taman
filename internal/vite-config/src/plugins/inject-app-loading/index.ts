@@ -5,7 +5,7 @@ import fsp from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { readPackageJSON } from '@taman/node-utils';
+import { readPackageJSON } from '@vinicunca/node-utils';
 
 /**
  * Injects app loading markup/styles into index.html

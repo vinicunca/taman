@@ -3,7 +3,7 @@ import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 
-import { execa } from '@taman/node-utils';
+import { execa } from '@vinicunca/node-utils';
 
 const require = createRequire(import.meta.url);
 const knipMain = require.resolve('knip');

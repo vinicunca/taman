@@ -1,7 +1,7 @@
 /* eslint-disable regexp/no-unused-capturing-group */
 import { execSync } from 'node:child_process';
 
-import { getPackagesSync } from '@taman/node-utils';
+import { getPackagesSync } from '@vinicunca/node-utils';
 
 const { packages } = getPackagesSync();
 

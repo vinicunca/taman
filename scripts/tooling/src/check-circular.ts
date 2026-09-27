@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os';
 import { extname, join } from 'node:path';
 import { parseArgs } from 'node:util';
 
-import { execa, getStagedFiles } from '@taman/node-utils';
+import { execa, getStagedFiles } from '@vinicunca/node-utils';
 
 const require = createRequire(import.meta.url);
 const circularScannerCli

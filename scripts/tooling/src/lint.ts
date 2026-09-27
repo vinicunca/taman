@@ -1,7 +1,7 @@
 import { execSync } from 'node:child_process';
 import { parseArgs } from 'node:util';
 
-import { execa } from '@taman/node-utils';
+import { execa } from '@vinicunca/node-utils';
 
 interface LintCommandOptions {
   /**

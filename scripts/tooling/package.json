@@ -5,7 +5,7 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "@taman/node-utils": "workspace:*",
+    "@vinicunca/node-utils": "workspace:*",
     "circular-dependency-scanner": "catalog:",
     "knip": "catalog:",
     "publint": "catalog:"

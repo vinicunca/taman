@@ -3,7 +3,7 @@ import type { ApplicationPluginOptions } from '../typing';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 
-import { fs } from '@taman/node-utils';
+import { fs } from '@vinicunca/node-utils';
 import dotenv from 'dotenv';
 
 const getBoolean = (value: string | undefined) => value === 'true';

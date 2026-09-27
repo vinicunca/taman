@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto';
  * @param content
  * @param hashLSize
  */
-function generatorContentHash(content: string, hashLSize?: number) {
+function generatorContentHash(content: string, hashLSize?: number): string {
   const hash = createHash('md5').update(content, 'utf8').digest('hex');
 
   if (hashLSize) {

@@ -65,7 +65,7 @@ export interface BuiltInFormComponentPropsMap {
 export type BuiltInFormComponentType = keyof BuiltInFormComponentPropsMap;
 
 // @keep-sorted
-export const BUILT_IN_COMPONENT_MAP = {
+export const BUILT_IN_COMPONENT_MAP: Record<BuiltInFormComponentType, Component> = {
   Checkbox: PCheckbox,
   CheckboxGroup: PCheckboxGroup,
   FileUpload: TamanFileUpload,
@@ -87,4 +87,4 @@ export const BUILT_IN_COMPONENT_MAP = {
   Switch: PSwitch,
   TamanFormFieldArray,
   Textarea: PTextarea,
-} satisfies Record<BuiltInFormComponentType, Component>;
+};

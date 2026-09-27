@@ -2,7 +2,7 @@ import type { PluginOption } from 'vite';
 
 import { EOL } from 'node:os';
 
-import { formatNow, readPackageJSON } from '@taman/node-utils';
+import { formatNow, readPackageJSON } from '@vinicunca/node-utils';
 
 /**
  * Injects a license/copyright banner into build output

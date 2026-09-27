@@ -4,7 +4,7 @@ import {
   colors,
   generatorContentHash,
   readPackageJSON,
-} from '@taman/node-utils';
+} from '@vinicunca/node-utils';
 
 import { loadEnv } from '../utils/env';
 
