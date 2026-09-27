@@ -5824,5 +5824,11 @@
     "seen": 1790496715.337334,
     "ast_hash": "60a63efe0545fc3975aabf27d4437f8a",
     "semantic_hash": ""
+  },
+  "internal/tsconfig/jsr.json": {
+    "mtime": 1790497267.3379848,
+    "seen": 1790497280.9522119,
+    "ast_hash": "8a9ec5e6b7da2437e6106a7dbcb95e56",
+    "semantic_hash": ""
   }
 }

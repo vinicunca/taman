@@ -3,13 +3,13 @@
 Shared TypeScript presets. Applications own their include/exclude paths, output
 directories, and application-specific global declarations.
 
-| Preset | Use for |
-| --- | --- |
-| `base.json` | Shared strictness options; choose module settings in the consumer or another preset. |
-| `node.json` | Native Node module semantics (`NodeNext` for module and resolution). |
+| Preset              | Use for                                                                                          |
+| ------------------- | ------------------------------------------------------------------------------------------------ |
+| `base.json`         | Shared strictness options; choose module settings in the consumer or another preset.             |
+| `node.json`         | Native Node module semantics (`NodeNext` for module and resolution).                             |
 | `node-bundler.json` | Node tooling processed by a bundler or compatible loader; allows extensionless relative imports. |
-| `web.json` | Vue/Vite browser code with Vite client types. |
-| `library.json` | Bundler-based library builds with DOM types and declaration output enabled. |
+| `web.json`          | Vue/Vite browser code with Vite client types.                                                    |
+| `library.json`      | Bundler-based library builds with DOM types and declaration output enabled.                      |
 
 ```json
 {
@@ -39,25 +39,3 @@ your supported Node versions; the shared default is ESNext.
 For published libraries, also verify declarations with a NodeNext consumer.
 Bundling JavaScript alone does not make separately emitted declarations
 compatible with native Node resolution.
-
-## Migration
-
-`node.json` previously used bundler resolution. Existing consumers should
-extend `node-bundler.json` to retain that behavior. Adopt `node.json` separately
-when ready to validate native Node module semantics.
-
-`web-app.json` has been removed. Extend `web.json` and explicitly include
-application globals in the consumer, for example:
-
-```json
-{
-  "extends": "@vinicunca/tsconfig/web.json",
-  "compilerOptions": {
-    "types": ["vite/client", "@taman/types/global"]
-  },
-  "include": ["src"]
-}
-```
-
-The types array replaces the inherited list. Taman globals are optional
-consumer configuration, not a dependency of this package.

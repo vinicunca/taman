@@ -1,0 +1,21 @@
+{
+  "$schema": "https://jsr.io/schema/config-file.v1.json",
+  "name": "@vinicunca/tsconfig",
+  "version": "1.0.0",
+  "exports": {
+    "./base.json": "./base.json",
+    "./library.json": "./library.json",
+    "./node-bundler.json": "./node-bundler.json",
+    "./node.json": "./node.json",
+    "./web.json": "./web.json"
+  },
+  "include": [
+    "jsr.json",
+    "README.md",
+    "base.json",
+    "library.json",
+    "node-bundler.json",
+    "node.json",
+    "web.json"
+  ]
+}
