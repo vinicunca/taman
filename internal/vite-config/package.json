@@ -1,7 +1,7 @@
 {
   "name": "@vinicunca/vite-config",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Opinionated Vite config for Vue applications and libraries.",
   "license": "MIT",
   "repository": {
