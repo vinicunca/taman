@@ -1,27 +1,42 @@
 {
-  "name": "@taman/commitlint-config",
+  "name": "@vinicunca/commitlint-config",
   "type": "module",
   "version": "1.0.0",
-  "private": true,
+  "description": "Shared commitlint and cz-git config with workspace-aware scopes.",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "import": "./index.mjs",
       "default": "./index.mjs"
     }
   },
   "main": "./index.mjs",
   "module": "./index.mjs",
+  "types": "./index.d.ts",
   "files": [
-    "dist"
+    "index.d.ts",
+    "index.mjs"
   ],
+  "peerDependencies": {
+    "@commitlint/cli": "^21.0.0",
+    "czg": "^1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "czg": {
+      "optional": true
+    }
+  },
   "dependencies": {
-    "@commitlint/cli": "catalog:",
     "@commitlint/config-conventional": "catalog:",
     "@commitlint/types": "catalog:",
     "@vinicunca/node-utils": "workspace:*",
-    "commitlint-plugin-function-rules": "catalog:",
+    "commitlint-plugin-function-rules": "catalog:"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "catalog:",
     "cz-git": "catalog:",
     "czg": "catalog:"
   }

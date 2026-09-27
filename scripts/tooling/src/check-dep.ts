@@ -13,7 +13,7 @@ const DEFAULT_CONFIG = {
   ignore: ['dist/**', 'docs/**', 'node_modules/**', 'public/**'],
   ignoreBinaries: [] as Array<string>,
   ignoreDependencies: [
-    '@taman/commitlint-config',
+    '@vinicunca/commitlint-config',
     '@vinicunca/eslint-config',
     '@vinicunca/vite-config',
     'playwright',

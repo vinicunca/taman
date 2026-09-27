@@ -46,8 +46,9 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "catalog:",
-    "@taman/commitlint-config": "workspace:*",
+    "@commitlint/cli": "catalog:",
     "@types/node": "catalog:",
+    "@vinicunca/commitlint-config": "workspace:*",
     "@vinicunca/eslint-config": "catalog:",
     "@vinicunca/tsconfig": "workspace:*",
     "@vinicunca/vite-config": "workspace:*",
@@ -56,6 +57,7 @@
     "bumpp": "catalog:",
     "cross-env": "catalog:",
     "cspell": "catalog:",
+    "czg": "catalog:",
     "eslint": "catalog:",
     "happy-dom": "catalog:",
     "is-ci": "catalog:",

@@ -1,1 +1,1 @@
-export { default } from '@taman/commitlint-config';
+export { default } from '@vinicunca/commitlint-config';
