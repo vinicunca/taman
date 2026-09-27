@@ -42,8 +42,7 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      # Publishable packages currently all live in internal/
-      - run: pnpm --filter "./internal/**" run --if-present build
+      # Each publishable package builds itself in its `prepack` script
       - run: node .github/scripts/verify-packages.mjs
 
   select-mode:
@@ -106,8 +105,8 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
+      # changeset pack runs `pnpm pack`, so each package's `prepack` builds it
       - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter "./internal/**" run --if-present build
       - id: pack
         uses: changesets/action/pack@v2
         with:

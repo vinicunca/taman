@@ -29,7 +29,7 @@
     "stub": "node ./scripts/build.mjs",
     "build": "node ./scripts/build.mjs",
     "test": "vitest run --config vitest.config.ts",
-    "prepublishOnly": "pnpm build"
+    "prepack": "pnpm build"
   },
   "dependencies": {
     "@internationalized/date": "catalog:",

@@ -67,14 +67,16 @@ export function refreshTokenInterceptor(options: RefreshTokenInterceptorOptions)
       // C1: this is the refresh call itself (or any request the caller opted
       // out for) — never route it back through the refresh flow, or a
       // failing refresh endpoint would await its own in-flight attempt forever.
-      // Never touch `inflight` here — only read it: when it's set, this
-      // failure is the refresh endpoint's own 401 inside an attempt that's
-      // already in flight, and the waiting request(s) will notify once via
-      // their own "refresh failed" dedupe below; only notify directly for a
-      // standalone request (no attempt in flight to dedupe with).
+      // Never touch `inflight` here — only read it, and never await it: this
+      // may be the refresh endpoint's own 401, which the attempt is waiting on.
       if (context?.options.skipAuthRefresh) {
         if (!inflight) {
           await notifyAuthFailure(error);
+        } else {
+          // If the attempt fails, the waiting request(s) notify once via the
+          // "refresh failed" dedupe below. If it succeeds, this 401 was not
+          // the refresh's failure, so report it once the outcome is known.
+          inflight.promise.then(() => notifyAuthFailure(error), () => {});
         }
         throw error;
       }

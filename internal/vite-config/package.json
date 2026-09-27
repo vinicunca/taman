@@ -32,7 +32,7 @@
   ],
   "scripts": {
     "build": "pnpm exec tsdown",
-    "prepublishOnly": "pnpm build",
+    "prepack": "pnpm build",
     "stub": "pnpm exec tsdown",
     "watch": "pnpm exec tsdown --watch"
   },

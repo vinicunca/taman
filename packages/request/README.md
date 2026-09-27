@@ -102,7 +102,10 @@ await http.post('/users', { name: 'Ana' });
   handlers are skipped and `responseReturn` no longer unwraps it.
 - **Token refresh:** concurrent 401s share one `refresh()`; each request is
   retried once; a second 401, a failed refresh or `enabled: false` calls
-  `onAuthFailure` and rejects.
+  `onAuthFailure` and rejects. A `skipAuthRefresh` request is never retried
+  and also calls `onAuthFailure` on a 401 — deferred until an in-flight
+  refresh succeeds, and skipped if that refresh fails, which is already
+  reported once.
 - **TypeScript:** with `skipLibCheck: false`, also install `undici` and
   `@types/node` (types only; ofetch's type declarations import `undici`,
   whose own types need `@types/node`).

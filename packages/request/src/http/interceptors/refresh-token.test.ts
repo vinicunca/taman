@@ -13,6 +13,7 @@ function setup(options: { refresh?: () => Promise<string>; enabled?: boolean } =
       : Response.json({ message: 'expired' }, { status: 401 })),
     '/always-401': () => Response.json({}, { status: 401 }),
     '/forbidden': () => Response.json({}, { status: 403 }),
+    '/me': () => Response.json({}, { status: 401 }),
   });
   const http = createHttpClient({ baseURL: 'http://api.test', fetch: fake.fetch, retry: false });
   http.addRequestInterceptor((context) => {
@@ -128,6 +129,48 @@ describe('refreshTokenInterceptor', () => {
 
     expect(outcome).toMatchObject({ status: 'rejected', error: { kind: 'http', status: 401 } });
     expect(onAuthFailure).toHaveBeenCalledTimes(1);
+  });
+
+  describe('a skipAuthRefresh 401 while an unrelated refresh is in flight', () => {
+    // The refresh stays pending until the test settles it, so the
+    // skipAuthRefresh request is guaranteed to fail during the refresh
+    function setupWithPendingRefresh() {
+      let settle!: { resolve: (token: string) => void; reject: (error: Error) => void };
+      const pending = new Promise<string>((resolve, reject) => {
+        settle = { resolve, reject };
+      });
+      return { ...setup({ refresh: () => pending }), settle };
+    }
+
+    it('calls onAuthFailure for it when the refresh succeeds', async () => {
+      const { http, refresh, onAuthFailure, settle } = setupWithPendingRefresh();
+      const secure = http.get('/secure');
+      await vi.waitFor(() => expect(refresh).toHaveBeenCalledTimes(1));
+
+      const meError = await http.get('/me', { skipAuthRefresh: true }).catch((error_: unknown) => error_);
+      expect(meError).toMatchObject({ kind: 'http', status: 401 });
+
+      settle.resolve('new');
+      await expect(secure).resolves.toEqual({ ok: true });
+      await vi.waitFor(() => expect(onAuthFailure).toHaveBeenCalledTimes(1));
+      expect(onAuthFailure).toHaveBeenCalledWith(meError);
+    });
+
+    it('reports the failed refresh only once', async () => {
+      const { http, refresh, onAuthFailure, settle } = setupWithPendingRefresh();
+      const secure = http.get('/secure').catch((error_: unknown) => error_);
+      await vi.waitFor(() => expect(refresh).toHaveBeenCalledTimes(1));
+
+      await http.get('/me', { skipAuthRefresh: true }).catch(() => {});
+
+      settle.reject(new Error('refresh denied'));
+      await secure;
+      // Give a deferred notification the chance to (wrongly) fire a second time
+      await new Promise((resolve) => {
+        setTimeout(resolve, 30);
+      });
+      expect(onAuthFailure).toHaveBeenCalledTimes(1);
+    });
   });
 
   it('still rejects with the original error when onAuthFailure throws (disabled, retried-out and refresh-failed paths)', async () => {

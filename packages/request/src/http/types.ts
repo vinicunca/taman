@@ -35,7 +35,9 @@ export interface HttpRequestOptions extends Omit<HttpClientOptions, 'baseURL' | 
   signal?: AbortSignal;
   /**
    * Skip the refresh-token preset for this request — use it for the refresh
-   * call itself, so its own 401 never re-enters the refresh flow.
+   * call itself, so its own 401 never re-enters the refresh flow. A 401 still
+   * calls `onAuthFailure`; while a refresh is in flight, only once that
+   * refresh succeeds (a failed refresh is reported once on its own).
    */
   skipAuthRefresh?: boolean;
 }
