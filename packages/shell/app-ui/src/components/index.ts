@@ -1,6 +1,7 @@
 export * from './auth';
 export * from './card';
 export * from './count-to';
+export * from './fallback';
 export * from './fetch-component';
 export * from './loading';
 export * from './page';

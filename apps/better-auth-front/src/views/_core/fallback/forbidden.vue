@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { Fallback } from '@taman/app-ui';
+import { TamanFallback } from '@taman/app-ui';
 
-defineOptions({ name: 'Fallback403Demo' });
+defineOptions({ name: 'TamanFallback403Demo' });
 </script>
 
 <template>
-  <Fallback status="403" />
+  <TamanFallback status="403" />
 </template>

@@ -65,35 +65,6 @@ const coreRoutes: Array<RouteRecordRaw> = [
           title: $t('page.auth.login'),
         },
       },
-      {
-        name: 'QrCodeLogin',
-        path: 'qrcode-login',
-        component: () =>
-          import('#/views/_core/authentication/qrcode-login.vue'),
-        meta: {
-          auth: { only: 'guest' },
-          title: $t('page.auth.qrcodeLogin'),
-        },
-      },
-      {
-        name: 'ForgetPassword',
-        path: 'forget-password',
-        component: () =>
-          import('#/views/_core/authentication/forget-password.vue'),
-        meta: {
-          auth: { only: 'guest' },
-          title: $t('page.auth.forgetPassword'),
-        },
-      },
-      {
-        name: 'Register',
-        path: 'register',
-        component: () => import('#/views/_core/authentication/register.vue'),
-        meta: {
-          auth: { only: 'guest' },
-          title: $t('page.auth.register'),
-        },
-      },
     ],
   },
 ];

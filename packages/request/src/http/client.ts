@@ -159,9 +159,10 @@ export function createHttpClient(clientOptions: HttpClientOptions = {}): HttpCli
   async function request<T>(url: string, options: HttpRequestOptions = {}): Promise<T> {
     const context = createContext(url, options);
 
-    for (const interceptor of [...requestInterceptors]) {
-      await interceptor(context);
-    }
+    await [...requestInterceptors].reduce(
+      (chain, interceptor) => chain.then(() => interceptor(context)),
+      Promise.resolve(),
+    );
 
     // Presets that re-issue a request (e.g. token refresh) use this to apply
     // state onto the freshly built context, after request interceptors have

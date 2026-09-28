@@ -16,7 +16,8 @@
     "@vinicunca/taman-ui": "workspace:^",
     "@vueuse/core": "catalog:",
     "pohon-ui": "catalog:",
-    "vue": "catalog:"
+    "vue": "catalog:",
+    "vue-router": "catalog:"
   },
   "devDependencies": {
     "@vue/test-utils": "catalog:"
