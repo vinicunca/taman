@@ -1,5 +1,10 @@
 <script lang="ts" setup>
-import type { TamanContentCompactType, TamanLayoutType } from '@taman/types';
+import type {
+  TamanBuiltinThemeType,
+  TamanContentCompactType,
+  TamanLayoutType,
+} from '@taman/types';
+import type { ThemeBrandColors } from '@vinicunca/taman-core/preferences';
 import type { TabsItem } from 'pohon-ui';
 import { $t } from '@taman/locales';
 import { usePreferences } from '@vinicunca/taman-core/preferences';
@@ -10,11 +15,16 @@ import PTooltip from 'pohon-ui/components/Tooltip.vue';
 import { computed } from 'vue';
 import {
   PreferencesBlock,
+  PreferencesBuiltinTheme,
   PreferencesContent,
   PreferencesLayout,
   PreferencesSidebar,
   PreferencesTheme,
 } from './blocks';
+
+defineOptions({
+  name: 'LayoutWidgetPreferencesDrawer',
+});
 
 const emits = defineEmits<{
   clearPreferencesAndLogout: [];
@@ -25,8 +35,8 @@ const emits = defineEmits<{
  * Layout
  * ----------
  */
-const appLayout = defineModel<TamanLayoutType>('appLayout');
-const appContentCompact = defineModel<TamanContentCompactType>('appContentCompact');
+const appLayout = defineModel<TamanLayoutType | undefined>('appLayout', { default: undefined });
+const appContentCompact = defineModel<TamanContentCompactType | undefined>('appContentCompact', { default: undefined });
 
 const sidebarAutoActivateChild = defineModel<boolean>('sidebarAutoActivateChild');
 const sidebarDraggable = defineModel<boolean>('sidebarDraggable');
@@ -46,6 +56,8 @@ const sidebarWidth = defineModel<number>('sidebarWidth');
 const themeSemiDarkSidebar = defineModel<boolean>('themeSemiDarkSidebar');
 const themeSemiDarkSidebarSub = defineModel<boolean>('themeSemiDarkSidebarSub');
 const themeSemiDarkHeader = defineModel<boolean>('themeSemiDarkHeader');
+const themeBuiltinType = defineModel<TamanBuiltinThemeType | undefined>('themeBuiltinType', { default: undefined });
+const themeBrands = defineModel<ThemeBrandColors | undefined>('themeBrands', { default: undefined });
 
 const {
   customPreferences,
@@ -56,25 +68,10 @@ const {
   isHeaderNav,
   isHeaderSidebarNav,
   isMixedNav,
-  preferencesExtension,
   isSideMixedNav,
   isSideMode,
   isSideNav,
 } = usePreferences();
-
-const customPreferencesTab = computed(() => {
-  return preferencesExtension.value;
-});
-
-const customTabLabel = computed(() => {
-  return customPreferencesTab.value?.tabLabel
-    ? $t(customPreferencesTab.value.tabLabel)
-    : '';
-});
-
-const showCustomTab = computed(() => {
-  return (customPreferencesTab.value?.fields.length ?? 0) > 0;
-});
 
 const tabs = computed<Array<TabsItem>>(() => {
   const items: Array<TabsItem> = [
@@ -99,14 +96,6 @@ const tabs = computed<Array<TabsItem>>(() => {
       slot: 'general',
     },
   ];
-
-  if (showCustomTab.value) {
-    items.push({
-      label: customTabLabel.value,
-      value: 'custom',
-      slot: 'custom',
-    });
-  }
 
   return items;
 });
@@ -262,6 +251,14 @@ const [DrawerPreferences] = useTamanDrawer();
             v-model:theme-semi-dark-header="themeSemiDarkHeader"
             v-model:theme-semi-dark-sidebar="themeSemiDarkSidebar"
             v-model:theme-semi-dark-sidebar-sub="themeSemiDarkSidebarSub"
+          />
+        </PreferencesBlock>
+
+        <PreferencesBlock :title="$t('preferences.theme.builtin.title')">
+          <PreferencesBuiltinTheme
+            v-model="themeBuiltinType"
+            v-model:theme-brands="themeBrands"
+            :is-dark="isDark"
           />
         </PreferencesBlock>
       </template>

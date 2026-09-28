@@ -15,8 +15,7 @@ export const defaultPreferences: Preferences = {
     contentPaddingLeft: 0,
     contentPaddingRight: 0,
     contentPaddingTop: 0,
-    defaultAvatar:
-      'https://unpkg.com/@vbenjs/static-source@0.1.7/source/avatar-v1.webp',
+    defaultAvatar: 'https://raw.githubusercontent.com/vinicunca/static-resources/refs/heads/main/taman-avatar.jpeg',
     defaultHomePath: '/dashboard',
     dynamicTitle: true,
     enableCheckUpdates: true,

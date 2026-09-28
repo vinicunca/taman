@@ -48,6 +48,7 @@ const listen = computed(() => {
       for (const subKey of Object.keys(value)) {
         result[`update:${key}${capitalize(subKey)}`] = (val: any) => {
           updatePreferences({ [key]: { [subKey]: val } });
+
           if (key === 'app' && subKey === 'locale') {
             loadLocaleMessages(val);
           }

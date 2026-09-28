@@ -1,7 +1,7 @@
 import { unmountGlobalLoading } from '@taman/utils';
 import { initPreferences } from '@vinicunca/taman-core/preferences';
 
-import { overridesPreferences, preferencesExtension } from './preferences';
+import { overridesPreferences } from './preferences';
 
 /**
  * Render the page only after application initialization completes.
@@ -14,7 +14,6 @@ async function initApplication() {
 
   // App preferences
   await initPreferences({
-    extension: preferencesExtension,
     namespace,
     overrides: overridesPreferences,
   });

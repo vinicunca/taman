@@ -192,33 +192,5 @@
     "lockScreen": "Aktifkan Kunci Layar",
     "refresh": "Aktifkan Segarkan",
     "timezone": "Aktifkan Zona Waktu"
-  },
-  "antd": {
-    "tabLabel": "Ekstensi Antd",
-    "title": "Preferensi Bisnis",
-    "fields": {
-      "enableFormFullscreen": {
-        "label": "Aktifkan Mode Layar Penuh Formulir",
-        "tip": "Subproyek dapat membaca konfigurasi ekstensi ini dalam skenario bisnis mereka."
-      },
-      "tenantMode": {
-        "label": "Mode Penyewa",
-        "options": {
-          "single": {
-            "label": "Penyewa Tunggal"
-          },
-          "multi": {
-            "label": "Multi Penyewa"
-          }
-        }
-      },
-      "defaultTableSize": {
-        "label": "Ukuran Halaman Default"
-      },
-      "reportTitle": {
-        "label": "Judul Laporan Default",
-        "placeholder": "Silakan masukkan judul laporan default"
-      }
-    }
   }
 }
