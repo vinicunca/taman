@@ -43,6 +43,11 @@
   },
   "http": {
     "title": "Klien HTTP",
-    "paginatedProducts": "Vue Query · Paginasi"
+    "plainCrud": "Plain · CRUD",
+    "plainPagination": "Plain · Paginasi",
+    "plainAuth": "Plain · Autentikasi & interceptor",
+    "queryCrud": "Vue Query · CRUD",
+    "queryPagination": "Vue Query · Paginasi",
+    "queryAuth": "Vue Query · Autentikasi & interceptor"
   }
 }

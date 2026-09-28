@@ -44,6 +44,11 @@
   },
   "http": {
     "title": "HTTP client",
-    "paginatedProducts": "Vue Query · Pagination"
+    "plainCrud": "Plain · CRUD",
+    "plainPagination": "Plain · Pagination",
+    "plainAuth": "Plain · Auth & interceptors",
+    "queryCrud": "Vue Query · CRUD",
+    "queryPagination": "Vue Query · Pagination",
+    "queryAuth": "Vue Query · Auth & interceptors"
   }
 }
