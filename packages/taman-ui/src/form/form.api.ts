@@ -1,0 +1,656 @@
+import type { ComponentPublicInstance } from 'vue';
+import type {
+  FormActions,
+  FormBaseComponentType,
+  FormFieldName,
+  FormFieldSchema,
+  FormFieldValue,
+  FormResetOptions,
+  FormResetState,
+  FormSchema,
+  FormValuePatch,
+  FormValues,
+  FormValueSnapshot,
+  TamanFormProps,
+} from './form.types';
+import { Store } from '@vinicunca/taman-core/store';
+import {
+  bindMethods,
+  clone,
+  isFunction,
+  isString,
+  mergeWithArrayOverride,
+  StateHandler,
+} from '@vinicunca/taman-core/utils';
+import { isRef, toRaw } from 'vue';
+import {
+  getFormFieldSchemas,
+  removeFormSchemaByFields,
+  updateFormSchemaList,
+} from './form-render/form-render.schema';
+import { decodeFormValues, encodeFormValues } from './form.codec';
+import { resolveFieldNamePath } from './form.field-name';
+
+type FormApiProps<
+  TFormValues extends FormValues,
+  T extends FormBaseComponentType,
+  P extends Record<string, any>,
+  TSubmitValues extends FormValues,
+> = TamanFormProps<T, P, TFormValues, TSubmitValues>;
+
+type FormApiSchema<
+  TValues extends FormValues,
+  T extends FormBaseComponentType,
+  P extends Record<string, any>,
+> = FormSchema<T, P, TValues>;
+
+type FormApiFieldSchema<
+  TValues extends FormValues,
+  T extends FormBaseComponentType,
+  P extends Record<string, any>,
+> = FormFieldSchema<T, P, TValues>;
+
+function cloneFormValues<T>(value: T): T {
+  if (Array.isArray(value)) {
+    return value.map((item) => cloneFormValues(item)) as T;
+  }
+
+  if (isPlainFormObject(value)) {
+    const next: Record<string, unknown> = {};
+    for (const [key, item] of Object.entries(value)) {
+      next[key] = cloneFormValues(item);
+    }
+    return next as T;
+  }
+
+  if (value instanceof Date) {
+    return new Date(value.getTime()) as T;
+  }
+
+  return value;
+}
+
+function isPlainFormObject(value: unknown): value is Record<string, unknown> {
+  if (value === null || typeof value !== 'object') {
+    return false;
+  }
+  const prototype = Object.getPrototypeOf(value);
+  return prototype === null || prototype === Object.prototype;
+}
+
+function mergeFormValuePatch(
+  currentValue: unknown,
+  nextValue: unknown,
+  visited = new WeakMap<object, Record<string, unknown>>(),
+): unknown {
+  if (!isPlainFormObject(nextValue)) {
+    return cloneFormValues(nextValue);
+  }
+
+  const cached = visited.get(nextValue);
+  if (cached) {
+    return cached;
+  }
+
+  const result = isPlainFormObject(currentValue) ? clone(currentValue) : {};
+  visited.set(nextValue, result);
+  for (const [key, value] of Object.entries(nextValue)) {
+    result[key] = mergeFormValuePatch(result[key], value, visited);
+  }
+  return result;
+}
+
+function getDefaultState<
+  TFormValues extends FormValues,
+  T extends FormBaseComponentType,
+  P extends Record<string, any>,
+  TSubmitValues extends FormValues,
+>(): FormApiProps<TFormValues, T, P, TSubmitValues> {
+  return {
+    actionWrapperClass: '',
+    collapsed: false,
+    collapseTriggerResize: false,
+    commonConfig: {},
+    handleReset: undefined,
+    handleSubmit: undefined,
+    handleValuesChange: undefined,
+    handleCollapsedChange: undefined,
+    resetButtonOptions: {},
+    schema: [],
+    scrollToFirstError: false,
+    showDefaultActions: true,
+    submitButtonOptions: {},
+    submitOnChange: false,
+    submitOnEnter: false,
+    wrapperClass: 'grid-cols-1',
+  };
+}
+
+export class FormApi<
+  TFormValues extends FormValues = FormValues,
+  T extends FormBaseComponentType = FormBaseComponentType,
+  P extends Record<string, any> = Record<never, never>,
+  TSubmitValues extends FormValues = TFormValues,
+> {
+  // private api: Pick<TamanFormProps, 'handleReset' | 'handleSubmit'>;
+  public form = {} as FormActions<TFormValues>;
+  isMounted = false;
+
+  public state: FormApiProps<TFormValues, T, P, TSubmitValues> | null = null;
+  stateHandler: StateHandler;
+
+  public store: Store<FormApiProps<TFormValues, T, P, TSubmitValues>>;
+
+  /**
+   * Component instance mapping
+   */
+  private componentRefMap: Map<string, unknown> = new Map();
+
+  // The last time the form was submitted
+  private latestSubmissionValues: null | Partial<TSubmitValues> = null;
+
+  private prevState: FormApiProps<
+    TFormValues,
+    T,
+    P,
+    TSubmitValues
+  > | null = null;
+
+  constructor(options: FormApiProps<TFormValues, T, P, TSubmitValues> = {}) {
+    const { ...storeState } = options;
+
+    const defaultState = getDefaultState<TFormValues, T, P, TSubmitValues>();
+
+    this.store = new Store<FormApiProps<TFormValues, T, P, TSubmitValues>>({
+      ...defaultState,
+      ...storeState,
+    });
+
+    this.store.subscribe((state) => {
+      this.prevState = this.state;
+      this.state = state;
+      this.updateState();
+    });
+
+    this.state = this.store.state;
+    this.stateHandler = new StateHandler();
+    bindMethods(this);
+  }
+
+  async clearValidation(
+    fieldNames?: FormFieldName<TFormValues> | Array<FormFieldName<TFormValues>>,
+  ) {
+    const form = await this.getForm();
+    form.clearValidation(fieldNames);
+  }
+
+  formatValues(rawValues: Readonly<TFormValues>): TSubmitValues;
+  /** @deprecated Declare the submit type on `useTamanForm` instead. */
+  formatValues<TResult extends FormValues>(
+    rawValues: Readonly<FormValues>,
+  ): TResult;
+  formatValues(rawValues: Readonly<FormValues>): FormValues {
+    if (this.state?.codec) {
+      return clone(
+        encodeFormValues(
+          this.state.codec,
+          toRaw(rawValues) as Readonly<TFormValues>,
+        ),
+      );
+    }
+
+    return clone(toRaw(rawValues));
+  }
+
+  /**
+   * Get the field component instance
+   * @param fieldName Field name
+   * @returns Component instance
+   */
+  getFieldComponentRef<T = ComponentPublicInstance>(
+    fieldName: string,
+  ): T | undefined {
+    let target = this.componentRefMap.has(fieldName)
+      ? (this.componentRefMap.get(fieldName) as ComponentPublicInstance)
+      : undefined;
+    if (
+      target
+      && target.$.type.name === 'AsyncComponentWrapper'
+      && target.$.subTree.ref
+    ) {
+      if (Array.isArray(target.$.subTree.ref)) {
+        if (
+          target.$.subTree.ref.length > 0
+          && isRef(target.$.subTree.ref[0]?.r)
+        ) {
+          target = target.$.subTree.ref[0]?.r.value as ComponentPublicInstance;
+        }
+      } else if (isRef(target.$.subTree.ref.r)) {
+        target = target.$.subTree.ref.r.value as ComponentPublicInstance;
+      }
+    }
+    return target as T;
+  }
+
+  /**
+   * Get the currently focused field, if there is no focused field, return undefined
+   */
+  getFocusedField() {
+    for (const fieldName of this.componentRefMap.keys()) {
+      const ref = this.getFieldComponentRef(fieldName);
+      if (ref) {
+        let el: HTMLElement | null = null;
+        if (ref instanceof HTMLElement) {
+          el = ref;
+        } else if (ref.$el instanceof HTMLElement) {
+          el = ref.$el;
+        }
+        if (!el) {
+          continue;
+        }
+        if (
+          el === document.activeElement
+          || el.contains(document.activeElement)
+        ) {
+          return fieldName;
+        }
+      }
+    }
+    return undefined;
+  }
+
+  getLatestSubmissionValues() {
+    return this.latestSubmissionValues || {};
+  }
+
+  async getRawValues(): Promise<TFormValues>;
+  /** @deprecated Declare the form value type on `useTamanForm` instead. */
+  async getRawValues<TResult extends FormValues>(): Promise<TResult>;
+  async getRawValues(): Promise<FormValues> {
+    const form = await this.getForm();
+    return cloneFormValues(toRaw(form.values ?? {}));
+  }
+
+  getState() {
+    return this.state;
+  }
+
+  async getValues(): Promise<TSubmitValues>;
+  /** @deprecated Declare the submit type on `useTamanForm` instead. */
+  async getValues<TResult extends FormValues>(): Promise<TResult>;
+  async getValues(): Promise<FormValues> {
+    const form = await this.getForm();
+
+    return this.formatValues(toRaw(form.values ?? {}));
+  }
+
+  async getValueSnapshot(): Promise<
+    FormValueSnapshot<TFormValues, TSubmitValues>
+  >;
+  /** @deprecated Declare form and submit value types on `useTamanForm`. */
+  async getValueSnapshot<TResult extends FormValues>(): Promise<
+    FormValueSnapshot<TResult>
+  >;
+  async getValueSnapshot(): Promise<FormValueSnapshot> {
+    const rawValues = await this.getRawValues();
+
+    return {
+      rawValues,
+      values: this.formatValues(rawValues),
+    };
+  }
+
+  async isFieldValid(fieldName: FormFieldName<TFormValues>) {
+    const form = await this.getForm();
+    return form.isFieldValid(fieldName);
+  }
+
+  merge(formApi: FormApi<any, any, any, any>) {
+    const chain = [this, formApi];
+    const proxy = new Proxy(formApi, {
+      get(target: any, prop: any) {
+        if (prop === 'merge') {
+          return (nextFormApi: FormApi<any, any, any, any>) => {
+            chain.push(nextFormApi);
+            return proxy;
+          };
+        }
+        if (prop === 'submitAllForm') {
+          return async (needMerge: boolean = true) => {
+            try {
+              const results = await Promise.all(
+                chain.map(async (api) => {
+                  const validateResult = await api.validate();
+                  if (!validateResult.valid) {
+                    return;
+                  }
+                  const rawValues = toRaw((await api.getValues()) || {});
+                  return rawValues;
+                }),
+              );
+              if (needMerge) {
+                const mergedResults = Object.assign({}, ...results);
+                return mergedResults;
+              }
+              return results;
+            } catch (error) {
+              console.error('Validation error:', error);
+            }
+          };
+        }
+        return target[prop];
+      },
+    });
+
+    return proxy;
+  }
+
+  mount(
+    formActions: FormActions<TFormValues>,
+    componentRefMap?: Map<string, unknown>,
+  ) {
+    if (!this.isMounted) {
+      this.form = formActions;
+      this.stateHandler.setConditionTrue();
+      let initialValues: FormValues = {};
+      if (this.form.values) {
+        const rawInitialValues = toRaw(this.form.values);
+        try {
+          initialValues = this.formatValues(rawInitialValues);
+        } catch (error) {
+          if (!this.state?.codec) {
+            throw error;
+          }
+          console.warn(
+            '[Taman Form] Failed to encode initial values. Falling back to raw form values.',
+            error,
+          );
+          initialValues = cloneFormValues(rawInitialValues);
+        }
+      }
+      this.setLatestSubmissionValues(initialValues as Partial<TSubmitValues>);
+      this.componentRefMap
+        = componentRefMap ?? this.componentRefMap ?? new Map();
+      this.isMounted = true;
+    }
+  }
+
+  /**
+   * Remove form items by field name
+   * @param fields
+   */
+  async removeSchemaByFields(fields: Array<string>) {
+    const schema = this.state?.schema ?? [];
+
+    this.setState({
+      schema: removeFormSchemaByFields(schema, fields),
+    });
+  }
+
+  /**
+   * Reset the form
+   */
+  async reset(state?: FormResetState<TFormValues>, opts?: FormResetOptions) {
+    const form = await this.getForm();
+    return form.reset(state, opts);
+  }
+
+  /**
+   * Scroll to the first error field
+   * @param errors Validation error object
+   */
+  scrollToFirstError(errors: Record<string, any> | string) {
+    const firstErrorFieldName
+      = isString(errors) ? errors : Object.keys(errors)[0];
+
+    if (!firstErrorFieldName) {
+      return;
+    }
+
+    let el = document.querySelector(
+      `[name="${firstErrorFieldName}"]`,
+    ) as HTMLElement;
+
+    // If the field cannot be found by the name attribute, try to find it by the component reference
+    if (!el) {
+      const componentRef = this.getFieldComponentRef(firstErrorFieldName);
+      if (componentRef && componentRef.$el instanceof HTMLElement) {
+        el = componentRef.$el;
+      }
+    }
+
+    if (el) {
+      // Scroll to the error field, add some offset to ensure the field is fully visible
+      el.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'nearest',
+      });
+    }
+  }
+
+  async setFieldError(fieldName: FormFieldName<TFormValues>, error?: string) {
+    const form = await this.getForm();
+    form.setFieldError(fieldName, error);
+  }
+
+  async setFieldValue<TFieldName extends FormFieldName<TFormValues>>(
+    field: TFieldName,
+    value: FormFieldValue<TFormValues, NoInfer<TFieldName>>,
+    shouldValidate?: boolean,
+  ) {
+    const form = await this.getForm();
+    await form.setFieldValue(field, value, shouldValidate);
+  }
+
+  setLatestSubmissionValues(values: null | Partial<TSubmitValues>) {
+    this.latestSubmissionValues = {
+      ...toRaw(values),
+    } as Partial<TSubmitValues>;
+  }
+
+  setState(
+    stateOrFn:
+      | ((
+        prev: FormApiProps<TFormValues, T, P, TSubmitValues>,
+      ) => Partial<FormApiProps<TFormValues, T, P, TSubmitValues>>)
+      | Partial<FormApiProps<TFormValues, T, P, TSubmitValues>>,
+  ) {
+    if (isFunction(stateOrFn)) {
+      this.store.setState((prev) => {
+        return mergeWithArrayOverride(stateOrFn(prev), prev);
+      });
+    } else {
+      this.store.setState((prev) => mergeWithArrayOverride(stateOrFn, prev));
+    }
+  }
+
+  async setSubmitValues(
+    values: TSubmitValues,
+    filterFields: boolean = true,
+    shouldValidate: boolean = false,
+  ) {
+    const codec = this.state?.codec;
+    if (!codec) {
+      throw new Error(
+        '[Taman Form] `setSubmitValues()` requires a form `codec`.',
+      );
+    }
+    const formValues = decodeFormValues(codec, values);
+    await this.setValues(
+      formValues as FormValuePatch<TFormValues>,
+      filterFields,
+      shouldValidate,
+    );
+  }
+
+  /**
+   * Set the form values
+   * @param fields record
+   * @param filterFields Filter fields that are not defined in the schema, default is true
+   * @param shouldValidate
+   */
+  async setValues(
+    fields: FormValuePatch<TFormValues>,
+    filterFields: boolean = true,
+    shouldValidate: boolean = false,
+  ) {
+    const form = await this.getForm();
+    if (!filterFields) {
+      form.setValues(fields as Partial<TFormValues>, shouldValidate);
+      return;
+    }
+
+    const currentValues = toRaw(form.values ?? {}) as Record<string, unknown>;
+    const mergedFields = Object.fromEntries(
+      Object.entries(fields).map(([key, value]) => [
+        key,
+        mergeFormValuePatch(currentValues[key], value),
+      ]),
+    );
+
+    const schemaFieldPaths = getFormFieldSchemas(this.state?.schema ?? []).map(
+      (schema) => resolveFieldNamePath(schema.fieldName).pathSegments,
+    );
+    const filterValue = (
+      value: unknown,
+      parentPath: Array<string> = [],
+    ): unknown => {
+      if (!isPlainFormObject(value)) {
+        return value;
+      }
+
+      const result: Record<string, unknown> = {};
+      for (const [key, currentValue] of Object.entries(value)) {
+        const currentPath = [...parentPath, key];
+        const matchingPaths = schemaFieldPaths.filter(
+          (schemaPath) =>
+            schemaPath.length >= currentPath.length
+            && currentPath.every(
+              (pathSegment, index) => schemaPath[index] === pathSegment,
+            ),
+        );
+        if (matchingPaths.length === 0) {
+          continue;
+        }
+
+        result[key] = matchingPaths.some(
+          (schemaPath) => schemaPath.length === currentPath.length,
+        )
+          ? currentValue
+          : filterValue(currentValue, currentPath);
+      }
+      return result;
+    };
+    const filteredFields = filterValue(mergedFields) as Partial<TFormValues>;
+    form.setValues(filteredFields, shouldValidate);
+  }
+
+  async submit(e?: Event) {
+    e?.preventDefault();
+    e?.stopPropagation();
+    const form = await this.getForm();
+    await form.submit();
+    return this.submitValues();
+  }
+
+  unmount() {
+    this.form?.reset?.();
+    this.componentRefMap = new Map();
+    this.latestSubmissionValues = null;
+    this.isMounted = false;
+    this.stateHandler.reset();
+  }
+
+  updateSchema(schema: Array<Partial<FormApiFieldSchema<TFormValues, T, P>>>) {
+    const updated: Array<Partial<FormApiSchema<TFormValues, T, P>>> = [...schema];
+    const hasField = updated.every(
+      (item) => Reflect.has(item, 'fieldName') && item.fieldName,
+    );
+
+    if (!hasField) {
+      console.error(
+        'All items in the schema array must have a valid `fieldName` property to be updated',
+      );
+      return;
+    }
+    const currentSchema = updateFormSchemaList(
+      [...(this.state?.schema ?? [])],
+      updated,
+    );
+    this.setState({ schema: currentSchema });
+  }
+
+  async validate() {
+    const form = await this.getForm();
+
+    const validateResult = await form.validate();
+
+    if (
+      Object.keys(validateResult?.errors ?? {}).length > 0
+      && this.state?.scrollToFirstError
+    ) {
+      this.scrollToFirstError(validateResult.errors);
+    }
+    return validateResult;
+  }
+
+  async validateAndSubmit() {
+    const { valid } = await this.validate();
+    if (!valid) {
+      return;
+    }
+    return this.submitValues();
+  }
+
+  async validateField(fieldName: FormFieldName<TFormValues>) {
+    const form = await this.getForm();
+    const validateResult = await form.validateField(fieldName);
+
+    if (
+      Object.keys(validateResult?.errors ?? {}).length > 0
+      && this.state?.scrollToFirstError
+    ) {
+      this.scrollToFirstError(fieldName);
+    }
+    return validateResult;
+  }
+
+  private async getForm() {
+    if (!this.isMounted) {
+      // Wait for the form to be mounted
+      await this.stateHandler.waitForCondition();
+    }
+    if (!this.form?.meta) {
+      throw new Error('<TamanForm /> is not mounted');
+    }
+    return this.form;
+  }
+
+  private async submitValues() {
+    const { rawValues, values } = await this.getValueSnapshot();
+    this.setLatestSubmissionValues(values);
+    await this.state?.handleSubmit?.(values, rawValues);
+    return values;
+  }
+
+  private updateState() {
+    const currentSchema = getFormFieldSchemas(this.state?.schema ?? []);
+    const prevSchema = getFormFieldSchemas(this.prevState?.schema ?? []);
+    // Deleted schema operation
+    if (currentSchema.length < prevSchema.length) {
+      const currentFields = new Set(
+        currentSchema.map((item) => item.fieldName),
+      );
+      const deletedSchema = prevSchema.filter(
+        (item) => !currentFields.has(item.fieldName),
+      );
+      for (const schema of deletedSchema) {
+        this.form?.setFieldValue?.(
+          schema.fieldName,
+          undefined as FormFieldValue<TFormValues, string>,
+        );
+      }
+    }
+  }
+}

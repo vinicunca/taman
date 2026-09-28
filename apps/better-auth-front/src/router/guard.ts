@@ -2,9 +2,9 @@ import type { AuthRoleNames } from '@taman/rbac';
 import type { Router } from 'vue-router';
 
 import { LOGIN_PATH } from '@taman/constants';
-import { preferences } from '@taman/preferences';
 import { useAccessStore } from '@taman/stores';
 import { startProgress, stopProgress } from '@taman/utils';
+import { preferences } from '@vinicunca/taman-core/preferences';
 import { ensureSession } from '#/auth';
 import { accessRoutes } from '#/router/routes';
 import { generateAccess } from './access';

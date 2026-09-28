@@ -6,7 +6,7 @@ import {
   setupI18n as coreSetup,
   loadLocalesMapFromDir,
 } from '@taman/locales';
-import { preferences } from '@taman/preferences';
+import { preferences } from '@vinicunca/taman-core/preferences';
 
 const modules = import.meta.glob('./langs/**/*.json');
 

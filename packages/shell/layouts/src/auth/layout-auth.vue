@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { LayoutAuthToolbarType } from './layout.auth.types';
 
-import { preferences, usePreferences } from '@taman/preferences';
+import { preferences, usePreferences } from '@vinicunca/taman-core/preferences';
 import { computed } from 'vue';
 
 import LayoutCoreCopyright from '../core/layout-core-copyright.vue';

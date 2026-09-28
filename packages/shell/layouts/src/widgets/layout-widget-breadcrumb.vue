@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BreadcrumbItem } from '@taman-core/taman-ui';
+import type { BreadcrumbItem } from '@vinicunca/taman-ui';
 
 import { $t } from '@taman/locales';
 import PBreadcrumb from 'pohon-ui/components/Breadcrumb.vue';

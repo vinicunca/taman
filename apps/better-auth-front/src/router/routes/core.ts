@@ -1,7 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router';
 
 import { LOGIN_PATH } from '@taman/constants';
-import { preferences } from '@taman/preferences';
+import { preferences } from '@vinicunca/taman-core/preferences';
 
 import { $t } from '#/locales';
 

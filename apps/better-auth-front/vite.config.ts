@@ -1,6 +1,5 @@
 import type { PohonUiOptions } from 'pohon-ui/vite';
-import type { PluginOption } from 'vite';
-import { ui } from '@taman-core/pohon-ui-theme';
+import { ui, vitePohonTheme } from '@taman/designs/theme';
 import { defineConfig } from '@vinicunca/vite-config';
 import vitePohon from 'pohon-ui/vite';
 
@@ -22,7 +21,7 @@ const pohonOptions: PohonUiOptions = {
     unstyled: true,
   },
   scanPackages: [
-    '@taman-core/popup-ui',
+    '@vinicunca/taman-ui',
     '@taman/app-ui',
   ],
 };
@@ -61,7 +60,7 @@ export default defineConfig(async () => {
     vite: {
       plugins: [
         vitePohon(pohonOptions),
-        vitePohonThemePlugin(pohonOptions?.ui),
+        vitePohonTheme(pohonOptions.ui),
       ],
       resolve: {
         dedupe: ['pohon-ui'],
@@ -77,24 +76,3 @@ export default defineConfig(async () => {
     },
   };
 });
-
-function vitePohonThemePlugin(
-  ui: PohonUiOptions['ui'] = {},
-): PluginOption {
-  return {
-    name: 'virtual-pohon-theme',
-    resolveId(id) {
-      if (id === 'virtual:pohon-theme') {
-        return '\0virtual:pohon-theme';
-      }
-    },
-    load(id) {
-      if (id === '\0virtual:pohon-theme') {
-        return `
-          // @unocss-include
-          export const ui = ${JSON.stringify(ui)}
-        `;
-      }
-    },
-  };
-}

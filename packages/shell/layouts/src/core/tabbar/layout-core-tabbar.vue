@@ -1,13 +1,13 @@
 <script lang="ts" setup>
+import { useContentMaximize, useTabs } from '@taman/composables';
+import { useTabbarStore } from '@taman/stores';
+import { preferences } from '@vinicunca/taman-core/preferences';
 import {
   TabsToolMore,
   TabsToolRefresh,
   TabsToolScreen,
   TamanTabsView,
-} from '@taman-core/tabs-ui';
-import { useContentMaximize, useTabs } from '@taman/composables';
-import { preferences } from '@taman/preferences';
-import { useTabbarStore } from '@taman/stores';
+} from '@vinicunca/taman-ui/tabs';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 

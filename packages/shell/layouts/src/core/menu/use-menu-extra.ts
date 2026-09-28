@@ -1,9 +1,9 @@
 import type { TamanMenuRecordRaw } from '@taman/types';
 import type { ComputedRef } from 'vue';
 
-import { preferences } from '@taman/preferences';
 import { useAccessStore } from '@taman/stores';
 import { findRootMenuByPath } from '@taman/utils';
+import { preferences } from '@vinicunca/taman-core/preferences';
 import { computed, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 

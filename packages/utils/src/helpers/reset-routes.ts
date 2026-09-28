@@ -1,6 +1,6 @@
 import type { Router, RouteRecordName, RouteRecordRaw } from 'vue-router';
 
-import { traverseTreeValues } from '@taman-core/shared/utils';
+import { traverseTreeValues } from '@vinicunca/taman-core/utils';
 
 /**
  * Resets all routes except those in the static route whitelist.

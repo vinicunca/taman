@@ -6,8 +6,8 @@
  */
 import type { App, Directive, DirectiveBinding, InjectionKey, MaybeRefOrGetter } from 'vue';
 
-import { preferences } from '@taman/preferences';
 import { useAccessStore } from '@taman/stores';
+import { preferences } from '@vinicunca/taman-core/preferences';
 import { toValue } from 'vue';
 
 import { matchesAnyRole } from './matches-any-role';

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { DropdownMenuItem } from '@taman-core/taman-ui';
 import type { SupportedLanguagesType } from '@taman/locales';
-import { TamanButtonIcon } from '@taman-core/taman-ui';
+import type { DropdownMenuItem } from '@vinicunca/taman-ui';
 import { SUPPORTED_LANGUAGES } from '@taman/constants';
 import { loadLocaleMessages } from '@taman/locales';
-import { preferences, updatePreferences } from '@taman/preferences';
+import { preferences, updatePreferences } from '@vinicunca/taman-core/preferences';
+import { TamanButtonIcon } from '@vinicunca/taman-ui';
 import { computed } from 'vue';
 
 defineOptions({

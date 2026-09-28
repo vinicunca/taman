@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { useTamanDrawer } from '@taman-core/popup-ui';
-import { TamanButtonIcon } from '@taman-core/taman-ui';
 import { loadLocaleMessages } from '@taman/locales';
-import { preferences, updatePreferences } from '@taman/preferences';
 import { capitalize } from '@vinicunca/perkakas';
+import { preferences, updatePreferences } from '@vinicunca/taman-core/preferences';
+import { TamanButtonIcon } from '@vinicunca/taman-ui';
+import { useTamanDrawer } from '@vinicunca/taman-ui/popup';
 import PButton from 'pohon-ui/components/Button.vue';
 import { computed } from 'vue';
 import LayoutWidgetPreferencesDrawer from './layout-widget-preferences-drawer.vue';

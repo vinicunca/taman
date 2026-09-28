@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { TamanButtonIcon } from '@taman-core/taman-ui';
-import { usePreferences } from '@taman/preferences';
+import { usePreferences } from '@vinicunca/taman-core/preferences';
+import { TamanButtonIcon } from '@vinicunca/taman-ui';
 import { nextTick } from 'vue';
 
 defineOptions({

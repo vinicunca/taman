@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@intlify/core-base": "catalog:",
-    "@taman-core/composables": "workspace:*",
+    "@vinicunca/taman-core": "workspace:^",
     "vue": "catalog:",
     "vue-i18n": "catalog:"
   }

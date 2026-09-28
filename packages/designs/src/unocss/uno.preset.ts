@@ -1,4 +1,5 @@
 import type { VinicuncaTheme } from '@vinicunca/unocss-preset';
+import type { Preset } from 'unocss';
 import { presetVinicunca } from '@vinicunca/unocss-preset';
 import { definePreset } from 'unocss';
 import { BRANDS } from '../constants';
@@ -8,7 +9,7 @@ import { animations } from './uno.animations';
 const COLOR_PLACEHOLDER = '${color}';
 const TOKEN_PATTERN = /[^\s`]+/g;
 
-export const presetCore = definePreset<VinicuncaTheme>(() => {
+export const presetCore: () => Preset<VinicuncaTheme> = definePreset<VinicuncaTheme>(() => {
   // @keep-sorted
   return {
     enforce: 'post',

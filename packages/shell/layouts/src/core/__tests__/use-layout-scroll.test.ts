@@ -1,7 +1,7 @@
 import type { App } from 'vue';
 import type { NavigationGuard, NavigationHookAfter, Router } from 'vue-router';
 
-import { ELEMENT_ID_LAYOUT_SCROLL } from '@taman-core/shared/constants';
+import { ELEMENT_ID_LAYOUT_SCROLL } from '@vinicunca/taman-core/constants';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createApp } from 'vue';
 

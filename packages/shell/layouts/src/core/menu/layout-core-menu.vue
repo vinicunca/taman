@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { MenuProps } from '@taman-core/menu-ui';
 import type { TamanMenuRecordRaw } from '@taman/types';
+import type { MenuProps } from '@vinicunca/taman-ui/menu';
 
-import { TamanMenu } from '@taman-core/menu-ui';
+import { TamanMenu } from '@vinicunca/taman-ui/menu';
 
 interface Props extends MenuProps {
   menus?: Array<TamanMenuRecordRaw>;

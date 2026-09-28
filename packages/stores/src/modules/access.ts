@@ -1,4 +1,4 @@
-import type { TamanMenuRecordRaw } from '@taman-core/typings';
+import type { TamanMenuRecordRaw } from '@vinicunca/taman-core/typings';
 import type { RouteRecordRaw } from 'vue-router';
 
 import { acceptHMRUpdate, defineStore } from 'pinia';

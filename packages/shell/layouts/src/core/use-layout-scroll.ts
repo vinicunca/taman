@@ -1,6 +1,6 @@
 import type { Router } from 'vue-router';
 
-import { getLayoutScrollElement, isNumber } from '@taman-core/shared/utils';
+import { getLayoutScrollElement, isNumber } from '@vinicunca/taman-core/utils';
 import { nextTick, onScopeDispose } from 'vue';
 import { useRouter } from 'vue-router';
 

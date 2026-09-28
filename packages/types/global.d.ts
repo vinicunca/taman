@@ -1,4 +1,4 @@
-import type { RouteMeta as IRouteMeta } from '@taman-core/typings';
+import type { RouteMeta as IRouteMeta } from '@vinicunca/taman-core/typings';
 
 import 'vue-router';
 

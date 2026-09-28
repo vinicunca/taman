@@ -1,6 +1,11 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@vinicunca/tsconfig/web.json",
+  "compilerOptions": {
+    // src/theme is loaded natively by Node from vite.config.ts, which needs
+    // explicit .ts extensions on relative imports
+    "allowImportingTsExtensions": true
+  },
   "include": ["src"],
   "exclude": ["node_modules"]
 }

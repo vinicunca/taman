@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { preferences } from '@taman/preferences';
 import { getTabKey, storeToRefs, useTabbarStore } from '@taman/stores';
+import { preferences } from '@vinicunca/taman-core/preferences';
 import { computed, unref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 

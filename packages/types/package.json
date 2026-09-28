@@ -13,7 +13,7 @@
     }
   },
   "dependencies": {
-    "@taman-core/typings": "workspace:*",
+    "@vinicunca/taman-core": "workspace:^",
     "vue": "catalog:",
     "vue-router": "catalog:"
   }

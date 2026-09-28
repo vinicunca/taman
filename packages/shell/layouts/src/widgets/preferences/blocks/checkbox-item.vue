@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { TamanButtonCheckGroupValue } from '@taman-core/taman-ui';
 import type { SelectOption } from '@taman/types';
+import type { TamanButtonCheckGroupValue } from '@vinicunca/taman-ui';
 
-import { TamanButtonCheckGroup } from '@taman-core/taman-ui';
+import { TamanButtonCheckGroup } from '@vinicunca/taman-ui';
 import PIcon from 'pohon-ui/components/Icon.vue';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
 import { useSlots } from 'vue';

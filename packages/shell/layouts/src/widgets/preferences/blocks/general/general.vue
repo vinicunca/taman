@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { SUPPORTED_LANGUAGES } from '@taman/constants';
 import { $t } from '@taman/locales';
-import { preferences } from '@taman/preferences';
 import { getTimezoneOptions } from '@taman/utils';
+import { preferences } from '@vinicunca/taman-core/preferences';
 import PSelectMenu from 'pohon-ui/components/SelectMenu.vue';
 import { computed } from 'vue';
 

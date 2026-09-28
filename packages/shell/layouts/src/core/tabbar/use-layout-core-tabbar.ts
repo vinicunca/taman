@@ -1,5 +1,5 @@
-import type { StrictContextMenuItem } from '@taman-core/tabs-ui';
 import type { TamanTabDefinition } from '@taman/types';
+import type { StrictContextMenuItem } from '@vinicunca/taman-ui/tabs';
 import type { RouteLocationNormalizedGeneric } from 'vue-router';
 
 import { useContentMaximize, useTabs } from '@taman/composables';

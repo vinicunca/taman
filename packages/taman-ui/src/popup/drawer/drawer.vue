@@ -1,0 +1,351 @@
+<script lang="ts" setup>
+import type { ExtendedDrawerApi, TamanDrawerProps } from './drawer.types';
+
+import {
+  useBreakpoints,
+  usePriorityValues,
+  useSimpleLocale,
+} from '@vinicunca/taman-core/composables';
+import { DISMISSABLE_DRAWER_ID, ELEMENT_ID_MAIN_CONTENT } from '@vinicunca/taman-core/constants';
+import PButton from 'pohon-ui/components/Button.vue';
+import PIcon from 'pohon-ui/components/Icon.vue';
+import PSeparator from 'pohon-ui/components/Separator.vue';
+import PTooltip from 'pohon-ui/components/Tooltip.vue';
+import {
+  computed,
+  onDeactivated,
+  provide,
+  ref,
+  unref,
+  useId,
+  watch,
+} from 'vue';
+import {
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetRoot,
+  SheetTitle,
+  TamanButtonIcon,
+  TamanLoading,
+  VisuallyHidden,
+} from '../..';
+
+interface Props extends TamanDrawerProps {
+  drawerApi?: ExtendedDrawerApi;
+}
+
+const props = withDefaults(
+  defineProps<Props>(),
+  {
+    appendToMain: false,
+    closeIconPlacement: 'right',
+    destroyOnClose: false,
+    drawerApi: undefined,
+    submitting: false,
+    zIndex: 1000,
+  },
+);
+
+const id = useId();
+provide(DISMISSABLE_DRAWER_ID, id);
+
+const { $t } = useSimpleLocale();
+const { isMobile } = useBreakpoints();
+
+const state = props.drawerApi?.useStore?.();
+
+const {
+  appendToMain,
+  cancelText,
+  class: drawerClass,
+  closable,
+  closeIconPlacement,
+  closeOnClickModal,
+  closeOnPressEscape,
+  confirmLoading,
+  confirmText,
+  contentClass,
+  description,
+  destroyOnClose,
+  footer: showFooter,
+  footerClass,
+  header: showHeader,
+  headerClass,
+  loading: showLoading,
+  modal,
+  openAutoFocus,
+  overlayBlur,
+  placement,
+  showCancelButton,
+  showConfirmButton,
+  submitting,
+  title,
+  titleTooltip,
+  zIndex,
+} = usePriorityValues(props, state);
+
+/**
+ * With keepAlive enabled, browser back/gesture navigation does not close the drawer
+ */
+onDeactivated(() => {
+  // Close the drawer if it is not mounted to the content area
+  if (!appendToMain.value) {
+    props.drawerApi?.close();
+  }
+});
+
+function interactOutside(event: Event) {
+  if (!closeOnClickModal.value || submitting.value) {
+    event.preventDefault();
+  }
+}
+function escapeKeyDown(event: KeyboardEvent) {
+  if (!closeOnPressEscape.value || submitting.value) {
+    event.preventDefault();
+  }
+}
+
+function pointerDownOutside(event: Event) {
+  const target = event.target as HTMLElement;
+  const dismissableDrawer = target?.dataset.dismissableDrawer;
+  if (
+    submitting.value
+    || !closeOnClickModal.value
+    || dismissableDrawer !== id
+  ) {
+    event.preventDefault();
+  }
+}
+
+function handerOpenAutoFocus(event: Event) {
+  if (!openAutoFocus.value) {
+    event?.preventDefault();
+  }
+}
+
+function handleFocusOutside(event: Event) {
+  event.preventDefault();
+  event.stopPropagation();
+}
+
+const getAppendTo = computed(() => {
+  return appendToMain.value ? `#${ELEMENT_ID_MAIN_CONTENT}` : undefined;
+});
+
+/**
+ * Improve the destroyOnClose feature
+ */
+// Whether the drawer has been opened at least once
+const hasOpened = ref(false);
+const isClosed = ref(true);
+watch(
+  () => state?.value?.isOpen,
+  (value) => {
+    isClosed.value = false;
+    if (value && !unref(hasOpened)) {
+      hasOpened.value = true;
+    }
+  },
+  { immediate: true },
+);
+function handleClosed() {
+  isClosed.value = true;
+  props.drawerApi?.onClosed();
+}
+const getForceMount = computed(() => {
+  return !unref(destroyOnClose) && unref(hasOpened);
+});
+</script>
+
+<template>
+  <SheetRoot
+    :modal="false"
+    :open="state?.isOpen"
+    @update:open="() => drawerApi?.close()"
+  >
+    <SheetContent
+      :append-to="getAppendTo"
+      class="flex flex-col w-130"
+      :class="
+        [
+
+          {
+            'pohon:w-full':
+              isMobile || placement === 'bottom' || placement === 'top',
+            'max-h-screen': placement === 'bottom' || placement === 'top',
+            'hidden': isClosed,
+          },
+          drawerClass,
+        ]
+      "
+      :modal="modal"
+      :open="state?.isOpen"
+      :side="placement"
+      :z-index="zIndex"
+      :force-mount="getForceMount"
+      :overlay-blur="overlayBlur"
+      @close-auto-focus="handleFocusOutside"
+      @closed="handleClosed"
+      @escape-key-down="escapeKeyDown"
+      @focus-outside="handleFocusOutside"
+      @interact-outside="interactOutside"
+      @open-auto-focus="handerOpenAutoFocus"
+      @opened="() => drawerApi?.onOpened()"
+      @pointer-down-outside="pointerDownOutside"
+    >
+      <SheetHeader
+        v-if="showHeader"
+        class="border-b items-start justify-between"
+        :class="
+          [
+            headerClass,
+            {
+              'pl-2': closable && closeIconPlacement === 'left',
+            },
+          ]
+        "
+      >
+        <div class="flex items-center">
+          <SheetClose
+            v-if="closable && closeIconPlacement === 'left'"
+            as-child
+            :disabled="submitting"
+          >
+            <slot name="close-icon">
+              <TamanButtonIcon
+                icon="lucide:x"
+              />
+            </slot>
+          </SheetClose>
+
+          <PSeparator
+            v-if="closable && closeIconPlacement === 'left'"
+            class="ml-1 mr-2 h-8"
+            decorative
+            orientation="vertical"
+          />
+
+          <div class="flex flex-col gap-1">
+            <SheetTitle
+              v-if="title"
+              class="text-left inline-flex gap-1"
+            >
+              <slot name="title">
+                {{ title }}
+
+                <PTooltip
+                  v-if="titleTooltip"
+                  :text="titleTooltip"
+                >
+                  <PIcon
+                    name="lucide:circle-help"
+                    class="color-text-muted"
+                  />
+                </PTooltip>
+              </slot>
+            </SheetTitle>
+
+            <SheetDescription
+              v-if="description"
+              class="text-xs"
+            >
+              <slot name="description">
+                {{ description }}
+              </slot>
+            </SheetDescription>
+          </div>
+        </div>
+
+        <div class="flex-center">
+          <slot name="extra" />
+
+          <SheetClose
+            v-if="closable && closeIconPlacement === 'right'"
+            as-child
+            :disabled="submitting"
+          >
+            <slot name="close-icon">
+              <TamanButtonIcon
+                icon="lucide:x"
+              />
+            </slot>
+          </SheetClose>
+        </div>
+
+        <VisuallyHidden v-if="!title || !description">
+          <SheetTitle v-if="!title" />
+          <SheetDescription v-if="!description" />
+        </VisuallyHidden>
+      </SheetHeader>
+
+      <template v-else>
+        <VisuallyHidden>
+          <SheetTitle />
+          <SheetDescription />
+        </VisuallyHidden>
+      </template>
+
+      <div
+        class="p-3 flex-1 relative overflow-y-auto"
+        :class="
+          [
+            contentClass,
+            {
+              'pointer-events-none': showLoading || submitting,
+            },
+          ]
+        "
+      >
+        <slot />
+      </div>
+
+      <TamanLoading
+        v-if="showLoading || submitting"
+        spinning
+      />
+
+      <SheetFooter
+        v-if="showFooter"
+        class="p-2 px-3 border-t flex-row w-full items-center justify-end"
+        :class="
+          [
+            footerClass,
+          ]
+        "
+      >
+        <slot name="prepend-footer" />
+
+        <slot name="footer">
+          <PButton
+            v-if="showCancelButton"
+            variant="outline"
+            color="neutral"
+            :disabled="submitting"
+            @click="() => drawerApi?.onCancel()"
+          >
+            <slot name="cancelText">
+              {{ cancelText || $t('cancel') }}
+            </slot>
+          </PButton>
+
+          <slot name="center-footer" />
+
+          <PButton
+            v-if="showConfirmButton"
+            :loading="confirmLoading || submitting"
+            @click="() => drawerApi?.onConfirm()"
+          >
+            <slot name="confirmText">
+              {{ confirmText || $t('confirm') }}
+            </slot>
+          </PButton>
+        </slot>
+
+        <slot name="append-footer" />
+      </SheetFooter>
+    </SheetContent>
+  </SheetRoot>
+</template>

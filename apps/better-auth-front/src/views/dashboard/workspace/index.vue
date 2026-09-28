@@ -14,8 +14,8 @@ import {
   WorkbenchTodo,
   WorkbenchTrends,
 } from '@taman/app-ui';
-import { preferences } from '@taman/preferences';
 import { openWindow } from '@taman/utils';
+import { preferences } from '@vinicunca/taman-core/preferences';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 

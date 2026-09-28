@@ -1,1 +1,1 @@
-export type * from '@taman-core/typings';
+export type * from '@vinicunca/taman-core/typings';

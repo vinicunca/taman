@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { NormalMenuProps } from '@taman-core/menu-ui';
 import type { TamanMenuRecordRaw } from '@taman/types';
+import type { NormalMenuProps } from '@vinicunca/taman-ui/menu';
 
-import { NormalMenu } from '@taman-core/menu-ui';
 import { findMenuByPath } from '@taman/utils';
+import { NormalMenu } from '@vinicunca/taman-ui/menu';
 import { onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
 

@@ -1,4 +1,4 @@
-import type { TamanTabDefinition } from '@taman-core/typings';
+import type { TamanTabDefinition } from '@vinicunca/taman-core/typings';
 import type { ComputedRef, VNode } from 'vue';
 import type {
   RouteLocationNormalized,
@@ -8,14 +8,14 @@ import type {
   RouteRecordNormalized,
 } from 'vue-router';
 
-import { preferences } from '@taman-core/preferences';
+import { preferences } from '@vinicunca/taman-core/preferences';
 import {
   createStack,
   openWindow,
   Stack,
   startProgress,
   stopProgress,
-} from '@taman-core/shared/utils';
+} from '@vinicunca/taman-core/utils';
 import { acceptHMRUpdate, defineStore } from 'pinia';
 import { markRaw, nextTick, toRaw } from 'vue';
 

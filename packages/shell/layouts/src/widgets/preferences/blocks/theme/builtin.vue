@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { BuiltinThemePreset } from '@taman/preferences';
 import type { TamanBuiltinThemeType } from '@taman/types';
+import type { BuiltinThemePreset } from '@vinicunca/taman-core/preferences';
 
 import { $t } from '@taman/locales';
-import { BUILT_IN_THEME_PRESETS } from '@taman/preferences';
 import { convertToHsl, TinyColor } from '@taman/utils';
+import { BUILT_IN_THEME_PRESETS } from '@vinicunca/taman-core/preferences';
 import { useThrottleFn } from '@vueuse/core';
 import { computed, ref, watch } from 'vue';
 

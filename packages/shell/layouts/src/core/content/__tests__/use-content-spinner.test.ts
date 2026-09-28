@@ -9,7 +9,7 @@ import { useContentSpinner } from '../use-content-spinner';
 // `preferences` is a module-level singleton; in tests, a mutable mock is used to control the toggle.
 const mockPreferences = vi.hoisted(() => ({ transition: { loading: true } }));
 
-vi.mock('@taman/preferences', () => ({
+vi.mock('@vinicunca/taman-core/preferences', () => ({
   preferences: mockPreferences,
 }));
 

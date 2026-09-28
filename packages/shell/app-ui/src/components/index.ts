@@ -5,8 +5,8 @@ export * from './fetch-component';
 export * from './loading';
 export * from './page';
 
-export * from '@taman-core/form-ui';
-export * from '@taman-core/popup-ui';
-export { globalShareState } from '@taman-core/shared/global-state';
+export { globalShareState } from '@vinicunca/taman-core/global-state';
+export * from '@vinicunca/taman-ui';
+export * from '@vinicunca/taman-ui/form';
 
-export * from '@taman-core/taman-ui';
+export * from '@vinicunca/taman-ui/popup';

@@ -8,7 +8,7 @@ import type {
   SupportedLanguagesType,
 } from './typing';
 
-import { useSimpleLocale } from '@taman-core/composables';
+import { useSimpleLocale } from '@vinicunca/taman-core/composables';
 import { unref } from 'vue';
 import { createI18n } from 'vue-i18n';
 

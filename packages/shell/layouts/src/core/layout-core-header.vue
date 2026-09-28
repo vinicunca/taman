@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { tamanConfirm, useTamanDialog } from '@taman-core/popup-ui';
-import { TamanButtonIcon, TamanFullScreen } from '@taman-core/taman-ui';
 import { useRefresh } from '@taman/composables';
 import { $t } from '@taman/locales';
-import { preferences, usePreferences } from '@taman/preferences';
 import { useAccessStore } from '@taman/stores';
+import { preferences, usePreferences } from '@vinicunca/taman-core/preferences';
+import { TamanButtonIcon, TamanFullScreen } from '@vinicunca/taman-ui';
+import { tamanConfirm, useTamanDialog } from '@vinicunca/taman-ui/popup';
 import { computed, useSlots } from 'vue';
 
 import {

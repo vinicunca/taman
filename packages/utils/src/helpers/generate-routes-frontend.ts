@@ -1,13 +1,13 @@
-import type { AuthRoleNames } from '@taman/rbac';
+import type { TamanRoleName } from '@vinicunca/taman-core/typings';
 import type { RouteRecordRaw } from 'vue-router';
-import { mapTree } from '@taman-core/shared/utils';
+import { mapTree } from '@vinicunca/taman-core/utils';
 
 /**
  * Generates routes dynamically on the client (role-based filtering).
  */
 async function generateRoutesByFrontend(
   routes: Array<RouteRecordRaw>,
-  roles: Array<AuthRoleNames>,
+  roles: Array<TamanRoleName>,
   forbiddenComponent?: RouteRecordRaw['component'],
 ): Promise<Array<RouteRecordRaw>> {
   return mapTree(routes, (route) => {
@@ -30,7 +30,7 @@ async function generateRoutesByFrontend(
  * @param route
  * @param access
  */
-function hasAuthority(route: RouteRecordRaw, access: Array<AuthRoleNames>) {
+function hasAuthority(route: RouteRecordRaw, access: Array<TamanRoleName>) {
   const authority = route.meta?.authority;
   if (!authority) {
     return true;

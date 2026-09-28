@@ -38,7 +38,7 @@ Playwright starts Vite on port **5560** (`playwright.config.ts`), separate from 
 | `common/preferences.ts` | Patch `{namespace}-preferences` in `localStorage`, then reload |
 | `common/menu.ts`        | Locators for sidebar/header/rail menus                         |
 
-Layout changes use the same cache shape as `@taman/preferences` `PreferenceManager` (`StorageManager` + key `preferences`).
+Layout changes use the same cache shape as `@vinicunca/taman-core/preferences` `PreferenceManager` (`StorageManager` + key `preferences`).
 
 ## What is intentionally not tested
 

@@ -1,7 +1,7 @@
 import type { Page } from '@playwright/test';
 
 /**
- * Layout types from `@taman-core/typings` (`TamanLayoutType`).
+ * Layout types from `@vinicunca/taman-core/typings` (`TamanLayoutType`).
  * Kept as a local union so Playwright does not import the app graph.
  */
 export type E2eLayoutType =

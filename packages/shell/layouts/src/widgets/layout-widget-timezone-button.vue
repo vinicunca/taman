@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useTamanDialog } from '@taman-core/popup-ui';
-import { TamanButtonIcon } from '@taman-core/taman-ui';
 import { $t } from '@taman/locales';
-import { preferences, updatePreferences } from '@taman/preferences';
 import { getTimezoneOptions } from '@taman/utils';
+import { preferences, updatePreferences } from '@vinicunca/taman-core/preferences';
+import { TamanButtonIcon } from '@vinicunca/taman-ui';
+import { useTamanDialog } from '@vinicunca/taman-ui/popup';
 import PSelectMenu from 'pohon-ui/components/SelectMenu.vue';
 import { computed, ref, unref } from 'vue';
 

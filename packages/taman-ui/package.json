@@ -1,0 +1,123 @@
+{
+  "name": "@vinicunca/taman-ui",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Unstyled Taman Vue components on pohon-ui: base components, popups, layout, menu, tabs and forms.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinicunca/taman.git",
+    "directory": "packages/taman-ui"
+  },
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      },
+      "./popup": {
+        "types": "./dist/popup/index.d.ts",
+        "default": "./dist/popup/index.mjs"
+      },
+      "./layout": {
+        "types": "./dist/layout/index.d.ts",
+        "default": "./dist/layout/index.mjs"
+      },
+      "./menu": {
+        "types": "./dist/menu/index.d.ts",
+        "default": "./dist/menu/index.mjs"
+      },
+      "./tabs": {
+        "types": "./dist/tabs/index.d.ts",
+        "default": "./dist/tabs/index.mjs"
+      },
+      "./form": {
+        "types": "./dist/form/index.d.ts",
+        "default": "./dist/form/index.mjs"
+      },
+      "./unocss": {
+        "types": "./dist/unocss/index.d.ts",
+        "default": "./dist/unocss/index.mjs"
+      }
+    }
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "development": "./src/index.ts",
+      "production": "./src/index.ts",
+      "default": "./dist/index.mjs"
+    },
+    "./popup": {
+      "types": "./src/popup/index.ts",
+      "development": "./src/popup/index.ts",
+      "production": "./src/popup/index.ts",
+      "default": "./dist/popup/index.mjs"
+    },
+    "./layout": {
+      "types": "./src/layout/index.ts",
+      "development": "./src/layout/index.ts",
+      "production": "./src/layout/index.ts",
+      "default": "./dist/layout/index.mjs"
+    },
+    "./menu": {
+      "types": "./src/menu/index.ts",
+      "development": "./src/menu/index.ts",
+      "production": "./src/menu/index.ts",
+      "default": "./dist/menu/index.mjs"
+    },
+    "./tabs": {
+      "types": "./src/tabs/index.ts",
+      "development": "./src/tabs/index.ts",
+      "production": "./src/tabs/index.ts",
+      "default": "./dist/tabs/index.mjs"
+    },
+    "./form": {
+      "types": "./src/form/index.ts",
+      "development": "./src/form/index.ts",
+      "production": "./src/form/index.ts",
+      "default": "./dist/form/index.mjs"
+    },
+    "./unocss": {
+      "types": "./src/unocss/index.ts",
+      "development": "./src/unocss/index.ts",
+      "production": "./src/unocss/index.ts",
+      "default": "./dist/unocss/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "prepack": "pnpm build",
+    "stub": "pnpm build"
+  },
+  "peerDependencies": {
+    "@internationalized/date": "^3.0.0",
+    "@internationalized/number": "^3.0.0",
+    "pohon-ui": "^2.0.0-rc7.9",
+    "vue": "^3.5.0"
+  },
+  "dependencies": {
+    "@tanstack/store": "catalog:",
+    "@tanstack/vue-form": "catalog:",
+    "@vinicunca/taman-core": "workspace:^",
+    "@vueuse/core": "catalog:",
+    "akar": "catalog:",
+    "qs": "catalog:",
+    "unocss-variants": "catalog:",
+    "zod": "catalog:",
+    "zod-defaults": "catalog:"
+  },
+  "devDependencies": {
+    "@internationalized/date": "catalog:",
+    "@internationalized/number": "catalog:",
+    "@types/qs": "catalog:",
+    "@vue/test-utils": "catalog:",
+    "pohon-ui": "catalog:",
+    "unplugin-vue": "catalog:",
+    "vue": "catalog:"
+  }
+}

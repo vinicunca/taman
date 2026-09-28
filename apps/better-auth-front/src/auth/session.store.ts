@@ -1,9 +1,9 @@
 import type { AuthRoleNames } from '@taman/rbac';
 import { LOGIN_PATH } from '@taman/constants';
 import { $t } from '@taman/locales';
-import { preferences } from '@taman/preferences';
 import { resetAllStores, useAccessStore } from '@taman/stores';
 import { useQuery } from '@tanstack/vue-query';
+import { preferences } from '@vinicunca/taman-core/preferences';
 import { acceptHMRUpdate, defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';

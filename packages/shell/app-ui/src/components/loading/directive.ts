@@ -1,6 +1,6 @@
 import type { App, Directive, DirectiveBinding } from 'vue';
 
-import { TamanLoading } from '@taman-core/taman-ui';
+import { TamanLoading } from '@vinicunca/taman-ui';
 import { h, render } from 'vue';
 
 const LOADING_INSTANCE_KEY = Symbol('loading');

@@ -1,4 +1,4 @@
-import { updatePreferences, usePreferences } from '@taman/preferences';
+import { updatePreferences, usePreferences } from '@vinicunca/taman-core/preferences';
 /**
  * Maximize the main content area.
  */

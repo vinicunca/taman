@@ -1,7 +1,7 @@
 import {
   defineOverridesPreferences,
   definePreferencesExtension,
-} from '@taman/preferences';
+} from '@vinicunca/taman-core/preferences';
 
 interface PlaygroundPreferencesExtension {
   defaultVisibleRows: number;

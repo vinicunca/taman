@@ -4,7 +4,7 @@ import type {
   RouteLocationNormalizedLoadedGeneric,
 } from 'vue-router';
 
-import { preferences, usePreferences } from '@taman/preferences';
+import { preferences, usePreferences } from '@vinicunca/taman-core/preferences';
 import { computed } from 'vue';
 
 /**

@@ -10,7 +10,7 @@
     }
   },
   "dependencies": {
-    "@taman-core/shared": "workspace:*"
+    "@vinicunca/taman-core": "workspace:^"
   },
   "devDependencies": {
     "vitest": "catalog:"

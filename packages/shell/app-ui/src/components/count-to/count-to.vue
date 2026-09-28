@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { CountToProps } from './types';
 
-import { isString } from '@taman-core/shared/utils';
+import { isString } from '@vinicunca/taman-core/utils';
 import { TransitionPresets, useTransition } from '@vueuse/core';
 import { computed, onMounted, ref, watch } from 'vue';
 

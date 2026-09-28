@@ -1,12 +1,11 @@
-import type { Router, RouteRecordRaw } from 'vue-router';
-
 import type {
   ExRouteRecordRaw,
   TamanMenuRecordRaw,
   RouteMeta,
-} from '@taman-core/typings';
+} from '@vinicunca/taman-core/typings';
+import type { Router, RouteRecordRaw } from 'vue-router';
 
-import { filterTree, mapTree, sortTree } from '@taman-core/shared/utils';
+import { filterTree, mapTree, sortTree } from '@vinicunca/taman-core/utils';
 
 /**
  * Builds a menu list from route definitions.

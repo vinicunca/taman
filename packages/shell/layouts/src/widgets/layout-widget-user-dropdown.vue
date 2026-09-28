@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { DropdownMenuItem } from '@taman-core/taman-ui';
-import { tamanConfirm } from '@taman-core/popup-ui';
+import type { DropdownMenuItem } from '@vinicunca/taman-ui';
 import { $t } from '@taman/locales';
+import { tamanConfirm } from '@vinicunca/taman-ui/popup';
 import PAvatar from 'pohon-ui/components/Avatar.vue';
 import PBadge from 'pohon-ui/components/Badge.vue';
 import PButton from 'pohon-ui/components/Button.vue';

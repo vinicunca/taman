@@ -53,4 +53,4 @@ export type TamanFormProps<
   TSubmitValues extends FormValues = TFormValues,
 > = FormProps<ComponentType, ComponentPropsMap, TFormValues, TSubmitValues>;
 
-export { z } from '@taman-core/form-ui';
+export { z } from '@vinicunca/taman-ui/form';

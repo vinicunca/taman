@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { TamanContentCompactType, TamanLayoutType } from '@taman/types';
 import type { TabsItem } from 'pohon-ui';
-import { useTamanDrawer } from '@taman-core/popup-ui';
 import { $t } from '@taman/locales';
-import { usePreferences } from '@taman/preferences';
+import { usePreferences } from '@vinicunca/taman-core/preferences';
+import { useTamanDrawer } from '@vinicunca/taman-ui/popup';
 import PButton from 'pohon-ui/components/Button.vue';
 import PTabs from 'pohon-ui/components/Tabs.vue';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';

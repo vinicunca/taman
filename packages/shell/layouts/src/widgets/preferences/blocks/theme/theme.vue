@@ -3,7 +3,7 @@ import type { TamanThemeModeType } from '@taman/types';
 import type { Component } from 'vue';
 
 import { $t } from '@taman/locales';
-import { usePreferences } from '@taman/preferences';
+import { usePreferences } from '@vinicunca/taman-core/preferences';
 import { watch } from 'vue';
 
 import SwitchItem from '../switch-item.vue';

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { TamanThemeModeType } from '@taman/types';
 import { $t } from '@taman/locales';
-import { usePreferences } from '@taman/preferences';
+import { usePreferences } from '@vinicunca/taman-core/preferences';
 import { watch } from 'vue';
 import PreferencesSwitchItem from '../preferences-switch-item.vue';
 

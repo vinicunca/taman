@@ -2,11 +2,10 @@
 import type {
   CustomPreferencesField,
   CustomPreferencesRecord,
-} from '@taman/preferences';
-
-import { computed } from 'vue';
+} from '@vinicunca/taman-core/preferences';
 
 import { $t } from '@taman/locales';
+import { computed } from 'vue';
 
 import InputItem from '../input-item.vue';
 import NumberFieldItem from '../number-field-item.vue';

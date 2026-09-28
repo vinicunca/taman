@@ -3,6 +3,8 @@
   "type": "module",
   "version": "1.0.0",
   "private": true,
+  "description": "Taman's design layer: UnoCSS preset, pohon theme and styles. Not published; part of the admin template.",
+  "license": "MIT",
   "exports": {
     ".": {
       "types": "./src/index.ts",
@@ -11,11 +13,19 @@
     "./styles": {
       "types": "./src/styles/index.ts",
       "default": "./src/styles/index.ts"
+    },
+    "./theme": {
+      "types": "./src/theme/index.ts",
+      "default": "./src/theme/index.ts"
     }
   },
-  "devDependencies": {
-    "@unocss/preset-wind4": "catalog:",
+  "dependencies": {
     "@vinicunca/unocss-preset": "catalog:",
+    "defu": "catalog:",
+    "pohon-ui": "catalog:",
     "unocss": "catalog:"
+  },
+  "devDependencies": {
+    "vite": "catalog:"
   }
 }

@@ -4,7 +4,7 @@ import type {
 } from '@taman/types';
 
 import { generateAccessible } from '@taman/access';
-import { preferences } from '@taman/preferences';
+import { preferences } from '@vinicunca/taman-core/preferences';
 
 import { CoreLayout, IFrameView } from '#/layouts';
 

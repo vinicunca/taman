@@ -10,10 +10,10 @@
     }
   },
   "dependencies": {
-    "@taman/preferences": "workspace:*",
     "@taman/stores": "workspace:*",
     "@taman/types": "workspace:*",
     "@taman/utils": "workspace:*",
+    "@vinicunca/taman-core": "workspace:^",
     "vue": "catalog:"
   },
   "devDependencies": {

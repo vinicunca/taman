@@ -1,9 +1,9 @@
 import { autoAnimatePlugin } from '@formkit/auto-animate/vue';
 import { registerAccessDirective } from '@taman/access';
 import { registerLoadingDirective } from '@taman/app-ui';
-import { preferences } from '@taman/preferences';
 import { initStores } from '@taman/stores';
 import { VueQueryPlugin } from '@tanstack/vue-query';
+import { preferences } from '@vinicunca/taman-core/preferences';
 import { useTitle } from '@vueuse/core';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import pohon from 'pohon-ui/vue-plugin';

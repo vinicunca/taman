@@ -1,0 +1,10 @@
+import { describe, expect, it } from 'vitest';
+
+import { defaultPreferences } from '../config';
+
+describe('defaultPreferences immutability test', () => {
+  // Snapshot ensures the default config object is not mutated
+  it('should not modify the config object', () => {
+    expect(defaultPreferences).toMatchSnapshot();
+  });
+});

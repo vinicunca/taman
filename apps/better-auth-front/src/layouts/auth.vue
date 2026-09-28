@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { LayoutAuth } from '@taman/layouts';
-import { preferences } from '@taman/preferences';
+import { preferences } from '@vinicunca/taman-core/preferences';
 import { computed } from 'vue';
 
 import { $t } from '#/locales';

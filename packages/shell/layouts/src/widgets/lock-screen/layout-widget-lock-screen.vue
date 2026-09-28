@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useTamanForm, z } from '@taman-core/form-ui';
 import { useScrollLock } from '@taman/composables';
 import { $t, useI18n } from '@taman/locales';
 import { storeToRefs, useAccessStore } from '@taman/stores';
+import { useTamanForm, z } from '@vinicunca/taman-ui/form';
 import { useDateFormat, useNow } from '@vueuse/core';
 import PAvatar from 'pohon-ui/components/Avatar.vue';
 import PButton from 'pohon-ui/components/Button.vue';

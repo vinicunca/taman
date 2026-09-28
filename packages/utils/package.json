@@ -10,9 +10,7 @@
     }
   },
   "dependencies": {
-    "@taman-core/shared": "workspace:*",
-    "@taman-core/typings": "workspace:*",
-    "@taman/rbac": "workspace:*",
+    "@vinicunca/taman-core": "workspace:^",
     "vue-router": "catalog:"
   }
 }

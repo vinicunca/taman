@@ -1,0 +1,147 @@
+{
+  "name": "@vinicunca/taman-core",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Foundation for Taman: utils, constants, color, cache, store, typings, composables and preferences.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinicunca/taman.git",
+    "directory": "packages/taman-core"
+  },
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      "./cache": {
+        "types": "./dist/cache/index.d.ts",
+        "default": "./dist/cache/index.mjs"
+      },
+      "./color": {
+        "types": "./dist/color/index.d.ts",
+        "default": "./dist/color/index.mjs"
+      },
+      "./composables": {
+        "types": "./dist/composables/index.d.ts",
+        "default": "./dist/composables/index.mjs"
+      },
+      "./constants": {
+        "types": "./dist/constants/index.d.ts",
+        "default": "./dist/constants/index.mjs"
+      },
+      "./global-state": {
+        "types": "./dist/global-state.d.ts",
+        "default": "./dist/global-state.mjs"
+      },
+      "./preferences": {
+        "types": "./dist/preferences/index.d.ts",
+        "default": "./dist/preferences/index.mjs"
+      },
+      "./store": {
+        "types": "./dist/store.d.ts",
+        "default": "./dist/store.mjs"
+      },
+      "./typings": {
+        "types": "./dist/typings/index.d.ts",
+        "default": "./dist/typings/index.mjs"
+      },
+      "./utils": {
+        "types": "./dist/utils/index.d.ts",
+        "default": "./dist/utils/index.mjs"
+      }
+    }
+  },
+  "exports": {
+    "./cache": {
+      "types": "./src/cache/index.ts",
+      "development": "./src/cache/index.ts",
+      "production": "./src/cache/index.ts",
+      "default": "./dist/cache/index.mjs"
+    },
+    "./color": {
+      "types": "./src/color/index.ts",
+      "development": "./src/color/index.ts",
+      "production": "./src/color/index.ts",
+      "default": "./dist/color/index.mjs"
+    },
+    "./composables": {
+      "types": "./src/composables/index.ts",
+      "development": "./src/composables/index.ts",
+      "production": "./src/composables/index.ts",
+      "default": "./dist/composables/index.mjs"
+    },
+    "./constants": {
+      "types": "./src/constants/index.ts",
+      "development": "./src/constants/index.ts",
+      "production": "./src/constants/index.ts",
+      "default": "./dist/constants/index.mjs"
+    },
+    "./global-state": {
+      "types": "./src/global-state.ts",
+      "development": "./src/global-state.ts",
+      "production": "./src/global-state.ts",
+      "default": "./dist/global-state.mjs"
+    },
+    "./preferences": {
+      "types": "./src/preferences/index.ts",
+      "development": "./src/preferences/index.ts",
+      "production": "./src/preferences/index.ts",
+      "default": "./dist/preferences/index.mjs"
+    },
+    "./store": {
+      "types": "./src/store.ts",
+      "development": "./src/store.ts",
+      "production": "./src/store.ts",
+      "default": "./dist/store.mjs"
+    },
+    "./typings": {
+      "types": "./src/typings/index.ts",
+      "development": "./src/typings/index.ts",
+      "production": "./src/typings/index.ts",
+      "default": "./dist/typings/index.mjs"
+    },
+    "./utils": {
+      "types": "./src/utils/index.ts",
+      "development": "./src/utils/index.ts",
+      "production": "./src/utils/index.ts",
+      "default": "./dist/utils/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "prepack": "pnpm build",
+    "stub": "pnpm build"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0",
+    "vue-router": "^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vue-router": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@colordx/core": "catalog:",
+    "@ctrl/tinycolor": "catalog:",
+    "@internationalized/date": "catalog:",
+    "@tanstack/vue-store": "catalog:",
+    "@types/sortablejs": "catalog:",
+    "@vinicunca/perkakas": "catalog:",
+    "@vue/shared": "catalog:",
+    "@vueuse/core": "catalog:",
+    "akar": "catalog:",
+    "defu": "catalog:",
+    "es-toolkit": "catalog:",
+    "nprogress": "catalog:",
+    "sortablejs": "catalog:",
+    "theme-colors": "catalog:"
+  },
+  "devDependencies": {
+    "@types/nprogress": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:"
+  }
+}

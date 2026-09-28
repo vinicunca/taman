@@ -10,9 +10,7 @@
     }
   },
   "dependencies": {
-    "@taman-core/preferences": "workspace:*",
-    "@taman-core/shared": "workspace:*",
-    "@taman-core/typings": "workspace:*",
+    "@vinicunca/taman-core": "workspace:^",
     "pinia": "catalog:",
     "pinia-plugin-persistedstate": "catalog:",
     "secure-ls": "catalog:",

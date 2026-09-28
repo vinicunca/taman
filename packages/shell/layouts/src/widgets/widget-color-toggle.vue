@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { TamanBuiltinThemeType } from '@taman/types';
-import { TamanButtonIcon } from '@taman-core/taman-ui';
-import { COLOR_PRESETS, preferences, updatePreferences } from '@taman/preferences';
+import { COLOR_PRESETS, preferences, updatePreferences } from '@vinicunca/taman-core/preferences';
+import { TamanButtonIcon } from '@vinicunca/taman-ui';
 import PButton from 'pohon-ui/components/Button.vue';
 import PCollapsible from 'pohon-ui/components/Collapsible.vue';
 import PIcon from 'pohon-ui/components/Icon.vue';

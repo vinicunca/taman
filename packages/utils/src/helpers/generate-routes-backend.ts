@@ -2,10 +2,10 @@ import type {
   ComponentRecordType,
   GenerateMenuAndRoutesOptions,
   RouteRecordStringComponent,
-} from '@taman-core/typings';
+} from '@vinicunca/taman-core/typings';
 import type { RouteRecordRaw } from 'vue-router';
 
-import { mapTree } from '@taman-core/shared/utils';
+import { mapTree } from '@vinicunca/taman-core/utils';
 
 /**
  * Returns whether the route is shown in the menu but renders 403 on visit

@@ -7,7 +7,7 @@ import {
   isFunctionType,
   omit,
   prop,
-} from '@taman-core/shared/utils';
+} from '@vinicunca/taman-core/utils';
 import PIcon from 'pohon-ui/components/Icon.vue';
 import { computed, nextTick, ref, unref, useAttrs, watch } from 'vue';
 

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { LayoutWidgetNotificationItem } from './layout-widget-notification.types';
-import { TamanButtonIcon, TamanScrollbar } from '@taman-core/taman-ui';
 import { $t } from '@taman/locales';
+import { TamanButtonIcon, TamanScrollbar } from '@vinicunca/taman-ui';
 import { useToggle } from '@vueuse/core';
 import PButton from 'pohon-ui/components/Button.vue';
 import PPopover from 'pohon-ui/components/Popover.vue';

@@ -1,5 +1,5 @@
-import { z } from '@taman-core/form-ui';
-import { isPasswordStrong } from '@taman-core/taman-ui';
+import { isPasswordStrong } from '@vinicunca/taman-ui';
+import { z } from '@vinicunca/taman-ui/form';
 
 export interface StrongPasswordMessages {
   required: string;

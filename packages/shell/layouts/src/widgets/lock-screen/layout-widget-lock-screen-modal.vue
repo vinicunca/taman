@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useTamanForm, z } from '@taman-core/form-ui';
-import { useTamanDialog } from '@taman-core/popup-ui';
 import { $t } from '@taman/locales';
+import { useTamanForm, z } from '@vinicunca/taman-ui/form';
+import { useTamanDialog } from '@vinicunca/taman-ui/popup';
 import PAvatar from 'pohon-ui/components/Avatar.vue';
 import PButton from 'pohon-ui/components/Button.vue';
 import { computed, reactive } from 'vue';
