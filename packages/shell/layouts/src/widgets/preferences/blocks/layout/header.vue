@@ -1,24 +1,23 @@
 <script setup lang="ts">
 import type {
+  SelectOption,
   TamanLayoutHeaderMenuAlignType,
   TamanLayoutHeaderModeType,
-  SelectOption,
 } from '@taman/types';
 
 import { $t } from '@taman/locales';
 
+import PreferencesSwitchItem from '../preferences-switch-item.vue';
 import SelectItem from '../select-item.vue';
-import SwitchItem from '../switch-item.vue';
 import ToggleItem from '../toggle-item.vue';
 
 defineProps<{ disabled: boolean }>();
 
 const headerEnable = defineModel<boolean>('headerEnable');
 const headerMode = defineModel<TamanLayoutHeaderModeType>('headerMode');
-const headerMenuAlign =
-  defineModel<TamanLayoutHeaderMenuAlignType>('headerMenuAlign');
+const headerMenuAlign = defineModel<TamanLayoutHeaderMenuAlignType>('headerMenuAlign');
 
-const localeItems: SelectOption[] = [
+const localeItems: Array<SelectOption> = [
   {
     label: $t('preferences.header.modeStatic'),
     value: 'static',
@@ -37,7 +36,7 @@ const localeItems: SelectOption[] = [
   },
 ];
 
-const headerMenuAlignItems: SelectOption[] = [
+const headerMenuAlignItems: Array<SelectOption> = [
   {
     label: $t('preferences.header.menuAlignStart'),
     value: 'start',
@@ -54,9 +53,12 @@ const headerMenuAlignItems: SelectOption[] = [
 </script>
 
 <template>
-  <SwitchItem v-model="headerEnable" :disabled="disabled">
-    {{ $t('preferences.header.visible') }}
-  </SwitchItem>
+  <PreferencesSwitchItem
+    v-model="headerEnable"
+    :label="$t('preferences.header.visible')"
+    :disabled="disabled"
+  />
+
   <SelectItem
     v-model="headerMode"
     :disabled="!headerEnable"
@@ -64,6 +66,7 @@ const headerMenuAlignItems: SelectOption[] = [
   >
     {{ $t('preferences.mode') }}
   </SelectItem>
+
   <ToggleItem
     v-model="headerMenuAlign"
     :disabled="!headerEnable"

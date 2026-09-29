@@ -2,6 +2,8 @@
 import type {
   TamanBuiltinThemeType,
   TamanContentCompactType,
+  TamanLayoutHeaderMenuAlignType,
+  TamanLayoutHeaderModeType,
   TamanLayoutType,
 } from '@taman/types';
 import type { ThemeBrandColors } from '@vinicunca/taman-core/preferences';
@@ -48,6 +50,10 @@ const sidebarExpandOnHover = defineModel<boolean>('sidebarExpandOnHover');
 const sidebarCollapsedButton = defineModel<boolean>('sidebarCollapsedButton');
 const sidebarFixedButton = defineModel<boolean>('sidebarFixedButton');
 const sidebarWidth = defineModel<number>('sidebarWidth');
+
+const headerEnable = defineModel<boolean>('headerEnable');
+const headerMode = defineModel<TamanLayoutHeaderModeType>('headerMode');
+const headerMenuAlign = defineModel<TamanLayoutHeaderMenuAlignType>('headerMenuAlign');
 
 /**
  * ----------
@@ -172,14 +178,14 @@ const [DrawerPreferences] = useTamanDrawer();
           />
         </PreferencesBlock>
 
-        <!-- <Block :title="$t('preferences.header.title')">
+        <PreferencesBlock :title="$t('preferences.header.title')">
           <Header
             v-model:header-enable="headerEnable"
             v-model:header-menu-align="headerMenuAlign"
             v-model:header-mode="headerMode"
             :disabled="isFullContent"
           />
-        </Block> -->
+        </PreferencesBlock>
 
         <!-- <Block :title="$t('preferences.navigationMenu.title')">
           <Navigation

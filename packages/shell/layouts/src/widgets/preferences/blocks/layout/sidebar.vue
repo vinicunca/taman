@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import type { TamanLayoutType } from '@taman/types';
 
+import { $t } from '@taman/locales';
 import { onMounted } from 'vue';
 
-import { $t } from '@taman/locales';
-
-import CheckboxItem from '../checkbox-item.vue';
-import NumberFieldItem from '../number-field-item.vue';
+import NumberFieldItem from '../preference-input-number.vue/index.js';
+import CheckboxItem from '../preferences-checkbox-item.vue';
 import SwitchItem from '../switch-item.vue';
 
 defineProps<{ currentLayout?: TamanLayoutType; disabled: boolean }>();
@@ -23,14 +22,14 @@ const sidebarDraggable = defineModel<boolean>('sidebarDraggable');
 const sidebarCollapsed = defineModel<boolean>('sidebarCollapsed');
 const sidebarExpandOnHover = defineModel<boolean>('sidebarExpandOnHover');
 
-const sidebarButtons = defineModel<string[]>('sidebarButtons', { default: [] });
+const sidebarButtons = defineModel<Array<string>>('sidebarButtons', { default: [] });
 const sidebarCollapsedButton = defineModel<boolean>('sidebarCollapsedButton');
 const sidebarFixedButton = defineModel<boolean>('sidebarFixedButton');
 
 onMounted(() => {
   if (
-    sidebarCollapsedButton.value &&
-    !sidebarButtons.value.includes('collapsed')
+    sidebarCollapsedButton.value
+    && !sidebarButtons.value.includes('collapsed')
   ) {
     sidebarButtons.value.push('collapsed');
   }
@@ -39,20 +38,29 @@ onMounted(() => {
   }
 });
 
-const handleCheckboxChange = () => {
+function handleCheckboxChange() {
   sidebarCollapsedButton.value = !!sidebarButtons.value.includes('collapsed');
   sidebarFixedButton.value = !!sidebarButtons.value.includes('fixed');
-};
+}
 </script>
 
 <template>
-  <SwitchItem v-model="sidebarEnable" :disabled="disabled">
+  <SwitchItem
+    v-model="sidebarEnable"
+    :disabled="disabled"
+  >
     {{ $t('preferences.sidebar.visible') }}
   </SwitchItem>
-  <SwitchItem v-model="sidebarDraggable" :disabled="!sidebarEnable || disabled">
+  <SwitchItem
+    v-model="sidebarDraggable"
+    :disabled="!sidebarEnable || disabled"
+  >
     {{ $t('preferences.sidebar.draggable') }}
   </SwitchItem>
-  <SwitchItem v-model="sidebarCollapsed" :disabled="!sidebarEnable || disabled">
+  <SwitchItem
+    v-model="sidebarCollapsed"
+    :disabled="!sidebarEnable || disabled"
+  >
     {{ $t('preferences.sidebar.collapsed') }}
   </SwitchItem>
   <SwitchItem
@@ -71,23 +79,23 @@ const handleCheckboxChange = () => {
   <SwitchItem
     v-model="sidebarAutoActivateChild"
     :disabled="
-      !sidebarEnable ||
-      !['sidebar-mixed-nav', 'mixed-nav', 'header-mixed-nav'].includes(
-        currentLayout as string,
-      ) ||
-      disabled
+      !sidebarEnable
+        || !['sidebar-mixed-nav', 'mixed-nav', 'header-mixed-nav'].includes(
+          currentLayout as string,
+        )
+        || disabled
     "
     :tip="$t('preferences.sidebar.autoActivateChildTip')"
   >
     {{ $t('preferences.sidebar.autoActivateChild') }}
   </SwitchItem>
   <CheckboxItem
+    v-model="sidebarButtons"
     :items="[
       { label: $t('preferences.sidebar.buttonCollapsed'), value: 'collapsed' },
       { label: $t('preferences.sidebar.buttonFixed'), value: 'fixed' },
     ]"
     multiple
-    v-model="sidebarButtons"
     :on-btn-click="handleCheckboxChange"
   >
     {{ $t('preferences.sidebar.buttons') }}
