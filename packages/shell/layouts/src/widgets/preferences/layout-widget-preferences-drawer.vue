@@ -79,17 +79,17 @@ const shortcutKeysGlobalEscape = defineModel<boolean>('shortcutKeysGlobalEscape'
 const shortcutKeysGlobalLockScreen = defineModel<boolean>('shortcutKeysGlobalLockScreen');
 
 const {
-  customPreferences,
-  diffCustomPreference,
-  diffPreference,
+  // customPreferences,
+  // diffCustomPreference,
+  // diffPreference,
   isDark,
   isFullContent,
-  isHeaderNav,
-  isHeaderSidebarNav,
-  isMixedNav,
-  isSideMixedNav,
+  // isHeaderNav,
+  // isHeaderSidebarNav,
+  // isMixedNav,
+  // isSideMixedNav,
   isSideMode,
-  isSideNav,
+  // isSideNav,
 } = usePreferences();
 
 const tabs = computed<Array<TabsItem>>(() => {
