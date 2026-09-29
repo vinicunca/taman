@@ -21,6 +21,7 @@ import {
   PreferencesSidebar,
   PreferencesTheme,
 } from './blocks';
+import PreferencesGlobalShortcutKeys from './blocks/shortcut-keys/preferences-global-shortcut-keys.vue';
 
 defineOptions({
   name: 'LayoutWidgetPreferencesDrawer',
@@ -58,6 +59,17 @@ const themeSemiDarkSidebarSub = defineModel<boolean>('themeSemiDarkSidebarSub');
 const themeSemiDarkHeader = defineModel<boolean>('themeSemiDarkHeader');
 const themeBuiltinType = defineModel<TamanBuiltinThemeType | undefined>('themeBuiltinType', { default: undefined });
 const themeBrands = defineModel<ThemeBrandColors | undefined>('themeBrands', { default: undefined });
+
+/**
+ * ----------
+ * Shortcut Keys
+ * ----------
+ */
+const shortcutKeysEnable = defineModel<boolean>('shortcutKeysEnable');
+const shortcutKeysGlobalSearch = defineModel<boolean>('shortcutKeysGlobalSearch');
+const shortcutKeysGlobalLogout = defineModel<boolean>('shortcutKeysGlobalLogout');
+const shortcutKeysGlobalEscape = defineModel<boolean>('shortcutKeysGlobalEscape');
+const shortcutKeysGlobalLockScreen = defineModel<boolean>('shortcutKeysGlobalLockScreen');
 
 const {
   customPreferences,
@@ -133,6 +145,7 @@ const [DrawerPreferences] = useTamanDrawer();
       :items="tabs"
       default-value="layout"
       size="sm"
+      :unmount-on-hide="false"
     >
       <template #layout>
         <PreferencesBlock :title="$t('preferences.layout')">
@@ -264,15 +277,19 @@ const [DrawerPreferences] = useTamanDrawer();
       </template>
 
       <template #shortcutKey>
-        shortcutKey
+        <PreferencesBlock :title="$t('preferences.shortcutKeys.global')">
+          <PreferencesGlobalShortcutKeys
+            v-model:shortcut-keys-enable="shortcutKeysEnable"
+            v-model:shortcut-keys-global-search="shortcutKeysGlobalSearch"
+            v-model:shortcut-keys-lock-screen="shortcutKeysGlobalLockScreen"
+            v-model:shortcut-keys-logout="shortcutKeysGlobalLogout"
+            v-model:shortcut-keys-escape="shortcutKeysGlobalEscape"
+          />
+        </PreferencesBlock>
       </template>
 
       <template #general>
         general
-      </template>
-
-      <template #custom>
-        custom
       </template>
     </PTabs>
 

@@ -1,3 +1,4 @@
+export * from './apply-css-variables';
 export * from './calendar-date-codec';
 export * from './date';
 export * from './diff';
@@ -13,7 +14,6 @@ export * from './time-codec';
 export * from './to';
 export * from './tree';
 export * from './unique';
-export * from './update-css-variables';
 export * from './util';
 export * from './window';
 

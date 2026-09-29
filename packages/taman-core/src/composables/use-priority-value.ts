@@ -18,7 +18,7 @@ export function usePriorityValue<
   const slots = useSlots();
   const attrs = useAttrs() as T;
 
-  const value = computed((): T[K] => {
+  const value = computed<T[K]>(() => {
     // Props always have defaults; use raw vnode props to detect explicit passes
     const rawProps = (instance?.vnode?.props || {}) as T;
 

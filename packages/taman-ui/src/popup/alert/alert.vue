@@ -2,7 +2,7 @@
 import type { Component } from 'vue';
 import type { TamanAlertProps } from './alert';
 
-import { useSimpleLocale } from '@vinicunca/taman-core/composables';
+import { useOverlayZIndex, useSimpleLocale } from '@vinicunca/taman-core/composables';
 import { usePreferences } from '@vinicunca/taman-core/preferences';
 import { isString } from '@vinicunca/taman-core/utils';
 import PButton from 'pohon-ui/components/Button.vue';
@@ -16,8 +16,8 @@ import {
   AlertDialogDescription,
   AlertDialogTitle,
   TamanButtonIcon,
-  TamanRenderContent,
   TamanLoading,
+  TamanRenderContent,
 } from '../..';
 import { provideAlertContext } from './alert';
 
@@ -44,6 +44,7 @@ const open = defineModel<boolean>(
 );
 const { $t } = useSimpleLocale();
 const isConfirm = ref(false);
+const zIndex = useOverlayZIndex(open);
 
 function onAlertClosed() {
   emits('closed', isConfirm.value);
@@ -167,6 +168,7 @@ async function handleOpenChange(val: boolean) {
       :open="open"
       :centered="centered"
       :overlay-blur="overlayBlur"
+      :z-index="zIndex"
       class="flex flex-col max-h-[80%] inset-x-0 sm:(rounded-$taman-radius max-w-[80%] w-130)"
       :class="
         [

@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import type { SelectOption } from '@taman/types';
 
-import { computed } from 'vue';
-
 import { $t } from '@taman/locales';
+import { computed } from 'vue';
 
 import SelectItem from '../select-item.vue';
 import SwitchItem from '../switch-item.vue';
@@ -25,7 +24,7 @@ const appPreferencesButtonPosition = defineModel<string>(
 const widgetRefresh = defineModel<boolean>('widgetRefresh');
 const widgetTimezone = defineModel<boolean>('widgetTimezone');
 
-const positionItems = computed((): SelectOption[] => [
+const positionItems = computed<Array<SelectOption>>(() => [
   {
     label: $t('preferences.position.auto'),
     value: 'auto',
@@ -73,7 +72,10 @@ const positionItems = computed((): SelectOption[] => [
   <SwitchItem v-model="widgetTimezone">
     {{ $t('preferences.widget.timezone') }}
   </SwitchItem>
-  <SelectItem v-model="appPreferencesButtonPosition" :items="positionItems">
+  <SelectItem
+    v-model="appPreferencesButtonPosition"
+    :items="positionItems"
+  >
     {{ $t('preferences.position.title') }}
   </SelectItem>
 </template>

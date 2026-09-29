@@ -6,6 +6,7 @@ import { computed, createApp, defineComponent, h, nextTick, ref } from 'vue';
 import Alert from '../alert.vue';
 
 vi.mock('@vinicunca/taman-core/composables', () => ({
+  useOverlayZIndex: () => ref(),
   useScrollLock: () =>
     computed({
       get: () => false,

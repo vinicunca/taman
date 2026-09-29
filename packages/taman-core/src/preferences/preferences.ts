@@ -242,16 +242,9 @@ class PreferenceManager {
 
     if (
       theme
-      && (Object.keys(theme).length > 0 || Reflect.has(theme, 'fontSize'))
+      && (Object.keys(theme).length > 0)
     ) {
       updateCssVariables(this.state);
-    }
-
-    if (
-      app
-      && (Reflect.has(app, 'colorGrayMode') || Reflect.has(app, 'colorWeakMode'))
-    ) {
-      this.updateColorMode(this.state);
     }
 
     if (app && Reflect.has(app, 'timezone')) {
@@ -451,18 +444,6 @@ class PreferenceManager {
       },
       { immediate: true },
     );
-  }
-
-  /**
-   * Updates grayscale and color-weak modes on the document.
-   * @param preference - Current preferences
-   */
-  private updateColorMode(preference: Preferences) {
-    const { colorGrayMode, colorWeakMode } = preference.app;
-    const dom = document.documentElement;
-
-    dom.classList.toggle('invert-mode', colorWeakMode);
-    dom.classList.toggle('grayscale-mode', colorGrayMode);
   }
 }
 

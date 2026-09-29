@@ -18,7 +18,7 @@ export function updateCssVariables(preferences: Preferences) {
 
   const theme = preferences?.theme ?? {};
 
-  const { builtinType, radius } = theme;
+  const { builtinType } = theme;
   const { isDark } = usePreferences();
 
   // Set data-theme=[builtinType] on html
@@ -57,24 +57,6 @@ export function updateCssVariables(preferences: Preferences) {
     ))
   ) {
     updateMainColorVariables(preferences);
-  }
-
-  // Update border radius
-  if (Reflect.has(theme, 'radius')) {
-    document.documentElement.style.setProperty('--radius', `${radius}rem`);
-  }
-
-  // Update font size
-  if (Reflect.has(theme, 'fontSize')) {
-    const fontSize = theme.fontSize;
-    document.documentElement.style.setProperty(
-      '--font-size-base',
-      `${fontSize}px`,
-    );
-    document.documentElement.style.setProperty(
-      '--menu-font-size',
-      `calc(${fontSize}px * 0.875)`,
-    );
   }
 }
 

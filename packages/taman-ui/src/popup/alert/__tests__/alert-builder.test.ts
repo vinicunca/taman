@@ -3,7 +3,7 @@ import type { App } from 'vue';
 import PApp from 'pohon-ui/components/App.vue';
 import { useOverlay } from 'pohon-ui/composables';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { computed, createApp, defineComponent, h, nextTick } from 'vue';
+import { computed, createApp, defineComponent, h, nextTick, ref } from 'vue';
 
 import {
   clearAllAlerts,
@@ -16,6 +16,7 @@ vi.mock('@vinicunca/taman-core/composables', () => {
     value: (key: string) => key,
   });
   return {
+    useOverlayZIndex: () => ref(),
     useScrollLock: () => computed({
       get: () => false,
       set: () => {},

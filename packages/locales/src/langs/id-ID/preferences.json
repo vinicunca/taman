@@ -118,9 +118,6 @@
   },
   "theme": {
     "title": "Tema",
-    "radius": "Radius",
-    "fontSize": "Ukuran Font",
-    "fontSizeTip": "Sesuaikan ukuran font global dengan pratinjau real-time",
     "light": "Terang",
     "dark": "Gelap",
     "darkSidebar": "Sidebar Semi Gelap",
@@ -128,8 +125,6 @@
     "darkSidebarSub": "Sub Sidebar Semi Gelap",
     "darkSidebarSubTip": "Dapat diaktifkan saat tema terang, sidebar semi gelap diaktifkan, dan tata letak menggunakan mode menu 'Dua Kolom'.",
     "darkHeader": "Header Semi Gelap",
-    "weakMode": "Mode Lemah",
-    "grayMode": "Mode Abu-abu",
     "builtin": {
       "title": "Bawaan",
       "default": "Default",

@@ -3,6 +3,7 @@ import type { ExtendedDrawerApi, TamanDrawerProps } from './drawer.types';
 
 import {
   useBreakpoints,
+  useOverlayZIndex,
   usePriorityValues,
   useSimpleLocale,
 } from '@vinicunca/taman-core/composables';
@@ -45,7 +46,6 @@ const props = withDefaults(
     destroyOnClose: false,
     drawerApi: undefined,
     submitting: false,
-    zIndex: 1000,
   },
 );
 
@@ -86,6 +86,10 @@ const {
   titleTooltip,
   zIndex,
 } = usePriorityValues(props, state);
+
+// An explicit zIndex wins; otherwise stack by open order
+const openZIndex = useOverlayZIndex(() => state?.value?.isOpen);
+const layerZIndex = computed(() => zIndex.value ?? openZIndex.value);
 
 /**
  * With keepAlive enabled, browser back/gesture navigation does not close the drawer
@@ -184,7 +188,7 @@ const getForceMount = computed(() => {
       :modal="modal"
       :open="state?.isOpen"
       :side="placement"
-      :z-index="zIndex"
+      :z-index="layerZIndex"
       :force-mount="getForceMount"
       :overlay-blur="overlayBlur"
       @close-auto-focus="handleFocusOutside"

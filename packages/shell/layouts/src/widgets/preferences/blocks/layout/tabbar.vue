@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import type { SelectOption } from '@taman/types';
 
-import { computed } from 'vue';
-
 import { $t } from '@taman/locales';
+import { computed } from 'vue';
 
 import NumberFieldItem from '../number-field-item.vue';
 import SelectItem from '../select-item.vue';
@@ -29,7 +28,7 @@ const tabbarMiddleClickToClose = defineModel<boolean>(
   'tabbarMiddleClickToClose',
 );
 
-const styleItems = computed((): SelectOption[] => [
+const styleItems = computed<Array<SelectOption>>(() => [
   {
     label: $t('preferences.tabbar.styleType.chrome'),
     value: 'chrome',
@@ -51,10 +50,16 @@ const styleItems = computed((): SelectOption[] => [
 </script>
 
 <template>
-  <SwitchItem v-model="tabbarEnable" :disabled="disabled">
+  <SwitchItem
+    v-model="tabbarEnable"
+    :disabled="disabled"
+  >
     {{ $t('preferences.tabbar.enable') }}
   </SwitchItem>
-  <SwitchItem v-model="tabbarPersist" :disabled="!tabbarEnable">
+  <SwitchItem
+    v-model="tabbarPersist"
+    :disabled="!tabbarEnable"
+  >
     {{ $t('preferences.tabbar.persist') }}
   </SwitchItem>
   <SwitchItem
@@ -74,7 +79,10 @@ const styleItems = computed((): SelectOption[] => [
   >
     {{ $t('preferences.tabbar.maxCount') }}
   </NumberFieldItem>
-  <SwitchItem v-model="tabbarDraggable" :disabled="!tabbarEnable">
+  <SwitchItem
+    v-model="tabbarDraggable"
+    :disabled="!tabbarEnable"
+  >
     {{ $t('preferences.tabbar.draggable') }}
   </SwitchItem>
   <SwitchItem
@@ -84,19 +92,34 @@ const styleItems = computed((): SelectOption[] => [
   >
     {{ $t('preferences.tabbar.wheelable') }}
   </SwitchItem>
-  <SwitchItem v-model="tabbarMiddleClickToClose" :disabled="!tabbarEnable">
+  <SwitchItem
+    v-model="tabbarMiddleClickToClose"
+    :disabled="!tabbarEnable"
+  >
     {{ $t('preferences.tabbar.middleClickClose') }}
   </SwitchItem>
-  <SwitchItem v-model="tabbarShowIcon" :disabled="!tabbarEnable">
+  <SwitchItem
+    v-model="tabbarShowIcon"
+    :disabled="!tabbarEnable"
+  >
     {{ $t('preferences.tabbar.icon') }}
   </SwitchItem>
-  <SwitchItem v-model="tabbarShowMore" :disabled="!tabbarEnable">
+  <SwitchItem
+    v-model="tabbarShowMore"
+    :disabled="!tabbarEnable"
+  >
     {{ $t('preferences.tabbar.showMore') }}
   </SwitchItem>
-  <SwitchItem v-model="tabbarShowMaximize" :disabled="!tabbarEnable">
+  <SwitchItem
+    v-model="tabbarShowMaximize"
+    :disabled="!tabbarEnable"
+  >
     {{ $t('preferences.tabbar.showMaximize') }}
   </SwitchItem>
-  <SelectItem v-model="tabbarStyleType" :items="styleItems">
+  <SelectItem
+    v-model="tabbarStyleType"
+    :items="styleItems"
+  >
     {{ $t('preferences.tabbar.styleType.title') }}
   </SelectItem>
 </template>

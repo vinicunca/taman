@@ -80,7 +80,12 @@ const styleTypeClasses = computed(() => {
     :class="props.contentClass"
     class="pr-6 h-full w-max items-center relative overflow-hidden flex!"
   >
-    <TransitionGroup name="slide-left">
+    <TransitionGroup
+      enter-active-class="ease-emphasized"
+      leave-active-class="ease-emphasized"
+      enter-from-class="opacity-0 -translate-x-15px"
+      leave-to-class="opacity-0 -translate-x-15px"
+    >
       <div
         v-for="(tab, idx) in tabItems"
         :key="tab.key"

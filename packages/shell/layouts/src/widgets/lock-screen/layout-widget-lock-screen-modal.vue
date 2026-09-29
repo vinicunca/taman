@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { TamanFormProps } from '@vinicunca/taman-ui/form';
 import { $t } from '@taman/locales';
 import { useTamanForm, z } from '@vinicunca/taman-ui/form';
 import { useTamanDialog } from '@vinicunca/taman-ui/popup';
@@ -28,30 +29,31 @@ const emit = defineEmits<{
 const [
   FormLock,
   { reset, validate, getValues, getFieldComponentRef },
-]
-  = useTamanForm(
-    reactive({
-      commonConfig: {
-        hideLabel: true,
-        hideRequiredMark: true,
-      },
-      schema: computed(() => [
-        {
-          component: 'InputPassword' as const,
-          componentProps: {
-            placeholder: $t('ui.widgets.lockScreen.placeholder'),
-          },
-          fieldName: 'lockScreenPassword',
-          formFieldProps: { validateOn: ['change'] as const },
-          label: $t('authentication.password'),
-          rules: z
-            .string()
-            .min(1, { message: $t('ui.widgets.lockScreen.placeholder') }),
+] = useTamanForm(
+  reactive({
+    commonConfig: {
+      hideLabel: true,
+      hideRequiredMark: true,
+    },
+    schema: computed(() => [
+      {
+        component: 'InputPassword' as const,
+        componentProps: {
+          placeholder: $t('ui.widgets.lockScreen.placeholder'),
         },
-      ]),
-      showDefaultActions: false,
-    }),
-  );
+        fieldName: 'lockScreenPassword',
+        formFieldProps: { validateOn: ['change'] as const },
+        label: $t('authentication.password'),
+        rules: z
+          .string()
+          .min(1, { message: $t('ui.widgets.lockScreen.placeholder') }),
+      },
+    ]),
+    showDefaultActions: false,
+    submitOnEnter: true,
+    handleSubmit,
+  }) satisfies TamanFormProps,
+);
 
 const [DialogLock] = useTamanDialog({
   onConfirm() {
@@ -89,7 +91,6 @@ async function handleSubmit() {
   >
     <div
       class="mb-10 px-10 flex flex-col w-full items-center"
-      @keydown.enter.prevent="handleSubmit"
     >
       <div class="w-full">
         <div class="ml-2 flex flex-col w-full items-center">
@@ -107,6 +108,7 @@ async function handleSubmit() {
 
         <PButton
           class="mt-1 w-full"
+          block
           @click="handleSubmit"
         >
           {{ $t('ui.widgets.lockScreen.screenButton') }}

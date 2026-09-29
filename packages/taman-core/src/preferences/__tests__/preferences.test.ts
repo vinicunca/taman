@@ -121,15 +121,6 @@ describe('preferences', () => {
     expect(preferenceManager.getPreferences()).toEqual(expected);
   });
 
-  it('updates color modes correctly', () => {
-    preferenceManager.updatePreferences({
-      app: { colorGrayMode: true, colorWeakMode: true },
-    });
-
-    expect(preferenceManager.getPreferences().app.colorGrayMode).toBe(true);
-    expect(preferenceManager.getPreferences().app.colorWeakMode).toBe(true);
-  });
-
   it('resets preferences to default', async () => {
     // Then reset to defaults
     await preferenceManager.resetPreferences();
