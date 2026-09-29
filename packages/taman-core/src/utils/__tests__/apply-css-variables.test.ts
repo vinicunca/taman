@@ -37,7 +37,7 @@ it('updateCSSVariables should reuse and deduplicate same-id style tags', () => {
   const styleElements = document.querySelectorAll('#custom-styles');
 
   expect(styleElements.length).toBe(1);
-  expect(styleElements[0].textContent).toContain('primaryColor: blue;');
+  expect(styleElements[0]?.textContent).toContain('primaryColor: blue;');
 });
 
 it('applyCssVariables should create only one tag when called repeatedly in the same tick', () => {
@@ -49,5 +49,5 @@ it('applyCssVariables should create only one tag when called repeatedly in the s
   const styleElements = document.querySelectorAll('#custom-styles');
 
   expect(styleElements.length).toBe(1);
-  expect(styleElements[0].textContent).toContain('primaryColor: green;');
+  expect(styleElements[0]?.textContent).toContain('primaryColor: green;');
 });

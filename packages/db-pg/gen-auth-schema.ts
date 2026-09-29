@@ -8,11 +8,6 @@ import { createBetterAuth } from '../../apps/better-auth-back/server/auth';
 /**
  * The better-auth cli needs to the `auth` variable to be exported in order to generate the schema.
  */
-const auth = createBetterAuth({
-  DATABASE_URL: 'postgresql://local/dev',
-  APP_ENV: 'development',
-  BETTER_AUTH_SECRET: 'cli-only',
-  BASE_URL: 'http://localhost:8788',
-});
+const auth = createBetterAuth();
 
 export default auth;

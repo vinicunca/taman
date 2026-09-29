@@ -25,7 +25,7 @@ const props = withDefaults(
 );
 
 const emits = defineEmits<{
-  submit: [];
+  submit: [values: AuthLoginValues];
 }>();
 
 // `reactive()` + `computed()` here defeats TS's overload/UnwrapNestedRefs
@@ -41,15 +41,12 @@ const [FormAuth, formAuthApi] = useTamanForm<AuthLoginValues>(
     commonConfig: {
       hideRequiredMark: true,
     },
+
+    handleSubmit(values: AuthLoginValues) {
+      emits('submit', values);
+    },
   }) as unknown as TamanFormProps<FormBaseComponentType, Record<never, never>, AuthLoginValues>,
 );
-
-async function handleSubmit() {
-  const { valid } = await formAuthApi.validate();
-  const values = await formAuthApi.getValues();
-  console.log('🚀 ~ handleSubmit ~ values:', values);
-  // emits('submit', values);
-}
 </script>
 
 <template>
@@ -62,7 +59,7 @@ async function handleSubmit() {
 
       <PButton
         block
-        @click="handleSubmit"
+        @click="formAuthApi.validateAndSubmit"
       >
         {{ $t('authentication.signUp') }}
       </PButton>

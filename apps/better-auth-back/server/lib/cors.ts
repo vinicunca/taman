@@ -53,7 +53,7 @@ export function createCorsOptions(
 }
 
 /** The request's `Origin` if it is in the allow-list, otherwise `null`. */
-function resolveAllowedOrigin(event: H3Event): null | string {
+function resolveAllowedOrigin(event: Pick<H3Event, 'req'>): null | string {
   const origin = event.req.headers.get('origin');
   if (!origin) {
     return null;
@@ -67,7 +67,7 @@ function resolveAllowedOrigin(event: H3Event): null | string {
  * returns its own `Response` (including non-2xx like 401) that bypasses the
  * event-level headers set by the CORS middleware.
  */
-export function applyCorsToResponse(event: H3Event, response: Response): Response {
+export function applyCorsToResponse(event: Pick<H3Event, 'req'>, response: Response): Response {
   const origin = resolveAllowedOrigin(event);
   if (!origin) {
     return response;

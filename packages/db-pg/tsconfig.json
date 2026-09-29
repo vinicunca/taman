@@ -1,6 +1,11 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@vinicunca/tsconfig/node-bundler.json",
+  "compilerOptions": {
+    // gen-auth-schema.ts pulls in better-auth-back sources, which use `.ts` import paths.
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  },
   "include": [
     "src",
     "drizzle.config.ts",

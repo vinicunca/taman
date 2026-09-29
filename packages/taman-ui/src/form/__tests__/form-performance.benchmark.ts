@@ -1,5 +1,5 @@
 import { flushPromises, mount } from '@vue/test-utils';
-import { afterAll, bench, describe } from 'vitest';
+import { afterAll, it } from 'vitest';
 import { nextTick } from 'vue';
 
 import { encodeFormValues } from '../form.codec';
@@ -111,66 +111,62 @@ afterAll(() => {
   codecWrapper.unmount();
 });
 
-describe('form codec performance', () => {
-  bench(
-    'encode 100 nested rows without isolation',
-    () => {
-      encodeFormValues(codec, formValues);
-    },
-    { time: 1000, warmupTime: 200 },
-  );
-
-  bench(
-    'encode 100 nested rows with isolated input',
-    () => {
-      codecFormApi.formatValues(formValues);
-    },
-    { time: 1000, warmupTime: 200 },
-  );
-
-  bench(
-    'create submit snapshot for 100 nested rows',
-    async () => {
-      await codecFormApi.getValueSnapshot();
-    },
+it('form codec performance', async ({ bench }) => {
+  await it.compare(
+    bench(
+      'encode 100 nested rows without isolation',
+      () => {
+        encodeFormValues(codec, formValues);
+      },
+    ),
+    bench(
+      'encode 100 nested rows with isolated input',
+      () => {
+        codecFormApi.formatValues(formValues);
+      },
+    ),
+    bench(
+      'create submit snapshot for 100 nested rows',
+      async () => {
+        await codecFormApi.getValueSnapshot();
+      },
+    ),
     { time: 1000, warmupTime: 200 },
   );
 });
 
-describe('form array performance', () => {
-  bench(
-    'edit one field in a 100-row array',
-    async () => {
-      arrayEditIteration += 1;
-      await arrayFormApi.setFieldValue(
-        'contacts[50].name',
-        `Contact ${arrayEditIteration}`,
-      );
-      await nextTick();
-    },
-    { time: 1000, warmupTime: 200 },
-  );
-
-  bench(
-    'append and remove one row from a 100-row array',
-    async () => {
-      arrayFormApi.form.pushFieldValue('contacts', { name: 'Temporary' });
-      await nextTick();
-      await arrayFormApi.form.removeFieldValue('contacts', ROW_COUNT);
-      await nextTick();
-    },
-    { time: 1000, warmupTime: 200 },
-  );
-
-  bench(
-    'update one child schema across 100 rows',
-    async () => {
-      arraySchemaIteration += 1;
-      arrayFormApi.updateSchema([
-        arraySchemaPatches[arraySchemaIteration % 2] ?? {},
-      ]);
-      await nextTick();
-    },
+it('form array performance', async ({ bench }) => {
+  await it.compare(
+    bench(
+      'edit one field in a 100-row array',
+      async () => {
+        arrayEditIteration += 1;
+        await arrayFormApi.setFieldValue(
+          'contacts[50].name',
+          `Contact ${arrayEditIteration}`,
+        );
+        await nextTick();
+      },
+    ),
+    bench(
+      'append and remove one row from a 100-row array',
+      async () => {
+        arrayFormApi.form.pushFieldValue('contacts', { name: 'Temporary' });
+        await nextTick();
+        await arrayFormApi.form.removeFieldValue('contacts', ROW_COUNT);
+        await nextTick();
+      },
+    ),
+    bench(
+      'update one child schema across 100 rows',
+      async () => {
+        arraySchemaIteration += 1;
+        arrayFormApi.updateSchema([
+          arraySchemaPatches[arraySchemaIteration % 2] ?? {},
+        ]);
+        await nextTick();
+      },
+    ),
     { time: 1000, warmupTime: 200 },
   );
 });

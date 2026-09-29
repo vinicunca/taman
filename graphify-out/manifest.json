@@ -114,9 +114,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-back/server/errors/error.utils.ts": {
-    "mtime": 1790511252.3874767,
-    "seen": 1790572953.537226,
-    "ast_hash": "11466df3ee7fafaf43d6187692ab60ae",
+    "mtime": 1790687851.4789689,
+    "seen": 1790687882.9854221,
+    "ast_hash": "d9d8df0186ab0dfc53e2c47418608855",
     "semantic_hash": ""
   },
   "apps/better-auth-back/server/errors/error.validation.ts": {
@@ -132,9 +132,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-back/server/lib/cors.ts": {
-    "mtime": 1790511252.3879302,
-    "seen": 1790572953.53723,
-    "ast_hash": "d98ef77d7c8e1aa7cb2e8db1d73b1f5a",
+    "mtime": 1790687851.4790478,
+    "seen": 1790687882.985426,
+    "ast_hash": "66fcbccb8a1b42e8045b732f9b7155d3",
     "semantic_hash": ""
   },
   "apps/better-auth-back/server/lib/http.ts": {
@@ -252,15 +252,15 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/auto-imports.d.ts": {
-    "mtime": 1790655349.007454,
-    "seen": 1790657904.850763,
+    "mtime": 1790683815.7210534,
+    "seen": 1790684797.221854,
     "ast_hash": "e38783093e1c4f5bfda0640c72bf8aa6",
     "semantic_hash": ""
   },
   "apps/better-auth-front/components.d.ts": {
-    "mtime": 1790603080.0540369,
-    "seen": 1790637670.509089,
-    "ast_hash": "eb63f348b85abaeb4ba1009bd9545bb8",
+    "mtime": 1790687261.627558,
+    "seen": 1790687882.9854531,
+    "ast_hash": "24c9bce01384531aea5573bf91e6bd3b",
     "semantic_hash": ""
   },
   "apps/better-auth-front/package.json": {
@@ -312,9 +312,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/app.vue": {
-    "mtime": 1790511252.4379191,
-    "seen": 1790572953.53727,
-    "ast_hash": "4a53b4e2b2b0fe991a9e9f82b123f1fd",
+    "mtime": 1790685265.700569,
+    "seen": 1790686346.448579,
+    "ast_hash": "9b9ed2434a5823be883126978d091f5f",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/auth/auth.client.ts": {
@@ -390,15 +390,15 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/layouts/core.vue": {
-    "mtime": 1790672434.2753432,
-    "seen": 1790677783.044961,
+    "mtime": 1790683665.0750704,
+    "seen": 1790684797.221875,
     "ast_hash": "68576d271a9128a9e42a61d4ae30c9ed",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/layouts/index.ts": {
-    "mtime": 1790511252.4396503,
-    "seen": 1790572953.537279,
-    "ast_hash": "b97172aaee4eb01d87d90a8df2cca9c3",
+    "mtime": 1790685573.9111502,
+    "seen": 1790686346.44859,
+    "ast_hash": "f7770a7f66ef713037b2f5bfb29dad88",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/locales/index.ts": {
@@ -438,14 +438,14 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/main.ts": {
-    "mtime": 1790575949.3652272,
-    "seen": 1790600504.428181,
+    "mtime": 1790683665.0758438,
+    "seen": 1790684797.2218812,
     "ast_hash": "af1413c72cb8f4a4ce516bf001795c1a",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/preferences.ts": {
-    "mtime": 1790575937.5168908,
-    "seen": 1790600504.428181,
+    "mtime": 1790683665.0771484,
+    "seen": 1790684797.2218812,
     "ast_hash": "738d533479999fb5f602c8d6145659d2",
     "semantic_hash": ""
   },
@@ -594,9 +594,9 @@
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/dialog/shared-data-demo.vue": {
-    "mtime": 1790511252.4492266,
-    "seen": 1790572953.53732,
-    "ast_hash": "471cb76ad923da374cd84b2a59f3bf6d",
+    "mtime": 1790685617.445308,
+    "seen": 1790686346.448617,
+    "ast_hash": "0e258f3549e3e051336b14a125c58483",
     "semantic_hash": ""
   },
   "apps/better-auth-front/src/views/examples/drawer/auto-height-demo.vue": {
@@ -1020,15 +1020,15 @@
     "semantic_hash": ""
   },
   "packages/db-pg/drizzle.config.ts": {
-    "mtime": 1790655511.2145379,
-    "seen": 1790657904.851336,
+    "mtime": 1790683665.1054232,
+    "seen": 1790684797.221998,
     "ast_hash": "f8d9bdac97ffe8cab9e14ba2d0010490",
     "semantic_hash": ""
   },
   "packages/db-pg/gen-auth-schema.ts": {
-    "mtime": 1790511252.6736758,
-    "seen": 1790572953.5374532,
-    "ast_hash": "a901e3c37eb767eb9a700f47a014f379",
+    "mtime": 1790687851.4791203,
+    "seen": 1790687882.985601,
+    "ast_hash": "5d5bb616e361c788484ae7f32c290c06",
     "semantic_hash": ""
   },
   "packages/db-pg/package.json": {
@@ -1080,9 +1080,9 @@
     "semantic_hash": ""
   },
   "packages/db-pg/tsconfig.json": {
-    "mtime": 1790511252.6749384,
-    "seen": 1790572953.5374641,
-    "ast_hash": "72c197c4ff9abae9b0b6a163d10551d1",
+    "mtime": 1790687851.4791768,
+    "seen": 1790687882.985611,
+    "ast_hash": "ab55ad4d5a5317d494fd34801a82ce46",
     "semantic_hash": ""
   },
   "packages/designs/package.json": {
@@ -1272,8 +1272,8 @@
     "semantic_hash": ""
   },
   "packages/locales/src/langs/en-US/preferences.json": {
-    "mtime": 1790636293.2637126,
-    "seen": 1790637670.5093381,
+    "mtime": 1790683665.1105833,
+    "seen": 1790684797.222092,
     "ast_hash": "18cd397572404a0e98e8122a2e1bb10a",
     "semantic_hash": ""
   },
@@ -1302,8 +1302,8 @@
     "semantic_hash": ""
   },
   "packages/locales/src/langs/id-ID/preferences.json": {
-    "mtime": 1790636305.400816,
-    "seen": 1790637670.509342,
+    "mtime": 1790683665.1111722,
+    "seen": 1790684797.222096,
     "ast_hash": "ff11a11dbad1a7533edcfdded84b8b99",
     "semantic_hash": ""
   },
@@ -1386,9 +1386,9 @@
     "semantic_hash": ""
   },
   "packages/shell/app-ui/src/components/auth/auth-register.vue": {
-    "mtime": 1790563360.8985865,
-    "seen": 1790572953.537575,
-    "ast_hash": "fb7af3b272bfa0e721693d7643bd3e22",
+    "mtime": 1790687851.4792438,
+    "seen": 1790687882.985735,
+    "ast_hash": "41bfcfdb99fbff6d9b9b108c10f358f7",
     "semantic_hash": ""
   },
   "packages/shell/app-ui/src/components/auth/auth.password.ts": {
@@ -1590,8 +1590,8 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/core/layout-core-header.vue": {
-    "mtime": 1790672274.171093,
-    "seen": 1790677783.045238,
+    "mtime": 1790683665.1115756,
+    "seen": 1790684797.2221582,
     "ast_hash": "2c718b0b0eb75983ca79558ccf79fb5a",
     "semantic_hash": ""
   },
@@ -1686,9 +1686,9 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/index.ts": {
-    "mtime": 1790511252.7217314,
-    "seen": 1790572953.5376158,
-    "ast_hash": "822b948fc99f81307bc49e331baf6e4d",
+    "mtime": 1790685568.2146995,
+    "seen": 1790686346.449049,
+    "ast_hash": "dfa9eb3408f1a19bcc60872b22905a95",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/route-cached/index.ts": {
@@ -1752,9 +1752,9 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/layout-widget-user-dropdown.vue": {
-    "mtime": 1790563360.9162123,
-    "seen": 1790572953.5376241,
-    "ast_hash": "914c8fab3b4e5fd62b7bcd8154e0a700",
+    "mtime": 1790687851.4793081,
+    "seen": 1790687882.985792,
+    "ast_hash": "028b13a9e52f91de9e7f720c516ed490",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/lock-screen/index.ts": {
@@ -1764,14 +1764,14 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/lock-screen/layout-widget-lock-screen-modal.vue": {
-    "mtime": 1790672179.6328566,
-    "seen": 1790677783.0452569,
+    "mtime": 1790683665.1119943,
+    "seen": 1790684797.2221792,
     "ast_hash": "7104d1407e1aa29e9280c0f3bb314051",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/lock-screen/layout-widget-lock-screen.vue": {
-    "mtime": 1790674202.6030157,
-    "seen": 1790677783.045258,
+    "mtime": 1790683665.1124272,
+    "seen": 1790684797.2221792,
     "ast_hash": "45b493535e3c588932bd6830c2e620c8",
     "semantic_hash": ""
   },
@@ -1793,58 +1793,10 @@
     "ast_hash": "b4925cc20355567f067ebf64845e4369",
     "semantic_hash": ""
   },
-  "packages/shell/layouts/src/widgets/preferences/blocks/block.vue": {
-    "mtime": 1790511252.7241437,
-    "seen": 1790572953.537628,
-    "ast_hash": "e5767b4ddebcdf17d97b42778a79caad",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/blocks/custom/custom.vue": {
-    "mtime": 1790677241.1903017,
-    "seen": 1790677783.0452611,
-    "ast_hash": "419df116c38722bc5b6a4935791f02e8",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/blocks/general/animation.vue": {
-    "mtime": 1790511252.724721,
-    "seen": 1790572953.5376298,
-    "ast_hash": "464b57c99b9aec6d4b8e1dfbe12ba5a4",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/blocks/general/general.vue": {
-    "mtime": 1790677241.2060382,
-    "seen": 1790677783.045263,
-    "ast_hash": "8bc93bcf5c70e316784c8aa4611b5213",
-    "semantic_hash": ""
-  },
   "packages/shell/layouts/src/widgets/preferences/blocks/index.ts": {
-    "mtime": 1790677412.0856297,
-    "seen": 1790677783.045263,
+    "mtime": 1790683665.1138077,
+    "seen": 1790684797.222185,
     "ast_hash": "07542c7a7a705e2525040ae7af729ef1",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/blocks/input-item.vue": {
-    "mtime": 1790511252.7251246,
-    "seen": 1790572953.537632,
-    "ast_hash": "c540183edb14379c6a34637279061814",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/blocks/layout/breadcrumb.vue": {
-    "mtime": 1790511252.7253466,
-    "seen": 1790572953.537633,
-    "ast_hash": "24523c3254e799cdf32664b03f250f14",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/blocks/layout/copyright.vue": {
-    "mtime": 1790511252.7254627,
-    "seen": 1790572953.5376341,
-    "ast_hash": "01b1ae1aa4de933f2c07401a4182856e",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/blocks/layout/footer.vue": {
-    "mtime": 1790511252.725633,
-    "seen": 1790572953.5376341,
-    "ast_hash": "b3ebab3f7dc5fb5731bffc98f798cd72",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/layout/icons/icon-layout-content-compact.vue": {
@@ -1901,12 +1853,6 @@
     "ast_hash": "80967b3a0ab083e45097f5331ce14905",
     "semantic_hash": ""
   },
-  "packages/shell/layouts/src/widgets/preferences/blocks/layout/navigation.vue": {
-    "mtime": 1790511252.728047,
-    "seen": 1790572953.537642,
-    "ast_hash": "9a46946cdc311815b1dcfe4aff56e8f5",
-    "semantic_hash": ""
-  },
   "packages/shell/layouts/src/widgets/preferences/blocks/layout/preferences-content.vue": {
     "mtime": 1790511252.728148,
     "seen": 1790572953.537642,
@@ -1920,27 +1866,9 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/layout/preferences-sidebar.vue": {
-    "mtime": 1790676758.5676913,
-    "seen": 1790677783.045276,
+    "mtime": 1790683665.114643,
+    "seen": 1790684797.222195,
     "ast_hash": "0103d9a843460c0219a80f725d97d61a",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/blocks/layout/sidebar.vue": {
-    "mtime": 1790677147.2441187,
-    "seen": 1790677783.0452769,
-    "ast_hash": "cb69cea7200cfcf2ccb0532bf960f8fe",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/blocks/layout/tabbar.vue": {
-    "mtime": 1790677241.1902642,
-    "seen": 1790677783.0452778,
-    "ast_hash": "e9d87a1f56bf45066486afde0011babc",
-    "semantic_hash": ""
-  },
-  "packages/shell/layouts/src/widgets/preferences/blocks/layout/widget.vue": {
-    "mtime": 1790677241.2552242,
-    "seen": 1790677783.0452778,
-    "ast_hash": "1b9f4649ee913efad82f5c4a52b9be85",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/preferences-block.vue": {
@@ -1950,8 +1878,8 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/preferences-switch-item.vue": {
-    "mtime": 1790655864.79209,
-    "seen": 1790657904.851829,
+    "mtime": 1790683665.1163414,
+    "seen": 1790684797.222199,
     "ast_hash": "a991771bd98653f6ce98e1b937260601",
     "semantic_hash": ""
   },
@@ -1961,12 +1889,6 @@
     "ast_hash": "fae24e98c6b76eb4e321833901220bec",
     "semantic_hash": ""
   },
-  "packages/shell/layouts/src/widgets/preferences/blocks/toggle-item.vue": {
-    "mtime": 1790511252.7309036,
-    "seen": 1790572953.537656,
-    "ast_hash": "71c2717ac61d7f1f43024eba00e390b9",
-    "semantic_hash": ""
-  },
   "packages/shell/layouts/src/widgets/preferences/index.ts": {
     "mtime": 1790511252.731143,
     "seen": 1790572953.537656,
@@ -1974,14 +1896,14 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/layout-widget-preferences-drawer.vue": {
-    "mtime": 1790677416.6661248,
-    "seen": 1790677783.045286,
-    "ast_hash": "ccedd844b16521800a3b5860a112ce8a",
+    "mtime": 1790683665.1182206,
+    "seen": 1790684797.222204,
+    "ast_hash": "74f0236694971f0a100b0942dc6579e8",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/layout-widget-preferences.vue": {
-    "mtime": 1790600037.5577574,
-    "seen": 1790600504.429197,
+    "mtime": 1790683665.1193266,
+    "seen": 1790684797.222204,
     "ast_hash": "3d78587e230535107cab116a73b12eaf",
     "semantic_hash": ""
   },
@@ -2100,9 +2022,9 @@
     "semantic_hash": ""
   },
   "packages/utils/src/helpers/__tests__/generate-routes-frontend.test.ts": {
-    "mtime": 1790511252.73755,
-    "seen": 1790572953.537924,
-    "ast_hash": "ec43cfc85f394085cb97e9119b70bf36",
+    "mtime": 1790687851.479907,
+    "seen": 1790687882.986112,
+    "ast_hash": "9fc099b45c5be73560c85e35cb7b94fa",
     "semantic_hash": ""
   },
   "packages/utils/src/helpers/__tests__/merge-route-modules.test.ts": {
@@ -2166,9 +2088,9 @@
     "semantic_hash": ""
   },
   "packages/utils/tsconfig.json": {
-    "mtime": 1790563360.9962618,
-    "seen": 1790572953.537932,
-    "ast_hash": "7ac1c15345ee3fc38e18f470a17b8648",
+    "mtime": 1790687851.4799562,
+    "seen": 1790687882.98612,
+    "ast_hash": "982b7d94e7a0c0b685f1271987eae91f",
     "semantic_hash": ""
   },
   "scripts/clean.mjs": {
@@ -2322,9 +2244,9 @@
     "semantic_hash": ""
   },
   "pnpm-workspace.yaml": {
-    "mtime": 1790645033.493639,
-    "seen": 1790648132.279781,
-    "ast_hash": "d8a74870b1c70ab8bf3b9680b5728306",
+    "mtime": 1790687851.4802516,
+    "seen": 1790687882.986156,
+    "ast_hash": "4c1529f76e6eea7bfa576239dd2f3ae3",
     "semantic_hash": ""
   },
   "scripts/tooling/README.md": {
@@ -3384,8 +3306,8 @@
     "semantic_hash": ""
   },
   "packages/designs/src/theme/pohon-themes/theme.context-menu.ts": {
-    "mtime": 1790677767.0758393,
-    "seen": 1790677783.045114,
+    "mtime": 1790683665.1074297,
+    "seen": 1790684797.2220302,
     "ast_hash": "6d84462975703d83790a39104d75c354",
     "semantic_hash": ""
   },
@@ -3396,8 +3318,8 @@
     "semantic_hash": ""
   },
   "packages/designs/src/theme/pohon-themes/theme.dropdown-menu.ts": {
-    "mtime": 1790677767.0758026,
-    "seen": 1790677783.045115,
+    "mtime": 1790683665.1080306,
+    "seen": 1790684797.222031,
     "ast_hash": "0d661c233e5036c9b62597159e38130f",
     "semantic_hash": ""
   },
@@ -3420,8 +3342,8 @@
     "semantic_hash": ""
   },
   "packages/designs/src/theme/pohon-themes/theme.editor-suggestion-menu.ts": {
-    "mtime": 1790677751.605875,
-    "seen": 1790677783.0451179,
+    "mtime": 1790683665.10843,
+    "seen": 1790684797.222034,
     "ast_hash": "59f62839126a8efb632f0d199a838710",
     "semantic_hash": ""
   },
@@ -3492,8 +3414,8 @@
     "semantic_hash": ""
   },
   "packages/designs/src/theme/pohon-themes/theme.input-menu.ts": {
-    "mtime": 1790677751.5960503,
-    "seen": 1790677783.045127,
+    "mtime": 1790683665.1089888,
+    "seen": 1790684797.2220428,
     "ast_hash": "070a2e9a6052455dda40141e84a811c4",
     "semantic_hash": ""
   },
@@ -3582,8 +3504,8 @@
     "semantic_hash": ""
   },
   "packages/designs/src/theme/pohon-themes/theme.popover.ts": {
-    "mtime": 1790603436.4258804,
-    "seen": 1790637670.509297,
+    "mtime": 1790683665.1093879,
+    "seen": 1790684797.222053,
     "ast_hash": "47cbaa13d6ccb4849931a351b2df7368",
     "semantic_hash": ""
   },
@@ -3630,8 +3552,8 @@
     "semantic_hash": ""
   },
   "packages/designs/src/theme/pohon-themes/theme.select.ts": {
-    "mtime": 1790677751.5930808,
-    "seen": 1790677783.0451431,
+    "mtime": 1790683665.109788,
+    "seen": 1790684797.222059,
     "ast_hash": "c81553a300245817fb2a438aa8a9f211",
     "semantic_hash": ""
   },
@@ -3846,8 +3768,8 @@
     "semantic_hash": ""
   },
   "packages/taman-core/src/composables/index.ts": {
-    "mtime": 1790657713.536408,
-    "seen": 1790657904.851862,
+    "mtime": 1790683665.1217008,
+    "seen": 1790684797.2222269,
     "ast_hash": "3525ee4b835ce6dee8a1872208bc0ee5",
     "semantic_hash": ""
   },
@@ -3870,8 +3792,8 @@
     "semantic_hash": ""
   },
   "packages/taman-core/src/composables/use-priority-value.ts": {
-    "mtime": 1790648107.386196,
-    "seen": 1790648132.279438,
+    "mtime": 1790683665.1228614,
+    "seen": 1790684797.22223,
     "ast_hash": "7d2c931641ab24d701ee1ee1f4618e11",
     "semantic_hash": ""
   },
@@ -3906,8 +3828,8 @@
     "semantic_hash": ""
   },
   "packages/taman-core/src/constants/globals.ts": {
-    "mtime": 1790657713.5215962,
-    "seen": 1790657904.85187,
+    "mtime": 1790683665.123195,
+    "seen": 1790684797.222234,
     "ast_hash": "6a40ff93cfa935ec93825cbb0f376efc",
     "semantic_hash": ""
   },
@@ -3936,20 +3858,20 @@
     "semantic_hash": ""
   },
   "packages/taman-core/src/preferences/__tests__/preferences.test.ts": {
-    "mtime": 1790636811.0034885,
-    "seen": 1790637670.509494,
-    "ast_hash": "89f0ffeea0d15e1d998e1ac37b257985",
+    "mtime": 1790687851.4794588,
+    "seen": 1790687882.985852,
+    "ast_hash": "aa8979e616153a3b2351c530617719ec",
     "semantic_hash": ""
   },
   "packages/taman-core/src/preferences/config.ts": {
-    "mtime": 1790636798.963613,
-    "seen": 1790637670.509495,
+    "mtime": 1790683665.1251779,
+    "seen": 1790684797.222239,
     "ast_hash": "f6337e4958d342eb8e65ebfcf6dd53b0",
     "semantic_hash": ""
   },
   "packages/taman-core/src/preferences/constants.ts": {
-    "mtime": 1790601048.4405699,
-    "seen": 1790602254.650987,
+    "mtime": 1790683665.126071,
+    "seen": 1790684797.222239,
     "ast_hash": "94955ec2daa749c9383165c3e63411c0",
     "semantic_hash": ""
   },
@@ -3966,20 +3888,20 @@
     "semantic_hash": ""
   },
   "packages/taman-core/src/preferences/preferences.ts": {
-    "mtime": 1790636783.26179,
-    "seen": 1790637670.5094981,
+    "mtime": 1790683665.1284103,
+    "seen": 1790684797.222242,
     "ast_hash": "e979245d71cf9928f34a382622474470",
     "semantic_hash": ""
   },
   "packages/taman-core/src/preferences/types.ts": {
-    "mtime": 1790636805.4648051,
-    "seen": 1790637670.5094988,
+    "mtime": 1790683665.131922,
+    "seen": 1790684797.222242,
     "ast_hash": "d3a69c873b721d6064286da80cc31a2e",
     "semantic_hash": ""
   },
   "packages/taman-core/src/preferences/update-css-variables.ts": {
-    "mtime": 1790636141.5788171,
-    "seen": 1790637670.5094998,
+    "mtime": 1790683665.1329734,
+    "seen": 1790684797.222243,
     "ast_hash": "862d6c6bcf26dd54a8eadae601a2f127",
     "semantic_hash": ""
   },
@@ -4002,8 +3924,8 @@
     "semantic_hash": ""
   },
   "packages/taman-core/src/typings/basic.ts": {
-    "mtime": 1790675321.5732903,
-    "seen": 1790677783.045326,
+    "mtime": 1790683665.1337461,
+    "seen": 1790684797.222246,
     "ast_hash": "451696a810e31bddf42adf8205d0dd66",
     "semantic_hash": ""
   },
@@ -4062,9 +3984,9 @@
     "semantic_hash": ""
   },
   "packages/taman-core/src/utils/__tests__/resources.test.ts": {
-    "mtime": 1790563360.9362142,
-    "seen": 1790572953.537707,
-    "ast_hash": "87f2d7059a896891eacc8d1b743aae29",
+    "mtime": 1790687851.4795175,
+    "seen": 1790687882.985868,
+    "ast_hash": "952c828d442c4269bafe3979b741de95",
     "semantic_hash": ""
   },
   "packages/taman-core/src/utils/__tests__/stack.test.ts": {
@@ -4095,12 +4017,6 @@
     "mtime": 1790563360.9374177,
     "seen": 1790572953.5377102,
     "ast_hash": "46f163d78929a697b1cf58fe5487c166",
-    "semantic_hash": ""
-  },
-  "packages/taman-core/src/utils/__tests__/update-css-variables.test.ts": {
-    "mtime": 1790648258.8433847,
-    "seen": 1790657904.851895,
-    "ast_hash": "8b889d012689e9dc618033a034f29da3",
     "semantic_hash": ""
   },
   "packages/taman-core/src/utils/__tests__/util.test.ts": {
@@ -4146,8 +4062,8 @@
     "semantic_hash": ""
   },
   "packages/taman-core/src/utils/index.ts": {
-    "mtime": 1790669553.4703453,
-    "seen": 1790672093.606934,
+    "mtime": 1790683665.1348467,
+    "seen": 1790684797.222264,
     "ast_hash": "44641b14b85de35a7a0451ce7ac211f7",
     "semantic_hash": ""
   },
@@ -4296,9 +4212,9 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/components/button/taman-button-check-group.vue": {
-    "mtime": 1790601781.0194168,
-    "seen": 1790602254.6510358,
-    "ast_hash": "c2e9712eb4ab1a053c1894dc15c24c11",
+    "mtime": 1790683665.1352868,
+    "seen": 1790684797.222282,
+    "ast_hash": "5530c43e37108bc22d2382053b8c0b41",
     "semantic_hash": ""
   },
   "packages/taman-ui/src/components/button/taman-button-icon.vue": {
@@ -4536,9 +4452,9 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/__tests__/form-component-performance.benchmark.ts": {
-    "mtime": 1790563360.9507327,
-    "seen": 1790572953.537756,
-    "ast_hash": "21fb510db68601a7b1c400ed63d58df3",
+    "mtime": 1790687851.479623,
+    "seen": 1790687882.9859269,
+    "ast_hash": "bc6dbff75c88ffa7585b54cf7d5ce6ce",
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/__tests__/form-composite-errors.test.ts": {
@@ -4596,9 +4512,9 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/__tests__/form-performance.benchmark.ts": {
-    "mtime": 1790563360.955335,
-    "seen": 1790572953.5377622,
-    "ast_hash": "91520a21e4b681f7c3bab0988506cb22",
+    "mtime": 1790687851.4797041,
+    "seen": 1790687882.9859352,
+    "ast_hash": "3efb26d34e92c04ed851a0bc84f61e51",
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/__tests__/form-runtime.test.ts": {
@@ -4638,9 +4554,9 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/__tests__/taman-file-upload.test.ts": {
-    "mtime": 1790563360.9575686,
-    "seen": 1790572953.537767,
-    "ast_hash": "cda014958a576fcbeb8b9e5ab6085204",
+    "mtime": 1790687851.4797595,
+    "seen": 1790687882.985941,
+    "ast_hash": "dbdc004e72fee44221db4590fff7be08",
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/__tests__/zod-v4-schema.test.ts": {
@@ -4842,9 +4758,9 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/layout/__tests__/layout-sidebar-mobile-hover.test.ts": {
-    "mtime": 1790563360.964871,
-    "seen": 1790572953.537787,
-    "ast_hash": "ea5166baed08192bb5dc30841bb351ae",
+    "mtime": 1790687851.4798224,
+    "seen": 1790687882.9859672,
+    "ast_hash": "3800f86bcd912a3d07a2fe06eeecc041",
     "semantic_hash": ""
   },
   "packages/taman-ui/src/layout/components/index.ts": {
@@ -4884,8 +4800,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/layout/components/taman-core-layout-sidebar.vue": {
-    "mtime": 1790648107.3614078,
-    "seen": 1790648132.2795799,
+    "mtime": 1790683665.1363046,
+    "seen": 1790684797.222353,
     "ast_hash": "481c225d99940d26fe15602430f9c5cb",
     "semantic_hash": ""
   },
@@ -4926,8 +4842,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/layout/taman-core-layout.vue": {
-    "mtime": 1790648107.3359535,
-    "seen": 1790648132.279587,
+    "mtime": 1790683665.1367202,
+    "seen": 1790684797.222358,
     "ast_hash": "1b3ec8b94960cab15a2de8f301c130b7",
     "semantic_hash": ""
   },
@@ -5058,8 +4974,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/popup/alert/__tests__/alert-builder.test.ts": {
-    "mtime": 1790657807.6754189,
-    "seen": 1790657904.852082,
+    "mtime": 1790683665.137779,
+    "seen": 1790684797.2224,
     "ast_hash": "e0c892185e3abdf498c52e5b5e994754",
     "semantic_hash": ""
   },
@@ -5070,8 +4986,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/popup/alert/__tests__/alert.test.ts": {
-    "mtime": 1790657807.593878,
-    "seen": 1790657904.852084,
+    "mtime": 1790683665.138303,
+    "seen": 1790684797.222402,
     "ast_hash": "bd0f4613c484318db47a61dd610cd1ad",
     "semantic_hash": ""
   },
@@ -5094,8 +5010,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/popup/alert/alert.vue": {
-    "mtime": 1790669571.5241475,
-    "seen": 1790672093.607081,
+    "mtime": 1790683665.138864,
+    "seen": 1790684797.222404,
     "ast_hash": "365c5d561e2a7eb6a4544b7dded638ec",
     "semantic_hash": ""
   },
@@ -5148,8 +5064,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/popup/dialog/dialog.vue": {
-    "mtime": 1790657838.7372272,
-    "seen": 1790657904.852094,
+    "mtime": 1790683665.1392262,
+    "seen": 1790684797.222411,
     "ast_hash": "4eb5e80badd8e1fb750c85c18a6f1051",
     "semantic_hash": ""
   },
@@ -5214,8 +5130,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/popup/drawer/drawer.vue": {
-    "mtime": 1790657763.324195,
-    "seen": 1790657904.852103,
+    "mtime": 1790683665.1397092,
+    "seen": 1790684797.222419,
     "ast_hash": "88e4b0b30db2f56f7dad6c27e1ee1f94",
     "semantic_hash": ""
   },
@@ -5244,20 +5160,20 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/tabs/components/taman-tabs-chrome-akar.vue": {
-    "mtime": 1790673143.255975,
-    "seen": 1790677783.0454981,
-    "ast_hash": "69573d9737b98abd986456fe725b754b",
+    "mtime": 1790687245.0195975,
+    "seen": 1790687882.986057,
+    "ast_hash": "56126a017a789832d646f8ab11120186",
     "semantic_hash": ""
   },
   "packages/taman-ui/src/tabs/components/taman-tabs-chrome.vue": {
-    "mtime": 1790673151.2436225,
-    "seen": 1790677783.0454988,
+    "mtime": 1790686436.159138,
+    "seen": 1790687044.189528,
     "ast_hash": "ea4c62d9391b6e380c5029a73e52d3ff",
     "semantic_hash": ""
   },
   "packages/taman-ui/src/tabs/components/taman-tabs.vue": {
-    "mtime": 1790673160.984601,
-    "seen": 1790677783.0454988,
+    "mtime": 1790686454.0405388,
+    "seen": 1790687044.1895292,
     "ast_hash": "9a785af8d7052f4054d5c9ccff0bb78d",
     "semantic_hash": ""
   },
@@ -5298,21 +5214,21 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/tabs/tabs.types.ts": {
-    "mtime": 1790563360.9814231,
-    "seen": 1790572953.5378828,
+    "mtime": 1790687197.1564791,
+    "seen": 1790687882.986064,
     "ast_hash": "43ddb2abedf04b922236364ab27e18ce",
     "semantic_hash": ""
   },
   "packages/taman-ui/src/tabs/taman-tabs-view.vue": {
-    "mtime": 1790563360.9818428,
-    "seen": 1790572953.537884,
-    "ast_hash": "40270a1e85578dc15f64b03df7dad602",
+    "mtime": 1790687393.080748,
+    "seen": 1790687882.986064,
+    "ast_hash": "b7c80ba62ed2e046ed39c38323469a19",
     "semantic_hash": ""
   },
   "packages/taman-ui/src/tabs/use-tabs-drag.ts": {
-    "mtime": 1790563360.9821181,
-    "seen": 1790572953.537885,
-    "ast_hash": "b5e8ff2d26b3014470e5e7a5043a8db9",
+    "mtime": 1790687833.7281365,
+    "seen": 1790687882.986067,
+    "ast_hash": "2c14823e65416da8c254db390fbf5aa8",
     "semantic_hash": ""
   },
   "packages/taman-ui/src/tabs/use-tabs-view-scroll.ts": {
@@ -5742,8 +5658,8 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/theme/preferences-builtin-theme.vue": {
-    "mtime": 1790604674.533788,
-    "seen": 1790637670.5094552,
+    "mtime": 1790683665.1174738,
+    "seen": 1790684797.222202,
     "ast_hash": "5520a129314e51d3c05ceeb869ca4302",
     "semantic_hash": ""
   },
@@ -5754,51 +5670,69 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/shortcut-keys/preferences-global-shortcut-keys.vue": {
-    "mtime": 1790655884.9109755,
-    "seen": 1790657904.8518322,
+    "mtime": 1790683665.1170912,
+    "seen": 1790684797.222201,
     "ast_hash": "7c3735726277514dca673381d542d33b",
     "semantic_hash": ""
   },
   "packages/taman-core/src/composables/__tests__/use-overlay-z-index.test.ts": {
-    "mtime": 1790657700.9000082,
-    "seen": 1790657904.8518589,
+    "mtime": 1790683665.1198566,
+    "seen": 1790684797.222225,
     "ast_hash": "a260593a9bd91c9174613575e845417e",
     "semantic_hash": ""
   },
   "packages/taman-core/src/composables/use-overlay-z-index.ts": {
-    "mtime": 1790657713.5313756,
-    "seen": 1790657904.851865,
+    "mtime": 1790683665.1224694,
+    "seen": 1790684797.222229,
     "ast_hash": "5bcd14dfb3e80c5be4b0c0faf9492ac4",
     "semantic_hash": ""
   },
   "packages/taman-core/src/utils/apply-css-variables.ts": {
-    "mtime": 1790648416.9122677,
-    "seen": 1790657904.851897,
+    "mtime": 1790683665.134554,
+    "seen": 1790684797.22226,
     "ast_hash": "a8bd7681b462be1a6221013c056f279a",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/layout/preferences-header.vue": {
-    "mtime": 1790677385.0906446,
-    "seen": 1790677783.045275,
-    "ast_hash": "567dff05e9c095276d392e5f67a3f756",
+    "mtime": 1790683665.1141624,
+    "seen": 1790684797.222194,
+    "ast_hash": "3a055d4a46abb799c9cb389c49f23295",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/preference-input-number.vue": {
-    "mtime": 1790677514.0126584,
-    "seen": 1790677783.045279,
+    "mtime": 1790683665.1149182,
+    "seen": 1790684797.2221959,
     "ast_hash": "806fd817f4ef351e8cb452f90b893d57",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/preference-select-item.vue": {
-    "mtime": 1790677544.4955518,
-    "seen": 1790677783.04528,
+    "mtime": 1790683665.1152685,
+    "seen": 1790684797.222197,
     "ast_hash": "44bb02654d5a49d9cc7be2ed662ef4c2",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/preferences-checkbox-item.vue": {
-    "mtime": 1790677503.4581468,
-    "seen": 1790677783.045281,
-    "ast_hash": "3507b77e5ad717a338ee00d22a9a6c6e",
+    "mtime": 1790683665.1158938,
+    "seen": 1790684797.222198,
+    "ast_hash": "f69ca7fdcdf0281cd28583b5b1401d64",
+    "semantic_hash": ""
+  },
+  "packages/shell/layouts/src/widgets/preferences/blocks/preferences-toggle-item.vue": {
+    "mtime": 1790683665.1167467,
+    "seen": 1790684797.2222002,
+    "ast_hash": "82b4a6e9836e731ade1682a553f20578",
+    "semantic_hash": ""
+  },
+  "packages/taman-core/src/utils/__tests__/apply-css-variables.test.ts": {
+    "mtime": 1790686738.0554855,
+    "seen": 1790687044.189196,
+    "ast_hash": "f8cd1824f70949dbc92bb7dab3a51f6c",
+    "semantic_hash": ""
+  },
+  "packages/taman-ui/src/tabs/taman-tabs.vue": {
+    "mtime": 1790687704.5554283,
+    "seen": 1790687882.9860659,
+    "ast_hash": "1eae1e7c8fcd0bc93be98b2f3bbeb831",
     "semantic_hash": ""
   }
 }

@@ -23,7 +23,7 @@ export interface ErrorBody {
  * confusing bug to chase: the API looks correct everywhere except the app.
  */
 export function jsonError(
-  event: H3Event,
+  event: Pick<H3Event, 'req'>,
   status: number,
   body: ErrorBody,
 ): Response {

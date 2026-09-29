@@ -1,22 +1,21 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import type { TamanTabDefinition } from '@vinicunca/taman-core/typings';
 import type { TabConfig, TabsProps } from '../tabs.types';
 import PContextMenu from 'pohon-ui/components/ContextMenu.vue';
 import { computed } from 'vue';
 import { TamanIcon } from '../..';
 
-interface Props extends TabsProps {}
-
 defineOptions({
-  name: 'TamanTabs',
+  name: 'TamanTabsChrome',
   inheritAttrs: false,
 });
 
 const props = withDefaults(
-  defineProps<Props>(),
+  defineProps<TabsProps>(),
   {
     contentClass: 'taman-tabs-content',
     contextMenus: () => [],
+    gap: 7,
     tabs: () => [],
   },
 );
@@ -30,11 +29,17 @@ const active = defineModel<string | undefined>('active', {
   default: undefined,
 });
 
+const style = computed(() => {
+  const { gap } = props;
+  return {
+    '--gap': `${gap}px`,
+  };
+});
+
 const tabItems = computed(() => {
   return props.tabs.map((tab) => {
-    const { fullPath, meta, name, path, key } = tab ?? {};
+    const { fullPath, meta, name, path, key } = tab || {};
     const { affixTab, icon, newTabTitle, tabClosable, title } = meta || {};
-
     return {
       affixTab: !!affixTab,
       closable: Reflect.has(meta, 'tabClosable') ? !!tabClosable : true,
@@ -62,58 +67,79 @@ function onMouseDown(event: MouseEvent, tab: TabConfig) {
     emits('close', tab.key);
   }
 }
-
-const styleTypeClasses = computed(() => {
-  const typeClasses: Record<NonNullable<TabsProps['styleType']>, string> = {
-    brisk: 'h-full after:(content-empty absolute bottom-0 left-0 w-full h-[1.5px] bg-primary scale-x-0 transition-[transform]-300 ease-out origin-left) hover:after:scale-x-100 [&.is-active]:after:scale-x-100 [&:not(:first-child)]:border-l last:border-r last:border-r border-border',
-    card: 'h-[calc(100%-6px)] rounded-md ml-2 border border-border transition-all',
-    plain: 'h-full [&:not(:first-child)]:border-l last:border-r border-border',
-    chrome: '',
-  };
-
-  return typeClasses[props.styleType || 'plain'] ?? '';
-});
 </script>
 
 <template>
   <div
-    :class="props.contentClass"
-    class="pr-6 h-full w-max items-center relative overflow-hidden flex!"
+    :class="contentClass"
+    :style="style"
+    class="tabs-chrome pr-6 h-full w-max overflow-y-hidden flex!"
   >
     <TransitionGroup
-      enter-active-class="ease-emphasized"
-      leave-active-class="ease-emphasized"
-      enter-from-class="opacity-0 -translate-x-15px"
-      leave-to-class="opacity-0 -translate-x-15px"
+      enter-active-class="transition-transform-250 ease-emphasized"
+      leave-active-class="transition-transform-250 ease-emphasized"
+      enter-from-class="opacity-0 -translate-x-50%"
+      leave-to-class="opacity-0 -translate-x-50%"
     >
       <div
         v-for="(tab, idx) in tabItems"
         :key="tab.key"
-        class="group flex select-none items-center relative [&:not(.is-active)]:hover:bg-background-accented"
         :class="[
           {
-            'is-active bg-primary/15 dark:bg-background-accented': tab.key === active,
-            'draggable': !tab.affixTab,
+            'is-active': tab.key === active,
             'affix-tab': tab.affixTab,
           },
-          styleTypeClasses,
         ]"
+        :data-active-tab="active"
         :data-index="idx"
+        class="draggable group tabs-chrome__item flex h-full select-none items-center relative -mr-3 focus-visible:outline-none"
         data-tab-item="true"
-        role="button"
+        tabindex="0"
         @click="active = tab.key"
         @mousedown="onMouseDown($event, tab)"
       >
-        <PContextMenu>
-          <div class="flex size-full items-center relative">
+        <PContextMenu
+          :items="props.contextMenus(tab)"
+          :modal="false"
+        >
+          <div class="px-1 size-full relative">
+            <!-- divider -->
+            <div
+              v-if="idx !== 0 && tab.key !== active"
+              class="tabs-chrome__divider bg-border h-4 w-px translate-y-[-50%] transition-all left-(--gap) top-1/2 absolute z-0"
+            />
+            <!-- background -->
+            <div
+              class="tabs-chrome__background px-[calc(var(--gap)-1px)] py-0 size-full transition-opacity duration-150 absolute z-[-1]"
+            >
+              <div
+                class="tabs-chrome__background-content rounded-tl-$gap rounded-tr-$gap h-full duration-150 group-[.is-active]:bg-primary/15 dark:group-[.is-active]:bg-background-accented"
+              />
+              <svg
+                class="tabs-chrome__background-before transition-all-150 bottom-0 absolute fill-transparent -left-px group-[.is-active]:fill-primary/15 dark:group-[.is-active]:fill-background-accented"
+                height="7"
+                width="7"
+              >
+                <path d="M 0 7 A 7 7 0 0 0 7 0 L 7 7 Z" />
+              </svg>
+              <svg
+                class="tabs-chrome__background-after transition-duration-150 bottom-0 absolute fill-transparent -right-px group-[.is-active]:fill-primary/15 dark:group-[.is-active]:fill-background-accented"
+                height="7"
+                width="7"
+              >
+                <path d="M 0 0 A 7 7 0 0 0 7 7 L 0 7 Z" />
+              </svg>
+            </div>
+
             <!-- extra -->
             <div
-              class="translate-y-[-50%] right-1.5 top-1/2 absolute z-3 overflow-hidden"
+              class="tabs-chrome__extra size-4 translate-y-[-50%] right-[calc(var(--gap)+5px)] top-1/2 absolute z-3"
             >
               <!-- close-icon -->
               <button
                 v-show="!tab.affixTab && tabItems.length > 1 && tab.closable"
-                class="hover:bg-overlay/30 group-[.is-active]:dark:text-accent-foreground mt-1px rounded-full flex-center size-4 transition-colors group-[.is-active]:text-primary"
+                class="rounded-full flex-center size-4 transition-colors group-[.is-active]:text-primary hover:bg-background/30 dark:group-[.is-active]:color-text"
+                tabindex="-1"
                 @click.stop="() => emits('close', tab.key)"
               >
                 <TamanIcon
@@ -124,11 +150,12 @@ const styleTypeClasses = computed(() => {
 
               <button
                 v-show="tab.affixTab && tabItems.length > 1 && tab.closable"
-                class="hover:bg-overlay/30 group-[.is-active]:dark:text-accent-foreground mt-1px rounded-full flex-center size-4.5 transition-colors group-[.is-active]:text-primary"
+                class="hover:bg-overlay/30 group-[.is-active]:dark:text-accent-foreground rounded-full flex-center size-4.5 transition-colors group-[.is-active]:text-primary"
+                tabindex="-1"
                 @click.stop="() => emits('unpin', tab)"
               >
                 <TamanIcon
-                  bicon="lucide:pin"
+                  icon="lucide:pin"
                   class="size-3.5"
                 />
               </button>
@@ -136,15 +163,15 @@ const styleTypeClasses = computed(() => {
 
             <!-- tab-item-main -->
             <div
-              class="color-accent-foreground group-[.is-active]:dark:color-accent-foreground font-500 mx-3 mr-4 pr-3 rounded-tl-[5px] rounded-tr-[5px] flex h-full transition-all-300 items-center overflow-hidden group-[.is-active]:color-primary"
+              class="tabs-chrome__item-main color-accent-foreground font-500 mx-[calc(var(--gap)*2)] my-0 pl-2 pr-4 rounded-tl-[5px] rounded-tr-[5px] flex h-full duration-150 items-center z-2 overflow-hidden group-[.is-active]:color-primary dark:group-[.is-active]:color-text"
             >
               <TamanIcon
                 v-if="showIcon"
                 :icon="tab.icon"
-                class="mr-2 flex size-4 items-center overflow-hidden group-hover:animate-[shrink_0.3s_ease-in-out]"
+                class="mr-1 flex size-4 items-center overflow-hidden group-hover:animate-[shrink_0.3s_ease-in-out]"
               />
 
-              <span class="text-sm font-medium flex-1 whitespace-nowrap overflow-hidden">
+              <span class="text-sm flex-1 whitespace-nowrap overflow-hidden">
                 {{ tab.title }}
               </span>
             </div>

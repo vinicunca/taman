@@ -1,9 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@vinicunca/tsconfig/library.json",
-  "compilerOptions": {
-    "types": ["@vinicunca/taman-core/typings"]
-  },
   "include": ["src"],
   "exclude": ["node_modules"]
 }

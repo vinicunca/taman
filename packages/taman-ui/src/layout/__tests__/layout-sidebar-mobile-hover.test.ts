@@ -35,10 +35,10 @@ interface MountOptions {
  */
 function mountSidebar(options: MountOptions = {}) {
   const collapse = ref(options.collapse ?? false);
-  const collapseWrites: Array<boolean> = [];
-  const onUpdateCollapse = vi.fn((value: boolean) => {
+  const collapseWrites: Array<boolean | undefined> = [];
+  const onUpdateCollapse = vi.fn((value: boolean | undefined) => {
     collapseWrites.push(value);
-    collapse.value = value;
+    collapse.value = value ?? false;
   });
   const Consumer = defineComponent(
     () => () =>

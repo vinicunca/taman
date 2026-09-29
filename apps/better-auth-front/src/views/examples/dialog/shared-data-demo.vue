@@ -15,7 +15,7 @@ const [DialogSharedData, dialogSharedDataApi] = useTamanDialog({
   },
   onOpenChange(isOpen: boolean) {
     if (isOpen) {
-      data.value = dialogSharedDataApi.getData<Record<string, any>>();
+      data.value = dialogSharedDataApi.getData();
     }
   },
 });

@@ -4,7 +4,7 @@ import type { EmitType } from '@vinicunca/taman-core/typings';
 import type { TabsProps } from './tabs.types';
 
 import { useBreakpoints, useSortable } from '@vinicunca/taman-core/composables';
-import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
+import { nextTick, onMounted, onUnmounted, ref } from 'vue';
 
 // Drag may target a child node; ensure the dragged DOM is the tab element
 function findParentElement(element: HTMLElement) {
@@ -29,11 +29,11 @@ export function useTabsDrag(props: TabsProps, emit: EmitType) {
       return;
     }
 
-    const resetElState = async () => {
+    async function resetElState() {
       el.style.cursor = 'default';
       // el.classList.remove('dragging');
       el.querySelector('.draggable')?.classList.remove('dragging');
-    };
+    }
 
     const { initializeSortable } = useSortable(el, {
       filter: (_evt, target: HTMLElement) => {

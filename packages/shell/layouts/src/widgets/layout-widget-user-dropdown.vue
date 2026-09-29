@@ -52,12 +52,14 @@ const dropdownItems = computed<Array<DropdownMenuItem>>(() => {
     items.push(...props.menus);
   }
 
-  // {
-  //   label: $t('common.logout'),
-  //   icon: 'lucide:log-out',
-  //   kbds: ['option', 'q'],
-  //   onSelect: handleLogout,
-  // },
+  items.push(
+    { type: 'separator' },
+    {
+      label: $t('common.logout'),
+      icon: 'lucide:log-out',
+      onSelect: handleLogout,
+    },
+  );
 
   return items;
 });
@@ -89,9 +91,10 @@ async function handleLogout() {
       :avatar="{
         src: props.avatar ?? undefined,
         alt: props.name,
+        size: 'md',
       }"
       class="pohon:rounded-full"
-      size="2xl"
+      size="xl"
       variant="ghost"
       color="neutral"
     />

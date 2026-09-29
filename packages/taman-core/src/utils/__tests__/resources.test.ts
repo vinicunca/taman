@@ -38,7 +38,8 @@ describe('loadScript', () => {
   });
 
   it('should reject when the script fails to load', async () => {
-    let capturedScript: HTMLScriptElement | null = null;
+    // Typed via `as` so TS does not narrow it to `null`; the spy assigns it.
+    let capturedScript = null as HTMLScriptElement | null;
 
     // Intercept append, capture the script element, and skip DOM insertion
     // to prevent happy-dom v20+ from auto-firing load

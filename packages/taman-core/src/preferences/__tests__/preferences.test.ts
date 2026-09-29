@@ -1,3 +1,5 @@
+import type { PreferencesExtension } from '../types';
+
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { defaultPreferences } from '../config';
@@ -279,7 +281,7 @@ describe('preferences', () => {
       ],
       tabLabel: '扩展',
       title: '业务偏好',
-    } as const;
+    } satisfies PreferencesExtension;
 
     await preferenceManager.initPreferences({
       extension,
@@ -310,7 +312,7 @@ describe('preferences', () => {
       ],
       tabLabel: '扩展',
       title: '业务偏好',
-    } as const;
+    } satisfies PreferencesExtension;
 
     await preferenceManager.initPreferences({
       extension,

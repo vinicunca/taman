@@ -23,6 +23,7 @@ packages:
 overrides:
   '@ast-grep/napi': 'catalog:'
   '@ctrl/tinycolor': 'catalog:'
+  '@types/pg': 'catalog:'
   '@vue/compiler-sfc': 'catalog:'
   clsx: 'catalog:'
   pinia: 'catalog:'
@@ -80,7 +81,6 @@ catalog:
   '@types/pg': ^8.23.1
   '@types/qs': ^6.15.1
   '@types/sortablejs': ^1.15.9
-  '@unocss/preset-wind4': 66.10.5
   '@vinicunca/eslint-config': 5.7.1
   '@vinicunca/perkakas': 1.17.1
   '@vinicunca/unocss-preset': 2.4.0
@@ -125,7 +125,6 @@ catalog:
   nprogress: ^0.2.0
   nx: 23.2.1
   ofetch: ^1.5.1
-  ora: ^9.4.1
   pg: ^8.23.0
   pinia: ^4.0.3
   pinia-plugin-persistedstate: ^4.7.1

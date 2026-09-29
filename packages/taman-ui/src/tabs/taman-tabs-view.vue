@@ -4,7 +4,7 @@ import type { TabsEmits, TabsProps } from './tabs.types';
 import { useForwardPropsEmits } from '@vinicunca/taman-core/composables';
 import PButton from 'pohon-ui/components/Button.vue';
 import { TamanScrollbar } from '..';
-import { TamanTabsChrome } from './components';
+import { TamanTabs } from './components';
 import { useTabsDrag } from './use-tabs-drag';
 import { useTabsViewScroll } from './use-tabs-view-scroll';
 
@@ -17,14 +17,13 @@ const props = withDefaults(
   {
     contentClass: 'taman-tabs-content',
     draggable: true,
-    styleType: 'chrome',
     wheelable: true,
   },
 );
 
-const emit = defineEmits<TabsEmits>();
+const emits = defineEmits<TabsEmits>();
 
-const forward = useForwardPropsEmits(props, emit);
+const forward = useForwardPropsEmits(props, emits);
 
 const {
   handleScrollAt,
@@ -45,7 +44,7 @@ function onWheel(e: WheelEvent) {
   }
 }
 
-useTabsDrag(props, emit);
+useTabsDrag(props, emits);
 </script>
 
 <template>
@@ -76,7 +75,7 @@ useTabsDrag(props, emit);
         @scroll-at="handleScrollAt"
         @wheel="onWheel"
       >
-        <TamanTabsChrome
+        <TamanTabs
           v-bind="{ ...forward, ...$attrs, ...$props }"
         />
       </TamanScrollbar>

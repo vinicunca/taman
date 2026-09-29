@@ -1,7 +1,7 @@
 import type { FormSchema } from '../form.types';
 
 import { flushPromises, mount } from '@vue/test-utils';
-import { afterAll, bench, describe } from 'vitest';
+import { afterAll, it } from 'vitest';
 import { nextTick } from 'vue';
 import { z } from 'zod';
 
@@ -102,8 +102,8 @@ afterAll(() => {
   validationWrapper.unmount();
 });
 
-describe('form render performance', () => {
-  bench(
+it('form render performance', async ({ bench }) => {
+  await bench(
     'initialize, mount, and unmount 50 fields',
     async () => {
       const [Form] = useTamanForm<Record<string, string>>({
@@ -114,76 +114,72 @@ describe('form render performance', () => {
       await flushPromises();
       wrapper.unmount();
     },
+  ).run(BENCHMARK_OPTIONS);
+});
+
+it('form value performance', async ({ bench }) => {
+  await it.compare(
+    bench(
+      'update one field in a 100-field form',
+      async () => {
+        fieldIteration += 1;
+        await flatFormApi.setFieldValue('field50', `Value ${fieldIteration}`);
+        await nextTick();
+      },
+    ),
+    bench(
+      'set 100 fields in one batch',
+      async () => {
+        batchIteration += 1;
+        await flatFormApi.setValues(batchValues[batchIteration % 2] ?? {});
+        await nextTick();
+      },
+    ),
+    bench(
+      'reset 100 fields to alternate values',
+      async () => {
+        resetIteration += 1;
+        await flatFormApi.reset(
+          { values: batchValues[resetIteration % 2] ?? {} },
+          { force: true },
+        );
+        await nextTick();
+      },
+    ),
     BENCHMARK_OPTIONS,
   );
 });
 
-describe('form value performance', () => {
-  bench(
-    'update one field in a 100-field form',
-    async () => {
-      fieldIteration += 1;
-      await flatFormApi.setFieldValue('field50', `Value ${fieldIteration}`);
-      await nextTick();
-    },
-    BENCHMARK_OPTIONS,
-  );
-
-  bench(
-    'set 100 fields in one batch',
-    async () => {
-      batchIteration += 1;
-      await flatFormApi.setValues(batchValues[batchIteration % 2] ?? {});
-      await nextTick();
-    },
-    BENCHMARK_OPTIONS,
-  );
-
-  bench(
-    'reset 100 fields to alternate values',
-    async () => {
-      resetIteration += 1;
-      await flatFormApi.reset(
-        { values: batchValues[resetIteration % 2] ?? {} },
-        { force: true },
-      );
-      await nextTick();
-    },
-    BENCHMARK_OPTIONS,
-  );
-});
-
-describe('form validation performance', () => {
-  bench(
+it('form validation performance', async ({ bench }) => {
+  await bench(
     'validate 100 fields with zod rules',
     async () => {
       await validationFormApi.validate();
     },
-    BENCHMARK_OPTIONS,
-  );
+  ).run(BENCHMARK_OPTIONS);
 });
 
-describe('form schema performance', () => {
-  bench(
-    'update 100 schema entries',
-    async () => {
-      schemaIteration += 1;
-      flatFormApi.updateSchema(schemaPatches[schemaIteration % 2] ?? []);
-      await nextTick();
-    },
-    BENCHMARK_OPTIONS,
-  );
-
-  bench(
-    'resolve 50 dependencies from one trigger',
-    async () => {
-      dependencyIteration += 1;
-      await dependencyFormApi.setFieldValue(
-        'mode',
-        dependencyIteration % 2 === 0 ? 'editable' : 'locked',
-      );
-      await flushPromises();
-    },
+it('form schema performance', async ({ bench }) => {
+  await it.compare(
+    bench(
+      'update 100 schema entries',
+      async () => {
+        schemaIteration += 1;
+        flatFormApi.updateSchema(schemaPatches[schemaIteration % 2] ?? []);
+        await nextTick();
+      },
+    ),
+    bench(
+      'resolve 50 dependencies from one trigger',
+      async () => {
+        dependencyIteration += 1;
+        await dependencyFormApi.setFieldValue(
+          'mode',
+          dependencyIteration % 2 === 0 ? 'editable' : 'locked',
+        );
+        await flushPromises();
+      },
+    ),
     BENCHMARK_OPTIONS,
   );
 });
