@@ -14,7 +14,7 @@ export const themeSelect = defuFn(
       value: 'pointer-events-none truncate',
       placeholder: 'color-text-dimmed truncate',
       arrow: 'fill-fill-bg stroke-stroke',
-      content: 'bg-background ring-ring rounded-md flex flex-col max-h-[min(15rem,var(--akar-select-content-available-height,15rem))] w-$akar-select-trigger-width pointer-events-auto ring shadow-lg origin-$akar-select-content-transform-origin overflow-hidden',
+      content: 'z-popup bg-background ring-ring rounded-md flex flex-col max-h-[min(15rem,var(--akar-select-content-available-height,15rem))] w-$akar-select-trigger-width pointer-events-auto ring shadow-lg origin-$akar-select-content-transform-origin overflow-hidden',
       viewport: 'divide-divide flex-1 relative overflow-y-auto scroll-py-1 divide-y',
       group: 'p-1 isolate',
       empty: 'color-text-muted text-center',

@@ -5,7 +5,7 @@ import { $t } from '@taman/locales';
 import { computed } from 'vue';
 
 import SwitchItem from '../switch-item.vue';
-import ToggleItem from '../toggle-item.vue';
+import ToggleItem from '../preferences-toggle-item.vue';
 
 defineOptions({
   name: 'PreferenceBreadcrumbConfig',

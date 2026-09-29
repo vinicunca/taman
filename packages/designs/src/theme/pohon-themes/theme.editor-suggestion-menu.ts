@@ -4,7 +4,7 @@ import type { PThemeEditorSuggestionMenu } from 'pohon-ui';
 
 export const editorSuggestionMenu = {
   slots: {
-    content: 'min-w-48 max-w-60 max-h-96 bg-background shadow-lg rounded-md ring ring-ring overflow-hidden data-[state=open]:animate-[scale-in_100ms_ease-out] data-[state=closed]:animate-[scale-out_100ms_ease-in] origin-(--akar-dropdown-menu-content-transform-origin) flex flex-col',
+    content: 'z-popup min-w-48 max-w-60 max-h-96 bg-background shadow-lg rounded-md ring ring-ring overflow-hidden data-[state=open]:animate-[scale-in_100ms_ease-out] data-[state=closed]:animate-[scale-out_100ms_ease-in] origin-(--akar-dropdown-menu-content-transform-origin) flex flex-col',
     viewport: 'relative divide-y divide-divide scroll-py-1 overflow-y-auto flex-1',
     group: 'p-1 isolate',
     label: 'w-full flex items-center font-600 color-text-highlighted',

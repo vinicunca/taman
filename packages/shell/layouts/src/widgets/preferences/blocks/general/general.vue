@@ -7,7 +7,7 @@ import PSelectMenu from 'pohon-ui/components/SelectMenu.vue';
 import { computed } from 'vue';
 
 import InputItem from '../input-item.vue';
-import SelectItem from '../select-item.vue';
+import SelectItem from '../preference-select-item.vue';
 import SwitchItem from '../switch-item.vue';
 
 defineOptions({

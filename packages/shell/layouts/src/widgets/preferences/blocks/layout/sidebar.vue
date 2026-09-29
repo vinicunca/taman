@@ -4,9 +4,9 @@ import type { TamanLayoutType } from '@taman/types';
 import { $t } from '@taman/locales';
 import { onMounted } from 'vue';
 
-import NumberFieldItem from '../preference-input-number.vue/index.js';
+import NumberFieldItem from '../preference-input-number.vue';
 import CheckboxItem from '../preferences-checkbox-item.vue';
-import SwitchItem from '../switch-item.vue';
+import SwitchItem from '../preferences-switch-item.vue';
 
 defineProps<{ currentLayout?: TamanLayoutType; disabled: boolean }>();
 

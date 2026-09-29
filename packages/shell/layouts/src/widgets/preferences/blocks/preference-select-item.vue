@@ -1,32 +1,27 @@
 <script setup lang="ts">
-import type { TamanButtonCheckGroupOption, TamanButtonCheckGroupValue } from '@vinicunca/taman-ui';
-
-import { TamanButtonCheckGroup } from '@vinicunca/taman-ui';
+import type { SelectOption } from '@taman/types';
 import PIcon from 'pohon-ui/components/Icon.vue';
+import PSelect from 'pohon-ui/components/Select.vue';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
 
 defineOptions({
-  name: 'PreferenceCheckboxItem',
+  name: 'PreferenceSelectItem',
 });
 
 const props = withDefaults(
   defineProps<{
     disabled?: boolean;
-    items?: Array<TamanButtonCheckGroupOption>;
-    multiple?: boolean;
-    tip?: string;
-    onBtnClick?: (value: TamanButtonCheckGroupValue | undefined) => void;
+    items?: Array<SelectOption>;
     placeholder?: string;
+    tip?: string;
   }>(),
   {
     disabled: false,
     items: () => [],
-    onBtnClick: () => {},
-    multiple: false,
   },
 );
 
-const inputValue = defineModel<Array<string>>();
+const selectValue = defineModel<string>();
 </script>
 
 <template>
@@ -35,7 +30,7 @@ const inputValue = defineModel<Array<string>>();
       'hover:bg-background-elevated': !props.tip,
       'pointer-events-none opacity-50': props.disabled,
     }"
-    class="p-2 rounded-lg flex w-full items-center justify-between"
+    class="px-2 py-1 rounded-lg flex w-full items-center justify-between"
   >
     <span class="text-sm font-500 inline-flex gap-2 items-center">
       <slot />
@@ -55,13 +50,11 @@ const inputValue = defineModel<Array<string>>();
       </PTooltip>
     </span>
 
-    <TamanButtonCheckGroup
-      v-model="inputValue"
+    <PSelect
+      v-model="selectValue"
+      :placeholder="props.placeholder"
+      :items="props.items"
       size="sm"
-      :options="items"
-      :disabled="disabled"
-      :multiple="multiple"
-      @btn-click="onBtnClick"
     />
   </div>
 </template>

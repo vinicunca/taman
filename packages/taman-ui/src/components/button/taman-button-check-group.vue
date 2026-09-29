@@ -18,14 +18,17 @@ import {
 
 defineOptions({ name: 'TamanButtonCheckGroup' });
 
-const props = withDefaults(defineProps<TamanButtonCheckGroupProps>(), {
-  allowClear: false,
-  disabled: false,
-  maxCount: 0,
-  multiple: false,
-  options: () => [],
-  showIcon: true,
-});
+const props = withDefaults(
+  defineProps<TamanButtonCheckGroupProps>(),
+  {
+    allowClear: false,
+    disabled: false,
+    maxCount: 0,
+    multiple: false,
+    options: () => [],
+    showIcon: true,
+  },
+);
 
 const emits = defineEmits<{
   btnClick: [value: TamanButtonCheckGroupValue | undefined];

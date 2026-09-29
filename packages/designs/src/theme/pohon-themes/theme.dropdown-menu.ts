@@ -5,7 +5,7 @@ import { POHON_THEME_BRANDS } from '../constants.ts';
 
 export const themeDropdownMenu = {
   slots: {
-    content: 'rounded-md bg-background flex flex-col max-h-$akar-dropdown-menu-content-available-height min-w-32 ring ring-ring shadow-lg origin-$akar-dropdown-menu-content-transform-origin overflow-hidden data-[state=closed]:(animate-out fade-out-0 zoom-out-95) data-[state=open]:(animate-in fade-in-0 zoom-in-95) data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+    content: 'rounded-md bg-background flex flex-col max-h-$akar-dropdown-menu-content-available-height min-w-32 ring ring-ring shadow-lg origin-$akar-dropdown-menu-content-transform-origin z-popup overflow-hidden data-[state=closed]:(animate-out fade-out-0 zoom-out-95) data-[state=open]:(animate-in fade-in-0 zoom-in-95) data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
     input: 'border-b border-border',
     empty: 'color-text-muted text-center',
     viewport: 'flex-1 relative overflow-y-auto scroll-py-1 divide-divide divide-y',

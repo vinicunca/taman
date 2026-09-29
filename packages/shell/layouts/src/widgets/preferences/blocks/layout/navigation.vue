@@ -4,7 +4,7 @@ import type { SelectOption } from '@taman/types';
 import { $t } from '@taman/locales';
 
 import SwitchItem from '../switch-item.vue';
-import ToggleItem from '../toggle-item.vue';
+import ToggleItem from '../preferences-toggle-item.vue';
 
 defineOptions({
   name: 'PreferenceNavigationConfig',

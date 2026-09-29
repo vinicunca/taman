@@ -8,8 +8,8 @@ import { $t } from '@taman/locales';
 import { computed } from 'vue';
 
 import InputItem from '../input-item.vue';
-import NumberFieldItem from '../preference-input-number.vue/index.js';
-import SelectItem from '../select-item.vue';
+import NumberFieldItem from '../preference-input-number.vue';
+import SelectItem from '../preference-select-item.vue';
 import SwitchItem from '../switch-item.vue';
 
 defineOptions({
@@ -71,7 +71,10 @@ const resolvedFields = computed(() => {
 </script>
 
 <template>
-  <template v-for="field in resolvedFields" :key="field.key">
+  <template
+    v-for="field in resolvedFields"
+    :key="field.key"
+  >
     <SwitchItem
       v-if="field.component === 'switch'"
       :disabled="field.disabled"

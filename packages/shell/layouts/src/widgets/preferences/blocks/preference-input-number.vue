@@ -30,9 +30,9 @@ const inputValue = defineModel<number>();
       'hover:bg-background-elevated': !props.tip,
       'pointer-events-none opacity-50': props.disabled,
     }"
-    class="p-2 rounded-lg flex w-full items-center justify-between"
+    class="px-2 rounded-lg flex w-full items-center justify-between"
   >
-    <span class="text-sm inline-flex gap-2 items-center">
+    <span class="text-sm font-500 inline-flex gap-2 items-center">
       <slot />
 
       <PTooltip

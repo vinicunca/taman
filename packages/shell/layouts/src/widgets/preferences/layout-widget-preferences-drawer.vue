@@ -19,6 +19,7 @@ import {
   PreferencesBlock,
   PreferencesBuiltinTheme,
   PreferencesContent,
+  PreferencesHeader,
   PreferencesLayout,
   PreferencesSidebar,
   PreferencesTheme,
@@ -179,7 +180,7 @@ const [DrawerPreferences] = useTamanDrawer();
         </PreferencesBlock>
 
         <PreferencesBlock :title="$t('preferences.header.title')">
-          <Header
+          <PreferencesHeader
             v-model:header-enable="headerEnable"
             v-model:header-menu-align="headerMenuAlign"
             v-model:header-mode="headerMode"

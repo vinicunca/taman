@@ -4,7 +4,7 @@ import type { SelectOption } from '@taman/types';
 import { $t } from '@taman/locales';
 import { computed } from 'vue';
 
-import SelectItem from '../select-item.vue';
+import SelectItem from '../preference-select-item.vue';
 import SwitchItem from '../switch-item.vue';
 
 defineOptions({

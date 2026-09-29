@@ -7,11 +7,13 @@ import type {
 
 import { $t } from '@taman/locales';
 
+import PreferenceSelectItem from '../preference-select-item.vue';
 import PreferencesSwitchItem from '../preferences-switch-item.vue';
-import SelectItem from '../select-item.vue';
-import ToggleItem from '../toggle-item.vue';
+import PreferencesToggleItem from '../preferences-toggle-item.vue';
 
-defineProps<{ disabled: boolean }>();
+const props = defineProps<{
+  disabled: boolean;
+}>();
 
 const headerEnable = defineModel<boolean>('headerEnable');
 const headerMode = defineModel<TamanLayoutHeaderModeType>('headerMode');
@@ -56,22 +58,22 @@ const headerMenuAlignItems: Array<SelectOption> = [
   <PreferencesSwitchItem
     v-model="headerEnable"
     :label="$t('preferences.header.visible')"
-    :disabled="disabled"
+    :disabled="props.disabled"
   />
 
-  <SelectItem
+  <PreferenceSelectItem
     v-model="headerMode"
     :disabled="!headerEnable"
     :items="localeItems"
   >
     {{ $t('preferences.mode') }}
-  </SelectItem>
+  </PreferenceSelectItem>
 
-  <ToggleItem
+  <PreferencesToggleItem
     v-model="headerMenuAlign"
     :disabled="!headerEnable"
     :items="headerMenuAlignItems"
   >
     {{ $t('preferences.header.menuAlign') }}
-  </ToggleItem>
+  </PreferencesToggleItem>
 </template>

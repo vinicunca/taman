@@ -12,7 +12,7 @@ export const themeInputMenu = defuFn(
       trailing: 'group flex items-center end-0 inset-y-0 absolute focus:outline-none disabled:(opacity-75 cursor-not-allowed)',
       trailingClear: 'pohon:p-0',
       arrow: 'fill-fill-bg stroke-stroke',
-      content: 'max-h-[min(15rem,var(--akar-combobox-content-available-height,15rem))] w-$akar-combobox-trigger-width bg-background shadow-lg rounded-md ring ring-ring overflow-hidden data-[state=closed]:(animate-out fade-out-0 zoom-out-95) data-[state=open]:(animate-in fade-in-0 zoom-in-95) data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-$akar-combobox-content-transform-origin pointer-events-auto flex flex-col',
+      content: 'z-popup max-h-[min(15rem,var(--akar-combobox-content-available-height,15rem))] w-$akar-combobox-trigger-width bg-background shadow-lg rounded-md ring ring-ring overflow-hidden data-[state=closed]:(animate-out fade-out-0 zoom-out-95) data-[state=open]:(animate-in fade-in-0 zoom-in-95) data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-$akar-combobox-content-transform-origin pointer-events-auto flex flex-col',
       viewport: 'relative scroll-py-1 overflow-y-auto flex-1',
       group: 'p-1 isolate',
       empty: 'text-center color-text-muted',

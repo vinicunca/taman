@@ -4,8 +4,8 @@ import type { SelectOption } from '@taman/types';
 import { $t } from '@taman/locales';
 import { computed } from 'vue';
 
-import NumberFieldItem from '../preference-input-number.vue/index.js';
-import SelectItem from '../select-item.vue';
+import NumberFieldItem from '../preference-input-number.vue';
+import SelectItem from '../preference-select-item.vue';
 import SwitchItem from '../switch-item.vue';
 
 defineOptions({
