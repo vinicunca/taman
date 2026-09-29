@@ -11,6 +11,11 @@ export default defineConfig({
       },
       migrations: [{ tag: 'v1', new_sqlite_classes: ['TodoPublisherObject'] }],
       name: 'taman-better-auth-back',
+      queues: {
+        consumers: [{ queue: 'taman-email', max_retries: 5, dead_letter_queue: 'taman-email-dlq' }],
+        producers: [{ binding: 'EMAIL_QUEUE', queue: 'taman-email' }],
+      },
+      send_email: [{ name: 'EMAIL' }],
     },
   },
 
@@ -31,6 +36,9 @@ export default defineConfig({
     googleClientSecret: '',
     betterAuthSecret: '',
     baseUrl: '',
+    appUrl: '',
+    emailFrom: '',
+    emailFromName: '',
   },
 
   serverDir: './server',

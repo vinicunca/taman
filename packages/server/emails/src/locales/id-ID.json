@@ -1,0 +1,30 @@
+{
+  "invitation": {
+    "subject": "{inviterName} mengundang Anda bergabung dengan {organizationName}",
+    "preheader": "Anda diundang untuk bergabung dengan {organizationName}.",
+    "heading": "Anda mendapat undangan",
+    "intro": "{inviterName} ({inviterEmail}) mengundang Anda bergabung dengan {organizationName} sebagai {role}.",
+    "actionLabel": "Terima undangan",
+    "linkHint": "Jika tombol tidak berfungsi, gunakan tautan ini:",
+    "expiry": "Undangan ini kedaluwarsa pada {expiresAt}.",
+    "ignore": "Jika Anda tidak mengharapkan undangan ini, abaikan email ini."
+  },
+  "verifyEmail": {
+    "subject": "Verifikasi alamat email Taman Anda",
+    "preheader": "Konfirmasi alamat email untuk menyelesaikan pembuatan akun.",
+    "heading": "Verifikasi email",
+    "intro": "Halo {name}, konfirmasi alamat email untuk menyelesaikan pembuatan akun.",
+    "actionLabel": "Verifikasi email",
+    "linkHint": "Jika tombol tidak berfungsi, gunakan tautan ini:",
+    "ignore": "Jika Anda tidak membuat akun Taman, abaikan email ini."
+  },
+  "resetPassword": {
+    "subject": "Atur ulang kata sandi Taman Anda",
+    "preheader": "Gunakan tautan untuk memilih kata sandi baru.",
+    "heading": "Atur ulang kata sandi",
+    "intro": "Halo {name}, kami menerima permintaan untuk mengatur ulang kata sandi Anda.",
+    "actionLabel": "Atur ulang kata sandi",
+    "linkHint": "Jika tombol tidak berfungsi, gunakan tautan ini:",
+    "ignore": "Jika Anda tidak meminta pengaturan ulang kata sandi, abaikan email ini."
+  }
+}

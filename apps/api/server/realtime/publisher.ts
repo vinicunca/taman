@@ -1,7 +1,6 @@
 import type { Publisher } from '@orpc/experimental-publisher';
 import type { DurablePublisher } from '@orpc/experimental-publisher-durable-object';
 import type { TodoEvent } from '@taman/api-contract';
-import type { H3Event } from 'nitro';
 import { MemoryPublisher } from '@orpc/experimental-publisher/memory';
 
 export type TodoPublisher = Publisher<Record<string, TodoEvent>>;
@@ -16,12 +15,6 @@ export interface TodoPublisherEnv {
 /** One channel per organization, so a subscriber only ever sees its own org. */
 export function todoChannel(organizationId: string): string {
   return `todo:${organizationId}`;
-}
-
-/** The Worker env Nitro's cloudflare preset attaches to each request. */
-export function cloudflareEnv(event: H3Event): TodoPublisherEnv | undefined {
-  const request = event.req as unknown as { runtime?: { cloudflare?: { env?: TodoPublisherEnv } } } | undefined;
-  return request?.runtime?.cloudflare?.env;
 }
 
 let publisherPromise: Promise<TodoPublisher> | undefined;

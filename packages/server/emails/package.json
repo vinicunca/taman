@@ -1,0 +1,21 @@
+{
+  "name": "@taman/emails",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "build:templates": "node ./node_modules/@maizzle/framework/bin/maizzle.mjs build --plaintext && node scripts/generate.ts",
+    "dev:templates": "node ./node_modules/@maizzle/framework/bin/maizzle.mjs serve"
+  },
+  "devDependencies": {
+    "@maizzle/framework": "catalog:",
+    "maizzle": "catalog:",
+    "vitest": "catalog:"
+  }
+}

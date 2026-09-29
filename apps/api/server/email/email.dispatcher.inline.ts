@@ -1,0 +1,15 @@
+import type { EmailDispatcher, DeliverEmail } from './email.types.ts';
+import type { EmailJob } from '@taman/emails';
+
+export function createInlineEmailDispatcher(deliver: DeliverEmail, onError: (job: EmailJob, error: unknown) => void = () => {}): EmailDispatcher {
+  return {
+    async dispatch(job) {
+      try {
+        await deliver(job);
+      }
+      catch (error) {
+        onError(job, error);
+      }
+    },
+  };
+}

@@ -12,6 +12,7 @@
     "@orpc/server": "catalog:",
     "@taman/constants": "workspace:*",
     "@taman/db-pg": "workspace:*",
+    "@taman/emails": "workspace:*",
     "@taman/rbac": "workspace:*",
     "@vinicunca/perkakas": "catalog:",
     "@taman/api-contract": "workspace:*",

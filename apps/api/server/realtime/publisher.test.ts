@@ -2,7 +2,8 @@
 import type { H3Event } from 'nitro';
 import { MemoryPublisher } from '@orpc/experimental-publisher/memory';
 import { describe, expect, it } from 'vitest';
-import { cloudflareEnv, getTodoPublisher } from './publisher.ts';
+import { cloudflareEnv } from '#lib/cloudflare-env.ts';
+import { getTodoPublisher } from './publisher.ts';
 
 describe('getTodoPublisher', () => {
   it('uses the in-process MemoryPublisher when no Durable Object binding exists', async () => {

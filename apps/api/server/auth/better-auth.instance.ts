@@ -20,7 +20,9 @@ import {
 import { useRuntimeConfig } from 'nitro/runtime-config';
 import { v7 as uuidv7 } from 'uuid';
 import { resolveActiveOrganizationId } from '#auth/auth.active-organization.ts';
+import { emailLocale, invitationEmailJob, resetPasswordEmailJob, verifyEmailJob } from '#auth/auth.emails.ts';
 import { resolveTrustedOrigins } from '#lib/cors.ts';
+import { useEmail } from '#email/index.ts';
 
 export type DirectorAuth = ReturnType<typeof createBetterAuth>;
 export type DirectorAuthPayload = DirectorAuth['$Infer']['Session'];
@@ -39,6 +41,7 @@ export function createBetterAuth() {
   const {
     databaseUrl,
     baseUrl,
+    appUrl,
     betterAuthSecret,
     googleClientId,
     googleClientSecret,
@@ -114,6 +117,11 @@ export function createBetterAuth() {
             enabled: false,
           },
         },
+        async sendInvitationEmail(data, request) {
+          await useEmail().dispatcher.dispatch(
+            invitationEmailJob(data, { appUrl, locale: emailLocale(request) }),
+          );
+        },
       }),
     ],
 
@@ -130,10 +138,16 @@ export function createBetterAuth() {
     emailAndPassword: {
       enabled: true,
       requireEmailVerification: true,
+      async sendResetPassword(data, request) {
+        await useEmail().dispatcher.dispatch(resetPasswordEmailJob(data, emailLocale(request)));
+      },
     },
 
     emailVerification: {
       autoSignInAfterVerification: true,
+      async sendVerificationEmail(data, request) {
+        await useEmail().dispatcher.dispatch(verifyEmailJob(data, emailLocale(request)));
+      },
     },
 
     socialProviders: {
