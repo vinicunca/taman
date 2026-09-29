@@ -161,14 +161,14 @@ const sidebarVisualWidth = computed(() => {
     : currentWidth;
 });
 
-const dragBarStyle = computed((): CSSProperties => {
+const dragBarStyle = computed<CSSProperties>(() => {
   const currentWidth = Number.parseFloat(getMenuWidthValue(false));
   return {
     right: `${Math.max(0, sidebarVisualWidth.value - currentWidth)}px`,
   };
 });
 
-const style = computed((): CSSProperties => {
+const style = computed<CSSProperties>(() => {
   const { isSidebarMixed, marginTop, paddingTop, zIndex } = props;
 
   return {
@@ -181,7 +181,7 @@ const style = computed((): CSSProperties => {
   };
 });
 
-const extraStyle = computed((): CSSProperties => {
+const extraStyle = computed<CSSProperties>(() => {
   const { extraWidth, show, width, zIndex } = props;
 
   return {
@@ -191,7 +191,7 @@ const extraStyle = computed((): CSSProperties => {
   };
 });
 
-const extraTitleStyle = computed((): CSSProperties => {
+const extraTitleStyle = computed<CSSProperties>(() => {
   const { extraTitleHeight, headerHeight } = props;
 
   return {
@@ -199,7 +199,7 @@ const extraTitleStyle = computed((): CSSProperties => {
   };
 });
 
-const contentWidthStyle = computed((): CSSProperties => {
+const contentWidthStyle = computed<CSSProperties>(() => {
   const { fixedExtra, isSidebarMixed, mixedWidth } = props;
   if (isSidebarMixed && fixedExtra) {
     return { width: `${mixedWidth}px` };
@@ -207,7 +207,7 @@ const contentWidthStyle = computed((): CSSProperties => {
   return {};
 });
 
-const contentStyle = computed((): CSSProperties => {
+const contentStyle = computed<CSSProperties>(() => {
   const { collapseHeight, headerHeight } = props;
 
   return {
@@ -217,7 +217,7 @@ const contentStyle = computed((): CSSProperties => {
   };
 });
 
-const headerStyle = computed((): CSSProperties => {
+const headerStyle = computed<CSSProperties>(() => {
   const { headerHeight, isSidebarMixed } = props;
 
   return {
@@ -227,7 +227,7 @@ const headerStyle = computed((): CSSProperties => {
   };
 });
 
-const extraContentStyle = computed((): CSSProperties => {
+const extraContentStyle = computed<CSSProperties>(() => {
   const { collapseHeight, extraTitleHeight, headerHeight } = props;
   const titleHeight = extraTitleHeight ?? headerHeight;
   return {
@@ -235,7 +235,7 @@ const extraContentStyle = computed((): CSSProperties => {
   };
 });
 
-const collapseStyle = computed((): CSSProperties => {
+const collapseStyle = computed<CSSProperties>(() => {
   return {
     height: `${props.collapseHeight}px`,
   };

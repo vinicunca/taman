@@ -75,7 +75,12 @@ function onMouseDown(event: MouseEvent, tab: TabConfig) {
     :style="style"
     class="tabs-chrome pr-6 h-full w-max overflow-y-hidden flex!"
   >
-    <TransitionGroup name="slide-left">
+    <TransitionGroup
+      enter-active-class="ease-emphasized"
+      leave-active-class="ease-emphasized"
+      enter-from-class="opacity-0 -translate-x-15px"
+      leave-to-class="opacity-0 -translate-x-15px"
+    >
       <div
         v-for="(tab, idx) in tabItems"
         :key="tab.key"

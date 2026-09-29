@@ -1,66 +1,62 @@
 <script setup lang="ts">
-import type { SelectOption } from '@taman/types';
-import type { TamanButtonCheckGroupValue } from '@vinicunca/taman-ui';
+import type { TamanButtonCheckGroupOption, TamanButtonCheckGroupValue } from '@vinicunca/taman-ui';
 
 import { TamanButtonCheckGroup } from '@vinicunca/taman-ui';
 import PIcon from 'pohon-ui/components/Icon.vue';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
-import { useSlots } from 'vue';
 
 defineOptions({
   name: 'PreferenceCheckboxItem',
 });
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     disabled?: boolean;
-    items?: Array<SelectOption>;
+    items?: Array<TamanButtonCheckGroupOption>;
     multiple?: boolean;
+    tip?: string;
     onBtnClick?: (value: TamanButtonCheckGroupValue | undefined) => void;
     placeholder?: string;
   }>(),
   {
     disabled: false,
-    placeholder: '',
     items: () => [],
     onBtnClick: () => {},
     multiple: false,
   },
 );
 
-const inputValue = defineModel<Array<string> | undefined>({ default: undefined });
-
-const slots = useSlots();
+const inputValue = defineModel<Array<string>>();
 </script>
 
 <template>
   <div
     :class="{
-      'hover:bg-background-accented': !slots.tip,
-      'pointer-events-none opacity-50': disabled,
+      'hover:bg-background-elevated': !props.tip,
+      'pointer-events-none opacity-50': props.disabled,
     }"
-    class="my-1 px-2 py-1 rounded-md flex w-full items-center justify-between"
+    class="p-2 rounded-lg flex w-full items-center justify-between"
   >
-    <span class="text-sm flex items-center">
+    <span class="text-sm font-500 inline-flex gap-2 items-center">
       <slot />
 
       <PTooltip
-        v-if="slots.tip"
-        :content="{ side: 'bottom' }"
+        v-if="props.tip"
+        :text="props.tip"
+        :ui="{
+          content: 'pohon:h-auto',
+          text: 'pohon:whitespace-normal',
+        }"
       >
         <PIcon
           name="lucide:circle-help"
-          class="ml-1 size-3 cursor-help"
+          class="color-text-muted"
         />
-
-        <template #content>
-          <slot name="tip" />
-        </template>
       </PTooltip>
     </span>
+
     <TamanButtonCheckGroup
       v-model="inputValue"
-      class="h-8 w-41.25"
       size="sm"
       :options="items"
       :disabled="disabled"

@@ -100,10 +100,6 @@ interface AppPreferences {
   authPageLayout: TamanAuthPageLayoutType;
   /** Check-for-updates polling interval */
   checkUpdatesInterval: number;
-  /** Whether grayscale mode is enabled */
-  colorGrayMode: boolean;
-  /** Whether color-weak mode is enabled */
-  colorWeakMode: boolean;
   /** Whether compact mode is enabled */
   compact: boolean;
   /** Whether content compact mode is enabled */
@@ -323,10 +319,6 @@ interface ThemePreferences {
   builtinType: TamanBuiltinThemeType;
   /** Custom brand colors */
   brands: ThemeBrandColors;
-  /** Font size (px) */
-  fontSize: number;
-  /** Border radius */
-  radius: string;
   /** Semi-dark header (only when theme='light') */
   semiDarkHeader: boolean;
   /** Semi-dark sidebar (only when theme='light') */

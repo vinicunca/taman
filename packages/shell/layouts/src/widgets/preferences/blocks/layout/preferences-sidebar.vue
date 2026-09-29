@@ -2,6 +2,8 @@
 import type { TamanLayoutType } from '@taman/types';
 import { $t } from '@taman/locales';
 import { onMounted, ref } from 'vue';
+import PreferenceInputNumber from '../preference-input-number.vue';
+import PreferencesCheckboxItem from '../preferences-checkbox-item.vue';
 import PreferencesSwitchItem from '../preferences-switch-item.vue';
 
 const props = defineProps<{
@@ -20,6 +22,11 @@ const sidebarCollapsedButton = defineModel<boolean>('sidebarCollapsedButton');
 const sidebarFixedButton = defineModel<boolean>('sidebarFixedButton');
 
 const sidebarButtons = ref<Array<string>>([]);
+
+function handleCheckboxChange() {
+  sidebarCollapsedButton.value = !!sidebarButtons.value.includes('collapsed');
+  sidebarFixedButton.value = !!sidebarButtons.value.includes('fixed');
+}
 
 onMounted(() => {
   if (
@@ -81,4 +88,22 @@ onMounted(() => {
     :tip="$t('preferences.sidebar.autoActivateChildTip')"
     :label="$t('preferences.sidebar.autoActivateChild')"
   />
+
+  <PreferencesCheckboxItem
+    v-model="sidebarButtons"
+    :items="[
+      { label: $t('preferences.sidebar.buttonCollapsed'), value: 'collapsed' },
+      { label: $t('preferences.sidebar.buttonFixed'), value: 'fixed' },
+    ]"
+    multiple
+    :on-btn-click="handleCheckboxChange"
+  >
+    {{ $t('preferences.sidebar.buttons') }}
+  </PreferencesCheckboxItem>
+
+  <PreferenceInputNumber
+    v-model="sidebarWidth"
+  >
+    {{ $t('preferences.sidebar.width') }}
+  </PreferenceInputNumber>
 </template>

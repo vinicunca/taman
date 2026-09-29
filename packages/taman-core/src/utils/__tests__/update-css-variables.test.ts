@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
 
-import { applyCssVariables } from '../update-css-variables';
+import { applyCssVariables } from '../apply-css-variables';
 
 it('applyCssVariables should update CSS variables in :root selector', () => {
   // Mock initial inline stylesheet content
@@ -9,7 +9,6 @@ it('applyCssVariables should update CSS variables in :root selector', () => {
 
   // CSS variables to update and their new values
   const updatedVariables = {
-    fontSize: '16px',
     primaryColor: 'blue',
     secondaryColor: 'green',
   };
@@ -24,7 +23,31 @@ it('applyCssVariables should update CSS variables in :root selector', () => {
   // Verify updated values are present
   expect(
     updatedStyleContent?.includes('primaryColor: blue;')
-    && updatedStyleContent?.includes('secondaryColor: green;')
-    && updatedStyleContent?.includes('fontSize: 16px;'),
+    && updatedStyleContent?.includes('secondaryColor: green;'),
   ).toBe(true);
+});
+
+it('updateCSSVariables should reuse and deduplicate same-id style tags', () => {
+  document.head.innerHTML
+    = '<style id="custom-styles">:root { --primaryColor: red; }</style>'
+      + '<style id="custom-styles">:root { --primaryColor: red; }</style>';
+
+  applyCssVariables({ primaryColor: 'blue' }, 'custom-styles');
+
+  const styleElements = document.querySelectorAll('#custom-styles');
+
+  expect(styleElements.length).toBe(1);
+  expect(styleElements[0].textContent).toContain('primaryColor: blue;');
+});
+
+it('applyCssVariables should create only one tag when called repeatedly in the same tick', () => {
+  document.head.innerHTML = '';
+
+  applyCssVariables({ primaryColor: 'blue' }, 'custom-styles');
+  applyCssVariables({ primaryColor: 'green' }, 'custom-styles');
+
+  const styleElements = document.querySelectorAll('#custom-styles');
+
+  expect(styleElements.length).toBe(1);
+  expect(styleElements[0].textContent).toContain('primaryColor: green;');
 });

@@ -17,3 +17,9 @@ export const ELEMENT_ID_LAYOUT_SCROLL = '__taman_layout_scroll';
 /** The mask layer, identified by this id, is only allowed to be closed if a click occurs on the current dialog's mask. */
 export const DISMISSABLE_DIALOG_ID = 'DISMISSABLE_DIALOG_ID';
 export const DISMISSABLE_DRAWER_ID = 'DISMISSABLE_SHEET_ID';
+
+/**
+ * Starting z-index for stacked overlay layers (dialog, drawer, alert). Each open takes the next value.
+ * Must stay below --taman-z-popup (2000) so tooltips, popovers and selects inside a layer render above it.
+ */
+export const Z_INDEX_OVERLAY_BASE = 1000;

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { TamanFormProps } from '@vinicunca/taman-ui/form';
 import { useScrollLock } from '@taman/composables';
 import { $t, useI18n } from '@taman/locales';
 import { storeToRefs, useAccessStore } from '@taman/stores';
@@ -39,29 +40,30 @@ const { lockScreenPassword } = storeToRefs(accessStore);
 const [
   FormLock,
   { getFieldComponentRef, getRawValues, setFieldError, validate },
-]
-  = useTamanForm(
-    reactive({
-      commonConfig: {
-        hideLabel: true,
-        hideRequiredMark: true,
-      },
-      schema: computed(() => [
-        {
-          component: 'InputPassword' as const,
-          componentProps: {
-            placeholder: $t('ui.widgets.lockScreen.placeholder'),
-          },
-          fieldName: 'password',
-          label: $t('authentication.password'),
-          rules: z
-            .string()
-            .min(1, { message: $t('authentication.passwordTip') }),
+] = useTamanForm(
+  reactive({
+    commonConfig: {
+      hideLabel: true,
+      hideRequiredMark: true,
+    },
+    schema: computed(() => [
+      {
+        component: 'InputPassword' as const,
+        componentProps: {
+          placeholder: $t('ui.widgets.lockScreen.placeholder'),
         },
-      ]),
-      showDefaultActions: false,
-    }),
-  );
+        fieldName: 'password',
+        label: $t('authentication.password'),
+        rules: z
+          .string()
+          .min(1, { message: $t('authentication.passwordTip') }),
+      },
+    ]),
+    showDefaultActions: false,
+    submitOnEnter: true,
+    handleSubmit,
+  }) satisfies TamanFormProps,
+);
 
 async function handleSubmit() {
   const { valid } = await validate();
@@ -91,26 +93,33 @@ useScrollLock();
 </script>
 
 <template>
-  <div class="bg-background size-full fixed z-2000">
-    <Transition name="slide-left">
+  <div class="bg-background size-full fixed z-popup">
+    <Transition
+      enter-active-class="transition-transform-250 ease-emphasized"
+      leave-active-class="transition-transform-250 ease-emphasized"
+      enter-from-class="opacity-0 -translate-x-50%"
+      leave-to-class="opacity-0 -translate-x-50%"
+    >
       <div
         v-show="!showUnlockForm"
         class="size-full"
       >
         <div
-          class="group text-foreground/80 hover:text-foreground text-xl font-600 flex-col-center cursor-pointer left-1/2 top-6 fixed z-2001 -translate-x-1/2"
+          class="group text-xl color-text/80 font-600 flex-col-center cursor-pointer left-1/2 top-6 fixed z-2001 hover:color-text -translate-x-1/2"
           @click="toggleUnlockForm"
         >
           <PIcon
             name="lucide:lock-keyhole"
-            class="size-5 transition-all duration-300 group-hover:scale-125"
+            class="size-5 transition-all-300 group-hover:scale-125"
           />
+
           <span>{{ $t('ui.widgets.lockScreen.unlock') }}</span>
         </div>
+
         <div class="flex-center size-full">
           <div class="px-4 flex gap-4 w-full justify-center md:gap-8 sm:gap-6">
             <div
-              class="bg-accent text-[36px] rounded-xl flex-center h-35 w-35 relative md:text-[72px] sm:text-[42px] md:h-50 md:w-50 sm:h-40 sm:w-40"
+              class="text-[36px] rounded-xl bg-background-accented flex-center h-35 w-35 relative md:text-[72px] sm:text-[42px] md:h-50 md:w-50 sm:h-40 sm:w-40"
             >
               <span
                 class="text-xs font-600 left-3 top-3 absolute md:text-xl sm:text-sm"
@@ -119,8 +128,9 @@ useScrollLock();
               </span>
               {{ hour }}
             </div>
+
             <div
-              class="bg-accent text-[36px] rounded-xl flex-center h-35 w-35 md:text-[72px] sm:text-[42px] md:h-50 md:w-50 sm:h-40 sm:w-40"
+              class="text-[36px] rounded-xl bg-background-accented flex-center h-35 w-35 md:text-[72px] sm:text-[42px] md:h-50 md:w-50 sm:h-40 sm:w-40"
             >
               {{ minute }}
             </div>
@@ -129,36 +139,47 @@ useScrollLock();
       </div>
     </Transition>
 
-    <Transition name="slide-right">
+    <Transition
+      enter-active-class="transition-transform-250 ease-emphasized"
+      leave-active-class="transition-transform-250 ease-emphasized"
+      enter-from-class="opacity-0 -translate-x-50%"
+      leave-to-class="opacity-0 -translate-x-50%"
+    >
       <div
         v-if="showUnlockForm"
         class="flex-center size-full"
-        @keydown.enter.prevent="handleSubmit"
       >
         <div class="mb-10 px-4 flex-col-center max-w-75 w-[90%]">
           <PAvatar
             :src="avatar"
             class="enter-x mb-6 size-20"
           />
+
           <div class="enter-x mb-2 w-full items-center">
             <FormLock />
           </div>
+
           <PButton
-            class="enter-x w-full"
+            class="enter-x"
+            block
             @click="handleSubmit"
           >
             {{ $t('ui.widgets.lockScreen.entry') }}
           </PButton>
+
           <PButton
-            class="enter-x my-2 w-full"
+            class="enter-x my-2"
             variant="ghost"
+            block
             @click="$emit('toLogin')"
           >
             {{ $t('ui.widgets.lockScreen.backToLogin') }}
           </PButton>
+
           <PButton
-            class="enter-x mr-2 w-full"
+            class="enter-x"
             variant="ghost"
+            block
             @click="toggleUnlockForm"
           >
             {{ $t('common.back') }}

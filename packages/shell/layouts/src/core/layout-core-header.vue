@@ -4,14 +4,13 @@ import { $t } from '@taman/locales';
 import { useAccessStore } from '@taman/stores';
 import { preferences, usePreferences } from '@vinicunca/taman-core/preferences';
 import { TamanButtonIcon, TamanFullScreen } from '@vinicunca/taman-ui';
-import { tamanConfirm, useTamanDialog } from '@vinicunca/taman-ui/popup';
+import { useTamanDialog } from '@vinicunca/taman-ui/popup';
+import { defineShortcuts } from 'pohon-ui/composables/defineShortcuts';
 import { computed, useSlots } from 'vue';
-
 import {
   LayoutWidgetGlobalSearch,
   LayoutWidgetLanguageToggle,
   LayoutWidgetLockScreenModal,
-  LayoutWidgetNotification,
   LayoutWidgetPreferences,
   LayoutWidgetThemeToggle,
   LayoutWidgetTimezoneButton,
@@ -21,7 +20,7 @@ defineOptions({
   name: 'LayoutCoreHeader',
 });
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     avatar?: string;
     theme?: string;
@@ -97,28 +96,20 @@ function handleSubmitLogout() {
   logoutModalApi.close();
 }
 
-// 快捷键
-// if (preferences.shortcutKeys.enable) {
-//   const keys = useMagicKeys();
-//   const lockKey = keys['Alt+KeyL'];
-//   const logoutKey = keys['Alt+KeyQ'];
-
-//   if (lockKey) {
-//     whenever(lockKey, () => {
-//       if (enableLockScreenShortcutKey.value) {
-//         handleOpenLock();
-//       }
-//     });
-//   }
-
-//   if (logoutKey) {
-//     whenever(logoutKey, () => {
-//       if (enableLogoutShortcutKey.value) {
-//         handleLogout();
-//       }
-//     });
-//   }
-// }
+if (preferences.shortcutKeys.enable) {
+  defineShortcuts({
+    option_q: () => {
+      if (enableLogoutShortcutKey.value) {
+        handleLogout();
+      }
+    },
+    option_l: () => {
+      if (enableLockScreenShortcutKey.value) {
+        handleOpenLock();
+      }
+    },
+  });
+}
 
 /**
  * Slot list type
@@ -254,8 +245,8 @@ function clearPreferencesAndLogout() {
 <template>
   <LockModal
     v-if="showLockInHeader"
-    :avatar="avatar"
-    :text="text"
+    :avatar="props.avatar"
+    :text="props.text"
     @submit="handleSubmitLock"
   />
 

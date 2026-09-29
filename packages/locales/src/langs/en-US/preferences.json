@@ -118,9 +118,6 @@
   },
   "theme": {
     "title": "Theme",
-    "radius": "Radius",
-    "fontSize": "Font Size",
-    "fontSizeTip": "Adjust global font size with real-time preview",
     "light": "Light",
     "dark": "Dark",
     "darkSidebar": "Semi Dark Sidebar",
@@ -128,8 +125,6 @@
     "darkSidebarSub": "Semi Dark Sidebar Sub",
     "darkSidebarSubTip": "It can be enabled when the theme is light, the semi dark sidebar is enabled, and the layout uses 'Two-Column' menu mode.",
     "darkHeader": "Semi Dark Header",
-    "weakMode": "Weak Mode",
-    "grayMode": "Gray Mode",
     "builtin": {
       "title": "Built-in",
       "default": "Default",
@@ -192,33 +187,5 @@
     "lockScreen": "Enable Lock Screen",
     "refresh": "Refresh Page",
     "timezone": "Timezone"
-  },
-  "antd": {
-    "tabLabel": "Antd Extension",
-    "title": "Business Preferences",
-    "fields": {
-      "enableFormFullscreen": {
-        "label": "Enable Form Fullscreen Mode",
-        "tip": "Subprojects can read this extension configuration in their own business scenarios."
-      },
-      "tenantMode": {
-        "label": "Tenant Mode",
-        "options": {
-          "single": {
-            "label": "Single Tenant"
-          },
-          "multi": {
-            "label": "Multi Tenant"
-          }
-        }
-      },
-      "defaultTableSize": {
-        "label": "Default Page Size"
-      },
-      "reportTitle": {
-        "label": "Default Report Title",
-        "placeholder": "Please enter the default report title"
-      }
-    }
   }
 }

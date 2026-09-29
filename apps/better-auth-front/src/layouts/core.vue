@@ -3,11 +3,12 @@ import type { DropdownMenuItem } from 'pohon-ui';
 import { TAMAN_DOC_URL, TAMAN_GITHUB_URL } from '@taman/constants';
 import {
   LayoutCore,
-  // LockScreen,
+  LayoutWidgetLockScreen,
   LayoutWidgetUserDropdown,
 } from '@taman/layouts';
 import { $t } from '@taman/locales';
 import { useTabbarStore } from '@taman/stores';
+import { preferences } from '@vinicunca/taman-core/preferences';
 import { computed } from 'vue';
 import { useSessionStore } from '#/auth';
 
@@ -50,6 +51,10 @@ const menus = computed<Array<DropdownMenuItem>>(() => [
   },
 ]);
 
+const avatar = computed(() => {
+  return user?.image ?? preferences.app.defaultAvatar;
+});
+
 async function handleLogout() {
   await sessionStore.logout();
 }
@@ -57,6 +62,7 @@ async function handleLogout() {
 
 <template>
   <LayoutCore
+    :avatar="avatar"
     @clear-preferences-and-logout="handleLogout"
   >
     <template #user-dropdown>
@@ -80,9 +86,10 @@ async function handleLogout() {
     </template>
 
     <template #lock-screen>
-      <!-- <LockScreen
+      <LayoutWidgetLockScreen
+        :avatar="avatar"
         @to-login="handleLogout"
-      /> -->
+      />
     </template>
   </LayoutCore>
 </template>

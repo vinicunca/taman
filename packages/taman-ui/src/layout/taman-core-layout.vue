@@ -334,7 +334,7 @@ const tabbarStyle = computed<CSSProperties>(() => {
   };
 });
 
-const layoutScrollStyle = computed((): CSSProperties => {
+const layoutScrollStyle = computed<CSSProperties>(() => {
   const fixed = headerFixed.value;
 
   if (!fixed) {
@@ -363,7 +363,7 @@ const layoutScrollStyle = computed((): CSSProperties => {
   };
 });
 
-const contentStyle = computed((): CSSProperties => {
+const contentStyle = computed<CSSProperties>(() => {
   const { footerEnable, footerFixed, footerHeight } = props;
   return {
     minHeight: footerEnable && !footerFixed ? undefined : 0,
@@ -377,7 +377,7 @@ const headerZIndex = computed(() => {
   return zIndex + offset;
 });
 
-const headerWrapperStyle = computed((): CSSProperties => {
+const headerWrapperStyle = computed<CSSProperties>(() => {
   const fixed = headerFixed.value;
   const hidden = headerIsHidden.value || isFullContent.value;
 

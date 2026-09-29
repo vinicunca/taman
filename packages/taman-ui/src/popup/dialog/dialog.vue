@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { DialogProps, ExtendedDialogApi } from './dialog.types';
-import { usePriorityValues, useSimpleLocale } from '@vinicunca/taman-core/composables';
+import { useOverlayZIndex, usePriorityValues, useSimpleLocale } from '@vinicunca/taman-core/composables';
 import { DISMISSABLE_DIALOG_ID, ELEMENT_ID_MAIN_CONTENT } from '@vinicunca/taman-core/constants';
 import PButton from 'pohon-ui/components/Button.vue';
 import PIcon from 'pohon-ui/components/Icon.vue';
@@ -91,6 +91,10 @@ const {
   animationType,
   zIndex,
 } = usePriorityValues(props, state);
+
+// An explicit zIndex wins; otherwise stack by open order
+const openZIndex = useOverlayZIndex(() => state?.value?.isOpen);
+const layerZIndex = computed(() => zIndex.value ?? openZIndex.value);
 
 const shouldDraggable = computed(
   () => draggable.value && !shouldFullscreen.value && header.value,
@@ -231,8 +235,8 @@ function handleClosed() {
       :append-to="getAppendTo"
       class="mx-auto flex flex-col w-130 inset-x-0 top-10vh"
       :class="[
-        shouldFullscreen ? 'rounded-none' : 'rounded-$taman-radius',
         {
+          'pohon:rounded-none': shouldFullscreen,
           'border border-border': bordered,
           'shadow-3xl': !bordered,
           'max-h-[min(80%,calc(100dvh-20px))] max-w-[calc(100vw-20px)]': !shouldFullscreen,
@@ -248,7 +252,7 @@ function handleClosed() {
       :modal="modal"
       :open="state?.isOpen"
       :animation-type="animationType"
-      :z-index="zIndex"
+      :z-index="layerZIndex"
       :overlay-blur="overlayBlur"
       @close-auto-focus="handleCloseAutoFocus"
       @closed="handleClosed"
@@ -340,7 +344,7 @@ function handleClosed() {
       </DialogHeader>
 
       <div
-        class="p-3 flex-1 min-h-40 relative overflow-y-auto"
+        class="p-3 flex-1 relative overflow-y-auto"
         :class="
           [
             contentClass,

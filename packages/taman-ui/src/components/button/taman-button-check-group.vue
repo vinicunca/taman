@@ -18,14 +18,17 @@ import {
 
 defineOptions({ name: 'TamanButtonCheckGroup' });
 
-const props = withDefaults(defineProps<TamanButtonCheckGroupProps>(), {
-  allowClear: false,
-  disabled: false,
-  maxCount: 0,
-  multiple: false,
-  options: () => [],
-  showIcon: true,
-});
+const props = withDefaults(
+  defineProps<TamanButtonCheckGroupProps>(),
+  {
+    allowClear: false,
+    disabled: false,
+    maxCount: 0,
+    multiple: false,
+    options: () => [],
+    showIcon: true,
+  },
+);
 
 const emits = defineEmits<{
   btnClick: [value: TamanButtonCheckGroupValue | undefined];
@@ -105,10 +108,12 @@ async function onOptionClick(value: TamanButtonCheckGroupValue) {
       v-for="option in props.options"
       :key="String(option.value)"
       type="button"
+      class="data-[active=true]:(not-first:border-x-1 first:border-r-1)"
       color="neutral"
       variant="outline"
       active-color="primary"
       active-variant="solid"
+      :data-active="isChecked(option.value)"
       :active="isChecked(option.value)"
       :aria-pressed="isChecked(option.value)"
       :disabled="isDisabled(option.value)"

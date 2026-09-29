@@ -1,21 +1,27 @@
 <script setup lang="ts">
+import type { KbdProps } from 'pohon-ui';
+import PIcon from 'pohon-ui/components/Icon.vue';
+import PKbd from 'pohon-ui/components/Kbd.vue';
 import PSwitch from 'pohon-ui/components/Switch.vue';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
-import PIcon from 'pohon-ui/components/Icon.vue';
 
 defineOptions({
   name: 'PreferenceSwitchItem',
 });
 
-const {
-  label,
-  disabled = false,
-  tip = '',
-} = defineProps<{
-  label: string;
-  disabled?: boolean;
-  tip?: string;
-}>();
+const props = withDefaults(
+  defineProps<{
+    label: string;
+    disabled?: boolean;
+    tip?: string;
+    kbds?: Array<KbdProps['value']>;
+  }>(),
+  {
+    disabled: false,
+    tip: '',
+    kbds: () => [],
+  },
+);
 
 const checked = defineModel<boolean>();
 </script>
@@ -23,7 +29,7 @@ const checked = defineModel<boolean>();
 <template>
   <PSwitch
     v-model="checked"
-    :disabled="disabled"
+    :disabled="props.disabled"
     :ui="{
       root: 'flex-row-reverse justify-between py-2 hover:bg-background-elevated rounded-lg px-2 transition-colors-280',
       wrapper: 'pohon:ms-0',
@@ -31,11 +37,11 @@ const checked = defineModel<boolean>();
   >
     <template #label>
       <div class="inline-flex gap-2 items-center">
-        {{ label }}
+        {{ props.label }}
 
         <PTooltip
-          v-if="tip"
-          :text="tip"
+          v-if="props.tip"
+          :text="props.tip"
           :ui="{
             content: 'pohon:h-auto',
             text: 'pohon:whitespace-normal',
@@ -46,6 +52,14 @@ const checked = defineModel<boolean>();
             class="color-text-muted"
           />
         </PTooltip>
+
+        <div class="flex gap-0.5">
+          <PKbd
+            v-for="(kbd, index) in props.kbds"
+            :key="index"
+            :value="kbd"
+          />
+        </div>
       </div>
     </template>
   </PSwitch>

@@ -1,5 +1,12 @@
 <script lang="ts" setup>
-import type { TamanContentCompactType, TamanLayoutType } from '@taman/types';
+import type {
+  TamanBuiltinThemeType,
+  TamanContentCompactType,
+  TamanLayoutHeaderMenuAlignType,
+  TamanLayoutHeaderModeType,
+  TamanLayoutType,
+} from '@taman/types';
+import type { ThemeBrandColors } from '@vinicunca/taman-core/preferences';
 import type { TabsItem } from 'pohon-ui';
 import { $t } from '@taman/locales';
 import { usePreferences } from '@vinicunca/taman-core/preferences';
@@ -10,11 +17,18 @@ import PTooltip from 'pohon-ui/components/Tooltip.vue';
 import { computed } from 'vue';
 import {
   PreferencesBlock,
+  PreferencesBuiltinTheme,
   PreferencesContent,
+  PreferencesHeader,
   PreferencesLayout,
   PreferencesSidebar,
   PreferencesTheme,
 } from './blocks';
+import PreferencesGlobalShortcutKeys from './blocks/shortcut-keys/preferences-global-shortcut-keys.vue';
+
+defineOptions({
+  name: 'LayoutWidgetPreferencesDrawer',
+});
 
 const emits = defineEmits<{
   clearPreferencesAndLogout: [];
@@ -25,8 +39,8 @@ const emits = defineEmits<{
  * Layout
  * ----------
  */
-const appLayout = defineModel<TamanLayoutType>('appLayout');
-const appContentCompact = defineModel<TamanContentCompactType>('appContentCompact');
+const appLayout = defineModel<TamanLayoutType | undefined>('appLayout', { default: undefined });
+const appContentCompact = defineModel<TamanContentCompactType | undefined>('appContentCompact', { default: undefined });
 
 const sidebarAutoActivateChild = defineModel<boolean>('sidebarAutoActivateChild');
 const sidebarDraggable = defineModel<boolean>('sidebarDraggable');
@@ -38,6 +52,10 @@ const sidebarCollapsedButton = defineModel<boolean>('sidebarCollapsedButton');
 const sidebarFixedButton = defineModel<boolean>('sidebarFixedButton');
 const sidebarWidth = defineModel<number>('sidebarWidth');
 
+const headerEnable = defineModel<boolean>('headerEnable');
+const headerMode = defineModel<TamanLayoutHeaderModeType>('headerMode');
+const headerMenuAlign = defineModel<TamanLayoutHeaderMenuAlignType>('headerMenuAlign');
+
 /**
  * ----------
  * Appearance
@@ -46,35 +64,33 @@ const sidebarWidth = defineModel<number>('sidebarWidth');
 const themeSemiDarkSidebar = defineModel<boolean>('themeSemiDarkSidebar');
 const themeSemiDarkSidebarSub = defineModel<boolean>('themeSemiDarkSidebarSub');
 const themeSemiDarkHeader = defineModel<boolean>('themeSemiDarkHeader');
+const themeBuiltinType = defineModel<TamanBuiltinThemeType | undefined>('themeBuiltinType', { default: undefined });
+const themeBrands = defineModel<ThemeBrandColors | undefined>('themeBrands', { default: undefined });
+
+/**
+ * ----------
+ * Shortcut Keys
+ * ----------
+ */
+const shortcutKeysEnable = defineModel<boolean>('shortcutKeysEnable');
+const shortcutKeysGlobalSearch = defineModel<boolean>('shortcutKeysGlobalSearch');
+const shortcutKeysGlobalLogout = defineModel<boolean>('shortcutKeysGlobalLogout');
+const shortcutKeysGlobalEscape = defineModel<boolean>('shortcutKeysGlobalEscape');
+const shortcutKeysGlobalLockScreen = defineModel<boolean>('shortcutKeysGlobalLockScreen');
 
 const {
-  customPreferences,
-  diffCustomPreference,
-  diffPreference,
+  // customPreferences,
+  // diffCustomPreference,
+  // diffPreference,
   isDark,
   isFullContent,
-  isHeaderNav,
-  isHeaderSidebarNav,
-  isMixedNav,
-  preferencesExtension,
-  isSideMixedNav,
+  // isHeaderNav,
+  // isHeaderSidebarNav,
+  // isMixedNav,
+  // isSideMixedNav,
   isSideMode,
-  isSideNav,
+  // isSideNav,
 } = usePreferences();
-
-const customPreferencesTab = computed(() => {
-  return preferencesExtension.value;
-});
-
-const customTabLabel = computed(() => {
-  return customPreferencesTab.value?.tabLabel
-    ? $t(customPreferencesTab.value.tabLabel)
-    : '';
-});
-
-const showCustomTab = computed(() => {
-  return (customPreferencesTab.value?.fields.length ?? 0) > 0;
-});
 
 const tabs = computed<Array<TabsItem>>(() => {
   const items: Array<TabsItem> = [
@@ -99,14 +115,6 @@ const tabs = computed<Array<TabsItem>>(() => {
       slot: 'general',
     },
   ];
-
-  if (showCustomTab.value) {
-    items.push({
-      label: customTabLabel.value,
-      value: 'custom',
-      slot: 'custom',
-    });
-  }
 
   return items;
 });
@@ -144,6 +152,7 @@ const [DrawerPreferences] = useTamanDrawer();
       :items="tabs"
       default-value="layout"
       size="sm"
+      :unmount-on-hide="false"
     >
       <template #layout>
         <PreferencesBlock :title="$t('preferences.layout')">
@@ -170,14 +179,14 @@ const [DrawerPreferences] = useTamanDrawer();
           />
         </PreferencesBlock>
 
-        <!-- <Block :title="$t('preferences.header.title')">
-          <Header
+        <PreferencesBlock :title="$t('preferences.header.title')">
+          <PreferencesHeader
             v-model:header-enable="headerEnable"
             v-model:header-menu-align="headerMenuAlign"
             v-model:header-mode="headerMode"
             :disabled="isFullContent"
           />
-        </Block> -->
+        </PreferencesBlock>
 
         <!-- <Block :title="$t('preferences.navigationMenu.title')">
           <Navigation
@@ -264,18 +273,30 @@ const [DrawerPreferences] = useTamanDrawer();
             v-model:theme-semi-dark-sidebar-sub="themeSemiDarkSidebarSub"
           />
         </PreferencesBlock>
+
+        <PreferencesBlock :title="$t('preferences.theme.builtin.title')">
+          <PreferencesBuiltinTheme
+            v-model="themeBuiltinType"
+            v-model:theme-brands="themeBrands"
+            :is-dark="isDark"
+          />
+        </PreferencesBlock>
       </template>
 
       <template #shortcutKey>
-        shortcutKey
+        <PreferencesBlock :title="$t('preferences.shortcutKeys.global')">
+          <PreferencesGlobalShortcutKeys
+            v-model:shortcut-keys-enable="shortcutKeysEnable"
+            v-model:shortcut-keys-global-search="shortcutKeysGlobalSearch"
+            v-model:shortcut-keys-lock-screen="shortcutKeysGlobalLockScreen"
+            v-model:shortcut-keys-logout="shortcutKeysGlobalLogout"
+            v-model:shortcut-keys-escape="shortcutKeysGlobalEscape"
+          />
+        </PreferencesBlock>
       </template>
 
       <template #general>
         general
-      </template>
-
-      <template #custom>
-        custom
       </template>
     </PTabs>
 
