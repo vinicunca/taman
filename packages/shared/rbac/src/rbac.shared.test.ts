@@ -1,25 +1,28 @@
-import { defaultStatements as adminDefaults } from 'better-auth/plugins/admin/access';
-import { defaultStatements as organizationDefaults } from 'better-auth/plugins/organization/access';
+import type { PermissionRequest } from './rbac.shared';
 import { describe, expect, it } from 'vitest';
 import { adminRoles } from './rbac.admin';
 import { ORGANIZATION_ROLES, USER_ROLES } from './rbac.constants';
 import { organizationRoles } from './rbac.organizations';
 import { sharedStatements } from './rbac.shared';
 
+/** Every action of every shared resource, so a newly added resource is covered automatically. */
+function everySharedAction(): PermissionRequest {
+  return Object.fromEntries(
+    Object.entries(sharedStatements).map(([resource, actions]) => [resource, [...actions]]),
+  ) as PermissionRequest;
+}
+
 describe('shared statements', () => {
-  it('declares only the template reference resource', () => {
-    expect(Object.keys(sharedStatements)).toEqual(['todo']);
+  it('lets platform admins and organization owners perform every shared action', () => {
+    expect(adminRoles[USER_ROLES.ADMIN].authorize(everySharedAction()).success).toBe(true);
+    expect(organizationRoles[ORGANIZATION_ROLES.OWNER].authorize(everySharedAction()).success).toBe(true);
   });
 
-  it('grants roles only better-auth defaults plus todo', () => {
-    const cases = [
-      [adminRoles[USER_ROLES.ADMIN], adminDefaults],
-      [organizationRoles[ORGANIZATION_ROLES.OWNER], organizationDefaults],
-      [organizationRoles[ORGANIZATION_ROLES.MEMBER], organizationDefaults],
-    ] as const;
-
-    for (const [role, defaults] of cases) {
-      expect(Object.keys(role.statements).filter((key) => !(key in defaults))).toEqual(['todo']);
+  it('gives plain platform users none of the shared actions', () => {
+    for (const [resource, actions] of Object.entries(sharedStatements)) {
+      for (const action of actions) {
+        expect(adminRoles[USER_ROLES.USER].authorize({ [resource]: [action] } as PermissionRequest).success).toBe(false);
+      }
     }
   });
 });
