@@ -49,6 +49,15 @@ describe('applyManifest', () => {
     expect(applyManifest(snapshot(), drifted, names).errors).toEqual(['rename: ""name": "@taman/other"" not found in package.json']);
   });
 
+  it('reports remove globs and workspace entries that match nothing', () => {
+    const drifted = { ...manifest, remove: [...manifest.remove, 'tooling/**'], workspacePackages: ['internal/*', 'tooling/*'] };
+
+    expect(applyManifest(snapshot(), drifted, names).errors).toEqual([
+      'remove: "tooling/**" matches no files',
+      'workspacePackages: "- tooling/*" is not in pnpm-workspace.yaml',
+    ]);
+  });
+
   it('reports text files where the old scope survives', () => {
     const files = new Map<string, string | Uint8Array>([
       ['a.ts', 'import \'@taman/web\';\n'],

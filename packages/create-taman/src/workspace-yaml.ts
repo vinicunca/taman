@@ -45,3 +45,9 @@ export function removeWorkspacePackages(yaml: string, globs: Array<string>): str
     .filter((line) => !globs.some((glob) => line.trim() === `- ${glob}`))
     .join('\n');
 }
+
+/** `packages:` entries from `globs` that the workspace file does not list. */
+export function missingWorkspacePackages(yaml: string, globs: Array<string>): Array<string> {
+  const entries = new Set(yaml.split('\n').map((line) => line.trim()));
+  return globs.filter((glob) => !entries.has(`- ${glob}`));
+}

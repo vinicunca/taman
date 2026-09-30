@@ -1,9 +1,9 @@
 import type { ApplyResult, FileMap, GenerateNames, TemplateManifest } from './types';
 import { rewritePublishedDeps } from './published-deps';
-import { removeFiles } from './remove';
+import { removeFiles, unmatchedGlobs } from './remove';
 import { applyExplicitRenames, renameScope } from './rename';
 import { removeRootScripts } from './scripts';
-import { removeWorkspacePackages } from './workspace-yaml';
+import { missingWorkspacePackages, removeWorkspacePackages } from './workspace-yaml';
 
 /** Paths of text files that still contain `needle`. */
 export function findLeftovers(files: FileMap, needle: string): Array<string> {
@@ -17,6 +17,14 @@ export function findLeftovers(files: FileMap, needle: string): Array<string> {
  * scope rename because they match the original text.
  */
 export function applyManifest(snapshot: FileMap, manifest: TemplateManifest, names: GenerateNames): ApplyResult {
+  // A glob or workspace entry that matches nothing means the manifest no
+  // longer describes the code: fail loudly instead of shipping leftovers.
+  const drift = [
+    ...unmatchedGlobs(snapshot, manifest.remove).map((glob) => `remove: "${glob}" matches no files`),
+    ...missingWorkspacePackages(snapshot.get('pnpm-workspace.yaml') as string, manifest.workspacePackages)
+      .map((glob) => `workspacePackages: "- ${glob}" is not in pnpm-workspace.yaml`),
+  ];
+
   let files = removeFiles(snapshot, manifest.remove);
 
   const deps = rewritePublishedDeps(snapshot, files);
@@ -30,7 +38,7 @@ export function applyManifest(snapshot: FileMap, manifest: TemplateManifest, nam
   files = scripts.files;
 
   return {
-    errors: [...deps.errors, ...explicit.errors],
+    errors: [...drift, ...deps.errors, ...explicit.errors],
     files,
     warnings: [
       ...scripts.warnings,
