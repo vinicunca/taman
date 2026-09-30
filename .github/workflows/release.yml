@@ -2,6 +2,8 @@
 #
 # - Every push and pull request: `verify` packs each publishable package
 #   (no "private": true) and checks it the way npm consumers will see it.
+# - Every push and pull request: `template-smoke` generates a project with
+#   create-taman and proves it installs, builds, type-checks, tests and lints.
 # - Push to main with pending changesets: opens/updates the "Version
 #   Packages" pull request.
 # - Push to main with unpublished versions (i.e. that pull request was
@@ -45,9 +47,26 @@ jobs:
       # Each publishable package builds itself in its `prepack` script
       - run: node .github/scripts/verify-packages.mjs
 
+  template-smoke:
+    name: Generate and verify a template project
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: node .github/scripts/template-smoke.mjs
+
   select-mode:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-    needs: verify
+    needs: [verify, template-smoke]
     runs-on: ubuntu-latest
     permissions:
       contents: read

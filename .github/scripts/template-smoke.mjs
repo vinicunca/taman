@@ -1,0 +1,127 @@
+// Generates a project from this checkout the way `create-taman` does, then
+// proves it installs, builds, type-checks, tests and lints. Published
+// packages are packed from this commit, so unpublished changes are covered.
+import { execFileSync } from 'node:child_process';
+import { mkdirSync, mkdtempSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join, relative } from 'node:path';
+import process from 'node:process';
+
+// Problems in the user's in-progress tabs work. Remove each entry when that
+// work lands; the script fails if an entry no longer occurs, so this list
+// cannot go stale.
+const KNOWN_TYPE_ERRORS = [
+  'packages/shell/layouts/src/core/tabbar/layout-core-tabbar.vue(58,37): error TS2339: Property \'styleType\' does not exist on type \'TabbarPreferences\'.',
+];
+const LINT_SKIP = ['packages/shell/layouts/src/core/tabbar/layout-core-tabbar.vue'];
+
+const root = process.cwd();
+const work = mkdtempSync(join(tmpdir(), 'template-smoke-'));
+const packs = join(work, 'packs');
+const project = join(work, 'acme-app');
+const env = { ...process.env, CI: 'true' };
+
+function run(command, args, cwd = root, options = {}) {
+  console.log(`\n$ ${command} ${args.join(' ')}  (in ${relative(root, cwd) || '.'})`);
+  return execFileSync(command, args, { cwd, encoding: 'utf8', env, stdio: 'inherit', ...options });
+}
+
+function capture(command, args, cwd) {
+  try {
+    return execFileSync(command, args, { cwd, encoding: 'utf8', env, stdio: ['ignore', 'pipe', 'pipe'] });
+  } catch (error) {
+    return `${error.stdout ?? ''}${error.stderr ?? ''}`;
+  }
+}
+
+function walk(dir, visit) {
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (['node_modules', 'dist', '.output', '.nx', '.git', '.pohon-ui'].includes(entry.name)) {
+      continue;
+    }
+    const full = join(dir, entry.name);
+    if (entry.isDirectory()) {
+      walk(full, visit);
+    } else {
+      visit(full);
+    }
+  }
+}
+
+// 1. Pack every publishable package (each builds in `prepack`)
+mkdirSync(packs);
+const publishable = JSON.parse(execFileSync('pnpm', ['ls', '-r', '--depth', '-1', '--json'], { cwd: root, encoding: 'utf8' }))
+  .filter((pkg) => pkg.name && !pkg.private);
+for (const pkg of publishable) {
+  run('pnpm', ['pack', '--pack-destination', packs], pkg.path, { stdio: ['ignore', 'ignore', 'inherit'] });
+}
+const tarballs = readdirSync(packs).map((file) => {
+  const manifest = JSON.parse(execFileSync('tar', ['-xzOf', join(packs, file), 'package/package.json'], { encoding: 'utf8' }));
+  return [manifest.name, join(packs, file)];
+});
+
+// 2. Generate from the committed HEAD
+run('node', [join(root, 'packages/create-taman/dist/bin.mjs'), project, '--from', root, '--scope', 'acme', '--yes', '--no-install', '--no-git']);
+
+// 3. Resolve published packages from the tarballs instead of npm
+const workspaceFile = join(project, 'pnpm-workspace.yaml');
+const overrides = tarballs.map(([name, file]) => `  '${name}': file:${file}`).join('\n');
+writeFileSync(workspaceFile, readFileSync(workspaceFile, 'utf8').replace(/^overrides:\n/m, `overrides:\n${overrides}\n`));
+
+// 4. Install, build (web first: it generates the types vue-tsc needs)
+run('pnpm', ['install'], project);
+run('pnpm', ['--filter', '@acme/web', 'build'], project);
+run('pnpm', ['nx', 'run', 'api:build'], project);
+
+// 5. Type-check every tsconfig
+const tsconfigs = [];
+walk(project, (file) => file.endsWith('/tsconfig.json') && tsconfigs.push(file));
+const typeErrors = new Set();
+for (const tsconfig of tsconfigs) {
+  const output = capture(join(project, 'node_modules/.bin/vue-tsc'), ['--noEmit', '-p', tsconfig], project);
+  for (const line of output.split('\n')) {
+    if (line.includes('error TS')) {
+      // vue-tsc prints paths relative to its cwd, which on macOS may route
+      // through /private; keep only the part inside the project.
+      typeErrors.add(line.trim().replace(/^.*?acme-app\//, '').replace(/^(?:\.\.\/)+/, ''));
+    }
+  }
+}
+const unexpected = [...typeErrors].filter((line) => !KNOWN_TYPE_ERRORS.includes(line));
+const stale = KNOWN_TYPE_ERRORS.filter((line) => !typeErrors.has(line));
+
+// 6. Unit tests and lint (ts/vue only; the Markdown linter crashes on this ESLint version)
+run('pnpm', ['test:unit'], project);
+const lintFiles = [];
+walk(project, (file) => /\.(?:ts|vue)$/.test(file) && !file.endsWith('.d.ts') && lintFiles.push(relative(project, file)));
+run(join(project, 'node_modules/.bin/eslint'), ['--no-warn-ignored', ...lintFiles.filter((file) => !LINT_SKIP.includes(file))], project);
+
+// 7. Nothing template-only may leak into the project
+const leaks = [];
+walk(project, (file) => {
+  if (statSync(file).size > 2_000_000) {
+    return;
+  }
+  const text = readFileSync(file, 'utf8');
+  const path = relative(project, file);
+  if (text.includes('@taman/')) {
+    leaks.push(`${path}: @taman/`);
+  }
+  if (/talent|ticket|ngibur/i.test(text)) {
+    leaks.push(`${path}: ngibur domain word`);
+  }
+  if (path.includes('views/examples')) {
+    leaks.push(`${path}: example gallery`);
+  }
+});
+
+const failures = [
+  ...unexpected.map((line) => `type error: ${line}`),
+  ...stale.map((line) => `KNOWN_TYPE_ERRORS entry no longer occurs, remove it: ${line}`),
+  ...leaks,
+];
+if (failures.length > 0) {
+  console.error(`\n✗ template smoke test failed:\n  - ${failures.join('\n  - ')}`);
+  process.exit(1);
+}
+console.log(`\n✓ generated project (${project}) installs, builds, type-checks, tests and lints`);
