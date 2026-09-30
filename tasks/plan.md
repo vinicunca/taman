@@ -260,7 +260,7 @@ helpers and tests that describe the previous implementation.
 
 **Files likely touched:**
 
-- `apps/better-auth-front/src/views/examples/form/rules.vue`
+- `apps/web/src/views/examples/form/rules.vue`
 - `packages/@core/ui-kit/form-ui/src/form.types.ts`
 - `packages/@core/ui-kit/form-ui/src/form-render/form-render-form-field.vue`
 - `packages/@core/ui-kit/form-ui/__tests__/form-deprecation-removal.test.ts`

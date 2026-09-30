@@ -45,7 +45,7 @@ setupTamanForm({
 `setupTamanForm()` currently accepts a `rules` map. A rule returns `true` when
 valid, or an error string when invalid. Applications can wrap `useTamanForm()`
 to supply their component map types, localized rules, and a default codec. See
-`apps/better-auth-front/src/adapter/form.ts` for the project adapter.
+`apps/web/src/adapter/form.ts` for the project adapter.
 
 ## Quick start
 
