@@ -1,4 +1,3 @@
-/* eslint-disable sonar/no-nested-functions */
 import type {
   GenerateMenuAndRoutesOptions,
   RouteRecordRaw,

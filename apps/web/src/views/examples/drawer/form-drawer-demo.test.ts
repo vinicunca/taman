@@ -1,6 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createApp, defineComponent, h } from 'vue';
 
+import FormDrawerDemo from './form-drawer-demo.vue';
+
 const mocks = vi.hoisted(() => {
   const formState = {
     error: undefined as string | undefined,
@@ -42,9 +44,7 @@ vi.mock('#/adapter/form', () => ({
   useTamanForm: () => [defineComponent(() => () => h('form')), mocks.formApi],
 }));
 
-import FormDrawerDemo from './form-drawer-demo.vue';
-
-describe('FormDrawerDemo', () => {
+describe('formDrawerDemo', () => {
   let app: ReturnType<typeof createApp>;
 
   beforeEach(() => {

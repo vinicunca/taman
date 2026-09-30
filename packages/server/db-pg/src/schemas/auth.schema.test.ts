@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { sessionTable, teamMemberTable, teamTable } from './auth.schema';
 
-describe('Better Auth Drizzle schema', () => {
+describe('better Auth Drizzle schema', () => {
   it('includes every field required by organization teams', () => {
     expect(sessionTable.activeTeamId).toBeDefined();
 

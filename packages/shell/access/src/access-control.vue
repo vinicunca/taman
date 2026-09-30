@@ -15,7 +15,7 @@ interface Props {
    * Specified codes is visible
    * @default []
    */
-  codes?: string[];
+  codes?: Array<string>;
 
   /**
    * How access is evaluated: pass roles when type is 'role', permission codes when type is 'code'
@@ -42,6 +42,6 @@ const hasAuth = computed(() => {
 </script>
 
 <template>
-  <slot v-if="!codes"></slot>
-  <slot v-else-if="hasAuth"></slot>
+  <slot v-if="!codes" />
+  <slot v-else-if="hasAuth" />
 </template>

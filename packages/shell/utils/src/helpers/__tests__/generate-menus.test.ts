@@ -1,8 +1,7 @@
 import type { Router, RouteRecordRaw } from 'vue-router';
 
-import { createRouter, createWebHistory } from 'vue-router';
-
 import { describe, expect, it, vi } from 'vitest';
+import { createRouter, createWebHistory } from 'vue-router';
 
 import { generateMenus } from '../generate-menus';
 
@@ -28,7 +27,7 @@ describe('generateMenus', () => {
         },
       ],
     },
-  ] as RouteRecordRaw[];
+  ] as Array<RouteRecordRaw>;
 
   // Mock Vue Router instance
   const mockRouter = {
@@ -80,7 +79,7 @@ describe('generateMenus', () => {
         name: 'profile',
         path: '/profile',
       },
-    ] as RouteRecordRaw[];
+    ] as Array<RouteRecordRaw>;
 
     const menus = generateMenus(mockRoutesWithMeta, mockRouter as any);
     expect(menus).toEqual([
@@ -107,7 +106,7 @@ describe('generateMenus', () => {
         name: 'userDetails',
         path: '/users/:userId',
       },
-    ] as RouteRecordRaw[];
+    ] as Array<RouteRecordRaw>;
 
     const menus = generateMenus(mockRoutesWithParams, mockRouter as any);
     expect(menus).toEqual([
@@ -139,7 +138,7 @@ describe('generateMenus', () => {
         name: 'newPath',
         path: '/new-path',
       },
-    ] as RouteRecordRaw[];
+    ] as Array<RouteRecordRaw>;
 
     const menus = generateMenus(mockRoutesWithRedirect, mockRouter as any);
     expect(menus).toEqual([
@@ -226,7 +225,7 @@ describe('generateMenus', () => {
   });
 
   it('should handle empty routes', async () => {
-    const emptyRoutes: any[] = [];
+    const emptyRoutes: Array<any> = [];
     const menus = generateMenus(emptyRoutes, router);
     expect(menus).toEqual([]);
   });

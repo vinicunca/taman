@@ -10,7 +10,6 @@ import { hashPassword } from 'better-auth/crypto';
 import { and, eq } from 'drizzle-orm';
 
 const DEFAULT_EMAIL = 'admin@taman.local';
-// eslint-disable-next-line sonar/no-hardcoded-passwords
 const DEFAULT_PASSWORD = 'Admin123!';
 const DEFAULT_NAME = 'Admin';
 

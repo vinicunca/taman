@@ -27,7 +27,7 @@ export const themeCheckboxGroup = {
         fieldset: 'flex-wrap',
       },
       table: {
-        item: 'border border-border hover:[&:not(:has(:disabled,:focus-visible,[data-state=checked]))]:bg-background-elevated/50 transition-colors',
+        item: 'border border-border transition-colors hover:[&:not(:has(:disabled,:focus-visible,[data-state=checked]))]:bg-background-elevated/50',
       },
     },
     size: {
@@ -54,7 +54,7 @@ export const themeCheckboxGroup = {
     },
     required: {
       true: {
-        legend: 'after:color-error after:(ms-0.5 content-["*"])',
+        legend: 'after:(color-error ms-0.5 content-["*"])',
       },
     },
   },

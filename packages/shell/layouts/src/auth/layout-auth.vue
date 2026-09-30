@@ -165,7 +165,7 @@ const logoSrc = computed(() => {
     >
       <div class="login-background size-full left-0 top-0 absolute" />
       <LayoutAuthForm
-        class="shadow-float pb-20 rounded-3xl w-full shadow-primary/5 md:bg-background lg:w-1/2 md:w-2/3 xl:w-[36%]"
+        class="pb-20 rounded-3xl w-full shadow-float shadow-primary/5 md:bg-background lg:w-1/2 md:w-2/3 xl:w-[36%]"
         data-side="bottom"
       >
         <template

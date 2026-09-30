@@ -37,7 +37,6 @@ function loadLocalesMap(modules: Record<string, () => Promise<unknown>>) {
   const localesMap: Record<Locale, ImportLocaleFn> = {};
 
   for (const [path, loadLocale] of Object.entries(modules)) {
-    // eslint-disable-next-line sonar/super-linear-regex
     const key = path.match(/([\w-]*)\.(json)/)?.[1];
     if (key) {
       localesMap[key] = loadLocale as ImportLocaleFn;

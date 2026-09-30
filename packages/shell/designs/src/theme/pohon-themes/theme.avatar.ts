@@ -60,7 +60,7 @@ export const themeAvatar = {
 export const themeAvatarGroup = {
   slots: {
     root: 'inline-flex flex-row-reverse justify-end',
-    base: 'ring-background rounded-full relative first:me-0',
+    base: 'rounded-full ring-background relative first:me-0',
   },
   variants: {
     size: {

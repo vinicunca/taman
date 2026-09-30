@@ -19,7 +19,7 @@ export const themeBlogPost = {
     header: 'w-full aspect-[16/9] pointer-events-none relative overflow-hidden',
     body: 'flex flex-1 flex-col min-w-0',
     image: 'h-full w-full object-cover object-top',
-    title: 'color-text-highlighted text-xl font-600 text-pretty',
+    title: 'text-xl color-text-highlighted font-600 text-pretty',
     description: 'text-base mt-1 text-pretty',
     authors: 'mt-auto pt-4 flex flex-wrap gap-x-3 gap-y-1.5',
     avatar: '',
@@ -40,7 +40,7 @@ export const themeBlogPost = {
     },
     variant: {
       outline: {
-        root: 'bg-background ring-ring ring',
+        root: 'bg-background ring ring-ring',
         date: 'color-text-toned',
         description: 'color-text-muted',
       },
@@ -50,7 +50,7 @@ export const themeBlogPost = {
         description: 'color-text-toned',
       },
       subtle: {
-        root: 'bg-background-elevated/50 ring-ring ring',
+        root: 'bg-background-elevated/50 ring ring-ring',
         date: 'color-text-muted',
         description: 'color-text-toned',
       },

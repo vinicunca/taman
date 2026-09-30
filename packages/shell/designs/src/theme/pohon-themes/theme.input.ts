@@ -6,7 +6,7 @@ import { fieldGroupVariantWithRoot } from './theme.field-group.ts';
 export const themeInput = {
   slots: {
     root: 'inline-flex items-center relative',
-    base: 'placeholder:color-text-dimmed appearance-none border-0 rounded-md w-full transition-colors disabled:(opacity-75 cursor-not-allowed)',
+    base: 'appearance-none border-0 rounded-md w-full transition-colors placeholder:color-text-dimmed disabled:(opacity-75 cursor-not-allowed)',
     leading: 'flex items-center start-0 inset-y-0 absolute',
     leadingIcon: 'color-text-dimmed shrink-0',
     leadingAvatar: 'shrink-0',
@@ -59,10 +59,10 @@ export const themeInput = {
       },
     },
     variant: {
-      outline: 'color-text-highlighted bg-background ring-ring-accented ring ring-inset disabled:bg-background-accented',
-      soft: 'color-text-highlighted bg-background-elevated/50 hover:bg-background-elevated focus:bg-background-elevated disabled:bg-background-elevated/50',
-      subtle: 'color-text-highlighted bg-background-elevated ring-ring-accented ring ring-inset',
-      ghost: 'color-text-highlighted hover:bg-background-elevated focus:bg-background-elevated bg-transparent disabled:bg-transparent dark:disabled:bg-transparent',
+      outline: 'color-text-highlighted bg-background ring ring-ring-accented ring-inset disabled:bg-background-accented',
+      soft: 'color-text-highlighted bg-background-elevated/50 disabled:bg-background-elevated/50 focus:bg-background-elevated hover:bg-background-elevated',
+      subtle: 'color-text-highlighted bg-background-elevated ring ring-ring-accented ring-inset',
+      ghost: 'color-text-highlighted bg-transparent disabled:bg-transparent focus:bg-background-elevated hover:bg-background-elevated dark:disabled:bg-transparent',
       none: 'color-text-highlighted bg-transparent focus:outline-none',
     },
     color: {

@@ -12,7 +12,7 @@ export const themeCheckbox = {
   slots: {
     root: 'flex items-start relative',
     container: 'flex items-center',
-    base: 'ring-ring-accented rounded-sm ring ring-inset overflow-hidden focus-visible:outline-none',
+    base: 'rounded-sm ring ring-ring-accented ring-inset overflow-hidden focus-visible:outline-none',
     indicator: 'color-text-inverted flex size-full items-center justify-center',
     icon: 'shrink-0',
     wrapper: 'w-full',
@@ -30,7 +30,7 @@ export const themeCheckbox = {
     },
     variant: {
       card: {
-        root: 'border-border border rounded-lg hover:[&:not(:has(:disabled,:focus-visible,[data-state=checked]))]:bg-background-elevated/50 transition-colors',
+        root: 'border border-border rounded-lg transition-colors hover:[&:not(:has(:disabled,:focus-visible,[data-state=checked]))]:bg-background-elevated/50',
       },
     },
     indicator: {
@@ -81,7 +81,7 @@ export const themeCheckbox = {
     },
     required: {
       true: {
-        label: 'after:color-error after:(ms-0.5 content-["*"])',
+        label: 'after:(color-error ms-0.5 content-["*"])',
       },
     },
     disabled: {

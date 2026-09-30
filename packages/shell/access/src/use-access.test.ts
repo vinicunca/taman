@@ -1,15 +1,15 @@
 import type { MaybeRefOrGetter } from 'vue';
 
 import { createPinia } from 'pinia';
-import { createApp, defineComponent, h, ref } from 'vue';
 import { afterEach, describe, expect, it } from 'vitest';
+import { createApp, defineComponent, h, ref } from 'vue';
 
 import { ACCESS_ROLES_KEY } from './directive';
 import { useAccess } from './use-access';
 
 function withAccess<T>(
   composable: () => T,
-  roles?: MaybeRefOrGetter<string[]>,
+  roles?: MaybeRefOrGetter<Array<string>>,
 ): { result: T; unmount: () => void } {
   let result!: T;
   const app = createApp(

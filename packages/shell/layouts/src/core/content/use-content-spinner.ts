@@ -1,4 +1,3 @@
-/* eslint-disable sonar/no-invariant-returns */
 import { preferences } from '@vinicunca/taman-core/preferences';
 import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';

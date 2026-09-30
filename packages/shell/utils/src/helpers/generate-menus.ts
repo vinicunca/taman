@@ -1,7 +1,7 @@
 import type {
   ExRouteRecordRaw,
-  TamanMenuRecordRaw,
   RouteMeta,
+  TamanMenuRecordRaw,
 } from '@vinicunca/taman-core/typings';
 import type { Router, RouteRecordRaw } from 'vue-router';
 
@@ -14,9 +14,9 @@ import { filterTree, mapTree, sortTree } from '@vinicunca/taman-core/utils';
  * @returns Generated menu list
  */
 function generateMenus(
-  routes: RouteRecordRaw[],
+  routes: Array<RouteRecordRaw>,
   router: Router,
-): TamanMenuRecordRaw[] {
+): Array<TamanMenuRecordRaw> {
   // Map route names to resolved paths from the router
   const finalRoutesMap: { [key: string]: string } = Object.fromEntries(
     router.getRoutes().map(({ name, path }) => [name, path]),
@@ -51,7 +51,7 @@ function generateMenus(
     // Build child menu items
     const resultChildren = hideChildrenInMenu
       ? []
-      : ((children as TamanMenuRecordRaw[]) ?? []);
+      : ((children as Array<TamanMenuRecordRaw>) ?? []);
 
     // Wire parent path metadata on children
     if (resultChildren.length > 0) {

@@ -56,7 +56,12 @@
       fill="#f2f2f2"
       transform="translate(-169.93432 -164.42601)"
     />
-    <circle cx="649.24878" cy="51" fill="hsl(var(--primary))" r="51" />
+    <circle
+      cx="649.24878"
+      cy="51"
+      fill="hsl(var(--primary))"
+      r="51"
+    />
     <path
       d="M911.21851,176.29639c-24.7168-3.34094-52.93512,10.01868-59.34131,34.12353a21.59653,21.59653,0,0,0-41.09351,2.10871l2.82972,2.02667a372.27461,372.27461,0,0,0,160.65881-.72638C957.07935,195.76,935.93537,179.63727,911.21851,176.29639Z"
       fill="#f0f0f0"
@@ -122,17 +127,47 @@
       fill="hsl(var(--foreground))"
       transform="translate(-169.93432 -164.42601)"
     />
-    <circle cx="95.24878" cy="439" fill="hsl(var(--foreground))" r="11" />
-    <circle cx="227.24878" cy="559" fill="hsl(var(--foreground))" r="11" />
-    <circle cx="728.24878" cy="559" fill="hsl(var(--foreground))" r="11" />
-    <circle cx="755.24878" cy="419" fill="hsl(var(--foreground))" r="11" />
-    <circle cx="723.24878" cy="317" fill="hsl(var(--foreground))" r="11" />
+    <circle
+      cx="95.24878"
+      cy="439"
+      fill="hsl(var(--foreground))"
+      r="11"
+    />
+    <circle
+      cx="227.24878"
+      cy="559"
+      fill="hsl(var(--foreground))"
+      r="11"
+    />
+    <circle
+      cx="728.24878"
+      cy="559"
+      fill="hsl(var(--foreground))"
+      r="11"
+    />
+    <circle
+      cx="755.24878"
+      cy="419"
+      fill="hsl(var(--foreground))"
+      r="11"
+    />
+    <circle
+      cx="723.24878"
+      cy="317"
+      fill="hsl(var(--foreground))"
+      r="11"
+    />
     <path
       d="M434.1831,583.426a10.949,10.949,0,1,1-.21-2.16A10.9921,10.9921,0,0,1,434.1831,583.426Z"
       fill="hsl(var(--foreground))"
       transform="translate(-169.93432 -164.42601)"
     />
-    <circle cx="484.24878" cy="349" fill="hsl(var(--foreground))" r="11" />
+    <circle
+      cx="484.24878"
+      cy="349"
+      fill="hsl(var(--foreground))"
+      r="11"
+    />
     <path
       d="M545.1831,513.426a10.949,10.949,0,1,1-.21-2.16A10.9921,10.9921,0,0,1,545.1831,513.426Z"
       fill="hsl(var(--foreground))"
@@ -143,8 +178,18 @@
       fill="hsl(var(--foreground))"
       transform="translate(-169.93432 -164.42601)"
     />
-    <circle cx="599.24878" cy="443" fill="hsl(var(--foreground))" r="11" />
-    <circle cx="426.24878" cy="338" fill="hsl(var(--foreground))" r="16" />
+    <circle
+      cx="599.24878"
+      cy="443"
+      fill="hsl(var(--foreground))"
+      r="11"
+    />
+    <circle
+      cx="426.24878"
+      cy="338"
+      fill="hsl(var(--foreground))"
+      r="16"
+    />
     <path
       d="M1028.875,735.26666l-857.75.30733a1.19068,1.19068,0,1,1,0-2.38136l857.75-.30734a1.19069,1.19069,0,0,1,0,2.38137Z"
       fill="#cacaca"

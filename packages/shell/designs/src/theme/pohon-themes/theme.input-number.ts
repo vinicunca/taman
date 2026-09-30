@@ -8,7 +8,7 @@ import { themeInput } from './theme.input.ts';
 export const themeInputNumber = {
   slots: {
     root: 'inline-flex items-center relative',
-    base: 'placeholder:color-text-dimmed border-0 rounded-md w-full transition-colors disabled:(opacity-75 cursor-not-allowed)',
+    base: 'border-0 rounded-md w-full transition-colors placeholder:color-text-dimmed disabled:(opacity-75 cursor-not-allowed)',
     increment: 'flex items-center absolute',
     decrement: 'flex items-center absolute',
   },

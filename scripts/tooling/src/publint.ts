@@ -14,7 +14,6 @@ import {
   readJSON,
   UNICODE,
 } from '@vinicunca/node-utils';
-
 import { publint } from 'publint';
 import { formatMessage } from 'publint/utils';
 
@@ -36,8 +35,8 @@ interface PubLintCommandOptions {
  * Get files that require lint
  * @param files
  */
-async function getLintFiles(files: string[] = []) {
-  const lintFiles: string[] = [];
+async function getLintFiles(files: Array<string> = []) {
+  const lintFiles: Array<string> = [];
 
   if (files?.length > 0) {
     return files.filter((file) => basename(file) === 'package.json');
@@ -65,7 +64,7 @@ async function readCache(cacheFile: string) {
   }
 }
 
-async function runPublint(files: string[], { check }: PubLintCommandOptions) {
+async function runPublint(files: Array<string>, { check }: PubLintCommandOptions) {
   const lintFiles = await getLintFiles(files);
   const cacheFile = getCacheFile();
 
@@ -87,8 +86,8 @@ async function runPublint(files: string[], { check }: PubLintCommandOptions) {
         const content = JSON.stringify(pkgJson);
         const hash = generatorContentHash(content);
 
-        const publintResult: Result =
-          cache?.[file]?.hash === hash
+        const publintResult: Result
+          = cache?.[file]?.hash === hash
             ? (cache?.[file]?.result ?? [])
             : await publint({
                 level: 'suggestion',

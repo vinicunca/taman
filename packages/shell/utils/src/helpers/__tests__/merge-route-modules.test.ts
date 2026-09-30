@@ -29,7 +29,7 @@ describe('mergeRouteModules', () => {
       },
     };
 
-    const expectedRoutes: RouteRecordRaw[] = [
+    const expectedRoutes: Array<RouteRecordRaw> = [
       {
         component: expect.any(Function),
         name: 'About',
@@ -48,7 +48,7 @@ describe('mergeRouteModules', () => {
 
   it('should handle empty modules', () => {
     const routeModules: Record<string, RouteModuleType> = {};
-    const expectedRoutes: RouteRecordRaw[] = [];
+    const expectedRoutes: Array<RouteRecordRaw> = [];
 
     const mergedRoutes = mergeRouteModules(routeModules);
     expect(mergedRoutes).toEqual(expectedRoutes);
@@ -60,7 +60,7 @@ describe('mergeRouteModules', () => {
         default: [],
       },
     };
-    const expectedRoutes: RouteRecordRaw[] = [];
+    const expectedRoutes: Array<RouteRecordRaw> = [];
 
     const mergedRoutes = mergeRouteModules(routeModules);
     expect(mergedRoutes).toEqual(expectedRoutes);

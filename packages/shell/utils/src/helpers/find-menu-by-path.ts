@@ -1,7 +1,7 @@
 import type { TamanMenuRecordRaw } from '@vinicunca/taman-core/typings';
 
 function findMenuByPath(
-  list: TamanMenuRecordRaw[],
+  list: Array<TamanMenuRecordRaw>,
   path?: string,
 ): TamanMenuRecordRaw | null {
   for (const menu of list) {
@@ -21,7 +21,7 @@ function findMenuByPath(
  * @param menus
  * @param path
  */
-function findRootMenuByPath(menus: TamanMenuRecordRaw[], path?: string, level = 0) {
+function findRootMenuByPath(menus: Array<TamanMenuRecordRaw>, path?: string, level = 0) {
   const findMenu = findMenuByPath(menus, path);
   const rootMenuPath = findMenu?.parents?.[level];
   const rootMenu = rootMenuPath

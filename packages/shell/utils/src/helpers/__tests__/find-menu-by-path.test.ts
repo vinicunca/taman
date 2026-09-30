@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { findMenuByPath, findRootMenuByPath } from '../find-menu-by-path';
 
 // Sample menu data
-const menus: any[] = [
+const menus: Array<any> = [
   { path: '/', children: [] },
   { path: '/about', children: [] },
   {
@@ -50,7 +50,7 @@ describe('menu Finder Tests', () => {
 
   it('handles menu items without children', () => {
     const menu = findMenuByPath(
-      [{ path: '/only', children: undefined }] as any[],
+      [{ path: '/only', children: undefined }] as Array<any>,
       '/only',
     );
     expect(menu).toBeDefined();

@@ -1,4 +1,5 @@
 import { createPinia } from 'pinia';
+import { afterEach, describe, expect, it } from 'vitest';
 import {
   createApp,
   defineComponent,
@@ -7,11 +8,10 @@ import {
   resolveDirective,
   withDirectives,
 } from 'vue';
-import { afterEach, describe, expect, it } from 'vitest';
 
 import { registerAccessDirective } from './directive';
 
-function mountWithAccessDirective(roles: string[]) {
+function mountWithAccessDirective(roles: Array<string>) {
   const app = createApp(
     defineComponent({
       render() {
