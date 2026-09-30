@@ -10,6 +10,7 @@ export default defineConfig({
         bindings: [{ name: 'TODO_PUBLISHER', class_name: 'TodoPublisherObject' }],
       },
       migrations: [{ tag: 'v1', new_sqlite_classes: ['TodoPublisherObject'] }],
+      // Deployed worker name: renaming creates a new worker. Generated projects get `<name>-api` (template.manifest.ts).
       name: 'taman-better-auth-back',
       queues: {
         consumers: [{ queue: 'taman-email', max_retries: 5, dead_letter_queue: 'taman-email-dlq' }],
