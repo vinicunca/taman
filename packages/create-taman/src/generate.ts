@@ -76,11 +76,19 @@ export async function generateProject({ dir, git, names, source }: GenerateOptio
     mkdirSync(dir, { recursive: true });
     writeFileMap(dir, files, staging);
 
+    // The project is complete from here on; git is a convenience, so a
+    // failure (no git, signing prompt declined, …) must not discard it.
+    const warnings = [...result.warnings];
     if (git) {
-      gitCommit(dir);
+      try {
+        gitCommit(dir);
+      } catch (error) {
+        const reason = (error instanceof Error ? error.message : String(error)).split('\n')[0];
+        warnings.push(`git: the project is ready, but git init/commit failed (${reason}); run it yourself`);
+      }
     }
 
-    return { warnings: result.warnings };
+    return { warnings };
   } catch (error) {
     if (createdDir) {
       rmSync(dir, { force: true, recursive: true });
