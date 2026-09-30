@@ -4,14 +4,14 @@ import type { Page } from '@playwright/test';
  * Layout types from `@vinicunca/taman-core/typings` (`TamanLayoutType`).
  * Kept as a local union so Playwright does not import the app graph.
  */
-export type E2eLayoutType =
-  | 'full-content'
-  | 'header-mixed-nav'
-  | 'header-nav'
-  | 'header-sidebar-nav'
-  | 'mixed-nav'
-  | 'sidebar-mixed-nav'
-  | 'sidebar-nav';
+export type E2eLayoutType
+  = | 'full-content'
+    | 'header-mixed-nav'
+    | 'header-nav'
+    | 'header-sidebar-nav'
+    | 'mixed-nav'
+    | 'sidebar-mixed-nav'
+    | 'sidebar-nav';
 
 export interface PatchPreferencesInput {
   layout?: E2eLayoutType;
@@ -45,10 +45,7 @@ export async function patchPreferences(
           return false;
         }
 
-        return (
-          !key.endsWith('-preferences-theme')
-          && !key.endsWith('-preferences-custom')
-        );
+        return !key.endsWith('-preferences-theme');
       });
 
       let wrote = 0;

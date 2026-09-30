@@ -8,10 +8,11 @@ import type {
 } from '@taman/types';
 import type { ThemeBrandColors } from '@vinicunca/taman-core/preferences';
 import type { TabsItem } from 'pohon-ui';
-import { $t } from '@taman/locales';
-import { usePreferences } from '@vinicunca/taman-core/preferences';
+import { $t, loadLocaleMessages } from '@taman/locales';
+import { preferences, resetPreferences, usePreferences } from '@vinicunca/taman-core/preferences';
 import { useTamanDrawer } from '@vinicunca/taman-ui/popup';
 import PButton from 'pohon-ui/components/Button.vue';
+import PChip from 'pohon-ui/components/Chip.vue';
 import PTabs from 'pohon-ui/components/Tabs.vue';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
 import { computed } from 'vue';
@@ -33,6 +34,8 @@ defineOptions({
 const emits = defineEmits<{
   clearPreferencesAndLogout: [];
 }>();
+
+const appEnableStickyPreferencesNavigationBar = defineModel<boolean>('appEnableStickyPreferencesNavigationBar');
 
 /**
  * ----------
@@ -79,9 +82,7 @@ const shortcutKeysGlobalEscape = defineModel<boolean>('shortcutKeysGlobalEscape'
 const shortcutKeysGlobalLockScreen = defineModel<boolean>('shortcutKeysGlobalLockScreen');
 
 const {
-  // customPreferences,
-  // diffCustomPreference,
-  // diffPreference,
+  diffPreference,
   isDark,
   isFullContent,
   // isHeaderNav,
@@ -120,6 +121,14 @@ const tabs = computed<Array<TabsItem>>(() => {
 });
 
 const [DrawerPreferences] = useTamanDrawer();
+
+async function handleReset() {
+  if (!diffPreference.value) {
+    return;
+  }
+  await resetPreferences();
+  await loadLocaleMessages(preferences.app.locale);
+}
 </script>
 
 <template>
@@ -129,21 +138,36 @@ const [DrawerPreferences] = useTamanDrawer();
     footer-class="pohon:justify-center"
   >
     <template #extra>
-      <PTooltip :text="$t('preferences.resetTip')">
-        <PButton
-          icon="lucide:rotate-cw"
-          class="pohon:rounded-full"
-          variant="ghost"
-          color="neutral"
-        />
-      </PTooltip>
+      <PChip
+        inset
+        :show="Boolean(diffPreference)"
+      >
+        <PTooltip
+          :text="$t('preferences.resetTip')"
+          :disabled="!Boolean(diffPreference)"
+        >
+          <PButton
+            :disabled="!diffPreference"
+            icon="lucide:rotate-cw"
+            class="pohon:rounded-full"
+            variant="ghost"
+            color="neutral"
+            @click="handleReset"
+          />
+        </PTooltip>
+      </PChip>
 
-      <PTooltip :text="$t('preferences.enableStickyPreferencesNavigationBar')">
+      <PTooltip
+        :text="appEnableStickyPreferencesNavigationBar
+          ? $t('preferences.disableStickyPreferencesNavigationBar')
+          : $t('preferences.enableStickyPreferencesNavigationBar')"
+      >
         <PButton
-          icon="lucide:pin"
+          :icon="appEnableStickyPreferencesNavigationBar ? 'lucide:pin-off' : 'lucide:pin'"
           class="pohon:rounded-full"
           variant="ghost"
           color="neutral"
+          @click="appEnableStickyPreferencesNavigationBar = !appEnableStickyPreferencesNavigationBar"
         />
       </PTooltip>
     </template>
@@ -153,6 +177,9 @@ const [DrawerPreferences] = useTamanDrawer();
       default-value="layout"
       size="sm"
       :unmount-on-hide="false"
+      :ui="{
+        list: appEnableStickyPreferencesNavigationBar ? '-top-3 sticky z-10' : '',
+      }"
     >
       <template #layout>
         <PreferencesBlock :title="$t('preferences.layout')">

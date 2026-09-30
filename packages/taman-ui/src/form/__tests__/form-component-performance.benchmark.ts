@@ -118,7 +118,9 @@ it('form render performance', async ({ bench }) => {
 });
 
 it('form value performance', async ({ bench }) => {
-  await it.compare(
+  // `bench` here is the Vitest 5 test-context API, not a test alias.
+  // eslint-disable-next-line test/consistent-test-it
+  await bench.compare(
     bench(
       'update one field in a 100-field form',
       async () => {
@@ -160,7 +162,9 @@ it('form validation performance', async ({ bench }) => {
 });
 
 it('form schema performance', async ({ bench }) => {
-  await it.compare(
+  // `bench` here is the Vitest 5 test-context API, not a test alias.
+  // eslint-disable-next-line test/consistent-test-it
+  await bench.compare(
     bench(
       'update 100 schema entries',
       async () => {

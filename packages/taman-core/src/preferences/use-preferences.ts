@@ -5,20 +5,10 @@ import { preferencesManager } from './preferences';
 
 function usePreferences() {
   const preferences = preferencesManager.getPreferences();
-  const customPreferences = preferencesManager.getCustomPreferences();
   const initialPreferences = preferencesManager.getInitialPreferences();
-  const initialCustomPreferences
-    = preferencesManager.getInitialCustomPreferences();
-  const preferencesExtension = computed(() =>
-    preferencesManager.getPreferencesExtension(),
-  );
   /** Computes preference changes from the initial snapshot. */
   const diffPreference = computed(() => {
     return diff(initialPreferences, preferences);
-  });
-
-  const diffCustomPreference = computed(() => {
-    return diff(initialCustomPreferences, customPreferences);
   });
 
   const appPreferences = computed(() => preferences.app);
@@ -215,9 +205,7 @@ function usePreferences() {
     authPanelLeft,
     authPanelRight,
     contentIsMaximize,
-    customPreferences,
     diffPreference,
-    diffCustomPreference,
     globalEscapeShortcutKey,
     globalLockScreenShortcutKey,
     globalLogoutShortcutKey,
@@ -236,7 +224,6 @@ function usePreferences() {
     keepAlive,
     layout,
     locale,
-    preferencesExtension,
     preferencesButtonPosition,
     sidebarCollapsed,
     theme,

@@ -47,7 +47,7 @@ watchDebounced(draft, (value) => {
           />
           <PSelect
             :model-value="params.pageSize"
-            :items="PAGE_SIZES.map((size) => ({ label: `${size} / page`, value: size }))"
+            :items="PAGE_SIZES.map((size) => ({ label: `${size} / page`, value: size as number }))"
             aria-label="Page size"
             @update:model-value="setParams({ pageSize: Number($event) })"
           />

@@ -31,7 +31,6 @@ export function useTabsDrag(props: TabsProps, emit: EmitType) {
 
     async function resetElState() {
       el.style.cursor = 'default';
-      // el.classList.remove('dragging');
       el.querySelector('.draggable')?.classList.remove('dragging');
     }
 

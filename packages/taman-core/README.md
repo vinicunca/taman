@@ -30,7 +30,7 @@ With `skipLibCheck: false`, dependencies' own type declarations also need
 | `@vinicunca/taman-core/global-state` | `globalShareState` for components and message handlers shared across packages |
 | `@vinicunca/taman-core/typings` | Menu, tab, layout and route types; `RouteMeta` augmentation for `vue-router` |
 | `@vinicunca/taman-core/composables` | Layout, scroll lock, breakpoints, sortable and locale composables |
-| `@vinicunca/taman-core/preferences` | `initPreferences`, `usePreferences`, `defineOverridesPreferences`, `definePreferencesExtension` |
+| `@vinicunca/taman-core/preferences` | `initPreferences`, `usePreferences`, `defineOverridesPreferences` |
 
 Importing `@vinicunca/taman-core/typings` (or listing it in
 `compilerOptions.types`) also augments `vue-router`'s `RouteMeta` with the

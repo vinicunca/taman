@@ -112,7 +112,9 @@ afterAll(() => {
 });
 
 it('form codec performance', async ({ bench }) => {
-  await it.compare(
+  // `bench` here is the Vitest 5 test-context API, not a test alias.
+  // eslint-disable-next-line test/consistent-test-it
+  await bench.compare(
     bench(
       'encode 100 nested rows without isolation',
       () => {
@@ -136,7 +138,9 @@ it('form codec performance', async ({ bench }) => {
 });
 
 it('form array performance', async ({ bench }) => {
-  await it.compare(
+  // `bench` here is the Vitest 5 test-context API, not a test alias.
+  // eslint-disable-next-line test/consistent-test-it
+  await bench.compare(
     bench(
       'edit one field in a 100-row array',
       async () => {

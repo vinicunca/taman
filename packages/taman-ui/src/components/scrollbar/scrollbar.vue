@@ -59,16 +59,11 @@ const showShadowBottom = computed(() => props.shadow && props.shadowBottom);
 const showShadowLeft = computed(() => props.shadow && props.shadowLeft);
 const showShadowRight = computed(() => props.shadow && props.shadowRight);
 
-const computedShadowClasses = computed(() => {
-  return {
-    'both-shadow':
-      !isAtLeft.value
-      && !isAtRight.value
-      && showShadowLeft.value
-      && showShadowRight.value,
-    'left-shadow': !isAtLeft.value && showShadowLeft.value,
-    'right-shadow': !isAtRight.value && showShadowRight.value,
-  };
+const hasBothShadow = computed(() => {
+  return !isAtLeft.value
+    && !isAtRight.value
+    && showShadowLeft.value
+    && showShadowRight.value;
 });
 
 function handleScroll(event: Event) {
@@ -99,8 +94,16 @@ function handleScroll(event: Event) {
 
 <template>
   <AScrollArea
-    :class="[props.class, computedShadowClasses]"
+    :class="[
+      props.class,
+      {
+        'mask-linear-[90deg,transparent,#000_32px,#000_calc(100%-32px),transparent_100%]': hasBothShadow,
+        'not-[[data-both-shadow]]:mask-linear-[90deg,transparent,#000_32px]': !isAtLeft && showShadowLeft,
+        'not-[[data-both-shadow]]:mask-linear-[90deg,transparent,#000_32px,#000_calc(100%-32px),transparent_100%]': !isAtRight && showShadowRight,
+      },
+    ]"
     class="taman-scrollbar relative"
+    :data-both-shadow="hasBothShadow || undefined"
     :on-scroll="handleScroll"
   >
     <div
@@ -110,7 +113,7 @@ function handleScroll(event: Event) {
         'opacity-0': isAtTop,
         'border-border border-t': shadowBorder && !isAtTop,
       }"
-      class="scrollbar-top-shadow will-change-[opacity] h-12 w-full pointer-events-none transition-opacity-300 ease-in-out top-0 absolute z-10"
+      class="will-change-[opacity] h-12 w-full pointer-events-none transition-opacity-300 ease-in-out top-0 absolute z-10 from-background-sidebar to-transparent bg-gradient-to-b"
     />
 
     <slot />

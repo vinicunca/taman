@@ -1,5 +1,5 @@
 import type { DeepPartial } from '@vinicunca/perkakas';
-import type { CustomPreferencesRecord, Preferences, PreferencesExtension } from './types';
+import type { Preferences } from './types';
 
 /**
  * Typed helper for an app's preference overrides; only the values an app
@@ -10,14 +10,4 @@ function defineOverridesPreferences(preferences: DeepPartial<Preferences>): Deep
   return preferences;
 }
 
-/**
- * Typed helper for an app's custom preferences tab.
- * @param extension The extension definition.
- */
-function definePreferencesExtension<
-  TCustomPreferences extends object = CustomPreferencesRecord,
->(extension: PreferencesExtension<TCustomPreferences>): PreferencesExtension<TCustomPreferences> {
-  return extension;
-}
-
-export { defineOverridesPreferences, definePreferencesExtension };
+export { defineOverridesPreferences };

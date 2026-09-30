@@ -65,7 +65,7 @@ export const defaultPreferences: Preferences = {
     logoMode: 'icon',
   },
   navigation: {
-    accordion: true,
+    accordion: false,
     split: true,
     styleType: 'rounded',
   },
