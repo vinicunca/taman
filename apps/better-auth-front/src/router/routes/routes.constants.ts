@@ -1,6 +1,5 @@
 export const ROUTE_ORDER = {
   DASHBOARD: 100,
-  TALENT: 101,
   DEMOS: 901,
   EXAMPLES: 902,
   SYSTEM: 903,

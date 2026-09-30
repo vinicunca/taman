@@ -12,9 +12,6 @@ const adminAc = createAccessControl(statement);
 
 const adminRole = adminAc.newRole({
   ...defaultAdminAc.statements,
-  talent: ['create', 'update', 'delete', 'manage'],
-  eventCredit: ['create', 'delete', 'read'],
-  bookingTalent: ['create', 'update', 'delete', 'read'],
   todo: ['create', 'read', 'update', 'delete'],
 });
 

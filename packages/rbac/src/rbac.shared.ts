@@ -4,18 +4,13 @@
  *
  * `as const` matters: better-auth infers the allowed action names from these
  * literal tuples, so widening them to `string[]` silently turns every
- * `authorize({ talent: [...] })` call into an unchecked one.
+ * `authorize({ todo: [...] })` call into an unchecked one.
  *
- * On `manage` — role statements answer "may this role do X", and cannot
- * express "the row belongs to you". So `update` means *edit a talent you are
- * linked to*, while `manage` means *act on any talent in scope*, and is also
- * what permits reassigning a talent's owner. The ownership half of that rule
- * stays an explicit check in `TalentService`; only the role half lives here.
+ * Role statements answer "may this role do X" and cannot express "the row
+ * belongs to you". Ownership rules stay explicit checks in the calling
+ * service; only the role half lives here.
  */
 export const sharedStatements = {
-  talent: ['create', 'update', 'delete', 'manage'],
-  eventCredit: ['create', 'delete', 'read'],
-  bookingTalent: ['create', 'update', 'delete', 'read'],
   todo: ['create', 'read', 'update', 'delete'],
 } as const;
 

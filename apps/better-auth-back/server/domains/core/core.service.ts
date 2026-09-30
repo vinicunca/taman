@@ -33,7 +33,7 @@ export class CoreService {
    * omission.
    *
    * Answers "may this role do X" and nothing else. Row-level questions (is
-   * this talent linked to me, is it inside my organization) cannot be
+   * this row mine, is it inside my organization) cannot be
    * expressed as role statements; they stay in the calling service and in the
    * repo's scope filter.
    */
