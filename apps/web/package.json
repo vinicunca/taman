@@ -1,0 +1,62 @@
+{
+  "name": "@taman/web",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "imports": {
+    "#/*": "./src/*"
+  },
+  "scripts": {
+    "build": "pnpm vite build --mode production",
+    "build:analyze": "pnpm vite build --mode analyze",
+    "dev": "pnpm vite --mode development",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit --skipLibCheck",
+    "test:e2e": "playwright test",
+    "test:e2e-ui": "playwright test --ui",
+    "test:e2e-codegen": "playwright codegen"
+  },
+  "dependencies": {
+    "@formkit/auto-animate": "catalog:",
+    "@internationalized/date": "catalog:",
+    "@internationalized/number": "catalog:",
+    "@taman/access": "workspace:*",
+    "@taman/app-ui": "workspace:*",
+    "@taman/composables": "workspace:*",
+    "@taman/constants": "workspace:*",
+    "@taman/db-pg": "workspace:*",
+    "@taman/designs": "workspace:*",
+    "@taman/layouts": "workspace:*",
+    "@taman/locales": "workspace:*",
+    "@taman/rbac": "workspace:*",
+    "@taman/stores": "workspace:*",
+    "@taman/types": "workspace:*",
+    "@taman/utils": "workspace:*",
+    "@tanstack/vue-query": "catalog:",
+    "@vinicunca/perkakas": "catalog:",
+    "@vinicunca/request": "workspace:*",
+    "@taman/api-contract": "workspace:*",
+    "@vinicunca/taman-core": "workspace:^",
+    "@vinicunca/taman-ui": "workspace:^",
+    "@vueuse/core": "catalog:",
+    "ag-grid-community": "catalog:",
+    "ag-grid-vue3": "catalog:",
+    "better-auth": "catalog:",
+    "json-bigint": "catalog:",
+    "ofetch": "catalog:",
+    "pinia": "catalog:",
+    "pohon-ui": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:"
+  },
+  "devDependencies": {
+    "@playwright/test": "catalog:",
+    "@tanstack/vue-query-devtools": "catalog:",
+    "@types/json-bigint": "catalog:",
+    "@vinicunca/vite-config": "workspace:*",
+    "add": "catalog:",
+    "pnpm": "catalog:",
+    "unocss": "catalog:",
+    "vite": "catalog:"
+  }
+}

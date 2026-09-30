@@ -3,6 +3,6 @@
  * the unocss extension in vscode or it's family.
  */
 
-import tamanUnoConfig from './apps/better-auth-front/uno.config';
+import tamanUnoConfig from './apps/web/uno.config';
 
 export default tamanUnoConfig;

@@ -1,0 +1,47 @@
+{
+  "name": "api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/api",
+  "projectType": "application",
+  "targets": {
+    "dev": {
+      "command": "nitro dev",
+      "options": {
+        "cwd": "apps/api",
+        "env": {
+          "NODE_OPTIONS": "--no-deprecation"
+        }
+      },
+      "cache": false
+    },
+
+    "build": {
+      "command": "nitro build",
+      "options": {
+        "cwd": "apps/api"
+      },
+      "cache": false
+    },
+
+    "seed": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bun run ./scripts/seed-admin.ts",
+        "cwd": "apps/api",
+        "envFile": "apps/api/.env"
+      },
+      "cache": false
+    },
+
+    "seed:todos": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx ./scripts/seed-todos.ts",
+        "cwd": "apps/api",
+        "envFile": "apps/api/.env"
+      },
+      "cache": false
+    }
+  },
+  "tags": []
+}

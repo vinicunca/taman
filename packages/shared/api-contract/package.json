@@ -1,5 +1,5 @@
 {
-  "name": "@vinicunca/taman-api-contract",
+  "name": "@taman/api-contract",
   "type": "module",
   "version": "0.1.0",
   "private": true,

@@ -30,7 +30,7 @@ cat > "$consumer/tsconfig.json" <<'JSON'
 { "compilerOptions": { "target": "ES2022", "module": "ESNext", "moduleResolution": "Bundler", "strict": true, "noEmit": true, "skipLibCheck": false, "lib": ["ES2022", "DOM", "DOM.Iterable"], "types": [] }, "include": ["index.ts"] }
 JSON
 cat > "$consumer/index.ts" <<'TS'
-import type { TamanContract, TamanOutputs } from '@vinicunca/taman-api-contract';
+import type { TamanContract, TamanOutputs } from '@taman/api-contract';
 import { createRpcClient, isDefinedError, safe, type ContractClient } from '@vinicunca/request/orpc';
 import { createRpcQueryUtils } from '@vinicunca/request/orpc-query';
 
