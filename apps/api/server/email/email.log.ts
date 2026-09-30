@@ -1,9 +1,10 @@
+/** `john.doe@example.com` → `j***@example.com`. Keeps logs useful without full addresses. */
 export function maskEmail(email: string): string {
-  const [local = '', domain = ''] = email.split('@');
-  if (!domain) {
+  const at = email.lastIndexOf('@');
+  if (at < 1 || at === email.length - 1) {
     return '***';
   }
-  return `${local.slice(0, 1)}***@${domain}`;
+  return `${email[0]}***${email.slice(at)}`;
 }
 
 export function logDeliveryError(template: string, to: string, error: unknown): void {
