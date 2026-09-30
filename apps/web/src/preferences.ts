@@ -10,6 +10,8 @@ import {
 export const overridesPreferences = defineOverridesPreferences({
   // overrides
   app: {
+    // Land on the reference feature; the published default `/dashboard` has no page here.
+    defaultHomePath: '/todos/manage',
     name: import.meta.env.VITE_APP_TITLE,
   },
 });

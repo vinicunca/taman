@@ -37,10 +37,7 @@
     "title": "oRPC",
     "plainCrud": "Plain · CRUD",
     "plainPagination": "Plain · Pagination",
-    "plainLive": "Plain · Realtime",
-    "queryCrud": "Vue Query · CRUD",
-    "queryPagination": "Vue Query · Pagination",
-    "queryLive": "Vue Query · Realtime"
+    "plainLive": "Plain · Realtime"
   },
   "http": {
     "title": "HTTP client",

@@ -1,6 +1,6 @@
 /**
- * Seeds ~100 todos into one organization so the pagination and realtime
- * examples have data.
+ * Seeds ~100 todos into one organization so the todo pages (pagination,
+ * realtime) have data.
  *
  * Usage (from repo root):
  *   nx run api:seed:todos

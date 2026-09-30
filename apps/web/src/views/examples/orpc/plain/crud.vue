@@ -2,8 +2,8 @@
 import type { Todo } from '@taman/api-contract';
 import { AppCard, AppPage, tamanConfirm } from '@taman/app-ui';
 import { ref } from 'vue';
-import TodoForm from '../shared/todo-form.vue';
-import TodoTable from '../shared/todo-table.vue';
+import TodoForm from '#/views/todo/shared/todo-form.vue';
+import TodoTable from '#/views/todo/shared/todo-table.vue';
 import { useTodosPlain } from './use-todos-plain';
 
 const { data, isLoading, create, update, remove } = useTodosPlain({ page: 1, pageSize: 10 });

@@ -2,7 +2,7 @@ import type { LocationQuery, LocationQueryValue } from 'vue-router';
 
 // Reused as-is from the oRPC todo example: after a delete, snap a
 // past-the-end page back to the last one — the same behavior applies here.
-export { clampPage } from '../../orpc/shared/todo-list-params';
+export { clampPage } from '#/views/todo/shared/todo-list-params';
 
 export const PAGE_SIZES = [10, 20, 50] as const;
 const DEFAULT_PAGE_SIZE = PAGE_SIZES[0];

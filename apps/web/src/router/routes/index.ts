@@ -3,6 +3,11 @@ import type { RouteRecordRaw } from 'vue-router';
 import { mergeRouteModules } from '@taman/utils';
 import { coreRoutes } from './core';
 
+/** Feature routes: every `./modules/*.ts` file (not nested folders). */
+const routeModuleFiles = import.meta.glob('./modules/*.ts', {
+  eager: true,
+});
+
 const devRouteFiles = import.meta.glob('./modules/dev/**/*.ts', {
   eager: true,
 });
@@ -13,6 +18,8 @@ const devRouteFiles = import.meta.glob('./modules/dev/**/*.ts', {
  * These routes only available for admin users for development purposes.
  */
 const devRoutes: Array<RouteRecordRaw> = mergeRouteModules(devRouteFiles);
+
+const moduleRoutes: Array<RouteRecordRaw> = mergeRouteModules(routeModuleFiles);
 
 /** External routes (no layout; for embedding; hidden from menu) */
 // const externalRoutes: RouteRecordRaw[] = mergeRouteModules(externalRouteFiles);
@@ -28,6 +35,7 @@ const routes: Array<RouteRecordRaw> = [
 
 /** Routes subject to permission checks (dynamic + static) */
 const accessRoutes = [
+  ...moduleRoutes,
   ...devRoutes,
   ...staticRoutes,
 ];

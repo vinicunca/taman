@@ -1,5 +1,5 @@
 import type { MaybeRefOrGetter } from 'vue';
-import type { TodoListParams } from '../shared/todo-list-params';
+import type { TodoListParams } from './shared/todo-list-params';
 import { useTamanToast } from '@taman/app-ui';
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/vue-query';
 import { isDefinedError } from '@vinicunca/request/orpc';

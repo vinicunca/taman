@@ -4,7 +4,7 @@ import { organizationTable, userTable } from './auth.schema';
 import { generateTimestampColumns } from './utils/utils.timestamps.schema';
 
 /**
- * Example resource for the oRPC CRUD / pagination / realtime demos.
+ * Reference resource: the pattern every new feature copies (CRUD, pagination, realtime).
  * Rows are always read and written within one organization.
  */
 const todoTable = pgTable(

@@ -1,6 +1,6 @@
 import type { TamanInputs, Todo, TodoPage } from '@taman/api-contract';
 import type { MaybeRefOrGetter } from 'vue';
-import type { TodoListParams } from '../shared/todo-list-params';
+import type { TodoListParams } from '#/views/todo/shared/todo-list-params';
 import { useTamanToast } from '@taman/app-ui';
 import { isDefinedError, safe } from '@vinicunca/request/orpc';
 import { ref, shallowRef, toValue, watch } from 'vue';
