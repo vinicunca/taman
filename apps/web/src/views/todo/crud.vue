@@ -2,6 +2,7 @@
 import type { Todo } from '@taman/api-contract';
 import { AppCard, AppPage, tamanConfirm } from '@taman/app-ui';
 import { ref } from 'vue';
+import { $t } from '#/locales';
 import TodoForm from './shared/todo-form.vue';
 import TodoTable from './shared/todo-table.vue';
 import { useTodosQuery } from './use-todos-query';
@@ -28,7 +29,7 @@ function onUpdate(values: { title: string; completed: boolean }) {
 
 async function onRemove(todo: Todo) {
   try {
-    await tamanConfirm({ title: 'Delete todo', content: `Delete "${todo.title}"?` });
+    await tamanConfirm({ title: $t('todo.remove.title'), content: $t('todo.remove.confirm', { title: todo.title }) });
   } catch {
     return;
   }
@@ -38,17 +39,17 @@ async function onRemove(todo: Todo) {
 
 <template>
   <AppPage
-    title="oRPC · Vue Query · CRUD"
-    description="`useQuery(orpc.todo.list.queryOptions(...))` + `useMutation(orpc.todo.*.mutationOptions())`, invalidating `orpc.todo.key()`."
+    :title="$t('todo.manage')"
+    :description="$t('todo.page.manageDescription')"
   >
     <div class="gap-4 grid lg:grid-cols-[22rem_1fr]">
-      <AppCard :title="editing ? 'Edit todo' : 'New todo'">
+      <AppCard :title="editing ? $t('todo.card.edit') : $t('todo.card.new')">
         <TodoForm
           v-if="editing"
           :key="editing.id"
           :initial="{ title: editing.title, completed: editing.completed }"
           :submitting="update.isPending.value"
-          submit-label="Update"
+          :submit-label="$t('todo.action.update')"
           @submit="onUpdate"
           @cancel="editing = undefined"
         />
@@ -56,11 +57,11 @@ async function onRemove(todo: Todo) {
           v-else
           ref="createForm"
           :submitting="create.isPending.value"
-          submit-label="Create"
+          :submit-label="$t('todo.action.create')"
           @submit="onCreate"
         />
       </AppCard>
-      <AppCard title="Latest 10">
+      <AppCard :title="$t('todo.card.latest')">
         <TodoTable
           :todos="list.data.value?.items ?? []"
           :loading="list.isFetching.value"

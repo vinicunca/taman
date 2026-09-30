@@ -2,5 +2,67 @@
   "title": "Todos",
   "manage": "Manage",
   "list": "Browse",
-  "live": "Realtime"
+  "live": "Realtime",
+  "page": {
+    "manageDescription": "Create, edit and delete your organization's todos.",
+    "listDescription": "Search, filter and page through every todo.",
+    "liveDescription": "Changes made in other tabs or by teammates appear here as they happen."
+  },
+  "card": {
+    "new": "New todo",
+    "edit": "Edit todo",
+    "latest": "Latest 10",
+    "todos": "Todos",
+    "activity": "Activity"
+  },
+  "field": {
+    "title": "Title",
+    "titlePlaceholder": "What needs doing?",
+    "completed": "Completed"
+  },
+  "action": {
+    "create": "Create",
+    "update": "Update",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "table": {
+    "title": "Title",
+    "done": "Done",
+    "created": "Created",
+    "empty": "No todos yet.",
+    "markDone": "Mark {title} as done",
+    "markOpen": "Mark {title} as not done"
+  },
+  "filter": {
+    "search": "Search titles…",
+    "searchLabel": "Search todos",
+    "statusLabel": "Filter by status",
+    "all": "All",
+    "open": "Open",
+    "done": "Done",
+    "pageSizeLabel": "Page size",
+    "perPage": "{size} / page"
+  },
+  "pager": {
+    "total": "{total} todos",
+    "page": "Page {page} of {totalPages}"
+  },
+  "remove": {
+    "title": "Delete todo",
+    "confirm": "Delete \"{title}\"?"
+  },
+  "stream": {
+    "live": "Live",
+    "connecting": "Connecting…",
+    "disconnected": "Disconnected",
+    "waiting": "Waiting for changes — edit a todo in another tab.",
+    "created": "created \"{title}\"",
+    "updated": "updated \"{title}\"",
+    "removed": "removed {id}"
+  }
 }

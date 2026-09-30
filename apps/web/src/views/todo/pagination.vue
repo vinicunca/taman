@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { AppCard, AppPage } from '@taman/app-ui';
 import { watch } from 'vue';
+import { $t } from '#/locales';
 import TodoFilters from './shared/todo-filters.vue';
 import { clampPage, PAGE_SIZES } from './shared/todo-list-params';
 import TodoPager from './shared/todo-pager.vue';
@@ -20,8 +21,8 @@ watch(list.data, (page) => {
 
 <template>
   <AppPage
-    title="oRPC · Vue Query · pagination"
-    description="Each page is its own cache entry keyed by input; `keepPreviousData` avoids flicker between pages."
+    :title="$t('todo.list')"
+    :description="$t('todo.page.listDescription')"
   >
     <AppCard>
       <div class="flex flex-col gap-4">
@@ -34,8 +35,8 @@ watch(list.data, (page) => {
           />
           <PSelect
             :model-value="params.pageSize"
-            :items="PAGE_SIZES.map((size) => ({ label: `${size} / page`, value: size as number }))"
-            aria-label="Page size"
+            :items="PAGE_SIZES.map((size) => ({ label: $t('todo.filter.perPage', { size }), value: size as number }))"
+            :aria-label="$t('todo.filter.pageSizeLabel')"
             @update:model-value="setParams({ pageSize: Number($event) })"
           />
         </div>

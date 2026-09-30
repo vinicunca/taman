@@ -2,5 +2,67 @@
   "title": "Tugas",
   "manage": "Kelola",
   "list": "Telusuri",
-  "live": "Realtime"
+  "live": "Realtime",
+  "page": {
+    "manageDescription": "Buat, ubah, dan hapus tugas organisasi Anda.",
+    "listDescription": "Cari, saring, dan telusuri semua tugas per halaman.",
+    "liveDescription": "Perubahan dari tab lain atau rekan tim muncul di sini secara langsung."
+  },
+  "card": {
+    "new": "Tugas baru",
+    "edit": "Ubah tugas",
+    "latest": "10 terbaru",
+    "todos": "Tugas",
+    "activity": "Aktivitas"
+  },
+  "field": {
+    "title": "Judul",
+    "titlePlaceholder": "Apa yang perlu dikerjakan?",
+    "completed": "Selesai"
+  },
+  "action": {
+    "create": "Buat",
+    "update": "Perbarui",
+    "save": "Simpan",
+    "cancel": "Batal",
+    "edit": "Ubah",
+    "delete": "Hapus",
+    "previous": "Sebelumnya",
+    "next": "Berikutnya"
+  },
+  "table": {
+    "title": "Judul",
+    "done": "Selesai",
+    "created": "Dibuat",
+    "empty": "Belum ada tugas.",
+    "markDone": "Tandai {title} selesai",
+    "markOpen": "Tandai {title} belum selesai"
+  },
+  "filter": {
+    "search": "Cari judul…",
+    "searchLabel": "Cari tugas",
+    "statusLabel": "Saring menurut status",
+    "all": "Semua",
+    "open": "Belum selesai",
+    "done": "Selesai",
+    "pageSizeLabel": "Jumlah per halaman",
+    "perPage": "{size} / halaman"
+  },
+  "pager": {
+    "total": "{total} tugas",
+    "page": "Halaman {page} dari {totalPages}"
+  },
+  "remove": {
+    "title": "Hapus tugas",
+    "confirm": "Hapus \"{title}\"?"
+  },
+  "stream": {
+    "live": "Langsung",
+    "connecting": "Menghubungkan…",
+    "disconnected": "Terputus",
+    "waiting": "Menunggu perubahan — ubah tugas di tab lain.",
+    "created": "membuat \"{title}\"",
+    "updated": "memperbarui \"{title}\"",
+    "removed": "menghapus {id}"
+  }
 }

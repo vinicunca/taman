@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Todo } from '@taman/api-contract';
+import { $t } from '#/locales';
 
 withDefaults(defineProps<{
   todos: Array<Todo>;
@@ -29,13 +30,13 @@ const dateFormat = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', tim
       <thead>
         <tr class="border-default text-left border-b">
           <th class="font-medium px-2 py-2">
-            Title
+            {{ $t('todo.table.title') }}
           </th>
           <th class="font-medium px-2 py-2">
-            Done
+            {{ $t('todo.table.done') }}
           </th>
           <th class="font-medium px-2 py-2">
-            Created
+            {{ $t('todo.table.created') }}
           </th>
           <th
             v-if="actions"
@@ -59,7 +60,7 @@ const dateFormat = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', tim
             <PCheckbox
               :model-value="todo.completed"
               :disabled="!actions"
-              :aria-label="`Mark ${todo.title} as ${todo.completed ? 'not done' : 'done'}`"
+              :aria-label="$t(todo.completed ? 'todo.table.markOpen' : 'todo.table.markDone', { title: todo.title })"
               @update:model-value="emit('toggle', todo)"
             />
           </td>
@@ -75,7 +76,7 @@ const dateFormat = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', tim
               variant="ghost"
               @click="emit('edit', todo)"
             >
-              Edit
+              {{ $t('todo.action.edit') }}
             </PButton>
             <PButton
               size="xs"
@@ -83,7 +84,7 @@ const dateFormat = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', tim
               variant="ghost"
               @click="emit('remove', todo)"
             >
-              Delete
+              {{ $t('todo.action.delete') }}
             </PButton>
           </td>
         </tr>
@@ -92,7 +93,7 @@ const dateFormat = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', tim
             class="text-muted px-2 py-6 text-center"
             :colspan="actions ? 4 : 3"
           >
-            No todos yet.
+            {{ $t('todo.table.empty') }}
           </td>
         </tr>
       </tbody>

@@ -2,6 +2,7 @@
 import { todoCreateInput } from '@taman/api-contract';
 import { watch } from 'vue';
 import { useTamanForm, z } from '#/adapter/form';
+import { $t } from '#/locales';
 
 const props = withDefaults(defineProps<{
   initial?: { title: string; completed: boolean };
@@ -10,7 +11,7 @@ const props = withDefaults(defineProps<{
 }>(), {
   initial: undefined,
   submitting: false,
-  submitLabel: 'Save',
+  submitLabel: () => $t('todo.action.save'),
 });
 
 const emit = defineEmits<{
@@ -28,15 +29,15 @@ const [Form, formApi] = useTamanForm({
     {
       component: 'Input',
       fieldName: 'title',
-      label: 'Title',
-      componentProps: { placeholder: 'What needs doing?' },
+      label: $t('todo.field.title'),
+      componentProps: { placeholder: $t('todo.field.titlePlaceholder') },
       // Same zod rule the server enforces, straight from the published contract.
       rules: todoCreateInput.shape.title,
     },
     {
       component: 'Switch',
       fieldName: 'completed',
-      label: 'Completed',
+      label: $t('todo.field.completed'),
       defaultValue: false,
       rules: z.boolean().optional(),
     },
@@ -67,7 +68,7 @@ defineExpose({ reset: () => formApi.reset() });
         variant="ghost"
         @click="emit('cancel')"
       >
-        Cancel
+        {{ $t('todo.action.cancel') }}
       </PButton>
       <PButton
         :loading="submitting"

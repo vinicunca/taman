@@ -1,17 +1,20 @@
 <script setup lang="ts">
 import type { TodoLogEntry } from './use-todo-live';
+import { $t } from '#/locales';
 
 defineProps<{
   entries: Array<TodoLogEntry>;
   status: 'closed' | 'connecting' | 'error' | 'open';
 }>();
 
-const STATUS_LABEL = { closed: 'Disconnected', connecting: 'Connecting…', error: 'Disconnected', open: 'Live' } as const;
+const STATUS_KEY = { closed: 'todo.stream.disconnected', connecting: 'todo.stream.connecting', error: 'todo.stream.disconnected', open: 'todo.stream.live' } as const;
 const timeFormat = new Intl.DateTimeFormat(undefined, { timeStyle: 'medium' });
 
 function describe(entry: TodoLogEntry): string {
   const { event } = entry;
-  return event.type === 'removed' ? `removed ${event.id.slice(-6)}` : `${event.type} "${event.todo.title}"`;
+  return event.type === 'removed'
+    ? $t('todo.stream.removed', { id: event.id.slice(-6) })
+    : $t(`todo.stream.${event.type}`, { title: event.todo.title });
 }
 </script>
 
@@ -25,7 +28,7 @@ function describe(entry: TodoLogEntry): string {
         class="rounded-full size-2"
         :class="{ 'bg-success': status === 'open', 'bg-warning': status === 'connecting', 'bg-error': status === 'error' || status === 'closed' }"
       />
-      {{ STATUS_LABEL[status] }}
+      {{ $t(STATUS_KEY[status]) }}
     </div>
     <ol class="text-sm flex flex-col gap-1">
       <li
@@ -40,7 +43,7 @@ function describe(entry: TodoLogEntry): string {
         v-if="entries.length === 0"
         class="text-muted"
       >
-        Waiting for changes — edit a todo in another tab.
+        {{ $t('todo.stream.waiting') }}
       </li>
     </ol>
   </div>

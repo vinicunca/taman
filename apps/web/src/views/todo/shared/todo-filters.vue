@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { watchDebounced } from '@vueuse/core';
 import { ref, watch } from 'vue';
+import { $t } from '#/locales';
 
 const props = defineProps<{
   search?: string;
@@ -25,9 +26,9 @@ watchDebounced(draft, (value) => {
 }, { debounce: 300 });
 
 const STATUS_OPTIONS: Array<{ label: string; value: boolean | undefined }> = [
-  { label: 'All', value: undefined },
-  { label: 'Open', value: false },
-  { label: 'Done', value: true },
+  { label: $t('todo.filter.all'), value: undefined },
+  { label: $t('todo.filter.open'), value: false },
+  { label: $t('todo.filter.done'), value: true },
 ];
 </script>
 
@@ -36,13 +37,13 @@ const STATUS_OPTIONS: Array<{ label: string; value: boolean | undefined }> = [
     <PInput
       v-model="draft"
       class="w-64"
-      placeholder="Search titles…"
-      aria-label="Search todos"
+      :placeholder="$t('todo.filter.search')"
+      :aria-label="$t('todo.filter.searchLabel')"
     />
     <div
       class="flex gap-1"
       role="group"
-      aria-label="Filter by status"
+      :aria-label="$t('todo.filter.statusLabel')"
     >
       <PButton
         v-for="option in STATUS_OPTIONS"

@@ -3,6 +3,7 @@ import { AppCard, AppPage } from '@taman/app-ui';
 import { useQueryClient } from '@tanstack/vue-query';
 import { watch } from 'vue';
 import { orpc } from '#/api/orpc';
+import { $t } from '#/locales';
 import { applyTodoEvent } from './apply-todo-event';
 import TodoEventLog from './shared/todo-event-log.vue';
 import { clampPage } from './shared/todo-list-params';
@@ -27,11 +28,11 @@ watch(list.data, (page) => {
 
 <template>
   <AppPage
-    title="oRPC · Vue Query · realtime"
-    description="Stream events patch the vue-query cache — keep this tab open and edit todos from the CRUD page in another tab."
+    :title="$t('todo.live')"
+    :description="$t('todo.page.liveDescription')"
   >
     <div class="gap-4 grid lg:grid-cols-[1fr_20rem]">
-      <AppCard title="Todos">
+      <AppCard :title="$t('todo.card.todos')">
         <div class="flex flex-col gap-4">
           <TodoTable
             :todos="list.data.value?.items ?? []"
@@ -46,7 +47,7 @@ watch(list.data, (page) => {
           />
         </div>
       </AppCard>
-      <AppCard title="Event stream">
+      <AppCard :title="$t('todo.card.activity')">
         <TodoEventLog
           :entries="entries"
           :status="status"

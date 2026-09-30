@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { $t } from '#/locales';
+
 defineProps<{
   page: number;
   totalPages: number;
@@ -10,7 +12,7 @@ const emit = defineEmits<{ 'update:page': [page: number] }>();
 
 <template>
   <div class="text-sm flex gap-3 items-center justify-between">
-    <span class="text-muted">{{ total }} todos</span>
+    <span class="text-muted">{{ $t('todo.pager.total', { total }) }}</span>
     <div class="flex gap-2 items-center">
       <PButton
         size="sm"
@@ -18,16 +20,16 @@ const emit = defineEmits<{ 'update:page': [page: number] }>();
         :disabled="page <= 1"
         @click="emit('update:page', page - 1)"
       >
-        Previous
+        {{ $t('todo.action.previous') }}
       </PButton>
-      <span>Page {{ totalPages === 0 ? 0 : page }} of {{ totalPages }}</span>
+      <span>{{ $t('todo.pager.page', { page: totalPages === 0 ? 0 : page, totalPages }) }}</span>
       <PButton
         size="sm"
         variant="outline"
         :disabled="page >= totalPages"
         @click="emit('update:page', page + 1)"
       >
-        Next
+        {{ $t('todo.action.next') }}
       </PButton>
     </div>
   </div>
