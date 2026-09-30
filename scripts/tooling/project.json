@@ -5,25 +5,25 @@
   "projectType": "library",
   "targets": {
     "check-circular": {
-      "command": "bun scripts/tooling/src/check-circular.ts",
+      "command": "node scripts/tooling/src/check-circular.ts",
       "cache": false
     },
     "check-dep": {
-      "command": "bun scripts/tooling/src/check-dep.ts",
+      "command": "node scripts/tooling/src/check-dep.ts",
       "cache": false
     },
     "publint": {
-      "command": "bun scripts/tooling/src/publint.ts",
+      "command": "node scripts/tooling/src/publint.ts",
       "cache": false
     },
     "lint": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "bun scripts/tooling/src/lint.ts"
+        "command": "node scripts/tooling/src/lint.ts"
       },
       "configurations": {
         "format": {
-          "command": "bun scripts/tooling/src/lint.ts --format"
+          "command": "node scripts/tooling/src/lint.ts --format"
         }
       },
       "cache": false

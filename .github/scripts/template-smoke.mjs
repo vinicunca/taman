@@ -19,7 +19,7 @@ const root = process.cwd();
 const work = mkdtempSync(join(tmpdir(), 'template-smoke-'));
 const packs = join(work, 'packs');
 const project = join(work, 'acme-app');
-const env = { ...process.env, CI: 'true' };
+const env = { ...process.env };
 
 function run(command, args, cwd = root, options = {}) {
   console.log(`\n$ ${command} ${args.join(' ')}  (in ${relative(root, cwd) || '.'})`);
@@ -28,9 +28,9 @@ function run(command, args, cwd = root, options = {}) {
 
 function capture(command, args, cwd) {
   try {
-    return execFileSync(command, args, { cwd, encoding: 'utf8', env, stdio: ['ignore', 'pipe', 'pipe'] });
+    return { output: execFileSync(command, args, { cwd, encoding: 'utf8', env, stdio: ['ignore', 'pipe', 'pipe'] }), status: 0 };
   } catch (error) {
-    return `${error.stdout ?? ''}${error.stderr ?? ''}`;
+    return { output: `${error.stdout ?? ''}${error.stderr ?? ''}`, status: error.status ?? 1 };
   }
 }
 
@@ -68,17 +68,17 @@ const workspaceFile = join(project, 'pnpm-workspace.yaml');
 const overrides = tarballs.map(([name, file]) => `  '${name}': file:${file}`).join('\n');
 writeFileSync(workspaceFile, readFileSync(workspaceFile, 'utf8').replace(/^overrides:\n/m, `overrides:\n${overrides}\n`));
 
-// 4. Install, build (web first: it generates the types vue-tsc needs)
-run('pnpm', ['install'], project);
-run('pnpm', ['--filter', '@acme/web', 'build'], project);
-run('pnpm', ['nx', 'run', 'api:build'], project);
+// 4. Install the way a user does (not in CI, no git repo: `prepare` must
+// cope), then the root build (web first generates the types vue-tsc needs)
+run('pnpm', ['install'], project, { env: { ...env, CI: '' } });
+run('pnpm', ['build'], project);
 
 // 5. Type-check every tsconfig
 const tsconfigs = [];
 walk(project, (file) => file.endsWith('/tsconfig.json') && tsconfigs.push(file));
 const typeErrors = new Set();
 for (const tsconfig of tsconfigs) {
-  const output = capture(join(project, 'node_modules/.bin/vue-tsc'), ['--noEmit', '-p', tsconfig], project);
+  const { output } = capture(join(project, 'node_modules/.bin/vue-tsc'), ['--noEmit', '-p', tsconfig], project);
   for (const line of output.split('\n')) {
     if (line.includes('error TS')) {
       // vue-tsc prints paths relative to its cwd, which on macOS may route
@@ -90,11 +90,21 @@ for (const tsconfig of tsconfigs) {
 const unexpected = [...typeErrors].filter((line) => !KNOWN_TYPE_ERRORS.includes(line));
 const stale = KNOWN_TYPE_ERRORS.filter((line) => !typeErrors.has(line));
 
-// 6. Unit tests and lint (ts/vue only; the Markdown linter crashes on this ESLint version)
+// 6. Unit tests, then the root lint script. Only allow-listed files may
+// report problems; a crash (non-zero exit without file reports) fails.
 run('pnpm', ['test:unit'], project);
-const lintFiles = [];
-walk(project, (file) => /\.(?:ts|vue)$/.test(file) && !file.endsWith('.d.ts') && lintFiles.push(relative(project, file)));
-run(join(project, 'node_modules/.bin/eslint'), ['--no-warn-ignored', ...lintFiles.filter((file) => !LINT_SKIP.includes(file))], project);
+console.log('\n$ pnpm lint');
+const lint = capture('pnpm', ['lint'], project);
+const lintedFiles = new Set(
+  lint.output.split('\n').filter((line) => line.startsWith('/')).map((line) => line.trim().replace(/^.*?acme-app\//, '')),
+);
+const lintFailures = [];
+if (lint.status !== 0 && lintedFiles.size === 0) {
+  lintFailures.push(`pnpm lint failed without reporting a file:\n${lint.output.slice(-2000)}`);
+} else if (lint.status !== 0) {
+  lintFailures.push(...[...lintedFiles].filter((file) => !LINT_SKIP.includes(file)).map((file) => `lint: ${file}`));
+}
+const staleLint = LINT_SKIP.filter((file) => !lintedFiles.has(file));
 
 // 7. Nothing template-only may leak into the project
 const leaks = [];
@@ -116,6 +126,8 @@ walk(project, (file) => {
 });
 
 const failures = [
+  ...lintFailures,
+  ...staleLint.map((file) => `LINT_SKIP entry no longer reports problems, remove it: ${file}`),
   ...unexpected.map((line) => `type error: ${line}`),
   ...stale.map((line) => `KNOWN_TYPE_ERRORS entry no longer occurs, remove it: ${line}`),
   ...leaks,
