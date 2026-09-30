@@ -13,7 +13,9 @@ async function loadNprogress() {
   if (nProgressInstance) {
     return nProgressInstance;
   }
-  nProgressInstance = await import('nprogress');
+  // CommonJS package: Node exposes it as `default`; bundlers may also spread it.
+  const module = await import('nprogress');
+  nProgressInstance = (module as { default?: typeof NProgress }).default ?? module;
   nProgressInstance.configure({
     showSpinner: true,
     speed: 300,
