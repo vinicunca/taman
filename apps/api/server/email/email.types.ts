@@ -26,7 +26,7 @@ export type DeliverEmail = (job: EmailJob) => Promise<void>;
 export interface SendEmailBinding {
   send: (message: {
     to: string;
-    from: string | EmailAddress;
+    from: string | { email: string; name: string };
     subject: string;
     html?: string;
     text?: string;
