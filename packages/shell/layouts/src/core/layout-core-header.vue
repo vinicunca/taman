@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { useRefresh } from '@taman/composables';
-import { $t } from '@taman/locales';
-import { useAccessStore } from '@taman/stores';
 import { preferences, usePreferences } from '@vinicunca/taman-core/preferences';
 import { TamanButtonIcon, TamanFullScreen } from '@vinicunca/taman-ui';
 import { useTamanDialog } from '@vinicunca/taman-ui/popup';
 import { defineShortcuts } from 'pohon-ui/composables/defineShortcuts';
 import { computed, useSlots } from 'vue';
+import { useRefresh } from '@taman/composables';
+import { $t } from '@taman/locales';
+import { useAccessStore } from '@taman/stores';
 import {
   LayoutWidgetGlobalSearch,
   LayoutWidgetLanguageToggle,

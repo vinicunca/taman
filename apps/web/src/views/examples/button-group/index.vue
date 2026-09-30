@@ -4,6 +4,8 @@ import type {
   TamanButtonCheckGroupProps,
   TamanButtonCheckGroupValue,
 } from '@taman/app-ui';
+import { useTamanForm } from '#/adapter/form';
+import { reactive, ref } from 'vue';
 import {
   AppCard,
   AppCardAction,
@@ -11,8 +13,6 @@ import {
   TamanButtonCheckGroup,
   useTamanToast,
 } from '@taman/app-ui';
-import { reactive, ref } from 'vue';
-import { useTamanForm } from '#/adapter/form';
 
 const radioValue = ref<TamanButtonCheckGroupModel>('a');
 const checkValue = ref<TamanButtonCheckGroupModel>(['a', 'b']);

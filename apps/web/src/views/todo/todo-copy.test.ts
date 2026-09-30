@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest';
 import enTodo from '#/locales/langs/en-US/todo.json';
 import idTodo from '#/locales/langs/id-ID/todo.json';
+import { describe, expect, it } from 'vitest';
 
 const sources: Record<string, string> = {
   ...import.meta.glob<string>('./**/*.vue', { eager: true, import: 'default', query: '?raw' }),

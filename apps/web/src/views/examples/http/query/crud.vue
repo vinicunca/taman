@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Product } from '../shared/product';
-import { AppCard, AppPage, tamanConfirm } from '@taman/app-ui';
 import { ref } from 'vue';
+import { AppCard, AppPage, tamanConfirm } from '@taman/app-ui';
 import ProductForm from '../shared/product-form.vue';
 import ProductTable from '../shared/product-table.vue';
 import { useProductsQuery } from './use-products-query';

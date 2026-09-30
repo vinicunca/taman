@@ -1,5 +1,5 @@
-import type { EmailJob } from '@taman/emails';
 import type { DeliverEmail, EmailAddress, EmailSender } from './email.types.ts';
+import type { EmailJob } from '@taman/emails';
 import { EmailJobError, renderEmail } from '@taman/emails';
 
 /**

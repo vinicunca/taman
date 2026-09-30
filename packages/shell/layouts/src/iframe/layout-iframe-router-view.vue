@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import type { RouteLocationNormalized } from 'vue-router';
 
-import { useTabbarStore } from '@taman/stores';
 import { preferences } from '@vinicunca/taman-core/preferences';
 import { TamanLoading } from '@vinicunca/taman-ui';
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import { useTabbarStore } from '@taman/stores';
 
 defineOptions({ name: 'IFrameRouterView' });
 

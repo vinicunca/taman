@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import type { TamanFormSchema } from '#/adapter/form';
 
-import { AppCard, AppPage } from '@taman/app-ui';
+import { useTamanForm } from '#/adapter/form';
 import { ref } from 'vue';
 
-import { useTamanForm } from '#/adapter/form';
+import { AppCard, AppPage } from '@taman/app-ui';
 
 const isReverseActionButtons = ref(false);
 

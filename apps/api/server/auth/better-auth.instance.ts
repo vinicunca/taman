@@ -1,3 +1,15 @@
+import { resolveActiveOrganizationId } from '#auth/auth.active-organization.ts';
+import { emailLocale, invitationEmailJob, resetPasswordEmailJob, verifyEmailJob } from '#auth/auth.emails.ts';
+import { useEmail } from '#email/index.ts';
+import { resolveTrustedOrigins } from '#lib/cors.ts';
+import { betterAuth } from 'better-auth';
+import { drizzleAdapter } from 'better-auth/adapters/drizzle';
+import {
+  admin as adminPlugin,
+  organization as organizationPlugin,
+} from 'better-auth/plugins';
+import { useRuntimeConfig } from 'nitro/runtime-config';
+import { v7 as uuidv7 } from 'uuid';
 import {
   accountTable,
   getDrizzleClient,
@@ -11,18 +23,6 @@ import {
   verificationTable,
 } from '@taman/db-pg';
 import { adminAc, adminRoles, organizationAc, organizationRoles } from '@taman/rbac';
-import { betterAuth } from 'better-auth';
-import { drizzleAdapter } from 'better-auth/adapters/drizzle';
-import {
-  admin as adminPlugin,
-  organization as organizationPlugin,
-} from 'better-auth/plugins';
-import { useRuntimeConfig } from 'nitro/runtime-config';
-import { v7 as uuidv7 } from 'uuid';
-import { resolveActiveOrganizationId } from '#auth/auth.active-organization.ts';
-import { emailLocale, invitationEmailJob, resetPasswordEmailJob, verifyEmailJob } from '#auth/auth.emails.ts';
-import { useEmail } from '#email/index.ts';
-import { resolveTrustedOrigins } from '#lib/cors.ts';
 
 export type DirectorAuth = ReturnType<typeof createBetterAuth>;
 export type DirectorAuthPayload = DirectorAuth['$Infer']['Session'];

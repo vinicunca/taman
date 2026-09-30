@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { presetCore } from '@taman/designs';
 import { defineConfig } from 'unocss';
+import { presetCore } from '@taman/designs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

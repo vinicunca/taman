@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { AppCard, AppPage, useTamanToast } from '@taman/app-ui';
 import { errorMessageInterceptor } from '@vinicunca/request/http';
 import { onUnmounted, ref } from 'vue';
+import { AppCard, AppPage, useTamanToast } from '@taman/app-ui';
 import { createAuthDemo } from '../shared/auth-demo';
 import HttpEventLog from '../shared/http-event-log.vue';
 

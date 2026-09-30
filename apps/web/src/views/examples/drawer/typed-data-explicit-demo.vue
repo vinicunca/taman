@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { ExplicitDrawerData } from './typed-data-contract';
 
-import { useTamanDrawer } from '@taman/app-ui';
 import { ref } from 'vue';
+import { useTamanDrawer } from '@taman/app-ui';
 
 const data = ref<ExplicitDrawerData>();
 

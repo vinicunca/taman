@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { DummyUser } from '../shared/auth-demo';
-import { AppCard, AppPage, useTamanToast } from '@taman/app-ui';
 import { useQuery, useQueryClient } from '@tanstack/vue-query';
 import { errorMessageInterceptor } from '@vinicunca/request/http';
 import { createHttpQueryUtils } from '@vinicunca/request/http-query';
 import { computed, onUnmounted, ref, watch } from 'vue';
+import { AppCard, AppPage, useTamanToast } from '@taman/app-ui';
 import { createAuthDemo } from '../shared/auth-demo';
 import HttpEventLog from '../shared/http-event-log.vue';
 

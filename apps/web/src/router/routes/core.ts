@@ -1,9 +1,9 @@
 import type { RouteRecordRaw } from 'vue-router';
 
-import { LOGIN_PATH } from '@taman/constants';
+import { $t } from '#/locales';
 import { preferences } from '@vinicunca/taman-core/preferences';
 
-import { $t } from '#/locales';
+import { LOGIN_PATH } from '@taman/constants';
 
 const CoreLayout = () => import('#/layouts/core.vue');
 const AuthPageLayout = () => import('#/layouts/auth.vue');

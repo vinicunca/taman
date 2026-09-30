@@ -1,6 +1,6 @@
-import { defineHandler } from 'nitro';
 import { useBetterAuth } from '#auth';
 import { applyCorsToResponse } from '#lib/cors';
+import { defineHandler } from 'nitro';
 
 export default defineHandler(async (event) => {
   const auth = useBetterAuth();

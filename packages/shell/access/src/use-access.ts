@@ -1,8 +1,8 @@
 import type { MaybeRefOrGetter } from 'vue';
 
-import { useAccessStore } from '@taman/stores';
 import { preferences, updatePreferences } from '@vinicunca/taman-core/preferences';
 import { computed, inject, toValue } from 'vue';
+import { useAccessStore } from '@taman/stores';
 
 import { ACCESS_ROLES_KEY } from './directive';
 import { matchesAnyRole } from './matches-any-role';

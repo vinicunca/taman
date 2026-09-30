@@ -2,12 +2,12 @@
 import type { FormBaseComponentType, TamanFormProps, TamanFormSchema } from '@vinicunca/taman-ui/form';
 import type { ButtonProps } from 'pohon-ui';
 import type { AuthLoginValues } from './auth.types';
-import { $t } from '@taman/locales';
 import { TamanAuthForm } from '@vinicunca/taman-ui';
 import { useTamanForm } from '@vinicunca/taman-ui/form';
 import PButton from 'pohon-ui/components/Button.vue';
 import PCheckbox from 'pohon-ui/components/Checkbox.vue';
 import { computed, reactive, ref } from 'vue';
+import { $t } from '@taman/locales';
 
 const props = withDefaults(
   defineProps<{

@@ -1,8 +1,8 @@
-import type { TamanContract } from '@taman/api-contract';
 import type { ContractClient } from '@vinicunca/request/orpc';
-import { useAppTamanConfig } from '@taman/composables';
+import type { TamanContract } from '@taman/api-contract';
 import { createRpcClient } from '@vinicunca/request/orpc';
 import { createRpcQueryUtils } from '@vinicunca/request/orpc-query';
+import { useAppTamanConfig } from '@taman/composables';
 
 const { apiUrl } = useAppTamanConfig(
   import.meta.env,

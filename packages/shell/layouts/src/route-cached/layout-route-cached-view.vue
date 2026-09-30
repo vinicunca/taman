@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { getTabKey, storeToRefs, useTabbarStore } from '@taman/stores';
 import { preferences } from '@vinicunca/taman-core/preferences';
 import { computed, unref, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import { getTabKey, storeToRefs, useTabbarStore } from '@taman/stores';
 
 import { transformComponent, useLayoutComposable } from '../composables';
 

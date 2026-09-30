@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { TamanFormProps } from '@vinicunca/taman-ui/form';
-import { $t } from '@taman/locales';
 import { useTamanForm, z } from '@vinicunca/taman-ui/form';
 import { useTamanDialog } from '@vinicunca/taman-ui/popup';
 import PAvatar from 'pohon-ui/components/Avatar.vue';
 import PButton from 'pohon-ui/components/Button.vue';
 import { computed, reactive } from 'vue';
+import { $t } from '@taman/locales';
 
 defineOptions({
   name: 'LayoutWidgetLockScreenModal',

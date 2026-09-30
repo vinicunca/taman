@@ -1,5 +1,5 @@
-import type { EmailJob } from '@taman/emails';
 import type { DeliverEmail, EmailDispatcher } from './email.types.ts';
+import type { EmailJob } from '@taman/emails';
 
 export function createInlineEmailDispatcher(deliver: DeliverEmail, onError: (job: EmailJob, error: unknown) => void = () => {}): EmailDispatcher {
   return {

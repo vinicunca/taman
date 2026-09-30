@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useTamanDialog } from '@taman/app-ui';
 import { ref } from 'vue';
+import { useTamanDialog } from '@taman/app-ui';
 
 interface AutoDialogData {
   message: string;

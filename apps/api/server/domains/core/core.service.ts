@@ -1,6 +1,6 @@
+import type { DirectorMember, TamanContext } from '#lib/context';
 import type { DrizzleClient } from '@taman/db-pg';
 import type { PermissionRequest } from '@taman/rbac';
-import type { DirectorMember, TamanContext } from '#lib/context';
 import { adminRoles, organizationRoles, USER_ROLES } from '@taman/rbac';
 
 export class CoreService {

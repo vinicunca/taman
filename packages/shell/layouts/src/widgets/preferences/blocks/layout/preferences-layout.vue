@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import type { TamanLayoutType } from '@taman/types';
 import type { Component } from 'vue';
-import { $t } from '@taman/locales';
+import type { TamanLayoutType } from '@taman/types';
 import PIcon from 'pohon-ui/components/Icon.vue';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
 import { computed } from 'vue';
+import { $t } from '@taman/locales';
 
 import {
   IconLayoutFullContent,

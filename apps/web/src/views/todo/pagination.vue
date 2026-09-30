@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { AppCard, AppPage } from '@taman/app-ui';
-import { watch } from 'vue';
 import { $t } from '#/locales';
+import { watch } from 'vue';
+import { AppCard, AppPage } from '@taman/app-ui';
 import TodoFilters from './shared/todo-filters.vue';
 import { clampPage, PAGE_SIZES } from './shared/todo-list-params';
 import TodoPager from './shared/todo-pager.vue';

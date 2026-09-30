@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { watch } from 'vue';
 import { useTamanForm, z } from '#/adapter/form';
+import { watch } from 'vue';
 
 const props = withDefaults(defineProps<{
   initial?: { title: string; price: number };

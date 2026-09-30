@@ -1,7 +1,7 @@
 import type { TodoEvent } from '@taman/api-contract';
+import { client } from '#/api/orpc';
 import { LIVE_RETRY } from '@vinicunca/request/orpc';
 import { onScopeDispose, ref } from 'vue';
-import { client } from '#/api/orpc';
 
 export interface TodoLogEntry {
   at: Date;

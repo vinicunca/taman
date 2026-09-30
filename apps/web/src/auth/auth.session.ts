@@ -1,8 +1,7 @@
 import type { AppSession } from './auth.client';
 
-import { queryOptions } from '@tanstack/vue-query';
-
 import { queryClient } from '#/query-client';
+import { queryOptions } from '@tanstack/vue-query';
 
 import { authClient } from './auth.client';
 import { AUTH_QUERY_KEY } from './auth.constant';

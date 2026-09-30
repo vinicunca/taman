@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { AuthLoginValues, FormBaseComponentType, TamanFormSchema } from '@taman/app-ui';
+import { useSessionStore } from '#/auth';
+import { computed } from 'vue';
 import { AuthLogin, z } from '@taman/app-ui';
 import { $t } from '@taman/locales';
-import { computed } from 'vue';
-import { useSessionStore } from '#/auth';
 
 const sessionStore = useSessionStore();
 

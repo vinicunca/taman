@@ -1,7 +1,7 @@
 import type { RouteRecordNormalized } from 'vue-router';
 
-import { isHttpUrl, openRouteInNewWindow, openWindow } from '@taman/utils';
 import { useRouter } from 'vue-router';
+import { isHttpUrl, openRouteInNewWindow, openWindow } from '@taman/utils';
 
 export function useNavigation() {
   const router = useRouter();

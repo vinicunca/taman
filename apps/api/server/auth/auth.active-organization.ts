@@ -1,7 +1,7 @@
-import type { DrizzleClient } from '@taman/db-pg';
 import type { DirectorAuthPayload } from '#auth/better-auth.instance.ts';
-import { memberTable, sessionTable } from '@taman/db-pg';
+import type { DrizzleClient } from '@taman/db-pg';
 import { eq } from 'drizzle-orm';
+import { memberTable, sessionTable } from '@taman/db-pg';
 
 export async function resolveActiveOrganizationId(
   db: DrizzleClient,

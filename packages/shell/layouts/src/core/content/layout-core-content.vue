@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import type { RouteLocationNormalizedLoadedGeneric } from 'vue-router';
 
-import { getTabKey, storeToRefs, useTabbarStore } from '@taman/stores';
 import { usePreferences } from '@vinicunca/taman-core/preferences';
 import { unref } from 'vue';
 import { RouterView } from 'vue-router';
+import { getTabKey, storeToRefs, useTabbarStore } from '@taman/stores';
 
 import { transformComponent, useLayoutComposable } from '../../composables';
 import { LayoutIFrameRouterView } from '../../iframe';

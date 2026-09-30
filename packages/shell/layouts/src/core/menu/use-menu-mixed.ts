@@ -1,10 +1,10 @@
 import type { TamanMenuRecordRaw } from '@taman/types';
 
-import { useAccessStore } from '@taman/stores';
-import { findRootMenuByPath } from '@taman/utils';
 import { preferences, usePreferences } from '@vinicunca/taman-core/preferences';
 import { computed, onBeforeMount, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import { useAccessStore } from '@taman/stores';
+import { findRootMenuByPath } from '@taman/utils';
 
 import { useNavigation } from './use-navigation';
 

@@ -1,6 +1,9 @@
 <script lang="ts" setup>
-import type { CountToProps, TransitionPresets } from '@taman/app-ui';
 import type { Component } from 'vue';
+import type { CountToProps, TransitionPresets } from '@taman/app-ui';
+import { useTamanForm } from '#/adapter/form';
+import PIcon from 'pohon-ui/components/Icon.vue';
+import { h, reactive, ref } from 'vue';
 import {
   AppCard,
   AppCardAction,
@@ -9,9 +12,6 @@ import {
   TransitionPresetsKeys,
   useTamanToast,
 } from '@taman/app-ui';
-import PIcon from 'pohon-ui/components/Icon.vue';
-import { h, reactive, ref } from 'vue';
-import { useTamanForm } from '#/adapter/form';
 
 const state = reactive<CountToProps & { transition: TransitionPresets }>({
   decimal: '.',

@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import type { BreadcrumbItem } from '@vinicunca/taman-ui';
 
-import { $t } from '@taman/locales';
 import PBreadcrumb from 'pohon-ui/components/Breadcrumb.vue';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
+import { $t } from '@taman/locales';
 
 defineOptions({ name: 'LayoutWidgetBreadcrumb' });
 

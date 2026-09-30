@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { ThemeBrandColors } from '@vinicunca/taman-core/preferences';
+import type { TabsItem } from 'pohon-ui';
 import type {
   TamanBuiltinThemeType,
   TamanContentCompactType,
@@ -6,9 +8,6 @@ import type {
   TamanLayoutHeaderModeType,
   TamanLayoutType,
 } from '@taman/types';
-import type { ThemeBrandColors } from '@vinicunca/taman-core/preferences';
-import type { TabsItem } from 'pohon-ui';
-import { $t, loadLocaleMessages } from '@taman/locales';
 import { preferences, resetPreferences, usePreferences } from '@vinicunca/taman-core/preferences';
 import { useTamanDrawer } from '@vinicunca/taman-ui/popup';
 import PButton from 'pohon-ui/components/Button.vue';
@@ -16,6 +15,7 @@ import PChip from 'pohon-ui/components/Chip.vue';
 import PTabs from 'pohon-ui/components/Tabs.vue';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
 import { computed } from 'vue';
+import { $t, loadLocaleMessages } from '@taman/locales';
 import {
   PreferencesBlock,
   PreferencesBuiltinTheme,

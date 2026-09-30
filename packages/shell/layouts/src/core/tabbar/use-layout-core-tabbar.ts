@@ -1,13 +1,13 @@
-import type { TamanTabDefinition } from '@taman/types';
 import type { StrictContextMenuItem } from '@vinicunca/taman-ui/tabs';
 import type { RouteLocationNormalizedGeneric } from 'vue-router';
+import type { TamanTabDefinition } from '@taman/types';
 
+import { computed, ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { useContentMaximize, useTabs } from '@taman/composables';
 import { $t, useI18n } from '@taman/locales';
 import { getTabKey, useAccessStore, useTabbarStore } from '@taman/stores';
 import { filterTree } from '@taman/utils';
-import { computed, ref, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
 
 export function useLayoutCoreTabbar() {
   const router = useRouter();

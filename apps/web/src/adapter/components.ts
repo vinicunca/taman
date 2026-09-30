@@ -1,9 +1,9 @@
-import type { AppFetchComponentSharedProps, BuiltInFormComponentPropsMap } from '@taman/app-ui';
 import type { Component } from 'vue';
-import { AppFetchComponent, globalShareState } from '@taman/app-ui';
+import type { AppFetchComponentSharedProps, BuiltInFormComponentPropsMap } from '@taman/app-ui';
+import { $t } from '#/locales';
 import PSelect from 'pohon-ui/components/Select.vue';
 import { defineComponent, h, ref } from 'vue';
-import { $t } from '#/locales';
+import { AppFetchComponent, globalShareState } from '@taman/app-ui';
 
 /**
  * Maps to {@link ComponentType} for schema `component` + `componentProps` typing.

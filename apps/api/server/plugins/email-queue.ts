@@ -1,8 +1,8 @@
 import type { EmailQueueBatch } from '#email/email.queue-consumer.ts';
 import type { EmailEnv } from '#email/email.types.ts';
-import { definePlugin } from 'nitro';
 import { consumeEmailBatch, EMAIL_QUEUE_NAME } from '#email/email.queue-consumer.ts';
 import { useEmail } from '#email/index.ts';
+import { definePlugin } from 'nitro';
 
 export default definePlugin((nitroApp) => {
   nitroApp.hooks.hook('cloudflare:queue', async ({ batch, env }) => {

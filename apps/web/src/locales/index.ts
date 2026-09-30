@@ -1,12 +1,12 @@
-import type { LocaleSetupOptions, SupportedLanguagesType } from '@taman/locales';
 import type { App } from 'vue';
+import type { LocaleSetupOptions, SupportedLanguagesType } from '@taman/locales';
 
+import { preferences } from '@vinicunca/taman-core/preferences';
 import {
   $t,
   setupI18n as coreSetup,
   loadLocalesMapFromDir,
 } from '@taman/locales';
-import { preferences } from '@vinicunca/taman-core/preferences';
 
 const modules = import.meta.glob('./langs/**/*.json');
 

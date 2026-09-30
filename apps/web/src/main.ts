@@ -1,5 +1,5 @@
-import { unmountGlobalLoading } from '@taman/utils';
 import { initPreferences } from '@vinicunca/taman-core/preferences';
+import { unmountGlobalLoading } from '@taman/utils';
 
 import { overridesPreferences } from './preferences';
 

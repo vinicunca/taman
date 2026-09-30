@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { TamanMenuRecordRaw } from '@taman/types';
-import { $t } from '@taman/locales';
 import PButton from 'pohon-ui/components/Button.vue';
 import PKbd from 'pohon-ui/components/Kbd.vue';
 import PModal from 'pohon-ui/components/Modal.vue';
+import { $t } from '@taman/locales';
 
 defineProps<{
   menus: Array<TamanMenuRecordRaw>;

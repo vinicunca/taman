@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { SupportedLanguagesType } from '@taman/locales';
 import type { DropdownMenuItem } from '@vinicunca/taman-ui';
-import { SUPPORTED_LANGUAGES } from '@taman/constants';
-import { loadLocaleMessages } from '@taman/locales';
+import type { SupportedLanguagesType } from '@taman/locales';
 import { preferences, updatePreferences } from '@vinicunca/taman-core/preferences';
 import { TamanButtonIcon } from '@vinicunca/taman-ui';
 import { computed } from 'vue';
+import { SUPPORTED_LANGUAGES } from '@taman/constants';
+import { loadLocaleMessages } from '@taman/locales';
 
 defineOptions({
   name: 'LayoutWidgetLanguageToggle',

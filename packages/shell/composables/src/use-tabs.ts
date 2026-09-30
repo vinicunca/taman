@@ -1,8 +1,8 @@
 import type { ComputedRef } from 'vue';
 import type { RouteLocationNormalized } from 'vue-router';
 
-import { useTabbarStore } from '@taman/stores';
 import { useRoute, useRouter } from 'vue-router';
+import { useTabbarStore } from '@taman/stores';
 
 export function useTabs() {
   const router = useRouter();

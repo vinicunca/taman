@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { AppCard, AppPage } from '@taman/app-ui';
 import { watchDebounced } from '@vueuse/core';
 import { computed, ref, watch } from 'vue';
+import { AppCard, AppPage } from '@taman/app-ui';
 import { clampPage, PAGE_SIZES } from '../shared/product-list-params';
 import ProductTable from '../shared/product-table.vue';
 import { useProductListParams } from '../shared/use-product-list-params';

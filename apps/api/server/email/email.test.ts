@@ -1,10 +1,10 @@
-// @vitest-environment node
-import type { EmailJob } from '@taman/emails';
 import type { EmailQueueBatch } from './email.queue-consumer.ts';
 import type { OutgoingEmail, SendEmailBinding } from './email.types.ts';
-import { EmailJobError } from '@taman/emails';
+// @vitest-environment node
+import type { EmailJob } from '@taman/emails';
 import { consola } from 'consola';
 import { describe, expect, it, vi } from 'vitest';
+import { EmailJobError } from '@taman/emails';
 import { createEmailDeliverer, isEmailAddress } from './email.deliver.ts';
 import { createInlineEmailDispatcher } from './email.dispatcher.inline.ts';
 import { createQueueEmailDispatcher } from './email.dispatcher.queue.ts';

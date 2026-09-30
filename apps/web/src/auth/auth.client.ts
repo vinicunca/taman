@@ -1,7 +1,7 @@
-import { useAppTamanConfig } from '@taman/composables';
-import { adminAc, adminRoles } from '@taman/rbac';
 import { adminClient } from 'better-auth/client/plugins';
 import { createAuthClient } from 'better-auth/vue';
+import { useAppTamanConfig } from '@taman/composables';
+import { adminAc, adminRoles } from '@taman/rbac';
 
 const { apiUrl } = useAppTamanConfig(
   import.meta.env,

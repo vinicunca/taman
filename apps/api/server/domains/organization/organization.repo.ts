@@ -1,6 +1,6 @@
-import { organizationTable } from '@taman/db-pg';
-import { eq } from 'drizzle-orm';
 import { CoreRepo } from '#domains/core/core.repo.ts';
+import { eq } from 'drizzle-orm';
+import { organizationTable } from '@taman/db-pg';
 
 export class OrganizationRepo extends CoreRepo {
   /**

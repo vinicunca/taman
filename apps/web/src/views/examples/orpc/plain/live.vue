@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { AppCard, AppPage } from '@taman/app-ui';
 import TodoEventLog from '#/views/todo/shared/todo-event-log.vue';
 import TodoTable from '#/views/todo/shared/todo-table.vue';
 import { useTodoLive } from '#/views/todo/shared/use-todo-live';
+import { AppCard, AppPage } from '@taman/app-ui';
 import { useTodosPlain } from './use-todos-plain';
 
 const { data, isLoading, reload } = useTodosPlain({ page: 1, pageSize: 10 });

@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { $t } from '#/locales';
 import { watchDebounced } from '@vueuse/core';
 import { ref, watch } from 'vue';
-import { $t } from '#/locales';
 
 const props = defineProps<{
   search?: string;

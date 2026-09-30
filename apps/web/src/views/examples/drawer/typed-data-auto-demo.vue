@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useTamanDrawer } from '@taman/app-ui';
 import { ref } from 'vue';
+import { useTamanDrawer } from '@taman/app-ui';
 
 interface AutoDrawerData {
   message: string;

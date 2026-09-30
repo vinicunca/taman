@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { FileUploadProps } from 'pohon-ui';
-import { useForwardProps } from '@taman/composables';
-import { reactiveOmit } from '@vueuse/core';
 import { $t } from '#/locales';
+import { reactiveOmit } from '@vueuse/core';
+import { useForwardProps } from '@taman/composables';
 
 const props = defineProps<FileUploadProps<true>>();
 

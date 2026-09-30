@@ -1,5 +1,5 @@
-import { TODO_TITLE_MAX } from '@taman/api-contract';
 import { describe, expect, it } from 'vitest';
+import { TODO_TITLE_MAX } from '@taman/api-contract';
 import { clampPage, parseTodoListQuery, toTodoListQuery } from './todo-list-params';
 
 describe('parseTodoListQuery', () => {

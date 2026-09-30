@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useTamanDialog, useTamanToast } from '@taman/app-ui';
 import { ref } from 'vue';
+import { useTamanDialog, useTamanToast } from '@taman/app-ui';
 
 const { toaster } = useTamanToast();
 

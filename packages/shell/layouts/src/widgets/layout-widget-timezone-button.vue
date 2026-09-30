@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { $t } from '@taman/locales';
-import { getTimezoneOptions } from '@taman/utils';
 import { preferences, updatePreferences } from '@vinicunca/taman-core/preferences';
 import { TamanButtonIcon } from '@vinicunca/taman-ui';
 import { useTamanDialog } from '@vinicunca/taman-ui/popup';
 import PSelectMenu from 'pohon-ui/components/SelectMenu.vue';
 import { computed, ref, unref } from 'vue';
+import { $t } from '@taman/locales';
+import { getTimezoneOptions } from '@taman/utils';
 
 const props = withDefaults(
   defineProps<{

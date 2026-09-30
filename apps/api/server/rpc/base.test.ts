@@ -1,10 +1,10 @@
+import type { TamanContext } from '#lib/context.ts';
 // @vitest-environment node
 import type { H3Event } from 'nitro';
-import type { TamanContext } from '#lib/context.ts';
-import { call, ORPCError } from '@orpc/server';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { resolveContext } from '#lib/context.ts';
 import { httpError } from '#lib/http.ts';
+import { call, ORPCError } from '@orpc/server';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { authed, os } from './base.ts';
 
 vi.mock('#lib/context.ts', () => ({ resolveContext: vi.fn() }));

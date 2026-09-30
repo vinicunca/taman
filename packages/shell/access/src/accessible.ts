@@ -1,10 +1,11 @@
+import type { Component, DefineComponent } from 'vue';
 import type {
   GenerateMenuAndRoutesOptions,
   RouteRecordRaw,
   TamanAccessModeType,
 } from '@taman/types';
-import type { Component, DefineComponent } from 'vue';
 
+import { defineComponent, h } from 'vue';
 import {
   clone,
   generateMenus,
@@ -14,7 +15,6 @@ import {
   isString,
   mapTree,
 } from '@taman/utils';
-import { defineComponent, h } from 'vue';
 
 async function generateAccessible(
   mode: TamanAccessModeType,

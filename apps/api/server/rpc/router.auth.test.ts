@@ -1,9 +1,9 @@
 // @vitest-environment node
 import type { H3Event } from 'nitro';
-import { call } from '@orpc/server';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { resolveContext } from '#lib/context.ts';
 import { httpError } from '#lib/http.ts';
+import { call } from '@orpc/server';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { router } from './router.ts';
 
 vi.mock('#lib/context.ts', () => ({ resolveContext: vi.fn() }));

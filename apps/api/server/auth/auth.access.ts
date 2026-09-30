@@ -1,5 +1,5 @@
-import type { H3Event } from 'nitro';
 import type { DirectorAuth } from '#auth/better-auth.instance.ts';
+import type { H3Event } from 'nitro';
 import { useBetterAuth } from '#auth/better-auth.instance.ts';
 import { httpError } from '#lib/http.ts';
 

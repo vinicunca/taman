@@ -1,12 +1,12 @@
-import type { TamanContract } from '@taman/api-contract';
+import type { TamanContext } from '#lib/context.ts';
 import type { ContractClient } from '@vinicunca/request/orpc';
 // @vitest-environment node
 import type { H3Event } from 'nitro';
-import type { TamanContext } from '#lib/context.ts';
-import { createRpcClient, isDefinedError, safe } from '@vinicunca/request/orpc';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import type { TamanContract } from '@taman/api-contract';
 import { FakeTodoRepo } from '#domains/todo/todo.repo.fake.ts';
 import { resolveContext } from '#lib/context.ts';
+import { createRpcClient, isDefinedError, safe } from '@vinicunca/request/orpc';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { RPC_PREFIX, rpcHandler } from './handler.ts';
 
 vi.mock('#lib/context.ts', () => ({ resolveContext: vi.fn() }));

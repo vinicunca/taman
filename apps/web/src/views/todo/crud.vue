@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { Todo } from '@taman/api-contract';
-import { AppCard, AppPage, tamanConfirm } from '@taman/app-ui';
-import { ref } from 'vue';
 import { $t } from '#/locales';
+import { ref } from 'vue';
+import { AppCard, AppPage, tamanConfirm } from '@taman/app-ui';
 import TodoForm from './shared/todo-form.vue';
 import TodoTable from './shared/todo-table.vue';
 import { useTodosQuery } from './use-todos-query';

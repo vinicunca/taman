@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { TamanFormSchema } from '#/adapter/form';
-import { AppCard, AppPage } from '@taman/app-ui';
+import { useTamanForm, z } from '#/adapter/form';
 import { computed, ref } from 'vue';
 
-import { useTamanForm, z } from '#/adapter/form';
+import { AppCard, AppPage } from '@taman/app-ui';
 
 interface ContactFormValues {
   enabled: boolean;

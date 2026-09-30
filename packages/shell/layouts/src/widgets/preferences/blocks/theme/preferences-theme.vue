@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import type { TamanThemeModeType } from '@taman/types';
-import { $t } from '@taman/locales';
 import { usePreferences } from '@vinicunca/taman-core/preferences';
 import { watch } from 'vue';
+import { $t } from '@taman/locales';
 import PreferencesSwitchItem from '../preferences-switch-item.vue';
 
 const themeSemiDarkSidebar = defineModel<boolean>('themeSemiDarkSidebar');

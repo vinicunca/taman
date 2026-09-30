@@ -1,7 +1,7 @@
-import { describe, expect, it, vi } from 'vitest';
 import enTodo from '#/locales/langs/en-US/todo.json';
 import idTodo from '#/locales/langs/id-ID/todo.json';
 import { overridesPreferences } from '#/preferences';
+import { describe, expect, it, vi } from 'vitest';
 
 vi.mock('#/locales', () => ({ $t: (key: string) => key }));
 vi.mock('./core', () => ({ coreRoutes: [] }));

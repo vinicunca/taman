@@ -1,9 +1,9 @@
-import { resetStaticRoutes } from '@taman/utils';
 import {
   createRouter,
   createWebHashHistory,
   createWebHistory,
 } from 'vue-router';
+import { resetStaticRoutes } from '@taman/utils';
 
 import { createRouterGuard } from './guard';
 import { routes } from './routes';

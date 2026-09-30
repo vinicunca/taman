@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { loadLocaleMessages } from '@taman/locales';
 import { capitalize } from '@vinicunca/perkakas';
 import { preferences, updatePreferences } from '@vinicunca/taman-core/preferences';
 import { TamanButtonIcon } from '@vinicunca/taman-ui';
 import { useTamanDrawer } from '@vinicunca/taman-ui/popup';
 import PButton from 'pohon-ui/components/Button.vue';
 import { computed } from 'vue';
+import { loadLocaleMessages } from '@taman/locales';
 import LayoutWidgetPreferencesDrawer from './layout-widget-preferences-drawer.vue';
 
 const { isFixed = false } = defineProps<{ isFixed?: boolean }>();

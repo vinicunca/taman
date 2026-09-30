@@ -1,12 +1,12 @@
+import type { DirectorAuthPayload } from '#auth/better-auth.instance.ts';
+import type { H3Event } from 'nitro';
 import type { DrizzleClient } from '@taman/db-pg';
 import type { OrganizationRoleNames } from '@taman/rbac';
-import type { H3Event } from 'nitro';
-import type { DirectorAuthPayload } from '#auth/better-auth.instance.ts';
-import { getDrizzleClient, memberTable } from '@taman/db-pg';
-import { ORGANIZATION_ROLES } from '@taman/rbac';
+import { getAuthAccess } from '#auth/auth.access.ts';
 import { and, eq } from 'drizzle-orm';
 import { useRuntimeConfig } from 'nitro/runtime-config';
-import { getAuthAccess } from '#auth/auth.access.ts';
+import { getDrizzleClient, memberTable } from '@taman/db-pg';
+import { ORGANIZATION_ROLES } from '@taman/rbac';
 
 export interface DirectorMember {
   role: OrganizationRoleNames;

@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import type { DrawerPlacement, DrawerState } from '@taman/app-ui';
-
 import type { ExplicitDrawerData } from './typed-data-contract';
+import type { DrawerPlacement, DrawerState } from '@taman/app-ui';
 
 import { AppCard, AppPage, useTamanDrawer } from '@taman/app-ui';
 

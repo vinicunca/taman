@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { DropdownMenuItem } from '@vinicunca/taman-ui';
-import { $t } from '@taman/locales';
 import { tamanConfirm } from '@vinicunca/taman-ui/popup';
 import PAvatar from 'pohon-ui/components/Avatar.vue';
 import PBadge from 'pohon-ui/components/Badge.vue';
 import PButton from 'pohon-ui/components/Button.vue';
 import PDropdownMenu from 'pohon-ui/components/DropdownMenu.vue';
 import { computed } from 'vue';
+import { $t } from '@taman/locales';
 
 interface Props {
   avatar?: string | null;

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { todoCreateInput } from '@taman/api-contract';
-import { watch } from 'vue';
 import { useTamanForm, z } from '#/adapter/form';
 import { $t } from '#/locales';
+import { watch } from 'vue';
+import { todoCreateInput } from '@taman/api-contract';
 
 const props = withDefaults(defineProps<{
   initial?: { title: string; completed: boolean };

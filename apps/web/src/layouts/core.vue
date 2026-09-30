@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import type { DropdownMenuItem } from 'pohon-ui';
+import { useSessionStore } from '#/auth';
+import { preferences } from '@vinicunca/taman-core/preferences';
+import { computed } from 'vue';
 import { TAMAN_DOC_URL, TAMAN_GITHUB_URL } from '@taman/constants';
 import {
   LayoutCore,
@@ -8,9 +11,6 @@ import {
 } from '@taman/layouts';
 import { $t } from '@taman/locales';
 import { useTabbarStore } from '@taman/stores';
-import { preferences } from '@vinicunca/taman-core/preferences';
-import { computed } from 'vue';
-import { useSessionStore } from '#/auth';
 
 const { setMenuList } = useTabbarStore();
 setMenuList([

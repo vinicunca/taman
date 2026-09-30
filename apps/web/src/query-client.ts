@@ -1,7 +1,7 @@
 import type { App } from 'vue';
-import { useTamanToast } from '@taman/app-ui';
-import { QueryCache, QueryClient } from '@tanstack/vue-query';
 import { getErrors } from '#/api/errors';
+import { QueryCache, QueryClient } from '@tanstack/vue-query';
+import { useTamanToast } from '@taman/app-ui';
 
 let appInstance: App | undefined;
 

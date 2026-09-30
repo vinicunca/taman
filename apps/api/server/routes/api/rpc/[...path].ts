@@ -1,7 +1,7 @@
-import { defineHandler } from 'nitro';
 import { applyCorsToResponse } from '#lib/cors.ts';
 import { httpError } from '#lib/http.ts';
 import { RPC_PREFIX, rpcHandler } from '#rpc/handler.ts';
+import { defineHandler } from 'nitro';
 
 /**
  * Single entry for the whole oRPC API. oRPC returns a raw `Response`, and

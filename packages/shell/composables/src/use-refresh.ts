@@ -1,5 +1,5 @@
-import { useTabbarStore } from '@taman/stores';
 import { useRouter } from 'vue-router';
+import { useTabbarStore } from '@taman/stores';
 
 export function useRefresh() {
   const router = useRouter();

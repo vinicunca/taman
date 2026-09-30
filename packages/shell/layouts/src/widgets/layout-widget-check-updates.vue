@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { $t } from '@taman/locales';
 import { useTamanDialog } from '@vinicunca/taman-ui/popup';
 import { onMounted, onUnmounted, ref } from 'vue';
+import { $t } from '@taman/locales';
 
 defineOptions({ name: 'LayoutWidgetCheckUpdates' });
 

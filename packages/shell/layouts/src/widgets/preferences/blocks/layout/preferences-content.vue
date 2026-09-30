@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { Component } from 'vue';
 
-import { $t } from '@taman/locales';
 import { computed } from 'vue';
+import { $t } from '@taman/locales';
 
 import {
   IconLayoutContentCompact,

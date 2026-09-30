@@ -3,8 +3,8 @@
 import type { VNode } from 'vue';
 import type { RouteLocationNormalizedLoadedGeneric } from 'vue-router';
 
-import { useTabbarStore } from '@taman/stores';
 import { watch } from 'vue';
+import { useTabbarStore } from '@taman/stores';
 
 /**
  * Route cache collector; does not render UI

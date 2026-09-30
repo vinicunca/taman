@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { AppCard, AppPage } from '@taman/app-ui';
-import { watch } from 'vue';
 import TodoFilters from '#/views/todo/shared/todo-filters.vue';
 import { clampPage, PAGE_SIZES } from '#/views/todo/shared/todo-list-params';
 import TodoPager from '#/views/todo/shared/todo-pager.vue';
 import TodoTable from '#/views/todo/shared/todo-table.vue';
 import { useTodoListParams } from '#/views/todo/shared/use-todo-list-params';
+import { watch } from 'vue';
+import { AppCard, AppPage } from '@taman/app-ui';
 import { useTodosPlain } from './use-todos-plain';
 
 const { params, setParams } = useTodoListParams();

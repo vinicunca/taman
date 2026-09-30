@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { $t } from '@taman/locales';
 import PButton from 'pohon-ui/components/Button.vue';
 import { computed, defineAsyncComponent } from 'vue';
 import { useRouter } from 'vue-router';
+import { $t } from '@taman/locales';
 
 const props = withDefaults(
   defineProps<{

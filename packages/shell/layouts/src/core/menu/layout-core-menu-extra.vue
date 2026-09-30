@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { TamanMenuRecordRaw } from '@taman/types';
 import type { MenuProps } from '@vinicunca/taman-ui/menu';
+import type { TamanMenuRecordRaw } from '@taman/types';
 
 import { TamanMenu } from '@vinicunca/taman-ui/menu';
 import { useRoute } from 'vue-router';

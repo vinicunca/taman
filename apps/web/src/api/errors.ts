@@ -1,7 +1,7 @@
-import { ORG_REQUIRED } from '@taman/api-contract';
-import { $t } from '@taman/locales';
 import { isHttpError } from '@vinicunca/request/http';
 import { ORPCError } from '@vinicunca/request/orpc';
+import { ORG_REQUIRED } from '@taman/api-contract';
+import { $t } from '@taman/locales';
 
 interface FetchErrorLike {
   code?: string;

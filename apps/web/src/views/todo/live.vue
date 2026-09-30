@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { AppCard, AppPage } from '@taman/app-ui';
-import { useQueryClient } from '@tanstack/vue-query';
-import { watch } from 'vue';
 import { orpc } from '#/api/orpc';
 import { $t } from '#/locales';
+import { useQueryClient } from '@tanstack/vue-query';
+import { watch } from 'vue';
+import { AppCard, AppPage } from '@taman/app-ui';
 import { applyTodoEvent } from './apply-todo-event';
 import TodoEventLog from './shared/todo-event-log.vue';
 import { clampPage } from './shared/todo-list-params';

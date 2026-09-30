@@ -1,10 +1,10 @@
 import type { MaybeRefOrGetter } from 'vue';
 import type { NewProduct, Product, ProductPage } from '../shared/product';
 import type { ProductListParams } from '../shared/product-list-params';
-import { useTamanToast } from '@taman/app-ui';
-import { ref, shallowRef, toValue, watch } from 'vue';
 import { getErrors } from '#/api/errors';
 import { dummyjsonClient } from '#/api/http';
+import { ref, shallowRef, toValue, watch } from 'vue';
+import { useTamanToast } from '@taman/app-ui';
 import { applyCreatedProduct, applyDeletedProduct, applyUpdatedProduct } from '../shared/apply-product-event';
 
 /**

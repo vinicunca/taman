@@ -3,10 +3,10 @@ import type {
   GenerateMenuAndRoutesOptions,
 } from '@taman/types';
 
-import { generateAccessible } from '@taman/access';
+import { CoreLayout, IFrameView } from '#/layouts';
 import { preferences } from '@vinicunca/taman-core/preferences';
 
-import { CoreLayout, IFrameView } from '#/layouts';
+import { generateAccessible } from '@taman/access';
 
 const forbiddenComponent = () => import('#/views/_core/fallback/forbidden.vue');
 

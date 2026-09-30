@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import type { FormBaseComponentType, TamanFormProps, TamanFormSchema } from '@vinicunca/taman-ui/form';
 import type { AuthLoginValues } from './auth.types';
-import { $t } from '@taman/locales';
 import { TamanAuthForm } from '@vinicunca/taman-ui';
 import { useTamanForm } from '@vinicunca/taman-ui/form';
 import PButton from 'pohon-ui/components/Button.vue';
 import { computed, reactive } from 'vue';
+import { $t } from '@taman/locales';
 
 const props = withDefaults(
   defineProps<{

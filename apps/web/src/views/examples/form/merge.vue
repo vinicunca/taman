@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import type { StepperItem } from 'pohon-ui';
 
-import { AppCard, AppCardAction, AppPage } from '@taman/app-ui';
+import { useTamanForm } from '#/adapter/form';
 import { ref } from 'vue';
 
-import { useTamanForm } from '#/adapter/form';
+import { AppCard, AppCardAction, AppPage } from '@taman/app-ui';
 
 const toast = useToast();
 const currentTab = ref(0);

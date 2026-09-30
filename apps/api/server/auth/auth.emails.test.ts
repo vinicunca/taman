@@ -1,6 +1,6 @@
+import { describe, expect, it } from 'vitest';
 // @vitest-environment node
 import { renderEmail } from '@taman/emails';
-import { describe, expect, it } from 'vitest';
 import {
   buildAppUrl,
   emailLocale,

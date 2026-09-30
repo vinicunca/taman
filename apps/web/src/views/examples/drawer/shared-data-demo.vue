@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useTamanDrawer, useTamanToast } from '@taman/app-ui';
 import { ref } from 'vue';
+import { useTamanDrawer, useTamanToast } from '@taman/app-ui';
 
 interface SharedData {
   content: string;

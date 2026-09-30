@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { AppCard, AppPage } from '@taman/app-ui';
-
 import { useTamanForm } from '#/adapter/form';
+
+import { AppCard, AppPage } from '@taman/app-ui';
 
 const [CustomLayoutForm] = useTamanForm({
   commonConfig: {

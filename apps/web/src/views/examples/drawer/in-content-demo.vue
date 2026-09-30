@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { useTamanDrawer, useTamanToast } from '@taman/app-ui';
+import { useTamanForm } from '#/adapter/form';
 import { ref } from 'vue';
 
-import { useTamanForm } from '#/adapter/form';
+import { useTamanDrawer, useTamanToast } from '@taman/app-ui';
 
 const { toaster } = useTamanToast();
 const value = ref('');

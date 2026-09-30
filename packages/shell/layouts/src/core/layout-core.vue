@@ -1,14 +1,7 @@
 <script lang="ts" setup>
-import type { TamanMenuRecordRaw } from '@taman/types';
 import type { SetupContext } from 'vue';
 import type { RouteLocationNormalizedLoaded } from 'vue-router';
-import { useRefresh } from '@taman/composables';
-import { $t, i18n } from '@taman/locales';
-import {
-  useAccessStore,
-  useTabbarStore,
-} from '@taman/stores';
-import { clone, mapTree } from '@taman/utils';
+import type { TamanMenuRecordRaw } from '@taman/types';
 import { ELEMENT_ID_LAYOUT_SCROLL } from '@vinicunca/taman-core/constants';
 import {
   preferences,
@@ -19,6 +12,13 @@ import { TamanBackToTop, TamanLogo } from '@vinicunca/taman-ui';
 import { TamanCoreLayout } from '@vinicunca/taman-ui/layout';
 import { computed, onMounted, useSlots, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import { useRefresh } from '@taman/composables';
+import { $t, i18n } from '@taman/locales';
+import {
+  useAccessStore,
+  useTabbarStore,
+} from '@taman/stores';
+import { clone, mapTree } from '@taman/utils';
 import {
   LayoutWidgetBreadcrumb,
   LayoutWidgetCheckUpdates,

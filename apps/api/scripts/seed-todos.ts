@@ -1,3 +1,4 @@
+import { asc, eq } from 'drizzle-orm';
 /**
  * Seeds ~100 todos into one organization so the todo pages (pagination,
  * realtime) have data.
@@ -7,7 +8,6 @@
  *   SEED_ORG_SLUG=acme nx run api:seed:todos
  */
 import { getDrizzleClient, memberTable, organizationTable, todoTable } from '@taman/db-pg';
-import { asc, eq } from 'drizzle-orm';
 
 const COUNT = 100;
 const VERBS = ['Write', 'Review', 'Ship', 'Fix', 'Plan', 'Test', 'Refactor', 'Document'];

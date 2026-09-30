@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useTamanDialog, useTamanToast } from '@taman/app-ui';
 import { useTamanForm } from '#/adapter/form';
+import { useTamanDialog, useTamanToast } from '@taman/app-ui';
 
 defineOptions({
   name: 'FormModelDemo',

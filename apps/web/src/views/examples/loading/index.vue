@@ -1,11 +1,11 @@
 <script lang="ts" setup>
+import { refAutoReset } from '@vueuse/core';
 import {
   AppCard,
   AppCardAction,
   AppPage,
   TamanLoading,
 } from '@taman/app-ui';
-import { refAutoReset } from '@vueuse/core';
 
 const loading = refAutoReset(false, 3000);
 

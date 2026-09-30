@@ -1,5 +1,5 @@
-import type { Todo, TodoPage } from '@taman/api-contract';
 import type { TamanRpcClient } from '#/api/orpc';
+import type { Todo, TodoPage } from '@taman/api-contract';
 import { QueryClient } from '@tanstack/vue-query';
 import { createRpcClient } from '@vinicunca/request/orpc';
 import { createRpcQueryUtils } from '@vinicunca/request/orpc-query';

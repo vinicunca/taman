@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import type { TamanAuthPageLayoutType } from '@taman/types';
 import type { DropdownMenuItem } from '@vinicunca/taman-ui';
-import { $t } from '@taman/locales';
+import type { TamanAuthPageLayoutType } from '@taman/types';
 import {
   preferences,
   updatePreferences,
@@ -9,6 +8,7 @@ import {
 } from '@vinicunca/taman-core/preferences';
 import { TamanButtonIcon } from '@vinicunca/taman-ui';
 import { computed } from 'vue';
+import { $t } from '@taman/locales';
 
 defineOptions({
   name: 'WidgetAuthLayoutToggle',

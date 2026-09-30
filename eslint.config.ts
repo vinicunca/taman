@@ -26,6 +26,30 @@ export default vinicuncaESLint(
     rules: {
       'pnpm/yaml-enforce-settings': 'off',
 
+      // Workspace packages form their own group after external imports, so
+      // import order does not depend on the scope name (`create-taman`
+      // renames `@taman/` to the project's scope).
+      'perfectionist/sort-imports': [
+        'error',
+        {
+          groups: [
+            'type-import',
+            ['type-parent', 'type-sibling', 'type-index', 'type-internal'],
+            'value-builtin',
+            'value-external',
+            'value-internal',
+            ['value-parent', 'value-sibling', 'value-index'],
+            'side-effect',
+            'ts-equals-import',
+            'unknown',
+          ],
+          internalPattern: ['^~/.+', '^@/.+', '^@taman/'],
+          newlinesBetween: 'ignore',
+          order: 'asc',
+          type: 'natural',
+        },
+      ],
+
       'unocss/order': [
         'warn',
         {

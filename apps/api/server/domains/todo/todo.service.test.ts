@@ -1,7 +1,7 @@
-// @vitest-environment node
-import type { TodoEvent } from '@taman/api-contract';
 import type { TamanContext } from '#lib/context.ts';
 import type { TodoPublisher } from '#realtime/publisher.ts';
+// @vitest-environment node
+import type { TodoEvent } from '@taman/api-contract';
 import { MemoryPublisher } from '@orpc/experimental-publisher/memory';
 import { ORPCError } from '@orpc/server';
 import { beforeEach, describe, expect, it, vi } from 'vitest';

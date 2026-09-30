@@ -1,7 +1,7 @@
 import type { PohonUiOptions } from 'pohon-ui/vite';
-import { ui, vitePohonTheme } from '@taman/designs/theme';
 import { defineConfig } from '@vinicunca/vite-config';
 import vitePohon from 'pohon-ui/vite';
+import { ui, vitePohonTheme } from '@taman/designs/theme';
 
 const pohonOptions: PohonUiOptions = {
   colorMode: false,

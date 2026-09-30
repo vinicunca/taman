@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { AppCard, AppCardAction, AppPage } from '@taman/app-ui';
-
 import { useTamanForm, z } from '#/adapter/form';
+
+import { AppCard, AppCardAction, AppPage } from '@taman/app-ui';
 
 const toast = useToast();
 

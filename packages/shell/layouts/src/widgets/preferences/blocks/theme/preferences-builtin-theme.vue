@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { TamanBuiltinThemeType } from '@taman/types';
 import type { BuiltinThemePreset, ThemeBrandColors } from '@vinicunca/taman-core/preferences';
 import type { ComponentPublicInstance } from 'vue';
+import type { TamanBuiltinThemeType } from '@taman/types';
 
-import { $t } from '@taman/locales';
-import { toTitleCase } from '@taman/utils';
 import { BUILT_IN_THEME_PRESETS } from '@vinicunca/taman-core/preferences';
 import PColorPicker from 'pohon-ui/components/ColorPicker.vue';
 import PIcon from 'pohon-ui/components/Icon.vue';
 import PPopover from 'pohon-ui/components/Popover.vue';
 import { onMounted, ref, watch } from 'vue';
+import { $t } from '@taman/locales';
+import { toTitleCase } from '@taman/utils';
 
 defineOptions({
   name: 'PreferencesBuiltinTheme',

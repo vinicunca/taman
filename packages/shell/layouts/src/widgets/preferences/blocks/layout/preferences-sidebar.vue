@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { TamanLayoutType } from '@taman/types';
-import { $t } from '@taman/locales';
 import { onMounted, ref } from 'vue';
+import { $t } from '@taman/locales';
 import PreferenceInputNumber from '../preference-input-number.vue';
 import PreferencesCheckboxItem from '../preferences-checkbox-item.vue';
 import PreferencesSwitchItem from '../preferences-switch-item.vue';

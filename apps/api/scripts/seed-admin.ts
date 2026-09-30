@@ -1,3 +1,5 @@
+import { hashPassword } from 'better-auth/crypto';
+import { and, eq } from 'drizzle-orm';
 /**
  * Seeds a single email/password admin user for local / e2e testing.
  *
@@ -6,8 +8,6 @@
  */
 import { accountTable, getDrizzleClient, userTable } from '@taman/db-pg';
 import { USER_ROLES } from '@taman/rbac';
-import { hashPassword } from 'better-auth/crypto';
-import { and, eq } from 'drizzle-orm';
 
 const DEFAULT_EMAIL = 'admin@taman.local';
 const DEFAULT_PASSWORD = 'Admin123!';

@@ -1,5 +1,5 @@
-import type { AnyPromiseFunction } from '@taman/types';
 import type { Component } from 'vue';
+import type { AnyPromiseFunction } from '@taman/types';
 
 export interface AppFetchComponentOptionsItem {
   children?: Array<AppFetchComponentOptionsItem>;

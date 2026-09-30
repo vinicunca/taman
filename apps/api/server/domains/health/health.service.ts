@@ -1,6 +1,6 @@
 import type { DrizzleClient } from '@taman/db-pg';
-import { getDrizzleClient } from '@taman/db-pg';
 import { useRuntimeConfig } from 'nitro/runtime-config';
+import { getDrizzleClient } from '@taman/db-pg';
 import { HealthRepo } from './health.repo';
 
 export class HealthService {

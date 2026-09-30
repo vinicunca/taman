@@ -1,6 +1,6 @@
+import { createCorsOptions } from '#lib/cors';
 import { defineHandler } from 'nitro';
 import { handleCors } from 'nitro/h3';
-import { createCorsOptions } from '#lib/cors';
 
 /**
  * Global CORS middleware. `handleCors` answers preflight (`OPTIONS`) requests

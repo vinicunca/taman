@@ -1,12 +1,12 @@
+import type { ComponentPropsMap, ComponentType } from './components';
 import type {
   FormCodec,
   TamanFormProps as FormProps,
   TamanFormSchema as FormSchema,
   FormValues,
 } from '@taman/app-ui';
-import type { ComponentPropsMap, ComponentType } from './components';
-import { calendarDateTimeCodec, isEmptyFormValue, setupTamanForm, useTamanForm as useForm } from '@taman/app-ui';
 import { $t } from '#/locales';
+import { calendarDateTimeCodec, isEmptyFormValue, setupTamanForm, useTamanForm as useForm } from '@taman/app-ui';
 
 export async function initTamanForm() {
   setupTamanForm({

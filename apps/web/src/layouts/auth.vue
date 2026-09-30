@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { LayoutAuth } from '@taman/layouts';
+import { $t } from '#/locales';
 import { preferences } from '@vinicunca/taman-core/preferences';
 import { computed } from 'vue';
 
-import { $t } from '#/locales';
+import { LayoutAuth } from '@taman/layouts';
 
 const appName = computed(() => preferences.app.name);
 </script>

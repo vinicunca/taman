@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useTamanDialog } from '@taman/app-ui';
 import { ref, watch } from 'vue';
+import { useTamanDialog } from '@taman/app-ui';
 
 const blur = ref(5);
 const [DialogBlur, dialogBlurApi] = useTamanDialog({
