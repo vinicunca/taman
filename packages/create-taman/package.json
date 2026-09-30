@@ -1,0 +1,49 @@
+{
+  "name": "create-taman",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Scaffold a taman admin monorepo: pnpm create taman my-app",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinicunca/taman.git",
+    "directory": "packages/create-taman"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "bin": {
+    "create-taman": "./dist/bin.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "prepack": "pnpm build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@clack/prompts": "catalog:",
+    "giget": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}
