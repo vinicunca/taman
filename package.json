@@ -57,6 +57,7 @@
     "cspell": "catalog:",
     "czg": "catalog:",
     "eslint": "catalog:",
+    "eslint-plugin-sonarjs": "catalog:",
     "happy-dom": "catalog:",
     "is-ci": "catalog:",
     "lefthook": "catalog:",
