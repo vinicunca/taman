@@ -8,7 +8,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vinicunca/taman.git",
-    "directory": "packages/api-contract"
+    "directory": "packages/shared/api-contract"
   },
   "sideEffects": false,
   "exports": {

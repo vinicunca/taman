@@ -6,7 +6,7 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 OUT="$(mktemp -d)"
-PACKAGES=(packages/api-contract packages/request)
+PACKAGES=(packages/shared/api-contract packages/request)
 TARBALLS=()
 
 for pkg in "${PACKAGES[@]}"; do

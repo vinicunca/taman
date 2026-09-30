@@ -8,7 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // @keep-sorted
 export default defineConfig({
-  configDeps: getAllConfigFiles('../../packages/designs/src'),
+  configDeps: getAllConfigFiles('../../packages/shell/designs/src'),
 
   content: {
     pipeline: {

@@ -3,7 +3,7 @@
  *
  * We need to use relative path in order to get the better auth instance.
  */
-import { createBetterAuth } from '../../apps/better-auth-back/server/auth';
+import { createBetterAuth } from '../../../apps/better-auth-back/server/auth';
 
 /**
  * The better-auth cli needs to the `auth` variable to be exported in order to generate the schema.

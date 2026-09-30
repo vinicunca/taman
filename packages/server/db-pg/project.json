@@ -1,31 +1,31 @@
 {
   "name": "db-pg",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/db-pg",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/server/db-pg",
   "projectType": "library",
   "targets": {
     "studio": {
       "executor": "nx:run-commands",
       "options": {
         "command": "bash ./scripts/run-studio.sh",
-        "cwd": "packages/db-pg"
+        "cwd": "packages/server/db-pg"
       },
       "defaultConfiguration": "dev",
       "configurations": {
         "dev": {
-          "envFile": "packages/db-pg/.env",
+          "envFile": "packages/server/db-pg/.env",
           "env": {
             "MODE_ENV": "dev"
           }
         },
         "uat": {
-          "envFile": "packages/db-pg/.env.uat",
+          "envFile": "packages/server/db-pg/.env.uat",
           "env": {
             "MODE_ENV": "uat"
           }
         },
         "prod": {
-          "envFile": "packages/db-pg/.env.prod",
+          "envFile": "packages/server/db-pg/.env.prod",
           "env": {
             "MODE_ENV": "prod"
           }
@@ -36,14 +36,14 @@
     "generate": {
       "command": "pnpm drizzle-kit generate",
       "options": {
-        "cwd": "packages/db-pg"
+        "cwd": "packages/server/db-pg"
       },
       "cache": false
     },
     "generate:auth": {
       "command": "pnpx @better-auth/cli generate --config ./gen-auth-schema.ts --output ./src/schema/auth.schema.ts -y",
       "options": {
-        "cwd": "packages/db-pg"
+        "cwd": "packages/server/db-pg"
       },
       "cache": false
     },
@@ -52,24 +52,24 @@
       "executor": "nx:run-commands",
       "options": {
         "parallel": false,
-        "cwd": "packages/db-pg"
+        "cwd": "packages/server/db-pg"
       },
       "defaultConfiguration": "dev",
       "configurations": {
         "dev": {
-          "envFile": "packages/db-pg/.env",
+          "envFile": "packages/server/db-pg/.env",
           "commands": [
             "drizzle-kit push"
           ]
         },
         "uat": {
-          "envFile": "packages/db-pg/.env.uat",
+          "envFile": "packages/server/db-pg/.env.uat",
           "commands": [
             "drizzle-kit migrate"
           ]
         },
         "prod": {
-          "envFile": "packages/db-pg/.env.prod",
+          "envFile": "packages/server/db-pg/.env.prod",
           "commands": [
             "drizzle-kit migrate"
           ]

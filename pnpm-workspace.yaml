@@ -14,9 +14,9 @@ packages:
   - internal/*
   - internal/lint-configs/*
   - packages/*
-  - packages/effects/*
   - packages/shell/*
-  - packages/business/*
+  - packages/server/*
+  - packages/shared/*
   - apps/*
   - scripts/*
 

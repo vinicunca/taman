@@ -154,7 +154,7 @@
   },
 
   "i18n-ally.localesPaths": [
-    "packages/locales/src/langs",
+    "packages/shell/locales/src/langs",
     "playground/src/locales/langs",
     "apps/*/src/locales/langs"
   ],
