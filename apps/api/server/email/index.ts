@@ -1,12 +1,11 @@
-import type { EmailEnv, EmailServiceConfig } from './email.types.ts';
+import type { DeliverEmail, EmailDispatcher, EmailEnv, EmailServiceConfig } from './email.types.ts';
+import { useRuntimeConfig } from 'nitro/runtime-config';
 import { createEmailDeliverer } from './email.deliver.ts';
 import { createInlineEmailDispatcher } from './email.dispatcher.inline.ts';
 import { createQueueEmailDispatcher } from './email.dispatcher.queue.ts';
 import { logDeliveryError } from './email.log.ts';
 import { createCloudflareEmailSender } from './email.sender.cloudflare.ts';
 import { createConsoleEmailSender } from './email.sender.console.ts';
-import type { DeliverEmail, EmailDispatcher } from './email.types.ts';
-import { useRuntimeConfig } from 'nitro/runtime-config';
 
 export function createEmailServices(env: EmailEnv = {}, config: EmailServiceConfig) {
   const sender = env.EMAIL ? createCloudflareEmailSender(env.EMAIL) : createConsoleEmailSender();

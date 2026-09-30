@@ -1,15 +1,15 @@
-import { EmailJobError } from './errors.ts';
-import { DEFAULT_EMAIL_LOCALE } from './types.ts';
-import type { EmailLocale, RenderedEmail } from './types.ts';
-import { renderInvitation } from './templates/invitation.ts';
 import type { InvitationParams } from './templates/invitation.ts';
-import { renderResetPassword } from './templates/reset-password.ts';
 import type { ResetPasswordParams } from './templates/reset-password.ts';
-import { renderVerifyEmail } from './templates/verify-email.ts';
 import type { VerifyEmailParams } from './templates/verify-email.ts';
+import type { EmailLocale, RenderedEmail } from './types.ts';
+import { EmailJobError } from './errors.ts';
+import { renderInvitation } from './templates/invitation.ts';
+import { renderResetPassword } from './templates/reset-password.ts';
+import { renderVerifyEmail } from './templates/verify-email.ts';
+import { DEFAULT_EMAIL_LOCALE } from './types.ts';
 
 export interface EmailTemplateParams {
-  invitation: InvitationParams;
+  'invitation': InvitationParams;
   'verify-email': VerifyEmailParams;
   'reset-password': ResetPasswordParams;
 }
@@ -26,7 +26,7 @@ export type EmailJob = {
 }[EmailTemplateName];
 
 const renderers: { [Name in EmailTemplateName]: (params: EmailTemplateParams[Name], locale: EmailLocale) => RenderedEmail } = {
-  invitation: renderInvitation,
+  'invitation': renderInvitation,
   'verify-email': renderVerifyEmail,
   'reset-password': renderResetPassword,
 };

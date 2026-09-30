@@ -1,5 +1,5 @@
-import { DEFAULT_EMAIL_LOCALE, EMAIL_LOCALES } from './types.ts';
 import type { EmailLocale } from './types.ts';
+import { DEFAULT_EMAIL_LOCALE, EMAIL_LOCALES } from './types.ts';
 
 export function matchEmailLocale(acceptLanguage: string | null | undefined): EmailLocale {
   if (!acceptLanguage) {

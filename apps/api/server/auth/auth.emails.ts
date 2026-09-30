@@ -1,5 +1,5 @@
-import { matchEmailLocale } from '@taman/emails';
 import type { EmailJob, EmailLocale } from '@taman/emails';
+import { matchEmailLocale } from '@taman/emails';
 
 export function buildAppUrl(base: string, path: string): string {
   if (!base.trim()) {

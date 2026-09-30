@@ -14,27 +14,27 @@ export interface OutgoingEmail {
 }
 
 export interface EmailSender {
-  send(email: OutgoingEmail): Promise<void>;
+  send: (email: OutgoingEmail) => Promise<void>;
 }
 
 export interface EmailDispatcher {
-  dispatch(job: EmailJob): Promise<void>;
+  dispatch: (job: EmailJob) => Promise<void>;
 }
 
 export type DeliverEmail = (job: EmailJob) => Promise<void>;
 
 export interface SendEmailBinding {
-  send(message: {
+  send: (message: {
     to: string;
     from: string | EmailAddress;
     subject: string;
     html?: string;
     text?: string;
-  }): Promise<unknown>;
+  }) => Promise<unknown>;
 }
 
 export interface EmailQueueBinding {
-  send(message: EmailJob): Promise<void>;
+  send: (message: EmailJob) => Promise<void>;
 }
 
 export interface EmailEnv {

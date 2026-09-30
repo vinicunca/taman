@@ -21,8 +21,8 @@ import { useRuntimeConfig } from 'nitro/runtime-config';
 import { v7 as uuidv7 } from 'uuid';
 import { resolveActiveOrganizationId } from '#auth/auth.active-organization.ts';
 import { emailLocale, invitationEmailJob, resetPasswordEmailJob, verifyEmailJob } from '#auth/auth.emails.ts';
-import { resolveTrustedOrigins } from '#lib/cors.ts';
 import { useEmail } from '#email/index.ts';
+import { resolveTrustedOrigins } from '#lib/cors.ts';
 
 export type DirectorAuth = ReturnType<typeof createBetterAuth>;
 export type DirectorAuthPayload = DirectorAuth['$Infer']['Session'];

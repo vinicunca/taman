@@ -1,6 +1,6 @@
+import type { CompiledTemplate, RenderedEmail } from './types.ts';
 import { EmailJobError } from './errors.ts';
 import { fillSlots } from './slots.ts';
-import type { CompiledTemplate, RenderedEmail } from './types.ts';
 
 export interface RenderCompiledInput {
   compiled: CompiledTemplate;
@@ -10,7 +10,7 @@ export interface RenderCompiledInput {
 }
 
 export function escapeHtml(value: string): string {
-  return value.replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]!);
+  return value.replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', '\'': '&#39;' })[char]!);
 }
 
 export function formatCopy(message: string, variables: object, encode?: (value: string) => string): string {
@@ -42,8 +42,7 @@ export function assertHttpUrl(value: unknown, slot: string): string {
     if (url.protocol === 'http:' || url.protocol === 'https:') {
       return url.href;
     }
-  }
-  catch {}
+  } catch {}
 
   throw new EmailJobError(`Unsafe URL for email slot: ${slot}`);
 }
@@ -65,8 +64,7 @@ export function renderCompiled(input: RenderCompiledInput): RenderedEmail {
       const url = assertHttpUrl(input.urls[slot], slot);
       htmlValues[slot] = escapeHtml(url);
       textValues[slot] = url;
-    }
-    else {
+    } else {
       const message = copy[slot];
       if (typeof message !== 'string') {
         throw new EmailJobError(`Missing email copy slot: ${slot}`);
@@ -77,7 +75,7 @@ export function renderCompiled(input: RenderCompiledInput): RenderedEmail {
   }
 
   return {
-    subject: formatCopy(subject, input.vars).replace(/\s*[\r\n]+\s*/g, ' ').trim(),
+    subject: formatCopy(subject, input.vars).replace(/\s*[\r\n]\s*/g, ' ').trim(),
     html: fillSlots(input.compiled.html, htmlValues),
     text: fillSlots(input.compiled.text, textValues),
   };

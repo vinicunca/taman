@@ -8,7 +8,7 @@ export function templateExportName(fileName: string): string {
   return base.replace(/-([a-z0-9])/g, (_match, letter: string) => letter.toUpperCase());
 }
 
-export function assertValidTemplate(source: string, fileName: string): string[] {
+export function assertValidTemplate(source: string, fileName: string): Array<string> {
   if (/%7b|%7d/i.test(source)) {
     throw new Error(`${fileName} contains URL-encoded template slots`);
   }
