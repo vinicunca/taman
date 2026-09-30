@@ -43,6 +43,24 @@ describe('applyManifest', () => {
     expect(files.get('pnpm-workspace.yaml')).toContain('  \'@vinicunca/tsconfig\': ^1.0.1');
   });
 
+  it('re-sorts dependency keys the scope rename moved', () => {
+    const files = snapshot();
+    files.set('apps/web/package.json', pkg({
+      name: '@taman/web',
+      private: true,
+      dependencies: { '@internationalized/date': '^3.0.0', '@taman/utils': 'workspace:*', 'vue': 'catalog:' },
+    }));
+    files.set('packages/utils/package.json', pkg({ name: '@taman/utils', private: true }));
+
+    const { files: result } = applyManifest(files, manifest, names);
+
+    expect(Object.keys(JSON.parse(result.get('apps/web/package.json') as string).dependencies)).toEqual([
+      '@acme/utils',
+      '@internationalized/date',
+      'vue',
+    ]);
+  });
+
   it('collects manifest drift as errors', () => {
     const drifted = { ...manifest, rename: [{ file: 'package.json', from: '"name": "@taman/other"', to: 'x' }] };
 

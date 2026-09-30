@@ -1,7 +1,7 @@
 {
   "name": "@taman/api",
-  "private": true,
   "type": "module",
+  "private": true,
   "imports": {
     "#*": "./server/*"
   },
@@ -10,12 +10,12 @@
     "@orpc/experimental-publisher": "catalog:",
     "@orpc/experimental-publisher-durable-object": "catalog:",
     "@orpc/server": "catalog:",
+    "@taman/api-contract": "workspace:*",
     "@taman/constants": "workspace:*",
     "@taman/db-pg": "workspace:*",
     "@taman/emails": "workspace:*",
     "@taman/rbac": "workspace:*",
     "@vinicunca/perkakas": "catalog:",
-    "@taman/api-contract": "workspace:*",
     "better-auth": "catalog:",
     "consola": "catalog:",
     "csv": "catalog:",

@@ -77,3 +77,34 @@ export function rewritePublishedDeps(before: FileMap, after: FileMap) {
 
   return { errors, files };
 }
+
+/**
+ * Sorts every dependency map alphabetically. The scope rename changes package
+ * names (`@taman/x` → `@acme/x`), which can move them out of sorted order.
+ */
+export function sortDependencyKeys(files: FileMap): FileMap {
+  const result: FileMap = new Map(files);
+
+  for (const { path } of listPackages(files).values()) {
+    const json = readJson<PackageJson>(result, path);
+    let changed = false;
+
+    for (const field of DEPENDENCY_FIELDS) {
+      const deps = json[field] as Record<string, string> | undefined;
+      if (!deps) {
+        continue;
+      }
+      const sorted = Object.fromEntries(Object.entries(deps).sort(([a], [b]) => (a < b ? -1 : 1)));
+      if (Object.keys(sorted).join() !== Object.keys(deps).join()) {
+        json[field] = sorted;
+        changed = true;
+      }
+    }
+
+    if (changed) {
+      writeJson(result, path, json);
+    }
+  }
+
+  return result;
+}

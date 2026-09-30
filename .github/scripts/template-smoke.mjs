@@ -65,8 +65,18 @@ run('node', [join(root, 'packages/create-taman/dist/bin.mjs'), project, '--from'
 
 // 3. Resolve published packages from the tarballs instead of npm
 const workspaceFile = join(project, 'pnpm-workspace.yaml');
-const overrides = tarballs.map(([name, file]) => `  '${name}': file:${file}`).join('\n');
-writeFileSync(workspaceFile, readFileSync(workspaceFile, 'utf8').replace(/^overrides:\n/m, `overrides:\n${overrides}\n`));
+// Merge into the `overrides:` block in sorted order (the project lints its YAML keys)
+const lines = readFileSync(workspaceFile, 'utf8').split('\n');
+const start = lines.indexOf('overrides:');
+let end = start + 1;
+while (end < lines.length && lines[end].startsWith('  ')) {
+  end++;
+}
+const keyOf = (line) => line.trim().split(': ')[0].replace(/^'|'$/g, '');
+const block = [...lines.slice(start + 1, end), ...tarballs.map(([name, file]) => `  '${name}': file:${file}`)]
+  .sort((a, b) => (keyOf(a) < keyOf(b) ? -1 : 1));
+lines.splice(start + 1, end - start - 1, ...block);
+writeFileSync(workspaceFile, lines.join('\n'));
 
 // 4. Install the way a user does (not in CI, no git repo: `prepare` must
 // cope), then the root build (web first generates the types vue-tsc needs)

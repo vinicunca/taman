@@ -1,5 +1,5 @@
 import type { ApplyResult, FileMap, GenerateNames, TemplateManifest } from './types';
-import { rewritePublishedDeps } from './published-deps';
+import { rewritePublishedDeps, sortDependencyKeys } from './published-deps';
 import { removeFiles, unmatchedGlobs } from './remove';
 import { applyExplicitRenames, renameScope } from './rename';
 import { removeRootScripts } from './scripts';
@@ -32,7 +32,7 @@ export function applyManifest(snapshot: FileMap, manifest: TemplateManifest, nam
   files.set('pnpm-workspace.yaml', removeWorkspacePackages(files.get('pnpm-workspace.yaml') as string, manifest.workspacePackages));
 
   const explicit = applyExplicitRenames(files, manifest.rename, names);
-  files = renameScope(explicit.files, manifest.scopeFrom, names.scope);
+  files = sortDependencyKeys(renameScope(explicit.files, manifest.scopeFrom, names.scope));
 
   const scripts = removeRootScripts(files, manifest.scripts);
   files = scripts.files;

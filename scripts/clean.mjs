@@ -92,6 +92,8 @@ async function cleanTargetsRecursively(currentDir, targets, depth = 0) {
     });
 
     // 并发执行当前批次的任务
+    // Sequential on purpose: one batch at a time bounds file-system concurrency
+    // eslint-disable-next-line no-await-in-loop
     const results = await Promise.allSettled(tasks);
 
     // 检查是否有失败的任务（可选：用于调试）
