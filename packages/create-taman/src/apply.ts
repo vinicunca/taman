@@ -1,9 +1,9 @@
 import type { ApplyResult, FileMap, GenerateNames, TemplateManifest } from './types';
-import { rewritePublishedDeps, sortDependencyKeys } from './published-deps';
+import { catalogUsage, rewritePublishedDeps, sortDependencyKeys } from './published-deps';
 import { removeFiles, unmatchedGlobs } from './remove';
 import { applyExplicitRenames, renameScope } from './rename';
 import { removeRootScripts } from './scripts';
-import { missingWorkspacePackages, removeWorkspacePackages } from './workspace-yaml';
+import { missingWorkspacePackages, pruneCatalog, removeWorkspacePackages } from './workspace-yaml';
 
 /** Paths of text files that still contain `needle`. */
 export function findLeftovers(files: FileMap, needle: string): Array<string> {
@@ -36,6 +36,9 @@ export function applyManifest(snapshot: FileMap, manifest: TemplateManifest, nam
 
   const scripts = removeRootScripts(files, manifest.scripts);
   files = scripts.files;
+
+  // Removed packages leave catalog entries nothing references any more
+  files.set('pnpm-workspace.yaml', pruneCatalog(files.get('pnpm-workspace.yaml') as string, catalogUsage(files)));
 
   return {
     errors: [...drift, ...deps.errors, ...explicit.errors],

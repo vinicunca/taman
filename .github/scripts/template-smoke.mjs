@@ -73,7 +73,7 @@ while (end < lines.length && lines[end].startsWith('  ')) {
   end++;
 }
 const keyOf = (line) => line.trim().split(': ')[0].replace(/^'|'$/g, '');
-const block = [...lines.slice(start + 1, end), ...tarballs.map(([name, file]) => `  '${name}': file:${file}`)]
+const block = [...lines.slice(start + 1, end), ...tarballs.map(([name, file]) => `  ${/^[\w-]+$/.test(name) ? name : `'${name}'`}: file:${file}`)]
   .sort((a, b) => (keyOf(a) < keyOf(b) ? -1 : 1));
 lines.splice(start + 1, end - start - 1, ...block);
 writeFileSync(workspaceFile, lines.join('\n'));

@@ -51,3 +51,42 @@ export function missingWorkspacePackages(yaml: string, globs: Array<string>): Ar
   const entries = new Set(yaml.split('\n').map((line) => line.trim()));
   return globs.filter((glob) => !entries.has(`- ${glob}`));
 }
+
+/** Line range `[start, end)` of a top-level `key:` block's indented entries. */
+function blockRange(lines: Array<string>, key: string): [number, number] | undefined {
+  const start = lines.indexOf(`${key}:`);
+  if (start === -1) {
+    return undefined;
+  }
+  let end = start + 1;
+  while (end < lines.length && lines[end]!.startsWith('  ')) {
+    end++;
+  }
+  return [start + 1, end];
+}
+
+/** Names that `overrides:` resolves from the catalog (`name: 'catalog:'`). */
+export function overridesFromCatalog(yaml: string): Array<string> {
+  const lines = yaml.split('\n');
+  const range = blockRange(lines, 'overrides');
+  if (!range) {
+    return [];
+  }
+  return lines
+    .slice(...range)
+    .filter((line) => /:\s*'?catalog:'?\s*$/.test(line))
+    .map(catalogKey);
+}
+
+/** Removes catalog entries whose name is not in `used`. */
+export function pruneCatalog(yaml: string, used: Set<string>): string {
+  const lines = yaml.split('\n');
+  const range = blockRange(lines, 'catalog');
+  if (!range) {
+    return yaml;
+  }
+  const [start, end] = range;
+  const kept = lines.slice(start, end).filter((line) => used.has(catalogKey(line)));
+  lines.splice(start, end - start, ...kept);
+  return lines.join('\n');
+}

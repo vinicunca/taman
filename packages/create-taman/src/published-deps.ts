@@ -1,6 +1,6 @@
 import type { FileMap } from './types';
 import { readJson, writeJson } from './json';
-import { addCatalogEntries } from './workspace-yaml';
+import { addCatalogEntries, overridesFromCatalog } from './workspace-yaml';
 
 const DEPENDENCY_FIELDS = ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies'] as const;
 
@@ -107,4 +107,22 @@ export function sortDependencyKeys(files: FileMap): FileMap {
   }
 
   return result;
+}
+
+/** Every name a package.json or `overrides:` resolves through `catalog:`. */
+export function catalogUsage(files: FileMap): Set<string> {
+  const used = new Set(overridesFromCatalog((files.get('pnpm-workspace.yaml') as string | undefined) ?? ''));
+
+  for (const { path } of listPackages(files).values()) {
+    const json = readJson<PackageJson>(files, path);
+    for (const field of DEPENDENCY_FIELDS) {
+      for (const [name, range] of Object.entries((json[field] as Record<string, string> | undefined) ?? {})) {
+        if (range.startsWith('catalog:')) {
+          used.add(name);
+        }
+      }
+    }
+  }
+
+  return used;
 }

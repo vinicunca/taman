@@ -61,6 +61,19 @@ describe('applyManifest', () => {
     ]);
   });
 
+  it('drops catalog entries only removed packages used', () => {
+    const files = snapshot();
+    files.set('pnpm-workspace.yaml', 'packages:\n  - internal/*\n  - apps/*\n\ncatalog:\n  clsx: ^2.0.0\n  tsdown: ^0.22.0\n  vue: ^3.5.0\n\noverrides:\n  clsx: \'catalog:\'\n');
+    files.set('internal/tsconfig/package.json', pkg({ name: '@vinicunca/tsconfig', version: '1.0.1', devDependencies: { tsdown: 'catalog:' } }));
+    files.set('apps/web/package.json', pkg({ name: '@taman/web', private: true, dependencies: { vue: 'catalog:' } }));
+
+    const catalog = applyManifest(files, manifest, names).files.get('pnpm-workspace.yaml') as string;
+
+    expect(catalog).toContain('  vue: ^3.5.0');
+    expect(catalog).toContain('  clsx: ^2.0.0');
+    expect(catalog).not.toContain('tsdown');
+  });
+
   it('collects manifest drift as errors', () => {
     const drifted = { ...manifest, rename: [{ file: 'package.json', from: '"name": "@taman/other"', to: 'x' }] };
 
