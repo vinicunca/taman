@@ -40,12 +40,17 @@ export default {
     { file: 'package.json', from: '"name": "@taman/monorepo"', to: '"name": "{{name}}"' },
     // Kept as-is in this repo: renaming it creates a new Cloudflare worker
     { file: 'apps/api/nitro.config.ts', from: 'name: \'taman-better-auth-back\'', to: 'name: \'{{name}}-api\'' },
+    // Cloudflare queues allow one consumer worker; each project needs its own
+    { file: 'apps/api/nitro.config.ts', from: '\'taman-email-dlq\'', to: '\'{{name}}-email-dlq\'' },
+    { file: 'apps/api/nitro.config.ts', from: '\'taman-email\'', to: '\'{{name}}-email\'' },
+    { file: 'apps/api/server/email/email.queue-consumer.ts', from: 'EMAIL_QUEUE_NAME = \'taman-email\'', to: 'EMAIL_QUEUE_NAME = \'{{name}}-email\'' },
     { file: 'docker-compose.yml', from: 'container_name: taman-postgres', to: 'container_name: {{name}}-postgres' },
     { file: 'docker-compose.yml', from: 'taman_data', to: '{{nameSnake}}_data' },
     { file: 'docker-compose.yml', from: 'taman_db', to: '{{nameSnake}}' },
     { file: 'apps/web/.env.example', from: 'VITE_APP_TITLE=Taman', to: 'VITE_APP_TITLE={{name}}' },
     { file: 'apps/web/.env.example', from: 'VITE_APP_NAMESPACE=taman', to: 'VITE_APP_NAMESPACE={{name}}' },
     { file: 'apps/api/.env.example', from: 'taman_db', to: '{{nameSnake}}' },
+    { file: 'apps/api/.env.example', from: 'NITRO_EMAIL_FROM_NAME=Taman', to: 'NITRO_EMAIL_FROM_NAME={{name}}' },
     { file: 'packages/server/db-pg/.env.example', from: 'taman_db', to: '{{nameSnake}}' },
   ],
 } satisfies TemplateManifest;

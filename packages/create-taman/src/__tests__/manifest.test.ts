@@ -33,6 +33,12 @@ describe('template.manifest.ts', () => {
     expect(JSON.parse(files.get('package.json') as string).name).toBe('acme-app');
     expect(files.get('apps/api/nitro.config.ts')).toContain('name: \'acme-app-api\'');
     expect(files.get('docker-compose.yml')).toContain('POSTGRES_DB: acme_app');
+    // Cloudflare queues have one consumer worker: a generated project must not share taman's
+    expect(files.get('apps/api/nitro.config.ts')).toContain('queue: \'acme-app-email\'');
+    expect(files.get('apps/api/nitro.config.ts')).toContain('dead_letter_queue: \'acme-app-email-dlq\'');
+    expect(files.get('apps/api/nitro.config.ts')).not.toContain('taman-email');
+    expect(files.get('apps/api/server/email/email.queue-consumer.ts')).toContain('EMAIL_QUEUE_NAME = \'acme-app-email\'');
+    expect(files.get('apps/api/.env.example')).toContain('NITRO_EMAIL_FROM_NAME=acme-app');
     expect(files.get('pnpm-workspace.yaml')).toContain('\'@vinicunca/taman-core\': ^');
   });
 });
