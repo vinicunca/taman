@@ -1,5 +1,10 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { jsonError } from './error.utils';
+
+// Nitro's runtime config is empty outside a server; supply the allow-list.
+vi.mock('nitro/runtime-config', () => ({
+  useRuntimeConfig: () => ({ trustedOrigins: 'http://localhost:5556' }),
+}));
 
 /**
  * Minimal event: `applyCorsToResponse` only reads the request's `origin` and

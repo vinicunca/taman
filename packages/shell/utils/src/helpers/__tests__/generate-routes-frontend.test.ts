@@ -158,26 +158,26 @@ describe('generateRoutesByFrontend', () => {
     ]);
   });
 
-  it('should not corrupt the source route table across repeated generations', async () => {
-    // Reproduction scenario: a low-privilege user logs in, and then generates routes again with higher privileges within the same session.
-    // filterTree used to write back the filtered child nodes to the source route table,
-    // causing high-privilege users to no longer be able to access those routes.
+  it('never mutates the source routes, so a later generation with more access is unaffected', async () => {
+    const originalComponent = () => Promise.resolve({ default: {} });
     const routes = [
       {
+        component: originalComponent,
         meta: { authority: ['admin', 'user'] },
         path: '/dashboard',
         children: [
-          { path: '/dashboard/overview', meta: { authority: ['admin'] } },
-          { path: '/dashboard/stats', meta: { authority: ['user'] } },
+          { component: originalComponent, meta: { authority: ['admin'] }, path: '/dashboard/overview' },
         ],
       },
     ] as unknown as Array<RouteRecordRaw>;
 
-    await generateRoutesByFrontend(routes, ['user']);
-    const asAdmin = await generateRoutesByFrontend(routes, ['admin']);
+    await generateRoutesByFrontend(routes, ['user'], forbiddenComponent);
+    const asAdmin = await generateRoutesByFrontend(routes, ['admin'], forbiddenComponent);
+    const overview = asAdmin[0]?.children?.[0];
 
-    expect(asAdmin[0]?.children?.map((child) => child.path)).toEqual([
-      '/dashboard/overview',
-    ]);
+    expect(overview?.component).toBe(originalComponent);
+    expect(overview?.meta?.hideInMenu).toBeUndefined();
+    expect(routes[0]?.children?.[0]?.component).toBe(originalComponent);
+    expect(routes[0]?.children?.[0]?.meta?.hideInMenu).toBeUndefined();
   });
 });

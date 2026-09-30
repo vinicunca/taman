@@ -11,15 +11,20 @@ async function generateRoutesByFrontend(
   forbiddenComponent?: RouteRecordRaw['component'],
 ): Promise<Array<RouteRecordRaw>> {
   return mapTree(routes, (route) => {
+    // Copy before changing anything: `routes` is the app's static route table,
+    // and mutating it would leak one user's restrictions into the next login.
+    const result = {
+      ...route,
+      meta: route.meta ? { ...route.meta } : route.meta,
+    } as RouteRecordRaw;
+
     if (!hasAuthority(route, roles) && forbiddenComponent) {
-      route.component = forbiddenComponent;
-      if (!menuHasVisibleWithForbidden(route)) {
-        if (route.meta) {
-          route.meta.hideInMenu = true;
-        }
+      result.component = forbiddenComponent;
+      if (!menuHasVisibleWithForbidden(route) && result.meta) {
+        result.meta.hideInMenu = true;
       }
     }
-    return route;
+    return result;
   });
 }
 
