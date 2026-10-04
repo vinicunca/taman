@@ -1,6 +1,6 @@
 # @vinicunca/taman-ui
 
-Unstyled Vue components for Taman on [pohon-ui](https://pohon.vinicunca.dev):
+Unstyled Vue components for Taman on [pohon-ui](https://vinicunca.dev/pohon):
 base components, dialogs and drawers, layout, menu, tabs and forms. Styling is
 the consumer's job, the way shadcn works: the package ships no CSS, theme or
 preset. ESM only; built for Vite.
@@ -52,7 +52,7 @@ components; without it they render with none of their own utilities.
 Pick one:
 
 - **pohon's default look** — leave pohon's `theme.unstyled` at its default
-  and follow pohon's [installation guide](https://pohon.vinicunca.dev/docs/getting-started/installation/vue).
+  and follow pohon's [installation guide](https://vinicunca.dev/pohon/getting-started/installation/vue).
 - **Your own design** — set `theme: { unstyled: true }` and pass your own
   `ui` config to `vitePohon`. Taman's admin template (planned) ships its
   design this way.
