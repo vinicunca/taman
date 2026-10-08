@@ -1,7 +1,7 @@
 {
   "name": "@vinicunca/taman-ui",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Unstyled Taman Vue components on pohon-ui: base components, popups, layout, menu, tabs and forms.",
   "license": "MIT",
   "repository": {
