@@ -5,12 +5,12 @@ defineOptions({
   name: 'CollapseTransition',
 });
 
-const reset = (el: RendererElement) => {
+function reset(el: RendererElement) {
   el.style.maxHeight = '';
   el.style.overflow = el.dataset.oldOverflow;
   el.style.paddingTop = el.dataset.oldPaddingTop;
   el.style.paddingBottom = el.dataset.oldPaddingBottom;
-};
+}
 
 const on = {
   afterEnter(el: RendererElement) {
@@ -23,14 +23,18 @@ const on = {
   },
 
   beforeEnter(el: RendererElement) {
-    if (!el.dataset) el.dataset = {};
+    if (!el.dataset) {
+      el.dataset = {};
+    }
 
     el.dataset.oldPaddingTop = el.style.paddingTop;
     el.dataset.oldMarginTop = el.style.marginTop;
 
     el.dataset.oldPaddingBottom = el.style.paddingBottom;
     el.dataset.oldMarginBottom = el.style.marginBottom;
-    if (el.style.height) el.dataset.elExistsHeight = el.style.height;
+    if (el.style.height) {
+      el.dataset.elExistsHeight = el.style.height;
+    }
 
     el.style.maxHeight = 0;
     el.style.paddingTop = 0;
@@ -40,7 +44,9 @@ const on = {
   },
 
   beforeLeave(el: RendererElement) {
-    if (!el.dataset) el.dataset = {};
+    if (!el.dataset) {
+      el.dataset = {};
+    }
     el.dataset.oldPaddingTop = el.style.paddingTop;
     el.dataset.oldMarginTop = el.style.marginTop;
     el.dataset.oldPaddingBottom = el.style.paddingBottom;
@@ -90,7 +96,10 @@ const on = {
 </script>
 
 <template>
-  <transition name="collapse-transition" v-on="on">
-    <slot></slot>
+  <transition
+    name="collapse-transition"
+    v-on="on"
+  >
+    <slot />
   </transition>
 </template>

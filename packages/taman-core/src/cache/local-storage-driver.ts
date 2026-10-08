@@ -22,8 +22,8 @@ class LocalStorageDriver implements IStorageDriver {
         'LocalStorageDriver is not available in non-browser environments. Use MemoryStorageDriver instead.',
       );
     }
-    this.storage =
-      storageType === 'localStorage'
+    this.storage
+      = storageType === 'localStorage'
         ? window.localStorage
         : window.sessionStorage;
   }
@@ -46,8 +46,8 @@ class LocalStorageDriver implements IStorageDriver {
     }
   }
 
-  async keys(): Promise<string[]> {
-    const result: string[] = [];
+  async keys(): Promise<Array<string>> {
+    const result: Array<string> = [];
     for (let i = 0; i < this.storage.length; i++) {
       const key = this.storage.key(i);
       if (key !== null) {

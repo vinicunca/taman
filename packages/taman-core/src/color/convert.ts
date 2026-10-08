@@ -5,8 +5,8 @@ import { TinyColor } from '@ctrl/tinycolor';
  *
  * HSL is a color model with hue, saturation, and lightness components.
  *
- * @param {string} color Input color.
- * @returns {string} HSL color string.
+ * @param color Input color.
+ * @returns HSL color string.
  */
 function convertToHsl(color: string): string {
   const { a, h, l, s } = new TinyColor(color).toHsl();
@@ -19,8 +19,8 @@ function convertToHsl(color: string): string {
  *
  * Similar to convertToHsl, but formatted for use as a CSS variable.
  *
- * @param {string} color Input color.
- * @returns {string} HSL color string suitable for CSS variables.
+ * @param color Input color.
+ * @returns HSL color string suitable for CSS variables.
  */
 function convertToHslCssVar(color: string): string {
   const { a, h, l, s } = new TinyColor(color).toHsl();
@@ -42,7 +42,7 @@ function convertToRgb(str: string): string {
 
 /**
  * Check whether a color value is valid.
- * @param {string} color Color to validate
+ * @param color Color to validate
  * Returns true when valid, otherwise false
  */
 function isValidColor(color?: string) {

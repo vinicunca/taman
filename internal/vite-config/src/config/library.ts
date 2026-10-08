@@ -1,15 +1,11 @@
 import type { ConfigEnv, UserConfig } from 'vite';
-
 import type { DefineLibraryOptions } from '../typing';
-
 import { readPackageJSON } from '@vinicunca/node-utils';
-
 import { defineConfig, mergeConfig } from 'vite';
-
 import { loadLibraryPlugins } from '../plugins';
 import { getCommonConfig } from './common';
 
-function defineLibraryConfig(userConfigPromise?: DefineLibraryOptions) {
+export function defineLibraryConfig(userConfigPromise?: DefineLibraryOptions) {
   return defineConfig(async (config: ConfigEnv) => {
     const options = await userConfigPromise?.(config);
     const { command, mode } = config;
@@ -25,8 +21,7 @@ function defineLibraryConfig(userConfigPromise?: DefineLibraryOptions) {
       ...library,
     });
 
-    const { dependencies = {}, peerDependencies = {} } =
-      await readPackageJSON(root);
+    const { dependencies = {}, peerDependencies = {} } = await readPackageJSON(root);
 
     const externalPackages = [
       ...Object.keys(dependencies),
@@ -55,5 +50,3 @@ function defineLibraryConfig(userConfigPromise?: DefineLibraryOptions) {
     return mergeConfig(mergedConmonConfig, vite);
   });
 }
-
-export { defineLibraryConfig };

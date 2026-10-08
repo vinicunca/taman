@@ -2,9 +2,9 @@ import type { Component } from 'vue';
 
 import type {
   DrawerApiOptions,
-  TamanDrawerProps,
   ExtendedDrawerApi,
   InferDrawerData,
+  TamanDrawerProps,
 } from './drawer.types';
 
 import { usePreferences } from '@vinicunca/taman-core/preferences';

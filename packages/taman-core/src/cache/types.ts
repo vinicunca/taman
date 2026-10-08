@@ -5,19 +5,19 @@
  */
 interface IStorageDriver {
   /** Clear all stored items */
-  clear(): Promise<void>;
+  clear: () => Promise<void>;
 
   /** Get a stored item */
-  getItem<T>(key: string): Promise<null | T>;
+  getItem: <T>(key: string) => Promise<null | T>;
 
   /** Get all keys */
-  keys(): Promise<string[]>;
+  keys: () => Promise<Array<string>>;
 
   /** Remove a stored item */
-  removeItem(key: string): Promise<void>;
+  removeItem: (key: string) => Promise<void>;
 
   /** Set a stored item */
-  setItem(key: string, value: unknown): Promise<void>;
+  setItem: (key: string, value: unknown) => Promise<void>;
 }
 
 /**

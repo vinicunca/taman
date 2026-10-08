@@ -22,7 +22,7 @@ describe('uniqueByField', () => {
   });
 
   it('should return an empty array when input array is empty', () => {
-    const items: any[] = []; // Empty array
+    const items: Array<any> = []; // Empty array
 
     const uniqueItems = uniqueByField(items, 'id');
 

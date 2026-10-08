@@ -53,8 +53,8 @@ function createProgressiveValidationLogic(
     });
 
     const fieldName = props.event.fieldName;
-    const startsProgressiveValidation =
-      props.event.type === 'blur' || props.event.type === 'submit';
+    const startsProgressiveValidation
+      = props.event.type === 'blur' || props.event.type === 'submit';
     if (fieldName && startsProgressiveValidation) {
       revealedFields.add(fieldName);
     }
