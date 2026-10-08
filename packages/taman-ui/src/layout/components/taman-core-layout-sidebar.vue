@@ -184,9 +184,14 @@ const style = computed<CSSProperties>(() => {
 const extraStyle = computed<CSSProperties>(() => {
   const { extraWidth, show, width, zIndex } = props;
 
+  const shouldShow
+    = (extraVisible.value || expandOnHover.value || expandOnHovering.value)
+      && show
+      && !collapse.value;
+
   return {
     left: `${width}px`,
-    width: extraVisible.value && show ? `${extraWidth}px` : 0,
+    width: shouldShow ? `${extraWidth}px` : 0,
     zIndex,
   };
 });
@@ -255,10 +260,13 @@ function getMenuWidthValue(isHiddenDom: boolean) {
     width,
   } = props;
 
-  let widthValue
-    = width === 0
-      ? '0px'
-      : `${width + (isSidebarMixed && fixedExtra && extraVisible.value ? extraWidth : 0)}px`;
+  const showExtra
+    = isSidebarMixed
+      && !collapse.value
+      && (fixedExtra || expandOnHovering.value)
+      && (extraVisible.value || expandOnHover.value);
+
+  let widthValue = width === 0 ? '0px' : `${width + (showExtra ? extraWidth : 0)}px`;
 
   if (isHiddenDom && expandOnHovering.value && !expandOnHover.value) {
     widthValue = isSidebarMixed ? `${mixedWidth}px` : `${collapseWidth}px`;
@@ -299,8 +307,11 @@ function handleMouseenter(event: MouseEvent) {
     return;
   }
 
-  // No effect when not enabled or not collapsed
   if (expandOnHover.value) {
+    if (props.isSidebarMixed) {
+      extraVisible.value = true;
+    }
+
     return;
   }
   if (!expandOnHovering.value) {
@@ -308,6 +319,7 @@ function handleMouseenter(event: MouseEvent) {
   }
   if (props.isSidebarMixed) {
     isLocked.value = true;
+    extraVisible.value = true;
   }
   expandOnHovering.value = true;
 }
@@ -319,7 +331,6 @@ function handleMouseleave() {
     isLocked.value = false;
   }
 
-  // isMobile guard: prevent synthetic mouseleave during breakpoint switch window period from writing the collapsed state and persisting it
   if (expandOnHover.value || props.isMobile) {
     return;
   }
@@ -404,7 +415,10 @@ onUnmounted(() => {
       >
         <TamanCoreButtonFixed
           v-if="!collapse && !isSidebarMixed && showFixedButton"
+          v-model:collapse="collapse"
           v-model:expand-on-hover="expandOnHover"
+          v-model:expand-on-hovering="expandOnHovering"
+          v-model:extra-visible="extraVisible"
         />
 
         <div
@@ -448,7 +462,10 @@ onUnmounted(() => {
 
         <TamanCoreButtonFixed
           v-if="!extraCollapse"
+          v-model:collapse="collapse"
           v-model:expand-on-hover="expandOnHover"
+          v-model:expand-on-hovering="expandOnHovering"
+          v-model:extra-visible="extraVisible"
         />
 
         <div
