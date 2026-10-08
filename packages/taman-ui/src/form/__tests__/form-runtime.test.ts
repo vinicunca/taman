@@ -1,4 +1,3 @@
-/* eslint-disable sonar/no-nested-functions */
 import type { FormActions } from '../form.types';
 
 import { flushPromises, mount } from '@vue/test-utils';

@@ -4,9 +4,7 @@ import type { PrintPluginOptions } from '../typing';
 
 import { colors } from '@vinicunca/node-utils';
 
-export const vitePrintPlugin = (
-  options: PrintPluginOptions = {},
-): PluginOption => {
+export function vitePrintPlugin(options: PrintPluginOptions = {}): PluginOption {
   const { infoMap = {} } = options;
 
   return {
@@ -25,4 +23,4 @@ export const vitePrintPlugin = (
     enforce: 'pre',
     name: 'vite:print-info',
   };
-};
+}

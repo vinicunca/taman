@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { useContentMaximize, useTabs } from '@taman/composables';
-import { useTabbarStore } from '@taman/stores';
 import { preferences } from '@vinicunca/taman-core/preferences';
 import {
   TabsToolMore,
@@ -10,7 +8,8 @@ import {
 } from '@vinicunca/taman-ui/tabs';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
-
+import { useContentMaximize, useTabs } from '@taman/composables';
+import { useTabbarStore } from '@taman/stores';
 import { useLayoutCoreTabbar } from './use-layout-core-tabbar';
 
 defineOptions({
@@ -51,11 +50,10 @@ if (!preferences.tabbar.persist) {
 <template>
   <TamanTabsView
     :active="currentActive"
-    :class="theme"
+    :class="props.theme"
     :context-menus="createContextMenus"
     :draggable="preferences.tabbar.draggable"
-    :show-icon="showIcon"
-    :style-type="preferences.tabbar.styleType"
+    :show-icon="props.showIcon"
     :tabs="currentTabs"
     :wheelable="preferences.tabbar.wheelable"
     :middle-click-to-close="preferences.tabbar.middleClickToClose"

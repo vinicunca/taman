@@ -1,17 +1,20 @@
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 import { findMonorepoRoot, getPackages, getPackagesSync } from '../monorepo';
 
-const fixtures: string[] = [];
+const fixtures: Array<string> = [];
 function fixture() {
   const root = mkdtempSync(join(tmpdir(), 'node-utils-workspace-'));
   fixtures.push(root);
   return root;
 }
+
 afterEach(() => {
-  for (const root of fixtures.splice(0)) rmSync(root, { recursive: true, force: true });
+  for (const root of fixtures.splice(0)) {
+    rmSync(root, { recursive: true, force: true });
+  }
 });
 
 describe('pnpm workspace discovery', () => {
@@ -35,7 +38,7 @@ describe('pnpm workspace discovery', () => {
     const child = join(root, 'packages', 'child');
     mkdirSync(child, { recursive: true });
     writeFileSync(join(child, 'package.json'), '{"name":"fixture-child","version":"1.0.0"}');
-    expect(getPackagesSync(child).packages.map(pkg => pkg.packageJson.name)).toContain('fixture-child');
-    expect((await getPackages(child)).packages.map(pkg => pkg.packageJson.name)).toContain('fixture-child');
+    expect(getPackagesSync(child).packages.map((pkg) => pkg.packageJson.name)).toContain('fixture-child');
+    expect((await getPackages(child)).packages.map((pkg) => pkg.packageJson.name)).toContain('fixture-child');
   });
 });

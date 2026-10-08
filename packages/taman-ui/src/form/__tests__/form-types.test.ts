@@ -91,7 +91,7 @@ describe('form public types', () => {
       },
       schema: [],
     };
-    const [Form, formApi] = useTamanForm<AccountFormValues>(options);
+    const [_Form, formApi] = useTamanForm<AccountFormValues>(options);
 
     expectTypeOf(formApi).toEqualTypeOf<ExtendedFormApi<AccountFormValues>>();
 
@@ -127,7 +127,7 @@ describe('form public types', () => {
 
     expectTypeOf(assertContextApi).toBeFunction();
 
-    type FormSlots = InstanceType<typeof Form>['$slots'];
+    type FormSlots = InstanceType<typeof _Form>['$slots'];
     type EmailSlot = NonNullable<FormSlots['email']>;
     type EmailSlotProps = Parameters<EmailSlot>[0];
     type DefaultSlot = NonNullable<FormSlots['default']>;
@@ -147,8 +147,8 @@ describe('form public types', () => {
       DefaultSlotProps['values']
     >().toEqualTypeOf<AccountFormValues>();
 
-    const [WideForm] = useTamanForm<Record<string, unknown>>({ schema: [] });
-    type WideFormSlots = InstanceType<typeof WideForm>['$slots'];
+    const [_WideForm] = useTamanForm<Record<string, unknown>>({ schema: [] });
+    type WideFormSlots = InstanceType<typeof _WideForm>['$slots'];
     type WideFieldSlot = NonNullable<WideFormSlots['dynamic-field']>;
     type WideFieldSlotProps = Parameters<WideFieldSlot>[0];
 

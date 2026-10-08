@@ -164,7 +164,9 @@ describe('validation error stability while typing', () => {
 
     await wrapper.get('input').setValue('ab');
     await flushPromises();
-    await new Promise((resolve) => setTimeout(resolve, 50));
+    await new Promise((resolve) => {
+      setTimeout(resolve, 50);
+    });
     await flushPromises();
 
     stop();

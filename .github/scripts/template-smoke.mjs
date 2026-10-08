@@ -10,10 +10,8 @@ import process from 'node:process';
 // Problems in the user's in-progress tabs work. Remove each entry when that
 // work lands; the script fails if an entry no longer occurs, so this list
 // cannot go stale.
-const KNOWN_TYPE_ERRORS = [
-  'packages/shell/layouts/src/core/tabbar/layout-core-tabbar.vue(58,37): error TS2339: Property \'styleType\' does not exist on type \'TabbarPreferences\'.',
-];
-const LINT_SKIP = ['packages/shell/layouts/src/core/tabbar/layout-core-tabbar.vue'];
+const KNOWN_TYPE_ERRORS = [];
+const LINT_SKIP = [];
 
 const root = process.cwd();
 const work = mkdtempSync(join(tmpdir(), 'template-smoke-'));

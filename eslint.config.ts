@@ -84,6 +84,15 @@ export default vinicuncaESLint(
 
   {
     files: [
+      '**/internal/**/*.ts',
+    ],
+    rules: {
+      'no-console': 'off',
+    },
+  },
+
+  {
+    files: [
       '**/e2e/**',
     ],
     rules: {
