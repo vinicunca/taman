@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { TAMAN_UI_CONTENT } from '@vinicunca/taman-ui/unocss';
 import { defineConfig } from 'unocss';
 import { presetCore } from '@taman/designs';
 
@@ -16,6 +17,8 @@ export default defineConfig({
         // the default
         /\.(vue|svelte|[jt]sx|vine.ts|mdx?|astro|elm|php|phtml|marko|html)($|\?)/,
         /virtual:pohon-theme/,
+        // taman-ui's compiled components, once installed from npm
+        TAMAN_UI_CONTENT,
       ],
     },
   },

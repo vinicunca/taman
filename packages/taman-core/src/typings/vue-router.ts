@@ -28,22 +28,14 @@ type TamanRoleName = TamanRoleRegistry extends { role: infer Role extends string
  * - `{ only: 'guest' }`: visible to unauthenticated visitors; an
  *   authenticated visitor is redirected to `redirectUserTo` (or the
  *   caller's default). Excluded from `generateAccess`.
- * - `{ only: 'onboarding' }`: visible only to authenticated visitors who
- *   still need onboarding (non-admin, no active organization); a visitor
- *   who no longer needs it is redirected to `redirectUserTo` (or the
- *   caller's default), same as `only: 'guest'`'s symmetric case. An
- *   unauthenticated visitor is redirected to `redirectGuestTo` like any
- *   other protected route. Excluded from `generateAccess`.
  * - `{ only: 'user' }`, `{}`, or omitted entirely: the default — requires
  *   auth. An unauthenticated visitor is redirected to `redirectGuestTo`
- *   (or the caller's default). An authenticated visitor who still needs
- *   onboarding is redirected to the onboarding route instead of being
- *   allowed through. Participates in `generateAccess`.
+ *   (or the caller's default). Participates in `generateAccess`.
  */
 type AuthMiddlewareOptions
   = | false
     | {
-      only?: 'guest' | 'onboarding' | 'user';
+      only?: 'guest' | 'user';
       redirectUserTo?: string;
       redirectGuestTo?: string;
     };
