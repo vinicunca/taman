@@ -3,12 +3,6 @@
  */
 export const LOGIN_PATH = '/auth/login';
 
-/**
- * Onboarding page URL path — where non-admin users without an active
- * organization are sent to create one or accept a pending invitation.
- */
-export const ONBOARDING_PATH = '/onboarding';
-
 export interface LanguageOption {
   label: string;
   value: 'en-US' | 'id-ID';

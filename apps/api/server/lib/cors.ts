@@ -3,7 +3,7 @@ import { useRuntimeConfig } from 'nitro/runtime-config';
 
 /**
  * Frontend origins allowed to call this API. Read from the comma-separated
- * `TRUSTED_ORIGINS` env var, with a localhost fallback for local dev.
+ * `NITRO_TRUSTED_ORIGINS` env var; unset or empty allows no origins.
  */
 export function resolveTrustedOrigins(): Array<string> {
   const trustedOrigins: string = useRuntimeConfig().trustedOrigins;
