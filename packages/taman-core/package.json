@@ -1,7 +1,7 @@
 {
   "name": "@vinicunca/taman-core",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Foundation for Taman: utils, constants, color, cache, store, typings, composables and preferences.",
   "license": "MIT",
   "repository": {
