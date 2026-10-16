@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "private": true,
-  "packageManager": "pnpm@12.6.0",
+  "packageManager": "pnpm@12.11.2",
   "engines": {
     "node": "^22.18.0 || ^24.0.0",
     "pnpm": ">=11.0.0"
@@ -57,7 +57,6 @@
     "cspell": "catalog:",
     "czg": "catalog:",
     "eslint": "catalog:",
-    "eslint-plugin-sonarjs": "catalog:",
     "happy-dom": "catalog:",
     "is-ci": "catalog:",
     "lefthook": "catalog:",

@@ -273,7 +273,8 @@ const mainStyle = computed(() => {
     const isSideNavEffective
       = (isSidebarMixedNav.value || isHeaderMixedNav.value)
         && sidebarExpandOnHover.value
-        && sidebarExtraVisible.value;
+        && sidebarExtraVisible.value
+        && !activeSidebarCollapse.value;
 
     if (isSideNavEffective) {
       const sideCollapseWidth = props.sidebarMixedWidth;

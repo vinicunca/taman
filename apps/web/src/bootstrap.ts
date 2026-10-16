@@ -17,8 +17,6 @@ import { initTamanForm } from './adapter/form';
 import App from './app.vue';
 import 'virtual:uno.css';
 import '@taman/designs/styles';
-// Used for pohon ui theme
-import 'virtual:pohon-theme';
 
 async function bootstrap(namespace: string) {
   // Initialize component adapter
@@ -43,7 +41,7 @@ async function bootstrap(namespace: string) {
   // instantiate its internal useQuery() before the QueryClient exists.
   // Deferring to a getter means the store's first real instantiation
   // happens on first actual access check (directive mount or component
-  // setup), which only occurs after the app is mounted.
+  // setup)
   registerAccessDirective(app, () => useSessionStore().roles);
 
   // Router and guards

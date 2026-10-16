@@ -54,7 +54,6 @@
     "@tanstack/vue-query-devtools": "catalog:",
     "@types/json-bigint": "catalog:",
     "@vinicunca/vite-config": "workspace:*",
-    "add": "catalog:",
     "pnpm": "catalog:",
     "unocss": "catalog:",
     "vite": "catalog:"

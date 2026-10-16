@@ -99,4 +99,10 @@ export default vinicuncaESLint(
       'sonar/assertions-in-tests': 'off',
     },
   },
+
+  {
+    rules: {
+      'slop/no-em-dash': 'off',
+    },
+  },
 );
