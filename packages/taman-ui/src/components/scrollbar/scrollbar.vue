@@ -97,9 +97,9 @@ function handleScroll(event: Event) {
     :class="[
       props.class,
       {
-        'mask-linear-[90deg,transparent,#000_32px,#000_calc(100%-32px),transparent_100%]': hasBothShadow,
-        'not-[[data-both-shadow]]:mask-linear-[90deg,transparent,#000_32px]': !isAtLeft && showShadowLeft,
-        'not-[[data-both-shadow]]:mask-linear-[90deg,transparent,#000_32px,#000_calc(100%-32px),transparent_100%]': !isAtRight && showShadowRight,
+        'mask-[linear-gradient(90deg,transparent,#000_32px,#000_calc(100%-32px),transparent_100%)]': hasBothShadow,
+        'not-[[data-both-shadow]]:mask-[linear-gradient(90deg,transparent,#000_32px)]': !isAtLeft && showShadowLeft,
+        'not-[[data-both-shadow]]:mask-[linear-gradient(90deg,#000_calc(100%-32px),transparent)]': !isAtRight && showShadowRight,
       },
     ]"
     class="taman-scrollbar relative"
