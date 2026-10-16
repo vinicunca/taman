@@ -1,5 +1,19 @@
+import { expandVariantGroup } from '@unocss/core';
 import { defineConfig } from 'tsdown';
 import Vue from 'unplugin-vue/rolldown';
+
+// The class attribute ships as-is, and consumers never run transformerVariantGroup on dist, so expand `variant:(a b)` into plain classes before compiling the SFCs.
+const variantGroup = {
+  name: 'taman:variant-group',
+  transform: {
+    filter: { id: /\.vue$/ },
+    handler(code: string) {
+      const expanded = expandVariantGroup(code);
+
+      return expanded === code ? null : expanded;
+    },
+  },
+};
 
 export default defineConfig({
   clean: true,
@@ -24,6 +38,9 @@ export default defineConfig({
     js: '.mjs',
   }),
   platform: 'neutral',
-  plugins: [Vue({ isProduction: true })],
+  plugins: [
+    variantGroup,
+    Vue({ isProduction: true }),
+  ],
   unbundle: true,
 });

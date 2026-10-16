@@ -1,5 +1,11 @@
 # @vinicunca/taman-ui
 
+## 0.1.2
+
+### Patch Changes
+
+- variant
+
 ## 0.1.1
 
 ### Patch Changes
