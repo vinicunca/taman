@@ -4,7 +4,7 @@ import { $t } from '#/locales';
 import { reactiveOmit } from '@vueuse/core';
 import { useForwardProps } from '@taman/composables';
 
-const props = defineProps<FileUploadProps<true>>();
+const props = defineProps<Omit<FileUploadProps<true>, 'modelValue'>>();
 
 const buttonProps = useForwardProps(
   reactiveOmit(props, 'icon', 'accept', 'label'),
