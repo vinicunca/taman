@@ -2,9 +2,11 @@ import type { PThemeCheckbox } from 'pohon-ui';
 // @unocss-include
 import { POHON_THEME_BRANDS } from '../constants.ts';
 
-// `list` puts focus on the control, which is the click target there. `card` and `table`
-// render the root as a label wrapping everything, so focus belongs on the card itself,
-// as it does whenever the control is `sr-only`.
+/**
+ * `list` puts focus on the control, which is the click target there. `card` and `table`
+ * render the root as a label wrapping everything, so focus belongs on the card itself,
+ * as it does whenever the control is `sr-only`.
+ */
 export const focusControl = (color: string) => `outline-${color}/25 focus-visible:outline-solid focus-visible:outline-3 focus-visible:ring-${color}`;
 export const focusCard = (color: string) => `outline-${color}/25 has-focus-visible:outline-3 not-has-disabled:has-focus-visible:border-${color} has-focus-visible:z-1`;
 

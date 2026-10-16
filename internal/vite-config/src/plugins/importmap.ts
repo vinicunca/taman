@@ -16,14 +16,7 @@ type pluginOptions = GeneratorOptions & {
   importmap?: Array<{ name: string; range?: string }>;
 };
 
-// async function getLatestVersionOfShims() {
-//   const result = await fetch('https://ga.jspm.io/npm:es-module-shims');
-//   const version = result.text();
-//   return version;
-// }
-
 async function getShimsUrl(provide: string) {
-  // const version = await getLatestVersionOfShims();
   const version = '1.10.0';
 
   const shimsSubpath = 'dist/es-module-shims.js';
@@ -118,6 +111,7 @@ async function viteImportMapPlugin(
     {
       enforce: 'post',
       name: 'importmap:install',
+      // eslint-disable-next-line sonarjs/no-invariant-returns
       async resolveId() {
         if (isSSR || !isBuild || installed) {
           return null;

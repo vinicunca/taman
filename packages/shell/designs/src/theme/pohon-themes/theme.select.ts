@@ -4,8 +4,10 @@ import { defuFn } from 'defu';
 import { fieldGroupVariant } from './theme.field-group.ts';
 import { themeInput } from './theme.input.ts';
 
-// `defuFn` keeps merger callbacks (e.g. `variant: (prev) => …`) in the inferred
-// type, so `satisfies PThemeSelect` fails — assert the runtime-merged shape.
+/**
+ * `defuFn` keeps merger callbacks (e.g. `variant: (prev) => …`) in the inferred
+ * type, so `satisfies PThemeSelect` fails — assert the runtime-merged shape.
+ */
 export const themeSelect = defuFn(
   {
     slots: {

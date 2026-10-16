@@ -69,6 +69,26 @@ export function useMenuExtra(useRootMenus?: ComputedRef<Array<TamanMenuRecordRaw
   };
 
   /**
+   * Resolves the top-level menu owning the current path.
+   * When a default child route has path '' (e.g. /cards), parent and child share the same path,
+   * so findMenuByPath hits the top-level menu first; it has no parents, so rootMenu would be empty.
+   */
+  function resolveRootMenu(currentPath: string, level = 0) {
+    const { findMenu, rootMenu, rootMenuPath } = findRootMenuByPath(
+      menus.value,
+      currentPath,
+      level,
+    );
+    const resolved
+      = rootMenu ?? menus.value.find((item) => item.path === currentPath);
+    return {
+      findMenu,
+      rootMenu: resolved,
+      rootMenuPath: rootMenuPath ?? resolved?.path,
+    };
+  }
+
+  /**
    * Handles sidebar mouse leave
    */
   const handleSideMouseLeave = () => {
@@ -76,9 +96,8 @@ export function useMenuExtra(useRootMenus?: ComputedRef<Array<TamanMenuRecordRaw
       return;
     }
 
-    const { findMenu, rootMenu, rootMenuPath } = findRootMenuByPath(
-      menus.value,
-      route.path,
+    const { findMenu, rootMenu, rootMenuPath } = resolveRootMenu(
+      route.meta?.activePath || route.path,
     );
     extraActiveMenu.value = rootMenuPath ?? findMenu?.path ?? '';
     extraMenus.value = rootMenu?.children ?? [];
@@ -95,8 +114,7 @@ export function useMenuExtra(useRootMenus?: ComputedRef<Array<TamanMenuRecordRaw
 
   function calcExtraMenus(path: string) {
     const currentPath = route.meta?.activePath || path;
-    const { findMenu, rootMenu, rootMenuPath } = findRootMenuByPath(
-      menus.value,
+    const { findMenu, rootMenu, rootMenuPath } = resolveRootMenu(
       currentPath,
       parentLevel.value,
     );
@@ -106,13 +124,24 @@ export function useMenuExtra(useRootMenus?: ComputedRef<Array<TamanMenuRecordRaw
     }
     extraActiveMenu.value = rootMenuPath ?? findMenu?.path ?? '';
     extraMenus.value = rootMenu?.children ?? [];
-    if (preferences.sidebar.expandOnHover) {
-      sidebarExtraVisible.value = extraMenus.value.length > 0;
-    }
+    sidebarExtraVisible.value = extraMenus.value.length > 0;
   }
 
+  // The sidebar sets sidebarExtraVisible to true on hover; without extra menus it must be
+  // reset, otherwise an empty panel expands over the content.
+  watch([sidebarExtraVisible, extraMenus], ([visible, items]) => {
+    if (visible && items.length === 0) {
+      sidebarExtraVisible.value = false;
+    }
+  });
+
   watch(
-    () => [route.path, preferences.app.layout],
+    () => [
+      route.path,
+      preferences.app.layout,
+      preferences.sidebar.expandOnHover,
+      menus.value,
+    ] as const,
     ([path]) => {
       calcExtraMenus(path || '');
     },

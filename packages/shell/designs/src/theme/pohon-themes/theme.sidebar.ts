@@ -1,4 +1,4 @@
-// @unocss-include
+/** @unocss-include */
 export const themeSidebar = {
   slots: {
     root: 'peer [--sidebar-width-icon:4rem] [--sidebar-width:16rem]',

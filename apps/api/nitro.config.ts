@@ -1,6 +1,6 @@
 import { defineConfig } from 'nitro';
 
-// @keep-sorted
+/** @keep-sorted */
 export default defineConfig({
   cloudflare: {
     deployConfig: true,

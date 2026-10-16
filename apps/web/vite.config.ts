@@ -1,7 +1,6 @@
 import type { PohonUiOptions } from 'pohon-ui/vite';
 import { defineConfig } from '@vinicunca/vite-config';
 import vitePohon from 'pohon-ui/vite';
-import { ui, vitePohonTheme } from '@taman/designs/theme';
 
 const pohonOptions: PohonUiOptions = {
   colorMode: false,
@@ -15,10 +14,6 @@ const pohonOptions: PohonUiOptions = {
       error: 'red',
       neutral: 'gray',
     },
-    ...ui,
-  },
-  theme: {
-    unstyled: true,
   },
   scanPackages: [
     '@vinicunca/taman-ui',
@@ -60,7 +55,6 @@ export default defineConfig(async () => {
     vite: {
       plugins: [
         vitePohon(pohonOptions),
-        vitePohonTheme(pohonOptions.ui),
       ],
       resolve: {
         dedupe: ['pohon-ui'],

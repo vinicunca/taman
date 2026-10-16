@@ -83,7 +83,7 @@ jobs:
           node-version: 24
       - run: pnpm install --frozen-lockfile --ignore-scripts
       - id: select-mode
-        uses: changesets/action/select-mode@v2
+        uses: changesets/action/select-mode@v2.1.2
 
   version:
     if: needs.select-mode.outputs.mode == 'version'
@@ -102,7 +102,7 @@ jobs:
           node-version: 24
       # No dependency lifecycle scripts in jobs holding write tokens
       - run: pnpm install --frozen-lockfile --ignore-scripts
-      - uses: changesets/action/version@v2
+      - uses: changesets/action/version@v2.1.2
         with:
           commit-message: 'chore: version packages'
           pr-title: 'chore: version packages'
@@ -127,7 +127,7 @@ jobs:
       # changeset pack runs `pnpm pack`, so each package's `prepack` builds it
       - run: pnpm install --frozen-lockfile
       - id: pack
-        uses: changesets/action/pack@v2
+        uses: changesets/action/pack@v2.1.2
         with:
           publish-plan-artifact-id: ${{ needs.select-mode.outputs.publish-plan-artifact-id }}
 
@@ -151,6 +151,6 @@ jobs:
           node-version: 24
       # No dependency lifecycle scripts in the job that can publish
       - run: pnpm install --frozen-lockfile --ignore-scripts
-      - uses: changesets/action/publish@v2
+      - uses: changesets/action/publish@v2.1.2
         with:
           pack-dir-artifact-id: ${{ needs.pack.outputs.pack-dir-artifact-id }}

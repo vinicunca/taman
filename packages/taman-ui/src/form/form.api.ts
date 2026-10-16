@@ -132,7 +132,7 @@ export class FormApi<
   P extends Record<string, any> = Record<never, never>,
   TSubmitValues extends FormValues = TFormValues,
 > {
-  // private api: Pick<TamanFormProps, 'handleReset' | 'handleSubmit'>;
+  /** private api: Pick<TamanFormProps, 'handleReset' | 'handleSubmit'>; */
   public form = {} as FormActions<TFormValues>;
   isMounted = false;
 
@@ -146,7 +146,7 @@ export class FormApi<
    */
   private componentRefMap: Map<string, unknown> = new Map();
 
-  // The last time the form was submitted
+  /** The last time the form was submitted */
   private latestSubmissionValues: null | Partial<TSubmitValues> = null;
 
   private prevState: FormApiProps<

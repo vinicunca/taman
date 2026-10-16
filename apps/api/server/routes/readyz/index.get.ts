@@ -1,7 +1,7 @@
 import { HealthService } from '#domains/health/health.service';
 import { defineHandler } from 'nitro';
 
-// Readiness: verifies the service can reach its dependencies (DB).
+/** Readiness: verifies the service can reach its dependencies (DB). */
 export default defineHandler(async (event) => {
   const service = new HealthService();
   const { ok } = await service.readiness();

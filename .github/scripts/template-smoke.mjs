@@ -7,12 +7,6 @@ import { tmpdir } from 'node:os';
 import { join, relative } from 'node:path';
 import process from 'node:process';
 
-// Problems in the user's in-progress tabs work. Remove each entry when that
-// work lands; the script fails if an entry no longer occurs, so this list
-// cannot go stale.
-const KNOWN_TYPE_ERRORS = [];
-const LINT_SKIP = [];
-
 const root = process.cwd();
 const work = mkdtempSync(join(tmpdir(), 'template-smoke-'));
 const packs = join(work, 'packs');
@@ -95,11 +89,8 @@ for (const tsconfig of tsconfigs) {
     }
   }
 }
-const unexpected = [...typeErrors].filter((line) => !KNOWN_TYPE_ERRORS.includes(line));
-const stale = KNOWN_TYPE_ERRORS.filter((line) => !typeErrors.has(line));
-
-// 6. Unit tests, then the root lint script. Only allow-listed files may
-// report problems; a crash (non-zero exit without file reports) fails.
+// 6. Unit tests, then the root lint script. Any reported problem fails;
+// a crash (non-zero exit without file reports) also fails.
 run('pnpm', ['test:unit'], project);
 console.log('\n$ pnpm lint');
 const lint = capture('pnpm', ['lint'], project);
@@ -110,9 +101,8 @@ const lintFailures = [];
 if (lint.status !== 0 && lintedFiles.size === 0) {
   lintFailures.push(`pnpm lint failed without reporting a file:\n${lint.output.slice(-2000)}`);
 } else if (lint.status !== 0) {
-  lintFailures.push(...[...lintedFiles].filter((file) => !LINT_SKIP.includes(file)).map((file) => `lint: ${file}`));
+  lintFailures.push(...[...lintedFiles].map((file) => `lint: ${file}`));
 }
-const staleLint = LINT_SKIP.filter((file) => !lintedFiles.has(file));
 
 // 7. Nothing template-only may leak into the project
 const leaks = [];
@@ -135,9 +125,7 @@ walk(project, (file) => {
 
 const failures = [
   ...lintFailures,
-  ...staleLint.map((file) => `LINT_SKIP entry no longer reports problems, remove it: ${file}`),
-  ...unexpected.map((line) => `type error: ${line}`),
-  ...stale.map((line) => `KNOWN_TYPE_ERRORS entry no longer occurs, remove it: ${line}`),
+  ...[...typeErrors].map((line) => `type error: ${line}`),
   ...leaks,
 ];
 if (failures.length > 0) {

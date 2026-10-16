@@ -64,7 +64,7 @@ export interface BuiltInFormComponentPropsMap {
 
 export type BuiltInFormComponentType = keyof BuiltInFormComponentPropsMap;
 
-// @keep-sorted
+/** @keep-sorted */
 export const BUILT_IN_COMPONENT_MAP: Record<BuiltInFormComponentType, Component> = {
   Checkbox: PCheckbox,
   CheckboxGroup: PCheckboxGroup,

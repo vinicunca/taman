@@ -4,7 +4,7 @@ import { Store } from '@vinicunca/taman-core/store';
 import { bindMethods, isFunction } from '@vinicunca/taman-core/utils';
 
 export class DrawerApi<TData = unknown> {
-  // Shared data
+  /** Shared data */
   public sharedData: Record<'payload', TData | undefined> = {
     payload: undefined,
   };

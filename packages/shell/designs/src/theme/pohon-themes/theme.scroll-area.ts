@@ -1,6 +1,6 @@
 import type { PThemeScrollArea } from 'pohon-ui';
 
-// @unocss-include
+/** @unocss-include */
 export const themeScrollArea = {
   slots: {
     root: 'outline-primary/25 relative focus-visible:outline-3',

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { SetupContext } from 'vue';
-import type { RouteLocationNormalizedLoaded } from 'vue-router';
 import type { TamanMenuRecordRaw } from '@taman/types';
 import { ELEMENT_ID_LAYOUT_SCROLL } from '@vinicunca/taman-core/constants';
 import {
@@ -10,8 +9,7 @@ import {
 } from '@vinicunca/taman-core/preferences';
 import { TamanBackToTop, TamanLogo } from '@vinicunca/taman-ui';
 import { TamanCoreLayout } from '@vinicunca/taman-ui/layout';
-import { computed, onMounted, useSlots, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { computed, useSlots, watch } from 'vue';
 import { useRefresh } from '@taman/composables';
 import { $t, i18n } from '@taman/locales';
 import {
@@ -226,25 +224,6 @@ function handleLogout() {
 function handleClickLogo() {
   emits('clickLogo');
 }
-
-function autoCollapseMenuByRouteMeta(route: RouteLocationNormalizedLoaded) {
-  // Only applies in dual-column layout modes
-  if (
-    ['header-mixed-nav', 'sidebar-mixed-nav'].includes(
-      preferences.app.layout,
-    )
-    && route.meta
-    && route.meta.hideInMenu
-  ) {
-    sidebarExtraVisible.value = false;
-  }
-}
-
-const route = useRoute();
-
-onMounted(() => {
-  autoCollapseMenuByRouteMeta(route);
-});
 
 watch(
   () => preferences.app.layout,

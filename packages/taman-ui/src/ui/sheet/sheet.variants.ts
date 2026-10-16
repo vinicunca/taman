@@ -1,9 +1,7 @@
 // @unocss-include
 
 import type { VariantProps } from 'unocss-variants';
-import { createUv } from 'unocss-variants';
-
-const uv = createUv();
+import { uv } from 'unocss-variants';
 
 export const sheetVariants = uv({
   variants: {

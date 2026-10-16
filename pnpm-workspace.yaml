@@ -44,125 +44,123 @@ allowBuilds:
 
 catalog:
   '@arethetypeswrong/cli': ^0.18.5
-  '@ast-grep/napi': ^0.45.3
+  '@ast-grep/napi': ^0.51.0
   '@changesets/cli': ^3.0.3
   '@clack/prompts': ^1.8.1
-  '@cloudflare/workers-types': ^5.20260924.1
-  '@colordx/core': 6.6.0
+  '@cloudflare/workers-types': ^5.20261016.1
+  '@colordx/core': 7.3.0
   '@commitlint/cli': ^21.2.3
   '@commitlint/config-conventional': ^21.2.3
   '@commitlint/types': ^21.2.3
   '@ctrl/tinycolor': ^4.2.1
   '@formkit/auto-animate': ^0.10.0
   '@internationalized/date': ^3.12.4
-  '@internationalized/number': ^3.6.8
-  '@intlify/core-base': ^11.4.12
-  '@intlify/unplugin-vue-i18n': ^11.2.5
-  '@jspm/generator': ^2.16.3
-  '@maizzle/framework': ^6.1.7
+  '@internationalized/number': ^3.6.9
+  '@intlify/core-base': ^11.4.14
+  '@intlify/unplugin-vue-i18n': ^11.2.6
+  '@jspm/generator': ^2.17.0
+  '@maizzle/framework': ^6.2.1
   '@manypkg/get-packages': ^3.1.0
-  '@orpc/client': 1.15.4
-  '@orpc/contract': 1.15.4
-  '@orpc/experimental-publisher': 1.15.4
-  '@orpc/experimental-publisher-durable-object': 1.15.4
-  '@orpc/server': 1.15.4
-  '@orpc/tanstack-query': 1.15.4
-  '@playwright/test': ^1.63.0
+  '@orpc/client': 1.15.7
+  '@orpc/contract': 1.15.7
+  '@orpc/experimental-publisher': 1.15.7
+  '@orpc/experimental-publisher-durable-object': 1.15.7
+  '@orpc/server': 1.15.7
+  '@orpc/tanstack-query': 1.15.7
+  '@playwright/test': ^1.64.1
   '@pnpm/workspace.read-manifest': ^1000.3.1
-  '@tanstack/query-core': ^5.103.2
-  '@tanstack/store': ^0.11.1
+  '@tanstack/query-core': ^5.104.3
+  '@tanstack/store': ^0.11.2
   '@tanstack/vue-form': ^1.33.5
-  '@tanstack/vue-query': ^5.103.2
-  '@tanstack/vue-query-devtools': ^6.2.3
-  '@tanstack/vue-store': ^0.11.1
+  '@tanstack/vue-query': ^5.104.3
+  '@tanstack/vue-query-devtools': ^6.3.3
+  '@tanstack/vue-store': ^0.11.2
   '@types/archiver': ^8.0.0
   '@types/html-minifier-terser': ^7.0.2
   '@types/json-bigint': ^1.0.4
-  '@types/node': ^26.6.2
+  '@types/node': ^26.6.5
   '@types/nprogress': ^0.2.3
   '@types/pg': ^8.23.1
   '@types/qs': ^6.15.1
   '@types/sortablejs': ^1.15.9
-  '@vinicunca/eslint-config': 5.7.1
-  '@vinicunca/perkakas': 1.17.1
-  '@vinicunca/unocss-preset': 2.4.0
-  '@vitejs/plugin-vue': ^6.0.9
+  '@vinicunca/eslint-config': 6.0.1
+  '@vinicunca/perkakas': 1.18.0
+  '@vinicunca/unocss-preset': 2.6.0
+  '@vitejs/plugin-vue': ^6.0.10
   '@vitejs/plugin-vue-jsx': ^5.1.6
-  '@vue/compiler-sfc': 3.5.43
-  '@vue/shared': ^3.5.43
+  '@vue/compiler-sfc': 3.5.44
+  '@vue/shared': ^3.5.44
   '@vue/test-utils': ^2.5.1
   '@vueuse/core': ^15.0.0
-  add: ^2.0.6
   ag-grid-community: ^36.2.0
   ag-grid-vue3: ^36.2.0
-  akar: 2.0.18
+  akar: 2.0.23
   archiver: ^8.0.0
-  better-auth: ^1.7.5
-  chalk: ^6.0.0
+  better-auth: ^1.7.10
+  chalk: ^6.0.1
   cheerio: ^1.2.0
   circular-dependency-scanner: ^3.1.0
   clsx: ^2.1.1
   commitlint-plugin-function-rules: ^5.0.1
   consola: ^3.4.2
   cross-env: ^10.1.0
-  cspell: ^10.3.3
-  csv: ^6.6.3
+  cspell: ^10.4.0
+  csv: ^6.6.4
   cz-git: ^1.14.0
   czg: ^1.14.0
   defu: ^6.1.7
-  dotenv: ^18.0.2
+  dotenv: ^18.0.8
   drizzle-kit: 0.31.11
   drizzle-orm: 0.45.3
   drizzle-zod: ^0.8.3
   es-toolkit: ^1.52.0
-  eslint: ^10.11.0
-  eslint-plugin-sonarjs: ^4.2.0
-  execa: ^10.0.1
+  eslint: ^10.12.0
+  execa: ^10.1.1
   giget: ^3.3.1
-  happy-dom: ^20.14.5
+  happy-dom: ^21.0.3
   html-minifier-terser: ^7.2.0
   is-ci: ^4.1.0
   json-bigint: ^1.0.0
-  knip: ^6.37.0
-  lefthook: ^2.1.14
+  knip: ^6.41.0
+  lefthook: ^2.2.2
   maizzle: ^1.2.4
   nitro: 3.0.260903-beta
   nprogress: ^0.2.0
-  nx: 23.2.1
+  nx: 23.3.0
   ofetch: ^1.5.1
-  pg: ^8.23.0
-  pinia: ^4.0.3
+  pg: ^8.23.1
+  pinia: ^4.1.0
   pinia-plugin-persistedstate: ^4.7.1
   pkg-types: ^2.3.3
-  playwright: ^1.63.0
-  pnpm: ^12.5.1
-  pohon-ui: 2.0.0-rc7.9
-  publint: ^0.3.24
-  qs: ^6.16.0
+  playwright: ^1.64.1
+  pnpm: ^12.11.2
+  pohon-ui: 2.3.1
+  publint: ^0.3.25
+  qs: ^6.16.1
   rimraf: ^6.1.3
   rollup-plugin-visualizer: ^7.1.1
   secure-ls: ^2.0.0
   sortablejs: ^1.15.7
   theme-colors: ^0.1.0
-  tsdown: ^0.22.14
+  tsdown: ^0.23.1
   tsx: ^4.23.15
-  turbo: ^2.9.16
+  turbo: ^2.11.8
   typescript: ^6.0.3
-  unocss: 66.10.5
-  unocss-variants: 1.5.0
-  unplugin-dts: ^1.1.1
+  unocss: 66.11.0
+  unocss-variants: 1.6.1
+  unplugin-dts: ^1.1.2
   unplugin-vue: ^8.0.0
-  uuid: ^14.0.2
-  vite: 8.3.0
+  uuid: ^14.0.3
+  vite: 8.3.4
   vite-plugin-compression: ^0.5.1
-  vite-plugin-pwa: ^1.3.0
+  vite-plugin-pwa: ^2.0.0
   vite-plugin-vue-devtools: ^8.2.1
-  vitest: ^5.0.1
-  vue: ^3.5.43
-  vue-i18n: ^11.4.12
-  vue-router: ^5.3.1
-  vue-tsc: ^3.3.11
+  vitest: ^5.0.5
+  vue: ^3.5.44
+  vue-i18n: ^11.4.14
+  vue-router: ^5.4.0
+  vue-tsc: ^3.3.13
   watermark-js-plus: ^1.6.6
-  wrangler: ^4.138.0
-  zod: 4.6.5
+  wrangler: ^4.151.0
+  zod: 4.6.7
   zod-defaults: 0.2.3
