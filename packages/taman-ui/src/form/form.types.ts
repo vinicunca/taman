@@ -525,7 +525,7 @@ interface FormSchemaBody<TValues extends FormValues = FormValues> extends Omit<
   hide?: boolean;
   /** Form item */
   label?: FormCustomRenderType;
-  // Custom component internal rendering
+  /** Custom component internal rendering */
   renderComponentContent?: RenderComponentContentType<TValues>;
   /** Field rules */
   rules?: FormSchemaRuleType;

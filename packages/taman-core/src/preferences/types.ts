@@ -38,11 +38,11 @@ interface AppPreferences {
   contentPaddingRight: number;
   /** Content top padding */
   contentPaddingTop: number;
-  // /** Default app avatar */
+  /** Default app avatar */
   defaultAvatar: string;
   /** Default home page path */
   defaultHomePath: string;
-  // /** Whether dynamic title is enabled */
+  /** Whether dynamic title is enabled */
   dynamicTitle: boolean;
   /** Whether check-for-updates is enabled */
   enableCheckUpdates: boolean;
@@ -252,7 +252,7 @@ interface ThemePreferences {
 interface TransitionPreferences {
   /** Whether page transition animation is enabled */
   enable: boolean;
-  // /** Whether page loading indicator is enabled */
+  /** Whether page loading indicator is enabled */
   loading: boolean;
   /** Page transition animation name */
   name: TamanPageTransitionType | string;

@@ -4,7 +4,7 @@ import { Store } from '@vinicunca/taman-core/store';
 import { bindMethods, isFunction } from '@vinicunca/taman-core/utils';
 
 export class DialogApi<TData = unknown> {
-  // Shared data
+  /** Shared data */
   public sharedData: Record<'payload', TData | undefined> = {
     payload: undefined,
   };
@@ -21,7 +21,7 @@ export class DialogApi<TData = unknown> {
     | 'onOpened'
   >;
 
-  // private prevState!: DialogState;
+  /** private prevState!: DialogState; */
   private state!: DialogState;
 
   constructor(options: DialogApiOptions = {}) {

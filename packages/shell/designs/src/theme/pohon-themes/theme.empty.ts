@@ -1,6 +1,6 @@
 import type { PThemeEmpty } from 'pohon-ui';
 
-// @unocss-include
+/** @unocss-include */
 export const themeEmpty = {
   slots: {
     root: 'p-4 rounded-lg flex flex-col gap-4 min-w-0 items-center justify-center relative lg:p-8 sm:p-6',

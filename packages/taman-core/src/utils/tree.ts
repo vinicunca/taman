@@ -1,5 +1,5 @@
 interface TreeConfigOptions {
-  // Child property name; defaults to 'children'
+  /** Child property name; defaults to 'children' */
   childProps: string;
 }
 

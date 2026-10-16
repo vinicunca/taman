@@ -12,7 +12,7 @@ export class StateHandler {
     this.clearPromises();
   }
 
-  // Reject when the condition is set to false
+  /** Reject when the condition is set to false */
   setConditionFalse() {
     this.condition = false;
     if (this.rejectCondition) {
@@ -21,7 +21,7 @@ export class StateHandler {
     }
   }
 
-  // Resolve when the condition is set to true
+  /** Resolve when the condition is set to true */
   setConditionTrue() {
     this.condition = true;
     if (this.resolveCondition) {
@@ -30,7 +30,7 @@ export class StateHandler {
     }
   }
 
-  // Return a Promise that waits until condition becomes true
+  /** Return a Promise that waits until condition becomes true */
   waitForCondition(): Promise<void> {
     return new Promise((resolve, reject) => {
       if (this.condition) {
@@ -42,7 +42,7 @@ export class StateHandler {
     });
   }
 
-  // Clear resolve/reject handlers
+  /** Clear resolve/reject handlers */
   private clearPromises() {
     this.resolveCondition = null;
     this.rejectCondition = null;

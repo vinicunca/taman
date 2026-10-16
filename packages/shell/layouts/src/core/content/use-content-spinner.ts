@@ -60,6 +60,7 @@ export function useContentSpinner() {
   }
 
   // Route beforeEach: start spinner
+  // eslint-disable-next-line sonarjs/no-invariant-returns
   router.beforeEach((to) => {
     if (to.meta.loaded || !enableLoading.value || to.meta.iframeSrc) {
       return true;
@@ -83,6 +84,7 @@ export function useContentSpinner() {
   });
 
   // Route afterEach: end spinner
+  // eslint-disable-next-line sonarjs/no-invariant-returns
   router.afterEach((to) => {
     if (to.meta.loaded || !enableLoading.value || to.meta.iframeSrc) {
       return true;

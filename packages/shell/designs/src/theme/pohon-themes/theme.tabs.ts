@@ -1,12 +1,13 @@
 // @unocss-include
 import { POHON_THEME_BRANDS } from '../constants.ts';
 
-// Active-tab highlight shown before akar's `TabsIndicator` mounts (SSR / pre-hydration).
-// akar only renders the real indicator on the client (it needs DOM measurements), so we gate
-// a CSS-only pseudo-element fallback on the active trigger by the *absence* of the indicator
-// element — the instant akar's measured indicator appears, this selector stops matching.
-// use this variant class: `list-no-indicator:data-[state=active]:`
-
+/**
+ * Active-tab highlight shown before akar's `TabsIndicator` mounts (SSR / pre-hydration).
+ * akar only renders the real indicator on the client (it needs DOM measurements), so we gate
+ * a CSS-only pseudo-element fallback on the active trigger by the *absence* of the indicator
+ * element — the instant akar's measured indicator appears, this selector stops matching.
+ * use this variant class: `list-no-indicator:data-[state=active]:`
+ */
 export const themeTabs = {
   slots: {
     root: 'flex gap-2 items-center',

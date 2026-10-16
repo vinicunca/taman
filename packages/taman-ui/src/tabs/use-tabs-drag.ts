@@ -42,7 +42,6 @@ export function useTabsDrag(props: TabsProps, emit: EmitType) {
       },
       onEnd(evt) {
         const { newIndex, oldIndex } = evt;
-        // const fromElement = evt.item;
         const { srcElement } = (evt as any).originalEvent;
 
         if (!srcElement) {

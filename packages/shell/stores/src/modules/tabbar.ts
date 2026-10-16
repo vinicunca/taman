@@ -383,7 +383,6 @@ export const useTabbarStore = defineStore('core-tabbar', {
       const oldTab = this.tabs[index];
       tab.meta.affixTab = true;
       tab.meta.title = oldTab?.meta?.title as string;
-      // this.addTab(tab);
       this.tabs.splice(index, 1, tab);
       // Reorder among pinned tabs; affixTabOrder sorting may need revisiting if that meta is used
       const affixTabs = this.tabs.filter((tab) => isAffixTab(tab));
@@ -526,7 +525,6 @@ export const useTabbarStore = defineStore('core-tabbar', {
       const oldTab = this.tabs[index];
       tab.meta.affixTab = false;
       tab.meta.title = oldTab?.meta?.title as string;
-      // this.addTab(tab);
       this.tabs.splice(index, 1, tab);
       // Move after pinned tabs (first slot among normal tabs)
       const affixTabs = this.tabs.filter((tab) => isAffixTab(tab));

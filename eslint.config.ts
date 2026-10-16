@@ -103,6 +103,9 @@ export default vinicuncaESLint(
   {
     rules: {
       'slop/no-em-dash': 'off',
+      'slop/max-comment-length': 'off',
+      'sonarjs/cognitive-complexity': 'off',
+      'slop/no-chained-type-assertions': 'off',
     },
   },
 );

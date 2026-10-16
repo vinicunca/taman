@@ -22,8 +22,6 @@ const devRoutes: Array<RouteRecordRaw> = mergeRouteModules(devRouteFiles);
 const moduleRoutes: Array<RouteRecordRaw> = mergeRouteModules(routeModuleFiles);
 
 /** External routes (no layout; for embedding; hidden from menu) */
-// const externalRoutes: RouteRecordRaw[] = mergeRouteModules(externalRouteFiles);
-// const staticRoutes: RouteRecordRaw[] = mergeRouteModules(staticRouteFiles);
 const staticRoutes: Array<RouteRecordRaw> = [];
 const externalRoutes: Array<RouteRecordRaw> = [];
 

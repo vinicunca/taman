@@ -79,7 +79,6 @@ export function useLayoutComposable() {
       return transitionName;
     }
 
-    // return inTabs && route.meta.loaded ? undefined : transitionName;
     return transitionName;
   }
 
