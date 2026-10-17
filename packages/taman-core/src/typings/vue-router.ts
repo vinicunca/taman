@@ -21,6 +21,25 @@ interface TamanRoleRegistry {}
 type TamanRoleName = TamanRoleRegistry extends { role: infer Role extends string } ? Role : string;
 
 /**
+ * Extra `auth.only` values that an app's own route guard understands.
+ * Empty by default. An app adds its own by augmenting the registry:
+ *
+ * ```ts
+ * declare module '@vinicunca/taman-core/typings' {
+ *   interface TamanAuthRegistry {
+ *     only: 'onboarding';
+ *   }
+ * }
+ * ```
+ */
+interface TamanAuthRegistry {}
+
+type TamanAuthOnly
+  = | 'guest'
+    | 'user'
+    | (TamanAuthRegistry extends { only: infer Only extends string } ? Only : never);
+
+/**
  * Declarative auth gate for a route.
  *
  * - `false`: no auth check, no redirect, and the route is excluded from
@@ -31,11 +50,13 @@ type TamanRoleName = TamanRoleRegistry extends { role: infer Role extends string
  * - `{ only: 'user' }`, `{}`, or omitted entirely: the default — requires
  *   auth. An unauthenticated visitor is redirected to `redirectGuestTo`
  *   (or the caller's default). Participates in `generateAccess`.
+ * - Any value added through `TamanAuthRegistry`: handled by the app's own
+ *   route guard.
  */
 type AuthMiddlewareOptions
   = | false
     | {
-      only?: 'guest' | 'user';
+      only?: TamanAuthOnly;
       redirectUserTo?: string;
       redirectGuestTo?: string;
     };
@@ -205,6 +226,8 @@ export type {
   RouteMeta,
   RouteRecordRaw,
   RouteRecordStringComponent,
+  TamanAuthOnly,
+  TamanAuthRegistry,
   TamanRoleName,
   TamanRoleRegistry,
 };

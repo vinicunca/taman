@@ -51,3 +51,19 @@ declare module '@vinicunca/taman-core/typings' {
 ```
 
 Unknown role names in `authority` then fail to type-check.
+
+## Auth gates
+
+A route's `meta.auth.only` accepts `'guest'` or `'user'` by default. If your
+app's route guard understands more gates, add them in the same way:
+
+```ts
+declare module '@vinicunca/taman-core/typings' {
+  interface TamanAuthRegistry {
+    only: 'onboarding';
+  }
+}
+```
+
+Taman itself does not act on `only`, so your guard must handle each value you
+add.
