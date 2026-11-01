@@ -16,6 +16,7 @@ const props = withDefaults(
     DialogContentProps & {
       appendTo?: HTMLElement | string;
       class?: any;
+      inactive?: boolean;
       modal?: boolean;
       open?: boolean;
       overlayBlur?: number;
@@ -25,6 +26,7 @@ const props = withDefaults(
   >(),
   {
     appendTo: 'body',
+    inactive: false,
   },
 );
 
@@ -39,6 +41,7 @@ const emits = defineEmits<
 const delegatedProps = computed(() => {
   const {
     class: _,
+    inactive: _inactive,
     modal: _modal,
     open: _open,
     side: _side,
@@ -77,6 +80,7 @@ const { handleAnimationEvent } = useDialogStateEvents({
 <template>
   <DialogPortal :to="appendTo">
     <Transition
+      v-if="!inactive"
       enter-active-class="transition-opacity-300"
       leave-active-class="transition-opacity-300"
       enter-from-class="opacity-0"

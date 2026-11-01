@@ -18,6 +18,7 @@ export function useMenuExtra(useRootMenus?: ComputedRef<Array<TamanMenuRecordRaw
   /** Tracks which child menu was last activated under the current top-level menu */
   const defaultSubMap = new Map<string, string>();
   const extraRootMenus = ref<Array<TamanMenuRecordRaw>>([]);
+  const lastMatchedRootPath = ref('');
   const route = useRoute();
   const extraMenus = ref<Array<TamanMenuRecordRaw>>([]);
   const sidebarExtraVisible = ref<boolean>(false);
@@ -99,6 +100,14 @@ export function useMenuExtra(useRootMenus?: ComputedRef<Array<TamanMenuRecordRaw
     const { findMenu, rootMenu, rootMenuPath } = resolveRootMenu(
       route.meta?.activePath || route.path,
     );
+    if (!rootMenuPath && !findMenu) {
+      if (extraRootMenus.value.length > 0) {
+        extraMenus.value = extraRootMenus.value;
+        extraActiveMenu.value = lastMatchedRootPath.value;
+        sidebarExtraVisible.value = true;
+      }
+      return;
+    }
     extraActiveMenu.value = rootMenuPath ?? findMenu?.path ?? '';
     extraMenus.value = rootMenu?.children ?? [];
   };
@@ -118,6 +127,11 @@ export function useMenuExtra(useRootMenus?: ComputedRef<Array<TamanMenuRecordRaw
       currentPath,
       parentLevel.value,
     );
+    // Pages outside the menu tree keep the last selected section.
+    if (!rootMenuPath && !findMenu) {
+      return;
+    }
+    lastMatchedRootPath.value = rootMenuPath ?? findMenu?.path ?? '';
     extraRootMenus.value = rootMenu?.children ?? [];
     if (rootMenuPath) {
       defaultSubMap.set(rootMenuPath, currentPath);

@@ -59,7 +59,7 @@ describe('taman dialog', () => {
   it('mounts an open modal directly in the main content', async () => {
     const { mainContent } = await mountDialog();
     const dialog = document.querySelector('[role="dialog"]');
-    const overlay = document.querySelector('[data-dismissable-modal]');
+    const overlay = document.querySelector('[data-dismissable-dialog]');
 
     expect(dialog).toBeInstanceOf(HTMLElement);
     if (!(dialog instanceof HTMLElement)) {

@@ -58,6 +58,24 @@ describe('formApi', () => {
     expect(values).toEqual({ name: 'test' });
   });
 
+  it('resumes every concurrent API call waiting for mount', async () => {
+    const calls = Promise.all([formApi.getValues(), formApi.getValues()]);
+    await formApi.mount({ meta: {}, values: { name: 'ready' } } as any);
+    await expect(calls).resolves.toEqual([{ name: 'ready' }, { name: 'ready' }]);
+  });
+
+  it('rejects API calls stranded by unmount and accepts calls in the next mount cycle', async () => {
+    const calls = Promise.allSettled([formApi.getValues(), formApi.getValues()]);
+    formApi.unmount();
+    expect(await calls).toEqual([
+      { status: 'rejected', reason: new Error('Condition was reset') },
+      { status: 'rejected', reason: new Error('Condition was reset') },
+    ]);
+    const next = formApi.getValues();
+    await formApi.mount({ meta: {}, values: { name: 'remounted' } } as any);
+    await expect(next).resolves.toEqual({ name: 'remounted' });
+  });
+
   it('should set a field error through the public api', async () => {
     const setFieldError = vi.fn();
     const formActions: any = {

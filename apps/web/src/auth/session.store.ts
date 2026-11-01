@@ -101,11 +101,12 @@ export const useSessionStore = defineStore('auth-session', () => {
       resetAllStores();
     }
 
+    const currentRoute = router.currentRoute.value;
     await router.replace({
       path: LOGIN_PATH,
-      query: {
-        redirect: encodeURIComponent(router.currentRoute.value.fullPath),
-      },
+      query: currentRoute.path === LOGIN_PATH
+        ? {}
+        : { redirect: encodeURIComponent(currentRoute.fullPath) },
     });
   }
 

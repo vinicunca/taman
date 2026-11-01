@@ -125,16 +125,20 @@ export function useMenuMixed() {
    * Computes sidebar menus
    * @param path Route path
    */
-  function calcSideMenus(path: string = route.path) {
+  function calcSideMenus(path: string = route.path): boolean {
     let { rootMenu } = findRootMenuByPath(menus.value, path);
     if (!rootMenu) {
       rootMenu = menus.value.find((item) => item.path === path);
     }
-    const result = findRootMenuByPath(rootMenu?.children || [], path, 1);
+    if (!rootMenu) {
+      return false;
+    }
+    const result = findRootMenuByPath(rootMenu.children || [], path, 1);
     mixedRootMenuPath.value = result.rootMenuPath ?? '';
     mixExtraMenus.value = result.rootMenu?.children ?? [];
     rootMenuPath.value = rootMenu?.path ?? '';
     splitSideMenus.value = rootMenu?.children ?? [];
+    return true;
   }
 
   watch(
@@ -144,8 +148,7 @@ export function useMenuMixed() {
       if (willOpenedByWindow(currentPath)) {
         return;
       }
-      calcSideMenus(currentPath);
-      if (rootMenuPath.value) {
+      if (calcSideMenus(currentPath) && rootMenuPath.value) {
         defaultSubMap.set(rootMenuPath.value, currentPath);
       }
     },

@@ -6,9 +6,7 @@ import { parseArgs } from 'node:util';
 import {
   colors,
   consola,
-  ensureFile,
   findMonorepoRoot,
-  generatorContentHash,
   getPackages,
   outputJSON,
   readJSON,
@@ -16,6 +14,7 @@ import {
 } from '@vinicunca/node-utils';
 import { publint } from 'publint';
 import { formatMessage } from 'publint/utils';
+import { getPackageHash, readCache } from './publint-cache';
 
 const CACHE_FILE = join(
   'node_modules',
@@ -55,15 +54,6 @@ function getCacheFile() {
   return join(root, CACHE_FILE);
 }
 
-async function readCache(cacheFile: string) {
-  try {
-    await ensureFile(cacheFile);
-    return await readJSON(cacheFile);
-  } catch {
-    return {};
-  }
-}
-
 async function runPublint(files: Array<string>, { check }: PubLintCommandOptions) {
   const lintFiles = await getLintFiles(files);
   const cacheFile = getCacheFile();
@@ -83,8 +73,7 @@ async function runPublint(files: Array<string>, { check }: PubLintCommandOptions
         Reflect.deleteProperty(pkgJson, 'dependencies');
         Reflect.deleteProperty(pkgJson, 'devDependencies');
         Reflect.deleteProperty(pkgJson, 'peerDependencies');
-        const content = JSON.stringify(pkgJson);
-        const hash = generatorContentHash(content);
+        const hash = await getPackageHash(pkgJson, dirname(file));
 
         const publintResult: Result
           = cache?.[file]?.hash === hash
