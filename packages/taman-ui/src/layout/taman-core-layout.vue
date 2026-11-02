@@ -157,7 +157,9 @@ const getSideCollapseWidth = computed(() => {
 
 const activeSidebarCollapse = computed({
   get: () =>
-    props.isMobile ? !mobileSidebarOpen.value : sidebarCollapse.value,
+    props.isMobile
+      ? !mobileSidebarOpen.value
+      : sidebarCollapse.value,
   set: (value: boolean) => {
     if (props.isMobile) {
       mobileSidebarOpen.value = !value;
@@ -179,7 +181,9 @@ const sidebarEnableState = computed(() => {
  */
 const sidebarMarginTop = computed(() => {
   const { headerHeight, isMobile } = props;
-  return isMixedNav.value && !isMobile ? headerHeight : 0;
+  return isMixedNav.value && !isMobile
+    ? headerHeight
+    : 0;
 });
 
 /**
@@ -348,7 +352,9 @@ const layoutScrollStyle = computed<CSSProperties>(() => {
   if (isHeaderOverlayModeActive.value) {
     return {
       marginTop: 0,
-      paddingTop: isFullContent.value ? 0 : `${headerWrapperHeight.value}px`,
+      paddingTop: isFullContent.value
+        ? 0
+        : `${headerWrapperHeight.value}px`,
     };
   }
 
@@ -367,8 +373,12 @@ const layoutScrollStyle = computed<CSSProperties>(() => {
 const contentStyle = computed<CSSProperties>(() => {
   const { footerEnable, footerFixed, footerHeight } = props;
   return {
-    minHeight: footerEnable && !footerFixed ? undefined : 0,
-    paddingBottom: `${footerEnable && footerFixed ? footerHeight : 0}px`,
+    minHeight: footerEnable && !footerFixed
+      ? undefined
+      : 0,
+    paddingBottom: `${footerEnable && footerFixed
+      ? footerHeight
+      : 0}px`,
   };
 });
 
@@ -383,7 +393,9 @@ const headerWrapperStyle = computed<CSSProperties>(() => {
   const hidden = headerIsHidden.value || isFullContent.value;
 
   return {
-    'height': isFullContent.value ? '0' : `${headerWrapperHeight.value}px`,
+    'height': isFullContent.value
+      ? '0'
+      : `${headerWrapperHeight.value}px`,
     'left': isMixedNav.value ? 0 : mainStyle.value.sidebarAndExtraWidth,
     'position': fixed ? 'fixed' : 'static',
     'top': 0,
@@ -402,7 +414,9 @@ const headerWrapperStyle = computed<CSSProperties>(() => {
  */
 const sidebarZIndex = computed(() => {
   const { isMobile, zIndex } = props;
-  let offset = isMobile || isSideMode.value ? 1 : -1;
+  let offset = isMobile || isSideMode.value
+    ? 1
+    : -1;
 
   if (isMixedNav.value) {
     offset += 1;
@@ -462,7 +476,10 @@ watch(
 );
 
 watch(
-  [() => headerWrapperHeight.value, () => isFullContent.value],
+  [
+    () => headerWrapperHeight.value,
+    () => isFullContent.value,
+  ],
   ([height]) => {
     setLayoutHeaderHeight(isFullContent.value ? 0 : height);
   },

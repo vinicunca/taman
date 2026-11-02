@@ -144,7 +144,9 @@ const asideRef = shallowRef<HTMLElement | null>(null);
 const dragBarRef = shallowRef<HTMLElement | null>(null);
 
 const hiddenSideStyle = computed<CSSProperties>(() => {
-  const widthValue = props.show ? getMenuWidthValue(true) : '0px';
+  const widthValue = props.show
+    ? getMenuWidthValue(true)
+    : '0px';
 
   return {
     flexBasis: widthValue,
@@ -192,7 +194,9 @@ const style = computed<CSSProperties>(() => {
     marginTop: `${marginTop}px`,
     paddingTop: `${paddingTop}px`,
     zIndex,
-    ...(extraPanelExpanded.value ? { transition: 'none' } : {}),
+    ...(extraPanelExpanded.value
+      ? { transition: 'none' }
+      : {}),
   };
 });
 
@@ -201,7 +205,9 @@ const extraStyle = computed<CSSProperties>(() => {
 
   return {
     left: `${width}px`,
-    width: extraPanelExpanded.value ? `${extraWidth}px` : 0,
+    width: extraPanelExpanded.value
+      ? `${extraWidth}px`
+      : 0,
     zIndex,
   };
 });
@@ -236,7 +242,9 @@ const headerStyle = computed<CSSProperties>(() => {
   const { headerHeight, isSidebarMixed } = props;
 
   return {
-    ...(isSidebarMixed ? { display: 'flex', justifyContent: 'center' } : {}),
+    ...(isSidebarMixed
+      ? { display: 'flex', justifyContent: 'center' }
+      : {}),
     height: `${headerHeight - 1}px`,
     ...contentWidthStyle.value,
   };
@@ -264,7 +272,9 @@ function getMenuWidthValue(isHiddenDom: boolean) {
     : `${width + (extraPanelExpanded.value ? extraWidth : 0)}px`;
 
   if (isHiddenDom && expandOnHovering.value && !expandOnHover.value) {
-    widthValue = isSidebarMixed ? `${mixedWidth}px` : `${collapseWidth}px`;
+    widthValue = isSidebarMixed
+      ? `${mixedWidth}px`
+      : `${collapseWidth}px`;
   }
   return widthValue;
 }
@@ -284,7 +294,9 @@ function calcMenuWidthStyle(): CSSProperties {
   }
 
   return {
-    ...(widthValue === '0px' ? { overflow: 'hidden' } : {}),
+    ...(widthValue === '0px'
+      ? { overflow: 'hidden' }
+      : {}),
     clipPath: `inset(0 ${clippedWidth}px 0 0)`,
     transform,
     width: `${sidebarVisualWidth.value}px`,
@@ -339,8 +351,12 @@ const { startDrag, endDrag } = useSidebarDrag();
 
 function handleDragSidebar(event: MouseEvent) {
   const { isSidebarMixed, collapseWidth, width } = props;
-  const minLimit = isSidebarMixed ? width + collapseWidth : collapseWidth;
-  const maxLimit = isSidebarMixed ? width + 320 : 320;
+  const minLimit = isSidebarMixed
+    ? width + collapseWidth
+    : collapseWidth;
+  const maxLimit = isSidebarMixed
+    ? width + 320
+    : 320;
 
   startDrag(
     event,

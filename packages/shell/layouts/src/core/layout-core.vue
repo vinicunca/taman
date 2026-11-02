@@ -198,10 +198,16 @@ const {
 function wrapperMenus(menus: Array<TamanMenuRecordRaw>, deep: boolean = true) {
   return deep
     ? mapTree(menus, (item) => {
-        return { ...clone(item), name: $t(item.name) };
+        return {
+          ...clone(item),
+          name: $t(item.name),
+        };
       })
     : menus.map((item) => {
-        return { ...clone(item), name: $t(item.name) };
+        return {
+          ...clone(item),
+          name: $t(item.name),
+        };
       });
 }
 
