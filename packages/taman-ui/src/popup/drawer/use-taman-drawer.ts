@@ -99,7 +99,10 @@ export function useTamanDrawer<
         return () =>
           h(
             isDrawerReady.value ? connectedComponent : 'div',
-            { ...props, ...attrs },
+            {
+              ...props,
+              ...attrs,
+            },
             slots,
           );
       },
@@ -118,7 +121,9 @@ export function useTamanDrawer<
     {},
   );
   const isConsumed = injectData.consumed;
-  const effectiveOptions = isConsumed ? {} : injectData.options;
+  const effectiveOptions = isConsumed
+    ? {}
+    : injectData.options;
   if (!isConsumed && injectData.consumed !== undefined) {
     injectData.consumed = true;
   }
@@ -162,7 +167,11 @@ export function useTamanDrawer<
   const Drawer = defineComponent(
     (props: TamanDrawerProps, { attrs, slots }) => {
       return () =>
-        h(TamanDrawer, { ...props, ...attrs, drawerApi: extendedApi }, slots);
+        h(TamanDrawer, {
+          ...props,
+          ...attrs,
+          drawerApi: extendedApi,
+        }, slots);
     },
 
     {

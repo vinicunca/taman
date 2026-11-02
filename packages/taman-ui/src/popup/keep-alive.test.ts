@@ -6,7 +6,9 @@ import { useTamanDialog } from './dialog/use-taman-dialog';
 import { useTamanDrawer } from './drawer/use-taman-drawer';
 
 vi.mock('@vinicunca/taman-core/preferences', () => ({
-  usePreferences: () => ({ globalEscapeShortcutKey: { value: true } }),
+  usePreferences: () => ({
+    globalEscapeShortcutKey: { value: true },
+  }),
 }));
 
 let app: App | undefined;
@@ -24,14 +26,24 @@ afterEach(() => {
 });
 
 async function mountCachedPopup(kind: 'dialog' | 'drawer', destroyOnClose: boolean, appendToMain = true) {
-  vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'requestAnimationFrame', 'cancelAnimationFrame'] });
+  vi.useFakeTimers({
+    toFake: [
+      'setTimeout',
+      'clearTimeout',
+      'requestAnimationFrame',
+      'cancelAnimationFrame',
+    ],
+  });
   const main = document.createElement('main');
   main.id = ELEMENT_ID_MAIN_CONTENT;
   document.body.append(main);
   const scroll = document.createElement('div');
   scroll.id = ELEMENT_ID_LAYOUT_SCROLL;
   scroll.style.overflow = 'auto';
-  Object.defineProperties(scroll, { clientHeight: { value: 100 }, scrollHeight: { value: 200 } });
+  Object.defineProperties(scroll, {
+    clientHeight: { value: 100 },
+    scrollHeight: { value: 200 },
+  });
   document.body.append(scroll);
 
   const active = ref(true);
@@ -54,20 +66,43 @@ async function mountCachedPopup(kind: 'dialog' | 'drawer', destroyOnClose: boole
   });
   const Page = defineComponent({
     setup() {
-      const options = { appendToMain, destroyOnClose, title: 'Cached popup', onBeforeClose, onClosed, onOpened, onOpenChange };
-      const [Popup, popupApi] = kind === 'dialog' ? useTamanDialog(options) : useTamanDrawer(options);
+      const options = {
+        appendToMain,
+        destroyOnClose,
+        title: 'Cached popup',
+        onBeforeClose,
+        onClosed,
+        onOpened,
+        onOpenChange,
+      };
+      const [Popup, popupApi] = kind === 'dialog'
+        ? useTamanDialog(options)
+        : useTamanDrawer(options);
       api = popupApi;
       onMounted(() => popupApi.open());
-      return () => h(Popup, {}, { default: () => h(Draft) });
+      return () => h(Popup, {}, {
+        default: () => h(Draft),
+      });
     },
   });
   const Other = defineComponent(() => () => h('p', 'Other page'));
   const host = document.createElement('div');
   document.body.append(host);
-  app = createApp(() => h(KeepAlive, {}, { default: () => h(active.value ? Page : Other) }));
+  app = createApp(() => h(KeepAlive, {}, {
+    default: () => h(active.value ? Page : Other),
+  }));
   app.mount(host);
   await flush();
-  return { active, api, main, scroll, onBeforeClose, onClosed, onOpened, onOpenChange };
+  return {
+    active,
+    api,
+    main,
+    scroll,
+    onBeforeClose,
+    onClosed,
+    onOpened,
+    onOpenChange,
+  };
 }
 
 describe.each(['dialog', 'drawer'] as const)('cached %s', (kind) => {

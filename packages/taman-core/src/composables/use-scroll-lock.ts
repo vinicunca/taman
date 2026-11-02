@@ -62,7 +62,9 @@ function applyScrollbarStyles(target: HTMLElement): Array<() => void> {
     return [];
   }
   const width = `${getScrollbarWidth()}px`;
-  const restore = [captureStyle(target, 'padding-right')];
+  const restore = [
+    captureStyle(target, 'padding-right'),
+  ];
   target.style.paddingRight = width;
   document.querySelectorAll<HTMLElement>(`.${SCROLL_FIXED_CLASS}`).forEach((node) => {
     restore.push(captureStyle(node, 'padding-right'), disableTransition(node));

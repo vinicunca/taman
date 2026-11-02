@@ -15,7 +15,9 @@ async function generateRoutesByFrontend(
     // and mutating it would leak one user's restrictions into the next login.
     const result = {
       ...route,
-      meta: route.meta ? { ...route.meta } : route.meta,
+      meta: route.meta
+        ? { ...route.meta }
+        : route.meta,
     } as RouteRecordRaw;
 
     if (!hasAuthority(route, roles) && forbiddenComponent) {

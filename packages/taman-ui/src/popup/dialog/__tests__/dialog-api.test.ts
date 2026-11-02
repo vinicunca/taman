@@ -28,7 +28,9 @@ vi.mock('@vinicunca/taman-core/store', () => {
 
       subscribe(fn: (state: DialogState) => void) {
         this.subscribers.push(fn);
-        return { unsubscribe: () => {} };
+        return {
+          unsubscribe: () => {},
+        };
       }
     },
   };

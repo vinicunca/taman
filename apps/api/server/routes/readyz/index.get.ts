@@ -10,6 +10,8 @@ export default defineHandler(async (event) => {
 
   return {
     status: ok ? 'ok' : 'error',
-    checks: { db: ok ? 'up' : 'down' },
+    checks: {
+      db: ok ? 'up' : 'down',
+    },
   };
 });

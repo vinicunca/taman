@@ -31,7 +31,10 @@ function scrollTarget() {
   target.id = ELEMENT_ID_LAYOUT_SCROLL;
   target.style.overflow = 'auto';
   target.style.setProperty('scrollbar-gutter', 'auto', 'important');
-  Object.defineProperties(target, { clientHeight: { value: 100 }, scrollHeight: { value: 200 } });
+  Object.defineProperties(target, {
+    clientHeight: { value: 100 },
+    scrollHeight: { value: 200 },
+  });
   document.body.append(target);
   return target;
 }
@@ -50,7 +53,10 @@ afterEach(() => {
 describe('shared overlay scroll locks', () => {
   it.each([0, 1])('keeps the target locked until owner %i closes last', async (last) => {
     const target = scrollTarget();
-    const owners = [mountLock(), mountLock()];
+    const owners = [
+      mountLock(),
+      mountLock(),
+    ];
     await nextTick();
     await nextTick();
     expect(owners.every((owner) => owner.lock.value)).toBe(true);
@@ -101,7 +107,9 @@ describe('shared overlay scroll locks', () => {
   });
 
   it('restores original body and fixed-node styles across rapid reopen', async () => {
-    vi.useFakeTimers({ toFake: ['requestAnimationFrame', 'cancelAnimationFrame'] });
+    vi.useFakeTimers({
+      toFake: ['requestAnimationFrame', 'cancelAnimationFrame'],
+    });
     Object.defineProperties(document.body, {
       clientHeight: { configurable: true, value: 100 },
       scrollHeight: { configurable: true, value: 200 },

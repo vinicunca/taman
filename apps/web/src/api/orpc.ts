@@ -18,6 +18,8 @@ export const client = createRpcClient<TamanRpcClient>({
 });
 
 /** vue-query helpers — `useQuery(orpc.todo.list.queryOptions(...))`. */
-export const orpc = createRpcQueryUtils(client, { path: ['taman'] });
+export const orpc = createRpcQueryUtils(client, {
+  path: ['taman'],
+});
 
 export type TamanQueryUtils = typeof orpc;

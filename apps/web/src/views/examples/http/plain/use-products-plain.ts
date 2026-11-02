@@ -28,7 +28,9 @@ export function useProductsPlain(params: MaybeRefOrGetter<ProductListParams>) {
 
     try {
       const result = search
-        ? await dummyjsonClient.get<ProductPage>('/products/search', { query: { ...query, q: search } })
+        ? await dummyjsonClient.get<ProductPage>('/products/search', {
+            query: { ...query, q: search },
+          })
         : await dummyjsonClient.get<ProductPage>('/products', { query });
 
       // A slower earlier response must not overwrite a newer one.

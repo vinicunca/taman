@@ -11,7 +11,9 @@ const data = ref<AutoDialogData>();
 
 const [Dialog, dialogApi] = useTamanDialog<AutoDialogData>({
   onOpenChange(isOpen) {
-    data.value = isOpen ? dialogApi.getData() : undefined;
+    data.value = isOpen
+      ? dialogApi.getData()
+      : undefined;
   },
 });
 

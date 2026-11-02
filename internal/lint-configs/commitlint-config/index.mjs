@@ -5,7 +5,15 @@ import process from 'node:process';
 
 import { getPackagesSync } from '@vinicunca/node-utils';
 
-const DEFAULT_SCOPES = ['project', 'style', 'lint', 'ci', 'dev', 'deploy', 'other'];
+const DEFAULT_SCOPES = [
+  'project',
+  'style',
+  'lint',
+  'ci',
+  'dev',
+  'deploy',
+  'other',
+];
 
 /**
  * Package names usable as scopes. Inside a pnpm workspace this is every
@@ -20,7 +28,9 @@ function getPackageScopes(cwd) {
   } catch {
     try {
       const { name } = JSON.parse(readFileSync(join(cwd, 'package.json'), 'utf8'));
-      names = name ? [name] : [];
+      names = name
+        ? [name]
+        : [];
     } catch {
       names = [];
     }
@@ -29,7 +39,9 @@ function getPackageScopes(cwd) {
   // Accept `@vinicunca/vite-config` and its short form `vite-config`
   return names.flatMap((name) => {
     const short = name.replace(/^@[^/]+\//, '');
-    return short === name ? [name] : [name, short];
+    return short === name
+      ? [name]
+      : [name, short];
   });
 }
 
@@ -40,7 +52,9 @@ function getPackageScopes(cwd) {
 function getDefaultPromptScope() {
   let status;
   try {
-    status = execSync('git status --porcelain', { stdio: ['ignore', 'pipe', 'ignore'] }).toString();
+    status = execSync('git status --porcelain', {
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).toString();
   } catch {
     return undefined;
   }
@@ -62,7 +76,12 @@ function getDefaultPromptScope() {
  */
 function defineConfig(options = {}) {
   const { cwd = process.cwd(), scopes = DEFAULT_SCOPES } = options;
-  const allowedScopes = [...new Set([...getPackageScopes(cwd), ...scopes])];
+  const allowedScopes = [
+    ...new Set([
+      ...getPackageScopes(cwd),
+      ...scopes,
+    ]),
+  ];
   const scopeComplete = getDefaultPromptScope();
 
   return {

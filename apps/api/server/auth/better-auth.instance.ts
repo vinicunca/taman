@@ -119,7 +119,10 @@ export function createBetterAuth() {
         },
         async sendInvitationEmail(data, request) {
           await useEmail().dispatcher.dispatch(
-            invitationEmailJob(data, { appUrl, locale: emailLocale(request) }),
+            invitationEmailJob(data, {
+              appUrl,
+              locale: emailLocale(request),
+            }),
           );
         },
       }),

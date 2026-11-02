@@ -7,7 +7,12 @@ const rootDir = process.cwd();
 const CONCURRENCY_LIMIT = 10;
 
 // 需要跳过的目录，避免进入这些目录进行清理
-const SKIP_DIRS = new Set(['.DS_Store', '.git', '.idea', '.vscode']);
+const SKIP_DIRS = new Set([
+  '.DS_Store',
+  '.git',
+  '.idea',
+  '.vscode',
+]);
 
 /**
  * 处理单个文件/目录项
@@ -110,7 +115,12 @@ async function cleanTargetsRecursively(currentDir, targets, depth = 0) {
 
 (async function startCleanup() {
   // 要删除的目录及文件名称
-  const targets = ['node_modules', 'dist', '.nx', 'dist.zip'];
+  const targets = [
+    'node_modules',
+    'dist',
+    '.nx',
+    'dist.zip',
+  ];
   const deleteLockFile = process.argv.includes('--del-lock');
   const cleanupTargets = [...targets];
 

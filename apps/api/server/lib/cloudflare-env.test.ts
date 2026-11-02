@@ -6,7 +6,13 @@ import { cloudflareEnv } from './cloudflare-env.ts';
 describe('cloudflareEnv', () => {
   it('reads the Worker env Nitro attaches to the request', () => {
     const env = { TODO_PUBLISHER: {} };
-    const event = { req: { runtime: { cloudflare: { env } } } } as unknown as H3Event;
+    const event = {
+      req: {
+        runtime: {
+          cloudflare: { env },
+        },
+      },
+    } as unknown as H3Event;
 
     expect(cloudflareEnv(event)).toBe(env);
   });

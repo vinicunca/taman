@@ -45,7 +45,9 @@ export function refreshTokenInterceptor(options: RefreshTokenInterceptorOptions)
   }
 
   function startRefresh(): RefreshAttempt {
-    const attempt: RefreshAttempt = { promise: options.refresh() };
+    const attempt: RefreshAttempt = {
+      promise: options.refresh(),
+    };
     attempt.promise
       .finally(() => {
         if (inflight === attempt) {
@@ -81,7 +83,9 @@ export function refreshTokenInterceptor(options: RefreshTokenInterceptorOptions)
         throw error;
       }
 
-      const enabled = typeof options.enabled === 'function' ? options.enabled() : options.enabled ?? true;
+      const enabled = typeof options.enabled === 'function'
+        ? options.enabled()
+        : options.enabled ?? true;
 
       if (!enabled || !context || context.meta[RETRIED]) {
         await notifyAuthFailure(error);

@@ -37,7 +37,12 @@ export default vinicuncaESLint(
         {
           groups: [
             'type-import',
-            ['type-parent', 'type-sibling', 'type-index', 'type-internal'],
+            [
+              'type-parent',
+              'type-sibling',
+              'type-index',
+              'type-internal',
+            ],
             'value-builtin',
             'value-external',
             'value-internal',

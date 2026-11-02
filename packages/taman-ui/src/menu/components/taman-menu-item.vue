@@ -26,7 +26,9 @@ const { parentMenu, parentPaths } = useMenu();
 
 const active = computed(() => props.path === rootMenu?.activePath);
 const menuIcon = computed(() =>
-  active.value ? props.activeIcon || props.icon : props.icon,
+  active.value
+    ? props.activeIcon || props.icon
+    : props.icon,
 );
 
 const item: MenuItemRegistered = reactive({

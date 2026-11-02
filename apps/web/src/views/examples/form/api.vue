@@ -121,7 +121,10 @@ function handleClick(
           });
         }
         return {
-          schema: [...currentSchema, ...newSchema],
+          schema: [
+            ...currentSchema,
+            ...newSchema,
+          ],
         };
       });
       break;
@@ -151,11 +154,15 @@ function handleClick(
       break;
     }
     case 'hiddenResetButton': {
-      formApi.setState({ resetButtonOptions: { show: false } });
+      formApi.setState({
+        resetButtonOptions: { show: false },
+      });
       break;
     }
     case 'hiddenSubmitButton': {
-      formApi.setState({ submitButtonOptions: { show: false } });
+      formApi.setState({
+        submitButtonOptions: { show: false },
+      });
       break;
     }
     case 'resetDisabled': {
@@ -172,11 +179,15 @@ function handleClick(
       break;
     }
     case 'showResetButton': {
-      formApi.setState({ resetButtonOptions: { show: true } });
+      formApi.setState({
+        resetButtonOptions: { show: true },
+      });
       break;
     }
     case 'showSubmitButton': {
-      formApi.setState({ submitButtonOptions: { show: true } });
+      formApi.setState({
+        submitButtonOptions: { show: true },
+      });
       break;
     }
 

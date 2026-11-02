@@ -14,7 +14,9 @@ const { list } = useTodosQuery(params);
 
 watch(list.data, (page) => {
   if (page && !list.isPlaceholderData.value && page.page !== clampPage(page.page, page.totalPages)) {
-    setParams({ page: clampPage(page.page, page.totalPages) });
+    setParams({
+      page: clampPage(page.page, page.totalPages),
+    });
   }
 });
 </script>

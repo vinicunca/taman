@@ -24,7 +24,9 @@ export function useMenuExtra(useRootMenus?: ComputedRef<Array<TamanMenuRecordRaw
   const sidebarExtraVisible = ref<boolean>(false);
   const extraActiveMenu = ref('');
   const parentLevel = computed(() =>
-    preferences.app.layout === 'header-mixed-nav' ? 1 : 0,
+    preferences.app.layout === 'header-mixed-nav'
+      ? 1
+      : 0,
   );
 
   /**

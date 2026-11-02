@@ -13,7 +13,9 @@ vi.mock('nitro/runtime-config', () => ({
 function makeEvent(origin: null | string) {
   return {
     req: {
-      headers: new Headers(origin ? { origin } : {}),
+      headers: new Headers(origin
+        ? { origin }
+        : {}),
     },
   } as any;
 }
@@ -22,7 +24,9 @@ const body = {
   error: true,
   status: 400,
   message: 'Validation failed',
-  detail: [{ path: 'legalName', message: 'legalName is required.' }],
+  detail: [
+    { path: 'legalName', message: 'legalName is required.' },
+  ],
 } as const;
 
 describe('jsonError', () => {

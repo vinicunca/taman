@@ -59,20 +59,41 @@ describe('formApi', () => {
   });
 
   it('resumes every concurrent API call waiting for mount', async () => {
-    const calls = Promise.all([formApi.getValues(), formApi.getValues()]);
-    await formApi.mount({ meta: {}, values: { name: 'ready' } } as any);
-    await expect(calls).resolves.toEqual([{ name: 'ready' }, { name: 'ready' }]);
+    const calls = Promise.all([
+      formApi.getValues(),
+      formApi.getValues(),
+    ]);
+    await formApi.mount({
+      meta: {},
+      values: { name: 'ready' },
+    } as any);
+    await expect(calls).resolves.toEqual([
+      { name: 'ready' },
+      { name: 'ready' },
+    ]);
   });
 
   it('rejects API calls stranded by unmount and accepts calls in the next mount cycle', async () => {
-    const calls = Promise.allSettled([formApi.getValues(), formApi.getValues()]);
+    const calls = Promise.allSettled([
+      formApi.getValues(),
+      formApi.getValues(),
+    ]);
     formApi.unmount();
     expect(await calls).toEqual([
-      { status: 'rejected', reason: new Error('Condition was reset') },
-      { status: 'rejected', reason: new Error('Condition was reset') },
+      {
+        status: 'rejected',
+        reason: new Error('Condition was reset'),
+      },
+      {
+        status: 'rejected',
+        reason: new Error('Condition was reset'),
+      },
     ]);
     const next = formApi.getValues();
-    await formApi.mount({ meta: {}, values: { name: 'remounted' } } as any);
+    await formApi.mount({
+      meta: {},
+      values: { name: 'remounted' },
+    } as any);
     await expect(next).resolves.toEqual({ name: 'remounted' });
   });
 
@@ -128,7 +149,10 @@ describe('formApi', () => {
     const formActions: any = {
       meta: {},
       setValues,
-      values: { period: [1, 2], tags: ['admin', 'user'] },
+      values: {
+        period: [1, 2],
+        tags: ['admin', 'user'],
+      },
     };
 
     await codecFormApi.mount(formActions, new Map());
@@ -139,7 +163,10 @@ describe('formApi', () => {
       tags: 'admin,user',
     });
     expect(await codecFormApi.getValueSnapshot()).toEqual({
-      rawValues: { period: [1, 2], tags: ['admin', 'user'] },
+      rawValues: {
+        period: [1, 2],
+        tags: ['admin', 'user'],
+      },
       values: { endTime: 2, startTime: 1, tags: 'admin,user' },
     });
 
@@ -148,7 +175,10 @@ describe('formApi', () => {
       false,
     );
     expect(setValues).toHaveBeenCalledWith(
-      { period: [3, 4], tags: ['editor'] },
+      {
+        period: [3, 4],
+        tags: ['editor'],
+      },
       false,
     );
   });
@@ -203,7 +233,10 @@ describe('formApi', () => {
         },
       },
     });
-    const formActions: any = { meta: {}, values: { name: 'Ada' } };
+    const formActions: any = {
+      meta: {},
+      values: { name: 'Ada' },
+    };
 
     expect(() => codecFormApi.mount(formActions, new Map())).not.toThrow();
 
@@ -276,7 +309,9 @@ describe('formApi', () => {
       schema: [
         { component: 'text', fieldName: 'name' },
         {
-          children: [{ component: 'text', fieldName: 'email' }],
+          children: [
+            { component: 'text', fieldName: 'email' },
+          ],
           title: 'Contact',
           type: 'group',
         },
@@ -326,7 +361,9 @@ describe('formApi', () => {
 
     expect(formApi.state?.schema).toEqual([
       {
-        children: [{ component: 'text', fieldName: 'email' }],
+        children: [
+          { component: 'text', fieldName: 'email' },
+        ],
         title: 'Contact',
         type: 'group',
       },
@@ -383,7 +420,9 @@ describe('formApi', () => {
     const fields = {
       atomicValue,
       cleared: undefined,
-      contacts: [{ name: 'Grace' }],
+      contacts: [
+        { name: 'Grace' },
+      ],
       nullable: null,
       profile: { email: 'new@example.com' },
       updatedAt,
@@ -404,7 +443,9 @@ describe('formApi', () => {
       values: {
         atomicValue: new AtomicValue('old'),
         cleared: 'remove',
-        contacts: [{ name: 'Ada' }],
+        contacts: [
+          { name: 'Ada' },
+        ],
         nullable: 'remove',
         profile: { bio: 'Mathematician', email: 'old@example.com' },
         updatedAt: new Date('2026-08-26T00:00:00.000Z'),
@@ -417,7 +458,9 @@ describe('formApi', () => {
     expect(fields).toEqual({
       atomicValue,
       cleared: undefined,
-      contacts: [{ name: 'Grace' }],
+      contacts: [
+        { name: 'Grace' },
+      ],
       nullable: null,
       profile: { email: 'new@example.com' },
       updatedAt,
@@ -426,7 +469,9 @@ describe('formApi', () => {
       {
         atomicValue,
         cleared: undefined,
-        contacts: [{ name: 'Grace' }],
+        contacts: [
+          { name: 'Grace' },
+        ],
         nullable: null,
         profile: {
           bio: 'Mathematician',
@@ -446,12 +491,16 @@ describe('formApi', () => {
     const profile: Record<string, unknown> = { email: 'new@example.com' };
     profile.self = profile;
     formApi.setState({
-      schema: [{ component: 'text', fieldName: 'profile.email' }],
+      schema: [
+        { component: 'text', fieldName: 'profile.email' },
+      ],
     });
     const formActions: any = {
       meta: {},
       setValues: setValuesMock,
-      values: { profile: { bio: 'Mathematician' } },
+      values: {
+        profile: { bio: 'Mathematician' },
+      },
     };
 
     await formApi.mount(formActions, new Map());
@@ -459,7 +508,9 @@ describe('formApi', () => {
 
     expect(setValuesMock).toHaveBeenCalledTimes(1);
     expect(setValuesMock).toHaveBeenCalledWith(
-      { profile: { email: 'new@example.com' } },
+      {
+        profile: { email: 'new@example.com' },
+      },
       false,
     );
   });
@@ -467,7 +518,9 @@ describe('formApi', () => {
   it('should preserve raw-key fields during filtered updates', async () => {
     const setValuesMock = vi.fn();
     formApi.setState({
-      schema: [{ component: 'text', fieldName: '[profile.email]' }],
+      schema: [
+        { component: 'text', fieldName: '[profile.email]' },
+      ],
     });
     const formActions: any = {
       meta: {},
@@ -684,7 +737,9 @@ describe('updateSchema', () => {
       ],
     };
 
-    instance.updateSchema([{ fieldName: 'phone', label: 'Mobile' }]);
+    instance.updateSchema([
+      { fieldName: 'phone', label: 'Mobile' },
+    ]);
 
     expect(instance.state?.schema?.[1]).toMatchObject({
       children: [
@@ -713,7 +768,9 @@ describe('updateSchema', () => {
   });
 
   it('should not update schema if fieldName does not match', () => {
-    const newSchema = [{ component: 'textarea', fieldName: 'unknown' }];
+    const newSchema = [
+      { component: 'textarea', fieldName: 'unknown' },
+    ];
 
     instance.updateSchema(newSchema);
 
@@ -722,7 +779,9 @@ describe('updateSchema', () => {
   });
 
   it('should not update schema if updatedMap is empty', () => {
-    const newSchema: Array<any> = [{ component: 'textarea' }];
+    const newSchema: Array<any> = [
+      { component: 'textarea' },
+    ];
 
     instance.updateSchema(newSchema);
 

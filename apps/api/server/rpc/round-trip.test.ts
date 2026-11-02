@@ -9,7 +9,9 @@ import { createRpcClient, isDefinedError, safe } from '@vinicunca/request/orpc';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { RPC_PREFIX, rpcHandler } from './handler.ts';
 
-vi.mock('#lib/context.ts', () => ({ resolveContext: vi.fn() }));
+vi.mock('#lib/context.ts', () => ({
+  resolveContext: vi.fn(),
+}));
 vi.mock('#domains/todo/todo.repo.ts', async (importOriginal) => {
   const original = await importOriginal<typeof import('#domains/todo/todo.repo.ts')>();
   const { FakeTodoRepo: Fake } = await import('#domains/todo/todo.repo.fake.ts');
@@ -48,7 +50,12 @@ describe('server ⇄ published client round trip', () => {
 
     const page = await client.todo.list({ pageSize: 1 });
 
-    expect(page).toMatchObject({ page: 1, pageSize: 1, total: 2, totalPages: 2 });
+    expect(page).toMatchObject({
+      page: 1,
+      pageSize: 1,
+      total: 2,
+      totalPages: 2,
+    });
     expect(page.items[0]?.createdAt).toBeInstanceOf(Date);
   });
 

@@ -24,10 +24,14 @@ export function createFakeFetch(routes: Record<string, Route>) {
       search: url.search,
       headers: request.headers,
       credentials: request.credentials,
-      body: request.method === 'GET' || request.method === 'HEAD' ? null : await request.clone().text(),
+      body: request.method === 'GET' || request.method === 'HEAD'
+        ? null
+        : await request.clone().text(),
     });
     const route = routes[url.pathname];
-    return route ? route(request) : new Response('not found', { status: 404 });
+    return route
+      ? route(request)
+      : new Response('not found', { status: 404 });
   };
 
   return { fetch, calls };

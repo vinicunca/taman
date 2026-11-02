@@ -3,7 +3,11 @@ import { EmailJobError } from './errors.ts';
 export const SLOT_TOKEN = /\{\{\s*([a-z][A-Za-z0-9]*)\s*\}\}/g;
 
 export function extractSlots(source: string): Array<string> {
-  return [...new Set([...source.matchAll(SLOT_TOKEN)].map((match) => match[1]!))].sort();
+  return [
+    ...new Set([
+      ...source.matchAll(SLOT_TOKEN),
+    ].map((match) => match[1]!)),
+  ].sort();
 }
 
 export function fillSlots(source: string, values: Readonly<Record<string, string>>): string {

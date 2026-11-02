@@ -56,7 +56,9 @@ const [
         label: $t('authentication.password'),
         rules: z
           .string()
-          .min(1, { message: $t('authentication.passwordTip') }),
+          .min(1, {
+            message: $t('authentication.passwordTip'),
+          }),
       },
     ]),
     showDefaultActions: false,

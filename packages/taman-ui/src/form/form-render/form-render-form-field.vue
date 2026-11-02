@@ -94,7 +94,9 @@ const FieldComponent = computed(() => {
     // Component not registered
     console.warn(`Component ${component} is not registered`);
   }
-  return finalComponent ? markRaw(toRaw(finalComponent)) : finalComponent;
+  return finalComponent
+    ? markRaw(toRaw(finalComponent))
+    : finalComponent;
 });
 
 const {
@@ -177,14 +179,20 @@ function createNamedRuleValidator(ruleName: string) {
     const { label, fieldName } = props;
     const ruleContext: FormRuleContext = {
       field: {
-        label: isString(label) ? label : undefined,
+        label: isString(label)
+          ? label
+          : undefined,
         name: fieldName,
       },
-      label: isString(label) ? label : undefined,
+      label: isString(label)
+        ? label
+        : undefined,
       name: fieldName,
     };
     const result = validator(value, [], ruleContext);
-    return result === true ? undefined : result;
+    return result === true
+      ? undefined
+      : result;
   };
 }
 
@@ -276,7 +284,9 @@ function normalizeIssues(errors: Array<unknown>): Array<NormalizedIssue> {
     const rawPath = error && typeof error === 'object' && 'path' in error
       ? Reflect.get(error, 'path')
       : undefined;
-    const path = Array.isArray(rawPath) ? [...rawPath] : [];
+    const path = Array.isArray(rawPath)
+      ? [...rawPath]
+      : [];
     const key = `${message}:${JSON.stringify(path)}`;
     if (!seen.has(key)) {
       seen.add(key);
@@ -309,7 +319,9 @@ const computedHelp = computed(() => {
     return undefined;
   }
   return () =>
-    isFunction(helpContent) ? helpContent({ fieldName: props.fieldName }) : helpContent;
+    isFunction(helpContent)
+      ? helpContent({ fieldName: props.fieldName })
+      : helpContent;
 });
 
 watch(

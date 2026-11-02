@@ -21,7 +21,9 @@ describe('readFileMap / writeFileMap', () => {
     writeFileSync(join(source, '.git/HEAD'), 'ref');
 
     const files = readFileMap(source);
-    expect([...files.keys()]).toEqual(['a/b/c.txt']);
+    expect([
+      ...files.keys(),
+    ]).toEqual(['a/b/c.txt']);
 
     const target = mkdtempSync(join(tmpdir(), 'ct-out-'));
     writeFileMap(target, files, source);

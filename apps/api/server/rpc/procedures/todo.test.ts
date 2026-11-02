@@ -7,7 +7,9 @@ import { call } from '@orpc/server';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { router } from '../router.ts';
 
-vi.mock('#lib/context.ts', () => ({ resolveContext: vi.fn() }));
+vi.mock('#lib/context.ts', () => ({
+  resolveContext: vi.fn(),
+}));
 vi.mock('#domains/todo/todo.repo.ts', async (importOriginal) => {
   const original = await importOriginal<typeof import('#domains/todo/todo.repo.ts')>();
   const { FakeTodoRepo: Fake } = await import('#domains/todo/todo.repo.fake.ts');
@@ -51,14 +53,18 @@ describe('todo procedures', () => {
     const error = await call(
       router.todo.get,
       { id: '01920000-0000-7000-8000-0000000000ff' },
-      { context: eventFor('org-1') },
+      {
+        context: eventFor('org-1'),
+      },
     ).catch((error_: unknown) => error_);
 
     expect(error).toMatchObject({ code: 'NOT_FOUND', defined: true });
   });
 
   it('rejects invalid input with BAD_REQUEST before the handler runs', async () => {
-    await expect(call(router.todo.create, { title: '   ' }, { context: eventFor('org-1') }))
+    await expect(call(router.todo.create, { title: '   ' }, {
+      context: eventFor('org-1'),
+    }))
       .rejects
       .toMatchObject({ code: 'BAD_REQUEST' });
   });
@@ -66,8 +72,14 @@ describe('todo procedures', () => {
   it('streams only the subscriber\'s own organization events', async () => {
     const controllerA = new AbortController();
     const controllerB = new AbortController();
-    const streamA = await call(router.todo.live, undefined, { context: eventFor('org-a'), signal: controllerA.signal });
-    const streamB = await call(router.todo.live, undefined, { context: eventFor('org-b'), signal: controllerB.signal });
+    const streamA = await call(router.todo.live, undefined, {
+      context: eventFor('org-a'),
+      signal: controllerA.signal,
+    });
+    const streamB = await call(router.todo.live, undefined, {
+      context: eventFor('org-b'),
+      signal: controllerB.signal,
+    });
 
     const nextA = streamA.next();
     const nextB = Promise.race([
@@ -81,9 +93,17 @@ describe('todo procedures', () => {
       setTimeout(resolve, 20);
     });
 
-    const created = await call(router.todo.create, { title: 'Only A' }, { context: eventFor('org-a') });
+    const created = await call(router.todo.create, { title: 'Only A' }, {
+      context: eventFor('org-a'),
+    });
 
-    await expect(nextA).resolves.toMatchObject({ done: false, value: { type: 'created', todo: { id: created.id } } });
+    await expect(nextA).resolves.toMatchObject({
+      done: false,
+      value: {
+        type: 'created',
+        todo: { id: created.id },
+      },
+    });
     await expect(nextB).resolves.toBe('nothing');
 
     controllerA.abort();

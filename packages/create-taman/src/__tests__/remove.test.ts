@@ -11,7 +11,9 @@ describe('removeFiles', () => {
 
     const result = removeFiles(files, ['internal/**', 'CLAUDE.md']);
 
-    expect([...result.keys()]).toEqual(['apps/web/package.json']);
+    expect([
+      ...result.keys(),
+    ]).toEqual(['apps/web/package.json']);
     expect(files.size).toBe(3);
   });
 });

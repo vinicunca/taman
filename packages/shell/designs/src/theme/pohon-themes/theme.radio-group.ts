@@ -19,9 +19,12 @@ export const themeRadioGroup = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
-        indicator: `bg-${color}`,
-      }])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [
+        color,
+        {
+          indicator: `bg-${color}`,
+        },
+      ])),
       neutral: {
         indicator: 'bg-background-inverted',
       },
@@ -135,16 +138,56 @@ export const themeRadioGroup = {
         item: 'hover:[&:not(:has(:disabled,:focus-visible,[data-state=checked]))]:border-border-accented',
       },
     },
-    { size: 'xs', indicator: 'hidden', class: { icon: 'size-3' } },
-    { size: 'sm', indicator: 'hidden', class: { icon: 'size-3.5' } },
-    { size: 'md', indicator: 'hidden', class: { icon: 'size-4' } },
-    { size: 'lg', indicator: 'hidden', class: { icon: 'size-4.5' } },
-    { size: 'xl', indicator: 'hidden', class: { icon: 'size-5' } },
-    { size: 'xs', variant: ['card', 'table'], class: { item: 'p-2.5' } },
-    { size: 'sm', variant: ['card', 'table'], class: { item: 'p-3' } },
-    { size: 'md', variant: ['card', 'table'], class: { item: 'p-3.5' } },
-    { size: 'lg', variant: ['card', 'table'], class: { item: 'p-4' } },
-    { size: 'xl', variant: ['card', 'table'], class: { item: 'p-4.5' } },
+    {
+      size: 'xs',
+      indicator: 'hidden',
+      class: { icon: 'size-3' },
+    },
+    {
+      size: 'sm',
+      indicator: 'hidden',
+      class: { icon: 'size-3.5' },
+    },
+    {
+      size: 'md',
+      indicator: 'hidden',
+      class: { icon: 'size-4' },
+    },
+    {
+      size: 'lg',
+      indicator: 'hidden',
+      class: { icon: 'size-4.5' },
+    },
+    {
+      size: 'xl',
+      indicator: 'hidden',
+      class: { icon: 'size-5' },
+    },
+    {
+      size: 'xs',
+      variant: ['card', 'table'],
+      class: { item: 'p-2.5' },
+    },
+    {
+      size: 'sm',
+      variant: ['card', 'table'],
+      class: { item: 'p-3' },
+    },
+    {
+      size: 'md',
+      variant: ['card', 'table'],
+      class: { item: 'p-3.5' },
+    },
+    {
+      size: 'lg',
+      variant: ['card', 'table'],
+      class: { item: 'p-4' },
+    },
+    {
+      size: 'xl',
+      variant: ['card', 'table'],
+      class: { item: 'p-4.5' },
+    },
     {
       orientation: 'horizontal',
       variant: 'table',

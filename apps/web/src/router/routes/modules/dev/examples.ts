@@ -164,19 +164,25 @@ const routes: Array<RouteRecordRaw> = [
             name: 'OrpcPlainCrudExample',
             path: 'plain/crud',
             component: () => import('#/views/examples/orpc/plain/crud.vue'),
-            meta: { title: $t('examples.orpc.plainCrud') },
+            meta: {
+              title: $t('examples.orpc.plainCrud'),
+            },
           },
           {
             name: 'OrpcPlainPaginationExample',
             path: 'plain/pagination',
             component: () => import('#/views/examples/orpc/plain/pagination.vue'),
-            meta: { title: $t('examples.orpc.plainPagination') },
+            meta: {
+              title: $t('examples.orpc.plainPagination'),
+            },
           },
           {
             name: 'OrpcPlainLiveExample',
             path: 'plain/live',
             component: () => import('#/views/examples/orpc/plain/live.vue'),
-            meta: { title: $t('examples.orpc.plainLive') },
+            meta: {
+              title: $t('examples.orpc.plainLive'),
+            },
           },
         ],
       },
@@ -192,37 +198,49 @@ const routes: Array<RouteRecordRaw> = [
             name: 'HttpPlainCrudExample',
             path: 'plain/crud',
             component: () => import('#/views/examples/http/plain/crud.vue'),
-            meta: { title: $t('examples.http.plainCrud') },
+            meta: {
+              title: $t('examples.http.plainCrud'),
+            },
           },
           {
             name: 'HttpPlainPaginationExample',
             path: 'plain/pagination',
             component: () => import('#/views/examples/http/plain/pagination.vue'),
-            meta: { title: $t('examples.http.plainPagination') },
+            meta: {
+              title: $t('examples.http.plainPagination'),
+            },
           },
           {
             name: 'HttpPlainAuthExample',
             path: 'plain/auth',
             component: () => import('#/views/examples/http/plain/auth.vue'),
-            meta: { title: $t('examples.http.plainAuth') },
+            meta: {
+              title: $t('examples.http.plainAuth'),
+            },
           },
           {
             name: 'HttpQueryCrudExample',
             path: 'query/crud',
             component: () => import('#/views/examples/http/query/crud.vue'),
-            meta: { title: $t('examples.http.queryCrud') },
+            meta: {
+              title: $t('examples.http.queryCrud'),
+            },
           },
           {
             name: 'HttpQueryPaginationExample',
             path: 'query/pagination',
             component: () => import('#/views/examples/http/query/pagination.vue'),
-            meta: { title: $t('examples.http.queryPagination') },
+            meta: {
+              title: $t('examples.http.queryPagination'),
+            },
           },
           {
             name: 'HttpQueryAuthExample',
             path: 'query/auth',
             component: () => import('#/views/examples/http/query/auth.vue'),
-            meta: { title: $t('examples.http.queryAuth') },
+            meta: {
+              title: $t('examples.http.queryAuth'),
+            },
           },
         ],
       },

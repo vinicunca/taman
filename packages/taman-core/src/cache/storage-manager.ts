@@ -33,7 +33,9 @@ class StorageManager {
    */
   async clear(): Promise<void> {
     const allKeys = await this.driver.keys();
-    const fullPrefix = this.prefix ? `${this.prefix}-` : '';
+    const fullPrefix = this.prefix
+      ? `${this.prefix}-`
+      : '';
     const prefixedKeys = allKeys.filter((key) => key.startsWith(fullPrefix));
     await Promise.all(prefixedKeys.map((key) => this.driver.removeItem(key)));
   }
@@ -43,7 +45,9 @@ class StorageManager {
    */
   async clearExpiredItems(): Promise<void> {
     const allKeys = await this.driver.keys();
-    const fullPrefix = this.prefix ? `${this.prefix}-` : '';
+    const fullPrefix = this.prefix
+      ? `${this.prefix}-`
+      : '';
     const prefixedKeys = allKeys.filter((key) => key.startsWith(fullPrefix));
 
     for (const fullKey of prefixedKeys) {
@@ -85,7 +89,9 @@ class StorageManager {
    */
   async keys(): Promise<Array<string>> {
     const allKeys = await this.driver.keys();
-    const fullPrefix = this.prefix ? `${this.prefix}-` : '';
+    const fullPrefix = this.prefix
+      ? `${this.prefix}-`
+      : '';
     if (!fullPrefix) {
       return allKeys;
     }
@@ -111,7 +117,9 @@ class StorageManager {
    */
   async setItem(key: string, value: unknown, ttl?: number): Promise<void> {
     const fullKey = this.getFullKey(key);
-    const expiry = ttl ? Date.now() + ttl : undefined;
+    const expiry = ttl
+      ? Date.now() + ttl
+      : undefined;
     const item: StorageItem<unknown> = { expiry, value };
     await this.driver.setItem(fullKey, item);
   }
@@ -122,7 +130,9 @@ class StorageManager {
    * @returns Full key with prefix
    */
   getFullKey(key: string): string {
-    return this.prefix ? `${this.prefix}-${key}` : key;
+    return this.prefix
+      ? `${this.prefix}-${key}`
+      : key;
   }
 
   /**

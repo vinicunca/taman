@@ -53,7 +53,9 @@ export default definePlugin((nitroApp) => {
 
   nitroApp.hooks.hook('response', (res, event) => {
     const start = startedAt.get(event);
-    const latencyMs = start === undefined ? 0 : performance.now() - start;
+    const latencyMs = start === undefined
+      ? 0
+      : performance.now() - start;
 
     startedAt.delete(event);
 

@@ -19,7 +19,9 @@ describe('form schema normalization', () => {
 
     const schema = createFormFieldSchema(
       { component: 'Input', fieldName: 'name' },
-      { commonConfig: { componentProps } },
+      {
+        commonConfig: { componentProps },
+      },
     );
 
     expect(componentProps).toHaveBeenCalledWith({ fieldName: 'name' });
@@ -31,7 +33,11 @@ describe('form schema normalization', () => {
   it('preserves common component props objects', () => {
     const schema = createFormFieldSchema(
       { component: 'Input', fieldName: 'name' },
-      { commonConfig: { componentProps: { placeholder: 'Enter a name' } } },
+      {
+        commonConfig: {
+          componentProps: { placeholder: 'Enter a name' },
+        },
+      },
     );
 
     expect(schema.commonComponentProps).toEqual({
@@ -46,7 +52,9 @@ describe('form schema normalization', () => {
 
     const schema = createFormFieldSchema(
       { component: 'Input', fieldName: 'email' },
-      { globalCommonConfig: { componentProps } },
+      {
+        globalCommonConfig: { componentProps },
+      },
     );
 
     expect(componentProps).toHaveBeenCalledWith({ fieldName: 'email' });
@@ -90,7 +98,9 @@ describe('form group schema', () => {
     type: 'group',
   };
   const tagsArray: FormSchema = {
-    children: [{ component: 'Input', fieldName: 'label' }],
+    children: [
+      { component: 'Input', fieldName: 'label' },
+    ],
     fieldName: 'tags',
     type: 'array',
   };
@@ -130,7 +140,9 @@ describe('form group schema', () => {
       type: 'group',
     });
     expect(updated[2]).toMatchObject({
-      children: [{ fieldName: 'label', label: 'Tag' }],
+      children: [
+        { fieldName: 'label', label: 'Tag' },
+      ],
       fieldName: 'tags',
     });
     // The original schema should not be modified.
@@ -142,7 +154,9 @@ describe('form group schema', () => {
 
     expect(result).toHaveLength(2);
     expect(result[0]).toMatchObject({
-      children: [{ fieldName: 'phone' }],
+      children: [
+        { fieldName: 'phone' },
+      ],
       name: 'contact',
       type: 'group',
     });

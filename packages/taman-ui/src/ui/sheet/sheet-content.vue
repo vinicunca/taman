@@ -60,7 +60,9 @@ function isAppendToBody() {
 }
 
 const position = computed(() => {
-  return isAppendToBody() ? 'fixed' : 'absolute';
+  return isAppendToBody()
+    ? 'fixed'
+    : 'absolute';
 });
 
 // Akar's Dialog won't render the overlay when modal=false. Here, the SheetOverlay component renders the overlay layer and locks scrolling.

@@ -77,19 +77,29 @@ const getOptions = computed(() => {
   function transformData(data: Array<AppFetchComponentOptionsItem> = []): Array<AppFetchComponentOptionsItem> {
     return data.map((item) => {
       const value = prop(item, valueField);
-      const children = childrenField ? prop(item, childrenField) : item.children;
+      const children = childrenField
+        ? prop(item, childrenField)
+        : item.children;
       return {
         ...omit(item, [
           labelField,
           valueField,
           disabledField,
-          ...(childrenField ? [childrenField] : []),
+          ...(childrenField
+            ? [childrenField]
+            : []),
         ]),
-        label: labelFn ? labelFn(item) : prop(item, labelField),
-        value: numberToString ? `${value}` : value,
+        label: labelFn
+          ? labelFn(item)
+          : prop(item, labelField),
+        value: numberToString
+          ? `${value}`
+          : value,
         disabled: prop(item, disabledField),
         ...(Array.isArray(children) && children.length > 0
-          ? { children: transformData(children) }
+          ? {
+              children: transformData(children),
+            }
           : {}),
       };
     });
@@ -97,7 +107,9 @@ const getOptions = computed(() => {
 
   const data = transformData(unref(refOptions));
 
-  return data.length > 0 ? data : transformData(props.options);
+  return data.length > 0
+    ? data
+    : transformData(props.options);
 });
 
 const bindProps = computed(() => {
@@ -245,7 +257,10 @@ function emitChange() {
 }
 
 watch(
-  [() => props.api, mergedParams],
+  [
+    () => props.api,
+    mergedParams,
+  ],
   ([api, value], [oldApi, oldValue]) => {
     if (api === oldApi && isDeepEqual(value, oldValue)) {
       return;

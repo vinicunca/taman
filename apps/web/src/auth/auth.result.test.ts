@@ -5,7 +5,10 @@ import { AuthError, unwrapAuthResult } from './auth.result';
 describe('unwrapAuthResult', () => {
   it('resolves with data on success', async () => {
     const result = unwrapAuthResult(
-      Promise.resolve({ data: { id: '1' }, error: null }),
+      Promise.resolve({
+        data: { id: '1' },
+        error: null,
+      }),
     );
 
     await expect(result).resolves.toEqual({ id: '1' });

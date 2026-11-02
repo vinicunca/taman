@@ -10,7 +10,13 @@ export interface RenderCompiledInput {
 }
 
 export function escapeHtml(value: string): string {
-  return value.replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', '\'': '&#39;' })[char]!);
+  return value.replace(/[&<>"']/g, (char) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    '\'': '&#39;',
+  })[char]!);
 }
 
 export function formatCopy(message: string, variables: object, encode?: (value: string) => string): string {
@@ -26,11 +32,15 @@ export function formatCopy(message: string, variables: object, encode?: (value: 
       throw new EmailJobError(`Missing email parameter: ${name}`);
     }
     const literal = message.slice(cursor, match.index);
-    output += encode ? encode(literal) + encode(value) : literal + value;
+    output += encode
+      ? encode(literal) + encode(value)
+      : literal + value;
     cursor = match.index + token.length;
   }
   const tail = message.slice(cursor);
-  return output + (encode ? encode(tail) : tail);
+  return output + (encode
+    ? encode(tail)
+    : tail);
 }
 
 export function assertHttpUrl(value: unknown, slot: string): string {

@@ -39,8 +39,18 @@ describe('form-level collapse', () => {
   function threeFieldSchema() {
     return [
       { component: TestInput, fieldName: 'a', label: 'A' },
-      { component: TestInput, collapsed: true, fieldName: 'b', label: 'B' },
-      { component: TestInput, collapsed: true, fieldName: 'c', label: 'C' },
+      {
+        component: TestInput,
+        collapsed: true,
+        fieldName: 'b',
+        label: 'B',
+      },
+      {
+        component: TestInput,
+        collapsed: true,
+        fieldName: 'c',
+        label: 'C',
+      },
     ];
   }
 
@@ -97,7 +107,9 @@ describe('form-level collapse', () => {
       schema: [
         { component: TestInput, fieldName: 'a', label: 'A' },
         {
-          children: [{ component: TestInput, fieldName: 'b', label: 'B' }],
+          children: [
+            { component: TestInput, fieldName: 'b', label: 'B' },
+          ],
           collapsed: true,
           name: 'extra',
           title: 'Extra',
@@ -116,7 +128,9 @@ describe('form-level collapse', () => {
 describe('collapse toggle', () => {
   it('is absent when no entry is marked', async () => {
     const [Form] = useTamanForm({
-      schema: [{ component: TestInput, fieldName: 'a', label: 'A' }],
+      schema: [
+        { component: TestInput, fieldName: 'a', label: 'A' },
+      ],
     });
     const wrapper = mount(Form, { attachTo: document.body });
     wrappers.push(wrapper);
@@ -130,7 +144,9 @@ describe('collapse toggle', () => {
       schema: [
         { component: TestInput, fieldName: 'a', label: 'A' },
         {
-          children: [{ component: TestInput, fieldName: 'b', label: 'B' }],
+          children: [
+            { component: TestInput, fieldName: 'b', label: 'B' },
+          ],
           collapsed: true,
           name: 'extra',
           title: 'Extra',
@@ -150,7 +166,12 @@ describe('collapse toggle', () => {
       collapsed: true,
       schema: [
         { component: TestInput, fieldName: 'a', label: 'A' },
-        { component: TestInput, collapsed: true, fieldName: 'b', label: 'B' },
+        {
+          component: TestInput,
+          collapsed: true,
+          fieldName: 'b',
+          label: 'B',
+        },
       ],
     });
     const wrapper = mount(Form, { attachTo: document.body });
@@ -178,7 +199,9 @@ describe('collapse toggle', () => {
       schema: [
         { component: TestInput, fieldName: 'a', label: 'A' },
         {
-          children: [{ component: TestInput, fieldName: 'b', label: 'B' }],
+          children: [
+            { component: TestInput, fieldName: 'b', label: 'B' },
+          ],
           collapsed: true,
           name: 'extra',
           title: 'Extra',
@@ -205,7 +228,12 @@ describe('collapse toggle', () => {
       handleCollapsedChange: onCollapsedChange,
       schema: [
         { component: TestInput, fieldName: 'a', label: 'A' },
-        { component: TestInput, collapsed: true, fieldName: 'b', label: 'B' },
+        {
+          component: TestInput,
+          collapsed: true,
+          fieldName: 'b',
+          label: 'B',
+        },
       ],
     });
     const wrapper = mount(Form, { attachTo: document.body });

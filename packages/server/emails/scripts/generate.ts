@@ -5,7 +5,9 @@ import { createTemplateModule } from './generate.lib.ts';
 const root = resolve(import.meta.dirname, '..');
 const output = resolve(root, 'src/generated');
 const files = await readdir(resolve(root, '.maizzle'));
-const names = [...new Set(files.filter((file) => file.endsWith('.html')).map((file) => file.slice(0, -5)))];
+const names = [
+  ...new Set(files.filter((file) => file.endsWith('.html')).map((file) => file.slice(0, -5))),
+];
 
 await Promise.all(names.map(async (name) => {
   const [html, text] = await Promise.all([

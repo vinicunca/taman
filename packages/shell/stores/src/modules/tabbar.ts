@@ -170,7 +170,10 @@ export const useTabbarStore = defineStore('core-tabbar', {
         const mergedTab = {
           ...currentTab,
           ...tab,
-          meta: { ...currentTab?.meta, ...tab.meta },
+          meta: {
+            ...currentTab?.meta,
+            ...tab.meta,
+          },
         };
         if (currentTab) {
           const curMeta = currentTab.meta;
@@ -196,7 +199,9 @@ export const useTabbarStore = defineStore('core-tabbar', {
      */
     async closeAllTabs(router: Router) {
       const newTabs = this.tabs.filter((tab) => isAffixTab(tab));
-      this.tabs = newTabs.length > 0 ? newTabs : [...this.tabs].splice(0, 1);
+      this.tabs = newTabs.length > 0
+        ? newTabs
+        : [...this.tabs].splice(0, 1);
       // Trim visit history to remaining tabs
       if (isVisitHistory()) {
         this.visitHistory.retain(
@@ -510,7 +515,9 @@ export const useTabbarStore = defineStore('core-tabbar', {
     async toggleTabPin(tab: TamanTabDefinition) {
       const affixTab = tab?.meta?.affixTab ?? false;
 
-      await (affixTab ? this.unpinTab(tab) : this.pinTab(tab));
+      await (affixTab
+        ? this.unpinTab(tab)
+        : this.pinTab(tab));
     },
 
     /**
@@ -595,7 +602,10 @@ export const useTabbarStore = defineStore('core-tabbar', {
     },
     getTabs(): Array<TamanTabDefinition> {
       const normalTabs = this.tabs.filter((tab) => !isAffixTab(tab));
-      return [...this.affixTabs, ...normalTabs].filter(Boolean);
+      return [
+        ...this.affixTabs,
+        ...normalTabs,
+      ].filter(Boolean);
     },
     getCachedRoutes(): Map<string, RouteCached> {
       return this.cachedRoutes;
@@ -715,7 +725,9 @@ function getTabKey(tab: RouteLocationNormalized | RouteRecordNormalized) {
   if (pageKey) {
     rawKey = pageKey;
   } else {
-    rawKey = fullPathKey === false ? path : (fullPath ?? path);
+    rawKey = fullPathKey === false
+      ? path
+      : (fullPath ?? path);
   }
   try {
     return decodeURIComponent(rawKey);

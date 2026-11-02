@@ -63,7 +63,9 @@ const iconName = computed(() => {
 });
 
 const iconArrowStyle = computed(() => {
-  return opened.value ? { transform: 'rotate(180deg)' } : {};
+  return opened.value
+    ? { transform: 'rotate(180deg)' }
+    : {};
 });
 </script>
 

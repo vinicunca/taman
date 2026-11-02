@@ -8,6 +8,8 @@ type PublisherObjectArgs = ConstructorParameters<typeof PublisherDurableObject>;
  */
 export class TodoPublisherObject extends PublisherDurableObject {
   constructor(ctx: PublisherObjectArgs[0], env: PublisherObjectArgs[1]) {
-    super(ctx, env, { resume: { retentionSeconds: 300 } });
+    super(ctx, env, {
+      resume: { retentionSeconds: 300 },
+    });
   }
 }

@@ -68,5 +68,7 @@ export const authed = implementer.middleware(async ({ context, next }) => {
     });
   }
 
-  return next({ context: { taman } });
+  return next({
+    context: { taman },
+  });
 });

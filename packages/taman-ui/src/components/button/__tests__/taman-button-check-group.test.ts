@@ -6,7 +6,10 @@ import { defineComponent, h, ref } from 'vue';
 
 import TamanButtonCheckGroup from '../taman-button-check-group.vue';
 
-const ui = { label: () => '', leadingIcon: () => '' };
+const ui = {
+  label: () => '',
+  leadingIcon: () => '',
+};
 
 vi.mock('pohon-ui/components/Button.vue', () => ({
   default: defineComponent({
@@ -28,7 +31,10 @@ vi.mock('pohon-ui/components/Button.vue', () => ({
             'data-loading': String(props.loading),
             'disabled': props.disabled,
           },
-          [slots.leading?.({ ui }), slots.default?.({ ui })],
+          [
+            slots.leading?.({ ui }),
+            slots.default?.({ ui }),
+          ],
         );
     },
   }),

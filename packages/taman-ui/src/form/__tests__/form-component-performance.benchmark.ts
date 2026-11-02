@@ -17,7 +17,9 @@ function createFlatSchema(
   fieldCount: number,
   withRules: boolean = false,
 ): Array<FormSchema> {
-  const rule = withRules ? z.string().min(1) : undefined;
+  const rule = withRules
+    ? z.string().min(1)
+    : undefined;
   return Array.from({ length: fieldCount }, (_, index) => ({
     component: TestInput,
     defaultValue: `Value ${index}`,
@@ -83,7 +85,10 @@ const dependencyWrapper = mount(DependencyForm);
 
 await flushPromises();
 
-const batchValues = [createFlatValues('Alpha'), createFlatValues('Beta')];
+const batchValues = [
+  createFlatValues('Alpha'),
+  createFlatValues('Beta'),
+];
 const schemaPatches = [false, true].map((disabled) =>
   Array.from({ length: FIELD_COUNT }, (_, index) => ({
     componentProps: { disabled },
@@ -179,7 +184,9 @@ it('form schema performance', async ({ bench }) => {
         dependencyIteration += 1;
         await dependencyFormApi.setFieldValue(
           'mode',
-          dependencyIteration % 2 === 0 ? 'editable' : 'locked',
+          dependencyIteration % 2 === 0
+            ? 'editable'
+            : 'locked',
         );
         await flushPromises();
       },

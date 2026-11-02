@@ -23,9 +23,12 @@ export const themeCheckbox = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
-        indicator: `bg-${color}`,
-      }])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [
+        color,
+        {
+          indicator: `bg-${color}`,
+        },
+      ])),
       neutral: {
         indicator: 'bg-background-inverted',
       },
@@ -109,16 +112,56 @@ export const themeCheckbox = {
         root: 'hover:[&:not(:has(:disabled,:focus-visible,[data-state=checked]))]:border-border-accented',
       },
     },
-    { size: 'xs', indicator: 'hidden', class: { icon: 'size-3' } },
-    { size: 'sm', indicator: 'hidden', class: { icon: 'size-3.5' } },
-    { size: 'md', indicator: 'hidden', class: { icon: 'size-4' } },
-    { size: 'lg', indicator: 'hidden', class: { icon: 'size-4.5' } },
-    { size: 'xl', indicator: 'hidden', class: { icon: 'size-5' } },
-    { size: 'xs', variant: 'card', class: { root: 'p-2.5' } },
-    { size: 'sm', variant: 'card', class: { root: 'p-3' } },
-    { size: 'md', variant: 'card', class: { root: 'p-3.5' } },
-    { size: 'lg', variant: 'card', class: { root: 'p-4' } },
-    { size: 'xl', variant: 'card', class: { root: 'p-4.5' } },
+    {
+      size: 'xs',
+      indicator: 'hidden',
+      class: { icon: 'size-3' },
+    },
+    {
+      size: 'sm',
+      indicator: 'hidden',
+      class: { icon: 'size-3.5' },
+    },
+    {
+      size: 'md',
+      indicator: 'hidden',
+      class: { icon: 'size-4' },
+    },
+    {
+      size: 'lg',
+      indicator: 'hidden',
+      class: { icon: 'size-4.5' },
+    },
+    {
+      size: 'xl',
+      indicator: 'hidden',
+      class: { icon: 'size-5' },
+    },
+    {
+      size: 'xs',
+      variant: 'card',
+      class: { root: 'p-2.5' },
+    },
+    {
+      size: 'sm',
+      variant: 'card',
+      class: { root: 'p-3' },
+    },
+    {
+      size: 'md',
+      variant: 'card',
+      class: { root: 'p-3.5' },
+    },
+    {
+      size: 'lg',
+      variant: 'card',
+      class: { root: 'p-4' },
+    },
+    {
+      size: 'xl',
+      variant: 'card',
+      class: { root: 'p-4.5' },
+    },
     ...[
       ...POHON_THEME_BRANDS.map((color) => [color, color]),
       ['neutral', 'inverted'],

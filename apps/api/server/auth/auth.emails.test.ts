@@ -14,8 +14,12 @@ const invitationData = {
   email: 'new@user.test',
   role: 'admin,member',
   organization: { name: 'Acme' },
-  invitation: { expiresAt: new Date('2026-10-01T10:00:00.000Z') },
-  inviter: { user: { name: 'Ana', email: 'ana@org.test' } },
+  invitation: {
+    expiresAt: new Date('2026-10-01T10:00:00.000Z'),
+  },
+  inviter: {
+    user: { name: 'Ana', email: 'ana@org.test' },
+  },
 };
 
 describe('buildAppUrl', () => {
@@ -35,7 +39,9 @@ describe('buildAppUrl', () => {
 
 describe('emailLocale', () => {
   it('uses the request Accept-Language', () => {
-    const request = new Request('https://api.test', { headers: { 'accept-language': 'id-ID,id;q=0.9' } });
+    const request = new Request('https://api.test', {
+      headers: { 'accept-language': 'id-ID,id;q=0.9' },
+    });
 
     expect(emailLocale(request)).toBe('id-ID');
   });
@@ -70,7 +76,10 @@ describe('invitationEmailJob', () => {
 });
 
 describe('verifyEmailJob / resetPasswordEmailJob', () => {
-  const data = { user: { email: 'ana@user.test', name: 'Ana' }, url: 'https://api.test/api/auth/verify-email?token=t1' };
+  const data = {
+    user: { email: 'ana@user.test', name: 'Ana' },
+    url: 'https://api.test/api/auth/verify-email?token=t1',
+  };
 
   it('passes the Better Auth link through', () => {
     expect(verifyEmailJob(data, 'id-ID')).toEqual({

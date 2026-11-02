@@ -56,13 +56,18 @@ function generateMenus(
     // Wire parent path metadata on children
     if (resultChildren.length > 0) {
       resultChildren.forEach((child) => {
-        child.parents = [...(route.parents ?? []), path];
+        child.parents = [
+          ...(route.parents ?? []),
+          path,
+        ];
         child.parent = path;
       });
     }
 
     // Choose the menu link path
-    const resultPath = hideChildrenInMenu ? redirect || path : link || path;
+    const resultPath = hideChildrenInMenu
+      ? redirect || path
+      : link || path;
 
     return {
       activeIcon,

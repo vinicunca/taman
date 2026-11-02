@@ -24,7 +24,9 @@ async function viteLicensePlugin(
     version = '',
   } = await readPackageJSON(root);
 
-  const pkgAuthorObject = typeof pkgAuthor === 'object' ? pkgAuthor : undefined;
+  const pkgAuthorObject = typeof pkgAuthor === 'object'
+    ? pkgAuthor
+    : undefined;
 
   const {
     author = pkgAuthorObject?.name ?? (pkgAuthor as string | undefined),

@@ -19,7 +19,9 @@ function collectRelativePaths(value: unknown, paths = new Set<string>()) {
 }
 
 export async function getPackageHash(pkgJson: Record<string, unknown>, pkgDir: string) {
-  const expandedPaths = await Promise.all([...collectRelativePaths(pkgJson)].map(async (path) => {
+  const expandedPaths = await Promise.all([
+    ...collectRelativePaths(pkgJson),
+  ].map(async (path) => {
     if (!path.includes('*')) {
       return [path];
     }
@@ -27,7 +29,9 @@ export async function getPackageHash(pkgJson: Record<string, unknown>, pkgDir: s
     for await (const match of glob(path, { cwd: pkgDir })) {
       matches.push(match);
     }
-    return matches.length > 0 ? matches : [path];
+    return matches.length > 0
+      ? matches
+      : [path];
   }));
   const paths = new Set(expandedPaths.flat());
   const fileStates = await Promise.all([...paths].toSorted().map(async (path) => {
@@ -35,7 +39,15 @@ export async function getPackageHash(pkgJson: Record<string, unknown>, pkgDir: s
       const file = resolve(pkgDir, path);
       const info = await stat(file);
       // Content also catches rewrites that preserve the size and timestamp.
-      return [path, info.isDirectory(), info.size, info.mtimeMs, info.isFile() ? await readFile(file, 'base64') : null];
+      return [
+        path,
+        info.isDirectory(),
+        info.size,
+        info.mtimeMs,
+        info.isFile()
+          ? await readFile(file, 'base64')
+          : null,
+      ];
     } catch {
       return [path, false];
     }
@@ -46,7 +58,9 @@ export async function getPackageHash(pkgJson: Record<string, unknown>, pkgDir: s
 export async function readCache(path: string): Promise<Record<string, { hash: string; result: Result }>> {
   try {
     const value = JSON.parse(await readFile(path, 'utf8'));
-    return value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+    return value && typeof value === 'object' && !Array.isArray(value)
+      ? value
+      : {};
   } catch {
     return {};
   }

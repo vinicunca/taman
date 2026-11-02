@@ -37,7 +37,9 @@ afterEach(() => {
 describe('per-field collapsible', () => {
   it('renders no collapsible wrapper by default', async () => {
     const [Form] = useTamanForm({
-      schema: [{ component: TestInput, fieldName: 'name', label: 'Name' }],
+      schema: [
+        { component: TestInput, fieldName: 'name', label: 'Name' },
+      ],
     });
     const wrapper = mount(Form);
     wrappers.push(wrapper);
@@ -134,7 +136,9 @@ describe('per-field collapsible', () => {
 
   it('renders no chevron toggle for a non-collapsible field', async () => {
     const [Form] = useTamanForm({
-      schema: [{ component: TestInput, fieldName: 'name', label: 'Name' }],
+      schema: [
+        { component: TestInput, fieldName: 'name', label: 'Name' },
+      ],
     });
     const wrapper = mount(Form);
     wrappers.push(wrapper);

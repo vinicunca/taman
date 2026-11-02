@@ -21,7 +21,10 @@ const steps = [
 
 for (const args of steps) {
   const [command, ...commandArgs] = pnpmCommand;
-  const result = spawnSync(command, [...commandArgs, ...args], {
+  const result = spawnSync(command, [
+    ...commandArgs,
+    ...args,
+  ], {
     stdio: 'inherit',
   });
 

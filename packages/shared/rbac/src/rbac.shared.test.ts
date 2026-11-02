@@ -8,7 +8,10 @@ import { sharedStatements } from './rbac.shared';
 /** Every action of every shared resource, so a newly added resource is covered automatically. */
 function everySharedAction(): PermissionRequest {
   return Object.fromEntries(
-    Object.entries(sharedStatements).map(([resource, actions]) => [resource, [...actions]]),
+    Object.entries(sharedStatements).map(([resource, actions]) => [
+      resource,
+      [...actions],
+    ]),
   ) as PermissionRequest;
 }
 
@@ -21,7 +24,9 @@ describe('shared statements', () => {
   it('gives plain platform users none of the shared actions', () => {
     for (const [resource, actions] of Object.entries(sharedStatements)) {
       for (const action of actions) {
-        expect(adminRoles[USER_ROLES.USER].authorize({ [resource]: [action] } as PermissionRequest).success).toBe(false);
+        expect(adminRoles[USER_ROLES.USER].authorize({
+          [resource]: [action],
+        } as PermissionRequest).success).toBe(false);
       }
     }
   });

@@ -45,7 +45,9 @@ export function useProductsQuery(params: MaybeRefOrGetter<ProductListParams>) {
   function patchList(updater: (page: ProductPage) => ProductPage) {
     const path = listPath(toValue(params).search);
     queryClient.setQueriesData<ProductPage>(
-      { queryKey: dummyjson.get(path).key() },
+      {
+        queryKey: dummyjson.get(path).key(),
+      },
       (page) => page && updater(page),
     );
   }

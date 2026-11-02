@@ -7,13 +7,20 @@ defineProps<{
   status: 'closed' | 'connecting' | 'error' | 'open';
 }>();
 
-const STATUS_KEY = { closed: 'todo.stream.disconnected', connecting: 'todo.stream.connecting', error: 'todo.stream.disconnected', open: 'todo.stream.live' } as const;
+const STATUS_KEY = {
+  closed: 'todo.stream.disconnected',
+  connecting: 'todo.stream.connecting',
+  error: 'todo.stream.disconnected',
+  open: 'todo.stream.live',
+} as const;
 const timeFormat = new Intl.DateTimeFormat(undefined, { timeStyle: 'medium' });
 
 function describe(entry: TodoLogEntry): string {
   const { event } = entry;
   return event.type === 'removed'
-    ? $t('todo.stream.removed', { id: event.id.slice(-6) })
+    ? $t('todo.stream.removed', {
+        id: event.id.slice(-6),
+      })
     : $t(`todo.stream.${event.type}`, { title: event.todo.title });
 }
 </script>

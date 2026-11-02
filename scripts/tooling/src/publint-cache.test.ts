@@ -15,7 +15,11 @@ afterEach(async () => {
 
 describe('publint output cache', () => {
   it('invalidates when a declared output is created, changed or deleted', async () => {
-    const pkg = { exports: { '.': { import: './dist/index.js' } } };
+    const pkg = {
+      exports: {
+        '.': { import: './dist/index.js' },
+      },
+    };
     const hash = () => getPackageHash(pkg, dir);
     const missing = await hash();
     const file = join(dir, 'dist/index.js');
@@ -34,7 +38,9 @@ describe('publint output cache', () => {
   });
 
   it('invalidates when wildcard targets gain or lose a match', async () => {
-    const pkg = { exports: { './*': './dist/*.js' } };
+    const pkg = {
+      exports: { './*': './dist/*.js' },
+    };
     const missing = await getPackageHash(pkg, dir);
     await writeFile(join(dir, 'dist/one.js'), 'export {};');
     const first = await getPackageHash(pkg, dir);
@@ -54,7 +60,12 @@ describe('publint output cache', () => {
   it('accepts an absent cache and reads a valid cache', async () => {
     const file = join(dir, 'cache.json');
     expect(await readCache(file)).toEqual({});
-    const cache = { pkg: { hash: 'hash', result: { messages: [] } } };
+    const cache = {
+      pkg: {
+        hash: 'hash',
+        result: { messages: [] },
+      },
+    };
     await writeFile(file, JSON.stringify(cache));
     expect(await readCache(file)).toEqual(cache);
   });

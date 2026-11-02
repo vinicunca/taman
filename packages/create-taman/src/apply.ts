@@ -41,7 +41,11 @@ export function applyManifest(snapshot: FileMap, manifest: TemplateManifest, nam
   files.set('pnpm-workspace.yaml', pruneCatalog(files.get('pnpm-workspace.yaml') as string, catalogUsage(files)));
 
   return {
-    errors: [...drift, ...deps.errors, ...explicit.errors],
+    errors: [
+      ...drift,
+      ...deps.errors,
+      ...explicit.errors,
+    ],
     files,
     warnings: [
       ...scripts.warnings,

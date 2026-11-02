@@ -27,7 +27,10 @@ const NOTIFIED = Symbol.for('vinicunca.request.notified');
 
 /** Shows one message per failed request, then rethrows. Aborts are silent. */
 export function errorMessageInterceptor(options: ErrorMessageInterceptorOptions): ResponseInterceptor {
-  const messages = { ...DEFAULT_ERROR_MESSAGES, ...options.messages };
+  const messages = {
+    ...DEFAULT_ERROR_MESSAGES,
+    ...options.messages,
+  };
   const preferServerMessage = options.preferServerMessage ?? true;
 
   return {
@@ -37,9 +40,15 @@ export function errorMessageInterceptor(options: ErrorMessageInterceptorOptions)
         throw error;
       }
 
-      const serverMessage = preferServerMessage ? getServerMessage(error.data) : undefined;
-      const kindMessage = error.kind === 'network' || error.kind === 'timeout' ? messages[error.kind] : undefined;
-      const statusMessage = error.status === undefined ? undefined : messages[error.status as ErrorMessageKey];
+      const serverMessage = preferServerMessage
+        ? getServerMessage(error.data)
+        : undefined;
+      const kindMessage = error.kind === 'network' || error.kind === 'timeout'
+        ? messages[error.kind]
+        : undefined;
+      const statusMessage = error.status === undefined
+        ? undefined
+        : messages[error.status as ErrorMessageKey];
 
       flagged[NOTIFIED] = true;
       options.notify(serverMessage ?? kindMessage ?? statusMessage ?? messages.default, error);

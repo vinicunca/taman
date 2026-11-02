@@ -77,7 +77,9 @@ const components: Record<TamanLayoutType, Component> = {
 const modelValue = defineModel<TamanLayoutType>({ default: 'sidebar-nav' });
 
 function activeClass(theme: string): Array<string> {
-  return theme === modelValue.value ? ['outline-box-active'] : [];
+  return theme === modelValue.value
+    ? ['outline-box-active']
+    : [];
 }
 
 function handleLayoutChange(layout: TamanLayoutType) {

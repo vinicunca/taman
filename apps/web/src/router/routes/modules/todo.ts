@@ -22,19 +22,25 @@ const routes: Array<RouteRecordRaw> = [
         name: 'TodoManage',
         path: 'manage',
         component: () => import('#/views/todo/crud.vue'),
-        meta: { title: $t('todo.manage') },
+        meta: {
+          title: $t('todo.manage'),
+        },
       },
       {
         name: 'TodoList',
         path: 'list',
         component: () => import('#/views/todo/pagination.vue'),
-        meta: { title: $t('todo.list') },
+        meta: {
+          title: $t('todo.list'),
+        },
       },
       {
         name: 'TodoLive',
         path: 'live',
         component: () => import('#/views/todo/live.vue'),
-        meta: { title: $t('todo.live') },
+        meta: {
+          title: $t('todo.live'),
+        },
       },
     ],
   },

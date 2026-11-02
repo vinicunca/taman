@@ -13,7 +13,10 @@ const emits = defineEmits<{
 }>();
 const open = defineModel<boolean>('open', { default: false });
 const attrs = useAttrs();
-const alertAttrs = computed(() => ({ ...props, ...attrs }));
+const alertAttrs = computed(() => ({
+  ...props,
+  ...attrs,
+}));
 function onClosed(isConfirm: boolean) {
   emits('close', { isConfirm });
   emits('after:leave');

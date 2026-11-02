@@ -37,7 +37,9 @@ afterEach(() => {
 describe('vertical-only layout', () => {
   it('always stacks the label above the control', async () => {
     const [Form] = useTamanForm({
-      schema: [{ component: TestInput, fieldName: 'name', label: 'Name' }],
+      schema: [
+        { component: TestInput, fieldName: 'name', label: 'Name' },
+      ],
     });
     const wrapper = mount(Form);
     wrappers.push(wrapper);
@@ -51,7 +53,9 @@ describe('vertical-only layout', () => {
 
   it('never applies an inline width style to the label', async () => {
     const [Form] = useTamanForm({
-      schema: [{ component: TestInput, fieldName: 'name', label: 'Name' }],
+      schema: [
+        { component: TestInput, fieldName: 'name', label: 'Name' },
+      ],
     });
     const wrapper = mount(Form);
     wrappers.push(wrapper);
@@ -64,7 +68,9 @@ describe('vertical-only layout', () => {
   it('still forwards labelClass to the label element', async () => {
     const [Form] = useTamanForm({
       commonConfig: { labelClass: 'text-xs' },
-      schema: [{ component: TestInput, fieldName: 'name', label: 'Name' }],
+      schema: [
+        { component: TestInput, fieldName: 'name', label: 'Name' },
+      ],
     });
     const wrapper = mount(Form);
     wrappers.push(wrapper);

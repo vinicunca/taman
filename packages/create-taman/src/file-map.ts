@@ -48,7 +48,9 @@ export function writeFileMap(root: string, files: FileMap, modeSource?: string):
     mkdirSync(dirname(target), { recursive: true });
     writeFileSync(target, contents);
 
-    const source = modeSource ? join(modeSource, path) : undefined;
+    const source = modeSource
+      ? join(modeSource, path)
+      : undefined;
     if (source && existsSync(source)) {
       chmodSync(target, statSync(source).mode & 0o777);
     }

@@ -30,7 +30,9 @@ vi.mock('@vinicunca/taman-core/store', () => {
 
       subscribe(fn: (state: DrawerState) => void) {
         this.subscribers.push(fn);
-        return { unsubscribe: () => {} };
+        return {
+          unsubscribe: () => {},
+        };
       }
     },
   };

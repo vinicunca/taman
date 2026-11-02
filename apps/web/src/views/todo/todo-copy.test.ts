@@ -51,12 +51,18 @@ describe('todo reference feature copy', () => {
   it('defines every todo.* key it uses in every language', () => {
     const keys = new Set(
       Object.values(sources).flatMap((source) =>
-        [...source.matchAll(/\$t\(\s*'todo\.([\w.]+)'/g)].map((match) => match[1]!),
+        [
+          ...source.matchAll(/\$t\(\s*'todo\.([\w.]+)'/g),
+        ].map((match) => match[1]!),
       ),
     );
     const missing = [...keys].flatMap((key) => [
-      ...(hasKey(enTodo, key) ? [] : [`en-US: todo.${key}`]),
-      ...(hasKey(idTodo, key) ? [] : [`id-ID: todo.${key}`]),
+      ...(hasKey(enTodo, key)
+        ? []
+        : [`en-US: todo.${key}`]),
+      ...(hasKey(idTodo, key)
+        ? []
+        : [`id-ID: todo.${key}`]),
     ]);
 
     expect(keys.size).toBeGreaterThan(0);

@@ -18,7 +18,9 @@ describe('time value codec', () => {
 
   it('handles ranges and nested Time values without mutation', () => {
     const values = Object.freeze({
-      nested: { reminder: new Time(8, 15) },
+      nested: {
+        reminder: new Time(8, 15),
+      },
       period: {
         end: new Time(17, 30),
         start: new Time(9),

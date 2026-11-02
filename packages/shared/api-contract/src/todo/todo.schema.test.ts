@@ -7,7 +7,9 @@ describe('todoCreateInput', () => {
   it('trims the title and rejects blank or oversized titles', () => {
     expect(todoCreateInput.parse({ title: '  Buy milk  ' })).toEqual({ title: 'Buy milk' });
     expect(todoCreateInput.safeParse({ title: '   ' }).success).toBe(false);
-    expect(todoCreateInput.safeParse({ title: 'x'.repeat(201) }).success).toBe(false);
+    expect(todoCreateInput.safeParse({
+      title: 'x'.repeat(201),
+    }).success).toBe(false);
   });
 });
 

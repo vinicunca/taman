@@ -37,7 +37,9 @@ const { hasAccessByCodes, hasAccessByRoles } = useAccess();
 
 const hasAuth = computed(() => {
   const { codes, type } = props;
-  return type === 'role' ? hasAccessByRoles(codes) : hasAccessByCodes(codes);
+  return type === 'role'
+    ? hasAccessByRoles(codes)
+    : hasAccessByCodes(codes);
 });
 </script>
 

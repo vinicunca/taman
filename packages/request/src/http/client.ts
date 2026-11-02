@@ -49,13 +49,20 @@ function combineSignalsManually(signals: Array<AbortSignal>): AbortSignal {
 function combineSignals(signal: AbortSignal | undefined, timeout: number): AbortSignal | undefined {
   // ofetch ignores its own `timeout` whenever a `signal` is present, so the
   // client owns the timeout and merges it with the caller's signal.
-  const signals = [signal, timeout > 0 ? AbortSignal.timeout(timeout) : undefined]
+  const signals = [
+    signal,
+    timeout > 0
+      ? AbortSignal.timeout(timeout)
+      : undefined,
+  ]
     .filter((item): item is AbortSignal => item !== undefined);
 
   if (signals.length <= 1) {
     return signals[0];
   }
-  return typeof AbortSignal.any === 'function' ? AbortSignal.any(signals) : combineSignalsManually(signals);
+  return typeof AbortSignal.any === 'function'
+    ? AbortSignal.any(signals)
+    : combineSignalsManually(signals);
 }
 
 /** Drops own keys (string or symbol) whose value is `undefined`, so a later merge doesn't override a default with it. */
@@ -76,7 +83,9 @@ function omitUndefined<T extends object>(value: T): T {
  */
 export function createHttpClient(clientOptions: HttpClientOptions = {}): HttpClient {
   const { baseURL, fetch, headers: defaultHeaders, ...defaults } = clientOptions;
-  const $fetch = ofetch.create({ baseURL }, fetch ? { fetch } : undefined);
+  const $fetch = ofetch.create({ baseURL }, fetch
+    ? { fetch }
+    : undefined);
   const requestInterceptors: Array<RequestInterceptor> = [];
   const responseInterceptors: Array<ResponseInterceptor> = [];
 
@@ -95,7 +104,9 @@ export function createHttpClient(clientOptions: HttpClientOptions = {}): HttpCli
         headers,
         responseReturn: options.responseReturn ?? defaults.responseReturn ?? 'body',
       },
-      meta: options[RETRIED] ? { [RETRIED]: true } : {},
+      meta: options[RETRIED]
+        ? { [RETRIED]: true }
+        : {},
     };
   }
 
@@ -123,7 +134,9 @@ export function createHttpClient(clientOptions: HttpClientOptions = {}): HttpCli
     if (typeof query === 'string' || query instanceof URLSearchParams) {
       url = appendQueryString(url, query.toString().replace(/^\?/, ''));
     } else if (query && (querySerializer || arrayFormat)) {
-      url = appendQueryString(url, querySerializer ? querySerializer(query) : serializeQuery(query, arrayFormat));
+      url = appendQueryString(url, querySerializer
+        ? querySerializer(query)
+        : serializeQuery(query, arrayFormat));
     } else if (query) {
       ofetchQuery = query;
     }
@@ -176,7 +189,9 @@ export function createHttpClient(clientOptions: HttpClientOptions = {}): HttpCli
     let chain: Promise<unknown> = send(context);
     for (const { fulfilled, rejected } of [...responseInterceptors]) {
       chain = chain.then(
-        (value) => (fulfilled && isHttpResponse(value) ? fulfilled(value) : value),
+        (value) => (fulfilled && isHttpResponse(value)
+          ? fulfilled(value)
+          : value),
         (error: unknown) => {
           if (!rejected || !isHttpError(error)) {
             throw error;
@@ -192,7 +207,9 @@ export function createHttpClient(clientOptions: HttpClientOptions = {}): HttpCli
     }
     // This request's own setting decides, even when a recovered response came
     // from a re-issued request.
-    return (context.options.responseReturn === 'raw' ? result : result.data) as T;
+    return (context.options.responseReturn === 'raw'
+      ? result
+      : result.data) as T;
   }
 
   function remover<T>(list: Array<T>, item: T): () => void {

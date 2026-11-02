@@ -46,7 +46,9 @@ const sessionTable = pgTable(
 
     ...generateTimestampColumns(),
   },
-  (table) => [index('session_userId_idx').on(table.userId)],
+  (table) => [
+    index('session_userId_idx').on(table.userId),
+  ],
 );
 
 const accountTable = pgTable(
@@ -67,7 +69,9 @@ const accountTable = pgTable(
     password: text('password'),
     ...generateTimestampColumns(),
   },
-  (table) => [index('account_userId_idx').on(table.userId)],
+  (table) => [
+    index('account_userId_idx').on(table.userId),
+  ],
 );
 
 const verificationTable = pgTable(
@@ -79,7 +83,9 @@ const verificationTable = pgTable(
     expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
     ...generateTimestampColumns(),
   },
-  (table) => [index('verification_identifier_idx').on(table.identifier)],
+  (table) => [
+    index('verification_identifier_idx').on(table.identifier),
+  ],
 );
 
 const organizationTable = pgTable(
@@ -92,7 +98,9 @@ const organizationTable = pgTable(
     metadata: text('metadata'),
     ...generateTimestampColumns(),
   },
-  (table) => [uniqueIndex('organization_slug_uidx').on(table.slug)],
+  (table) => [
+    uniqueIndex('organization_slug_uidx').on(table.slug),
+  ],
 );
 
 const teamTable = pgTable(
@@ -106,7 +114,9 @@ const teamTable = pgTable(
     memberCount: integer('member_count').default(0).notNull(),
     ...generateTimestampColumns(),
   },
-  (table) => [index('team_organizationId_idx').on(table.organizationId)],
+  (table) => [
+    index('team_organizationId_idx').on(table.organizationId),
+  ],
 );
 
 const teamMemberTable = pgTable(

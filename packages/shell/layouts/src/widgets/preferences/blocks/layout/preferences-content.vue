@@ -32,7 +32,9 @@ const CONTENT_PRESET = computed(() => [
 ]);
 
 function activeClass(theme: string): Array<string> {
-  return theme === modelValue.value ? ['outline-box-active'] : [];
+  return theme === modelValue.value
+    ? ['outline-box-active']
+    : [];
 }
 </script>
 

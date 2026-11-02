@@ -3,18 +3,30 @@ import { ORPCError } from '@vinicunca/request/orpc';
 import { describe, expect, it, vi } from 'vitest';
 import { getErrors } from './errors';
 
-vi.mock('@taman/locales', () => ({ $t: (key: string) => key }));
+vi.mock('@taman/locales', () => ({
+  $t: (key: string) => key,
+}));
 
 describe('getErrors with oRPC errors', () => {
   it('shows the organization message for ORG_REQUIRED', () => {
-    const error = new ORPCError('FORBIDDEN', { message: 'Organization required', data: { code: 'ORG_REQUIRED' } });
+    const error = new ORPCError('FORBIDDEN', {
+      message: 'Organization required',
+      data: { code: 'ORG_REQUIRED' },
+    });
     expect(getErrors(error)).toBe('Organization required');
   });
 
   it('shows the first validation issue for BAD_REQUEST', () => {
     const error = new ORPCError('BAD_REQUEST', {
       message: 'Input validation failed',
-      data: { issues: [{ path: ['title'], message: 'Title is required.' }] },
+      data: {
+        issues: [
+          {
+            path: ['title'],
+            message: 'Title is required.',
+          },
+        ],
+      },
     });
     expect(getErrors(error)).toBe('Title is required.');
   });
@@ -48,6 +60,11 @@ describe('getErrors with HttpError', () => {
   });
 
   it('maps HTTP statuses like any other status-bearing error', () => {
-    expect(getErrors(new HttpError({ kind: 'http', status: 404, message: 'GET /products failed', request }))).toBe('ui.fallback.http.notFound');
+    expect(getErrors(new HttpError({
+      kind: 'http',
+      status: 404,
+      message: 'GET /products failed',
+      request,
+    }))).toBe('ui.fallback.http.notFound');
   });
 });

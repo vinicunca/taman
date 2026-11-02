@@ -151,11 +151,15 @@ function createArrayComponentProps(
   options: CreateFormFieldSchemaOptions,
 ) {
   const componentProps = schema.componentProps;
-  const arrayProps = 'arrayProps' in schema ? schema.arrayProps : undefined;
+  const arrayProps = 'arrayProps' in schema
+    ? schema.arrayProps
+    : undefined;
   const children = getFormArraySchemaChildren(schema);
   const commonConfig = options.commonConfig;
   const globalCommonConfig = options.globalCommonConfig;
-  const schemaProps = children.length > 0 ? { schema: children } : {};
+  const schemaProps = children.length > 0
+    ? { schema: children }
+    : {};
 
   if (isFunctionType(componentProps)) {
     return () => ({
@@ -226,7 +230,9 @@ export function getFormFieldSchemas<
   TValues extends FormValues,
 >(schemas: Array<FormSchema<T, P, TValues>>): Array<FormFieldSchema<T, P, TValues>> {
   return schemas.flatMap((schema) =>
-    isFormGroupSchema(schema) ? schema.children : [schema],
+    isFormGroupSchema(schema)
+      ? schema.children
+      : [schema],
   );
 }
 
@@ -321,7 +327,11 @@ export function updateFormSchemaList<TSchema extends UpdatableFormSchemaLike>(
       const fieldName = item.fieldName
         ? resolveChildUpdateFieldName(schemaFieldName, item.fieldName)
         : undefined;
-      return fieldName ? [{ ...item, fieldName } as Partial<TSchema>] : [];
+      return fieldName
+        ? [
+            { ...item, fieldName } as Partial<TSchema>,
+          ]
+        : [];
     });
     if (childUpdates.length === 0) {
       return schema;

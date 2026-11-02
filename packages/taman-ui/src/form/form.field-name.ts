@@ -35,7 +35,9 @@ export function getValueByFieldName(
   fieldName: string,
 ) {
   const { rawKey } = resolveFieldNamePath(fieldName);
-  return rawKey ? values[rawKey] : get(values, fieldName);
+  return rawKey
+    ? values[rawKey]
+    : get(values, fieldName);
 }
 
 export function resolveChildUpdateFieldName(

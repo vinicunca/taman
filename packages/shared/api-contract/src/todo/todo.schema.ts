@@ -16,7 +16,9 @@ export const todoSchema = z.object({
 });
 export type Todo = z.infer<typeof todoSchema>;
 
-export const todoIdInput = z.object({ id: z.uuid() });
+export const todoIdInput = z.object({
+  id: z.uuid(),
+});
 
 export const todoCreateInput = z.object({
   title,
@@ -46,8 +48,17 @@ export const todoPageSchema = paginated(todoSchema);
 export type TodoPage = z.infer<typeof todoPageSchema>;
 
 export const todoEventSchema = z.discriminatedUnion('type', [
-  z.object({ type: z.literal('created'), todo: todoSchema }),
-  z.object({ type: z.literal('updated'), todo: todoSchema }),
-  z.object({ type: z.literal('removed'), id: z.uuid() }),
+  z.object({
+    type: z.literal('created'),
+    todo: todoSchema,
+  }),
+  z.object({
+    type: z.literal('updated'),
+    todo: todoSchema,
+  }),
+  z.object({
+    type: z.literal('removed'),
+    id: z.uuid(),
+  }),
 ]);
 export type TodoEvent = z.infer<typeof todoEventSchema>;

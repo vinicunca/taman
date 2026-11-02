@@ -116,7 +116,9 @@ export function useMenuMixed() {
   const handleMenuOpen = (key: string, parentsPath: Array<string>) => {
     if (parentsPath.length <= 1 && preferences.sidebar.autoActivateChild) {
       navigation(
-        defaultSubMap.has(key) ? (defaultSubMap.get(key) as string) : key,
+        defaultSubMap.has(key)
+          ? (defaultSubMap.get(key) as string)
+          : key,
       );
     }
   };

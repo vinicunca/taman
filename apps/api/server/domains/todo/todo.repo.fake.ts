@@ -51,7 +51,9 @@ export class FakeTodoRepo implements TodoRepoPort {
     if (!row) {
       return null;
     }
-    Object.assign(row, patch, { updatedAt: new Date() });
+    Object.assign(row, patch, {
+      updatedAt: new Date(),
+    });
     return row;
   }
 

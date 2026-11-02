@@ -31,7 +31,9 @@ export function applyCreatedProduct(page: ProductPage, product: Product): Produc
 export function applyUpdatedProduct(page: ProductPage, product: Product): ProductPage {
   return {
     ...page,
-    products: page.products.map((item) => (item.id === product.id ? product : item)),
+    products: page.products.map((item) => (item.id === product.id
+      ? product
+      : item)),
   };
 }
 

@@ -54,7 +54,9 @@ export function getServerMessage(data: unknown): string | undefined {
   if (typeof message === 'string' && message) {
     return message;
   }
-  return typeof error === 'string' && error ? error : undefined;
+  return typeof error === 'string' && error
+    ? error
+    : undefined;
 }
 
 interface FetchErrorLike {
@@ -74,7 +76,13 @@ export function toHttpError(error: unknown, context: HttpRequestContext): HttpEr
   // The caller's own signal was aborted (any reason) — this always wins over
   // however the underlying fetch happened to shape the error.
   if (context.options.signal?.aborted) {
-    return new HttpError({ kind: 'abort', message: `${request.method} ${request.url} was aborted`, request, context, cause: error });
+    return new HttpError({
+      kind: 'abort',
+      message: `${request.method} ${request.url} was aborted`,
+      request,
+      context,
+      cause: error,
+    });
   }
 
   const fetchError = (error ?? {}) as FetchErrorLike;
@@ -111,10 +119,28 @@ export function toHttpError(error: unknown, context: HttpRequestContext): HttpEr
   const name = (cause as { name?: unknown } | undefined)?.name;
 
   if (name === 'TimeoutError') {
-    return new HttpError({ kind: 'timeout', message: `${request.method} ${request.url} timed out`, request, context, cause: error });
+    return new HttpError({
+      kind: 'timeout',
+      message: `${request.method} ${request.url} timed out`,
+      request,
+      context,
+      cause: error,
+    });
   }
   if (name === 'AbortError') {
-    return new HttpError({ kind: 'abort', message: `${request.method} ${request.url} was aborted`, request, context, cause: error });
+    return new HttpError({
+      kind: 'abort',
+      message: `${request.method} ${request.url} was aborted`,
+      request,
+      context,
+      cause: error,
+    });
   }
-  return new HttpError({ kind: 'network', message: `${request.method} ${request.url} could not reach the server`, request, context, cause: error });
+  return new HttpError({
+    kind: 'network',
+    message: `${request.method} ${request.url} could not reach the server`,
+    request,
+    context,
+    cause: error,
+  });
 }

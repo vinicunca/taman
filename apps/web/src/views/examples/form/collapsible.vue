@@ -127,7 +127,12 @@ const [CollapseForm] = useTamanForm({
   schema: [
     { component: 'Input', fieldName: 'keyword', label: 'Keyword' },
     { component: 'Input', fieldName: 'status', label: 'Status' },
-    { component: 'Input', collapsed: true, fieldName: 'owner', label: 'Owner' },
+    {
+      component: 'Input',
+      collapsed: true,
+      fieldName: 'owner',
+      label: 'Owner',
+    },
     {
       collapsed: true,
       component: 'Input',

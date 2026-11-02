@@ -4,8 +4,14 @@ import { diff } from '../diff';
 
 describe('diff function', () => {
   it('should return an empty object when comparing identical objects', () => {
-    const obj1 = { a: 1, b: { c: 2 } };
-    const obj2 = { a: 1, b: { c: 2 } };
+    const obj1 = {
+      a: 1,
+      b: { c: 2 },
+    };
+    const obj2 = {
+      a: 1,
+      b: { c: 2 },
+    };
     expect(diff(obj1, obj2)).toEqual(undefined);
   });
 
@@ -16,15 +22,31 @@ describe('diff function', () => {
   });
 
   it('should detect nested object changes', () => {
-    const obj1 = { a: 1, b: { c: 2, d: 4 } };
-    const obj2 = { a: 1, b: { c: 3, d: 4 } };
-    expect(diff(obj1, obj2)).toEqual({ b: { c: 3 } });
+    const obj1 = {
+      a: 1,
+      b: { c: 2, d: 4 },
+    };
+    const obj2 = {
+      a: 1,
+      b: { c: 3, d: 4 },
+    };
+    expect(diff(obj1, obj2)).toEqual({
+      b: { c: 3 },
+    });
   });
 
   it('should handle array changes', () => {
-    const obj1 = { a: [1, 2, 3], b: 2 };
-    const obj2 = { a: [1, 2, 4], b: 2 };
-    expect(diff(obj1, obj2)).toEqual({ a: [1, 2, 4] });
+    const obj1 = {
+      a: [1, 2, 3],
+      b: 2,
+    };
+    const obj2 = {
+      a: [1, 2, 4],
+      b: 2,
+    };
+    expect(diff(obj1, obj2)).toEqual({
+      a: [1, 2, 4],
+    });
   });
 
   it('should handle added keys', () => {

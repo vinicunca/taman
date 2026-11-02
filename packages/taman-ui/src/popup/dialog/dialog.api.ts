@@ -178,7 +178,10 @@ export class DialogApi<TData = unknown> {
     if (isFunction(stateOrFn)) {
       this.store.setState(stateOrFn);
     } else {
-      this.store.setState((prev) => ({ ...prev, ...stateOrFn }));
+      this.store.setState((prev) => ({
+        ...prev,
+        ...stateOrFn,
+      }));
     }
     return this;
   }

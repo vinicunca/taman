@@ -7,19 +7,45 @@ const mocks = vi.hoisted(() => ({
   signOut: vi.fn(),
   clearAuthCache: vi.fn(),
   resetAllStores: vi.fn(),
-  router: { currentRoute: { value: { path: '/todo', fullPath: '/todo?page=2#item' } }, replace: vi.fn() },
+  router: {
+    currentRoute: {
+      value: { path: '/todo', fullPath: '/todo?page=2#item' },
+    },
+    replace: vi.fn(),
+  },
 }));
-vi.mock('vue-router', () => ({ useRouter: () => mocks.router }));
-vi.mock('@tanstack/vue-query', () => ({ useQuery: () => ({ data: ref(null) }) }));
-vi.mock('@taman/stores', () => ({ resetAllStores: mocks.resetAllStores, useAccessStore: () => ({}) }));
-vi.mock('@taman/locales', () => ({ $t: (key: string) => key }));
-vi.mock('#/api/errors', () => ({ getErrors: () => 'error' }));
-vi.mock('./auth.client', () => ({ authClient: { signOut: mocks.signOut } }));
-vi.mock('./auth.session', () => ({ clearAuthCache: mocks.clearAuthCache, refreshSession: vi.fn(), sessionQueryOptions: {} }));
+vi.mock('vue-router', () => ({
+  useRouter: () => mocks.router,
+}));
+vi.mock('@tanstack/vue-query', () => ({
+  useQuery: () => ({
+    data: ref(null),
+  }),
+}));
+vi.mock('@taman/stores', () => ({
+  resetAllStores: mocks.resetAllStores,
+  useAccessStore: () => ({}),
+}));
+vi.mock('@taman/locales', () => ({
+  $t: (key: string) => key,
+}));
+vi.mock('#/api/errors', () => ({
+  getErrors: () => 'error',
+}));
+vi.mock('./auth.client', () => ({
+  authClient: { signOut: mocks.signOut },
+}));
+vi.mock('./auth.session', () => ({
+  clearAuthCache: mocks.clearAuthCache,
+  refreshSession: vi.fn(),
+  sessionQueryOptions: {},
+}));
 
 beforeEach(() => {
   vi.clearAllMocks();
-  vi.stubGlobal('useToast', () => ({ add: vi.fn() }));
+  vi.stubGlobal('useToast', () => ({
+    add: vi.fn(),
+  }));
   setActivePinia(createPinia());
   mocks.signOut.mockResolvedValue({});
   mocks.router.currentRoute.value = { path: '/todo', fullPath: '/todo?page=2#item' };
@@ -34,7 +60,9 @@ describe('session logout redirect', () => {
     await useSessionStore().logout();
     expect(mocks.router.replace).toHaveBeenCalledWith({
       path: '/auth/login',
-      query: { redirect: encodeURIComponent('/todo?page=2#item') },
+      query: {
+        redirect: encodeURIComponent('/todo?page=2#item'),
+      },
     });
   });
 

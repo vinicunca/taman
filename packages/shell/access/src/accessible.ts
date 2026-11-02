@@ -127,7 +127,10 @@ async function generateRoutes(
         return defineComponent({
           name: route.name as string,
           setup(props, { attrs, slots }) {
-            return () => h(component.default, { ...props, ...attrs }, slots);
+            return () => h(component.default, {
+              ...props,
+              ...attrs,
+            }, slots);
           },
         });
       };

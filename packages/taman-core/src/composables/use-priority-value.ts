@@ -28,7 +28,9 @@ export function usePriorityValue<
       standardRawProps[toCamelCase(toKebabCase(key)) as K] = value;
     }
     const propsKey
-      = standardRawProps?.[key] === undefined ? undefined : props[key];
+      = standardRawProps?.[key] === undefined
+        ? undefined
+        : props[key];
 
     // Slot can override (including to disable)
     return getFirstNonNullOrUndefined(

@@ -9,7 +9,9 @@ const data = ref<FactoryDrawerData>();
 
 const [Drawer, drawerApi] = useFactoryDrawer({
   onOpenChange(isOpen) {
-    data.value = isOpen ? drawerApi.getData() : undefined;
+    data.value = isOpen
+      ? drawerApi.getData()
+      : undefined;
   },
 });
 </script>

@@ -24,9 +24,12 @@ export const themeTabs = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
-        content: `outline-${color}/25`,
-      }])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [
+        color,
+        {
+          content: `outline-${color}/25`,
+        },
+      ])),
       neutral: {
         content: 'outline-outline-inverted/25',
       },

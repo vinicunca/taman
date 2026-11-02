@@ -11,7 +11,10 @@ if (process.env.CI) {
 
 let topLevel;
 try {
-  topLevel = execFileSync('git', ['rev-parse', '--show-toplevel'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
+  topLevel = execFileSync('git', ['rev-parse', '--show-toplevel'], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'ignore'],
+  }).trim();
 } catch {
   process.exit(0);
 }

@@ -55,7 +55,9 @@ describe('taman-file-upload v-model', () => {
           h(TamanFileUpload, {
             'modelValue': modelValue.value,
             'onUpdate:modelValue': (value: File | Array<File> | null | undefined) => {
-              modelValue.value = value instanceof File ? value : null;
+              modelValue.value = value instanceof File
+                ? value
+                : null;
             },
           });
       },

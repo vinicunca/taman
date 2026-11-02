@@ -7,31 +7,63 @@ const DEFAULTS = { guestTarget: '/auth/login', userTarget: '/home' };
 describe('resolveAuthMetaFromMatched', () => {
   it('ignores Root auth:false so dashboard children stay protected-by-default', () => {
     expect(resolveAuthMetaFromMatched([
-      { name: 'Root', meta: { auth: false } },
-      { name: 'Dashboard', meta: { title: 'Dashboard' } },
-      { name: 'Analytics', meta: { affixTab: true } },
+      {
+        name: 'Root',
+        meta: { auth: false },
+      },
+      {
+        name: 'Dashboard',
+        meta: { title: 'Dashboard' },
+      },
+      {
+        name: 'Analytics',
+        meta: { affixTab: true },
+      },
     ])).toBeUndefined();
   });
 
   it('uses the nearest non-layout record that explicitly declares auth', () => {
     expect(resolveAuthMetaFromMatched([
-      { name: 'Root', meta: { auth: false } },
-      { name: 'Authentication', meta: { title: 'Auth' } },
-      { name: 'Login', meta: { auth: { only: 'guest' } } },
+      {
+        name: 'Root',
+        meta: { auth: false },
+      },
+      {
+        name: 'Authentication',
+        meta: { title: 'Auth' },
+      },
+      {
+        name: 'Login',
+        meta: {
+          auth: { only: 'guest' },
+        },
+      },
     ])).toEqual({ only: 'guest' });
   });
 
   it('returns undefined for catch-all 404 so unknown paths stay protected-by-default', () => {
     expect(resolveAuthMetaFromMatched([
-      { name: 'Root', meta: { auth: false } },
-      { name: 'FallbackNotFound', meta: { title: '404' } },
+      {
+        name: 'Root',
+        meta: { auth: false },
+      },
+      {
+        name: 'FallbackNotFound',
+        meta: { title: '404' },
+      },
     ])).toBeUndefined();
   });
 
   it('logged-out visitor to /dashboard (pre-generation) → redirect to login', () => {
     const authMeta = resolveAuthMetaFromMatched([
-      { name: 'Root', meta: { auth: false } },
-      { name: 'FallbackNotFound', meta: { title: '404' } },
+      {
+        name: 'Root',
+        meta: { auth: false },
+      },
+      {
+        name: 'FallbackNotFound',
+        meta: { title: '404' },
+      },
     ]);
     expect(resolveAuthDecision({ authMeta, isAuthenticated: false, defaults: DEFAULTS })).toEqual({
       type: 'redirectToLogin',
@@ -55,20 +87,32 @@ describe('resolveAuthDecision', () => {
 
   it('{ only: \'guest\' } + guest → allow, skips access generation', () => {
     expect(
-      resolveAuthDecision({ authMeta: { only: 'guest' }, isAuthenticated: false, defaults: DEFAULTS }),
+      resolveAuthDecision({
+        authMeta: { only: 'guest' },
+        isAuthenticated: false,
+        defaults: DEFAULTS,
+      }),
     ).toEqual({ type: 'allow' });
   });
 
   it('{ only: \'guest\' } + authenticated, no override → redirectAuthenticated to userTarget', () => {
     expect(
-      resolveAuthDecision({ authMeta: { only: 'guest' }, isAuthenticated: true, defaults: DEFAULTS }),
+      resolveAuthDecision({
+        authMeta: { only: 'guest' },
+        isAuthenticated: true,
+        defaults: DEFAULTS,
+      }),
     ).toEqual({ type: 'redirectAuthenticated', target: '/home' });
   });
 
   it('{ only: \'guest\', redirectUserTo } + authenticated → redirectAuthenticated to the override', () => {
     expect(
       resolveAuthDecision(
-        { authMeta: { only: 'guest', redirectUserTo: '/custom' }, isAuthenticated: true, defaults: DEFAULTS },
+        {
+          authMeta: { only: 'guest', redirectUserTo: '/custom' },
+          isAuthenticated: true,
+          defaults: DEFAULTS,
+        },
       ),
     ).toEqual({ type: 'redirectAuthenticated', target: '/custom' });
   });
@@ -96,7 +140,11 @@ describe('resolveAuthDecision', () => {
   it('{ only: \'user\', redirectGuestTo } + guest → redirectToLogin to the override', () => {
     expect(
       resolveAuthDecision(
-        { authMeta: { only: 'user', redirectGuestTo: '/custom-login' }, isAuthenticated: false, defaults: DEFAULTS },
+        {
+          authMeta: { only: 'user', redirectGuestTo: '/custom-login' },
+          isAuthenticated: false,
+          defaults: DEFAULTS,
+        },
       ),
     ).toEqual({ type: 'redirectToLogin', target: '/custom-login' });
   });

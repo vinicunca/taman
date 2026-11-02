@@ -67,7 +67,11 @@ function exit(message: string): never {
 }
 
 async function ask(message: string, initialValue: string | undefined, validate: (value: string) => string | undefined): Promise<string> {
-  const answer = await prompts.text({ initialValue, message, validate: (value) => validate(value ?? '') });
+  const answer = await prompts.text({
+    initialValue,
+    message,
+    validate: (value) => validate(value ?? ''),
+  });
   if (prompts.isCancel(answer)) {
     exit('Cancelled');
   }
@@ -95,7 +99,9 @@ export async function main(argv: Array<string> = process.argv.slice(2)): Promise
   }
 
   const scope = normalizeScope(
-    args.scope ?? (args.yes ? name : await ask('npm scope for workspace packages', name, (value) => validateName(normalizeScope(value), 'Scope'))),
+    args.scope ?? (args.yes
+      ? name
+      : await ask('npm scope for workspace packages', name, (value) => validateName(normalizeScope(value), 'Scope'))),
   );
   const scopeError = validateName(scope, 'Scope');
   if (scopeError) {
@@ -103,20 +109,32 @@ export async function main(argv: Array<string> = process.argv.slice(2)): Promise
   }
 
   const source = args.from
-    ? { repo: resolve(args.from), type: 'local' as const }
+    ? {
+        repo: resolve(args.from),
+        type: 'local' as const,
+      }
     : { ref: args.ref ?? defaultRef(), type: 'github' as const };
 
   const spinner = prompts.spinner();
-  spinner.start(source.type === 'github' ? `Downloading taman (${source.ref})` : `Copying ${source.repo}`);
+  spinner.start(source.type === 'github'
+    ? `Downloading taman (${source.ref})`
+    : `Copying ${source.repo}`);
   try {
-    const { warnings } = await generateProject({ dir, git: args.git, names: toNames(name, scope), source });
+    const { warnings } = await generateProject({
+      dir,
+      git: args.git,
+      names: toNames(name, scope),
+      source,
+    });
     spinner.stop(`Created ${name}`);
     for (const warning of warnings) {
       prompts.log.warn(warning);
     }
   } catch (error) {
     spinner.stop('Generation failed');
-    exit(error instanceof Error ? error.message : String(error));
+    exit(error instanceof Error
+      ? error.message
+      : String(error));
   }
 
   const where = relative(process.cwd(), dir) || '.';

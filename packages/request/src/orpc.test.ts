@@ -12,8 +12,13 @@ const contract = {
   todo: {
     get: oc
       .errors({ NOT_FOUND: {} })
-      .input(z.object({ id: z.string() }))
-      .output(z.object({ id: z.string(), createdAt: z.date() })),
+      .input(z.object({
+        id: z.string(),
+      }))
+      .output(z.object({
+        id: z.string(),
+        createdAt: z.date(),
+      })),
   },
 };
 type Client = ContractClient<typeof contract>;
@@ -44,7 +49,11 @@ function inProcessFetch() {
 describe('createRpcClient', () => {
   it('calls the given url and keeps Dates as Dates', async () => {
     const { calls, fetch } = inProcessFetch();
-    const client = createRpcClient<Client>({ url: 'http://api.test/rpc', fetch, headers: { 'x-app': 'demo' } });
+    const client = createRpcClient<Client>({
+      url: 'http://api.test/rpc',
+      fetch,
+      headers: { 'x-app': 'demo' },
+    });
 
     const todo = await client.todo.get({ id: '1' });
 
@@ -76,9 +85,15 @@ describe('live retry policy', () => {
 
   it('retries forever on transport failures and 5xx, stops on 4xx', () => {
     expect(LIVE_RETRY.retry).toBe(Number.POSITIVE_INFINITY);
-    expect(shouldRetry({ error: new TypeError('Failed to fetch') })).toBe(true);
-    expect(shouldRetry({ error: new ORPCError('SERVICE_UNAVAILABLE', { status: 503 }) })).toBe(true);
-    expect(shouldRetry({ error: new ORPCError('UNAUTHORIZED') })).toBe(false);
+    expect(shouldRetry({
+      error: new TypeError('Failed to fetch'),
+    })).toBe(true);
+    expect(shouldRetry({
+      error: new ORPCError('SERVICE_UNAVAILABLE', { status: 503 }),
+    })).toBe(true);
+    expect(shouldRetry({
+      error: new ORPCError('UNAUTHORIZED'),
+    })).toBe(false);
   });
 });
 
@@ -86,7 +101,9 @@ describe('createRpcQueryUtils', () => {
   const client = createRpcClient<Client>({ url: 'http://api.test/rpc', fetch: inProcessFetch().fetch });
 
   it('roots keys at the given path', () => {
-    const utils = createRpcQueryUtils(client, { path: ['taman'] });
+    const utils = createRpcQueryUtils(client, {
+      path: ['taman'],
+    });
     expect(utils.todo.key()[0]).toEqual(['taman', 'todo']);
   });
 

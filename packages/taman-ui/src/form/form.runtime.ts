@@ -27,9 +27,13 @@ function normalizeError(error: unknown): string | undefined {
   }
   if (error && typeof error === 'object' && 'message' in error) {
     const message = Reflect.get(error, 'message');
-    return typeof message === 'string' ? message : undefined;
+    return typeof message === 'string'
+      ? message
+      : undefined;
   }
-  return error === undefined || error === null ? undefined : String(error);
+  return error === undefined || error === null
+    ? undefined
+    : String(error);
 }
 
 function normalizeFieldMetaError(meta: unknown) {
@@ -37,7 +41,9 @@ function normalizeFieldMetaError(meta: unknown) {
     return undefined;
   }
   const errors = Reflect.get(meta, 'errors');
-  return normalizeError(Array.isArray(errors) ? errors[0] : undefined);
+  return normalizeError(Array.isArray(errors)
+    ? errors[0]
+    : undefined);
 }
 
 function createProgressiveValidationLogic(
@@ -242,7 +248,9 @@ export function useFormRuntime<TValues extends FormValues>(
     await rawForm.validateField(fieldName as never, 'submit');
     const error = getFieldError(fieldName);
     return {
-      errors: error ? { [fieldName]: error } : {},
+      errors: error
+        ? { [fieldName]: error }
+        : {},
       valid: !error,
     };
   }

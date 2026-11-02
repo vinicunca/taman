@@ -64,7 +64,12 @@ async function viteExtraAppConfigPlugin({
 
       return {
         html,
-        tags: [{ attrs: { src: appConfigSrc }, tag: 'script' }],
+        tags: [
+          {
+            attrs: { src: appConfigSrc },
+            tag: 'script',
+          },
+        ],
       };
     },
   };
@@ -86,7 +91,9 @@ async function getConfigSource(mode: string) {
 }
 
 function ensureTrailingSlash(path: string) {
-  return path.endsWith('/') ? path : `${path}/`;
+  return path.endsWith('/')
+    ? path
+    : `${path}/`;
 }
 
 export { viteExtraAppConfigPlugin };

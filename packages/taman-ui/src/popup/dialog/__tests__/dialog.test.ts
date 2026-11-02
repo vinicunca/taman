@@ -26,7 +26,9 @@ async function mountDialog(options: { onClosed?: () => void } = {}) {
       appendToMain: true,
       draggable: true,
       title: 'Draggable dialog',
-      ...(options.onClosed ? { onClosed: options.onClosed } : {}),
+      ...(options.onClosed
+        ? { onClosed: options.onClosed }
+        : {}),
     });
     capturedApi = dialogApi;
     onMounted(() => {

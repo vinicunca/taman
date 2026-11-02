@@ -15,7 +15,10 @@ export const themeSeparator = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, { border: `border-${color}` }])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [
+        color,
+        { border: `border-${color}` },
+      ])),
       neutral: { border: 'border-border' },
     },
     orientation: {

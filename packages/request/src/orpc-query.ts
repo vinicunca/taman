@@ -15,5 +15,7 @@ export function createRpcQueryUtils<TClient extends NestedClient<any>>(
   client: TClient,
   options: RpcQueryUtilsOptions = {},
 ): RouterUtils<TClient> {
-  return createTanstackQueryUtils(client, options.path ? { path: options.path } : undefined);
+  return createTanstackQueryUtils(client, options.path
+    ? { path: options.path }
+    : undefined);
 }

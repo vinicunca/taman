@@ -8,7 +8,9 @@ import HttpEventLog from '../shared/http-event-log.vue';
 const { toaster } = useTamanToast();
 const demo = createAuthDemo();
 const removeErrorInterceptor = demo.client.addResponseInterceptor(
-  errorMessageInterceptor({ notify: (message) => toaster.error(message) }),
+  errorMessageInterceptor({
+    notify: (message) => toaster.error(message),
+  }),
 );
 onUnmounted(removeErrorInterceptor);
 

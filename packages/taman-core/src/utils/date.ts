@@ -32,7 +32,9 @@ export function formatDate(time?: FormatDate | null, format: Format = 'YYYY-MM-D
   }
 
   try {
-    const date = time instanceof Date ? time : new Date(time);
+    const date = time instanceof Date
+      ? time
+      : new Date(time);
     if (Number.isNaN(date.getTime())) {
       throw new TypeError('Invalid date');
     }

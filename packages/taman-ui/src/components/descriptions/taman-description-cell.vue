@@ -74,7 +74,9 @@ const displayLabel = computed(() => {
     return undefined;
   }
 
-  return isNumber(props.label) ? String(props.label) : props.label;
+  return isNumber(props.label)
+    ? String(props.label)
+    : props.label;
 });
 
 const displayContent = computed(() => {

@@ -49,9 +49,19 @@ interface AuthLinkEmailData {
 }
 
 export function verifyEmailJob(data: AuthLinkEmailData, locale: EmailLocale): EmailJob {
-  return { template: 'verify-email', to: data.user.email, locale, params: { name: data.user.name, verifyUrl: data.url } };
+  return {
+    template: 'verify-email',
+    to: data.user.email,
+    locale,
+    params: { name: data.user.name, verifyUrl: data.url },
+  };
 }
 
 export function resetPasswordEmailJob(data: AuthLinkEmailData, locale: EmailLocale): EmailJob {
-  return { template: 'reset-password', to: data.user.email, locale, params: { name: data.user.name, resetUrl: data.url } };
+  return {
+    template: 'reset-password',
+    to: data.user.email,
+    locale,
+    params: { name: data.user.name, resetUrl: data.url },
+  };
 }

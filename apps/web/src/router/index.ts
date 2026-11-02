@@ -24,7 +24,9 @@ const router = createRouter({
       return savedPosition;
     }
 
-    return to.hash ? { behavior: 'smooth', el: to.hash } : { left: 0, top: 0 };
+    return to.hash
+      ? { behavior: 'smooth', el: to.hash }
+      : { left: 0, top: 0 };
   },
 });
 

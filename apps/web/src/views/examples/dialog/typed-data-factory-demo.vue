@@ -9,7 +9,9 @@ const data = ref<FactoryDialogData>();
 
 const [Dialog, dialogApi] = useFactoryDialog({
   onOpenChange(isOpen) {
-    data.value = isOpen ? dialogApi.getData() : undefined;
+    data.value = isOpen
+      ? dialogApi.getData()
+      : undefined;
   },
 });
 </script>

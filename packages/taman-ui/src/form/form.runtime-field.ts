@@ -95,7 +95,11 @@ export function createRuntimeFieldComponent(
             fieldComponent,
             {
               ...attrs,
-              ...(validators ? { validators: wrapValidators(validators) } : {}),
+              ...(validators
+                ? {
+                    validators: wrapValidators(validators),
+                  }
+                : {}),
             },
             slots,
           );

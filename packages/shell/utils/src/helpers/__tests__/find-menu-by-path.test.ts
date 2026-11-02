@@ -19,7 +19,9 @@ const menus: Array<any> = [
       { path: '/services/design', children: [] },
       {
         path: '/services/development',
-        children: [{ path: '/services/development/web', children: [] }],
+        children: [
+          { path: '/services/development/web', children: [] },
+        ],
       },
     ],
   },
@@ -50,7 +52,9 @@ describe('menu Finder Tests', () => {
 
   it('handles menu items without children', () => {
     const menu = findMenuByPath(
-      [{ path: '/only', children: undefined }] as Array<any>,
+      [
+        { path: '/only', children: undefined },
+      ] as Array<any>,
       '/only',
     );
     expect(menu).toBeDefined();

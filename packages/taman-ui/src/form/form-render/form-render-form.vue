@@ -58,7 +58,9 @@ const formFieldSchemas = computed(() => {
   return getFormFieldSchemas(props.schema ?? []);
 });
 
-provideFormRenderProps(reactive({ ...toRefs(props) }));
+provideFormRenderProps(reactive({
+  ...toRefs(props),
+}));
 
 const shapes = computed(() => {
   const resultShapes: Array<FormShape> = [];

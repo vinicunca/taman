@@ -13,7 +13,9 @@ const { data, isLoading } = useTodosPlain(params);
 
 watch(data, (page) => {
   if (page && page.page !== clampPage(page.page, page.totalPages)) {
-    setParams({ page: clampPage(page.page, page.totalPages) });
+    setParams({
+      page: clampPage(page.page, page.totalPages),
+    });
   }
 });
 </script>

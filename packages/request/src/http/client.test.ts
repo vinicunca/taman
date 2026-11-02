@@ -5,7 +5,11 @@ import { createHttpClient, isHttpResponse } from './client';
 import { HttpError, isHttpError } from './errors';
 import { createFakeFetch, respondAfter } from './testing';
 
-const envelope = { code: 0, data: { id: 1 }, message: 'ok' };
+const envelope = {
+  code: 0,
+  data: { id: 1 },
+  message: 'ok',
+};
 
 function setup() {
   const fake = createFakeFetch({
@@ -15,7 +19,12 @@ function setup() {
     '/slow': (request) => respondAfter(request, 500),
     '/unparsable': () => Response.json({ ok: true }),
   });
-  const http = createHttpClient({ baseURL: 'http://api.test', fetch: fake.fetch, retry: false, headers: { 'x-client': '1' } });
+  const http = createHttpClient({
+    baseURL: 'http://api.test',
+    fetch: fake.fetch,
+    retry: false,
+    headers: { 'x-client': '1' },
+  });
   return { http, calls: fake.calls };
 }
 
@@ -49,7 +58,9 @@ describe('createHttpClient', () => {
 
   it('sends the method, a JSON body and merged headers', async () => {
     const { http, calls } = setup();
-    await http.post('/echo', { a: 1 }, { headers: { 'x-req': '2' } });
+    await http.post('/echo', { a: 1 }, {
+      headers: { 'x-req': '2' },
+    });
     const call = calls.at(-1)!;
     expect(call.method).toBe('POST');
     expect(call.body).toBe('{"a":1}');
@@ -67,8 +78,17 @@ describe('createHttpClient', () => {
   });
 
   it('does not let an explicit undefined request option override a client default', async () => {
-    const fake = createFakeFetch({ '/echo': () => Response.json({ ok: true }), '/slow': (request) => respondAfter(request, 500) });
-    const http = createHttpClient({ baseURL: 'http://api.test', fetch: fake.fetch, retry: false, credentials: 'include', timeout: 20 });
+    const fake = createFakeFetch({
+      '/echo': () => Response.json({ ok: true }),
+      '/slow': (request) => respondAfter(request, 500),
+    });
+    const http = createHttpClient({
+      baseURL: 'http://api.test',
+      fetch: fake.fetch,
+      retry: false,
+      credentials: 'include',
+      timeout: 20,
+    });
 
     await http.get('/echo', { credentials: undefined });
     expect(fake.calls.at(-1)!.credentials).toBe('include');
@@ -79,20 +99,38 @@ describe('createHttpClient', () => {
 
   it('hands query objects to ofetch by default (repeated arrays)', async () => {
     const { http } = setup();
-    await expect(http.get('/echo', { query: { ids: [1, 2], s: 'a b' } })).resolves.toEqual({ search: '?ids=1&ids=2&s=a+b' });
+    await expect(http.get('/echo', {
+      query: {
+        ids: [1, 2],
+        s: 'a b',
+      },
+    })).resolves.toEqual({ search: '?ids=1&ids=2&s=a+b' });
   });
 
   it('uses qs-style serialization when arrayFormat is set', async () => {
     const { http } = setup();
-    const result = await http.get<{ search: string }>('/echo', { query: { ids: [1, 2], user: { name: 'Ana' } }, arrayFormat: 'brackets' });
+    const result = await http.get<{ search: string }>('/echo', {
+      query: {
+        ids: [1, 2],
+        user: { name: 'Ana' },
+      },
+      arrayFormat: 'brackets',
+    });
     expect(decodeURIComponent(result.search)).toBe('?ids[]=1&ids[]=2&user[name]=Ana');
   });
 
   it('uses a custom querySerializer and appends string/URLSearchParams queries as-is', async () => {
     const { http } = setup();
-    await expect(http.get('/echo', { query: { a: 1 }, querySerializer: () => 'custom=1' })).resolves.toEqual({ search: '?custom=1' });
+    await expect(http.get('/echo', {
+      query: { a: 1 },
+      querySerializer: () => 'custom=1',
+    })).resolves.toEqual({ search: '?custom=1' });
     await expect(http.get('/echo', { query: 'x=1' })).resolves.toEqual({ search: '?x=1' });
-    await expect(http.get('/echo', { query: new URLSearchParams([['y', '2']]) })).resolves.toEqual({ search: '?y=2' });
+    await expect(http.get('/echo', {
+      query: new URLSearchParams([
+        ['y', '2'],
+      ]),
+    })).resolves.toEqual({ search: '?y=2' });
   });
 
   it('runs request interceptors in order and lets them mutate headers', async () => {
@@ -114,10 +152,16 @@ describe('createHttpClient', () => {
   it('chains fulfilled handlers in order and removes an interceptor', async () => {
     const { http } = setup();
     http.addResponseInterceptor({
-      fulfilled: (response) => ({ ...response, data: { step: 1 } }),
+      fulfilled: (response) => ({
+        ...response,
+        data: { step: 1 },
+      }),
     });
     const remove = http.addResponseInterceptor({
-      fulfilled: (response) => ({ ...response, data: { step: (response.data as { step: number }).step + 1 } }),
+      fulfilled: (response) => ({
+        ...response,
+        data: { step: (response.data as { step: number }).step + 1 },
+      }),
     });
     await expect(http.get('/env')).resolves.toEqual({ step: 2 });
     remove();
@@ -126,14 +170,20 @@ describe('createHttpClient', () => {
 
   it('lets a rejected handler recover with a value', async () => {
     const { http } = setup();
-    http.addResponseInterceptor({ rejected: () => 'fallback' });
+    http.addResponseInterceptor({
+      rejected: () => 'fallback',
+    });
     await expect(http.get('/boom')).resolves.toBe('fallback');
   });
 
   it('continues through later fulfilled handlers when a rejected handler returns an HttpResponse', async () => {
     const { http } = setup();
-    http.addResponseInterceptor({ rejected: () => http.request('/env', { responseReturn: 'raw' }) });
-    http.addResponseInterceptor({ fulfilled: (response) => ({ ...response, data: 'seen by later handler' }) });
+    http.addResponseInterceptor({
+      rejected: () => http.request('/env', { responseReturn: 'raw' }),
+    });
+    http.addResponseInterceptor({
+      fulfilled: (response) => ({ ...response, data: 'seen by later handler' }),
+    });
     await expect(http.get('/boom')).resolves.toBe('seen by later handler');
   });
 
@@ -141,7 +191,12 @@ describe('createHttpClient', () => {
     const { http } = setup();
     const error = await rejection(http.get('/boom'));
     expect(error).toBeInstanceOf(HttpError);
-    expect(error).toMatchObject({ kind: 'http', status: 500, message: 'Kaboom', data: { error: 'Kaboom' } });
+    expect(error).toMatchObject({
+      kind: 'http',
+      status: 500,
+      message: 'Kaboom',
+      data: { error: 'Kaboom' },
+    });
     expect(error.request).toEqual({ url: '/boom', method: 'GET' });
   });
 

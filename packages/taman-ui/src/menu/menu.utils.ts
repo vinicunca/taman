@@ -29,7 +29,9 @@ function findComponentUpward(
 }
 
 function flattedChildren(children: FlattenVNodes | VNode | VNodeNormalizedChildren): FlattenVNodes {
-  const vNodes = Array.isArray(children) ? children : [children];
+  const vNodes = Array.isArray(children)
+    ? children
+    : [children];
   const result: FlattenVNodes = [];
 
   vNodes.forEach((child) => {

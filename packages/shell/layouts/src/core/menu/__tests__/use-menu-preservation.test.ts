@@ -15,8 +15,12 @@ const fixture = vi.hoisted(() => ({
   store: { accessMenus: [] as Array<TamanMenuRecordRaw> },
 }));
 
-vi.mock('vue-router', () => ({ useRoute: () => fixture.route }));
-vi.mock('@taman/stores', () => ({ useAccessStore: () => fixture.store }));
+vi.mock('vue-router', () => ({
+  useRoute: () => fixture.route,
+}));
+vi.mock('@taman/stores', () => ({
+  useAccessStore: () => fixture.store,
+}));
 vi.mock('@vinicunca/taman-core/preferences', () => ({
   get preferences() {
     return fixture.preferences;
@@ -28,7 +32,10 @@ vi.mock('@vinicunca/taman-core/preferences', () => ({
   }),
 }));
 vi.mock('../use-navigation', () => ({
-  useNavigation: () => ({ navigation: vi.fn(), willOpenedByWindow: () => false }),
+  useNavigation: () => ({
+    navigation: vi.fn(),
+    willOpenedByWindow: () => false,
+  }),
 }));
 
 let app: App | undefined;
@@ -39,7 +46,13 @@ beforeEach(() => {
   fixture.store.accessMenus = ['/cards', '/transactions'].map((path) => ({
     name: path,
     path,
-    children: [{ name: `${path} list`, path: `${path}/list`, parents: [path] }],
+    children: [
+      {
+        name: `${path} list`,
+        path: `${path}/list`,
+        parents: [path],
+      },
+    ],
   }));
 });
 

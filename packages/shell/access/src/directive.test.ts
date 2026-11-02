@@ -26,7 +26,10 @@ function mountWithAccessDirective(roles: Array<string>) {
   registerAccessDirective(app, ref(roles));
   const container = document.createElement('div');
   app.mount(container);
-  return { container, unmount: () => app.unmount() };
+  return {
+    container,
+    unmount: () => app.unmount(),
+  };
 }
 
 let unmount: (() => void) | undefined;

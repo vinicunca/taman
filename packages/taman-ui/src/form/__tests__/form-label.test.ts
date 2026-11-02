@@ -57,7 +57,9 @@ describe('form label', () => {
 
   it('omits the marker on optional fields', async () => {
     const [Form] = useTamanForm({
-      schema: [{ component: TestInput, fieldName: 'name', label: 'Name' }],
+      schema: [
+        { component: TestInput, fieldName: 'name', label: 'Name' },
+      ],
     });
     const wrapper = mount(Form);
     wrappers.push(wrapper);
@@ -91,7 +93,9 @@ describe('form label', () => {
 
   it('never renders a colon', async () => {
     const [Form] = useTamanForm({
-      schema: [{ component: TestInput, fieldName: 'name', label: 'Name' }],
+      schema: [
+        { component: TestInput, fieldName: 'name', label: 'Name' },
+      ],
     });
     const wrapper = mount(Form);
     wrappers.push(wrapper);

@@ -18,9 +18,12 @@ export const themeBanner = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(POHON_THEME_BRANDS.map((color) => [color, {
-        root: `bg-${color}`,
-      }])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color) => [
+        color,
+        {
+          root: `bg-${color}`,
+        },
+      ])),
       neutral: {
         root: 'bg-background-inverted',
       },

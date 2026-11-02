@@ -51,11 +51,15 @@ const slots = useSlots();
 
 const style = computed<CSSProperties>(() => {
   const { fullWidth, height, show } = props;
-  const right = !show || !fullWidth ? undefined : 0;
+  const right = !show || !fullWidth
+    ? undefined
+    : 0;
 
   return {
     height: `${height}px`,
-    marginTop: show ? 0 : `-${height}px`,
+    marginTop: show
+      ? 0
+      : `-${height}px`,
     right,
   };
 });

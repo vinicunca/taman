@@ -28,7 +28,12 @@ const MANIFEST = `export default {
 function fixtureRepo(manifest = MANIFEST): string {
   const repo = mkdtempSync(join(tmpdir(), 'ct-repo-'));
   const files: Record<string, string> = {
-    'package.json': `${JSON.stringify({ name: '@taman/monorepo', private: true, scripts: { publint: 'x' }, devDependencies: { '@vinicunca/tsconfig': 'workspace:*' } }, null, 2)}\n`,
+    'package.json': `${JSON.stringify({
+      name: '@taman/monorepo',
+      private: true,
+      scripts: { publint: 'x' },
+      devDependencies: { '@vinicunca/tsconfig': 'workspace:*' },
+    }, null, 2)}\n`,
     'pnpm-workspace.yaml': 'packages:\n  - internal/*\n  - apps/*\n\ncatalog:\n  vue: ^3.5.0\n',
     'internal/tsconfig/package.json': '{ "name": "@vinicunca/tsconfig", "version": "1.0.1" }\n',
     'apps/web/package.json': '{ "name": "@taman/web", "private": true }\n',
@@ -54,7 +59,12 @@ describe('generateProject', () => {
     const repo = fixtureRepo();
     const dir = join(mkdtempSync(join(tmpdir(), 'ct-out-')), 'my-app');
 
-    await generateProject({ dir, git: true, names: toNames('my-app', 'acme'), source: { repo, type: 'local' } });
+    await generateProject({
+      dir,
+      git: true,
+      names: toNames('my-app', 'acme'),
+      source: { repo, type: 'local' },
+    });
 
     const read = (path: string) => readFileSync(join(dir, path), 'utf8');
     expect(JSON.parse(read('package.json')).name).toBe('my-app');
@@ -78,10 +88,17 @@ describe('generateProject', () => {
     try {
       const dir = join(mkdtempSync(join(tmpdir(), 'ct-out-')), 'my-app');
 
-      const { warnings } = await generateProject({ dir, git: true, names: toNames('my-app', 'acme'), source: { repo, type: 'local' } });
+      const { warnings } = await generateProject({
+        dir,
+        git: true,
+        names: toNames('my-app', 'acme'),
+        source: { repo, type: 'local' },
+      });
 
       expect(existsSync(join(dir, 'package.json'))).toBe(true);
-      expect(warnings).toEqual([expect.stringMatching(/^git: /)]);
+      expect(warnings).toEqual([
+        expect.stringMatching(/^git: /),
+      ]);
     } finally {
       if (previous === undefined) {
         Reflect.deleteProperty(process.env, 'GIT_CONFIG_GLOBAL');
@@ -95,7 +112,15 @@ describe('generateProject', () => {
     const dir = mkdtempSync(join(tmpdir(), 'ct-busy-'));
     writeFileSync(join(dir, 'keep.txt'), 'mine');
 
-    await expect(generateProject({ dir, git: false, names: toNames('busy', 'busy'), source: { repo: fixtureRepo(), type: 'local' } }))
+    await expect(generateProject({
+      dir,
+      git: false,
+      names: toNames('busy', 'busy'),
+      source: {
+        repo: fixtureRepo(),
+        type: 'local',
+      },
+    }))
       .rejects
       .toThrow(/not empty/);
     expect(readFileSync(join(dir, 'keep.txt'), 'utf8')).toBe('mine');
@@ -105,7 +130,15 @@ describe('generateProject', () => {
     const drifted = MANIFEST.replace('"name": "@taman/monorepo"', '"name": "@taman/other"');
     const dir = join(mkdtempSync(join(tmpdir(), 'ct-out-')), 'my-app');
 
-    await expect(generateProject({ dir, git: false, names: toNames('my-app', 'acme'), source: { repo: fixtureRepo(drifted), type: 'local' } }))
+    await expect(generateProject({
+      dir,
+      git: false,
+      names: toNames('my-app', 'acme'),
+      source: {
+        repo: fixtureRepo(drifted),
+        type: 'local',
+      },
+    }))
       .rejects
       .toThrow(/out of date/);
     expect(existsSync(dir)).toBe(false);

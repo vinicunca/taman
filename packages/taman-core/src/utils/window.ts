@@ -29,8 +29,12 @@ function openWindow(url: string, options: OpenWindowOptions = {}): void {
  */
 function openRouteInNewWindow(path: string) {
   const { hash, origin } = location;
-  const fullPath = path.startsWith('/') ? path : `/${path}`;
-  const url = `${origin}${hash && !fullPath.startsWith('/#') ? '/#' : ''}${fullPath}`;
+  const fullPath = path.startsWith('/')
+    ? path
+    : `/${path}`;
+  const url = `${origin}${hash && !fullPath.startsWith('/#')
+    ? '/#'
+    : ''}${fullPath}`;
   openWindow(url, { target: '_blank' });
 }
 

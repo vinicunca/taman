@@ -115,7 +115,9 @@ const [Form, formApi] = useTamanForm({
 });
 
 function handleToggleDynamicComponent() {
-  const nextType = dynamicComponentType.value === 'input' ? 'select' : 'input';
+  const nextType = dynamicComponentType.value === 'input'
+    ? 'select'
+    : 'input';
   dynamicComponentType.value = nextType;
 
   if (nextType === 'select') {

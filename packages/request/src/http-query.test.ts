@@ -19,8 +19,20 @@ function setup() {
       return respondAfter(request, 500);
     },
   });
-  const http = createHttpClient({ baseURL: 'http://api.test', fetch: fake.fetch, retry: false, credentials: 'include' });
-  return { api: createHttpQueryUtils(http, { key: ['ext'] }), calls: fake.calls, client: new QueryClient(), network };
+  const http = createHttpClient({
+    baseURL: 'http://api.test',
+    fetch: fake.fetch,
+    retry: false,
+    credentials: 'include',
+  });
+  return {
+    api: createHttpQueryUtils(http, {
+      key: ['ext'],
+    }),
+    calls: fake.calls,
+    client: new QueryClient(),
+    network,
+  };
 }
 
 describe('createHttpQueryUtils', () => {
@@ -34,8 +46,18 @@ describe('createHttpQueryUtils', () => {
 
   it('puts the query into the key, passes TanStack options through and fetches with the query', async () => {
     const { api, client } = setup();
-    const options = api.get<{ search: string }>('/items').queryOptions({ query: { page: 2 }, staleTime: 1000 });
-    expect(options.queryKey).toEqual(['ext', 'GET', '/items', { query: { page: 2 } }]);
+    const options = api.get<{ search: string }>('/items').queryOptions({
+      query: { page: 2 },
+      staleTime: 1000,
+    });
+    expect(options.queryKey).toEqual([
+      'ext',
+      'GET',
+      '/items',
+      {
+        query: { page: 2 },
+      },
+    ]);
     expect(options).toMatchObject({ staleTime: 1000 });
     expect(options).not.toHaveProperty('query');
     await expect(client.fetchQuery(options)).resolves.toEqual({ search: '?page=2' });
@@ -43,8 +65,15 @@ describe('createHttpQueryUtils', () => {
 
   it('normalizes URLSearchParams queries in the key', () => {
     const { api } = setup();
-    expect(api.get('/items').queryOptions({ query: new URLSearchParams('a=1') }).queryKey)
-      .toEqual(['ext', 'GET', '/items', { query: 'a=1' }]);
+    expect(api.get('/items').queryOptions({
+      query: new URLSearchParams('a=1'),
+    }).queryKey)
+      .toEqual([
+        'ext',
+        'GET',
+        '/items',
+        { query: 'a=1' },
+      ]);
   });
 
   it('does not forward an explicit undefined request option, so the client default still applies', async () => {
@@ -67,7 +96,9 @@ describe('createHttpQueryUtils', () => {
     await new Promise((resolve) => {
       setTimeout(resolve, 20);
     });
-    await client.cancelQueries({ queryKey: api.key() });
+    await client.cancelQueries({
+      queryKey: api.key(),
+    });
     const error = await pending;
     expect(isHttpError(error)).toBe(false);
     expect((error as { constructor: { name: string } }).constructor.name).toBe('CancelledError');
@@ -78,7 +109,9 @@ describe('createHttpQueryUtils', () => {
     const { api, calls } = setup();
     const create = api.post<unknown, { title: string }>('/items').mutationOptions();
     const remove = api.delete<unknown, { id: number }>((variables) => `/items/${variables.id}`)
-      .mutationOptions({ body: () => undefined });
+      .mutationOptions({
+        body: () => undefined,
+      });
 
     expect(create.mutationKey).toEqual(['ext', 'POST', '/items']);
     expect(remove.mutationKey).toEqual(['ext', 'DELETE']);

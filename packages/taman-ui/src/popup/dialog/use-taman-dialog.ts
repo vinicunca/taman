@@ -124,7 +124,9 @@ export function useTamanDialog<
     {},
   );
   const isConsumed = injectData.consumed;
-  const effectiveOptions = isConsumed ? {} : injectData.options;
+  const effectiveOptions = isConsumed
+    ? {}
+    : injectData.options;
   if (!isConsumed && injectData.consumed !== undefined) {
     injectData.consumed = true;
   }

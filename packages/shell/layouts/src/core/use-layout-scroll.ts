@@ -14,7 +14,9 @@ function getHistoryPosition() {
   const position = (window.history.state as null | { position?: unknown })
     ?.position;
 
-  return isNumber(position) ? position : undefined;
+  return isNumber(position)
+    ? position
+    : undefined;
 }
 
 function getHashTarget(scrollElement: HTMLElement, hash: string) {

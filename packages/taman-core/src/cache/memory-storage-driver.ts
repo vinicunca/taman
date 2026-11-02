@@ -17,7 +17,9 @@ class MemoryStorageDriver implements IStorageDriver {
   }
 
   async keys(): Promise<Array<string>> {
-    return [...this.store.keys()];
+    return [
+      ...this.store.keys(),
+    ];
   }
 
   async removeItem(key: string): Promise<void> {

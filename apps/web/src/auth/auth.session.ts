@@ -66,5 +66,7 @@ export function refreshSession(): Promise<AppSession | null> {
  * Logout: drop every user-scoped cache entry and clear the store projection.
  */
 export function clearAuthCache(): void {
-  queryClient.removeQueries({ queryKey: [AUTH_QUERY_KEY] });
+  queryClient.removeQueries({
+    queryKey: [AUTH_QUERY_KEY],
+  });
 }

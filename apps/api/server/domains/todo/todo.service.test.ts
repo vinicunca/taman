@@ -51,7 +51,9 @@ describe('todoService', () => {
 
     expect(todo).toMatchObject({ title: 'Buy milk', completed: false, createdBy: USER_ID });
     expect(todo.createdAt).toBeInstanceOf(Date);
-    expect(events).toEqual([{ type: 'created', todo }]);
+    expect(events).toEqual([
+      { type: 'created', todo },
+    ]);
   });
 
   it('pages results and computes totals', async () => {
@@ -62,7 +64,12 @@ describe('todoService', () => {
 
     const page = await service.list({ page: 2, pageSize: 2 });
 
-    expect(page).toMatchObject({ page: 2, pageSize: 2, total: 5, totalPages: 3 });
+    expect(page).toMatchObject({
+      page: 2,
+      pageSize: 2,
+      total: 5,
+      totalPages: 3,
+    });
     expect(page.items).toHaveLength(2);
     expect(repo.lastListQuery).toMatchObject({ organizationId: 'org-1', limit: 2, offset: 2 });
   });
@@ -87,7 +94,9 @@ describe('todoService', () => {
   it('never reads rows from another organization', async () => {
     const own = new TodoService(makeCtx(), { publisher, repo });
     const other = new TodoService(
-      makeCtx({ member: { role: 'member', organizationId: 'org-2' } }),
+      makeCtx({
+        member: { role: 'member', organizationId: 'org-2' },
+      }),
       { publisher, repo },
     );
     const todo = await own.create({ title: 'Private' });
@@ -106,7 +115,9 @@ describe('todoService', () => {
   });
 
   it('keeps a committed mutation successful when publishing fails', async () => {
-    const failing = { publish: vi.fn().mockRejectedValue(new Error('DO down')) } as unknown as TodoPublisher;
+    const failing = {
+      publish: vi.fn().mockRejectedValue(new Error('DO down')),
+    } as unknown as TodoPublisher;
     const log = vi.spyOn(console, 'error').mockImplementation(() => {});
     const service = new TodoService(makeCtx(), { publisher: failing, repo });
 

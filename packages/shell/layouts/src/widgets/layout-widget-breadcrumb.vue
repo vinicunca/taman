@@ -45,7 +45,9 @@ const breadcrumbs = computed<Array<BreadcrumbItem>>(() => {
     resultBreadcrumb.push({
       icon: props.showIcon ? icon : undefined,
       to: path || route.path,
-      label: title ? $t((title || name) as string) : '',
+      label: title
+        ? $t((title || name) as string)
+        : '',
     });
   }
 

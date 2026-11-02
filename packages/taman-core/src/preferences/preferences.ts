@@ -26,7 +26,9 @@ class PreferenceManager {
   private state: Preferences;
 
   constructor() {
-    this.cache = new StorageManager({ driver: new MemoryStorageDriver() });
+    this.cache = new StorageManager({
+      driver: new MemoryStorageDriver(),
+    });
     // The constructor no longer reads the cache synchronously; initialization uses default values.
     // Actual cache loading is performed in initPreferences (which is already async).
     this.state = reactive<Preferences>({ ...defaultPreferences });
@@ -154,7 +156,9 @@ class PreferenceManager {
 
   /** Sets platform identifier on documentElement. */
   private initPlatform() {
-    document.documentElement.dataset.platform = isMacOs() ? 'macOs' : 'window';
+    document.documentElement.dataset.platform = isMacOs()
+      ? 'macOs'
+      : 'window';
   }
 
   /**

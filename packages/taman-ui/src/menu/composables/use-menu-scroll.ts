@@ -15,7 +15,9 @@ export function useMenuScroll(
   const { enable = true, delay = 320 } = options;
 
   function scrollToActiveItem() {
-    const isEnabled = typeof enable === 'boolean' ? enable : enable.value;
+    const isEnabled = typeof enable === 'boolean'
+      ? enable
+      : enable.value;
 
     if (!isEnabled) {
       return;
@@ -36,7 +38,9 @@ export function useMenuScroll(
   const debouncedScroll = useDebounceFn(scrollToActiveItem, delay);
 
   watch(activePath, () => {
-    const isEnabled = typeof enable === 'boolean' ? enable : enable.value;
+    const isEnabled = typeof enable === 'boolean'
+      ? enable
+      : enable.value;
     if (!isEnabled) {
       return;
     }

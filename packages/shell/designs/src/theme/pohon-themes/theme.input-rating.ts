@@ -43,10 +43,13 @@ export const themeInputRating = {
       },
     },
     color: {
-      ...Object.fromEntries(POHON_THEME_BRANDS.map((color) => [color, {
-        indicator: `data-[state=active]:color-${color}`,
-        item: `outline-${color}/25`,
-      }])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color) => [
+        color,
+        {
+          indicator: `data-[state=active]:color-${color}`,
+          item: `outline-${color}/25`,
+        },
+      ])),
       neutral: {
         indicator: 'data-[state=active]:color-text-highlighted',
         item: 'outline-outline-inverted/25',

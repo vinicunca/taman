@@ -22,7 +22,9 @@ describe('template.manifest.ts', () => {
     expect(errors).toEqual([]);
     expect(warnings).toEqual([]);
 
-    const paths = [...files.keys()];
+    const paths = [
+      ...files.keys(),
+    ];
     expect(paths.filter((path) => /(?:^|\/)(?:internal|docs|\.github|\.changeset|graphify-out)\//.test(path))).toEqual([]);
     expect(paths.filter((path) => path.includes('views/examples'))).toEqual([]);
     expect(paths.filter((path) => /^packages\/(?:taman-core|taman-ui|request|create-taman)\//.test(path))).toEqual([]);

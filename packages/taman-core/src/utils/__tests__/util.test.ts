@@ -145,13 +145,22 @@ describe('getNestedValue', () => {
   });
 
   it('should handle paths with array indexes', () => {
-    const complexData = { list: [{ name: 'Item1' }, { name: 'Item2' }] };
+    const complexData = {
+      list: [
+        { name: 'Item1' },
+        { name: 'Item2' },
+      ],
+    };
     const result = getNestedValue(complexData, 'list.1.name');
     expect(result).toBe('Item2');
   });
 
   it('should return undefined when accessing an out-of-bounds array index', () => {
-    const complexData = { list: [{ name: 'Item1' }] };
+    const complexData = {
+      list: [
+        { name: 'Item1' },
+      ],
+    };
     const result = getNestedValue(complexData, 'list.2.name');
     expect(result).toBeUndefined();
   });

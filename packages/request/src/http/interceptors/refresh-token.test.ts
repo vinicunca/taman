@@ -58,8 +58,16 @@ function setup(options: { refresh?: () => Promise<string>; enabled?: boolean } =
 describe('refreshTokenInterceptor', () => {
   it('refreshes once for concurrent 401s and retries each request once with the new token', async () => {
     const { http, calls, refresh } = setup();
-    const results = await Promise.all([http.get('/secure'), http.get('/secure'), http.get('/secure')]);
-    expect(results).toEqual([{ ok: true }, { ok: true }, { ok: true }]);
+    const results = await Promise.all([
+      http.get('/secure'),
+      http.get('/secure'),
+      http.get('/secure'),
+    ]);
+    expect(results).toEqual([
+      { ok: true },
+      { ok: true },
+      { ok: true },
+    ]);
     expect(refresh).toHaveBeenCalledTimes(1);
     expect(calls.map((call) => call.headers.get('authorization'))).toEqual([
       'Bearer old',
@@ -77,7 +85,10 @@ describe('refreshTokenInterceptor', () => {
         throw new Error('refresh denied');
       },
     });
-    const outcomes = await Promise.allSettled([http.get('/secure'), http.get('/secure')]);
+    const outcomes = await Promise.allSettled([
+      http.get('/secure'),
+      http.get('/secure'),
+    ]);
     expect(outcomes.map((outcome) => outcome.status)).toEqual(['rejected', 'rejected']);
     expect(onAuthFailure).toHaveBeenCalledTimes(1);
   });
@@ -127,7 +138,10 @@ describe('refreshTokenInterceptor', () => {
       }),
     ]);
 
-    expect(outcome).toMatchObject({ status: 'rejected', error: { kind: 'http', status: 401 } });
+    expect(outcome).toMatchObject({
+      status: 'rejected',
+      error: { kind: 'http', status: 401 },
+    });
     expect(onAuthFailure).toHaveBeenCalledTimes(1);
   });
 
@@ -139,7 +153,12 @@ describe('refreshTokenInterceptor', () => {
       const pending = new Promise<string>((resolve, reject) => {
         settle = { resolve, reject };
       });
-      return { ...setup({ refresh: () => pending }), settle };
+      return {
+        ...setup({
+          refresh: () => pending,
+        }),
+        settle,
+      };
     }
 
     it('calls onAuthFailure for it when the refresh succeeds', async () => {

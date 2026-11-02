@@ -40,9 +40,15 @@ export function createRpcClient<TClient extends NestedClient<RpcClientContext>>(
 
   const link = new RPCLink<RpcClientContext>({
     url: options.url,
-    headers: async () => (typeof options.headers === 'function' ? await options.headers() : options.headers ?? {}),
-    fetch: (request, init) => baseFetch(request, credentials ? { ...init, credentials } : init),
-    plugins: [new ClientRetryPlugin()],
+    headers: async () => (typeof options.headers === 'function'
+      ? await options.headers()
+      : options.headers ?? {}),
+    fetch: (request, init) => baseFetch(request, credentials
+      ? { ...init, credentials }
+      : init),
+    plugins: [
+      new ClientRetryPlugin(),
+    ],
   });
 
   return createORPCClient<TClient>(link);

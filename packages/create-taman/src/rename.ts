@@ -34,7 +34,9 @@ export function renameScope(files: FileMap, from: string, scope: string): FileMa
   return new Map(
     [...files].map(([path, contents]) => [
       path,
-      typeof contents === 'string' ? contents.replaceAll(from, `@${scope}/`) : contents,
+      typeof contents === 'string'
+        ? contents.replaceAll(from, `@${scope}/`)
+        : contents,
     ]),
   );
 }

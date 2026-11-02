@@ -17,7 +17,10 @@ const YAML = [
 
 describe('addCatalogEntries', () => {
   it('inserts entries in alphabetical position inside the catalog block', () => {
-    const result = addCatalogEntries(YAML, new Map([['@vinicunca/taman-core', '^0.1.0'], ['@acme/a', '^1.0.0']]));
+    const result = addCatalogEntries(YAML, new Map([
+      ['@vinicunca/taman-core', '^0.1.0'],
+      ['@acme/a', '^1.0.0'],
+    ]));
 
     expect(result.split('\n').slice(4, 9)).toEqual([
       'catalog:',
@@ -29,14 +32,18 @@ describe('addCatalogEntries', () => {
   });
 
   it('replaces an entry that already exists', () => {
-    const result = addCatalogEntries(YAML, new Map([['vue', '^3.6.0']]));
+    const result = addCatalogEntries(YAML, new Map([
+      ['vue', '^3.6.0'],
+    ]));
 
     expect(result).toContain('  vue: ^3.6.0');
     expect(result).not.toContain('  vue: ^3.5.0');
   });
 
   it('fails without a catalog block', () => {
-    expect(() => addCatalogEntries('packages:\n  - apps/*\n', new Map([['a', '^1.0.0']]))).toThrow(/catalog/);
+    expect(() => addCatalogEntries('packages:\n  - apps/*\n', new Map([
+      ['a', '^1.0.0'],
+    ]))).toThrow(/catalog/);
   });
 });
 

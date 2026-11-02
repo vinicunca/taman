@@ -13,9 +13,21 @@ import { renderEmail } from './registry.ts';
 import { EMAIL_LOCALES } from './types.ts';
 
 const contracts = [
-  { copyKey: 'invitation', compiled: invitationCompiled, urls: ['actionUrl'] },
-  { copyKey: 'verifyEmail', compiled: verifyEmailCompiled, urls: ['actionUrl'] },
-  { copyKey: 'resetPassword', compiled: resetPasswordCompiled, urls: ['actionUrl'] },
+  {
+    copyKey: 'invitation',
+    compiled: invitationCompiled,
+    urls: ['actionUrl'],
+  },
+  {
+    copyKey: 'verifyEmail',
+    compiled: verifyEmailCompiled,
+    urls: ['actionUrl'],
+  },
+  {
+    copyKey: 'resetPassword',
+    compiled: resetPasswordCompiled,
+    urls: ['actionUrl'],
+  },
 ] as const;
 
 describe.each(EMAIL_LOCALES)('%s copy', (locale) => {
@@ -23,7 +35,10 @@ describe.each(EMAIL_LOCALES)('%s copy', (locale) => {
     const { subject, ...slotCopy } = emailCopy[locale][copyKey];
 
     expect(subject).toBeTruthy();
-    expect([...Object.keys(slotCopy), ...urls].sort()).toEqual([...compiled.slots]);
+    expect([
+      ...Object.keys(slotCopy),
+      ...urls,
+    ].sort()).toEqual([...compiled.slots]);
   });
 });
 
@@ -124,7 +139,12 @@ describe('renderEmail', () => {
   });
 
   it('throws EmailJobError for an unknown template name, including prototype keys', () => {
-    for (const template of ['welcome', 'toString', 'constructor', '__proto__']) {
+    for (const template of [
+      'welcome',
+      'toString',
+      'constructor',
+      '__proto__',
+    ]) {
       expect(() => renderEmail({ ...invitation, template } as unknown as EmailJob)).toThrow(EmailJobError);
     }
   });

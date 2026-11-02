@@ -19,7 +19,9 @@ const timeFormat = new Intl.DateTimeFormat(undefined, { timeStyle: 'medium' });
 
 function describeLatest(entries: Array<LogEntry>): string {
   const latest = entries[0];
-  return latest ? `${KIND_LABEL[latest.kind]}: ${latest.message}` : 'No activity yet.';
+  return latest
+    ? `${KIND_LABEL[latest.kind]}: ${latest.message}`
+    : 'No activity yet.';
 }
 </script>
 

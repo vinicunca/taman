@@ -47,7 +47,9 @@ const isOpen = ref(false);
 const referenceEl = ref<HTMLElement>();
 
 function setCustomRef(el: Element | ComponentPublicInstance | null) {
-  referenceEl.value = el instanceof HTMLElement ? el : undefined;
+  referenceEl.value = el instanceof HTMLElement
+    ? el
+    : undefined;
 }
 
 function handleSelect(theme: BuiltinThemePreset) {

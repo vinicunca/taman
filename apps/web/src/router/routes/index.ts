@@ -44,7 +44,9 @@ const componentKeys: Array<string> = Object.keys(
   .filter((item) => !item.includes('/modules/'))
   .map((v) => {
     const path = v.replace('../../views/', '/');
-    return path.endsWith('.vue') ? path.slice(0, -4) : path;
+    return path.endsWith('.vue')
+      ? path.slice(0, -4)
+      : path;
   });
 
 export { accessRoutes, componentKeys, routes };

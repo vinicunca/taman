@@ -12,7 +12,9 @@ export interface TodoListParams {
 }
 
 function first(value: LocationQueryValue | Array<LocationQueryValue> | undefined): string | undefined {
-  const single = Array.isArray(value) ? value[0] : value;
+  const single = Array.isArray(value)
+    ? value[0]
+    : value;
   return single ?? undefined;
 }
 
@@ -40,11 +42,17 @@ export function parseTodoListQuery(query: LocationQuery): TodoListParams {
     // Anything that isn't a safe integer (e.g. `1e20`, `Infinity`, `NaN`) would
     // still pass a naive `>= 1` check but fail the server's schema — treat it
     // the same as any other unparsable page.
-    page: Number.isSafeInteger(page) && page >= 1 ? page : 1,
-    pageSize: (PAGE_SIZES as ReadonlyArray<number>).includes(pageSize) ? pageSize : DEFAULT_PAGE_SIZE,
+    page: Number.isSafeInteger(page) && page >= 1
+      ? page
+      : 1,
+    pageSize: (PAGE_SIZES as ReadonlyArray<number>).includes(pageSize)
+      ? pageSize
+      : DEFAULT_PAGE_SIZE,
     // Cap at the server's max instead of letting an over-long hand-edited URL
     // reach the API as a BAD_REQUEST.
-    search: search ? search.slice(0, TODO_TITLE_MAX) : undefined,
+    search: search
+      ? search.slice(0, TODO_TITLE_MAX)
+      : undefined,
     completed: parseCompleted(completed),
   };
 }

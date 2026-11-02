@@ -56,7 +56,9 @@ const slots: SetupContext['slots'] = useSlots();
 const menu = ref<HTMLUListElement>();
 const sliceIndex = ref(-1);
 const openedMenus = ref<MenuProvider['openedMenus']>(
-  props.defaultOpeneds && !props.collapse ? [...props.defaultOpeneds] : [],
+  props.defaultOpeneds && !props.collapse
+    ? [...props.defaultOpeneds]
+    : [],
 );
 const activePath = ref<MenuProvider['activePath']>(props.defaultActive);
 const items = ref<MenuProvider['items']>({});
@@ -80,7 +82,9 @@ const getSlot = computed(() => {
       : originalSlot.slice(0, sliceIndex.value);
 
   const slotMore
-    = sliceIndex.value === -1 ? [] : originalSlot.slice(sliceIndex.value);
+    = sliceIndex.value === -1
+      ? []
+      : originalSlot.slice(sliceIndex.value);
 
   return { showSlotMore: slotMore.length > 0, slotDefault, slotMore };
 });
@@ -154,7 +158,9 @@ function calcSliceIndex() {
   if (!menu.value) {
     return -1;
   }
-  const items = [...(menu.value?.childNodes ?? [])].filter(
+  const items = [
+    ...(menu.value?.childNodes ?? []),
+  ].filter(
     (item) =>
       // remove comment type node #12634
       item.nodeName !== '#comment'
@@ -176,7 +182,9 @@ function calcSliceIndex() {
       sliceIndex = index + 1;
     }
   });
-  return sliceIndex === items.length ? -1 : sliceIndex;
+  return sliceIndex === items.length
+    ? -1
+    : sliceIndex;
 }
 
 function debounce(fn: () => void, wait = 33.34) {
@@ -202,7 +210,9 @@ function handleResize() {
   };
   callback();
   // execute callback directly when first time resize to avoid shaking
-  isFirstTimeRender ? callback() : debounce(callback)();
+  isFirstTimeRender
+    ? callback()
+    : debounce(callback)();
   isFirstTimeRender = false;
 }
 

@@ -10,11 +10,11 @@ export const themeInputTags = defuFn(
     slots: {
       root: (prev: string) => [prev, 'flex-wrap'],
       base: () => 'rounded-md transition-colors',
-      item: 'px-1.5 py-0.5 rounded-sm font-500 inline-flex items-center gap-0.5 ring ring-inset ring-ring-accented bg-background-elevated color-text data-disabled:(cursor-not-allowed opacity-75) wrap-anywhere data-[state="active"]:bg-background-accented',
+      item: 'data-disabled:cursor-not-allowed data-disabled:opacity-75 color-text font-500 px-1.5 py-0.5 rounded-sm bg-background-elevated inline-flex gap-0.5 wrap-anywhere ring ring-ring-accented ring-inset items-center data-[state="active"]:bg-background-accented',
       itemText: '',
-      itemDelete: 'inline-flex items-center rounded-xs color-text-dimmed hover:color-text hover:bg-background-accented/75 disabled:pointer-events-none transition-colors',
+      itemDelete: 'color-text-dimmed rounded-xs inline-flex transition-colors items-center hover:color-text hover:bg-background-accented/75 disabled:pointer-events-none',
       itemDeleteIcon: 'shrink-0',
-      input: 'flex-1 border-0 bg-transparent placeholder:color-text-dimmed focus:outline-none disabled:(cursor-not-allowed opacity-75)',
+      input: 'border-0 bg-transparent flex-1 placeholder:color-text-dimmed focus:outline-none disabled:(opacity-75 cursor-not-allowed)',
     },
     variants: {
       ...fieldGroupVariant,
@@ -42,12 +42,17 @@ export const themeInputTags = defuFn(
         },
       },
       variant: (prev: Record<string, string>) => Object.fromEntries(
-        Object.entries(prev).map(([key, value]) => [key, replaceFocus(value)]),
+        Object.entries(prev).map(([key, value]) => [
+          key,
+          replaceFocus(value),
+        ]),
       ),
     },
     compoundVariants: (prev: Array<Record<string, any>>) => prev.map((item) => ({
       ...item,
-      class: typeof item.class === 'string' ? replaceFocus(item.class) : item.class,
+      class: typeof item.class === 'string'
+        ? replaceFocus(item.class)
+        : item.class,
     })),
   },
   themeInput,
