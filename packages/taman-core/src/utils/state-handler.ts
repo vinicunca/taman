@@ -1,7 +1,6 @@
 export class StateHandler {
   private condition: boolean = false;
-  private rejectCondition: ((reason?: Error) => void) | null = null;
-  private resolveCondition: (() => void) | null = null;
+  private waiters = new Set<{ resolve: () => void; reject: (reason: Error) => void }>();
 
   isConditionTrue(): boolean {
     return this.condition;
@@ -9,25 +8,19 @@ export class StateHandler {
 
   reset() {
     this.condition = false;
-    this.clearPromises();
+    this.settleWaiters(new Error('Condition was reset'));
   }
 
   /** Reject when the condition is set to false */
   setConditionFalse() {
     this.condition = false;
-    if (this.rejectCondition) {
-      this.rejectCondition(new Error('Condition was set to false'));
-      this.clearPromises();
-    }
+    this.settleWaiters(new Error('Condition was set to false'));
   }
 
   /** Resolve when the condition is set to true */
   setConditionTrue() {
     this.condition = true;
-    if (this.resolveCondition) {
-      this.resolveCondition();
-      this.clearPromises();
-    }
+    this.settleWaiters();
   }
 
   /** Return a Promise that waits until condition becomes true */
@@ -36,15 +29,20 @@ export class StateHandler {
       if (this.condition) {
         resolve(); // Resolve immediately if condition is already true
       } else {
-        this.resolveCondition = resolve;
-        this.rejectCondition = reject;
+        this.waiters.add({ resolve, reject });
       }
     });
   }
 
-  /** Clear resolve/reject handlers */
-  private clearPromises() {
-    this.resolveCondition = null;
-    this.rejectCondition = null;
+  private settleWaiters(error?: Error) {
+    const waiters = this.waiters;
+    this.waiters = new Set();
+    for (const waiter of waiters) {
+      if (error) {
+        waiter.reject(error);
+      } else {
+        waiter.resolve();
+      }
+    }
   }
 }

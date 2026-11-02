@@ -66,7 +66,9 @@ describe('preferences', () => {
 
     try {
       const manager = new PreferenceManager();
-      manager.updatePreferences({ app: { locale: 'en-US' } });
+      manager.updatePreferences({
+        app: { locale: 'en-US' },
+      });
       await vi.advanceTimersByTimeAsync(151);
 
       expect(localStorage.setItem).not.toHaveBeenCalled();
@@ -76,7 +78,9 @@ describe('preferences', () => {
       });
       vi.mocked(localStorage.setItem).mockClear();
 
-      manager.updatePreferences({ app: { locale: 'en-US' } });
+      manager.updatePreferences({
+        app: { locale: 'en-US' },
+      });
       await vi.advanceTimersByTimeAsync(151);
 
       expect(localStorage.setItem).toHaveBeenCalledWith(

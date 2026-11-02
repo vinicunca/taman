@@ -21,7 +21,10 @@ const [Form, formApi] = useTamanForm({
   showDefaultActions: false,
   submitOnEnter: true,
   handleSubmit: (values) => {
-    emit('submit', { title: String(values.title), price: Number(values.price) });
+    emit('submit', {
+      title: String(values.title),
+      price: Number(values.price),
+    });
   },
   schema: [
     {
@@ -53,7 +56,9 @@ watch(
   { immediate: true },
 );
 
-defineExpose({ reset: () => formApi.reset() });
+defineExpose({
+  reset: () => formApi.reset(),
+});
 </script>
 
 <template>

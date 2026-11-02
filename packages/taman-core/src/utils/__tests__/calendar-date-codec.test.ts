@@ -70,7 +70,9 @@ describe('calendar date value codec', () => {
 
   it('round-trips date ranges and nested values without mutating inputs', () => {
     const values = Object.freeze({
-      nested: { created: new CalendarDate(2026, 9, 15) },
+      nested: {
+        created: new CalendarDate(2026, 9, 15),
+      },
       period: {
         end: new CalendarDate(2026, 9, 20),
         start: new CalendarDate(2026, 9, 15),

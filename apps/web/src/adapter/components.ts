@@ -74,7 +74,13 @@ function withDefaultPlaceholder(
       return () =>
         h(
           component,
-          { ...componentProps, placeholder, ...props, ...attrs, ref: innerRef },
+          {
+            ...componentProps,
+            placeholder,
+            ...props,
+            ...attrs,
+            ref: innerRef,
+          },
           slots,
         );
     },

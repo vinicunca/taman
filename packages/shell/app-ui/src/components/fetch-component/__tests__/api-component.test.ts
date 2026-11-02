@@ -23,7 +23,9 @@ const ValueInput = defineComponent({
     return () =>
       h(
         'button',
-        { onClick: () => emit('update:value', 'selected') },
+        {
+          onClick: () => emit('update:value', 'selected'),
+        },
         props.value,
       );
   },
@@ -39,7 +41,9 @@ const ModelValueInput = defineComponent({
     return () =>
       h(
         'button',
-        { onClick: () => emit('update:modelValue', 'selected') },
+        {
+          onClick: () => emit('update:modelValue', 'selected'),
+        },
         props.modelValue,
       );
   },
@@ -55,7 +59,9 @@ const KebabModelInput = defineComponent({
     return () =>
       h(
         'button',
-        { onClick: () => emit('update:modelValue', 'selected') },
+        {
+          onClick: () => emit('update:modelValue', 'selected'),
+        },
         props.modelValue,
       );
   },
@@ -106,7 +112,9 @@ describe('api-component.vue', () => {
 
     await input.trigger('click');
     await nextTick();
-    expect(wrapper.emitted('update:modelValue')).toEqual([['selected']]);
+    expect(wrapper.emitted('update:modelValue')).toEqual([
+      ['selected'],
+    ]);
     expect(input.props('modelValue')).toBe('selected');
   });
 
@@ -142,7 +150,10 @@ describe('api-component.vue', () => {
       name: 'SelectLike',
       props: {
         modelValue: { type: String, default: undefined },
-        items: { type: Array, default: () => [] },
+        items: {
+          type: Array,
+          default: () => [],
+        },
         loading: { type: Boolean, default: false },
       },
       emits: ['update:modelValue'],
@@ -166,7 +177,9 @@ describe('api-component.vue', () => {
     });
 
     await vi.waitFor(() => {
-      expect(wrapper.emitted('update:modelValue')).toEqual([['alpha']]);
+      expect(wrapper.emitted('update:modelValue')).toEqual([
+        ['alpha'],
+      ]);
     });
 
     const inner = wrapper.findComponent(SelectLike);
@@ -181,7 +194,9 @@ describe('api-component.vue', () => {
   it('fetches when the api is provided after mount', async () => {
     const api = vi
       .fn()
-      .mockResolvedValue([{ label: 'Loaded', value: 'loaded' }]);
+      .mockResolvedValue([
+        { label: 'Loaded', value: 'loaded' },
+      ]);
     const apiRef = ref<AppFetchComponentSharedProps['api']>();
     const Harness = defineComponent({
       setup() {

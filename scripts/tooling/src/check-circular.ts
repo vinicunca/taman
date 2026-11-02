@@ -11,7 +11,15 @@ const circularScannerCli
   = require.resolve('circular-dependency-scanner/dist/cli.js');
 
 const DEFAULT_CONFIG = {
-  allowedExtensions: ['.cjs', '.js', '.jsx', '.mjs', '.ts', '.tsx', '.vue'],
+  allowedExtensions: [
+    '.cjs',
+    '.js',
+    '.jsx',
+    '.mjs',
+    '.ts',
+    '.tsx',
+    '.vue',
+  ],
   ignoreDirs: [
     'dist',
     '.nx',
@@ -55,7 +63,12 @@ async function detectCircularDependencies({
   const outputFile = join(tempDir, 'circles.json');
 
   try {
-    const args = [circularScannerCli, cwd, '--output', outputFile];
+    const args = [
+      circularScannerCli,
+      cwd,
+      '--output',
+      outputFile,
+    ];
 
     if (staged) {
       args.push('--absolute');
@@ -169,7 +182,9 @@ async function checkCircular({
   } catch (error) {
     console.error(
       '❌ Error checking circular dependencies:',
-      error instanceof Error ? error.message : error,
+      error instanceof Error
+        ? error.message
+        : error,
     );
   }
 }
@@ -199,6 +214,8 @@ async function main(): Promise<void> {
 }
 
 main().catch((error) => {
-  console.error(error instanceof Error ? error.message : error);
+  console.error(error instanceof Error
+    ? error.message
+    : error);
   process.exitCode = 1;
 });

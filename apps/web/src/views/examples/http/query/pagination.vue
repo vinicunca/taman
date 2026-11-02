@@ -10,11 +10,15 @@ import { useProductsQuery } from './use-products-query';
 const { params, setParams } = useProductListParams();
 const { list } = useProductsQuery(params);
 
-const totalPages = computed(() => (list.data.value ? Math.max(1, Math.ceil(list.data.value.total / list.data.value.limit)) : 0));
+const totalPages = computed(() => (list.data.value
+  ? Math.max(1, Math.ceil(list.data.value.total / list.data.value.limit))
+  : 0));
 
 watch(list.data, (page) => {
   if (page && !list.isPlaceholderData.value && params.value.page !== clampPage(params.value.page, totalPages.value)) {
-    setParams({ page: clampPage(params.value.page, totalPages.value) });
+    setParams({
+      page: clampPage(params.value.page, totalPages.value),
+    });
   }
 });
 

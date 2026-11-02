@@ -7,7 +7,9 @@ import { call, ORPCError } from '@orpc/server';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { authed, os } from './base.ts';
 
-vi.mock('#lib/context.ts', () => ({ resolveContext: vi.fn() }));
+vi.mock('#lib/context.ts', () => ({
+  resolveContext: vi.fn(),
+}));
 
 const event = {} as H3Event;
 
@@ -18,7 +20,9 @@ function ctx(role: string, activeOrganizationId: string | null): TamanContext {
       user: { id: 'user-1', role },
       session: { userId: 'user-1', activeOrganizationId },
     } as unknown as TamanContext['auth'],
-    member: activeOrganizationId ? { role: 'member', organizationId: activeOrganizationId } : null,
+    member: activeOrganizationId
+      ? { role: 'member', organizationId: activeOrganizationId }
+      : null,
   };
 }
 
@@ -34,17 +38,25 @@ describe('authed', () => {
 
   it('injects the resolved context', async () => {
     vi.mocked(resolveContext).mockResolvedValue(ctx('user', 'org-1'));
-    await expect(call(probe, undefined, { context: { event } })).resolves.toEqual([{ name: 'user-1', path: '/' }]);
+    await expect(call(probe, undefined, {
+      context: { event },
+    })).resolves.toEqual([
+      { name: 'user-1', path: '/' },
+    ]);
   });
 
   it('maps a missing session to UNAUTHORIZED', async () => {
     vi.mocked(resolveContext).mockRejectedValue(httpError({ status: 401, message: 'Unauthorized' }));
-    await expect(call(probe, undefined, { context: { event } })).rejects.toMatchObject({ code: 'UNAUTHORIZED' });
+    await expect(call(probe, undefined, {
+      context: { event },
+    })).rejects.toMatchObject({ code: 'UNAUTHORIZED' });
   });
 
   it('requires an active organization for non-admins', async () => {
     vi.mocked(resolveContext).mockResolvedValue(ctx('user', null));
-    await expect(call(probe, undefined, { context: { event } })).rejects.toMatchObject({
+    await expect(call(probe, undefined, {
+      context: { event },
+    })).rejects.toMatchObject({
       code: 'FORBIDDEN',
       data: { code: 'ORG_REQUIRED' },
     });
@@ -52,7 +64,9 @@ describe('authed', () => {
 
   it('lets platform admins through without an organization', async () => {
     vi.mocked(resolveContext).mockResolvedValue(ctx('admin', null));
-    await expect(call(probe, undefined, { context: { event } })).resolves.toHaveLength(1);
+    await expect(call(probe, undefined, {
+      context: { event },
+    })).resolves.toHaveLength(1);
   });
 });
 
@@ -63,7 +77,9 @@ describe('os base middleware', () => {
       throw new Error('query failed', { cause: refused });
     });
 
-    const error = await call(failing, undefined, { context: { event } }).catch((error_: unknown) => error_);
+    const error = await call(failing, undefined, {
+      context: { event },
+    }).catch((error_: unknown) => error_);
 
     expect(error).toBeInstanceOf(ORPCError);
     expect(error).toMatchObject({ code: 'SERVICE_UNAVAILABLE' });
@@ -75,7 +91,9 @@ describe('os base middleware', () => {
       throw new Error('boom');
     });
 
-    await expect(call(failing, undefined, { context: { event } })).rejects.toThrow();
+    await expect(call(failing, undefined, {
+      context: { event },
+    })).rejects.toThrow();
     expect(log).toHaveBeenCalledWith('[rpc] unhandled', expect.any(Error));
     log.mockRestore();
   });

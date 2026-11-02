@@ -38,7 +38,11 @@ function fakeBinding() {
 }
 
 function fakeMessage(body: unknown) {
-  return { body, ack: vi.fn(), retry: vi.fn() };
+  return {
+    body,
+    ack: vi.fn(),
+    retry: vi.fn(),
+  };
 }
 
 describe('maskEmail', () => {
@@ -103,20 +107,34 @@ describe('isEmailAddress', () => {
 describe('createCloudflareEmailSender', () => {
   it('sends a named sender as an address object', async () => {
     const { binding, sent } = fakeBinding();
-    await createCloudflareEmailSender(binding).send({ to: 'a@b.test', from, subject: 'S', html: '<p>H</p>', text: 'T' });
-
-    expect(sent).toEqual([{
+    await createCloudflareEmailSender(binding).send({
       to: 'a@b.test',
-      from: { email: 'no-reply@taman.test', name: 'Taman' },
+      from,
       subject: 'S',
       html: '<p>H</p>',
       text: 'T',
-    }]);
+    });
+
+    expect(sent).toEqual([
+      {
+        to: 'a@b.test',
+        from: { email: 'no-reply@taman.test', name: 'Taman' },
+        subject: 'S',
+        html: '<p>H</p>',
+        text: 'T',
+      },
+    ]);
   });
 
   it('sends a bare address when there is no display name', async () => {
     const { binding, sent } = fakeBinding();
-    await createCloudflareEmailSender(binding).send({ to: 'a@b.test', from: { email: 'no-reply@taman.test' }, subject: 'S', html: 'H', text: 'T' });
+    await createCloudflareEmailSender(binding).send({
+      to: 'a@b.test',
+      from: { email: 'no-reply@taman.test' },
+      subject: 'S',
+      html: 'H',
+      text: 'T',
+    });
 
     expect(sent[0]?.from).toBe('no-reply@taman.test');
   });
@@ -127,7 +145,13 @@ describe('createConsoleEmailSender', () => {
     const lines: Array<string> = [];
     await createConsoleEmailSender((...parts) => {
       lines.push(parts.join(' '));
-    }).send({ to: 'a@b.test', from, subject: 'Hello', html: '<p>x</p>', text: 'Open https://x.test' });
+    }).send({
+      to: 'a@b.test',
+      from,
+      subject: 'Hello',
+      html: '<p>x</p>',
+      text: 'Open https://x.test',
+    });
 
     expect(lines).toHaveLength(1);
     expect(lines[0]).toContain('to=a@b.test');
@@ -157,7 +181,10 @@ describe('createEmailDeliverer', () => {
 
   it('refuses to send without a from address, as a retryable error', async () => {
     const send = vi.fn();
-    const promise = createEmailDeliverer({ sender: { send }, from: { email: '' } })(job);
+    const promise = createEmailDeliverer({
+      sender: { send },
+      from: { email: '' },
+    })(job);
 
     await expect(promise).rejects.toThrow(/NITRO_EMAIL_FROM/);
     await expect(promise).rejects.not.toBeInstanceOf(EmailJobError);
@@ -165,7 +192,12 @@ describe('createEmailDeliverer', () => {
   });
 
   it('rejects a job without a valid recipient as EmailJobError', async () => {
-    const deliver = createEmailDeliverer({ sender: { send: vi.fn() }, from });
+    const deliver = createEmailDeliverer({
+      sender: {
+        send: vi.fn(),
+      },
+      from,
+    });
 
     await expect(deliver({ ...job, to: 'not-an-email' })).rejects.toBeInstanceOf(EmailJobError);
     await expect(deliver(null as unknown as EmailJob)).rejects.toBeInstanceOf(EmailJobError);
@@ -226,7 +258,10 @@ describe('consumeEmailBatch', () => {
       }
     });
     const onError = vi.fn();
-    const batch: EmailQueueBatch = { queue: 'taman-email', messages: [ok, transient, broken] };
+    const batch: EmailQueueBatch = {
+      queue: 'taman-email',
+      messages: [ok, transient, broken],
+    };
 
     await consumeEmailBatch(batch, deliver, onError);
 
@@ -241,9 +276,17 @@ describe('consumeEmailBatch', () => {
 
   it('acks a malformed body with the real deliverer instead of retrying it forever', async () => {
     const message = fakeMessage(null);
-    const deliver = createEmailDeliverer({ sender: { send: vi.fn() }, from });
+    const deliver = createEmailDeliverer({
+      sender: {
+        send: vi.fn(),
+      },
+      from,
+    });
 
-    await consumeEmailBatch({ queue: 'taman-email', messages: [message] }, deliver, vi.fn());
+    await consumeEmailBatch({
+      queue: 'taman-email',
+      messages: [message],
+    }, deliver, vi.fn());
 
     expect(message.ack).toHaveBeenCalledOnce();
     expect(message.retry).not.toHaveBeenCalled();
@@ -263,9 +306,17 @@ describe('consumeEmailBatch', () => {
         expiresAt: 'not a date',
       },
     });
-    const deliver = createEmailDeliverer({ sender: { send: vi.fn() }, from });
+    const deliver = createEmailDeliverer({
+      sender: {
+        send: vi.fn(),
+      },
+      from,
+    });
 
-    await consumeEmailBatch({ queue: 'taman-email', messages: [message] }, deliver, vi.fn());
+    await consumeEmailBatch({
+      queue: 'taman-email',
+      messages: [message],
+    }, deliver, vi.fn());
 
     expect(message.ack).toHaveBeenCalledOnce();
     expect(message.retry).not.toHaveBeenCalled();
@@ -273,9 +324,17 @@ describe('consumeEmailBatch', () => {
 
   it('retries every message while NITRO_EMAIL_FROM is missing', async () => {
     const message = fakeMessage(job);
-    const deliver = createEmailDeliverer({ sender: { send: vi.fn() }, from: { email: '' } });
+    const deliver = createEmailDeliverer({
+      sender: {
+        send: vi.fn(),
+      },
+      from: { email: '' },
+    });
 
-    await consumeEmailBatch({ queue: 'taman-email', messages: [message] }, deliver, vi.fn());
+    await consumeEmailBatch({
+      queue: 'taman-email',
+      messages: [message],
+    }, deliver, vi.fn());
 
     expect(message.retry).toHaveBeenCalledOnce();
     expect(message.ack).not.toHaveBeenCalled();
@@ -287,7 +346,9 @@ describe('createEmailServices', () => {
 
   it('queues jobs and sends through Cloudflare when both bindings exist', async () => {
     const { binding, sent } = fakeBinding();
-    const queue = { send: vi.fn(async () => {}) };
+    const queue = {
+      send: vi.fn(async () => {}),
+    };
     const { dispatcher, deliver } = createEmailServices({ EMAIL: binding, EMAIL_QUEUE: queue }, config);
 
     await dispatcher.dispatch(job);
@@ -297,7 +358,10 @@ describe('createEmailServices', () => {
 
     await deliver(job);
 
-    expect(sent[0]).toMatchObject({ to: 'ana@user.test', from: { email: 'no-reply@taman.test', name: 'Taman' } });
+    expect(sent[0]).toMatchObject({
+      to: 'ana@user.test',
+      from: { email: 'no-reply@taman.test', name: 'Taman' },
+    });
   });
 
   it('sends inline through Cloudflare when there is no queue', async () => {

@@ -30,10 +30,13 @@ export const themeTimeline = {
     },
 
     color: {
-      ...Object.fromEntries(POHON_THEME_BRANDS.map((color) => [color, {
-        indicator: `group-data-[state=completed]:bg-${color} group-data-[state=active]:bg-${color}`,
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color) => [
+        color,
+        {
+          indicator: `group-data-[state=completed]:bg-${color} group-data-[state=active]:bg-${color}`,
 
-      }])),
+        },
+      ])),
       neutral: {
         indicator: 'group-data-[state=active]:bg-background-inverted group-data-[state=completed]:bg-background-inverted',
       },

@@ -7,16 +7,29 @@ export default defineConfig({
     nodeCompat: true,
     wrangler: {
       durable_objects: {
-        bindings: [{ name: 'TODO_PUBLISHER', class_name: 'TodoPublisherObject' }],
+        bindings: [
+          { name: 'TODO_PUBLISHER', class_name: 'TodoPublisherObject' },
+        ],
       },
-      migrations: [{ tag: 'v1', new_sqlite_classes: ['TodoPublisherObject'] }],
+      migrations: [
+        {
+          tag: 'v1',
+          new_sqlite_classes: ['TodoPublisherObject'],
+        },
+      ],
       // Deployed worker name: renaming creates a new worker. Generated projects get `<name>-api` (template.manifest.ts).
       name: 'taman-better-auth-back',
       queues: {
-        consumers: [{ queue: 'taman-email', max_retries: 5, dead_letter_queue: 'taman-email-dlq' }],
-        producers: [{ binding: 'EMAIL_QUEUE', queue: 'taman-email' }],
+        consumers: [
+          { queue: 'taman-email', max_retries: 5, dead_letter_queue: 'taman-email-dlq' },
+        ],
+        producers: [
+          { binding: 'EMAIL_QUEUE', queue: 'taman-email' },
+        ],
       },
-      send_email: [{ name: 'EMAIL' }],
+      send_email: [
+        { name: 'EMAIL' },
+      ],
     },
   },
 
@@ -41,6 +54,9 @@ export default defineConfig({
     emailFrom: '',
     emailFromName: '',
   },
+
+  // Keep descriptive suffixes in ordered middleware names (1.cors.ts, 2.email.ts).
+  scanSuffixes: ['cors', 'email'],
 
   serverDir: './server',
 });

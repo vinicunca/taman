@@ -22,13 +22,19 @@ function isFilteredListKey(queryKey: QueryKey): boolean {
 export function applyTodoEvent(queryClient: QueryClient, utils: TamanQueryUtils, event: TodoEvent): void {
   if (event.type === 'updated') {
     queryClient.setQueriesData<TodoPage>(
-      { queryKey: utils.todo.list.key() },
+      {
+        queryKey: utils.todo.list.key(),
+      },
       (page) => page && {
         ...page,
-        items: page.items.map((item) => (item.id === event.todo.id ? event.todo : item)),
+        items: page.items.map((item) => (item.id === event.todo.id
+          ? event.todo
+          : item)),
       },
     );
-    queryClient.setQueryData(utils.todo.get.queryKey({ input: { id: event.todo.id } }), event.todo);
+    queryClient.setQueryData(utils.todo.get.queryKey({
+      input: { id: event.todo.id },
+    }), event.todo);
 
     void queryClient.invalidateQueries({
       predicate: (query) => isFilteredListKey(query.queryKey),
@@ -38,8 +44,14 @@ export function applyTodoEvent(queryClient: QueryClient, utils: TamanQueryUtils,
   }
 
   if (event.type === 'removed') {
-    queryClient.removeQueries({ queryKey: utils.todo.get.queryKey({ input: { id: event.id } }) });
+    queryClient.removeQueries({
+      queryKey: utils.todo.get.queryKey({
+        input: { id: event.id },
+      }),
+    });
   }
 
-  void queryClient.invalidateQueries({ queryKey: utils.todo.list.key() });
+  void queryClient.invalidateQueries({
+    queryKey: utils.todo.list.key(),
+  });
 }

@@ -75,7 +75,9 @@ function getLeadingIcon(value: TamanButtonCheckGroupValue) {
     return undefined;
   }
 
-  return isChecked(value) ? 'lucide:circle-check-big' : 'lucide:circle';
+  return isChecked(value)
+    ? 'lucide:circle-check-big'
+    : 'lucide:circle';
 }
 
 async function onOptionClick(value: TamanButtonCheckGroupValue) {
@@ -98,7 +100,9 @@ async function onOptionClick(value: TamanButtonCheckGroupValue) {
   });
   modelValue.value = fromCheckGroupSelection(next, props.multiple);
 
-  emits('btnClick', !props.multiple && next.length === 0 ? undefined : value);
+  emits('btnClick', !props.multiple && next.length === 0
+    ? undefined
+    : value);
 }
 </script>
 

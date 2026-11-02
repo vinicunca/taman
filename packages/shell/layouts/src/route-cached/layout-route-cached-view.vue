@@ -50,7 +50,9 @@ const computedCachedRoutes = computed(() => {
   }
   // Exclude tabs marked for refresh from the cache
   const excludeCachedTabKeys = unref(getExcludeCachedTabs);
-  return [...unref(getCachedRoutes).values()].filter((item) => {
+  return [
+    ...unref(getCachedRoutes).values(),
+  ].filter((item) => {
     const componentType: any = item.component.type || {};
     let componentName = componentType.name;
     if (!componentName) {

@@ -38,10 +38,13 @@ export const themeCalendar = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(POHON_THEME_BRANDS.map((color) => [color, {
-        headCell: `color-${color}`,
-        cellTrigger: `outline-${color}/25`,
-      }])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color) => [
+        color,
+        {
+          headCell: `color-${color}`,
+          cellTrigger: `outline-${color}/25`,
+        },
+      ])),
       neutral: {
         headCell: 'color-text-highlighted',
         cellTrigger: 'outline-outline-inverted/25',

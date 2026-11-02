@@ -16,7 +16,9 @@ describe('parseProductListQuery', () => {
 
   it('ignores blank search and takes the first value of repeated keys', () => {
     expect(parseProductListQuery({ search: '   ' }).search).toBeUndefined();
-    expect(parseProductListQuery({ page: ['4', '9'] }).page).toBe(4);
+    expect(parseProductListQuery({
+      page: ['4', '9'],
+    }).page).toBe(4);
   });
 
   it('caps an over-long hand-edited search at 100 chars', () => {
@@ -28,7 +30,9 @@ describe('parseProductListQuery', () => {
   it('treats a page that is not a safe integer (e.g. 1e20) as page 1', () => {
     expect(parseProductListQuery({ page: '1e20' })).toMatchObject({ page: 1 });
     expect(parseProductListQuery({ page: 'Infinity' })).toMatchObject({ page: 1 });
-    expect(parseProductListQuery({ page: String(Number.MAX_SAFE_INTEGER + 10) })).toMatchObject({ page: 1 });
+    expect(parseProductListQuery({
+      page: String(Number.MAX_SAFE_INTEGER + 10),
+    })).toMatchObject({ page: 1 });
   });
 });
 

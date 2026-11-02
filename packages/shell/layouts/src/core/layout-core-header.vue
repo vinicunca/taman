@@ -200,7 +200,9 @@ const rightSlots = computed(() => {
   Object.keys(slots).forEach((key) => {
     if (key.startsWith('header-right')) {
       const slotIndex = Number(key.split('-')[2]);
-      const index = Number.isNaN(slotIndex) ? nextIndex(list) : slotIndex;
+      const index = Number.isNaN(slotIndex)
+        ? nextIndex(list)
+        : slotIndex;
       list.push({ index, name: key });
     }
   });
@@ -219,7 +221,9 @@ const leftSlots = computed(() => {
     if (key.startsWith('header-left')) {
       // Get the third placeholder number. If the third placeholder is not a number, the sort index is automatically assigned.
       const slotIndex = Number(key.split('-')[2]);
-      const index = Number.isNaN(slotIndex) ? nextIndex(list) : slotIndex;
+      const index = Number.isNaN(slotIndex)
+        ? nextIndex(list)
+        : slotIndex;
       list.push({ index, name: key });
     }
   });
@@ -233,7 +237,9 @@ const leftSlots = computed(() => {
  */
 function nextIndex(list: Array<SlotItem>) {
   const index
-    = list.length > 0 ? Math.max(...list.map((item) => item.index)) : 0;
+    = list.length > 0
+      ? Math.max(...list.map((item) => item.index))
+      : 0;
   return index + 1;
 }
 

@@ -22,5 +22,9 @@ export function normalizeScope(value: string): string {
 }
 
 export function toNames(name: string, scope: string): GenerateNames {
-  return { name, nameSnake: name.replace(/[^a-z0-9]+/g, '_'), scope };
+  return {
+    name,
+    nameSnake: name.replace(/[^a-z0-9]+/g, '_'),
+    scope,
+  };
 }

@@ -14,19 +14,25 @@ export function toCheckGroupSelection(
   multiple: boolean,
 ): Array<TamanButtonCheckGroupValue> {
   if (!Array.isArray(value)) {
-    return value === undefined ? [] : [value];
+    return value === undefined
+      ? []
+      : [value];
   }
 
   const selection = value.filter((item) => item !== undefined);
 
-  return multiple ? selection : selection.slice(0, 1);
+  return multiple
+    ? selection
+    : selection.slice(0, 1);
 }
 
 export function fromCheckGroupSelection(
   selection: Array<TamanButtonCheckGroupValue>,
   multiple: boolean,
 ): TamanButtonCheckGroupModel {
-  return multiple ? [...selection] : selection[0];
+  return multiple
+    ? [...selection]
+    : selection[0];
 }
 
 export function toggleCheckGroupSelection(
@@ -37,7 +43,9 @@ export function toggleCheckGroupSelection(
   const isChecked = selection.includes(value);
 
   if (!multiple) {
-    return isChecked && allowClear ? [] : [value];
+    return isChecked && allowClear
+      ? []
+      : [value];
   }
 
   if (isChecked) {

@@ -22,7 +22,9 @@ export const useSessionStore = defineStore('auth-session', () => {
   const session = computed(() => authData.value?.session ?? null);
   const isAuthenticated = computed(() => !!user.value);
   const roles = computed(() =>
-    (user.value?.role ? [user.value.role] : []) as Array<AuthRoleNames>,
+    (user.value?.role
+      ? [user.value.role]
+      : []) as Array<AuthRoleNames>,
   );
 
   const isLoggingIn = ref(false);
@@ -101,11 +103,14 @@ export const useSessionStore = defineStore('auth-session', () => {
       resetAllStores();
     }
 
+    const currentRoute = router.currentRoute.value;
     await router.replace({
       path: LOGIN_PATH,
-      query: {
-        redirect: encodeURIComponent(router.currentRoute.value.fullPath),
-      },
+      query: currentRoute.path === LOGIN_PATH
+        ? {}
+        : {
+            redirect: encodeURIComponent(currentRoute.fullPath),
+          },
     });
   }
 

@@ -17,7 +17,9 @@ const enableTabbar = computed(() => preferences.tabbar.enable);
 
 const iframeRoutes = computed(() => {
   if (!enableTabbar.value) {
-    return route.meta.iframeSrc ? [route] : [];
+    return route.meta.iframeSrc
+      ? [route]
+      : [];
   }
   return tabbarStore.getTabs.filter((tab) => !!tab.meta?.iframeSrc);
 });
@@ -61,7 +63,9 @@ function hideLoading(index: number) {
 function showSpinning(index: number) {
   const curSpinning = spinningList.value[index];
   // Show loading on first load
-  return curSpinning === undefined ? true : curSpinning;
+  return curSpinning === undefined
+    ? true
+    : curSpinning;
 }
 </script>
 

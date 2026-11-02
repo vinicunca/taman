@@ -1,8 +1,24 @@
 import { describe, expect, it } from 'vitest';
 import { applyCreatedProduct, applyDeletedProduct, applyUpdatedProduct } from './apply-product-event';
 
-const firstPage = { products: [{ id: 1, title: 'A', price: 1 }, { id: 2, title: 'B', price: 2 }], total: 12, skip: 0, limit: 2 };
-const secondPage = { products: [{ id: 3, title: 'C', price: 3 }, { id: 4, title: 'D', price: 4 }], total: 12, skip: 2, limit: 2 };
+const firstPage = {
+  products: [
+    { id: 1, title: 'A', price: 1 },
+    { id: 2, title: 'B', price: 2 },
+  ],
+  total: 12,
+  skip: 0,
+  limit: 2,
+};
+const secondPage = {
+  products: [
+    { id: 3, title: 'C', price: 3 },
+    { id: 4, title: 'D', price: 4 },
+  ],
+  total: 12,
+  skip: 2,
+  limit: 2,
+};
 
 describe('applyCreatedProduct', () => {
   it('prepends the new row on the first page (skip 0) and trims it to its own limit', () => {
@@ -41,7 +57,9 @@ describe('applyUpdatedProduct', () => {
 describe('applyDeletedProduct', () => {
   it('removes the matching row and decrements total on the page that has it', () => {
     const result = applyDeletedProduct(firstPage, 1);
-    expect(result.products).toEqual([{ id: 2, title: 'B', price: 2 }]);
+    expect(result.products).toEqual([
+      { id: 2, title: 'B', price: 2 },
+    ]);
     expect(result.total).toBe(11);
   });
 

@@ -15,7 +15,9 @@ export interface ProductListParams {
 }
 
 function first(value: LocationQueryValue | Array<LocationQueryValue> | undefined): string | undefined {
-  const single = Array.isArray(value) ? value[0] : value;
+  const single = Array.isArray(value)
+    ? value[0]
+    : value;
   return single ?? undefined;
 }
 
@@ -32,10 +34,16 @@ export function parseProductListQuery(query: LocationQuery): ProductListParams {
     // Anything that isn't a safe integer (e.g. `1e20`, `Infinity`, `NaN`)
     // would still pass a naive `>= 1` check, so treat it the same as any
     // other unparsable page.
-    page: Number.isSafeInteger(page) && page >= 1 ? page : 1,
-    pageSize: (PAGE_SIZES as ReadonlyArray<number>).includes(pageSize) ? pageSize : DEFAULT_PAGE_SIZE,
+    page: Number.isSafeInteger(page) && page >= 1
+      ? page
+      : 1,
+    pageSize: (PAGE_SIZES as ReadonlyArray<number>).includes(pageSize)
+      ? pageSize
+      : DEFAULT_PAGE_SIZE,
     // Cap an over-long hand-edited search instead of sending it as-is.
-    search: search ? search.slice(0, SEARCH_MAX_LENGTH) : undefined,
+    search: search
+      ? search.slice(0, SEARCH_MAX_LENGTH)
+      : undefined,
   };
 }
 

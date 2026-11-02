@@ -10,7 +10,10 @@ vi.mock('../composables/use-sidebar-drag', async (importOriginal) => {
     = await importOriginal<typeof import('../composables/use-sidebar-drag')>();
   return {
     ...actual,
-    useSidebarDrag: () => ({ startDrag: vi.fn(), endDrag: vi.fn() }),
+    useSidebarDrag: () => ({
+      startDrag: vi.fn(),
+      endDrag: vi.fn(),
+    }),
   };
 });
 
@@ -56,7 +59,9 @@ function mountSidebar(options: MountOptions = {}) {
 
 /** Width reserved by the placeholder that pushes the content in the flex flow */
 function getPlaceholderWidth(): number {
-  const placeholder = [...document.querySelectorAll('div')].find(
+  const placeholder = [
+    ...document.querySelectorAll('div'),
+  ].find(
     (el) => (el as HTMLElement).style.flexBasis !== '',
   );
   if (!placeholder) {
@@ -67,7 +72,9 @@ function getPlaceholderWidth(): number {
 
 /** Rendered width of the extra panel itself */
 function getExtraPanelWidth(): number {
-  const panel = [...document.querySelectorAll('aside > div')].find((el) =>
+  const panel = [
+    ...document.querySelectorAll('aside > div'),
+  ].find((el) =>
     el.classList.contains('fixed'),
   );
   if (!panel) {

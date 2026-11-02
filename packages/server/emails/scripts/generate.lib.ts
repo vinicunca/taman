@@ -25,6 +25,11 @@ export function assertValidTemplate(source: string, fileName: string): Array<str
 export function createTemplateModule(name: string, html: string, text: string): string {
   const htmlSlots = assertValidTemplate(html, `${name}.html`);
   const textSlots = assertValidTemplate(text, `${name}.txt`);
-  const slots = [...new Set([...htmlSlots, ...textSlots])].sort();
+  const slots = [
+    ...new Set([
+      ...htmlSlots,
+      ...textSlots,
+    ]),
+  ].sort();
   return `/* eslint-disable */\n/* cspell:disable */\nimport type { CompiledTemplate } from '../types.ts';\n\nconst template: CompiledTemplate = {\n  slots: ${JSON.stringify(slots)},\n  html: ${JSON.stringify(html)},\n  text: ${JSON.stringify(text)},\n};\n\nexport default template;\n`;
 }

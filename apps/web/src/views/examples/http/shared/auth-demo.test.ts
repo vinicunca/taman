@@ -23,7 +23,9 @@ function createFakeFetch() {
   const fetch: typeof globalThis.fetch = async (input, init) => {
     const request = new Request(input as RequestInfo, init);
     const url = new URL(request.url);
-    const body = request.method === 'GET' ? undefined : await request.clone().json().catch(() => undefined);
+    const body = request.method === 'GET'
+      ? undefined
+      : await request.clone().json().catch(() => undefined);
     calls.push({ method: request.method, path: url.pathname, body });
 
     if (url.pathname === '/auth/login' && request.method === 'POST') {
@@ -89,8 +91,18 @@ describe('createAuthDemo', () => {
       .slice()
       .reverse()
       .map((entry) => entry.kind)
-      .filter((kind) => (['unauthorized', 'refresh', 'retry', 'success'] as Array<string>).includes(kind));
-    expect(relevantKinds.slice(-4)).toEqual(['unauthorized', 'refresh', 'retry', 'success']);
+      .filter((kind) => ([
+        'unauthorized',
+        'refresh',
+        'retry',
+        'success',
+      ] as Array<string>).includes(kind));
+    expect(relevantKinds.slice(-4)).toEqual([
+      'unauthorized',
+      'refresh',
+      'retry',
+      'success',
+    ]);
   });
 
   it('clears the session and logs a failure when the refresh token is also invalid', async () => {
@@ -115,7 +127,10 @@ describe('createAuthDemo', () => {
     await demo.login();
     demo.expireAccessToken();
 
-    const outcomes = await Promise.allSettled([demo.fetchMe(), demo.fetchMe()]);
+    const outcomes = await Promise.allSettled([
+      demo.fetchMe(),
+      demo.fetchMe(),
+    ]);
 
     expect(outcomes.map((outcome) => outcome.status)).toEqual(['fulfilled', 'fulfilled']);
     expect(fake.countCalls('/auth/refresh')).toBe(1);

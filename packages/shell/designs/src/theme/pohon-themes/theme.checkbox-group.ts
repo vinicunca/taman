@@ -59,7 +59,10 @@ export const themeCheckboxGroup = {
     },
   },
   compoundVariants: [
-    ...[...POHON_THEME_BRANDS.map((color) => [color, color]), ['neutral', 'inverted']].map(([color, token]: Array<string>) => ({
+    ...[
+      ...POHON_THEME_BRANDS.map((color) => [color, color]),
+      ['neutral', 'inverted'],
+    ].map(([color, token]: Array<string>) => ({
       color,
       variant: 'table',
       class: {
@@ -73,11 +76,31 @@ export const themeCheckboxGroup = {
         item: 'hover:[&:not(:has(:disabled,:focus-visible,[data-state=checked]))]:border-border-accented',
       },
     },
-    { size: 'xs', variant: 'table', class: { item: 'p-2.5' } },
-    { size: 'sm', variant: 'table', class: { item: 'p-3' } },
-    { size: 'md', variant: 'table', class: { item: 'p-3.5' } },
-    { size: 'lg', variant: 'table', class: { item: 'p-4' } },
-    { size: 'xl', variant: 'table', class: { item: 'p-4.5' } },
+    {
+      size: 'xs',
+      variant: 'table',
+      class: { item: 'p-2.5' },
+    },
+    {
+      size: 'sm',
+      variant: 'table',
+      class: { item: 'p-3' },
+    },
+    {
+      size: 'md',
+      variant: 'table',
+      class: { item: 'p-3.5' },
+    },
+    {
+      size: 'lg',
+      variant: 'table',
+      class: { item: 'p-4' },
+    },
+    {
+      size: 'xl',
+      variant: 'table',
+      class: { item: 'p-4.5' },
+    },
     {
       orientation: 'horizontal',
       variant: 'table',

@@ -18,7 +18,10 @@ const mocks = vi.hoisted(() => {
       formState.values = state?.values ?? {};
     }),
     setValues: vi.fn((values: Record<string, unknown>) => {
-      formState.values = { ...formState.values, ...values };
+      formState.values = {
+        ...formState.values,
+        ...values,
+      };
     }),
     validateAndSubmit: vi.fn(),
   };
@@ -36,12 +39,18 @@ const mocks = vi.hoisted(() => {
 vi.mock('@taman/app-ui', () => ({
   useTamanDrawer: (options: { onOpenChange: (isOpen: boolean) => void }) => {
     mocks.drawerOptions = options;
-    return [defineComponent(() => () => h('div')), mocks.drawerApi];
+    return [
+      defineComponent(() => () => h('div')),
+      mocks.drawerApi,
+    ];
   },
 }));
 
 vi.mock('#/adapter/form', () => ({
-  useTamanForm: () => [defineComponent(() => () => h('form')), mocks.formApi],
+  useTamanForm: () => [
+    defineComponent(() => () => h('form')),
+    mocks.formApi,
+  ],
 }));
 
 describe('formDrawerDemo', () => {

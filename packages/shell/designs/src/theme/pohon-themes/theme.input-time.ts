@@ -8,9 +8,9 @@ export const themeInputTime = defuFn(
   {
     slots: {
       root: () => undefined,
-      base: () => 'group relative inline-flex items-center rounded-md select-none transition-colors',
-      segment: 'rounded-sm text-center outline-hidden data-[placeholder]:color-text-dimmed data-[segment=literal]:color-text-muted data-[invalid]:color-error data-disabled:(cursor-not-allowed opacity-75) transition-colors',
-      separatorIcon: 'shrink-0 size-4 color-text-muted',
+      base: () => 'group rounded-md inline-flex select-none transition-colors items-center relative',
+      segment: 'data-disabled:cursor-not-allowed data-disabled:opacity-75 text-center outline-hidden rounded-sm transition-colors data-[invalid]:color-error data-[placeholder]:color-text-dimmed data-[segment=literal]:color-text-muted',
+      separatorIcon: 'color-text-muted shrink-0 size-4',
     },
     variants: {
       ...fieldGroupVariant,
@@ -38,14 +38,19 @@ export const themeInputTime = defuFn(
         },
       },
       variant: (prev: Record<string, string>) => Object.fromEntries(
-        Object.entries(prev).map(([key, value]) => [key, replaceFocus(value)]),
+        Object.entries(prev).map(([key, value]) => [
+          key,
+          replaceFocus(value),
+        ]),
       ),
     },
 
     compoundVariants: (prev: Array<Record<string, any>>) => [
       ...prev.map((item) => ({
         ...item,
-        class: typeof item.class === 'string' ? replaceFocus(item.class) : item.class,
+        class: typeof item.class === 'string'
+          ? replaceFocus(item.class)
+          : item.class,
       })),
       {
         variant: 'outline',

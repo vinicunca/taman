@@ -65,7 +65,9 @@ const isFirstLevel = computed(() => {
 
 const contentProps = computed<PopoverProps['content']>(() => {
   const isHorizontal = mode.value === 'horizontal';
-  const side = isHorizontal && isFirstLevel.value ? 'bottom' : 'right';
+  const side = isHorizontal && isFirstLevel.value
+    ? 'bottom'
+    : 'right';
 
   return {
     collisionPadding: { top: 20 },
@@ -171,7 +173,9 @@ function handleMouseleave(deepDispatch = false) {
 }
 
 const menuIcon = computed(() =>
-  active.value ? props.activeIcon || props.icon : props.icon,
+  active.value
+    ? props.activeIcon || props.icon
+    : props.icon,
 );
 
 const item = reactive({

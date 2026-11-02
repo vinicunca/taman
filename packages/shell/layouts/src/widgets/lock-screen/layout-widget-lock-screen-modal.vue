@@ -42,11 +42,15 @@ const [
           placeholder: $t('ui.widgets.lockScreen.placeholder'),
         },
         fieldName: 'lockScreenPassword',
-        formFieldProps: { validateOn: ['change'] as const },
+        formFieldProps: {
+          validateOn: ['change'] as const,
+        },
         label: $t('authentication.password'),
         rules: z
           .string()
-          .min(1, { message: $t('ui.widgets.lockScreen.placeholder') }),
+          .min(1, {
+            message: $t('ui.widgets.lockScreen.placeholder'),
+          }),
       },
     ]),
     showDefaultActions: false,

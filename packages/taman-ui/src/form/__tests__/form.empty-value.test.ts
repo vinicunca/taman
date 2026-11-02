@@ -14,7 +14,9 @@ describe('isEmptyFormValue', () => {
   });
 
   it('treats a non-empty File list as present', () => {
-    expect(isEmptyFormValue([makeFile('a.png')])).toBe(false);
+    expect(isEmptyFormValue([
+      makeFile('a.png'),
+    ])).toBe(false);
   });
 
   it('treats missing values as empty', () => {

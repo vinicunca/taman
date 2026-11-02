@@ -72,10 +72,13 @@ export const themeStepper = {
     },
 
     color: {
-      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
-        trigger: `group-data-[state=completed]:bg-${color} group-data-[state=active]:bg-${color} outline-${color}/25`,
-        separator: `group-data-[state=completed]:bg-${color}`,
-      }])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [
+        color,
+        {
+          trigger: `group-data-[state=completed]:bg-${color} group-data-[state=active]:bg-${color} outline-${color}/25`,
+          separator: `group-data-[state=completed]:bg-${color}`,
+        },
+      ])),
       neutral: {
         trigger: 'outline-outline-inverted/25 group-data-[state=active]:bg-background-inverted group-data-[state=completed]:bg-background-inverted',
         separator: 'group-data-[state=completed]:bg-background-inverted',

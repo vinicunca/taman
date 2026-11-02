@@ -26,7 +26,9 @@ function encodeArrayFormValues(values: Readonly<ArrayFormValues>) {
       return {
         ...contact,
         name: contact.name.trim(),
-        ...(trimmedPhone ? { phone: trimmedPhone } : {}),
+        ...(trimmedPhone
+          ? { phone: trimmedPhone }
+          : {}),
       };
     }),
   };
@@ -79,7 +81,9 @@ const schema: Array<TamanFormSchema<ArrayFormValues>> = [
         return {
           componentProps: {
             disabled: !planName,
-            placeholder: planName ? `${planName} additional description` : 'Please enter the plan name first',
+            placeholder: planName
+              ? `${planName} additional description`
+              : 'Please enter the plan name first',
             rows: 2,
           },
           required: String(values.planName ?? '').includes('On-Duty'),
@@ -139,7 +143,9 @@ const schema: Array<TamanFormSchema<ArrayFormValues>> = [
               componentProps: {
                 disabled: schema?.row?.role === 'viewer',
                 placeholder:
-                  schema?.row?.role === 'viewer' ? 'Observer does not need a phone' : 'Please enter the phone',
+                  schema?.row?.role === 'viewer'
+                    ? 'Observer does not need a phone'
+                    : 'Please enter the phone',
               },
             };
           },

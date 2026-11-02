@@ -25,7 +25,10 @@ function withAccess<T>(
     app.provide(ACCESS_ROLES_KEY, roles);
   }
   app.mount(document.createElement('div'));
-  return { result, unmount: () => app.unmount() };
+  return {
+    result,
+    unmount: () => app.unmount(),
+  };
 }
 
 let unmount: (() => void) | undefined;

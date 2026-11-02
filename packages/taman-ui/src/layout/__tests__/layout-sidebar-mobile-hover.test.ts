@@ -10,7 +10,10 @@ vi.mock('@vinicunca/taman-core/composables', async (importOriginal) => {
     = await importOriginal<typeof import('@vinicunca/taman-core/composables')>();
   return {
     ...actual,
-    useScrollLock: () => computed({ get: () => false, set: () => {} }),
+    useScrollLock: () => computed({
+      get: () => false,
+      set: () => {},
+    }),
   };
 });
 
@@ -19,7 +22,10 @@ vi.mock('../composables/use-sidebar-drag', async (importOriginal) => {
     = await importOriginal<typeof import('../composables/use-sidebar-drag')>();
   return {
     ...actual,
-    useSidebarDrag: () => ({ startDrag: vi.fn(), endDrag: vi.fn() }),
+    useSidebarDrag: () => ({
+      startDrag: vi.fn(),
+      endDrag: vi.fn(),
+    }),
   };
 });
 

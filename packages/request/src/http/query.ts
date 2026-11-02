@@ -46,7 +46,9 @@ function scalar(item: unknown): string {
   if (item === null) {
     return '';
   }
-  return item instanceof Date ? item.toISOString() : String(item);
+  return item instanceof Date
+    ? item.toISOString()
+    : String(item);
 }
 
 function appendArray(params: URLSearchParams, key: string, items: Array<unknown>, arrayFormat: ArrayFormat): void {
@@ -67,7 +69,9 @@ function appendArray(params: URLSearchParams, key: string, items: Array<unknown>
     return;
   }
 
-  const itemKey = arrayFormat === 'brackets' ? `${key}[]` : key;
+  const itemKey = arrayFormat === 'brackets'
+    ? `${key}[]`
+    : key;
   for (const item of present) {
     params.append(itemKey, scalar(item));
   }
@@ -78,5 +82,7 @@ export function appendQueryString(url: string, queryString: string): string {
   if (!queryString) {
     return url;
   }
-  return `${url}${url.includes('?') ? '&' : '?'}${queryString}`;
+  return `${url}${url.includes('?')
+    ? '&'
+    : '?'}${queryString}`;
 }

@@ -92,15 +92,21 @@ function splitOptions(options: object): [HttpQueryRequestOptions, Record<string,
 
 /** Keys must be JSON-serializable for TanStack's hashing. */
 function keyQuery(query: HttpQuery | undefined): unknown {
-  return query instanceof URLSearchParams ? query.toString() : query ?? null;
+  return query instanceof URLSearchParams
+    ? query.toString()
+    : query ?? null;
 }
 
 /** TanStack Query options builders for an `./http` client. */
 export function createHttpQueryUtils(client: HttpClient, options: { key?: ReadonlyArray<unknown> } = {}): HttpQueryUtils {
-  const root = [...(options.key ?? [])];
+  const root = [
+    ...(options.key ?? []),
+  ];
 
   function mutation<TData, TVariables>(method: Exclude<HttpMethod, 'GET' | 'HEAD'>, path: MutationPath<TVariables>): HttpMutationEndpoint<TData, TVariables> {
-    const key = () => (typeof path === 'string' ? [...root, method, path] : [...root, method]);
+    const key = () => (typeof path === 'string'
+      ? [...root, method, path]
+      : [...root, method]);
     return {
       key,
       mutationOptions(mutationOptions = {} as never) {
@@ -109,10 +115,14 @@ export function createHttpQueryUtils(client: HttpClient, options: { key?: Readon
         return {
           ...rest,
           mutationKey: key(),
-          mutationFn: (variables: TVariables) => client.request<TData>(typeof path === 'function' ? path(variables) : path, {
+          mutationFn: (variables: TVariables) => client.request<TData>(typeof path === 'function'
+            ? path(variables)
+            : path, {
             ...request,
             method,
-            body: body ? body(variables) : variables,
+            body: body
+              ? body(variables)
+              : variables,
           }),
         } as never;
       },
@@ -120,7 +130,9 @@ export function createHttpQueryUtils(client: HttpClient, options: { key?: Readon
   }
 
   return {
-    key: (path) => (path === undefined ? [...root] : [...root, 'GET', path]),
+    key: (path) => (path === undefined
+      ? [...root]
+      : [...root, 'GET', path]),
     get<TData>(path: string): HttpQueryEndpoint<TData> {
       return {
         key: () => [...root, 'GET', path],
@@ -128,7 +140,14 @@ export function createHttpQueryUtils(client: HttpClient, options: { key?: Readon
           const [request, rest] = splitOptions(queryOptions);
           return {
             ...rest,
-            queryKey: [...root, 'GET', path, { query: keyQuery(request.query) }],
+            queryKey: [
+              ...root,
+              'GET',
+              path,
+              {
+                query: keyQuery(request.query),
+              },
+            ],
             queryFn: ({ signal }: QueryFunctionContext) => client.request<TData>(path, { ...request, method: 'GET', signal }),
           } as never;
         },

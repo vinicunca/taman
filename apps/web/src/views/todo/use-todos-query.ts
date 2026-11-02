@@ -36,7 +36,9 @@ export function useTodosQuery(params: MaybeRefOrGetter<TodoListParams>) {
   }
 
   const mutationCallbacks = {
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: orpc.todo.key() }),
+    onSuccess: () => queryClient.invalidateQueries({
+      queryKey: orpc.todo.key(),
+    }),
     onError: onMutationError,
   };
 

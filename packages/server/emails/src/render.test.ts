@@ -42,7 +42,13 @@ describe('assertHttpUrl', () => {
     expect(assertHttpUrl('http://localhost:5601/auth', 'actionUrl')).toBe('http://localhost:5601/auth');
   });
 
-  it.each(['javascript:alert(1)', '/relative/path', 'mailto:a@b.test', undefined, ''])('rejects %s', (value) => {
+  it.each([
+    'javascript:alert(1)',
+    '/relative/path',
+    'mailto:a@b.test',
+    undefined,
+    '',
+  ])('rejects %s', (value) => {
     expect(() => assertHttpUrl(value, 'actionUrl')).toThrow(EmailJobError);
   });
 });
@@ -80,17 +86,32 @@ describe('renderCompiled', () => {
   });
 
   it('rejects a non-http URL slot', () => {
-    expect(() => renderCompiled({ compiled, copy, vars: { org: 'A' }, urls: { actionUrl: 'javascript:alert(1)' } }))
+    expect(() => renderCompiled({
+      compiled,
+      copy,
+      vars: { org: 'A' },
+      urls: { actionUrl: 'javascript:alert(1)' },
+    }))
       .toThrow(EmailJobError);
   });
 
   it('throws when the copy has no subject', () => {
-    expect(() => renderCompiled({ compiled, copy: { preheader: 'Hi', heading: 'H' }, vars: {}, urls: { actionUrl: 'https://app.test' } }))
+    expect(() => renderCompiled({
+      compiled,
+      copy: { preheader: 'Hi', heading: 'H' },
+      vars: {},
+      urls: { actionUrl: 'https://app.test' },
+    }))
       .toThrow(EmailJobError);
   });
 
   it('throws when a slot has neither copy nor URL', () => {
-    expect(() => renderCompiled({ compiled, copy: { subject: 'S', preheader: 'Hi' }, vars: {}, urls: { actionUrl: 'https://app.test' } }))
+    expect(() => renderCompiled({
+      compiled,
+      copy: { subject: 'S', preheader: 'Hi' },
+      vars: {},
+      urls: { actionUrl: 'https://app.test' },
+    }))
       .toThrow(EmailJobError);
   });
 });

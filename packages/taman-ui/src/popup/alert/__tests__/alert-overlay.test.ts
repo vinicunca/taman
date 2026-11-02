@@ -8,7 +8,9 @@ vi.mock('../alert.vue', () => ({
     emits: ['closed', 'opened'],
     setup(_, { emit }) {
       onMounted(() => emit('opened'));
-      return () => h('button', { onClick: () => emit('closed', true) });
+      return () => h('button', {
+        onClick: () => emit('closed', true),
+      });
     },
   }),
 }));

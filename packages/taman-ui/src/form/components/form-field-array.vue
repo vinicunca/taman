@@ -43,7 +43,9 @@ if (!form) {
 const formActions = form;
 const arrayLength = formActions.useSelector((state) => {
   const value = get(state.values, props.name);
-  return Array.isArray(value) ? value.length : 0;
+  return Array.isArray(value)
+    ? value.length
+    : 0;
 });
 const rowIndexes = computed(() =>
   Array.from({ length: arrayLength.value }, (_, index) => index),
@@ -53,7 +55,9 @@ const canAdd = computed(() => arrayLength.value < props.max);
 const canRemove = computed(() => arrayLength.value > props.min);
 const gridStyle = computed(() => {
   const columns = [
-    ...(props.showIndex ? ['3rem'] : []),
+    ...(props.showIndex
+      ? ['3rem']
+      : []),
     ...props.schema.map(() => 'minmax(0, 1fr)'),
     '4rem',
   ];

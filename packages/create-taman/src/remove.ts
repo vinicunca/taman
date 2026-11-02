@@ -9,7 +9,9 @@ export function removeFiles(files: FileMap, globs: Array<string>): FileMap {
 
 /** Globs that match no path: a sign the manifest no longer matches the code. */
 export function unmatchedGlobs(files: FileMap, globs: Array<string>): Array<string> {
-  const paths = [...files.keys()];
+  const paths = [
+    ...files.keys(),
+  ];
   return globs.filter((glob) => {
     const pattern = globToRegExp(glob);
     return !paths.some((path) => pattern.test(path));

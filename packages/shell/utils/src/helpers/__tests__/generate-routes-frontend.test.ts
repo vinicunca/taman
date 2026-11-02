@@ -18,16 +18,25 @@ const mockRoutes = [
     children: [
       {
         path: '/dashboard/overview',
-        meta: { authority: ['admin'], hideInMenu: false },
+        meta: {
+          authority: ['admin'],
+          hideInMenu: false,
+        },
       },
       {
         path: '/dashboard/stats',
-        meta: { authority: ['user'], hideInMenu: true },
+        meta: {
+          authority: ['user'],
+          hideInMenu: true,
+        },
       },
     ],
   },
   {
-    meta: { authority: ['admin'], hideInMenu: false },
+    meta: {
+      authority: ['admin'],
+      hideInMenu: false,
+    },
     path: '/settings',
   },
   {
@@ -51,7 +60,9 @@ describe('hasAuthority', () => {
 
   it('should call the callback and return true when it grants access', () => {
     const route = {
-      meta: { authority: (roles: Array<string>) => roles.includes('admin') },
+      meta: {
+        authority: (roles: Array<string>) => roles.includes('admin'),
+      },
       path: '/permission-gated',
     } as unknown as RouteRecordRaw;
 
@@ -60,7 +71,9 @@ describe('hasAuthority', () => {
 
   it('should call the callback and return false when it denies access', () => {
     const route = {
-      meta: { authority: (roles: Array<string>) => roles.includes('admin') },
+      meta: {
+        authority: (roles: Array<string>) => roles.includes('admin'),
+      },
       path: '/permission-gated',
     } as unknown as RouteRecordRaw;
 
@@ -128,7 +141,10 @@ describe('generateRoutesByFrontend', () => {
   it('should swap the component but keep a menuVisibleWithForbidden route visible in the menu', async () => {
     const routesWithVisibleForbidden = [
       {
-        meta: { authority: ['admin'], menuVisibleWithForbidden: true },
+        meta: {
+          authority: ['admin'],
+          menuVisibleWithForbidden: true,
+        },
         path: '/reports',
       },
     ] as Array<RouteRecordRaw>;
@@ -145,7 +161,12 @@ describe('generateRoutesByFrontend', () => {
     const routesWithMissingMeta = [
       { path: '/path1' }, // No meta
       { meta: {}, path: '/path2' }, // Empty meta
-      { meta: { authority: ['admin'] }, path: '/path3' }, // Only authority
+      {
+        meta: {
+          authority: ['admin'],
+        },
+        path: '/path3',
+      }, // Only authority
     ];
     const generatedRoutes = await generateRoutesByFrontend(
       routesWithMissingMeta as Array<RouteRecordRaw>,
@@ -154,7 +175,12 @@ describe('generateRoutesByFrontend', () => {
     expect(generatedRoutes).toEqual([
       { path: '/path1' },
       { meta: {}, path: '/path2' },
-      { meta: { authority: ['admin'] }, path: '/path3' },
+      {
+        meta: {
+          authority: ['admin'],
+        },
+        path: '/path3',
+      },
     ]);
   });
 
@@ -163,10 +189,18 @@ describe('generateRoutesByFrontend', () => {
     const routes = [
       {
         component: originalComponent,
-        meta: { authority: ['admin', 'user'] },
+        meta: {
+          authority: ['admin', 'user'],
+        },
         path: '/dashboard',
         children: [
-          { component: originalComponent, meta: { authority: ['admin'] }, path: '/dashboard/overview' },
+          {
+            component: originalComponent,
+            meta: {
+              authority: ['admin'],
+            },
+            path: '/dashboard/overview',
+          },
         ],
       },
     ] as unknown as Array<RouteRecordRaw>;

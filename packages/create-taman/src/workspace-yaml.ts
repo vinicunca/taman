@@ -15,9 +15,13 @@ export function addCatalogEntries(yaml: string, entries: Map<string, string>): s
     throw new Error('pnpm-workspace.yaml has no top-level `catalog:` block');
   }
 
-  for (const [name, range] of [...entries].sort(([a], [b]) => (a < b ? -1 : 1))) {
+  for (const [name, range] of [...entries].sort(([a], [b]) => (a < b
+    ? -1
+    : 1))) {
     // Quote only keys that need it, matching the repo (`vue:` vs `'@types/node':`)
-    const key = /^[\w-]+$/.test(name) ? name : `'${name}'`;
+    const key = /^[\w-]+$/.test(name)
+      ? name
+      : `'${name}'`;
     const line = `  ${key}: ${range}`;
     let end = start + 1;
     while (end < lines.length && lines[end]!.startsWith('  ')) {
@@ -32,7 +36,9 @@ export function addCatalogEntries(yaml: string, entries: Map<string, string>): s
     }
 
     const after = block.findIndex((entry) => catalogKey(entry) > name);
-    lines.splice(after === -1 ? end : start + 1 + after, 0, line);
+    lines.splice(after === -1
+      ? end
+      : start + 1 + after, 0, line);
   }
 
   return lines.join('\n');

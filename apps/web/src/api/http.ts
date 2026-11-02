@@ -9,4 +9,6 @@ import { createHttpQueryUtils } from '@vinicunca/request/http-query';
 export const dummyjsonClient = createHttpClient({ baseURL: 'https://dummyjson.com' });
 
 /** vue-query helpers — `useQuery(dummyjson.get<T>('/products').queryOptions(...))`. */
-export const dummyjson = createHttpQueryUtils(dummyjsonClient, { key: ['dummyjson'] });
+export const dummyjson = createHttpQueryUtils(dummyjsonClient, {
+  key: ['dummyjson'],
+});

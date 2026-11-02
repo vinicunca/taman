@@ -92,7 +92,9 @@ function mergeFormValuePatch(
     return cached;
   }
 
-  const result = isPlainFormObject(currentValue) ? clone(currentValue) : {};
+  const result = isPlainFormObject(currentValue)
+    ? clone(currentValue)
+    : {};
   visited.set(nextValue, result);
   for (const [key, value] of Object.entries(nextValue)) {
     result[key] = mergeFormValuePatch(result[key], value, visited);
@@ -401,7 +403,9 @@ export class FormApi<
    */
   scrollToFirstError(errors: Record<string, any> | string) {
     const firstErrorFieldName
-      = isString(errors) ? errors : Object.keys(errors)[0];
+      = isString(errors)
+        ? errors
+        : Object.keys(errors)[0];
 
     if (!firstErrorFieldName) {
       return;
@@ -575,7 +579,9 @@ export class FormApi<
       return;
     }
     const currentSchema = updateFormSchemaList(
-      [...(this.state?.schema ?? [])],
+      [
+        ...(this.state?.schema ?? []),
+      ],
       updated,
     );
     this.setState({ schema: currentSchema });

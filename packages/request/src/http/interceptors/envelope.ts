@@ -31,7 +31,9 @@ export function envelopeInterceptor(options: EnvelopeInterceptorOptions = {}): R
 
       const body = response.data as Record<string, unknown>;
       const code = body[codeField];
-      const ok = typeof successCode === 'function' ? successCode(code) : code === successCode;
+      const ok = typeof successCode === 'function'
+        ? successCode(code)
+        : code === successCode;
 
       if (!ok) {
         throw new HttpError({
@@ -46,7 +48,9 @@ export function envelopeInterceptor(options: EnvelopeInterceptorOptions = {}): R
         });
       }
 
-      response.data = typeof dataField === 'function' ? dataField(body) : body[dataField];
+      response.data = typeof dataField === 'function'
+        ? dataField(body)
+        : body[dataField];
       return response;
     },
   };

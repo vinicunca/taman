@@ -43,7 +43,9 @@ export function useAccess() {
     updatePreferences({
       app: {
         accessMode:
-          preferences.app.accessMode === 'frontend' ? 'backend' : 'frontend',
+          preferences.app.accessMode === 'frontend'
+            ? 'backend'
+            : 'frontend',
       },
     });
   }

@@ -5,11 +5,23 @@ import invitationCompiled from './generated/invitation.ts';
 import resetPasswordCompiled from './generated/reset-password.ts';
 import verifyEmailCompiled from './generated/verify-email.ts';
 
-const ACTION_SLOTS = ['actionLabel', 'actionUrl', 'heading', 'ignore', 'intro', 'linkHint', 'preheader'];
+const ACTION_SLOTS = [
+  'actionLabel',
+  'actionUrl',
+  'heading',
+  'ignore',
+  'intro',
+  'linkHint',
+  'preheader',
+];
 
 describe('generated templates', () => {
   it.each([
-    ['invitation', invitationCompiled, [...ACTION_SLOTS, 'expiry'].sort()],
+    [
+      'invitation',
+      invitationCompiled,
+      [...ACTION_SLOTS, 'expiry'].sort(),
+    ],
     ['verify-email', verifyEmailCompiled, ACTION_SLOTS],
     ['reset-password', resetPasswordCompiled, ACTION_SLOTS],
   ] as const)('%s exposes exactly the contract slots', (_name, compiled, slots) => {

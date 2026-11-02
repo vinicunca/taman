@@ -8,7 +8,9 @@ const data = ref<ExplicitDialogData>();
 
 const [Dialog, dialogApi] = useTamanDialog<ExplicitDialogData>({
   onOpenChange(isOpen) {
-    data.value = isOpen ? dialogApi.getData() : undefined;
+    data.value = isOpen
+      ? dialogApi.getData()
+      : undefined;
   },
 });
 </script>

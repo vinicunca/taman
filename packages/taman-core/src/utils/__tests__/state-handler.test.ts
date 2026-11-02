@@ -3,6 +3,39 @@ import { describe, expect, it } from 'vitest';
 import { StateHandler } from '../state-handler';
 
 describe('stateHandler', () => {
+  it('resolves every concurrent waiter', async () => {
+    const handler = new StateHandler();
+    const waiting = Promise.all([
+      handler.waitForCondition(),
+      handler.waitForCondition(),
+    ]);
+    handler.setConditionTrue();
+    await expect(waiting).resolves.toEqual([undefined, undefined]);
+  });
+
+  it.each(['setConditionFalse', 'reset'] as const)('rejects every waiter on %s and can be reused', async (transition) => {
+    const handler = new StateHandler();
+    const waiting = Promise.allSettled([
+      handler.waitForCondition(),
+      handler.waitForCondition(),
+    ]);
+    handler[transition]();
+    const results = await waiting;
+    expect(results).toEqual([
+      {
+        status: 'rejected',
+        reason: expect.any(Error),
+      },
+      {
+        status: 'rejected',
+        reason: expect.any(Error),
+      },
+    ]);
+    const next = handler.waitForCondition();
+    handler.setConditionTrue();
+    await expect(next).resolves.toBeUndefined();
+  });
+
   it('should resolve when condition is set to true', async () => {
     const handler = new StateHandler();
 

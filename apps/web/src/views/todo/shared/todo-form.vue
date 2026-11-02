@@ -23,14 +23,19 @@ const [Form, formApi] = useTamanForm({
   showDefaultActions: false,
   submitOnEnter: true,
   handleSubmit: (values) => {
-    emit('submit', { title: String(values.title), completed: Boolean(values.completed) });
+    emit('submit', {
+      title: String(values.title),
+      completed: Boolean(values.completed),
+    });
   },
   schema: [
     {
       component: 'Input',
       fieldName: 'title',
       label: $t('todo.field.title'),
-      componentProps: { placeholder: $t('todo.field.titlePlaceholder') },
+      componentProps: {
+        placeholder: $t('todo.field.titlePlaceholder'),
+      },
       // Same zod rule the server enforces, straight from the published contract.
       rules: todoCreateInput.shape.title,
     },
@@ -55,7 +60,9 @@ watch(
   { immediate: true },
 );
 
-defineExpose({ reset: () => formApi.reset() });
+defineExpose({
+  reset: () => formApi.reset(),
+});
 </script>
 
 <template>

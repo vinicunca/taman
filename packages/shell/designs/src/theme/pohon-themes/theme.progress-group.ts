@@ -17,11 +17,14 @@ export const themeProgressGroup = {
   },
   variants: {
     color: {
-      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
-        indicator: `bg-${color}`,
-        itemLeadingIcon: `color-${color}`,
-        itemLeadingDot: `bg-${color}`,
-      }])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [
+        color,
+        {
+          indicator: `bg-${color}`,
+          itemLeadingIcon: `color-${color}`,
+          itemLeadingDot: `bg-${color}`,
+        },
+      ])),
       neutral: {
         indicator: 'bg-background-inverted',
         itemLeadingIcon: 'color-text-highlighted',

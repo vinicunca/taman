@@ -12,7 +12,9 @@ const editing = ref<Product>();
 const createForm = ref<InstanceType<typeof ProductForm>>();
 
 function onCreate(values: { title: string; price: number }) {
-  create.mutate(values, { onSuccess: () => createForm.value?.reset() });
+  create.mutate(values, {
+    onSuccess: () => createForm.value?.reset(),
+  });
 }
 
 function onUpdate(values: { title: string; price: number }) {

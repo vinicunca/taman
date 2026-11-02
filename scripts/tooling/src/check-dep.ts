@@ -10,7 +10,12 @@ const knipMain = require.resolve('knip');
 const knipCli = join(dirname(knipMain), '..', 'bin', 'knip.js');
 
 const DEFAULT_CONFIG = {
-  ignore: ['dist/**', 'docs/**', 'node_modules/**', 'public/**'],
+  ignore: [
+    'dist/**',
+    'docs/**',
+    'node_modules/**',
+    'public/**',
+  ],
   ignoreBinaries: [] as Array<string>,
   ignoreDependencies: [
     '@vinicunca/commitlint-config',
@@ -117,7 +122,9 @@ async function runKnipCheck(): Promise<void> {
 
     console.error(
       '❌ Dependency check failed:',
-      error instanceof Error ? error.message : error,
+      error instanceof Error
+        ? error.message
+        : error,
     );
   } finally {
     await rm(tempDir, { force: true, recursive: true });
@@ -125,6 +132,8 @@ async function runKnipCheck(): Promise<void> {
 }
 
 runKnipCheck().catch((error) => {
-  console.error(error instanceof Error ? error.message : error);
+  console.error(error instanceof Error
+    ? error.message
+    : error);
   process.exitCode = 1;
 });

@@ -15,12 +15,26 @@ const env = { ...process.env };
 
 function run(command, args, cwd = root, options = {}) {
   console.log(`\n$ ${command} ${args.join(' ')}  (in ${relative(root, cwd) || '.'})`);
-  return execFileSync(command, args, { cwd, encoding: 'utf8', env, stdio: 'inherit', ...options });
+  return execFileSync(command, args, {
+    cwd,
+    encoding: 'utf8',
+    env,
+    stdio: 'inherit',
+    ...options,
+  });
 }
 
 function capture(command, args, cwd) {
   try {
-    return { output: execFileSync(command, args, { cwd, encoding: 'utf8', env, stdio: ['ignore', 'pipe', 'pipe'] }), status: 0 };
+    return {
+      output: execFileSync(command, args, {
+        cwd,
+        encoding: 'utf8',
+        env,
+        stdio: ['ignore', 'pipe', 'pipe'],
+      }),
+      status: 0,
+    };
   } catch (error) {
     return { output: `${error.stdout ?? ''}${error.stderr ?? ''}`, status: error.status ?? 1 };
   }
@@ -28,7 +42,14 @@ function capture(command, args, cwd) {
 
 function walk(dir, visit) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
-    if (['node_modules', 'dist', '.output', '.nx', '.git', '.pohon-ui'].includes(entry.name)) {
+    if ([
+      'node_modules',
+      'dist',
+      '.output',
+      '.nx',
+      '.git',
+      '.pohon-ui',
+    ].includes(entry.name)) {
       continue;
     }
     const full = join(dir, entry.name);
@@ -45,15 +66,34 @@ mkdirSync(packs);
 const publishable = JSON.parse(execFileSync('pnpm', ['ls', '-r', '--depth', '-1', '--json'], { cwd: root, encoding: 'utf8' }))
   .filter((pkg) => pkg.name && !pkg.private);
 for (const pkg of publishable) {
-  run('pnpm', ['pack', '--pack-destination', packs], pkg.path, { stdio: ['ignore', 'ignore', 'inherit'] });
+  run('pnpm', ['pack', '--pack-destination', packs], pkg.path, {
+    stdio: ['ignore', 'ignore', 'inherit'],
+  });
 }
 const tarballs = readdirSync(packs).map((file) => {
-  const manifest = JSON.parse(execFileSync('tar', ['-xzOf', join(packs, file), 'package/package.json'], { encoding: 'utf8' }));
-  return [manifest.name, join(packs, file)];
+  const manifest = JSON.parse(execFileSync('tar', [
+    '-xzOf',
+    join(packs, file),
+    'package/package.json',
+  ], { encoding: 'utf8' }));
+  return [
+    manifest.name,
+    join(packs, file),
+  ];
 });
 
 // 2. Generate from the committed HEAD
-run('node', [join(root, 'packages/create-taman/dist/bin.mjs'), project, '--from', root, '--scope', 'acme', '--yes', '--no-install', '--no-git']);
+run('node', [
+  join(root, 'packages/create-taman/dist/bin.mjs'),
+  project,
+  '--from',
+  root,
+  '--scope',
+  'acme',
+  '--yes',
+  '--no-install',
+  '--no-git',
+]);
 
 // 3. Resolve published packages from the tarballs instead of npm
 const workspaceFile = join(project, 'pnpm-workspace.yaml');
@@ -65,14 +105,23 @@ while (end < lines.length && lines[end].startsWith('  ')) {
   end++;
 }
 const keyOf = (line) => line.trim().split(': ')[0].replace(/^'|'$/g, '');
-const block = [...lines.slice(start + 1, end), ...tarballs.map(([name, file]) => `  ${/^[\w-]+$/.test(name) ? name : `'${name}'`}: file:${file}`)]
-  .sort((a, b) => (keyOf(a) < keyOf(b) ? -1 : 1));
+const block = [
+  ...lines.slice(start + 1, end),
+  ...tarballs.map(([name, file]) => `  ${/^[\w-]+$/.test(name)
+    ? name
+    : `'${name}'`}: file:${file}`),
+]
+  .sort((a, b) => (keyOf(a) < keyOf(b)
+    ? -1
+    : 1));
 lines.splice(start + 1, end - start - 1, ...block);
 writeFileSync(workspaceFile, lines.join('\n'));
 
 // 4. Install the way a user does (not in CI, no git repo: `prepare` must
 // cope), then the root build (web first generates the types vue-tsc needs)
-run('pnpm', ['install'], project, { env: { ...env, CI: '' } });
+run('pnpm', ['install'], project, {
+  env: { ...env, CI: '' },
+});
 run('pnpm', ['build'], project);
 
 // 5. Type-check every tsconfig

@@ -35,7 +35,9 @@ function toggleTheme(event: MouseEvent) {
     ];
     const animate = document.documentElement.animate(
       {
-        clipPath: isDark.value ? [...clipPath].toReversed() : clipPath,
+        clipPath: isDark.value
+          ? [...clipPath].toReversed()
+          : clipPath,
       },
       {
         duration: 450,

@@ -31,13 +31,17 @@ describe('uniqueByField', () => {
   });
 
   it('should handle arrays with only one item correctly', () => {
-    const items = [{ id: 1, name: 'Item 1' }];
+    const items = [
+      { id: 1, name: 'Item 1' },
+    ];
 
     const uniqueItems = uniqueByField(items, 'id');
 
     // Assert expected results
     expect(uniqueItems).toHaveLength(1);
-    expect(uniqueItems).toEqual([{ id: 1, name: 'Item 1' }]);
+    expect(uniqueItems).toEqual([
+      { id: 1, name: 'Item 1' },
+    ]);
   });
 
   it('should preserve the order of the first occurrence of each item', () => {

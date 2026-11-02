@@ -7,9 +7,16 @@ import { envelopeInterceptor } from './envelope';
 
 function setup(options?: Parameters<typeof envelopeInterceptor>[0]) {
   const fake = createFakeFetch({
-    '/ok': () => Response.json({ code: 0, data: { id: 1 }, message: 'ok' }),
+    '/ok': () => Response.json({
+      code: 0,
+      data: { id: 1 },
+      message: 'ok',
+    }),
     '/bad': () => Response.json({ code: 7, message: 'Nope' }),
-    '/custom': () => Response.json({ status: 'success', result: { id: 2 } }),
+    '/custom': () => Response.json({
+      status: 'success',
+      result: { id: 2 },
+    }),
     '/empty': () => new Response(null, { status: 204 }),
   });
   const http = createHttpClient({ baseURL: 'http://api.test', fetch: fake.fetch, retry: false });
@@ -24,14 +31,23 @@ describe('envelopeInterceptor', () => {
 
   it('leaves body and raw requests untouched', async () => {
     const http = setup();
-    await expect(http.get('/ok')).resolves.toEqual({ code: 0, data: { id: 1 }, message: 'ok' });
+    await expect(http.get('/ok')).resolves.toEqual({
+      code: 0,
+      data: { id: 1 },
+      message: 'ok',
+    });
     await expect(http.get('/bad')).resolves.toEqual({ code: 7, message: 'Nope' });
   });
 
   it('throws an envelope HttpError when the code is not the success code', async () => {
     const error = await setup().get('/bad', { responseReturn: 'data' }).catch((error_: unknown) => error_);
     expect(isHttpError(error)).toBe(true);
-    expect(error).toMatchObject({ kind: 'envelope', status: 200, code: 7, message: 'Nope' });
+    expect(error).toMatchObject({
+      kind: 'envelope',
+      status: 200,
+      code: 7,
+      message: 'Nope',
+    });
   });
 
   it('accepts a function dataField and successCode', async () => {

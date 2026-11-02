@@ -6,12 +6,35 @@ const pkg = (value: object) => `${JSON.stringify(value, null, 2)}\n`;
 
 function snapshot() {
   return new Map([
-    ['package.json', pkg({ name: '@taman/monorepo', private: true, devDependencies: { '@vinicunca/tsconfig': 'workspace:*' } })],
+    [
+      'package.json',
+      pkg({
+        name: '@taman/monorepo',
+        private: true,
+        devDependencies: { '@vinicunca/tsconfig': 'workspace:*' },
+      }),
+    ],
     ['pnpm-workspace.yaml', 'packages:\n  - apps/*\n\ncatalog:\n  vue: ^3.5.0\n'],
-    ['internal/tsconfig/package.json', pkg({ name: '@vinicunca/tsconfig', version: '1.0.1' })],
-    ['packages/secret/package.json', pkg({ name: '@taman/secret', version: '1.0.0', private: true })],
-    ['apps/web/package.json', pkg({ name: '@taman/web', private: true, dependencies: { '@vinicunca/tsconfig': 'workspace:^', '@taman/api-contract': 'workspace:*', 'vue': 'catalog:' } })],
-    ['packages/api-contract/package.json', pkg({ name: '@taman/api-contract', version: '0.1.0', private: true })],
+    [
+      'internal/tsconfig/package.json',
+      pkg({ name: '@vinicunca/tsconfig', version: '1.0.1' }),
+    ],
+    [
+      'packages/secret/package.json',
+      pkg({ name: '@taman/secret', version: '1.0.0', private: true }),
+    ],
+    [
+      'apps/web/package.json',
+      pkg({
+        name: '@taman/web',
+        private: true,
+        dependencies: { '@vinicunca/tsconfig': 'workspace:^', '@taman/api-contract': 'workspace:*', 'vue': 'catalog:' },
+      }),
+    ],
+    [
+      'packages/api-contract/package.json',
+      pkg({ name: '@taman/api-contract', version: '0.1.0', private: true }),
+    ],
   ]);
 }
 

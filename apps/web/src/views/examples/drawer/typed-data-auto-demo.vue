@@ -11,7 +11,9 @@ const data = ref<AutoDrawerData>();
 
 const [Drawer, drawerApi] = useTamanDrawer<AutoDrawerData>({
   onOpenChange(isOpen) {
-    data.value = isOpen ? drawerApi.getData() : undefined;
+    data.value = isOpen
+      ? drawerApi.getData()
+      : undefined;
   },
 });
 

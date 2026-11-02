@@ -14,7 +14,9 @@ export const PASSWORD_STRENGTH_MAX = PASSWORD_STRENGTH_CHECKS.length;
 
 export function passwordStrengthScore(value = ''): number {
   return PASSWORD_STRENGTH_CHECKS.reduce(
-    (score, pattern) => score + (pattern.test(value) ? 1 : 0),
+    (score, pattern) => score + (pattern.test(value)
+      ? 1
+      : 0),
     0,
   );
 }

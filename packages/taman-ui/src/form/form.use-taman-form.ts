@@ -51,9 +51,16 @@ export function useTamanForm(
       onBeforeUnmount(() => {
         api.unmount();
       });
-      api.setState({ ...props, ...attrs });
+      api.setState({
+        ...props,
+        ...attrs,
+      });
       return () =>
-        h(TamanUseForm, { ...props, ...attrs, formApi: extendedApi }, slots);
+        h(TamanUseForm, {
+          ...props,
+          ...attrs,
+          formApi: extendedApi,
+        }, slots);
     },
     {
       name: 'TamanUseForm',

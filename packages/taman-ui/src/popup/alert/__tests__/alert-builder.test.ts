@@ -45,7 +45,9 @@ async function mountOverlayHost() {
 async function clickButton(label: string) {
   await nextTick();
   await nextTick();
-  const button = [...document.querySelectorAll('[type="button"]')].find(
+  const button = [
+    ...document.querySelectorAll('[type="button"]'),
+  ].find(
     (element) => element.textContent?.trim() === label,
   );
   expect(button).toBeInstanceOf(HTMLElement);

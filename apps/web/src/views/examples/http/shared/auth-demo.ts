@@ -56,7 +56,14 @@ export function createAuthDemo(options: AuthDemoOptions = {}) {
   const log = ref<Array<LogEntry>>([]);
 
   function pushLog(kind: LogKind, message: string): void {
-    log.value = [{ at: new Date(), kind, message }, ...log.value].slice(0, LOG_LIMIT);
+    log.value = [
+      {
+        at: new Date(),
+        kind,
+        message,
+      },
+      ...log.value,
+    ].slice(0, LOG_LIMIT);
   }
 
   const client: HttpClient = createHttpClient({
@@ -153,5 +160,14 @@ export function createAuthDemo(options: AuthDemoOptions = {}) {
     pushLog('info', 'refresh token replaced with an invalid value');
   }
 
-  return { client, session, log, login, logout, fetchMe, expireAccessToken, breakRefreshToken };
+  return {
+    client,
+    session,
+    log,
+    login,
+    logout,
+    fetchMe,
+    expireAccessToken,
+    breakRefreshToken,
+  };
 }

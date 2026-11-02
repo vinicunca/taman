@@ -30,11 +30,14 @@ export const prose = {
     },
     variants: {
       color: {
-        ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
-          base: `border border-${color}/25 bg-${color}/10 color-${color}-600 dark:color-${color}-300 [&_a]:color-${color} [&_a]:hover:border-${color} [&_a]:focus-visible:outline-${color} [&_code]:color-${color}-600 dark:[&_code]:color-${color}-300 [&_code]:border-${color}/25 [&_a]:hover:[&>code]:border-${color} [&_a]:hover:[&>code]:color-${color} [&_a]:focus-visible:[&>code]:border-${color} [&_a]:focus-visible:[&>code]:color-${color} [&>ul]:marker:color-${color}/50`,
-          icon: `color-${color}`,
-          externalIcon: `color-${color}-600 dark:color-${color}-300`,
-        }])),
+        ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [
+          color,
+          {
+            base: `border border-${color}/25 bg-${color}/10 color-${color}-600 dark:color-${color}-300 [&_a]:color-${color} [&_a]:hover:border-${color} [&_a]:focus-visible:outline-${color} [&_code]:color-${color}-600 dark:[&_code]:color-${color}-300 [&_code]:border-${color}/25 [&_a]:hover:[&>code]:border-${color} [&_a]:hover:[&>code]:color-${color} [&_a]:focus-visible:[&>code]:border-${color} [&_a]:focus-visible:[&>code]:color-${color} [&>ul]:marker:color-${color}/50`,
+            icon: `color-${color}`,
+            externalIcon: `color-${color}-600 dark:color-${color}-300`,
+          },
+        ])),
         neutral: {
           base: 'border border-border-muted bg-background-muted color-text',
           icon: 'color-text-highlighted',
@@ -74,9 +77,12 @@ export const prose = {
     },
     variants: {
       color: {
-        ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
-          icon: `color-${color}`,
-        }])),
+        ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [
+          color,
+          {
+            icon: `color-${color}`,
+          },
+        ])),
         neutral: {
           icon: 'color-text-highlighted',
         },

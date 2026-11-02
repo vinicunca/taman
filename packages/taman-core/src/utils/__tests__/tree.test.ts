@@ -15,7 +15,10 @@ describe('traverseTreeValues', () => {
         { name: 'B' },
         {
           name: 'C',
-          children: [{ name: 'D' }, { name: 'E' }],
+          children: [
+            { name: 'D' },
+            { name: 'E' },
+          ],
         },
       ],
     },
@@ -25,7 +28,9 @@ describe('traverseTreeValues', () => {
         { name: 'G' },
         {
           name: 'H',
-          children: [{ name: 'I' }],
+          children: [
+            { name: 'I' },
+          ],
         },
       ],
     },
@@ -39,7 +44,17 @@ describe('traverseTreeValues', () => {
         childProps: 'children',
       },
     );
-    expect(values).toEqual(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']);
+    expect(values).toEqual([
+      'A',
+      'B',
+      'C',
+      'D',
+      'E',
+      'F',
+      'G',
+      'H',
+      'I',
+    ]);
   });
 
   it('handles empty tree', () => {
@@ -57,7 +72,11 @@ describe('traverseTreeValues', () => {
   });
 
   it('handles tree with only leaf nodes', () => {
-    const leafNodes = [{ name: 'A' }, { name: 'B' }, { name: 'C' }];
+    const leafNodes = [
+      { name: 'A' },
+      { name: 'B' },
+      { name: 'C' },
+    ];
     const values = traverseTreeValues<Node, string>(
       leafNodes,
       (node) => node.name,
@@ -72,11 +91,24 @@ describe('filterTree', () => {
       id: 1,
       children: [
         { id: 2 },
-        { id: 3, children: [{ id: 4 }, { id: 5 }, { id: 6 }] },
+        {
+          id: 3,
+          children: [
+            { id: 4 },
+            { id: 5 },
+            { id: 6 },
+          ],
+        },
         { id: 7 },
       ],
     },
-    { id: 8, children: [{ id: 9 }, { id: 10 }] },
+    {
+      id: 8,
+      children: [
+        { id: 9 },
+        { id: 10 },
+      ],
+    },
     { id: 11 },
   ];
 
@@ -92,7 +124,14 @@ describe('filterTree', () => {
 
   it('should return nodes with even id values', () => {
     const result = filterTree(tree, (node) => node.id % 2 === 0);
-    expect(result).toEqual([{ id: 8, children: [{ id: 10 }] }]);
+    expect(result).toEqual([
+      {
+        id: 8,
+        children: [
+          { id: 10 },
+        ],
+      },
+    ]);
   });
 
   it('should return nodes with odd id values and their ancestors', () => {
@@ -100,7 +139,15 @@ describe('filterTree', () => {
     expect(result).toEqual([
       {
         id: 1,
-        children: [{ id: 3, children: [{ id: 5 }] }, { id: 7 }],
+        children: [
+          {
+            id: 3,
+            children: [
+              { id: 5 },
+            ],
+          },
+          { id: 7 },
+        ],
       },
       { id: 11 },
     ]);
@@ -114,7 +161,10 @@ describe('filterTree', () => {
           { name: 'leaf 1' },
           {
             name: 'branch',
-            children: [{ name: 'leaf 2' }, { name: 'leaf 3' }],
+            children: [
+              { name: 'leaf 2' },
+              { name: 'leaf 3' },
+            ],
           },
           { name: 'leaf 4' },
         ],
@@ -127,7 +177,10 @@ describe('filterTree', () => {
     expect(result).toEqual([
       {
         name: 'root',
-        children: [{ name: 'leaf 1' }, { name: 'leaf 4' }],
+        children: [
+          { name: 'leaf 1' },
+          { name: 'leaf 4' },
+        ],
       },
     ]);
   });
@@ -146,11 +199,24 @@ describe('filterTree immutability', () => {
       id: 1,
       children: [
         { id: 2 },
-        { id: 3, children: [{ id: 4 }, { id: 5 }, { id: 6 }] },
+        {
+          id: 3,
+          children: [
+            { id: 4 },
+            { id: 5 },
+            { id: 6 },
+          ],
+        },
         { id: 7 },
       ],
     },
-    { id: 8, children: [{ id: 9 }, { id: 10 }] },
+    {
+      id: 8,
+      children: [
+        { id: 9 },
+        { id: 10 },
+      ],
+    },
     { id: 11 },
   ];
 
@@ -244,8 +310,19 @@ describe('filterTree immutability', () => {
     }
 
     const tree: Array<CustomNode> = [
-      { id: 1, items: [{ id: 2 }, { id: 3 }] },
-      { id: 4, items: [{ id: 5 }] },
+      {
+        id: 1,
+        items: [
+          { id: 2 },
+          { id: 3 },
+        ],
+      },
+      {
+        id: 4,
+        items: [
+          { id: 5 },
+        ],
+      },
     ];
     const snapshot = clone(tree);
 
@@ -255,8 +332,18 @@ describe('filterTree immutability', () => {
 
     expect(tree).toEqual(snapshot);
     expect(result).toEqual([
-      { id: 1, items: [{ id: 3 }] },
-      { id: 4, items: [{ id: 5 }] },
+      {
+        id: 1,
+        items: [
+          { id: 3 },
+        ],
+      },
+      {
+        id: 4,
+        items: [
+          { id: 5 },
+        ],
+      },
     ]);
   });
 });

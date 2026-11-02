@@ -17,7 +17,13 @@ export function matchEmailLocale(acceptLanguage: string | null | undefined): Ema
   const languages = acceptLanguage.toLowerCase().split(',').map((entry, index) => {
     const [tag = '', ...attributes] = entry.trim().split(';');
     const quality = attributes.map((attribute) => /^\s*q\s*=\s*(0(?:\.\d+)?|1(?:\.0+)?)\s*$/.exec(attribute)?.[1]).find(Boolean);
-    return { tag: tag.trim(), quality: quality === undefined ? 1 : Number(quality), index };
+    return {
+      tag: tag.trim(),
+      quality: quality === undefined
+        ? 1
+        : Number(quality),
+      index,
+    };
   }).filter(({ quality }) => quality > 0).sort((a, b) => b.quality - a.quality || a.index - b.index);
   for (const { tag: language } of languages) {
     const match = EMAIL_LOCALES.find((locale) => locale.toLowerCase() === language)

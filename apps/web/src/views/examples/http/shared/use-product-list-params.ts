@@ -15,8 +15,16 @@ export function useProductListParams() {
 
   function setParams(patch: Partial<ProductListParams>) {
     const resetsPage = 'search' in patch || 'pageSize' in patch;
-    const next = { ...params.value, ...(resetsPage ? { page: 1 } : {}), ...patch };
-    void router.replace({ query: toProductListQuery(next) });
+    const next = {
+      ...params.value,
+      ...(resetsPage
+        ? { page: 1 }
+        : {}),
+      ...patch,
+    };
+    void router.replace({
+      query: toProductListQuery(next),
+    });
   }
 
   return { params, setParams };

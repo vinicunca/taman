@@ -71,7 +71,9 @@ async function loadCommonPlugins(
 
     {
       condition: !isBuild && devtools,
-      plugins: () => [viteVueDevTools()],
+      plugins: () => [
+        viteVueDevTools(),
+      ],
     },
     {
       condition: injectMetadata,
@@ -193,20 +195,29 @@ async function loadApplicationPlugins(
 
     {
       condition: !!html,
-      plugins: () => [viteHtmlPlugin(typeof html === 'object' ? html : {})],
+      plugins: () => [
+        viteHtmlPlugin(typeof html === 'object'
+          ? html
+          : {}),
+      ],
     },
 
     {
       condition: isBuild && importmap,
       plugins: () => {
-        return [viteImportMapPlugin(importmapOptions)];
+        return [
+          viteImportMapPlugin(importmapOptions),
+        ];
       },
     },
 
     {
       condition: isBuild && extraAppConfig,
       plugins: async () => [
-        await viteExtraAppConfigPlugin({ isBuild: true, root: process.cwd() }),
+        await viteExtraAppConfigPlugin({
+          isBuild: true,
+          root: process.cwd(),
+        }),
       ],
     },
 
@@ -228,13 +239,17 @@ async function loadLibraryPlugins(
   // Destructure separately so these are not passed into commonOptions
   const isBuild = options.isBuild;
   const { dts, ...commonOptions } = options;
-  const dtsOptions = typeof dts === 'object' ? dts : undefined;
+  const dtsOptions = typeof dts === 'object'
+    ? dts
+    : undefined;
   const commonPlugins = await loadCommonPlugins(commonOptions);
   return await loadConditionPlugins([
     ...commonPlugins,
     {
       condition: isBuild && !!dts,
-      plugins: () => [viteDtsPlugin(dtsOptions)],
+      plugins: () => [
+        viteDtsPlugin(dtsOptions),
+      ],
     },
   ]);
 }

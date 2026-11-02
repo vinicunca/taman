@@ -68,7 +68,9 @@ export class TodoService extends CoreService {
 
   async get(id: string): Promise<Todo | null> {
     const row = await this.repo.findById(this.authorize('read'), id);
-    return row ? toTodo(row) : null;
+    return row
+      ? toTodo(row)
+      : null;
   }
 
   async create(input: TodoCreateInput): Promise<Todo> {
@@ -121,7 +123,9 @@ export class TodoService extends CoreService {
       });
     }
 
-    if (!this.can({ todo: [action] })) {
+    if (!this.can({
+      todo: [action],
+    })) {
       throw new ORPCError('FORBIDDEN', { message: `You may not ${action} todos.` });
     }
 

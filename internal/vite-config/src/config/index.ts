@@ -18,7 +18,9 @@ function defineConfig(
   // Auto-detect application vs library from presence of index.html
   if (projectType === 'auto') {
     const htmlPath = join(process.cwd(), 'index.html');
-    projectType = existsSync(htmlPath) ? 'application' : 'library';
+    projectType = existsSync(htmlPath)
+      ? 'application'
+      : 'library';
   }
 
   switch (projectType) {

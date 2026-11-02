@@ -13,7 +13,9 @@ const editing = ref<Todo>();
 const createForm = ref<InstanceType<typeof TodoForm>>();
 
 function onCreate(values: { title: string; completed: boolean }) {
-  create.mutate(values, { onSuccess: () => createForm.value?.reset() });
+  create.mutate(values, {
+    onSuccess: () => createForm.value?.reset(),
+  });
 }
 
 function onUpdate(values: { title: string; completed: boolean }) {
@@ -29,7 +31,10 @@ function onUpdate(values: { title: string; completed: boolean }) {
 
 async function onRemove(todo: Todo) {
   try {
-    await tamanConfirm({ title: $t('todo.remove.title'), content: $t('todo.remove.confirm', { title: todo.title }) });
+    await tamanConfirm({
+      title: $t('todo.remove.title'),
+      content: $t('todo.remove.confirm', { title: todo.title }),
+    });
   } catch {
     return;
   }

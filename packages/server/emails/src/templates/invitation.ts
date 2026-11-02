@@ -17,7 +17,10 @@ export function renderInvitation(params: InvitationParams, locale: EmailLocale) 
   return renderCompiled({
     compiled: template,
     copy: emailCopy[locale].invitation,
-    vars: { ...params, expiresAt: formatEmailDate(params.expiresAt, locale) },
+    vars: {
+      ...params,
+      expiresAt: formatEmailDate(params.expiresAt, locale),
+    },
     urls: { actionUrl: params.inviteUrl },
   });
 }

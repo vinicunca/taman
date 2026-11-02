@@ -120,15 +120,24 @@ function createDemosMenus(role: 'admin' | 'super' | 'user') {
 
 export const MOCK_MENUS = [
   {
-    menus: [...dashboardMenus, ...createDemosMenus('super')],
+    menus: [
+      ...dashboardMenus,
+      ...createDemosMenus('super'),
+    ],
     email: 'taman',
   },
   {
-    menus: [...dashboardMenus, ...createDemosMenus('admin')],
+    menus: [
+      ...dashboardMenus,
+      ...createDemosMenus('admin'),
+    ],
     email: 'admin',
   },
   {
-    menus: [...dashboardMenus, ...createDemosMenus('user')],
+    menus: [
+      ...dashboardMenus,
+      ...createDemosMenus('user'),
+    ],
     email: 'jack',
   },
 ];

@@ -30,7 +30,9 @@ const filterCodec: FormCodec<FilterFormValues, FilterSubmitValues> = {
   decode(values) {
     return {
       period: [values.startTime, values.endTime],
-      tags: values.tags ? values.tags.split(',') : [],
+      tags: values.tags
+        ? values.tags.split(',')
+        : [],
     };
   },
   encode(values) {
@@ -62,7 +64,10 @@ describe('form codec', () => {
   });
 
   it('reports the failed codec phase without mutating inputs', () => {
-    const values = Object.freeze({ period: [1, 2], tags: ['admin'] }) as {
+    const values = Object.freeze({
+      period: [1, 2],
+      tags: ['admin'],
+    }) as {
       period: [number, number];
       tags: Array<string>;
     };
@@ -83,7 +88,10 @@ describe('form codec', () => {
     }
     expect(codecError).toBeInstanceOf(FormCodecError);
     expect(codecError).toMatchObject({ phase: 'encode' });
-    expect(values).toEqual({ period: [1, 2], tags: ['admin'] });
+    expect(values).toEqual({
+      period: [1, 2],
+      tags: ['admin'],
+    });
   });
 });
 

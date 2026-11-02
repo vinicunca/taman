@@ -12,7 +12,11 @@ const DEPENDENCY_FIELDS = ['dependencies', 'peerDependencies', 'optionalDependen
 
 const root = process.cwd();
 function run(command, args, options = {}) {
-  return execFileSync(command, args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], ...options });
+  return execFileSync(command, args, {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+    ...options,
+  });
 }
 
 const packages = JSON.parse(run('pnpm', ['ls', '-r', '--depth', '-1', '--json']))
@@ -46,7 +50,15 @@ for (const pkg of packages) {
   }
 
   try {
-    run('pnpm', ['--filter', '@taman/tooling', 'exec', 'publint', 'run', tarball, '--strict']);
+    run('pnpm', [
+      '--filter',
+      '@taman/tooling',
+      'exec',
+      'publint',
+      'run',
+      tarball,
+      '--strict',
+    ]);
   } catch (error) {
     problems.push(`publint:\n${error.stdout || error.message}`);
   }

@@ -41,7 +41,9 @@ const THEME_PRESET: Array<PresetItem> = [
 ];
 
 function activeClass(theme: string): Array<string> {
-  return theme === colorMode.store.value ? ['outline-box-active'] : [];
+  return theme === colorMode.store.value
+    ? ['outline-box-active']
+    : [];
 }
 
 function nameView(name: string) {

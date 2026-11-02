@@ -8,7 +8,9 @@ const data = ref<ExplicitDrawerData>();
 
 const [Drawer, drawerApi] = useTamanDrawer<ExplicitDrawerData>({
   onOpenChange(isOpen) {
-    data.value = isOpen ? drawerApi.getData() : undefined;
+    data.value = isOpen
+      ? drawerApi.getData()
+      : undefined;
   },
 });
 </script>

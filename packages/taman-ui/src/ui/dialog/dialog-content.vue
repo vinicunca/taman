@@ -22,6 +22,7 @@ const props = withDefaults(
       animationType?: 'scale' | 'slide';
       appendTo?: HTMLElement | string;
       class?: HTMLAttributes['class'];
+      inactive?: boolean;
       modal?: boolean;
       open?: boolean;
       overlayBlur?: number;
@@ -31,6 +32,7 @@ const props = withDefaults(
   {
     appendTo: 'body',
     animationType: 'slide',
+    inactive: false,
   },
 );
 
@@ -45,6 +47,7 @@ const emits = defineEmits<
 const delegatedProps = computed(() => {
   const {
     class: _,
+    inactive: _inactive,
     modal: _modal,
     open: _open,
     animationType: ___,
@@ -63,7 +66,9 @@ function isAppendToBody() {
 }
 
 const position = computed(() => {
-  return isAppendToBody() ? 'fixed' : 'absolute';
+  return isAppendToBody()
+    ? 'fixed'
+    : 'absolute';
 });
 
 // Akar's Dialog won't render the overlay when modal=false. Here, the DialogOverlay component renders the overlay layer and locks scrolling.
@@ -88,6 +93,7 @@ defineExpose({
 <template>
   <DialogPortal :to="appendTo">
     <Transition
+      v-if="!inactive"
       enter-active-class="transition-opacity-300"
       leave-active-class="transition-opacity-300"
       enter-from-class="opacity-0"

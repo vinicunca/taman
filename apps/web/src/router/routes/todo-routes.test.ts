@@ -3,7 +3,9 @@ import idTodo from '#/locales/langs/id-ID/todo.json';
 import { overridesPreferences } from '#/preferences';
 import { describe, expect, it, vi } from 'vitest';
 
-vi.mock('#/locales', () => ({ $t: (key: string) => key }));
+vi.mock('#/locales', () => ({
+  $t: (key: string) => key,
+}));
 vi.mock('./core', () => ({ coreRoutes: [] }));
 
 describe('todo reference feature routes', () => {

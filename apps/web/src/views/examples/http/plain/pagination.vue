@@ -10,11 +10,15 @@ import { useProductsPlain } from './use-products-plain';
 const { params, setParams } = useProductListParams();
 const { data, isLoading } = useProductsPlain(params);
 
-const totalPages = computed(() => (data.value ? Math.max(1, Math.ceil(data.value.total / data.value.limit)) : 0));
+const totalPages = computed(() => (data.value
+  ? Math.max(1, Math.ceil(data.value.total / data.value.limit))
+  : 0));
 
 watch(data, (page) => {
   if (page && params.value.page !== clampPage(params.value.page, totalPages.value)) {
-    setParams({ page: clampPage(params.value.page, totalPages.value) });
+    setParams({
+      page: clampPage(params.value.page, totalPages.value),
+    });
   }
 });
 

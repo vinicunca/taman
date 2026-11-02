@@ -6,7 +6,9 @@ import { call } from '@orpc/server';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { router } from './router.ts';
 
-vi.mock('#lib/context.ts', () => ({ resolveContext: vi.fn() }));
+vi.mock('#lib/context.ts', () => ({
+  resolveContext: vi.fn(),
+}));
 
 const event = {} as H3Event;
 const ID = '01920000-0000-7000-8000-000000000001';
@@ -18,18 +20,50 @@ const ID = '01920000-0000-7000-8000-000000000001';
  * rejecting here, which fails this suite.
  */
 const cases: Array<{ invoke: () => Promise<unknown>; name: string }> = [
-  { invoke: () => call(router.menu.all, undefined, { context: { event } }), name: 'menu.all' },
-  { invoke: () => call(router.todo.list, {}, { context: { event } }), name: 'todo.list' },
-  { invoke: () => call(router.todo.get, { id: ID }, { context: { event } }), name: 'todo.get' },
-  { invoke: () => call(router.todo.create, { title: 'Write plan' }, { context: { event } }), name: 'todo.create' },
-  { invoke: () => call(router.todo.update, { id: ID, title: 'Write plan' }, { context: { event } }), name: 'todo.update' },
-  { invoke: () => call(router.todo.remove, { id: ID }, { context: { event } }), name: 'todo.remove' },
+  {
+    invoke: () => call(router.menu.all, undefined, {
+      context: { event },
+    }),
+    name: 'menu.all',
+  },
+  {
+    invoke: () => call(router.todo.list, {}, {
+      context: { event },
+    }),
+    name: 'todo.list',
+  },
+  {
+    invoke: () => call(router.todo.get, { id: ID }, {
+      context: { event },
+    }),
+    name: 'todo.get',
+  },
+  {
+    invoke: () => call(router.todo.create, { title: 'Write plan' }, {
+      context: { event },
+    }),
+    name: 'todo.create',
+  },
+  {
+    invoke: () => call(router.todo.update, { id: ID, title: 'Write plan' }, {
+      context: { event },
+    }),
+    name: 'todo.update',
+  },
+  {
+    invoke: () => call(router.todo.remove, { id: ID }, {
+      context: { event },
+    }),
+    name: 'todo.remove',
+  },
   {
     invoke: async () => {
       // The generator body (and the `authed` middleware wrapping it) only
       // runs once the iterator is actually pulled — `call()` alone resolves
       // without executing either.
-      const stream = await call(router.todo.live, undefined, { context: { event } });
+      const stream = await call(router.todo.live, undefined, {
+        context: { event },
+      });
       return stream.next();
     },
     name: 'todo.live',

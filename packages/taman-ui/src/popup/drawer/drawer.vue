@@ -14,6 +14,7 @@ import PSeparator from 'pohon-ui/components/Separator.vue';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
 import {
   computed,
+  onActivated,
   onDeactivated,
   provide,
   ref,
@@ -88,13 +89,17 @@ const {
 } = usePriorityValues(props, state);
 
 // An explicit zIndex wins; otherwise stack by open order
-const openZIndex = useOverlayZIndex(() => state?.value?.isOpen);
+const isDeactivated = ref(false);
+const isVisible = computed(() => !!state?.value?.isOpen && !isDeactivated.value);
+const openZIndex = useOverlayZIndex(isVisible);
 const layerZIndex = computed(() => zIndex.value ?? openZIndex.value);
 
-/**
- * With keepAlive enabled, browser back/gesture navigation does not close the drawer
- */
+onActivated(() => {
+  isDeactivated.value = false;
+});
+
 onDeactivated(() => {
+  isDeactivated.value = true;
   // Close the drawer if it is not mounted to the content area
   if (!appendToMain.value) {
     props.drawerApi?.close();
@@ -136,7 +141,9 @@ function handleFocusOutside(event: Event) {
 }
 
 const getAppendTo = computed(() => {
-  return appendToMain.value ? `#${ELEMENT_ID_MAIN_CONTENT}` : undefined;
+  return appendToMain.value
+    ? `#${ELEMENT_ID_MAIN_CONTENT}`
+    : undefined;
 });
 
 /**
@@ -145,10 +152,14 @@ const getAppendTo = computed(() => {
 // Whether the drawer has been opened at least once
 const hasOpened = ref(false);
 const isClosed = ref(true);
+let pendingOpened = false;
 watch(
   () => state?.value?.isOpen,
   (value) => {
-    isClosed.value = false;
+    pendingOpened = !!value;
+    if (value) {
+      isClosed.value = false;
+    }
     if (value && !unref(hasOpened)) {
       hasOpened.value = true;
     }
@@ -160,14 +171,24 @@ function handleClosed() {
   props.drawerApi?.onClosed();
 }
 const getForceMount = computed(() => {
-  return !unref(destroyOnClose) && unref(hasOpened);
+  return !isDeactivated.value && !unref(destroyOnClose) && unref(hasOpened);
 });
+
+function handleOpened() {
+  requestAnimationFrame(() => {
+    if (pendingOpened && isVisible.value) {
+      pendingOpened = false;
+      props.drawerApi?.onOpened();
+    }
+  });
+}
 </script>
 
 <template>
   <SheetRoot
     :modal="false"
-    :open="state?.isOpen"
+    :open="isVisible"
+    :unmount-on-hide="!isDeactivated || !hasOpened"
     @update:open="() => drawerApi?.close()"
   >
     <SheetContent
@@ -180,7 +201,7 @@ const getForceMount = computed(() => {
             'pohon:w-full':
               isMobile || placement === 'bottom' || placement === 'top',
             'max-h-screen': placement === 'bottom' || placement === 'top',
-            'hidden': isClosed,
+            'hidden': isClosed || isDeactivated,
           },
           drawerClass,
         ]
@@ -190,6 +211,7 @@ const getForceMount = computed(() => {
       :side="placement"
       :z-index="layerZIndex"
       :force-mount="getForceMount"
+      :inactive="isDeactivated"
       :overlay-blur="overlayBlur"
       @close-auto-focus="handleFocusOutside"
       @closed="handleClosed"
@@ -197,7 +219,7 @@ const getForceMount = computed(() => {
       @focus-outside="handleFocusOutside"
       @interact-outside="interactOutside"
       @open-auto-focus="handerOpenAutoFocus"
-      @opened="() => drawerApi?.onOpened()"
+      @opened="handleOpened"
       @pointer-down-outside="pointerDownOutside"
     >
       <SheetHeader

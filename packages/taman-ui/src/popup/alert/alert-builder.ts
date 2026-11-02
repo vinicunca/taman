@@ -87,7 +87,9 @@ export async function tamanPrompt<T = any>(
     return h(
       'div',
       { class: 'flex flex-col gap-2' },
-      { default: () => [...staticContents, inputComponentRef.value] },
+      {
+        default: () => [...staticContents, inputComponentRef.value],
+      },
     );
   };
 
@@ -117,7 +119,12 @@ export async function tamanPrompt<T = any>(
           if (componentRef.el) {
             if (
               isFunctionType(componentRef.el.focus)
-              && ['BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'].includes(
+              && [
+                'BUTTON',
+                'INPUT',
+                'SELECT',
+                'TEXTAREA',
+              ].includes(
                 componentRef.el.tagName,
               )
             ) {

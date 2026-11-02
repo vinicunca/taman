@@ -3,7 +3,16 @@ import { defaultRef, parseCliArgs } from '../cli';
 
 describe('parseCliArgs', () => {
   it('reads the folder and flags', () => {
-    expect(parseCliArgs(['my-app', '--scope', '@acme', '--ref', 'main', '--yes', '--no-install', '--no-git'])).toEqual({
+    expect(parseCliArgs([
+      'my-app',
+      '--scope',
+      '@acme',
+      '--ref',
+      'main',
+      '--yes',
+      '--no-install',
+      '--no-git',
+    ])).toEqual({
       dir: 'my-app',
       from: undefined,
       git: false,

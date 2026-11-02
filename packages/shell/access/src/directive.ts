@@ -38,7 +38,9 @@ function isAccessible(
       ? (values: Array<string>) => matchesAnyRole(roles, values)
       : (values: Array<string>) => matchesAnyRole(accessStore.accessCodes, values);
 
-  const values = Array.isArray(value) ? value : [value];
+  const values = Array.isArray(value)
+    ? value
+    : [value];
 
   if (!authMethod(values)) {
     el?.remove();

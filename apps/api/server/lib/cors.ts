@@ -59,7 +59,9 @@ function resolveAllowedOrigin(event: Pick<H3Event, 'req'>): null | string {
     return null;
   }
   const allowed = resolveTrustedOrigins();
-  return allowed.includes(origin) ? origin : null;
+  return allowed.includes(origin)
+    ? origin
+    : null;
 }
 
 /**

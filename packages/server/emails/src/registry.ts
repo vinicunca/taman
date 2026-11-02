@@ -42,7 +42,9 @@ export function renderEmail(job: unknown): RenderedEmail {
   if (typeof candidate.params !== 'object' || candidate.params === null || Array.isArray(candidate.params)) {
     throw new EmailJobError('Email params must be an object');
   }
-  const locale = candidate.locale === 'id-ID' || candidate.locale === 'en-US' ? candidate.locale : DEFAULT_EMAIL_LOCALE;
+  const locale = candidate.locale === 'id-ID' || candidate.locale === 'en-US'
+    ? candidate.locale
+    : DEFAULT_EMAIL_LOCALE;
   const renderer = renderers[candidate.template as EmailTemplateName] as unknown as (params: object, locale: EmailLocale) => RenderedEmail;
   return renderer(candidate.params, locale);
 }

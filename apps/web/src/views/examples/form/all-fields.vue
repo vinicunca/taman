@@ -191,7 +191,12 @@ const [FormAllFields, formAllFieldsApi] = useTamanForm<
       fieldName: 'inputMenu',
       label: 'InputMenu',
       componentProps: {
-        items: ['Backlog', 'Todo', 'In Progress', 'Done'],
+        items: [
+          'Backlog',
+          'Todo',
+          'In Progress',
+          'Done',
+        ],
         ui: {
           trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform-280',
         },
@@ -284,7 +289,12 @@ const [FormAllFields, formAllFieldsApi] = useTamanForm<
       fieldName: 'select',
       label: 'Select',
       componentProps: {
-        items: ['Backlog', 'Todo', 'In Progress', 'Done'],
+        items: [
+          'Backlog',
+          'Todo',
+          'In Progress',
+          'Done',
+        ],
       },
       rules: 'required',
     },
@@ -295,8 +305,20 @@ const [FormAllFields, formAllFieldsApi] = useTamanForm<
       label: 'SelectMenu',
       componentProps: {
         items: [
-          ['Apple', 'Banana', 'Blueberry', 'Grapes', 'Pineapple'],
-          ['Aubergine', 'Broccoli', 'Carrot', 'Courgette', 'Leek'],
+          [
+            'Apple',
+            'Banana',
+            'Blueberry',
+            'Grapes',
+            'Pineapple',
+          ],
+          [
+            'Aubergine',
+            'Broccoli',
+            'Carrot',
+            'Courgette',
+            'Leek',
+          ],
         ],
       },
       rules: 'required',

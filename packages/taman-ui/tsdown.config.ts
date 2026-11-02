@@ -10,7 +10,9 @@ const variantGroup = {
     handler(code: string) {
       const expanded = expandVariantGroup(code);
 
-      return expanded === code ? null : expanded;
+      return expanded === code
+        ? null
+        : expanded;
     },
   },
 };

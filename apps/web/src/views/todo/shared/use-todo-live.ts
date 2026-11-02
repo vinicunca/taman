@@ -26,7 +26,13 @@ export function useTodoLive(onEvent?: (event: TodoEvent) => void) {
       status.value = 'open';
 
       for await (const event of stream) {
-        entries.value = [{ at: new Date(), event }, ...entries.value].slice(0, MAX_ENTRIES);
+        entries.value = [
+          {
+            at: new Date(),
+            event,
+          },
+          ...entries.value,
+        ].slice(0, MAX_ENTRIES);
         onEvent?.(event);
       }
 

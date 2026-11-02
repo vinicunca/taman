@@ -27,5 +27,7 @@ export function toOffset({ page, pageSize }: PaginationInput): number {
 }
 
 export function toTotalPages(total: number, pageSize: number): number {
-  return total === 0 ? 0 : Math.ceil(total / pageSize);
+  return total === 0
+    ? 0
+    : Math.ceil(total / pageSize);
 }

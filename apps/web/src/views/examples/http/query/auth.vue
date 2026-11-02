@@ -12,11 +12,15 @@ const { toaster } = useTamanToast();
 const queryClient = useQueryClient();
 const demo = createAuthDemo();
 const removeErrorInterceptor = demo.client.addResponseInterceptor(
-  errorMessageInterceptor({ notify: (message) => toaster.error(message) }),
+  errorMessageInterceptor({
+    notify: (message) => toaster.error(message),
+  }),
 );
 onUnmounted(removeErrorInterceptor);
 
-const meApi = createHttpQueryUtils(demo.client, { key: ['dummyjson-auth'] });
+const meApi = createHttpQueryUtils(demo.client, {
+  key: ['dummyjson-auth'],
+});
 
 const me = useQuery(computed(() => ({
   ...meApi.get<DummyUser>('/auth/me').queryOptions(),
@@ -29,11 +33,15 @@ const me = useQuery(computed(() => ({
 // refresh (`onAuthFailure` clears the session but doesn't touch this
 // cache). Drop the cached `/auth/me` entry too, so a later login can't
 // briefly flash the previous session's user before its own fetch lands.
-const user = computed(() => (demo.session.accessToken ? (me.data.value ?? demo.session.user) : undefined));
+const user = computed(() => (demo.session.accessToken
+  ? (me.data.value ?? demo.session.user)
+  : undefined));
 
 watch(() => demo.session.accessToken, (token) => {
   if (!token) {
-    queryClient.removeQueries({ queryKey: meApi.key() });
+    queryClient.removeQueries({
+      queryKey: meApi.key(),
+    });
   }
 });
 

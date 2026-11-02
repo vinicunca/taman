@@ -18,7 +18,15 @@ export function fetchFromLocal(repo: string, dir: string): void {
   const scratch = mkdtempSync(join(tmpdir(), 'create-taman-archive-'));
   const tarball = join(scratch, 'template.tar');
   try {
-    execFileSync('git', ['-C', repo, 'archive', '--format=tar', '-o', tarball, 'HEAD']);
+    execFileSync('git', [
+      '-C',
+      repo,
+      'archive',
+      '--format=tar',
+      '-o',
+      tarball,
+      'HEAD',
+    ]);
     execFileSync('tar', ['-xf', tarball, '-C', dir]);
   } finally {
     rmSync(scratch, { force: true, recursive: true });

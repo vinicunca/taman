@@ -29,7 +29,11 @@ export async function consumeEmailBatch(batch: EmailQueueBatch, deliver: Deliver
       message.ack();
     } catch (error) {
       const body = message.body as Partial<EmailJob> | null;
-      onError(typeof body?.template === 'string' ? body.template : 'unknown', typeof body?.to === 'string' ? body.to : '', error);
+      onError(typeof body?.template === 'string'
+        ? body.template
+        : 'unknown', typeof body?.to === 'string'
+        ? body.to
+        : '', error);
       if (error instanceof EmailJobError) {
         message.ack();
       } else {

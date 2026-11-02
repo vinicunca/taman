@@ -91,9 +91,12 @@ export const themeListbox = {
       },
     },
     color: {
-      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
-        root: `outline-${color}/25 has-focus-visible:outline-3 has-focus-visible:ring-${color}`,
-      }])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [
+        color,
+        {
+          root: `outline-${color}/25 has-focus-visible:outline-3 has-focus-visible:ring-${color}`,
+        },
+      ])),
       neutral: {
         root: 'outline-outline-inverted/25 has-focus-visible:outline-3 has-focus-visible:ring-ring-inverted',
       },

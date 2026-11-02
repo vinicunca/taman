@@ -23,7 +23,9 @@ function toFileList(files: FileUploadSlotFiles): Array<File> {
     return [];
   }
 
-  return Array.isArray(files) ? files : [files];
+  return Array.isArray(files)
+    ? files
+    : [files];
 }
 
 const modelValue = defineModel<

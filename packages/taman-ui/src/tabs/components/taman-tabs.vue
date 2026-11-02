@@ -42,7 +42,9 @@ const tabItems = computed(() => {
     const { affixTab, icon, newTabTitle, tabClosable, title } = meta || {};
     return {
       affixTab: !!affixTab,
-      closable: Reflect.has(meta, 'tabClosable') ? !!tabClosable : true,
+      closable: Reflect.has(meta, 'tabClosable')
+        ? !!tabClosable
+        : true,
       fullPath,
       icon: icon as string,
       key,

@@ -38,7 +38,9 @@ describe('form-level disabled', () => {
   it('disables fields and both action buttons', async () => {
     const [Form] = useTamanForm({
       disabled: true,
-      schema: [{ component: TestInput, fieldName: 'name', label: 'Name' }],
+      schema: [
+        { component: TestInput, fieldName: 'name', label: 'Name' },
+      ],
     });
     const wrapper = mount(Form);
     wrappers.push(wrapper);
@@ -53,7 +55,9 @@ describe('form-level disabled', () => {
   it('leaves action buttons enabled for commonConfig.disabled', async () => {
     const [Form] = useTamanForm({
       commonConfig: { disabled: true },
-      schema: [{ component: TestInput, fieldName: 'name', label: 'Name' }],
+      schema: [
+        { component: TestInput, fieldName: 'name', label: 'Name' },
+      ],
     });
     const wrapper = mount(Form);
     wrappers.push(wrapper);
@@ -68,7 +72,9 @@ describe('form-level disabled', () => {
   it('enables everything when disabled is false', async () => {
     const [Form] = useTamanForm({
       disabled: false,
-      schema: [{ component: TestInput, fieldName: 'name', label: 'Name' }],
+      schema: [
+        { component: TestInput, fieldName: 'name', label: 'Name' },
+      ],
     });
     const wrapper = mount(Form);
     wrappers.push(wrapper);

@@ -265,7 +265,9 @@ describe('form public types', () => {
       schema: [
         { component: 'Input', fieldName: 'email' },
         {
-          children: [{ component: 'Input', fieldName: 'profile.nickname' }],
+          children: [
+            { component: 'Input', fieldName: 'profile.nickname' },
+          ],
           defaultCollapsed: true,
           title: 'Profile',
           type: 'group',
@@ -302,7 +304,9 @@ describe('form public types', () => {
     };
     // @ts-expect-error Array child fields cannot be groups
     const invalidArrayChildren: FormSchema = {
-      children: [{ children: [], type: 'group' }],
+      children: [
+        { children: [], type: 'group' },
+      ],
       fieldName: 'contacts',
       type: 'array',
     };

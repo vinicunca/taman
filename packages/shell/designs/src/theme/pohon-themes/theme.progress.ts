@@ -20,10 +20,13 @@ export const themeProgress = {
       'elastic': '',
     },
     color: {
-      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [color, {
-        indicator: `bg-${color}`,
-        steps: `color-${color}`,
-      }])),
+      ...Object.fromEntries(POHON_THEME_BRANDS.map((color: string) => [
+        color,
+        {
+          indicator: `bg-${color}`,
+          steps: `color-${color}`,
+        },
+      ])),
       neutral: {
         indicator: 'bg-background-inverted',
         steps: 'color-text-highlighted',

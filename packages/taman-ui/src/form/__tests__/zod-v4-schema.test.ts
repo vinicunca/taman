@@ -45,7 +45,9 @@ describe('zod v4 schema helpers', () => {
   it('uses zod v4 error callbacks for required and invalid inputs', () => {
     const schema = z.number({
       error: (issue) =>
-        issue.input === undefined ? 'required' : 'invalid number',
+        issue.input === undefined
+          ? 'required'
+          : 'invalid number',
     });
 
     expect(schema.safeParse(undefined).error?.issues[0]?.message).toBe(
@@ -58,8 +60,14 @@ describe('zod v4 schema helpers', () => {
 
   it('extracts defaults from intersections without private schema access', () => {
     const schema = z.intersection(
-      z.object({ enabled: z.boolean().default(true), name: z.string() }),
-      z.object({ count: z.number(), note: z.string().default('note') }),
+      z.object({
+        enabled: z.boolean().default(true),
+        name: z.string(),
+      }),
+      z.object({
+        count: z.number(),
+        note: z.string().default('note'),
+      }),
     );
 
     expect(getDefaultsForSchema(schema)).toEqual({
@@ -85,7 +93,9 @@ describe('zod v4 schema helpers', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
 
     expect(
-      getDefaultsForSchema(object({ email: schemaForZodDefaults(z.email()) })),
+      getDefaultsForSchema(object({
+        email: schemaForZodDefaults(z.email()),
+      })),
     ).toEqual({ email: '' });
     expect(
       warn.mock.calls.filter(([message]) =>

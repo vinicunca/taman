@@ -67,7 +67,9 @@ afterEach(() => {
 describe('taman alert', () => {
   it('closes and emits confirm once when the confirm button is clicked', async () => {
     const { onConfirm, onUpdateOpen, state } = await mountAlert();
-    const button = [...document.querySelectorAll('button')].find(
+    const button = [
+      ...document.querySelectorAll('button'),
+    ].find(
       (element) => element.textContent?.trim() === 'Confirm',
     );
 
@@ -85,7 +87,9 @@ describe('taman alert', () => {
 
   it('closes without confirming when the cancel button is clicked', async () => {
     const { onConfirm, onUpdateOpen, state } = await mountAlert();
-    const button = [...document.querySelectorAll('button')].find(
+    const button = [
+      ...document.querySelectorAll('button'),
+    ].find(
       (element) => element.textContent?.trim() === 'Cancel',
     );
 

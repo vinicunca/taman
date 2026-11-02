@@ -30,7 +30,9 @@ const style = computed<CSSProperties>(() => {
 
   return {
     height: `${height}px`,
-    marginBottom: show ? '0' : `-${height}px`,
+    marginBottom: show
+      ? '0'
+      : `-${height}px`,
     position: fixed ? 'fixed' : 'static',
     transform: show ? 'translateY(0)' : 'translateY(100%)',
     width,

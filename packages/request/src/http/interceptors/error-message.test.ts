@@ -32,7 +32,10 @@ describe('errorMessageInterceptor', () => {
   });
 
   it('uses overrides and can ignore the server message', async () => {
-    const { http, notify } = setup({ messages: { default: 'Oops', 404: 'Missing' }, preferServerMessage: false });
+    const { http, notify } = setup({
+      messages: { default: 'Oops', 404: 'Missing' },
+      preferServerMessage: false,
+    });
     await http.get('/server-message').catch(() => {});
     await http.get('/not-found').catch(() => {});
     expect(notify.mock.calls.map(([message]) => message)).toEqual(['Oops', 'Missing']);

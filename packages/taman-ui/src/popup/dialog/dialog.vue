@@ -8,6 +8,7 @@ import PTooltip from 'pohon-ui/components/Tooltip.vue';
 import {
   computed,
   nextTick,
+  onActivated,
   onDeactivated,
   provide,
   ref,
@@ -93,7 +94,9 @@ const {
 } = usePriorityValues(props, state);
 
 // An explicit zIndex wins; otherwise stack by open order
-const openZIndex = useOverlayZIndex(() => state?.value?.isOpen);
+const isDeactivated = ref(false);
+const isVisible = computed(() => !!state?.value?.isOpen && !isDeactivated.value);
+const openZIndex = useOverlayZIndex(isVisible);
 const layerZIndex = computed(() => zIndex.value ?? openZIndex.value);
 
 const shouldDraggable = computed(
@@ -123,25 +126,26 @@ const { dragging, transform } = useDialogDraggable(
 
 const firstOpened = ref(false);
 const isClosed = ref(true);
+let pendingOpened = false;
 
 watch(
   () => state?.value?.isOpen,
   async (isOpen_) => {
-    if (!contentRef.value) {
-      return;
-    }
-
+    pendingOpened = !!isOpen_;
     if (isOpen_) {
       isClosed.value = false;
       if (!firstOpened.value) {
         firstOpened.value = true;
       }
       await nextTick();
-      if (!contentRef.value) {
+      if (!contentRef.value || isDeactivated.value) {
         return;
       }
       const innerContentRef = contentRef.value.getContentRef();
       dialogRef.value = innerContentRef?.$el;
+      if (!dialogRef.value) {
+        return;
+      }
       // reopen modal reassign value
       const { offsetX, offsetY } = transform;
       dialogRef.value.style.transform = shouldCentered.value
@@ -152,10 +156,12 @@ watch(
   { immediate: true },
 );
 
-/**
- * With keepAlive enabled, browser back/gesture navigation does not close the modal
- */
+onActivated(() => {
+  isDeactivated.value = false;
+});
+
 onDeactivated(() => {
+  isDeactivated.value = true;
   // Close the modal if it is not mounted to the content area
   if (!appendToMain.value) {
     props.dialogApi?.close();
@@ -188,10 +194,10 @@ function handleOpenAutoFocus(event: Event) {
 
 function handlePointerDownOutside(event: Event) {
   const target = event.target as HTMLElement;
-  const isDismissableModal = target?.dataset.dismissableModal;
+  const isDismissableDialog = target?.dataset.dismissableDialog;
   if (
     !closeOnClickModal.value
-    || isDismissableModal !== id
+    || isDismissableDialog !== id
     || submitting.value
   ) {
     event.preventDefault();
@@ -209,12 +215,15 @@ function handleCloseAutoFocus(_event: Event) {
 }
 
 const getForceMount = computed(() => {
-  return !unref(destroyOnClose) && unref(firstOpened);
+  return !isDeactivated.value && !unref(destroyOnClose) && unref(firstOpened);
 });
 
 function handleOpened() {
   requestAnimationFrame(() => {
-    props.dialogApi?.onOpened();
+    if (pendingOpened && isVisible.value) {
+      pendingOpened = false;
+      props.dialogApi?.onOpened();
+    }
   });
 }
 
@@ -227,7 +236,8 @@ function handleClosed() {
 <template>
   <DialogRoot
     :modal="false"
-    :open="state?.isOpen"
+    :open="isVisible"
+    :unmount-on-hide="!isDeactivated || !firstOpened"
     @update:open="() => (!submitting ? dialogApi?.close() : undefined)"
   >
     <DialogContent
@@ -244,11 +254,12 @@ function handleClosed() {
             shouldFullscreen,
           'top-1/2': centered && !shouldFullscreen,
           'duration-300': !dragging,
-          'hidden': isClosed,
+          'hidden': isClosed || isDeactivated,
         },
         dialogClass,
       ]"
       :force-mount="getForceMount"
+      :inactive="isDeactivated"
       :modal="modal"
       :open="state?.isOpen"
       :animation-type="animationType"

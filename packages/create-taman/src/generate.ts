@@ -34,9 +34,21 @@ function gitCommit(dir: string): void {
   execFileSync('git', ['init', '-q'], { cwd: dir });
   const identity = hasGitIdentity(dir)
     ? []
-    : ['-c', 'user.name=create-taman', '-c', 'user.email=create-taman@users.noreply.github.com'];
+    : [
+        '-c',
+        'user.name=create-taman',
+        '-c',
+        'user.email=create-taman@users.noreply.github.com',
+      ];
   execFileSync('git', ['add', '-A'], { cwd: dir });
-  execFileSync('git', [...identity, 'commit', '-q', '--no-verify', '-m', 'Initial commit from create-taman'], { cwd: dir });
+  execFileSync('git', [
+    ...identity,
+    'commit',
+    '-q',
+    '--no-verify',
+    '-m',
+    'Initial commit from create-taman',
+  ], { cwd: dir });
 }
 
 /**
@@ -83,7 +95,9 @@ export async function generateProject({ dir, git, names, source }: GenerateOptio
       try {
         gitCommit(dir);
       } catch (error) {
-        const reason = (error instanceof Error ? error.message : String(error)).split('\n')[0];
+        const reason = (error instanceof Error
+          ? error.message
+          : String(error)).split('\n')[0];
         warnings.push(`git: the project is ready, but git init/commit failed (${reason}); run it yourself`);
       }
     }

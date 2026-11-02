@@ -7,7 +7,9 @@ const names = { name: 'my-app', nameSnake: 'my_app', scope: 'acme' };
 
 const manifest: TemplateManifest = {
   remove: ['internal/**', 'CLAUDE.md'],
-  rename: [{ file: 'package.json', from: '"name": "@taman/monorepo"', to: '"name": "{{name}}"' }],
+  rename: [
+    { file: 'package.json', from: '"name": "@taman/monorepo"', to: '"name": "{{name}}"' },
+  ],
   scopeFrom: '@taman/',
   scripts: ['publint'],
   workspacePackages: ['internal/*'],
@@ -15,10 +17,24 @@ const manifest: TemplateManifest = {
 
 function snapshot() {
   return new Map<string, string | Uint8Array>([
-    ['package.json', pkg({ name: '@taman/monorepo', private: true, scripts: { dev: 'nx', publint: 'publint' }, devDependencies: { '@vinicunca/tsconfig': 'workspace:*' } })],
+    [
+      'package.json',
+      pkg({
+        name: '@taman/monorepo',
+        private: true,
+        scripts: { dev: 'nx', publint: 'publint' },
+        devDependencies: { '@vinicunca/tsconfig': 'workspace:*' },
+      }),
+    ],
     ['pnpm-workspace.yaml', 'packages:\n  - internal/*\n  - apps/*\n\ncatalog:\n  vue: ^3.5.0\n'],
-    ['internal/tsconfig/package.json', pkg({ name: '@vinicunca/tsconfig', version: '1.0.1' })],
-    ['apps/web/package.json', pkg({ name: '@taman/web', private: true })],
+    [
+      'internal/tsconfig/package.json',
+      pkg({ name: '@vinicunca/tsconfig', version: '1.0.1' }),
+    ],
+    [
+      'apps/web/package.json',
+      pkg({ name: '@taman/web', private: true }),
+    ],
     ['apps/web/src/main.ts', 'import \'@taman/web\';\n'],
     ['CLAUDE.md', '# repo notes'],
   ]);
@@ -30,7 +46,14 @@ describe('applyManifest', () => {
 
     expect(errors).toEqual([]);
     expect(warnings).toEqual([]);
-    expect([...files.keys()].sort()).toEqual(['apps/web/package.json', 'apps/web/src/main.ts', 'package.json', 'pnpm-workspace.yaml']);
+    expect([
+      ...files.keys(),
+    ].sort()).toEqual([
+      'apps/web/package.json',
+      'apps/web/src/main.ts',
+      'package.json',
+      'pnpm-workspace.yaml',
+    ]);
 
     const root = JSON.parse(files.get('package.json') as string);
     expect(root.name).toBe('my-app');
@@ -64,8 +87,16 @@ describe('applyManifest', () => {
   it('drops catalog entries only removed packages used', () => {
     const files = snapshot();
     files.set('pnpm-workspace.yaml', 'packages:\n  - internal/*\n  - apps/*\n\ncatalog:\n  clsx: ^2.0.0\n  tsdown: ^0.22.0\n  vue: ^3.5.0\n\noverrides:\n  clsx: \'catalog:\'\n');
-    files.set('internal/tsconfig/package.json', pkg({ name: '@vinicunca/tsconfig', version: '1.0.1', devDependencies: { tsdown: 'catalog:' } }));
-    files.set('apps/web/package.json', pkg({ name: '@taman/web', private: true, dependencies: { vue: 'catalog:' } }));
+    files.set('internal/tsconfig/package.json', pkg({
+      name: '@vinicunca/tsconfig',
+      version: '1.0.1',
+      devDependencies: { tsdown: 'catalog:' },
+    }));
+    files.set('apps/web/package.json', pkg({
+      name: '@taman/web',
+      private: true,
+      dependencies: { vue: 'catalog:' },
+    }));
 
     const catalog = applyManifest(files, manifest, names).files.get('pnpm-workspace.yaml') as string;
 
@@ -75,13 +106,22 @@ describe('applyManifest', () => {
   });
 
   it('collects manifest drift as errors', () => {
-    const drifted = { ...manifest, rename: [{ file: 'package.json', from: '"name": "@taman/other"', to: 'x' }] };
+    const drifted = {
+      ...manifest,
+      rename: [
+        { file: 'package.json', from: '"name": "@taman/other"', to: 'x' },
+      ],
+    };
 
     expect(applyManifest(snapshot(), drifted, names).errors).toEqual(['rename: ""name": "@taman/other"" not found in package.json']);
   });
 
   it('reports remove globs and workspace entries that match nothing', () => {
-    const drifted = { ...manifest, remove: [...manifest.remove, 'tooling/**'], workspacePackages: ['internal/*', 'tooling/*'] };
+    const drifted = {
+      ...manifest,
+      remove: [...manifest.remove, 'tooling/**'],
+      workspacePackages: ['internal/*', 'tooling/*'],
+    };
 
     expect(applyManifest(snapshot(), drifted, names).errors).toEqual([
       'remove: "tooling/**" matches no files',
@@ -93,7 +133,10 @@ describe('applyManifest', () => {
     const files = new Map<string, string | Uint8Array>([
       ['a.ts', 'import \'@taman/web\';\n'],
       ['b.ts', 'import \'@acme/web\';\n'],
-      ['c.bin', new Uint8Array([64, 116, 97])],
+      [
+        'c.bin',
+        new Uint8Array([64, 116, 97]),
+      ],
     ]);
 
     expect(findLeftovers(files, '@taman/')).toEqual(['a.ts']);

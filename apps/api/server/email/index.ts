@@ -8,10 +8,17 @@ import { createCloudflareEmailSender } from './email.sender.cloudflare.ts';
 import { createConsoleEmailSender } from './email.sender.console.ts';
 
 export function createEmailServices(env: EmailEnv = {}, config: EmailServiceConfig) {
-  const sender = env.EMAIL ? createCloudflareEmailSender(env.EMAIL) : createConsoleEmailSender();
+  const sender = env.EMAIL
+    ? createCloudflareEmailSender(env.EMAIL)
+    : createConsoleEmailSender();
   const deliver = createEmailDeliverer({
     sender,
-    from: { email: config.emailFrom, ...(config.emailFromName ? { name: config.emailFromName } : {}) },
+    from: {
+      email: config.emailFrom,
+      ...(config.emailFromName
+        ? { name: config.emailFromName }
+        : {}),
+    },
   });
   const dispatcher: EmailDispatcher = env.EMAIL_QUEUE
     ? createQueueEmailDispatcher(env.EMAIL_QUEUE)

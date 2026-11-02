@@ -37,7 +37,10 @@ function diff<T extends Record<string, any>>(obj1: T, obj2: T): DiffResult<T> {
     ) {
       const diffResult: any = {};
 
-      const keys = new Set([...Object.keys(o1), ...Object.keys(o2)]);
+      const keys = new Set([
+        ...Object.keys(o1),
+        ...Object.keys(o2),
+      ]);
       keys.forEach((key) => {
         const valueDiff = findDifferences(o1[key], o2[key]);
         if (valueDiff !== undefined) {
@@ -45,10 +48,14 @@ function diff<T extends Record<string, any>>(obj1: T, obj2: T): DiffResult<T> {
         }
       });
 
-      return Object.keys(diffResult).length > 0 ? diffResult : undefined;
+      return Object.keys(diffResult).length > 0
+        ? diffResult
+        : undefined;
     }
 
-    return o1 === o2 ? undefined : o2;
+    return o1 === o2
+      ? undefined
+      : o2;
   }
 
   return findDifferences(obj1, obj2);

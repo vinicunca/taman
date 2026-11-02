@@ -85,7 +85,9 @@ export function filterTree<T extends Record<string, any>>(
           && filteredChildren.every((child, index) => child === children[index]);
 
       result.push(
-        childrenUnchanged ? node : { ...node, [childProps]: filteredChildren },
+        childrenUnchanged
+          ? node
+          : { ...node, [childProps]: filteredChildren },
       );
     }
 

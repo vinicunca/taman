@@ -36,7 +36,10 @@ async function loadEnv<T = Record<string, string>>(
           encoding: 'utf8',
         });
         const env = dotenv.parse(envPath);
-        envConfig = { ...envConfig, ...env };
+        envConfig = {
+          ...envConfig,
+          ...env,
+        };
       }
     } catch (error) {
       console.error(`Error while parsing ${confFile}`, error);

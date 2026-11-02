@@ -84,7 +84,9 @@ describe('form group rendering', () => {
 
   it('toggles the group from its header and honors defaultCollapsed', async () => {
     const [Form] = useTamanForm({
-      schema: [createContactGroup({ defaultCollapsed: true })],
+      schema: [
+        createContactGroup({ defaultCollapsed: true }),
+      ],
     });
     const wrapper = mount(Form);
     wrappers.push(wrapper);
@@ -115,7 +117,9 @@ describe('form group rendering', () => {
     // the whole header clickable, including `extra` — contradicting the
     // very assertion above that `extra` isn't part of the trigger.
     const [Form] = useTamanForm({
-      schema: [createContactGroup({ defaultCollapsed: true, extra: 'Optional' })],
+      schema: [
+        createContactGroup({ defaultCollapsed: true, extra: 'Optional' }),
+      ],
     });
     const wrapper = mount(Form);
     wrappers.push(wrapper);
@@ -140,7 +144,9 @@ describe('form group rendering', () => {
     // `aria-valid-attr-value`. The header must carry none of those; only
     // the real `.form-group-trigger` button does.
     const [Form] = useTamanForm({
-      schema: [createContactGroup()],
+      schema: [
+        createContactGroup(),
+      ],
     });
     const wrapper = mount(Form);
     wrappers.push(wrapper);
@@ -214,7 +220,9 @@ describe('form group rendering', () => {
                   rules: z.string().min(1, 'Phone is required'),
                 },
               ],
-              defaultValue: [{ phone: '' }],
+              defaultValue: [
+                { phone: '' },
+              ],
               fieldName: 'contacts',
               type: 'array',
             },
@@ -242,7 +250,9 @@ describe('form group rendering', () => {
       schema: [
         createContactGroup(),
         {
-          children: [{ component: TestInput, fieldName: 'secret' }],
+          children: [
+            { component: TestInput, fieldName: 'secret' },
+          ],
           hide: true,
           name: 'hidden',
           type: 'group',
@@ -268,13 +278,17 @@ describe('form group rendering', () => {
 
   it('re-renders grouped fields after updateSchema', async () => {
     const [Form, formApi] = useTamanForm({
-      schema: [createContactGroup()],
+      schema: [
+        createContactGroup(),
+      ],
     });
     const wrapper = mount(Form);
     wrappers.push(wrapper);
     await flushPromises();
 
-    formApi.updateSchema([{ fieldName: 'phone', label: 'Mobile' }]);
+    formApi.updateSchema([
+      { fieldName: 'phone', label: 'Mobile' },
+    ]);
     await flushPromises();
 
     expect(wrapper.text()).toContain('Mobile');

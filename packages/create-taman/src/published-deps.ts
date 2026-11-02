@@ -2,7 +2,12 @@ import type { FileMap } from './types';
 import { readJson, writeJson } from './json';
 import { addCatalogEntries, overridesFromCatalog } from './workspace-yaml';
 
-const DEPENDENCY_FIELDS = ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies'] as const;
+const DEPENDENCY_FIELDS = [
+  'dependencies',
+  'devDependencies',
+  'peerDependencies',
+  'optionalDependencies',
+] as const;
 
 interface PackageJson {
   name?: string;
@@ -36,7 +41,9 @@ export function listPackages(files: FileMap) {
 export function rewritePublishedDeps(before: FileMap, after: FileMap) {
   const remaining = listPackages(after);
   const published = new Map(
-    [...listPackages(before)]
+    [
+      ...listPackages(before),
+    ]
       .filter(([name, info]) => !remaining.has(name) && !info.private)
       .map(([name, info]) => [name, info.version]),
   );
@@ -94,7 +101,9 @@ export function sortDependencyKeys(files: FileMap): FileMap {
       if (!deps) {
         continue;
       }
-      const sorted = Object.fromEntries(Object.entries(deps).sort(([a], [b]) => (a < b ? -1 : 1)));
+      const sorted = Object.fromEntries(Object.entries(deps).sort(([a], [b]) => (a < b
+        ? -1
+        : 1)));
       if (Object.keys(sorted).join() !== Object.keys(deps).join()) {
         json[field] = sorted;
         changed = true;

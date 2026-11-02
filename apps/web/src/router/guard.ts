@@ -82,7 +82,9 @@ function setupAccessGuard(router: Router) {
         query:
           to.fullPath === preferences.app.defaultHomePath
             ? {}
-            : { redirect: encodeURIComponent(to.fullPath) },
+            : {
+                redirect: encodeURIComponent(to.fullPath),
+              },
         // Preserve current URL for post-login redirect
         replace: true,
       };
@@ -109,7 +111,9 @@ function setupAccessGuard(router: Router) {
 
     // Generate menus and routes
     const { accessibleMenus, accessibleRoutes } = await generateAccess({
-      roles: (session?.user?.role ? [session?.user?.role] : []) as Array<AuthRoleNames>,
+      roles: (session?.user?.role
+        ? [session?.user?.role]
+        : []) as Array<AuthRoleNames>,
       router,
       // Shown in menu but visits redirect to 403 when forbidden
       routes: accessRoutes,

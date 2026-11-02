@@ -81,7 +81,10 @@ export function resolveColumn(
     return column;
   }
 
-  return matchScreen(screens, { ...DEFAULT_COLUMN_MAP, ...column }) ?? 3;
+  return matchScreen(screens, {
+    ...DEFAULT_COLUMN_MAP,
+    ...column,
+  }) ?? 3;
 }
 
 /**
@@ -100,7 +103,9 @@ export function normalizeItems(
     return {
       ...rest,
       _index: index,
-      span: isNumber(span) ? span : matchScreen(screens, span),
+      span: isNumber(span)
+        ? span
+        : matchScreen(screens, span),
     };
   });
 }
@@ -134,7 +139,9 @@ export function calcRows(
 
     if (count >= column) {
       // When the count exceeds the column number, the span of the current item is converged to the remaining column number to avoid overflow
-      tmpRow.push(count > column ? { ...rest, span: restSpan } : rest);
+      tmpRow.push(count > column
+        ? { ...rest, span: restSpan }
+        : rest);
       rows.push(tmpRow);
       tmpRow = [];
       count = 0;
@@ -196,9 +203,13 @@ export function parseItemsFromSlot(nodes: Array<VNode>): Array<TamanDescriptions
       const props = (node.props ?? {}) as Record<string, any>;
       const children = (node.children ?? {}) as Record<string, any>;
       const labelSlot
-        = typeof children.label === 'function' ? children.label : undefined;
+        = typeof children.label === 'function'
+          ? children.label
+          : undefined;
       const contentDefaultSlot
-        = typeof children.default === 'function' ? children.default : undefined;
+        = typeof children.default === 'function'
+          ? children.default
+          : undefined;
       const contentSlot
         = typeof children.content === 'function'
           ? children.content

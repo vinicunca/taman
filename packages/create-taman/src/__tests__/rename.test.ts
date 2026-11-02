@@ -11,16 +11,22 @@ describe('fillPlaceholders', () => {
 
 describe('applyExplicitRenames', () => {
   it('replaces every occurrence in the named file', () => {
-    const files = new Map([['docker-compose.yml', 'POSTGRES_DB: taman_db\n-d taman_db\n']]);
+    const files = new Map([
+      ['docker-compose.yml', 'POSTGRES_DB: taman_db\n-d taman_db\n'],
+    ]);
 
-    const result = applyExplicitRenames(files, [{ file: 'docker-compose.yml', from: 'taman_db', to: '{{nameSnake}}' }], names);
+    const result = applyExplicitRenames(files, [
+      { file: 'docker-compose.yml', from: 'taman_db', to: '{{nameSnake}}' },
+    ], names);
 
     expect(result.errors).toEqual([]);
     expect(result.files.get('docker-compose.yml')).toBe('POSTGRES_DB: my_app\n-d my_app\n');
   });
 
   it('reports a missing file and a missing string instead of skipping them', () => {
-    const files = new Map([['a.txt', 'hello']]);
+    const files = new Map([
+      ['a.txt', 'hello'],
+    ]);
 
     const result = applyExplicitRenames(files, [
       { file: 'missing.txt', from: 'x', to: 'y' },

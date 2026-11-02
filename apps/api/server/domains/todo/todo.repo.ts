@@ -44,8 +44,12 @@ export class TodoRepo extends CoreRepo implements TodoRepoPort {
   async list({ organizationId, limit, offset, search, completed }: TodoListQuery) {
     const where = and(
       eq(todoTable.organizationId, organizationId),
-      search ? ilike(todoTable.title, `%${escapeLike(search)}%`) : undefined,
-      completed === undefined ? undefined : eq(todoTable.completed, completed),
+      search
+        ? ilike(todoTable.title, `%${escapeLike(search)}%`)
+        : undefined,
+      completed === undefined
+        ? undefined
+        : eq(todoTable.completed, completed),
     );
 
     const [rows, totals] = await Promise.all([
@@ -59,7 +63,9 @@ export class TodoRepo extends CoreRepo implements TodoRepoPort {
         .limit(limit)
         .offset(offset),
       this.db
-        .select({ total: count() })
+        .select({
+          total: count(),
+        })
         .from(todoTable)
         .where(where),
     ]);

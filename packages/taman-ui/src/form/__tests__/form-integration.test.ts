@@ -60,7 +60,9 @@ beforeAll(() => {
   setupTamanForm({
     rules: {
       required(value, _params, context) {
-        return value ? true : `${context.label} is required`;
+        return value
+          ? true
+          : `${context.label} is required`;
       },
     },
   });
@@ -473,7 +475,9 @@ describe('useTamanForm integration', () => {
           component: TestInput,
           dependencies: {
             resolve({ values }) {
-              return { if: dependency(values) };
+              return {
+                if: dependency(values),
+              };
             },
             triggerFields: ['toggle'],
           },
@@ -693,7 +697,9 @@ describe('useTamanForm integration', () => {
               rules: z.string().min(1, 'Name is required'),
             },
           ],
-          defaultValue: [{ name: 'Ada' }],
+          defaultValue: [
+            { name: 'Ada' },
+          ],
           fieldName: 'contacts',
           type: 'array',
         },
@@ -708,14 +714,19 @@ describe('useTamanForm integration', () => {
     await flushPromises();
     expect(wrapper.findAll('input')).toHaveLength(2);
     expect(await formApi.getValues()).toEqual({
-      contacts: [{ name: 'Ada' }, { name: 'Grace' }],
+      contacts: [
+        { name: 'Ada' },
+        { name: 'Grace' },
+      ],
     });
 
     await formApi.form.removeFieldValue('contacts', 0);
     await flushPromises();
     expect(wrapper.findAll('input')).toHaveLength(1);
     expect(await formApi.getValues()).toEqual({
-      contacts: [{ name: 'Grace' }],
+      contacts: [
+        { name: 'Grace' },
+      ],
     });
   });
 
@@ -730,7 +741,9 @@ describe('useTamanForm integration', () => {
               label: 'Name',
             },
           ],
-          defaultValue: [{ name: 'Ada' }],
+          defaultValue: [
+            { name: 'Ada' },
+          ],
           fieldName: 'contacts',
           type: 'array',
         },
@@ -762,7 +775,10 @@ describe('useTamanForm integration', () => {
               label: 'Name',
             },
           ],
-          defaultValue: [{ name: 'Ada' }, { name: 'Grace' }],
+          defaultValue: [
+            { name: 'Ada' },
+            { name: 'Grace' },
+          ],
           fieldName: 'contacts',
           type: 'array',
         },
@@ -823,7 +839,9 @@ describe('useTamanForm integration', () => {
               label: 'Phone',
             },
           ],
-          defaultValue: [{ phone: '', role: 'viewer' }],
+          defaultValue: [
+            { phone: '', role: 'viewer' },
+          ],
           fieldName: 'contacts',
           type: 'array',
         },
@@ -1026,7 +1044,9 @@ describe('useTamanForm integration', () => {
           return { name: values.normalizedName };
         },
         encode(values: Readonly<{ name: string }>) {
-          return { normalizedName: values.name.trim().toUpperCase() };
+          return {
+            normalizedName: values.name.trim().toUpperCase(),
+          };
         },
       },
       handleSubmit,
@@ -1066,7 +1086,9 @@ describe('useTamanForm integration', () => {
         },
       ],
     });
-    const wrapper = mount(Form, { attrs: { onSubmit } });
+    const wrapper = mount(Form, {
+      attrs: { onSubmit },
+    });
     wrappers.push(wrapper);
     await flushPromises();
 
@@ -1095,7 +1117,9 @@ describe('useTamanForm integration', () => {
           return { name: values.normalizedName };
         },
         encode(values: Readonly<{ name: string }>) {
-          return { normalizedName: values.name.toUpperCase() };
+          return {
+            normalizedName: values.name.toUpperCase(),
+          };
         },
       },
       handleReset,
@@ -1202,7 +1226,9 @@ describe('useTamanForm integration', () => {
     await flushPromises();
 
     await formApi.setValues({ alias: 'changed', name: 'changed' });
-    await formApi.reset({ values: { name: 'reset' } });
+    await formApi.reset({
+      values: { name: 'reset' },
+    });
     await flushPromises();
 
     expect(await formApi.getValues()).toEqual({

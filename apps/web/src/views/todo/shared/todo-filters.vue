@@ -26,9 +26,18 @@ watchDebounced(draft, (value) => {
 }, { debounce: 300 });
 
 const STATUS_OPTIONS: Array<{ label: string; value: boolean | undefined }> = [
-  { label: $t('todo.filter.all'), value: undefined },
-  { label: $t('todo.filter.open'), value: false },
-  { label: $t('todo.filter.done'), value: true },
+  {
+    label: $t('todo.filter.all'),
+    value: undefined,
+  },
+  {
+    label: $t('todo.filter.open'),
+    value: false,
+  },
+  {
+    label: $t('todo.filter.done'),
+    value: true,
+  },
 ];
 </script>
 

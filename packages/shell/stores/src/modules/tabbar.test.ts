@@ -54,7 +54,10 @@ describe('useAccessStore', () => {
       query: {},
     };
     store.addTab(initialTab);
-    const updatedTab = { ...initialTab, query: { id: '1' } };
+    const updatedTab = {
+      ...initialTab,
+      query: { id: '1' },
+    };
     store.addTab(updatedTab);
     expect(store.tabs.length).toBe(1);
     expect(store.tabs[0]?.query).toEqual({ id: '1' });

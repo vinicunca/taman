@@ -15,8 +15,16 @@ export function useTodoListParams() {
 
   function setParams(patch: Partial<TodoListParams>) {
     const resetsPage = 'search' in patch || 'completed' in patch || 'pageSize' in patch;
-    const next = { ...params.value, ...(resetsPage ? { page: 1 } : {}), ...patch };
-    void router.replace({ query: toTodoListQuery(next) });
+    const next = {
+      ...params.value,
+      ...(resetsPage
+        ? { page: 1 }
+        : {}),
+      ...patch,
+    };
+    void router.replace({
+      query: toTodoListQuery(next),
+    });
   }
 
   return { params, setParams };

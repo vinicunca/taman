@@ -32,7 +32,10 @@ function mergeStyle(
     return undefined;
   }
 
-  return { ...base, ...override };
+  return {
+    ...base,
+    ...override,
+  };
 }
 </script>
 

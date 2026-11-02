@@ -6,8 +6,8 @@ import { themeInput } from './theme.input.ts';
 export const themeTextarea = defu(
   {
     slots: {
-      leading: 'absolute start-0 flex items-start',
-      trailing: 'absolute end-0 flex items-start',
+      leading: 'flex items-start start-0 absolute',
+      trailing: 'flex items-start end-0 absolute',
     },
     variants: {
       autoresize: {
