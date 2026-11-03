@@ -344,10 +344,20 @@ export const useTabbarStore = defineStore('core-tabbar', {
      * @param router
      */
     async closeTabByKey(key: string, router: Router) {
-      const originKey = decodeURIComponent(key);
-      const index = this.tabs.findIndex(
-        (item) => getTabKeyFromTab(item) === originKey,
-      );
+      // The key of the tab is decoded when it is created, and the original key is matched first; repeating the decoding will change the "%xx" fragment in the decoded key, which may match to another tab or throw a URIError
+      // The "%xx" fragment in the decoded key may match to another tab or throw a URIError
+      let index = this.tabs.findIndex((item) => getTabKeyFromTab(item) === key);
+      if (index === -1) {
+        let decodedKey: string;
+        try {
+          decodedKey = decodeURIComponent(key);
+        } catch {
+          return;
+        }
+        index = this.tabs.findIndex(
+          (item) => getTabKeyFromTab(item) === decodedKey,
+        );
+      }
       if (index === -1) {
         return;
       }
@@ -392,7 +402,12 @@ export const useTabbarStore = defineStore('core-tabbar', {
       // Reorder among pinned tabs; affixTabOrder sorting may need revisiting if that meta is used
       const affixTabs = this.tabs.filter((tab) => isAffixTab(tab));
       const newIndex = affixTabs.findIndex((item) => equalTab(item, tab));
-      await this.sortTabs(index, newIndex);
+      // The source index of sortTabs also needs to be taken in the rendered order, otherwise the fixed tabs at the end of the original array will move other tabs
+      const renderedIndex = this.getTabs.findIndex((item) =>
+        equalTab(item, tab),
+      );
+      // Reorder by swapping positions
+      await this.sortTabs(renderedIndex, newIndex);
     },
 
     /**
@@ -499,12 +514,15 @@ export const useTabbarStore = defineStore('core-tabbar', {
      * @param newIndex
      */
     async sortTabs(oldIndex: number, newIndex: number) {
-      const currentTab = this.tabs[oldIndex];
+      // The drag callback (use-tabs-drag) gives the index of the rendered order, and the original order of this.tabs
+      // may put the fixed tabs at the end, directly changing this.tabs by index will move other tabs.
+      const currentTab = this.getTabs[oldIndex];
       if (!currentTab) {
         return;
       }
-      this.tabs.splice(oldIndex, 1);
-      this.tabs.splice(newIndex, 0, currentTab);
+      const sortedTabs = this.getTabs.toSpliced(oldIndex, 1);
+      sortedTabs.splice(newIndex, 0, currentTab);
+      this.tabs = sortedTabs;
       this.dragEndIndex = this.dragEndIndex + 1;
     },
 
@@ -536,7 +554,12 @@ export const useTabbarStore = defineStore('core-tabbar', {
       // Move after pinned tabs (first slot among normal tabs)
       const affixTabs = this.tabs.filter((tab) => isAffixTab(tab));
       const newIndex = affixTabs.length;
-      await this.sortTabs(index, newIndex);
+      // The source index of sortTabs also needs to be taken in the rendered order, otherwise the fixed tabs at the end of the original array will move other tabs
+      const renderedIndex = this.getTabs.findIndex((item) =>
+        equalTab(item, tab),
+      );
+      // Reorder by swapping positions
+      await this.sortTabs(renderedIndex, newIndex);
     },
     /**
      * Rebuild keep-alive cache keys from open tabs.

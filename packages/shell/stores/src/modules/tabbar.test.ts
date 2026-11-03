@@ -305,6 +305,64 @@ describe('useAccessStore', () => {
     ).toBeUndefined();
   });
 
+  it('closes a tab whose key contains an encoded percent sign', async () => {
+    const store = useTabbarStore();
+    store.addTab({
+      fullPath: '/home',
+      meta: {},
+      name: 'Home',
+      path: '/home',
+    } as any);
+    store.addTab({
+      fullPath: '/search?q=50%25',
+      meta: {},
+      name: 'Search',
+      path: '/search',
+    } as any);
+
+    // The key of the tab is decoded when addTab is called, here is "/search?q=50%"
+    const keyToClose = store.tabs[1]?.key as string;
+    expect(keyToClose).toBe('/search?q=50%');
+
+    await expect(
+      store.closeTabByKey(keyToClose, router),
+    ).resolves.toBeUndefined();
+    expect(store.tabs.map((tab) => tab.name)).toEqual(['Home']);
+  });
+
+  it('prefers an exact key match over decoding the key again', async () => {
+    const store = useTabbarStore();
+    store.addTab({
+      fullPath: '/home',
+      meta: {},
+      name: 'Home',
+      path: '/home',
+    } as any);
+    store.addTab({
+      fullPath: '/search?q=50%2520off',
+      meta: {},
+      name: 'Nested',
+      path: '/search',
+    } as any);
+    store.addTab({
+      fullPath: '/search?q=50%20off',
+      meta: {},
+      name: 'Decoded',
+      path: '/search',
+    } as any);
+
+    // The keys of the two tabs after decoding are "50%20off" and "50 off"
+    expect(store.tabs.map((tab) => tab.key)).toEqual([
+      '/home',
+      '/search?q=50%20off',
+      '/search?q=50 off',
+    ]);
+
+    const keyToClose = store.tabs[1]?.key as string;
+    await store.closeTabByKey(keyToClose, router);
+    expect(store.tabs.map((tab) => tab.name)).toEqual(['Home', 'Decoded']);
+  });
+
   it('refreshes the current tab', async () => {
     const store = useTabbarStore();
     const currentTab: any = {
@@ -319,5 +377,112 @@ describe('useAccessStore', () => {
 
     expect(store.excludeCachedTabs.has('Dashboard')).toBe(false);
     expect(store.renderRouteView).toBe(true);
+  });
+
+  it('sorts tabs by the rendered order, which puts affix tabs first', async () => {
+    const store = useTabbarStore();
+    // First open two normal tabs, then register the fixed tabs (this happens when accessMenus changes)
+    for (const tab of [
+      {
+        fullPath: '/a',
+        meta: {},
+        name: 'A',
+        path: '/a',
+      },
+      {
+        fullPath: '/b',
+        meta: {},
+        name: 'B',
+        path: '/b',
+      },
+      {
+        fullPath: '/home',
+        meta: { affixTab: true },
+        name: 'Home',
+        path: '/home',
+      },
+    ]) {
+      store.addTab(tab as any);
+    }
+
+    expect(store.tabs.map((item) => item.key)).toEqual(['/a', '/b', '/home']);
+    expect(store.getTabs.map((item) => item.key)).toEqual([
+      '/home',
+      '/a',
+      '/b',
+    ]);
+
+    // The drag callback gives the index of the rendered order: put /b before /a
+    await store.sortTabs(2, 1);
+
+    expect(store.getTabs.map((item) => item.key)).toEqual([
+      '/home',
+      '/b',
+      '/a',
+    ]);
+  });
+
+  it('pins a tab at its rendered position', async () => {
+    const store = useTabbarStore();
+    const add = (name: string, affix = false) =>
+      store.addTab({
+        fullPath: `/${name.toLowerCase()}`,
+        meta: affix
+          ? { affixTab: true }
+          : {},
+        name,
+        path: `/${name.toLowerCase()}`,
+      } as any);
+    add('A');
+    add('B');
+    add('P1', true);
+    add('P2', true);
+
+    // The fixed tabs are at the end of the array, and are rendered first
+    expect(store.tabs.map((item) => item.name)).toEqual(['A', 'B', 'P1', 'P2']);
+    expect(store.getTabs.map((item) => item.name)).toEqual([
+      'P1',
+      'P2',
+      'A',
+      'B',
+    ]);
+
+    // The original index of B is 1, the rendered index is 3
+    await store.pinTab(store.tabs[1] as any);
+
+    expect(store.getTabs.map((item) => item.name)).toEqual([
+      'B',
+      'P1',
+      'P2',
+      'A',
+    ]);
+  });
+
+  it('unpins a tab at its rendered position', async () => {
+    const store = useTabbarStore();
+    // eslint-disable-next-line sonarjs/no-identical-functions
+    const add = (name: string, affix = false) =>
+      store.addTab({
+        fullPath: `/${name.toLowerCase()}`,
+        meta: affix
+          ? { affixTab: true }
+          : {},
+        name,
+        path: `/${name.toLowerCase()}`,
+      } as any);
+    add('A');
+    add('B');
+    add('P1', true);
+    add('P2', true);
+
+    // After unpinning, the original index of P1 is 2, the rendered index is 3
+    await store.unpinTab(store.tabs[2] as any);
+
+    expect(store.getTabs.map((item) => item.name)).toEqual([
+      'P2',
+      'P1',
+      'A',
+      'B',
+    ]);
   });
 });
