@@ -2,7 +2,7 @@ import { createPinia, setActivePinia } from 'pinia';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { createRouter, createWebHistory } from 'vue-router';
 
-import { useTabbarStore } from './tabbar';
+import { getTabKey, useTabbarStore } from './tabbar';
 
 describe('useAccessStore', () => {
   const router = createRouter({
@@ -40,6 +40,27 @@ describe('useAccessStore', () => {
     };
     const addNewTab = store.addTab(newTab);
     expect(store.tabs).toContainEqual(addNewTab);
+  });
+
+  it('honors a fullPathKey inherited from a parent route', () => {
+    const route: any = {
+      fullPath: '/detail?id=7',
+      matched: [
+        {
+          meta: { fullPathKey: false },
+        },
+        {
+          meta: { title: 'Detail' },
+        },
+      ],
+      meta: { fullPathKey: false },
+      name: 'Detail',
+      path: '/detail',
+      query: { id: '7' },
+    };
+
+    // Route `meta` fields are merged with those of parent records; `fullPathKey` is an inheritable configuration.
+    expect(getTabKey(route)).toBe('/detail');
   });
 
   it('updates an existing tab instead of adding a new one', () => {

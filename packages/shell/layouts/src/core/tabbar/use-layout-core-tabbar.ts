@@ -93,6 +93,8 @@ export function useLayoutCoreTabbar() {
       const meta = route.matched?.[route.matched.length - 1]?.meta;
       tabbarStore.addTab({
         ...route,
+        // key is calculated using the merged route.meta, and the fullPathKey of the parent is also effective
+        key: getTabKey(route),
         meta: meta || route.meta,
       });
     },

@@ -3,8 +3,8 @@ import { preferences } from '@vinicunca/taman-core/preferences';
 import { computed, unref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { getTabKey, storeToRefs, useTabbarStore } from '@taman/stores';
-
 import { transformComponent, useLayoutComposable } from '../composables';
+import { getCachedTabKeys } from './cached-tab-keys';
 
 const route = useRoute();
 
@@ -25,9 +25,7 @@ const computedCachedRouteKeys = computed(() => {
     return [];
   }
 
-  return unref(getTabs)
-    .filter((item) => item.meta.domCached)
-    .map((item) => getTabKey(item));
+  return getCachedTabKeys(unref(getTabs));
 });
 
 /**
