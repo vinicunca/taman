@@ -1,8 +1,8 @@
 {
   "package.json": {
-    "mtime": 1793602579.0303802,
-    "seen": 1793671433.7727501,
-    "ast_hash": "af899fc04708c7f04ee33bef9ccfcea9",
+    "mtime": 1793806086.0103338,
+    "seen": 1793806133.049906,
+    "ast_hash": "334afe1e1227182bb1437361ac16552e",
     "semantic_hash": ""
   },
   ".codex/hooks.json": {
@@ -894,9 +894,9 @@
     "semantic_hash": ""
   },
   "vitest.config.ts": {
-    "mtime": 1793805692.2246885,
-    "seen": 1793805705.9707751,
-    "ast_hash": "90315d3e44b9a231d6e42ab360150ab4",
+    "mtime": 1793806063.6136825,
+    "seen": 1793806133.050346,
+    "ast_hash": "1b5f2d1bf943ea7b78627f503d888810",
     "semantic_hash": ""
   },
   ".gitpod.yml": {
@@ -3660,15 +3660,15 @@
     "semantic_hash": ""
   },
   "apps/web/auto-imports.d.ts": {
-    "mtime": 1793804819.9354446,
-    "seen": 1793805413.6093068,
+    "mtime": 1793805768.681171,
+    "seen": 1793806133.049789,
     "ast_hash": "16de6122fd9f6efa30f30fe27818da0e",
     "semantic_hash": ""
   },
   "apps/web/components.d.ts": {
-    "mtime": 1793804819.9359958,
-    "seen": 1793805413.6093068,
-    "ast_hash": "33894d72c2f574959f639765546b86c8",
+    "mtime": 1793805770.3020427,
+    "seen": 1793806133.04979,
+    "ast_hash": "be47dfc62089f7d37e9cedf6c5e2b9f5",
     "semantic_hash": ""
   },
   "apps/web/package.json": {
@@ -6066,9 +6066,9 @@
     "semantic_hash": ""
   },
   "packages/create-taman/src/__tests__/manifest.test.ts": {
-    "mtime": 1793602579.0326653,
-    "seen": 1793671433.772754,
-    "ast_hash": "51d2a6b3f91dd0546073459ef3eedfb8",
+    "mtime": 1793806127.0693533,
+    "seen": 1793806133.049912,
+    "ast_hash": "4823051e2ad711b164a782390464917c",
     "semantic_hash": ""
   },
   "packages/create-taman/src/__tests__/names.test.ts": {
@@ -6335,9 +6335,9 @@
     "ast_hash": "b5bd961ec3f7ea22ec03576f9af8914c",
     "semantic_hash": ""
   },
-  "packages/taman-ui/tests/setup.ts": {
-    "mtime": 1793805692.267881,
-    "seen": 1793805705.970765,
+  "tests/setup.ts": {
+    "mtime": 1793806063.6363227,
+    "seen": 1793806133.050345,
     "ast_hash": "997ebe3a0d9a875035280dec30380fd6",
     "semantic_hash": ""
   }
