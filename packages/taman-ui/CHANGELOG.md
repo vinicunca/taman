@@ -1,5 +1,15 @@
 # @vinicunca/taman-ui
 
+## 0.2.0
+
+### Minor Changes
+
+- 8035998: update
+
+### Patch Changes
+
+- 8035998: Fix popup icon rendering and spacing, preserve the default alert centering behavior, and use TamanIcon consistently in forms, menus, dialogs, and drawers. Read async Standard Schema validators without Vue proxies to avoid errors with Zod internals.
+
 ## 0.1.4
 
 ### Patch Changes
