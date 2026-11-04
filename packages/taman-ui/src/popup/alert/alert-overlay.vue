@@ -6,7 +6,12 @@ import Alert from './alert.vue';
 
 defineOptions({ inheritAttrs: false });
 
-const props = defineProps<TamanAlertProps>();
+const props = withDefaults(
+  defineProps<TamanAlertProps>(),
+  {
+    centered: undefined,
+  },
+);
 const emits = defineEmits<{
   'after:leave': [];
   'close': [result: { isConfirm: boolean }];
@@ -17,6 +22,7 @@ const alertAttrs = computed(() => ({
   ...props,
   ...attrs,
 }));
+
 function onClosed(isConfirm: boolean) {
   emits('close', { isConfirm });
   emits('after:leave');

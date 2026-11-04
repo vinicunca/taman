@@ -2,9 +2,9 @@
 import { useSimpleLocale } from '@vinicunca/taman-core/composables';
 import { isFunction, triggerWindowResize } from '@vinicunca/taman-core/utils';
 import PButton from 'pohon-ui/components/Button.vue';
-import PIcon from 'pohon-ui/components/Icon.vue';
 import { computed, toRaw, unref, watch } from 'vue';
 
+import { TamanIcon } from '../../components';
 import { injectFormProps } from '../form.use-form-context';
 
 interface Props {
@@ -204,8 +204,8 @@ defineExpose({
       @click="collapsed = !collapsed"
     >
       <span>{{ collapsed ? $t('expand') : $t('collapse') }}</span>
-      <PIcon
-        name="lucide:chevron-down"
+      <TamanIcon
+        icon="lucide:chevron-down"
         class="transition-transform"
         :class="{ 'rotate-180': !collapsed }"
       />

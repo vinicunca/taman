@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { TamanThemeModeType } from '@taman/types';
 import { usePreferences } from '@vinicunca/taman-core/preferences';
+import { TamanIcon } from '@vinicunca/taman-ui';
 import { watch } from 'vue';
 import { $t } from '@taman/locales';
 import PreferencesSwitchItem from '../preferences-switch-item.vue';
@@ -78,8 +79,8 @@ function handleThemeChange(theme: TamanThemeModeType) {
           class="outline-box flex-center pohon:py-4"
           :class="activeClass(theme.name)"
         >
-          <PIcon
-            :name="theme.icon"
+          <TamanIcon
+            :icon="theme.icon"
             class="size-5"
           />
         </div>

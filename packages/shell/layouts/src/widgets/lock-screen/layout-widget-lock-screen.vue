@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { TamanFormProps } from '@vinicunca/taman-ui/form';
+import { TamanIcon } from '@vinicunca/taman-ui';
 import { useTamanForm, z } from '@vinicunca/taman-ui/form';
 import { useDateFormat, useNow } from '@vueuse/core';
 import PAvatar from 'pohon-ui/components/Avatar.vue';
 import PButton from 'pohon-ui/components/Button.vue';
-import PIcon from 'pohon-ui/components/Icon.vue';
 import { computed, reactive, ref } from 'vue';
 import { useScrollLock } from '@taman/composables';
 import { $t, useI18n } from '@taman/locales';
@@ -110,8 +110,8 @@ useScrollLock();
           class="group text-xl color-text/80 font-600 flex-col-center cursor-pointer left-1/2 top-6 fixed z-2001 hover:color-text -translate-x-1/2"
           @click="toggleUnlockForm"
         >
-          <PIcon
-            name="lucide:lock-keyhole"
+          <TamanIcon
+            icon="lucide:lock-keyhole"
             class="size-5 transition-all-300 group-hover:scale-125"
           />
 

@@ -2,7 +2,7 @@
 import type { Component } from 'vue';
 import type { CountToProps, TransitionPresets } from '@taman/app-ui';
 import { useTamanForm } from '#/adapter/form';
-import PIcon from 'pohon-ui/components/Icon.vue';
+import { TamanIcon } from '@vinicunca/taman-ui';
 import { h, reactive, ref } from 'vue';
 import {
   AppCard,
@@ -109,9 +109,9 @@ const [FormFields] = useTamanForm({
       fieldName: 'endVal',
       label: 'Current value',
       suffix: () =>
-        h(PIcon as Component, {
+        h(TamanIcon as Component, {
           class: 'size-5 cursor-pointer outline-hidden',
-          name: 'ix:random-filled',
+          icon: 'ix:random-filled',
           onClick: changeNumber,
           title: 'Set a random value',
         }),

@@ -8,7 +8,7 @@ import {
   omit,
   prop,
 } from '@vinicunca/taman-core/utils';
-import PIcon from 'pohon-ui/components/Icon.vue';
+import { TamanIcon } from '@vinicunca/taman-ui';
 import { computed, nextTick, ref, unref, useAttrs, watch } from 'vue';
 
 defineOptions({
@@ -307,8 +307,8 @@ defineExpose({
       v-if="loadingSlot && isLoading"
       #[loadingSlot]
     >
-      <PIcon
-        name="lucide:loader-circle"
+      <TamanIcon
+        icon="lucide:loader-circle"
         class="animate-spin"
       />
     </template>

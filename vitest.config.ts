@@ -51,10 +51,13 @@ export default defineConfig({
     },
   },
   ssr: {
-    noExternal: ['pohon-ui'],
+    // Generated apps use the published UI package, whose imports include
+    // Pohon SFCs. Keep that import chain in Vite so Vue transforms apply.
+    noExternal: ['@vinicunca/taman-ui', 'pohon-ui'],
   },
   test: {
     environment: 'happy-dom',
+    setupFiles: ['./tests/setup.ts'],
     environmentOptions: {
       happyDOM: {
         settings: {

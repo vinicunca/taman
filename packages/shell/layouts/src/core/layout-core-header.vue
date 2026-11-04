@@ -263,7 +263,6 @@ function clearPreferencesAndLogout() {
     :fullscreen-button="false"
     :title="$t('common.prompt')"
     centered
-    content-class="px-8 min-h-10"
     footer-class="border-none mb-3 mr-3"
     header-class="border-none"
   >

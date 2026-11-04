@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { mkdtempSync } from 'node:fs';
+import { mkdtempSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -7,11 +7,37 @@ import { describe, expect, it } from 'vitest';
 import { applyManifest } from '../apply';
 import { readFileMap } from '../file-map';
 import { toNames } from '../names';
+import { removeFiles } from '../remove';
 import { fetchFromLocal } from '../sources';
 
 const repoRoot = resolve(import.meta.dirname, '../../../..');
 
 describe('template.manifest.ts', () => {
+  it('keeps shared Vitest setup files and their dependency in generated projects', async () => {
+    const manifest = (await import(pathToFileURL(join(repoRoot, 'template.manifest.ts')).href)).default;
+    const config = readFileSync(join(repoRoot, 'vitest.config.ts'), 'utf8');
+    const setupFiles = config.match(/setupFiles:\s*\[([^\]]*)\]/)?.[1];
+    expect(setupFiles).toBeDefined();
+    const setupPaths = [
+      ...setupFiles!.matchAll(/['"]([^'"]+)['"]/g),
+    ]
+      .map((match) => match[1]!.replace(/^\.\//, ''));
+    expect(setupPaths.length).toBeGreaterThan(0);
+
+    const paths = ['package.json', 'tests/mocks/auto-animate.ts', ...setupPaths];
+    const snapshot = new Map(paths.map((path) => [
+      path,
+      readFileSync(join(repoRoot, path), 'utf8'),
+    ]));
+    const files = removeFiles(snapshot, manifest.remove);
+
+    for (const path of paths) {
+      expect(files.has(path), `${path} must survive template removal`).toBe(true);
+    }
+    const rootPackage = JSON.parse(files.get('package.json') as string);
+    expect(rootPackage.devDependencies['@vue/test-utils']).toBe('catalog:');
+  });
+
   it('applies cleanly to this repository and leaves no template leftovers', async () => {
     const staging = mkdtempSync(join(tmpdir(), 'ct-manifest-'));
     fetchFromLocal(repoRoot, staging);

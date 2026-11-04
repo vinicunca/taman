@@ -9,7 +9,6 @@ import {
 } from '@vinicunca/taman-core/composables';
 import { DISMISSABLE_DRAWER_ID, ELEMENT_ID_MAIN_CONTENT } from '@vinicunca/taman-core/constants';
 import PButton from 'pohon-ui/components/Button.vue';
-import PIcon from 'pohon-ui/components/Icon.vue';
 import PSeparator from 'pohon-ui/components/Separator.vue';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
 import {
@@ -31,6 +30,7 @@ import {
   SheetRoot,
   SheetTitle,
   TamanButtonIcon,
+  TamanIcon,
   TamanLoading,
   VisuallyHidden,
 } from '../..';
@@ -266,8 +266,8 @@ function handleOpened() {
                   v-if="titleTooltip"
                   :text="titleTooltip"
                 >
-                  <PIcon
-                    name="lucide:circle-help"
+                  <TamanIcon
+                    icon="lucide:circle-help"
                     class="color-text-muted"
                   />
                 </PTooltip>

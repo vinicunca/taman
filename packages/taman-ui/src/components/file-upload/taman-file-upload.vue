@@ -14,7 +14,7 @@ defineOptions({
 const props = withDefaults(
   defineProps<TamanFileUploadProps<M>>(),
   {
-    icon: 'lucide:image',
+    icon: 'lucide:image-plus',
   },
 );
 

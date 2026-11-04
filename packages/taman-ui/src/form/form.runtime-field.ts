@@ -1,6 +1,6 @@
 import type { Component } from 'vue';
 
-import { defineComponent, h, markRaw, onUnmounted } from 'vue';
+import { defineComponent, h, markRaw, onUnmounted, toRaw } from 'vue';
 
 type AsyncFieldValidator = (...args: Array<any>) => Promise<unknown> | unknown;
 interface AsyncStandardSchemaValidator {
@@ -57,7 +57,9 @@ export function createRuntimeFieldComponent(
           }
           const wrappedValidators = { ...validators };
           for (const key of asyncValidatorKeys) {
-            const validator = validators[key] as
+            // Read lazy Standard Schema properties on the original schema.
+            // Vue proxies cannot access Zod's non-configurable internals.
+            const validator = toRaw(validators[key]) as
               | AsyncFieldValidator
               | AsyncStandardSchemaValidator
               | undefined;
