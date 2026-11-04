@@ -2,9 +2,9 @@
 import type { HTMLAttributes } from 'vue';
 import type { FormGroupSchema } from '../form.types';
 import PCollapsible from 'pohon-ui/components/Collapsible.vue';
-import PIcon from 'pohon-ui/components/Icon.vue';
 import { computed, ref, watch } from 'vue';
 import {
+  TamanIcon,
   TamanRenderContent,
 } from '../..';
 import { injectRenderFormProps } from './form-render.context';
@@ -108,9 +108,9 @@ function toggleGroup() {
           <TamanRenderContent :content="props.schema.title" />
         </span>
 
-        <PIcon
+        <TamanIcon
           v-if="shouldCollapsible"
-          name="lucide-chevron-down"
+          icon="lucide:chevron-down"
           class="color-text-muted flex-none transition-transform"
           :class="
             [

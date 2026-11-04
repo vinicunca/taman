@@ -3,7 +3,6 @@ import type { DialogProps, ExtendedDialogApi } from './dialog.types';
 import { useOverlayZIndex, usePriorityValues, useSimpleLocale } from '@vinicunca/taman-core/composables';
 import { DISMISSABLE_DIALOG_ID, ELEMENT_ID_MAIN_CONTENT } from '@vinicunca/taman-core/constants';
 import PButton from 'pohon-ui/components/Button.vue';
-import PIcon from 'pohon-ui/components/Icon.vue';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
 import {
   computed,
@@ -25,6 +24,7 @@ import {
   DialogRoot,
   DialogTitle,
   TamanButtonIcon,
+  TamanIcon,
   TamanLoading,
   VisuallyHidden,
 } from '../..';
@@ -305,8 +305,8 @@ function handleClosed() {
                   v-if="titleTooltip"
                   :text="titleTooltip"
                 >
-                  <PIcon
-                    name="lucide:circle-help"
+                  <TamanIcon
+                    icon="lucide:circle-help"
                     class="color-text-muted"
                   />
                 </PTooltip>
@@ -355,7 +355,7 @@ function handleClosed() {
       </DialogHeader>
 
       <div
-        class="p-3 flex-1 relative overflow-y-auto"
+        class="px-4 py-3 flex-1 relative overflow-y-auto"
         :class="
           [
             contentClass,

@@ -2,10 +2,10 @@
 import type { HTMLAttributes } from 'vue';
 import type { FormCustomRenderType } from '../form.types';
 import { useForwardExpose } from '@vinicunca/taman-core/composables';
-import PIcon from 'pohon-ui/components/Icon.vue';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
 import {
   FormLabel,
+  TamanIcon,
   TamanRenderContent,
 } from '../..';
 
@@ -39,7 +39,7 @@ const REQUIRED_CLASS = `after:content-['*'] after:color-error after:ml-0.5 after
       v-if="help"
       class="order-2"
     >
-      <PIcon name="lucide:circle-question-mark" />
+      <TamanIcon icon="lucide:circle-question-mark" />
 
       <template #content>
         <TamanRenderContent :content="help" />

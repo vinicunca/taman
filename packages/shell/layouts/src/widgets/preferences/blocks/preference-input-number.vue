@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { SelectOption } from '@taman/types';
-import PIcon from 'pohon-ui/components/Icon.vue';
+import { TamanIcon } from '@vinicunca/taman-ui';
 import PInputNumber from 'pohon-ui/components/InputNumber.vue';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
 
@@ -43,8 +43,8 @@ const inputValue = defineModel<number>();
           text: 'pohon:whitespace-normal',
         }"
       >
-        <PIcon
-          name="lucide:circle-help"
+        <TamanIcon
+          icon="lucide:circle-help"
           class="color-text-muted"
         />
       </PTooltip>

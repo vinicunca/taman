@@ -1,1 +1,1 @@
-export { default as TamanIcon } from './icon.vue';
+export { default as TamanIcon } from './taman-icon.vue';

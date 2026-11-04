@@ -1,13 +1,11 @@
 <script lang="ts" setup>
-import type { Component } from 'vue';
 import type { TamanAlertProps } from './alert';
 
 import { useOverlayZIndex, useSimpleLocale } from '@vinicunca/taman-core/composables';
 import { usePreferences } from '@vinicunca/taman-core/preferences';
 import { isString } from '@vinicunca/taman-core/utils';
 import PButton from 'pohon-ui/components/Button.vue';
-import PIcon from 'pohon-ui/components/Icon.vue';
-import { computed, h, nextTick, ref } from 'vue';
+import { computed, nextTick, ref } from 'vue';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,6 +14,7 @@ import {
   AlertDialogDescription,
   AlertDialogTitle,
   TamanButtonIcon,
+  TamanIcon,
   TamanLoading,
   TamanRenderContent,
 } from '../..';
@@ -61,59 +60,42 @@ function onEscapeKeyDown(event: KeyboardEvent) {
   }
 }
 
-const getIconRender = computed(() => {
-  let iconRender: Component | null = null;
-  if (props.icon) {
-    if (isString(props.icon)) {
-      switch (props.icon) {
-        case 'error': {
-          iconRender = h(PIcon, {
-            name: 'lucide:x-circle',
-            class: 'color-error',
-          });
-          break;
-        }
-        case 'info': {
-          iconRender = h(PIcon, {
-            name: 'lucide:info',
-            class: 'color-info',
-          });
-          break;
-        }
-        case 'question': {
-          iconRender = h(PIcon, {
-            name: 'lucide:help-circle',
-            class: 'color-info',
-          });
-          break;
-        }
-        case 'success': {
-          iconRender = h(
-            PIcon,
-            {
-              name: 'lucide:check-circle',
-              class: 'color-success',
-            },
-          );
-          break;
-        }
-        case 'warning': {
-          iconRender = h(PIcon, {
-            name: 'lucide:alert-circle',
-            class: 'color-warning',
-          });
-          break;
-        }
-        default: {
-          iconRender = null;
-          break;
-        }
-      }
-    }
-  } else {
-    iconRender = props.icon ?? null;
+const iconData = computed(() => {
+  if (!props.icon) {
+    return;
   }
-  return iconRender;
+
+  if (!isString(props.icon)) {
+    return {
+      name: props.icon,
+      class: '',
+    };
+  }
+
+  const iconMapping = {
+    error: {
+      name: 'lucide:x-circle',
+      class: 'color-error',
+    },
+    info: {
+      name: 'lucide:info',
+      class: 'color-info',
+    },
+    question: {
+      name: 'lucide:help-circle',
+      class: 'color-info',
+    },
+    success: {
+      name: 'lucide:check-circle',
+      class: 'color-success',
+    },
+    warning: {
+      name: 'lucide:alert-circle',
+      class: 'color-warning',
+    },
+  };
+
+  return iconMapping[props.icon as keyof typeof iconMapping];
 });
 
 function doCancel() {
@@ -188,10 +170,12 @@ async function handleOpenChange(val: boolean) {
         :class="contentClass"
       >
         <AlertDialogTitle v-if="title">
-          <div class="flex items-center">
-            <component
-              :is="getIconRender"
-              class="mr-2"
+          <div class="flex gap-2 items-center">
+            <TamanIcon
+              v-if="props.icon"
+              :icon="iconData?.name"
+              :class="iconData?.class"
+              size="24"
             />
 
             <span class="flex-auto">{{ $t(title) }}</span>
@@ -210,7 +194,12 @@ async function handleOpenChange(val: boolean) {
         </AlertDialogTitle>
 
         <AlertDialogDescription>
-          <div class="m-4 min-h-7.5">
+          <div
+            class="py-4"
+            :class="{
+              'px-8': props.icon,
+            }"
+          >
             <TamanRenderContent
               :content="content"
               render-br

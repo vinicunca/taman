@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import type { TamanBuiltinThemeType } from '@taman/types';
 import { COLOR_PRESETS, preferences, updatePreferences } from '@vinicunca/taman-core/preferences';
-import { TamanButtonIcon } from '@vinicunca/taman-ui';
+import { TamanButtonIcon, TamanIcon } from '@vinicunca/taman-ui';
 import PButton from 'pohon-ui/components/Button.vue';
 import PCollapsible from 'pohon-ui/components/Collapsible.vue';
-import PIcon from 'pohon-ui/components/Icon.vue';
 
 defineOptions({
   name: 'WidgetColorToggle',
@@ -51,9 +50,9 @@ function handleClick(primary: string, type: TamanBuiltinThemeType) {
             :style="{ backgroundColor: preset.color }"
             class="rounded-full flex-center size-5 transition-transform-280 relative hover:scale-110"
           >
-            <PIcon
+            <TamanIcon
               v-if="preferences.theme.builtinType === preset.type"
-              name="lucide:check"
+              icon="lucide:check"
               class="color-white size-3.5"
             />
           </div>

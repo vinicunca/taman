@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { KbdProps } from 'pohon-ui';
-import PIcon from 'pohon-ui/components/Icon.vue';
+import { TamanIcon } from '@vinicunca/taman-ui';
 import PKbd from 'pohon-ui/components/Kbd.vue';
 import PSwitch from 'pohon-ui/components/Switch.vue';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
@@ -47,8 +47,8 @@ const checked = defineModel<boolean>();
             text: 'pohon:whitespace-normal',
           }"
         >
-          <PIcon
-            name="lucide:circle-help"
+          <TamanIcon
+            icon="lucide:circle-help"
             class="color-text-muted"
           />
         </PTooltip>

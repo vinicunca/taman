@@ -8,7 +8,6 @@ import type {
   MenuProvider,
 } from '../menu.types';
 import { useResizeObserver } from '@vueuse/core';
-import PIcon from 'pohon-ui/components/Icon.vue';
 import {
   computed,
   nextTick,
@@ -19,6 +18,7 @@ import {
   watch,
   watchEffect,
 } from 'vue';
+import { TamanIcon } from '../../components';
 import {
   createMenuContext,
   createSubMenuContext,
@@ -369,7 +369,7 @@ function getActivePaths() {
         path="sub-menu-more"
       >
         <template #title>
-          <PIcon name="lucide:ellipsis" />
+          <TamanIcon icon="lucide:ellipsis" />
         </template>
 
         <template

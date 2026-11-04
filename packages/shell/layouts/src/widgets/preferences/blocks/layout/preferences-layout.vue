@@ -1,11 +1,10 @@
 <script lang="ts" setup>
 import type { Component } from 'vue';
 import type { TamanLayoutType } from '@taman/types';
-import PIcon from 'pohon-ui/components/Icon.vue';
+import { TamanIcon } from '@vinicunca/taman-ui';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
 import { computed } from 'vue';
 import { $t } from '@taman/locales';
-
 import {
   IconLayoutFullContent,
   IconLayoutHeaderMixedNav,
@@ -111,8 +110,8 @@ function handleLayoutChange(layout: TamanLayoutType) {
           }"
           :text="layout.tip"
         >
-          <PIcon
-            name="lucide:info"
+          <TamanIcon
+            icon="lucide:info"
             class="mt-0.25 shrink-0 cursor-help"
             size="16"
           />

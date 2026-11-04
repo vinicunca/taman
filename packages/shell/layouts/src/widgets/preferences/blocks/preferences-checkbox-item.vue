@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import type { TamanButtonCheckGroupOption, TamanButtonCheckGroupValue } from '@vinicunca/taman-ui';
 
-import { TamanButtonCheckGroup } from '@vinicunca/taman-ui';
-import PIcon from 'pohon-ui/components/Icon.vue';
+import { TamanButtonCheckGroup, TamanIcon } from '@vinicunca/taman-ui';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
 
 defineOptions({
@@ -48,8 +47,8 @@ const inputValue = defineModel<Array<string>>();
           text: 'pohon:whitespace-normal',
         }"
       >
-        <PIcon
-          name="lucide:circle-help"
+        <TamanIcon
+          icon="lucide:circle-help"
           class="color-text-muted"
         />
       </PTooltip>
