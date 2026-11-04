@@ -1,7 +1,7 @@
 {
   "package.json": {
-    "mtime": 1793806086.0103338,
-    "seen": 1793806133.049906,
+    "mtime": 1793807447.2981775,
+    "seen": 1793807607.795265,
     "ast_hash": "334afe1e1227182bb1437361ac16552e",
     "semantic_hash": ""
   },
@@ -342,8 +342,8 @@
     "semantic_hash": ""
   },
   "packages/shell/app-ui/src/components/fetch-component/app-fetch-component.vue": {
-    "mtime": 1793804819.9368024,
-    "seen": 1793805413.609535,
+    "mtime": 1793807447.298771,
+    "seen": 1793807607.795434,
     "ast_hash": "4f27bc980a09a3093baf2d5f40a813ff",
     "semantic_hash": ""
   },
@@ -492,8 +492,8 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/core/layout-core-header.vue": {
-    "mtime": 1793804819.937544,
-    "seen": 1793805413.609621,
+    "mtime": 1793807447.2990818,
+    "seen": 1793807607.795586,
     "ast_hash": "fb03b19360d1e1cf35b6bc0493e72fe9",
     "semantic_hash": ""
   },
@@ -558,9 +558,9 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/core/tabbar/use-layout-core-tabbar.ts": {
-    "mtime": 1793804819.9381049,
-    "seen": 1793805413.609628,
-    "ast_hash": "d5f4fadcbbeef0abe4ace80eac654355",
+    "mtime": 1793807442.9507756,
+    "seen": 1793807607.7955961,
+    "ast_hash": "f4b21c0bb1bffd56c5c2c25a49c4c9ad",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/core/use-layout-scroll.ts": {
@@ -606,9 +606,9 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/route-cached/layout-route-cached-view.vue": {
-    "mtime": 1793804819.938533,
-    "seen": 1793805413.609633,
-    "ast_hash": "f2b9c5d3208fbce95b2789698851825f",
+    "mtime": 1793807442.952508,
+    "seen": 1793807607.795604,
+    "ast_hash": "a9aa0a36f8813277a36d300b7d6e9185",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/index.ts": {
@@ -672,8 +672,8 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/lock-screen/layout-widget-lock-screen.vue": {
-    "mtime": 1793804819.9388156,
-    "seen": 1793805413.609639,
+    "mtime": 1793807447.2994738,
+    "seen": 1793807607.7956119,
     "ast_hash": "ec8a6fc761e95ce8871d0025ff9837fa",
     "semantic_hash": ""
   },
@@ -762,8 +762,8 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/layout/preferences-layout.vue": {
-    "mtime": 1793804819.9391758,
-    "seen": 1793805413.6096482,
+    "mtime": 1793807447.2998714,
+    "seen": 1793807607.7956228,
     "ast_hash": "1d17e530880c4ba0052c9584adf840ed",
     "semantic_hash": ""
   },
@@ -780,14 +780,14 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/preferences-switch-item.vue": {
-    "mtime": 1793804819.940038,
-    "seen": 1793805413.609652,
+    "mtime": 1793807447.301023,
+    "seen": 1793807607.795627,
     "ast_hash": "b6265b7f569eb10403d745ba32a0a4f2",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/theme/preferences-theme.vue": {
-    "mtime": 1793804819.940416,
-    "seen": 1793805413.609654,
+    "mtime": 1793807447.3015478,
+    "seen": 1793807607.79563,
     "ast_hash": "c029e0bcab8bac0684de74cd506425d4",
     "semantic_hash": ""
   },
@@ -816,8 +816,8 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/widget-color-toggle.vue": {
-    "mtime": 1793804819.9405932,
-    "seen": 1793805413.609657,
+    "mtime": 1793807447.3017943,
+    "seen": 1793807607.7956328,
     "ast_hash": "8e8d0c80ae12bdb29088d02e980c85f1",
     "semantic_hash": ""
   },
@@ -894,8 +894,8 @@
     "semantic_hash": ""
   },
   "vitest.config.ts": {
-    "mtime": 1793806592.9557579,
-    "seen": 1793806734.9580312,
+    "mtime": 1793807447.3098755,
+    "seen": 1793807607.7958772,
     "ast_hash": "06d68f2dd467c297a21a7c4823cdcfe0",
     "semantic_hash": ""
   },
@@ -1314,8 +1314,8 @@
     "semantic_hash": ""
   },
   "packages/taman-core/src/color/__tests__/convert.test.ts": {
-    "mtime": 1793805571.2270403,
-    "seen": 1793805678.115158,
+    "mtime": 1793807447.302268,
+    "seen": 1793807607.79567,
     "ast_hash": "3f753f76c8fd53be0c029b264dcae729",
     "semantic_hash": ""
   },
@@ -1362,8 +1362,8 @@
     "semantic_hash": ""
   },
   "packages/taman-core/src/composables/__tests__/use-sortable.test.ts": {
-    "mtime": 1793805568.4379506,
-    "seen": 1793805678.1151628,
+    "mtime": 1793807447.302672,
+    "seen": 1793807607.795677,
     "ast_hash": "294909e9451848219bac5fc38c9621e6",
     "semantic_hash": ""
   },
@@ -1872,8 +1872,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/components/file-upload/taman-file-upload.vue": {
-    "mtime": 1793804832.3984015,
-    "seen": 1793805413.609771,
+    "mtime": 1793807447.3032992,
+    "seen": 1793807607.795733,
     "ast_hash": "c685c0527659fc017a1a343bc2897a4b",
     "semantic_hash": ""
   },
@@ -1890,8 +1890,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/components/icon/index.ts": {
-    "mtime": 1793804819.9415686,
-    "seen": 1793805413.6097732,
+    "mtime": 1793807447.3035548,
+    "seen": 1793807607.7957351,
     "ast_hash": "905bc08841b47c0877df8001587a7739",
     "semantic_hash": ""
   },
@@ -2154,8 +2154,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/components/form-actions.vue": {
-    "mtime": 1793804819.9423003,
-    "seen": 1793805413.609802,
+    "mtime": 1793807447.3039632,
+    "seen": 1793807607.795763,
     "ast_hash": "d94274d349ccf8b0ceb4a6e2c444ac31",
     "semantic_hash": ""
   },
@@ -2190,8 +2190,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/form-render/form-render-form-label.vue": {
-    "mtime": 1793804819.942477,
-    "seen": 1793805413.609805,
+    "mtime": 1793807447.3043115,
+    "seen": 1793807607.795767,
     "ast_hash": "337916dcc95d2216efcddbdaf96b8106",
     "semantic_hash": ""
   },
@@ -2202,8 +2202,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/form-render/form-render-group.vue": {
-    "mtime": 1793804819.9426842,
-    "seen": 1793805413.609806,
+    "mtime": 1793807447.3045785,
+    "seen": 1793807607.795768,
     "ast_hash": "73f9fe49a15dbf87d21164e8f3c5c9ab",
     "semantic_hash": ""
   },
@@ -2280,8 +2280,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/form.runtime-field.ts": {
-    "mtime": 1793805564.927084,
-    "seen": 1793805678.115233,
+    "mtime": 1793807447.304884,
+    "seen": 1793807607.795777,
     "ast_hash": "a54bc391c619134febfdfb6601ba1e76",
     "semantic_hash": ""
   },
@@ -2484,8 +2484,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/menu/components/taman-menu-root.vue": {
-    "mtime": 1793804819.9430003,
-    "seen": 1793805413.6098392,
+    "mtime": 1793807447.3051982,
+    "seen": 1793807607.795799,
     "ast_hash": "57009cdc734ab8f81a1fee3089554881",
     "semantic_hash": ""
   },
@@ -2586,8 +2586,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/popup/alert/alert-overlay.vue": {
-    "mtime": 1793804819.943882,
-    "seen": 1793805413.609856,
+    "mtime": 1793807447.305473,
+    "seen": 1793807607.795809,
     "ast_hash": "19eab1b9195a2fa401ff6f652cda9ee9",
     "semantic_hash": ""
   },
@@ -2598,8 +2598,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/popup/alert/alert.vue": {
-    "mtime": 1793804819.944084,
-    "seen": 1793805413.609857,
+    "mtime": 1793807447.305737,
+    "seen": 1793807607.79581,
     "ast_hash": "50242e84a0a6c626c99ab87eaad58cfd",
     "semantic_hash": ""
   },
@@ -2652,8 +2652,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/popup/dialog/dialog.vue": {
-    "mtime": 1793804819.9443264,
-    "seen": 1793805413.6098619,
+    "mtime": 1793807447.3060458,
+    "seen": 1793807607.795815,
     "ast_hash": "5b221a08d15e5ba844fc2388992989a7",
     "semantic_hash": ""
   },
@@ -2718,8 +2718,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/popup/drawer/drawer.vue": {
-    "mtime": 1793804819.9445677,
-    "seen": 1793805413.609874,
+    "mtime": 1793807447.3063354,
+    "seen": 1793807607.7958221,
     "ast_hash": "49eb22778f6c74c928682edc524ea2f1",
     "semantic_hash": ""
   },
@@ -3120,14 +3120,14 @@
     "semantic_hash": ""
   },
   ".changeset/README.md": {
-    "mtime": 1793804832.388027,
-    "seen": 1793805413.6099331,
+    "mtime": 1793807447.2864912,
+    "seen": 1793807607.7958772,
     "ast_hash": "cc78b5029eb385025b2777a59eb597ff",
     "semantic_hash": ""
   },
   ".github/workflows/release.yml": {
-    "mtime": 1793804832.3887517,
-    "seen": 1793805413.609938,
+    "mtime": 1793807447.2872436,
+    "seen": 1793807607.795879,
     "ast_hash": "b320055df8c5d22a194591d7d66eeb00",
     "semantic_hash": ""
   },
@@ -3234,8 +3234,8 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/theme/preferences-builtin-theme.vue": {
-    "mtime": 1793804819.9402378,
-    "seen": 1793805413.609654,
+    "mtime": 1793807447.3012888,
+    "seen": 1793807607.795629,
     "ast_hash": "e1d54ba265eb3cad868e2948fad6894e",
     "semantic_hash": ""
   },
@@ -3276,20 +3276,20 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/preference-input-number.vue": {
-    "mtime": 1793804819.9394772,
-    "seen": 1793805413.60965,
+    "mtime": 1793807447.300263,
+    "seen": 1793807607.795624,
     "ast_hash": "b843386bb6f8c18bd581a0ac4e963b40",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/preference-select-item.vue": {
-    "mtime": 1793804819.9396672,
-    "seen": 1793805413.60965,
+    "mtime": 1793807447.300521,
+    "seen": 1793807607.795625,
     "ast_hash": "30226ab826e1bf6a364febd3c9f2c621",
     "semantic_hash": ""
   },
   "packages/shell/layouts/src/widgets/preferences/blocks/preferences-checkbox-item.vue": {
-    "mtime": 1793804819.9398623,
-    "seen": 1793805413.6096509,
+    "mtime": 1793807447.3007615,
+    "seen": 1793807607.795626,
     "ast_hash": "4929762cad3b4be7847aad475cf0def3",
     "semantic_hash": ""
   },
@@ -3660,14 +3660,14 @@
     "semantic_hash": ""
   },
   "apps/web/auto-imports.d.ts": {
-    "mtime": 1793805768.681171,
-    "seen": 1793806133.049789,
+    "mtime": 1793807447.287475,
+    "seen": 1793807607.79506,
     "ast_hash": "16de6122fd9f6efa30f30fe27818da0e",
     "semantic_hash": ""
   },
   "apps/web/components.d.ts": {
-    "mtime": 1793805770.3020427,
-    "seen": 1793806133.04979,
+    "mtime": 1793807447.2876933,
+    "seen": 1793807607.7950609,
     "ast_hash": "be47dfc62089f7d37e9cedf6c5e2b9f5",
     "semantic_hash": ""
   },
@@ -4002,8 +4002,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/views/examples/count-to/index.vue": {
-    "mtime": 1793804819.9364161,
-    "seen": 1793805413.609344,
+    "mtime": 1793807447.2901032,
+    "seen": 1793807607.7951229,
     "ast_hash": "5a63891847ac13e843d0d1ec175d2a52",
     "semantic_hash": ""
   },
@@ -4818,9 +4818,9 @@
     "semantic_hash": ""
   },
   "packages/shell/composables/src/use-tabs.ts": {
-    "mtime": 1793804819.937164,
-    "seen": 1793805413.6095529,
-    "ast_hash": "562d213a5e34defc17b8b6ad7bf77fb1",
+    "mtime": 1793807442.94994,
+    "seen": 1793807607.7954528,
+    "ast_hash": "6b06af5d20f5a4e1dec2efe0fd5ca8c6",
     "semantic_hash": ""
   },
   "packages/shell/composables/src/use-watermark.ts": {
@@ -5502,15 +5502,15 @@
     "semantic_hash": ""
   },
   "packages/shell/stores/src/modules/tabbar.test.ts": {
-    "mtime": 1793804819.9411032,
-    "seen": 1793805413.6096709,
-    "ast_hash": "aa2dac2f29bfdc1e6ec78e67c1514ead",
+    "mtime": 1793807442.9548588,
+    "seen": 1793807607.795649,
+    "ast_hash": "6b787f090bd73951d85f9e6d8586377e",
     "semantic_hash": ""
   },
   "packages/shell/stores/src/modules/tabbar.ts": {
-    "mtime": 1793804819.9413831,
-    "seen": 1793805413.6096709,
-    "ast_hash": "78f825bf4f5c37569dfad551cd5d9ba4",
+    "mtime": 1793807442.9551923,
+    "seen": 1793807607.795649,
+    "ast_hash": "8e21a9f4bc7699d24eddd4201e6e6e0a",
     "semantic_hash": ""
   },
   "packages/shell/stores/src/setup.ts": {
@@ -6066,8 +6066,8 @@
     "semantic_hash": ""
   },
   "packages/create-taman/src/__tests__/manifest.test.ts": {
-    "mtime": 1793806127.0693533,
-    "seen": 1793806133.049912,
+    "mtime": 1793807447.2984965,
+    "seen": 1793807607.795274,
     "ast_hash": "4823051e2ad711b164a782390464917c",
     "semantic_hash": ""
   },
@@ -6312,33 +6312,63 @@
     "semantic_hash": ""
   },
   ".github/scripts/release-changes.mjs": {
-    "mtime": 1793804832.3882475,
-    "seen": 1793805413.60925,
+    "mtime": 1793807447.286709,
+    "seen": 1793807607.794966,
     "ast_hash": "17ae8e786df9306a7836dd7accc20710",
     "semantic_hash": ""
   },
   ".github/scripts/release-changes.test.mjs": {
-    "mtime": 1793804832.3885293,
-    "seen": 1793805413.609251,
+    "mtime": 1793807447.2869847,
+    "seen": 1793807607.7949681,
     "ast_hash": "0d70871d2f494e82bdd0ef01c3dbf22a",
     "semantic_hash": ""
   },
   "packages/taman-ui/src/components/icon/taman-icon.vue": {
-    "mtime": 1793804819.9417672,
-    "seen": 1793805413.609774,
+    "mtime": 1793807447.3036244,
+    "seen": 1793807607.7957351,
     "ast_hash": "d7d3806adee1c54a8db5dbfbe9152220",
     "semantic_hash": ""
   },
   "tests/mocks/auto-animate.ts": {
-    "mtime": 1793805562.9210827,
-    "seen": 1793805678.115317,
+    "mtime": 1793807447.309082,
+    "seen": 1793807607.795875,
     "ast_hash": "b5bd961ec3f7ea22ec03576f9af8914c",
     "semantic_hash": ""
   },
   "tests/setup.ts": {
-    "mtime": 1793806063.6363227,
-    "seen": 1793806133.050345,
+    "mtime": 1793807447.3093832,
+    "seen": 1793807607.795875,
     "ast_hash": "997ebe3a0d9a875035280dec30380fd6",
+    "semantic_hash": ""
+  },
+  "packages/shell/composables/src/__tests__/use-tabs.test.ts": {
+    "mtime": 1793807442.9492745,
+    "seen": 1793807607.795448,
+    "ast_hash": "0fbdea56c522668a697a82e9ba128723",
+    "semantic_hash": ""
+  },
+  "packages/shell/layouts/src/route-cached/__tests__/cached-tab-keys.test.ts": {
+    "mtime": 1793807442.9513524,
+    "seen": 1793807607.795601,
+    "ast_hash": "26d516c8bfb6c95108029f6156dcae96",
+    "semantic_hash": ""
+  },
+  "packages/shell/layouts/src/route-cached/cached-tab-keys.ts": {
+    "mtime": 1793807442.9519558,
+    "seen": 1793807607.795601,
+    "ast_hash": "5ba5db113aa3af10e596c10391b793e5",
+    "semantic_hash": ""
+  },
+  ".changeset/popup-icons-form-validation.md": {
+    "mtime": 1793807601.7123404,
+    "seen": 1793807607.795878,
+    "ast_hash": "d9adfbf2850dc52832ef410f1fd750e7",
+    "semantic_hash": ""
+  },
+  ".changeset/template-tab-identity-fixes.md": {
+    "mtime": 1793807601.7267616,
+    "seen": 1793807607.795878,
+    "ast_hash": "f4f2ae9afd9ba2c211c4a3b8e75446e4",
     "semantic_hash": ""
   }
 }
