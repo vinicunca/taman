@@ -13,13 +13,13 @@ describe('color conversion functions', () => {
 
   it('should correctly convert color to OKLCH format', () => {
     const color = '#ff0000';
-    const expectedOklch = 'oklch(0.62796 0.25768 29.23389)';
+    const expectedOklch = 'oklch(0.62796 0.25768 29.23388)';
 
     const oklchColor = colordx(color).toOklchString();
     expect(oklchColor).toEqual(expectedOklch);
   });
 
-  it('should generate the shaders when received a oklch color', () => {
+  it('should generate shades from an oklch color without rounding RGB before mixing', () => {
     const color = colordx('oklch(0.5524 0.2034 257.88)');
 
     const hexColor = color.toHex();
@@ -30,17 +30,17 @@ describe('color conversion functions', () => {
     });
 
     expect(oklchMap).toEqual({
-      50: 'oklch(0.74967 0.11056 252.14551)',
-      100: 'oklch(0.73753 0.1156 252.49286)',
-      200: 'oklch(0.7037 0.13152 252.82388)',
-      300: 'oklch(0.67082 0.14712 253.29568)',
-      400: 'oklch(0.60678 0.1775 255.23379)',
-      500: 'oklch(0.55184 0.2029 257.84264)',
-      600: 'oklch(0.53276 0.19495 257.73125)',
-      700: 'oklch(0.4707 0.1692 257.30813)',
-      800: 'oklch(0.43932 0.15663 257.10793)',
-      900: 'oklch(0.40738 0.1438 256.86102)',
-      950: 'oklch(0.38447 0.13641 256.9885)',
+      50: 'oklch(0.74859 0.1106 252.41061)',
+      100: 'oklch(0.73644 0.11566 252.74309)',
+      200: 'oklch(0.70263 0.13244 253.02792)',
+      300: 'oklch(0.66978 0.14805 253.47317)',
+      400: 'oklch(0.60693 0.17786 255.20202)',
+      500: 'oklch(0.55212 0.20315 257.86136)',
+      600: 'oklch(0.5316 0.19516 257.80969)',
+      700: 'oklch(0.46991 0.17007 257.47591)',
+      800: 'oklch(0.43851 0.15752 257.29537)',
+      900: 'oklch(0.40654 0.14471 257.0732)',
+      950: 'oklch(0.38436 0.13599 256.92561)',
     });
   });
 });

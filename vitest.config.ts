@@ -55,6 +55,7 @@ export default defineConfig({
   },
   test: {
     environment: 'happy-dom',
+    setupFiles: ['./packages/taman-ui/tests/setup.ts'],
     environmentOptions: {
       happyDOM: {
         settings: {
