@@ -791,7 +791,8 @@ export interface TamanFormProps<
    */
   actionWrapperClass?: HTMLAttributes['class'];
   /**
-   * Time to debounce when submitOnChange changes | default is 300ms
+   * Debounce (ms) for `submitOnChange` submissions. Opt in by setting a value above 0.
+   * @default 0
    */
   changeDebouncedTime?: number;
   /** Bidirectional codec between form component values and submitted values. */

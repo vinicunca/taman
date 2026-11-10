@@ -4,6 +4,7 @@ import { useTamanForm } from '#/adapter/form';
 import { AppCard, AppCardAction, AppPage } from '@taman/app-ui';
 
 const [Form, formApi] = useTamanForm({
+  changeDebouncedTime: 300,
   handleSubmit: onSubmit,
   submitOnChange: true,
 
@@ -158,6 +159,7 @@ const [Form, formApi] = useTamanForm({
 });
 
 const [SyncForm] = useTamanForm({
+  changeDebouncedTime: 300,
   handleSubmit: onSubmit,
   schema: [
     {
@@ -267,7 +269,7 @@ function handleUpdate() {
 
       <p class="text-muted-foreground text-sm mb-4">
         <code>submitOnChange</code> submits the form as field values change, debounced by
-        <code>changeDebouncedTime</code> (default 300ms) so rapid typing only submits once.
+        <code>changeDebouncedTime: 300</code> (opt-in, default 0) so rapid typing only submits once.
       </p>
 
       <Form />

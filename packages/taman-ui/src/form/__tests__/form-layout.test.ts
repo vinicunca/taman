@@ -81,3 +81,27 @@ describe('vertical-only layout', () => {
     );
   });
 });
+
+describe('form element attributes', () => {
+  it('does not leak form options onto the <form> element', async () => {
+    const [Form] = useTamanForm({
+      actionWrapperClass: 'gap-2',
+      changeDebouncedTime: 0,
+      handleSubmit: () => {},
+      schema: [
+        { component: TestInput, fieldName: 'name', label: 'Name' },
+      ],
+      showDefaultActions: false,
+      submitOnChange: true,
+    });
+    const wrapper = mount(Form, {
+      attrs: { class: 'flex-1' },
+    });
+    wrappers.push(wrapper);
+    await flushPromises();
+
+    const form = wrapper.get('form');
+    expect(form.classes()).toContain('flex-1');
+    expect(Object.keys(form.attributes())).toEqual(['class']);
+  });
+});
