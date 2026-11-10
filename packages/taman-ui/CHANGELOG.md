@@ -1,5 +1,11 @@
 # @vinicunca/taman-ui
 
+## 0.2.1
+
+### Patch Changes
+
+- 6b185cf: form classes
+
 ## 0.2.0
 
 ### Minor Changes
