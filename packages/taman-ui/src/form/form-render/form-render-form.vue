@@ -45,9 +45,8 @@ const emits = defineEmits<{
 
 function getWrapperClass(gridClass = '') {
   return [
-    'flex',
+    'grid',
     props.compact ? 'gap-x-2' : 'gap-x-4',
-    'flex-col grid',
     gridClass,
   ];
 }

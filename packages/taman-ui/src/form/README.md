@@ -158,7 +158,7 @@ An application adapter can bind the component types and expose a shorter
 | `resetButtonOptions` | Pohon button props plus `content` and `show`. | `{}` |
 | `submitOnEnter` | Submits when Enter is pressed in a field. | `false` |
 | `submitOnChange` | Submits after value changes. | `false` |
-| `changeDebouncedTime` | Debounce for change submission. | `300` ms |
+| `changeDebouncedTime` | Debounce for change submission (opt-in). | `0` ms |
 | `scrollToFirstError` | Scrolls to the first invalid field. | `false` |
 | `codec` | Converts between raw and submitted value shapes. | none |
 | `handleSubmit` | Receives `(values, rawValues)` after API submission. | none |

@@ -910,6 +910,61 @@ describe('useTamanForm integration', () => {
     );
   });
 
+  it('submits on change without a debounce by default', async () => {
+    vi.useFakeTimers();
+    const handleSubmit = vi.fn();
+    const [Form, formApi] = useTamanForm({
+      handleSubmit,
+      schema: [
+        { component: TestInput, fieldName: 'name', label: 'Name' },
+      ],
+      submitOnChange: true,
+    });
+    const wrapper = mount(Form);
+    wrappers.push(wrapper);
+    await flushPromises();
+
+    await formApi.setFieldValue('name', 'Ada');
+    await nextTick();
+    await flushPromises();
+
+    expect(vi.getTimerCount()).toBe(0);
+    expect(handleSubmit).toHaveBeenCalledTimes(1);
+    expect(handleSubmit).toHaveBeenCalledWith({ name: 'Ada' }, { name: 'Ada' });
+  });
+
+  it('debounces change submission when changeDebouncedTime is set', async () => {
+    vi.useFakeTimers();
+    const handleSubmit = vi.fn();
+    const [Form, formApi] = useTamanForm({
+      changeDebouncedTime: 300,
+      handleSubmit,
+      schema: [
+        { component: TestInput, fieldName: 'name', label: 'Name' },
+      ],
+      submitOnChange: true,
+    });
+    const wrapper = mount(Form);
+    wrappers.push(wrapper);
+    await flushPromises();
+
+    await formApi.setFieldValue('name', 'A');
+    await nextTick();
+    await vi.advanceTimersByTimeAsync(100);
+    await formApi.setFieldValue('name', 'Ada');
+    await nextTick();
+    await vi.advanceTimersByTimeAsync(299);
+    await flushPromises();
+
+    expect(handleSubmit).not.toHaveBeenCalled();
+
+    await vi.advanceTimersByTimeAsync(1);
+    await flushPromises();
+
+    expect(handleSubmit).toHaveBeenCalledTimes(1);
+    expect(handleSubmit).toHaveBeenCalledWith({ name: 'Ada' }, { name: 'Ada' });
+  });
+
   it('respects blur and change validation triggers', async () => {
     const [Form] = useTamanForm({
       schema: [

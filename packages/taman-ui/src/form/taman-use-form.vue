@@ -2,9 +2,9 @@
 import type { ExtendedFormApi, TamanFormProps, TamanFormSlots } from './form.types';
 
 import { useForwardPriorityValues } from '@vinicunca/taman-core/composables';
-import { get, isDeepEqual } from '@vinicunca/taman-core/utils';
+import { get, isDeepEqual, pick } from '@vinicunca/taman-core/utils';
 import { useDebounceFn } from '@vueuse/core';
-import { nextTick, onMounted, readonly, watch } from 'vue';
+import { computed, nextTick, onMounted, readonly, watch } from 'vue';
 
 import FormActions from './components/form-actions.vue';
 import { FormRenderForm } from './form-render';
@@ -38,6 +38,12 @@ if (!formApi) {
 const state = formApi.useStore();
 
 const forward = useForwardPriorityValues(props, state);
+
+// Only forward what `FormRenderForm` declares. Everything else in `forward`
+// (handleSubmit, codec, button options, ...) is read through the injected
+// form context, and binding it would make Vue render it onto the <form> as attributes.
+const renderPropKeys = Object.keys(FormRenderForm.props ?? {}) as Array<keyof typeof forward.value>;
+const renderProps = computed(() => pick(forward.value, renderPropKeys));
 
 const formComponentMap = getFormComponentMap();
 
@@ -73,7 +79,7 @@ function handleKeyDownEnter(event: KeyboardEvent) {
 
 const handleValuesChangeDebounced = useDebounceFn(async () => {
   state?.value.submitOnChange && forward.value.formApi?.validateAndSubmit();
-}, state?.value?.changeDebouncedTime ?? 300);
+}, state?.value?.changeDebouncedTime ?? 0);
 
 let valuesChangeReady = false;
 
@@ -115,7 +121,7 @@ watch(values, (currentValues, previousValues) => {
 
 <template>
   <FormRenderForm
-    v-bind="forward"
+    v-bind="renderProps"
     :collapsed="state?.collapsed"
     :component-map="formComponentMap"
     :form="form"
