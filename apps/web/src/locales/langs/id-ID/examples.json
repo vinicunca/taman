@@ -29,8 +29,8 @@
     "upload-image": "Klik untuk mengunggah gambar",
     "collapsible": "Field Formulir yang Dapat Diciutkan"
   },
-  "button-group": {
-    "title": "Grup Tombol"
+  "toggle-group": {
+    "title": "Grup Toggle"
   },
   "orpc": {
     "title": "oRPC",

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { TamanButtonCheckGroupOption, TamanButtonCheckGroupValue } from '@vinicunca/taman-ui';
+import type { TamanToggleGroupItem, TamanToggleGroupValue } from '@vinicunca/taman-ui';
 
-import { TamanButtonCheckGroup, TamanIcon } from '@vinicunca/taman-ui';
+import { TamanIcon, TamanToggleGroup } from '@vinicunca/taman-ui';
 import PTooltip from 'pohon-ui/components/Tooltip.vue';
 
 defineOptions({
@@ -11,16 +11,16 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     disabled?: boolean;
-    items?: Array<TamanButtonCheckGroupOption>;
+    items?: Array<TamanToggleGroupItem>;
     multiple?: boolean;
     tip?: string;
-    onBtnClick?: (value: TamanButtonCheckGroupValue | undefined) => void;
+    onItemClick?: (value: TamanToggleGroupValue | undefined) => void;
     placeholder?: string;
   }>(),
   {
     disabled: false,
     items: () => [],
-    onBtnClick: () => {},
+    onItemClick: () => {},
     multiple: false,
   },
 );
@@ -54,13 +54,13 @@ const inputValue = defineModel<Array<string>>();
       </PTooltip>
     </span>
 
-    <TamanButtonCheckGroup
+    <TamanToggleGroup
       v-model="inputValue"
       size="sm"
-      :options="items"
+      :items="items"
       :disabled="disabled"
-      :multiple="multiple"
-      @btn-click="onBtnClick"
+      :type="multiple ? 'multiple' : 'single'"
+      @item-click="onItemClick"
     />
   </div>
 </template>

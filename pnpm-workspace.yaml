@@ -135,7 +135,7 @@ catalog:
   pkg-types: ^2.4.0
   playwright: ^1.65.1
   pnpm: ^12.21.0
-  pohon-ui: 2.7.1
+  pohon-ui: 2.8.1
   publint: ^0.3.25
   qs: ^6.17.1
   rimraf: ^6.1.4

@@ -11,3 +11,4 @@ export * from './loading';
 export * from './logo';
 export * from './render-content';
 export * from './scrollbar';
+export * from './toggle-group';
