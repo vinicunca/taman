@@ -30,8 +30,8 @@
     "collapsible": "Collapsible Form Field",
     "setFormValues": "Set form values"
   },
-  "button-group": {
-    "title": "Button Group"
+  "toggle-group": {
+    "title": "Toggle Group"
   },
   "orpc": {
     "title": "oRPC",

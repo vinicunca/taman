@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import type {
-  TamanButtonCheckGroupModel,
-  TamanButtonCheckGroupProps,
-  TamanButtonCheckGroupValue,
+  TamanToggleGroupModel,
+  TamanToggleGroupProps,
+  TamanToggleGroupValue,
 } from '@taman/app-ui';
 import { useTamanForm } from '#/adapter/form';
 import { reactive, ref } from 'vue';
@@ -10,12 +10,12 @@ import {
   AppCard,
   AppCardAction,
   AppPage,
-  TamanButtonCheckGroup,
+  TamanToggleGroup,
   useTamanToast,
 } from '@taman/app-ui';
 
-const radioValue = ref<TamanButtonCheckGroupModel>('a');
-const checkValue = ref<TamanButtonCheckGroupModel>(['a', 'b']);
+const radioValue = ref<TamanToggleGroupModel>('a');
+const checkValue = ref<TamanToggleGroupModel>(['a', 'b']);
 
 const options = [
   { label: 'Option 1', value: 'a' },
@@ -33,7 +33,7 @@ function resetValues() {
 
 const { toast, toaster } = useTamanToast();
 
-function beforeChange(value: TamanButtonCheckGroupValue, isChecked: boolean) {
+function beforeChange(value: TamanToggleGroupValue, isChecked: boolean) {
   toast.add({
     title: `Setting ${value} to ${isChecked ? 'checked' : 'unchecked'}...`,
     duration: 0,
@@ -53,7 +53,7 @@ function beforeChange(value: TamanButtonCheckGroupValue, isChecked: boolean) {
 }
 
 const state = reactive<Pick<
-  TamanButtonCheckGroupProps,
+  TamanToggleGroupProps,
   'allowClear' | 'beforeChange' | 'disabled' | 'maxCount' | 'showIcon' | 'size'
 >>({
   allowClear: false,
@@ -119,7 +119,7 @@ const [Form] = useTamanForm({
   submitOnChange: true,
 });
 
-function onBtnClick(value: TamanButtonCheckGroupValue | undefined) {
+function onItemClick(value: TamanToggleGroupValue | undefined) {
   const option = options.find((o) => o.value === value);
   if (option) {
     toaster.success(`Clicked ${option.label}, value = ${value}`);
@@ -129,8 +129,8 @@ function onBtnClick(value: TamanButtonCheckGroupValue | undefined) {
 
 <template>
   <AppPage
-    title="Button Group"
-    description="Plain button groups use PFieldGroup to join PButtons into one control. TamanButtonCheckGroup is a form component built on top of it that provides single or multiple selection."
+    title="Toggle Group"
+    description="TamanToggleGroup wraps PToggleGroup and adds single or multiple selection rules: allow clear, max selections and a before-change callback."
   >
     <AppCard title="Basic Usage">
       <template #trailingHeader>
@@ -141,103 +141,67 @@ function onBtnClick(value: TamanButtonCheckGroupValue | undefined) {
         </AppCardAction>
       </template>
 
-      <p>Button group (PFieldGroup):</p>
-      <div class="mt-2 flex flex-col gap-2 items-start">
-        <PFieldGroup :size="state.size">
-          <PButton
-            v-for="option in options"
-            :key="option.value"
-            color="neutral"
-            variant="outline"
-            :disabled="state.disabled"
-            @click="onBtnClick(option.value)"
-          >
-            {{ option.label }}
-          </PButton>
-        </PFieldGroup>
-        <PFieldGroup :size="state.size">
-          <PButton
-            v-for="option in options"
-            :key="option.value"
-            variant="soft"
-            :disabled="state.disabled"
-            @click="onBtnClick(option.value)"
-          >
-            {{ option.label }}
-          </PButton>
-        </PFieldGroup>
-      </div>
-
-      <p class="mt-4">
+      <p>
         Single: {{ radioValue }}
       </p>
       <div class="mt-2">
-        <TamanButtonCheckGroup
+        <TamanToggleGroup
           v-model="radioValue"
-          :options="options"
+          :items="options"
           v-bind="state"
-          @btn-click="onBtnClick"
+          @item-click="onItemClick"
         />
       </div>
 
       <p class="mt-4">
-        Single with option slot: {{ radioValue }}
+        Single with default slot: {{ radioValue }}
       </p>
       <div class="mt-2">
-        <TamanButtonCheckGroup
+        <TamanToggleGroup
           v-model="radioValue"
-          :options="options"
+          :items="options"
           v-bind="state"
         >
-          <template #option="{ label, value, data }">
-            <span>{{ label }}</span>
-            <span class="ml-2 opacity-60">{{ value }}</span>
+          <template #default="{ item }">
+            <span>{{ item.label }}</span>
+            <span class="ms-2 opacity-60">{{ item.value }}</span>
             <span
-              v-if="data.num"
-              class="ml-2"
-            >{{ data.num }}</span>
+              v-if="item.num"
+              class="ms-2"
+            >{{ item.num }}</span>
           </template>
-        </TamanButtonCheckGroup>
+        </TamanToggleGroup>
       </div>
 
       <p class="mt-4">
         Multiple: {{ checkValue }}
       </p>
       <div class="mt-2">
-        <TamanButtonCheckGroup
+        <TamanToggleGroup
           v-model="checkValue"
-          multiple
-          :options="options"
+          type="multiple"
+          :items="options"
           v-bind="state"
         />
       </div>
 
       <p class="mt-4">
-        Custom icon: {{ checkValue }}
+        Custom icon (leading slot): {{ checkValue }}
       </p>
       <div class="mt-2">
-        <TamanButtonCheckGroup
+        <TamanToggleGroup
           v-model="checkValue"
-          multiple
-          :options="options"
+          type="multiple"
+          :items="options"
           v-bind="state"
         >
-          <template #icon="{ loading, checked }">
+          <template #leading="{ item, pressed, ui }">
             <PIcon
-              v-if="loading"
-              name="lucide:loader-circle"
-              class="animate-spin"
-            />
-            <PIcon
-              v-else-if="checked"
-              name="lucide:square-check-big"
-            />
-            <PIcon
-              v-else
-              name="lucide:square"
+              :name="item.loading ? 'lucide:loader-circle' : pressed ? 'lucide:square-check-big' : 'lucide:square'"
+              :class="ui.leadingIcon?.({ class: item.loading && 'animate-spin' })"
             />
           </template>
-        </TamanButtonCheckGroup>
+        </TamanToggleGroup>
       </div>
     </AppCard>
 

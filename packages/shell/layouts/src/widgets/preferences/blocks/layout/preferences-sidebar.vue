@@ -96,7 +96,7 @@ onMounted(() => {
       { label: $t('preferences.sidebar.buttonFixed'), value: 'fixed' },
     ]"
     multiple
-    :on-btn-click="handleCheckboxChange"
+    :on-item-click="handleCheckboxChange"
   >
     {{ $t('preferences.sidebar.buttons') }}
   </PreferencesCheckboxItem>

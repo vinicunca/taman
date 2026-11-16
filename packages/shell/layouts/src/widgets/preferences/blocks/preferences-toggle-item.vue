@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { TamanButtonCheckGroupOption } from '@vinicunca/taman-ui';
-import { TamanButtonCheckGroup } from '@vinicunca/taman-ui';
+import type { TamanToggleGroupItem } from '@vinicunca/taman-ui';
+import { TamanToggleGroup } from '@vinicunca/taman-ui';
 
 defineOptions({
   name: 'PreferenceToggleItem',
@@ -9,7 +9,7 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     disabled?: boolean;
-    items?: Array<TamanButtonCheckGroupOption>;
+    items?: Array<TamanToggleGroupItem>;
   }>(),
   {
     disabled: false,
@@ -31,10 +31,10 @@ const modelValue = defineModel<string>();
       <slot />
     </span>
 
-    <TamanButtonCheckGroup
+    <TamanToggleGroup
       v-model="modelValue"
       size="sm"
-      :options="props.items"
+      :items="props.items"
       :disabled="props.disabled"
     />
   </div>

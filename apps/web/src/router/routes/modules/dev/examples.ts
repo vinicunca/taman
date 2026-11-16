@@ -144,12 +144,12 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
-        name: 'ButtonGroup',
-        path: 'button-group',
-        component: () => import('#/views/examples/button-group/index.vue'),
+        name: 'ToggleGroup',
+        path: 'toggle-group',
+        component: () => import('#/views/examples/toggle-group/index.vue'),
         meta: {
           icon: 'mdi:check-circle',
-          title: $t('examples.button-group.title'),
+          title: $t('examples.toggle-group.title'),
         },
       },
       {
