@@ -2,7 +2,7 @@ import type { AnyFieldApi } from '@tanstack/vue-form';
 import type { MaybeComputedRef } from '@vinicunca/taman-core/typings';
 import type { ButtonProps } from 'pohon-ui';
 import type { Component, HTMLAttributes, HtmlHTMLAttributes, Ref } from 'vue';
-import type { ZodType } from 'zod';
+import type { core, ZodType } from 'zod';
 import type { FormApi } from './form.api';
 import type { BuiltInFormComponentType } from './form.built-ins';
 
@@ -868,6 +868,11 @@ export type ExtendedFormApi<
 
 export interface TamanFormAdapterOptions {
   rules?: Partial<Record<string, FormRuleValidator>>;
+  /**
+   * Message for each issue a zod `rules` schema raises, given the field it came from.
+   * A message written on the schema itself still wins. Return `undefined` to keep zod's message.
+   */
+  zodErrorMap?: FormZodErrorMap;
 }
 
 export interface FormRuleContext {
@@ -884,3 +889,12 @@ export type FormRuleValidator = (
   params: any,
   context: FormRuleContext,
 ) => boolean | string;
+
+/**
+ * Field rules parse one value, so an issue's `path` is empty: `context` says which field it is.
+ * `issue.input` is the value that failed, e.g. to report an empty value as required.
+ */
+export type FormZodErrorMap = (
+  issue: core.$ZodRawIssue,
+  context: FormRuleContext,
+) => string | undefined;

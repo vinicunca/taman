@@ -8,7 +8,7 @@ import type {
 
 import { globalShareState } from '@vinicunca/taman-core/global-state';
 import { BUILT_IN_COMPONENT_MAP } from './form.built-ins';
-import { registerFormRules } from './form.rule-registry';
+import { registerFormRules, setFormZodErrorMap } from './form.rule-registry';
 
 export const DEFAULT_FORM_COMMON_CONFIG: FormCommonConfig = {};
 
@@ -45,11 +45,12 @@ export function getFormComponentMap() {
 
 export function setupTamanForm(options: TamanFormAdapterOptions) {
   lastAdapterOptions = options;
-  const { rules } = options;
+  const { rules, zodErrorMap } = options;
 
   if (rules) {
     registerFormRules(rules);
   }
+  setFormZodErrorMap(zodErrorMap);
 
   rehydrateFormComponentMaps();
 }

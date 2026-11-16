@@ -28,7 +28,7 @@ import {
   TamanRenderContent,
 } from '../..';
 import { toFormFieldValue } from '../form.empty-value';
-import { getFormRule } from '../form.rule-registry';
+import { getFormRule, getFormZodErrorMap } from '../form.rule-registry';
 import { useDelayedFlag } from '../form.use-delayed-flag';
 import { injectComponentRefMap } from '../form.use-form-context';
 import FormRenderFieldCollapsible from './form-render-field-collapsible.vue';
@@ -168,6 +168,21 @@ const fieldRules = computed(() => {
   return rules as ZodType;
 });
 
+function createRuleContext(): FormRuleContext {
+  const { label, fieldName } = props;
+  const fieldLabel = isString(label)
+    ? label
+    : undefined;
+  return {
+    field: {
+      label: fieldLabel,
+      name: fieldName,
+    },
+    label: fieldLabel,
+    name: fieldName,
+  };
+}
+
 function createNamedRuleValidator(ruleName: string) {
   return ({ value }: { value: any }) => {
     const validator = getFormRule(ruleName);
@@ -176,24 +191,25 @@ function createNamedRuleValidator(ruleName: string) {
       return undefined;
     }
 
-    const { label, fieldName } = props;
-    const ruleContext: FormRuleContext = {
-      field: {
-        label: isString(label)
-          ? label
-          : undefined,
-        name: fieldName,
-      },
-      label: isString(label)
-        ? label
-        : undefined,
-      name: fieldName,
-    };
-    const result = validator(value, [], ruleContext);
+    const result = validator(value, [], createRuleContext());
     return result === true
       ? undefined
       : result;
   };
+}
+
+/**
+ * Parse here rather than hand the schema to TanStack, which parses without options:
+ * this is where the configured error map gets the field's context.
+ */
+function validateZodRule(rules: ZodType, value: unknown) {
+  const errorMap = getFormZodErrorMap();
+  const result = errorMap
+    ? rules.safeParse(value, {
+        error: (issue) => errorMap(issue, createRuleContext()),
+      })
+    : rules.safeParse(value);
+  return result.success ? undefined : result.error.issues;
 }
 
 function validateDynamicRules({ value }: { value: any }) {
@@ -207,8 +223,7 @@ function validateDynamicRules({ value }: { value: any }) {
 
   // Dependency resolvers can replace or disable a rule after the TanStack
   // field mounts. Keep this adapter synchronous while reading the live rule.
-  const result = activeRules.safeParse(value);
-  return result.success ? undefined : result.error.issues;
+  return validateZodRule(activeRules, value);
 }
 
 function createRuleValidator() {
@@ -225,7 +240,7 @@ function createRuleValidator() {
     return createNamedRuleValidator(activeRules);
   }
 
-  return activeRules;
+  return ({ value }: { value: unknown }) => validateZodRule(activeRules, value);
 }
 
 const fieldValidators = computed(() => {
