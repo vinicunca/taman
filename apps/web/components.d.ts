@@ -12,10 +12,10 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    PApp: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/App.vue')['default']
-    PButton: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/Button.vue')['default']
+    PApp: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_e13c64720558ae04a713c2e7ec417a05/node_modules/pohon-ui/dist/runtime/components/App.vue')['default']
+    PButton: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_e13c64720558ae04a713c2e7ec417a05/node_modules/pohon-ui/dist/runtime/components/Button.vue')['default']
     PCheckbox: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/Checkbox.vue')['default']
-    PDropdownMenu: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/DropdownMenu.vue')['default']
+    PDropdownMenu: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_e13c64720558ae04a713c2e7ec417a05/node_modules/pohon-ui/dist/runtime/components/DropdownMenu.vue')['default']
     PFieldGroup: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/FieldGroup.vue')['default']
     PIcon: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/vue/components/Icon.vue')['default']
     PInput: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/Input.vue')['default']
@@ -30,10 +30,10 @@ declare module 'vue' {
 
 // For TSX support
 declare global {
-  const PApp: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/App.vue')['default']
-  const PButton: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/Button.vue')['default']
+  const PApp: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_e13c64720558ae04a713c2e7ec417a05/node_modules/pohon-ui/dist/runtime/components/App.vue')['default']
+  const PButton: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_e13c64720558ae04a713c2e7ec417a05/node_modules/pohon-ui/dist/runtime/components/Button.vue')['default']
   const PCheckbox: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/Checkbox.vue')['default']
-  const PDropdownMenu: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/DropdownMenu.vue')['default']
+  const PDropdownMenu: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_e13c64720558ae04a713c2e7ec417a05/node_modules/pohon-ui/dist/runtime/components/DropdownMenu.vue')['default']
   const PFieldGroup: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/FieldGroup.vue')['default']
   const PIcon: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/vue/components/Icon.vue')['default']
   const PInput: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/Input.vue')['default']

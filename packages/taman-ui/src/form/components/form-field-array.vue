@@ -179,8 +179,8 @@ const normalizedRowSchemas = computed(() =>
         <div class="pt-1 flex justify-end sm:px-2 sm:py-3 sm:block">
           <TamanButtonIcon
             :disabled="disabled || !canRemove"
-            :on-click="() => removeRow(index)"
             icon="lucide:x"
+            @click="removeRow(index)"
           />
         </div>
       </div>
