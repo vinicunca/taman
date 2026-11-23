@@ -101,9 +101,6 @@ function toggleGroup() {
         class="text-left flex flex-1 gap-2 min-w-0 items-center relative before:(rounded-full bg-primary h-full w-[3px] content-empty inset-y-0 left-0 absolute)"
         @click="toggleGroup"
       >
-        <!-- <span
-          class="rounded-full bg-primary flex-none h-3.5 w-[3px]"
-        /> -->
         <span
           v-if="props.schema.title"
           data-form-group="title"
