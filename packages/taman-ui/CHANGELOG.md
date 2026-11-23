@@ -1,5 +1,11 @@
 # @vinicunca/taman-ui
 
+## 0.4.2
+
+### Patch Changes
+
+- Fix the remove button in `FormFieldArray` rows: clicking it now removes the row.
+
 ## 0.4.1
 
 ### Patch Changes
