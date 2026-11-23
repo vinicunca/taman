@@ -128,6 +128,7 @@ const [FormAllFields, formAllFieldsApi] = useTamanForm<
       fieldName: 'desc',
       label: 'Input with description',
       description: 'This is a description of the form field',
+      rules: 'required',
     },
 
     {

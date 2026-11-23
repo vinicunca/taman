@@ -605,7 +605,7 @@ onUnmounted(() => {
 
           <FormDescription
             v-if="props.description"
-            class="text-xs"
+            class="text-xs mt-1"
           >
             <TamanRenderContent :content="props.description" />
           </FormDescription>
@@ -613,6 +613,9 @@ onUnmounted(() => {
           <div
             v-if="!compact && !props.hideMessage"
             v-auto-animate
+            :class="{
+              'mt-0.5': !props.description,
+            }"
           >
             <FormMessage />
           </div>
