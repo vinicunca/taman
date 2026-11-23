@@ -55,8 +55,5 @@ export default defineConfig({
     emailFromName: '',
   },
 
-  // Keep descriptive suffixes in ordered middleware names (1.cors.ts, 2.email.ts).
-  scanSuffixes: ['cors', 'email'],
-
   serverDir: './server',
 });

@@ -1,4 +1,4 @@
-import type { Component, VNode } from 'vue';
+import type { VNode } from 'vue';
 
 import type { AlertBeforeCloseScope, AlertPromptProps, TamanAlertProps } from './alert';
 
@@ -60,7 +60,7 @@ export async function tamanPrompt<T = any>(
 
   const modelValue = ref<T | undefined>(defaultValue);
   const inputComponentRef = ref<null | VNode>(null);
-  const staticContents: Array<Component> = [
+  const staticContents: Array<VNode> = [
     h(TamanRenderContent, { content, renderBr: true }),
   ];
 

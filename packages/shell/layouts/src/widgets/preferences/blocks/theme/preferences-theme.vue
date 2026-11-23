@@ -72,7 +72,7 @@ function handleThemeChange(theme: TamanThemeModeType) {
       <button
         v-for="theme in THEME_PRESET"
         :key="theme.name"
-        class="flex flex-1 flex-col"
+        class="flex flex-1 flex-col gap-2"
         @click="handleThemeChange(theme.name)"
       >
         <div
@@ -85,7 +85,7 @@ function handleThemeChange(theme: TamanThemeModeType) {
           />
         </div>
 
-        <div class="text-xs color-text-muted mt-2 text-center">
+        <div class="text-xs color-text-muted text-center">
           {{ nameView(theme.name) }}
         </div>
       </button>

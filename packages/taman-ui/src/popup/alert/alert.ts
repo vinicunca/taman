@@ -1,6 +1,8 @@
 import type { Recordable } from '@vinicunca/taman-core/typings';
 import type { Component, VNode, VNodeArrayChildren } from 'vue';
 
+import type { TamanRenderContentType } from '../../components/render-content';
+
 import { createContext } from '../..';
 
 export type IconType = 'error' | 'info' | 'question' | 'success' | 'warning';
@@ -30,7 +32,7 @@ export interface TamanAlertProps {
   /** Extra styles for the alert container */
   containerClass?: string;
   /** Alert content */
-  content?: Component | string;
+  content?: TamanRenderContentType;
   /** Extra styles for the alert content */
   contentClass?: string;
   /** Show a loading overlay on the content while beforeClose runs */
@@ -38,7 +40,7 @@ export interface TamanAlertProps {
   /** Whether pressing Esc closes the alert */
   escapeKeyClose?: boolean;
   /** Footer content (in the same container as the buttons) */
-  footer?: Component | string;
+  footer?: TamanRenderContentType;
   /** Alert icon (shown before the title) */
   icon?: Component | IconType;
   /**

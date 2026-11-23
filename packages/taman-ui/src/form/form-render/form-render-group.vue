@@ -58,13 +58,13 @@ watch(hasInvalidField, (invalid) => {
 // pohon's `Collapsible` wraps its entire default-slot root in Akar's
 // `CollapsibleTrigger` (`as-child`), merging an `onClick` (and
 // `aria-expanded`/`aria-controls`/`type`) onto whatever single element that
-// slot renders. Passing the whole `.form-group-header` — trigger *and*
-// `extra` — as that slot made the entire header clickable (including
-// `extra`, contradicting the DOM contract that only `.form-group-trigger`
-// is interactive) and merged trigger-only ARIA attributes onto a
-// `role=generic` element. The header is kept out of `<PCollapsible>`'s
+// slot renders. Passing the whole `[data-form-group="header"]` — trigger
+// *and* `extra` — as that slot made the entire header clickable (including
+// `extra`, contradicting the DOM contract that only
+// `[data-form-group="trigger"]` is interactive) and merged trigger-only
+// ARIA attributes onto a `role=generic` element. The header is kept out of `<PCollapsible>`'s
 // default slot entirely (only `#content` is used) and the real
-// `.form-group-trigger` button owns its own click handler instead of
+// `[data-form-group="trigger"]` button owns its own click handler instead of
 // relying on that bubbled one.
 function toggleGroup() {
   if (shouldCollapsible.value) {
@@ -76,11 +76,13 @@ function toggleGroup() {
 <template>
   <div
     v-show="!props.hidden"
-    class="form-group flex flex-col col-span-full w-full"
+    data-form-group="root"
+    class="flex flex-col gap-2 col-span-full w-full"
     :class="props.schema.formItemClass"
   >
     <div
-      class="form-group-header mb-2 flex flex-1 gap-2 min-h-7 items-center"
+      data-form-group="header"
+      class="flex flex-1 gap-2 min-h-7 items-center"
     >
       <component
         :is="shouldCollapsible ? 'button' : 'div'"
@@ -88,22 +90,24 @@ function toggleGroup() {
         :aria-label="
           shouldCollapsible && !props.schema.title ? 'Toggle group' : undefined
         "
-        :class="
-          [{
+        :class="[
+          {
             'focus-visible:ring-ring cursor-pointer select-none rounded-sm outline-none focus-visible:ring-2':
               shouldCollapsible,
-          }]
-        "
+          },
+        ]"
         :type="shouldCollapsible ? 'button' : undefined"
-        class="form-group-trigger text-left flex flex-1 gap-2 min-w-0 items-center"
+        data-form-group="trigger"
+        class="text-left flex flex-1 gap-2 min-w-0 items-center relative before:(rounded-full bg-primary h-full w-[3px] content-empty inset-y-0 left-0 absolute)"
         @click="toggleGroup"
       >
-        <span
+        <!-- <span
           class="rounded-full bg-primary flex-none h-3.5 w-[3px]"
-        />
+        /> -->
         <span
           v-if="props.schema.title"
-          class="form-group-title text-sm leading-6 font-medium"
+          data-form-group="title"
+          class="text-sm leading-6 font-medium pl-2"
         >
           <TamanRenderContent :content="props.schema.title" />
         </span>
@@ -124,6 +128,7 @@ function toggleGroup() {
 
       <div
         v-if="props.schema.extra"
+        data-form-group="extra"
         class="flex-none"
       >
         <TamanRenderContent :content="props.schema.extra" />

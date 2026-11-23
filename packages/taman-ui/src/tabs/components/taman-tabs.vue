@@ -165,12 +165,12 @@ function onMouseDown(event: MouseEvent, tab: TabConfig) {
 
             <!-- tab-item-main -->
             <div
-              class="tabs-chrome__item-main color-accent-foreground font-500 mx-[calc(var(--gap)*2)] my-0 pl-2 pr-4 rounded-tl-[5px] rounded-tr-[5px] flex h-full duration-150 items-center z-2 overflow-hidden group-[.is-active]:color-primary dark:group-[.is-active]:color-text"
+              class="tabs-chrome__item-main color-accent-foreground font-500 mx-[calc(var(--gap)*2)] my-0 pl-2 pr-4 rounded-tl-[5px] rounded-tr-[5px] flex gap-1 h-full duration-150 items-center z-2 overflow-hidden group-[.is-active]:color-primary dark:group-[.is-active]:color-text"
             >
               <TamanIcon
                 v-if="showIcon"
                 :icon="tab.icon"
-                class="mr-1 flex size-4 items-center overflow-hidden group-hover:animate-[shrink_0.3s_ease-in-out]"
+                class="flex size-4 items-center overflow-hidden group-hover:animate-[shrink_0.3s_ease-in-out]"
               />
 
               <span class="text-sm flex-1 whitespace-nowrap overflow-hidden">

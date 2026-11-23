@@ -117,7 +117,7 @@ const normalizedRowSchemas = computed(() =>
 
 <template>
   <div
-    class="w-full"
+    class="flex flex-col gap-3 w-full"
     :class="[$attrs.class]"
   >
     <div class="border border-border/70 rounded-md overflow-hidden">
@@ -163,9 +163,9 @@ const normalizedRowSchemas = computed(() =>
           v-for="(childSchema, childIndex) in normalizedRowSchemas[index]"
           :key="childSchema.fieldName"
         >
-          <div class="py-2 min-w-0 sm:px-2">
+          <div class="py-2 flex flex-col gap-1 min-w-0 sm:px-2">
             <div
-              class="text-xs color-text-muted font-medium mb-1 sm:hidden"
+              class="text-xs color-text-muted font-medium sm:hidden"
             >
               <TamanRenderContent :content="schema?.[childIndex]?.label" />
             </div>
@@ -197,7 +197,7 @@ const normalizedRowSchemas = computed(() =>
       variant="outline"
       size="sm"
       :disabled="disabled || !canAdd"
-      class="mt-3 border-dashed w-full"
+      class="border-dashed w-full"
       icon="lucide:plus"
       @click="addRow"
     >

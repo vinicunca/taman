@@ -121,7 +121,7 @@ describe('form-level collapse', () => {
     wrappers.push(wrapper);
     await flushPromises();
 
-    expect(wrapper.get('.form-group').isVisible()).toBe(false);
+    expect(wrapper.get('[data-form-group="root"]').isVisible()).toBe(false);
   });
 });
 
@@ -136,7 +136,7 @@ describe('collapse toggle', () => {
     wrappers.push(wrapper);
     await flushPromises();
 
-    expect(wrapper.find('.form-collapse-trigger').exists()).toBe(false);
+    expect(wrapper.find('[data-form-collapse="trigger"]').exists()).toBe(false);
   });
 
   it('appears when only a group is marked collapsed', async () => {
@@ -158,7 +158,7 @@ describe('collapse toggle', () => {
     wrappers.push(wrapper);
     await flushPromises();
 
-    expect(wrapper.find('.form-collapse-trigger').exists()).toBe(true);
+    expect(wrapper.find('[data-form-collapse="trigger"]').exists()).toBe(true);
   });
 
   it('toggles the marked entries and reports state via aria-expanded', async () => {
@@ -178,7 +178,7 @@ describe('collapse toggle', () => {
     wrappers.push(wrapper);
     await flushPromises();
 
-    const trigger = wrapper.get('button.form-collapse-trigger');
+    const trigger = wrapper.get('button[data-form-collapse="trigger"]');
     expect(trigger.attributes('aria-expanded')).toBe('false');
     expect(wrapper.findAll('[data-slot="form-item"]')[1]?.isVisible()).toBe(
       false,
@@ -213,12 +213,12 @@ describe('collapse toggle', () => {
     wrappers.push(wrapper);
     await flushPromises();
 
-    expect(wrapper.get('.form-group').isVisible()).toBe(false);
+    expect(wrapper.get('[data-form-group="root"]').isVisible()).toBe(false);
 
-    await wrapper.get('button.form-collapse-trigger').trigger('click');
+    await wrapper.get('button[data-form-collapse="trigger"]').trigger('click');
     await flushPromises();
 
-    expect(wrapper.get('.form-group').isVisible()).toBe(true);
+    expect(wrapper.get('[data-form-group="root"]').isVisible()).toBe(true);
   });
 
   it('invokes handleCollapsedChange', async () => {
@@ -240,7 +240,7 @@ describe('collapse toggle', () => {
     wrappers.push(wrapper);
     await flushPromises();
 
-    await wrapper.get('button.form-collapse-trigger').trigger('click');
+    await wrapper.get('button[data-form-collapse="trigger"]').trigger('click');
     await flushPromises();
 
     expect(onCollapsedChange).toHaveBeenCalledWith(false);
@@ -277,7 +277,7 @@ describe('collapse toggle', () => {
     await flushPromises();
 
     expect(
-      wrapper.get('button.form-collapse-trigger').attributes('aria-expanded'),
+      wrapper.get('button[data-form-collapse="trigger"]').attributes('aria-expanded'),
     ).toBe('true');
     expect(wrapper.findAll('[data-slot="form-item"]')[1]?.isVisible()).toBe(
       true,
@@ -308,7 +308,7 @@ describe('collapse toggle', () => {
     await flushPromises();
 
     expect(
-      wrapper.get('button.form-collapse-trigger').attributes('aria-expanded'),
+      wrapper.get('button[data-form-collapse="trigger"]').attributes('aria-expanded'),
     ).toBe('false');
     expect(wrapper.findAll('[data-slot="form-item"]')[1]?.isVisible()).toBe(
       false,
@@ -352,18 +352,18 @@ describe('collapse toggle', () => {
 
     // Auto-expand fired once, as in the test above.
     expect(
-      wrapper.get('button.form-collapse-trigger').attributes('aria-expanded'),
+      wrapper.get('button[data-form-collapse="trigger"]').attributes('aria-expanded'),
     ).toBe('true');
     expect(onCollapsedChange).toHaveBeenCalledTimes(1);
     expect(onCollapsedChange).toHaveBeenNthCalledWith(1, false);
 
     // The user now collapses it back manually. The error on 'b' still
     // stands, but this must not immediately re-open the form.
-    await wrapper.get('button.form-collapse-trigger').trigger('click');
+    await wrapper.get('button[data-form-collapse="trigger"]').trigger('click');
     await flushPromises();
 
     expect(
-      wrapper.get('button.form-collapse-trigger').attributes('aria-expanded'),
+      wrapper.get('button[data-form-collapse="trigger"]').attributes('aria-expanded'),
     ).toBe('false');
     expect(wrapper.findAll('[data-slot="form-item"]')[1]?.isVisible()).toBe(
       false,

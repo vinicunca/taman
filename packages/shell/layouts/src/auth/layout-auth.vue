@@ -96,14 +96,13 @@ const logoSrc = computed(() => {
         class="flex flex-1 left-0 top-0 absolute z-10"
       >
         <div
-          class="color-text ml-4 mt-4 flex flex-1 items-center sm:(left-6 top-6)"
+          class="color-text ml-4 mt-4 flex flex-1 gap-2 items-center sm:(left-6 top-6)"
         >
           <img
             v-if="logoSrc"
             :key="logoSrc"
             :alt="appName"
             :src="logoSrc"
-            class="mr-2"
             width="42"
           >
           <p
@@ -128,7 +127,7 @@ const logoSrc = computed(() => {
 
         <div
           :key="authPanelLeft ? 'left' : authPanelRight ? 'right' : 'center'"
-          class="px-10 flex-col-center h-full"
+          class="px-10 flex-col-center gap-6 h-full"
           :class="{
             'enter-x': authPanelLeft,
             '-enter-x': authPanelRight,
@@ -147,12 +146,14 @@ const logoSrc = computed(() => {
             class="animate-float h-64 w-2/5"
           />
 
-          <div class="text-xl font-500 mt-6 lg:text-2xl">
-            {{ pageTitle }}
-          </div>
+          <div class="flex-col-center gap-2">
+            <div class="text-xl font-500 lg:text-2xl">
+              {{ pageTitle }}
+            </div>
 
-          <div class="mt-2 text-center">
-            {{ pageDescription }}
+            <div class="text-center">
+              {{ pageDescription }}
+            </div>
           </div>
         </div>
       </div>

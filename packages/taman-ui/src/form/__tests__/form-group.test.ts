@@ -58,7 +58,7 @@ function createContactGroup(
 }
 
 function getGroupState(wrapper: VueWrapper) {
-  return wrapper.get('.form-group [data-state]').attributes('data-state');
+  return wrapper.get('[data-form-group="root"] [data-state]').attributes('data-state');
 }
 
 describe('form group rendering', () => {
@@ -73,11 +73,11 @@ describe('form group rendering', () => {
     wrappers.push(wrapper);
     await flushPromises();
 
-    expect(wrapper.get('.form-group-title').text()).toBe('Contact');
+    expect(wrapper.get('[data-form-group="title"]').text()).toBe('Contact');
     expect(wrapper.text()).toContain('Optional');
-    expect(wrapper.get('.form-group-trigger').text()).not.toContain('Optional');
+    expect(wrapper.get('[data-form-group="trigger"]').text()).not.toContain('Optional');
     expect(wrapper.findAll('input')).toHaveLength(3);
-    expect(wrapper.get('.form-group').findAll('input')).toHaveLength(2);
+    expect(wrapper.get('[data-form-group="root"]').findAll('input')).toHaveLength(2);
     expect(getGroupState(wrapper)).toBe('open');
     expect(await formApi.getValues()).toEqual({ email: 'ada@example.com' });
   });
@@ -93,27 +93,27 @@ describe('form group rendering', () => {
     await flushPromises();
 
     expect(getGroupState(wrapper)).toBe('closed');
-    expect(wrapper.get('button.form-group-trigger').attributes('type')).toBe(
+    expect(wrapper.get('button[data-form-group="trigger"]').attributes('type')).toBe(
       'button',
     );
     expect(
-      wrapper.get('button.form-group-trigger').attributes('aria-expanded'),
+      wrapper.get('button[data-form-group="trigger"]').attributes('aria-expanded'),
     ).toBe('false');
 
-    await wrapper.get('button.form-group-trigger').trigger('click');
+    await wrapper.get('button[data-form-group="trigger"]').trigger('click');
     expect(getGroupState(wrapper)).toBe('open');
     expect(
-      wrapper.get('button.form-group-trigger').attributes('aria-expanded'),
+      wrapper.get('button[data-form-group="trigger"]').attributes('aria-expanded'),
     ).toBe('true');
 
-    await wrapper.get('button.form-group-trigger').trigger('click');
+    await wrapper.get('button[data-form-group="trigger"]').trigger('click');
     expect(getGroupState(wrapper)).toBe('closed');
   });
 
   it('does not toggle when clicking the extra region', async () => {
     // Regression test: pohon's `Collapsible` wraps its entire default-slot
     // root in Akar's `CollapsibleTrigger` (`as-child`). Passing the whole
-    // `.form-group-header` (trigger *and* `extra`) as that slot used to make
+    // `[data-form-group="header"]` (trigger *and* `extra`) as that slot used to make
     // the whole header clickable, including `extra` — contradicting the
     // very assertion above that `extra` isn't part of the trigger.
     const [Form] = useTamanForm({
@@ -128,9 +128,9 @@ describe('form group rendering', () => {
     expect(getGroupState(wrapper)).toBe('closed');
     expect(wrapper.text()).toContain('Optional');
 
-    // The `extra` region is rendered in its own `.flex-none` sibling of
-    // `.form-group-trigger`, not inside it.
-    await wrapper.get('.form-group-header > .flex-none').trigger('click');
+    // The `extra` region is rendered as its own sibling of the trigger,
+    // not inside it.
+    await wrapper.get('[data-form-group="extra"]').trigger('click');
     await flushPromises();
 
     expect(getGroupState(wrapper)).toBe('closed');
@@ -139,10 +139,10 @@ describe('form group rendering', () => {
   it('does not merge trigger-only ARIA attributes onto the header', async () => {
     // Regression test: Akar's `CollapsibleTrigger` (via `as-child`) used to
     // merge `aria-expanded`, `aria-controls=""`, and `type="button"` onto
-    // whichever element it wrapped — here, `.form-group-header`, a
+    // whichever element it wrapped — here, `[data-form-group="header"]`, a
     // `role=generic` element, which fails axe's `aria-allowed-attr` /
     // `aria-valid-attr-value`. The header must carry none of those; only
-    // the real `.form-group-trigger` button does.
+    // the real `[data-form-group="trigger"]` button does.
     const [Form] = useTamanForm({
       schema: [
         createContactGroup(),
@@ -152,7 +152,7 @@ describe('form group rendering', () => {
     wrappers.push(wrapper);
     await flushPromises();
 
-    const header = wrapper.get('.form-group-header');
+    const header = wrapper.get('[data-form-group="header"]');
     expect(header.attributes('aria-expanded')).toBeUndefined();
     expect(header.attributes('aria-controls')).toBeUndefined();
     expect(header.attributes('type')).toBeUndefined();
@@ -169,8 +169,8 @@ describe('form group rendering', () => {
     wrappers.push(wrapper);
     await flushPromises();
 
-    expect(wrapper.find('button.form-group-trigger').exists()).toBe(false);
-    await wrapper.get('.form-group-header').trigger('click');
+    expect(wrapper.find('button[data-form-group="trigger"]').exists()).toBe(false);
+    await wrapper.get('[data-form-group="header"]').trigger('click');
     expect(getGroupState(wrapper)).toBe('open');
   });
 
@@ -271,9 +271,9 @@ describe('form group rendering', () => {
     wrappers.push(wrapper);
     await flushPromises();
 
-    expect(wrapper.findAll('.form-group')).toHaveLength(1);
+    expect(wrapper.findAll('[data-form-group="root"]')).toHaveLength(1);
     expect(wrapper.findAll('input')).toHaveLength(2);
-    expect(wrapper.get('.form-group').find('.slot-phone').exists()).toBe(true);
+    expect(wrapper.get('[data-form-group="root"]').find('.slot-phone').exists()).toBe(true);
   });
 
   it('re-renders grouped fields after updateSchema', async () => {

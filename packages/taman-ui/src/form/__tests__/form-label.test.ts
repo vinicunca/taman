@@ -3,6 +3,7 @@ import type { VueWrapper } from '@vue/test-utils';
 import { flushPromises, mount } from '@vue/test-utils';
 import { afterEach, beforeAll, describe, expect, it } from 'vitest';
 import { defineComponent, h } from 'vue';
+import { z } from 'zod';
 
 import { setupTamanForm } from '../form.config';
 import { useTamanForm } from '../form.use-taman-form';
@@ -138,5 +139,52 @@ describe('form label', () => {
     expect(label.get('[data-testid="tooltip-stub"]').classes()).toContain(
       'order-2',
     );
+  });
+});
+
+describe('form item state attributes', () => {
+  it('sets data-required only on required fields', async () => {
+    const [Form] = useTamanForm({
+      schema: [
+        {
+          component: TestInput,
+          fieldName: 'name',
+          label: 'Name',
+          rules: 'required',
+        },
+        { component: TestInput, fieldName: 'nickname', label: 'Nickname' },
+      ],
+    });
+    const wrapper = mount(Form);
+    wrappers.push(wrapper);
+    await flushPromises();
+
+    const [required, optional] = wrapper.findAll('[data-slot="form-item"]');
+    expect(required!.attributes('data-required')).toBe('true');
+    expect(optional!.attributes('data-required')).toBeUndefined();
+  });
+
+  it('sets data-invalid only after the field fails validation', async () => {
+    const [Form, formApi] = useTamanForm({
+      schema: [
+        {
+          component: TestInput,
+          fieldName: 'name',
+          label: 'Name',
+          rules: z.string().min(1, 'Name is required'),
+        },
+      ],
+    });
+    const wrapper = mount(Form);
+    wrappers.push(wrapper);
+    await flushPromises();
+
+    const item = () => wrapper.get('[data-slot="form-item"]');
+    expect(item().attributes('data-invalid')).toBeUndefined();
+
+    await formApi.validate();
+    await flushPromises();
+
+    expect(item().attributes('data-invalid')).toBe('true');
   });
 });

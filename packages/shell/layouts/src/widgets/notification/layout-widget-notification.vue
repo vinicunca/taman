@@ -115,11 +115,11 @@ defineExpose({ toggle });
                     class="size-full aspect-square object-cover"
                   >
                 </span>
-                <div class="leading-none flex flex-col gap-1">
+                <div class="leading-none flex flex-col gap-2">
                   <p class="font-600">
                     {{ item.title }}
                   </p>
-                  <p class="text-muted-foreground text-xs my-1 line-clamp-2">
+                  <p class="text-muted-foreground text-xs line-clamp-2">
                     {{ item.message }}
                   </p>
                   <p class="text-muted-foreground text-xs line-clamp-2">
