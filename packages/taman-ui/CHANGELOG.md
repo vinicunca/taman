@@ -1,5 +1,11 @@
 # @vinicunca/taman-ui
 
+## 0.4.1
+
+### Patch Changes
+
+- 8b6d7eb: Adjust spacing between form field description and validation message
+
 ## 0.4.0
 
 ### Minor Changes
