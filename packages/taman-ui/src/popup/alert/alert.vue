@@ -193,7 +193,7 @@ async function handleOpenChange(val: boolean) {
           </div>
         </AlertDialogTitle>
 
-        <AlertDialogDescription>
+        <AlertDialogDescription as="div">
           <div
             class="py-4"
             :class="{

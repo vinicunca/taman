@@ -1,18 +1,17 @@
 <script lang="ts">
-import type { Component, PropType } from 'vue';
+import type { PropType } from 'vue';
+import type { TamanRenderContentType } from './render-content.types';
 
 import { isFunction, isPlainObject, isString } from '@vinicunca/taman-core/utils';
-import { defineComponent, h } from 'vue';
+import { defineComponent, h, isVNode } from 'vue';
 
 export default defineComponent({
   name: 'TamanRenderContent',
 
   props: {
     content: {
-      default: undefined as
-      | PropType<(() => any) | Component | string>
-      | undefined,
-      type: [Object, String, Function],
+      default: undefined,
+      type: [Object, String, Function] as PropType<TamanRenderContentType>,
     },
     renderBr: {
       default: false,
@@ -22,38 +21,28 @@ export default defineComponent({
 
   setup(props, { attrs, slots }) {
     return () => {
-      if (!props.content) {
+      const content = props.content;
+
+      if (!content) {
         return null;
       }
 
-      const isComponent
-        = (isPlainObject(props.content) || isFunction(props.content))
-          && props.content !== null;
-
-      if (!isComponent) {
-        if (props.renderBr && isString(props.content)) {
-          const lines = props.content.split('\n');
-          const result = [];
-          for (const [i, line] of lines.entries()) {
-            result.push(h('p', { key: i }, line));
-          }
-          return result;
-        } else {
-          return props.content;
+      if (isString(content)) {
+        if (!props.renderBr) {
+          return content;
         }
+        return content
+          .split('\n')
+          .map((line, i) => h('p', { key: i }, line));
       }
 
-      return h(
-        props.content as never,
-        {
-          ...attrs,
-          props: {
-            ...props,
-            ...attrs,
-          },
-        },
-        slots,
-      );
+      // `h()` clones a VNode passed as its type (merging attrs), so the same
+      // VNode can safely be rendered in several places.
+      if (isVNode(content) || isPlainObject(content) || isFunction(content)) {
+        return h(content as never, attrs, slots);
+      }
+
+      return content;
     };
   },
 });

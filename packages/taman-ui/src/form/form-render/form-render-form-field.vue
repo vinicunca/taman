@@ -527,9 +527,9 @@ onUnmounted(() => {
     >
       <FormItem
         v-show="isShow && !props.hidden"
+        :data-invalid="shouldApplyInvalidStyle || undefined"
+        :data-required="shouldRequired || undefined"
         :class="{
-          'form-valid-error': shouldApplyInvalidStyle,
-          'form-is-required': shouldRequired,
           'pb-6': !compact && !props.hideMessage,
           'pb-2': compact,
         }"
@@ -538,7 +538,7 @@ onUnmounted(() => {
       >
         <div
           v-if="!props.hideLabel || props.collapsible"
-          class="flex items-center"
+          class="flex gap-0.5 items-center"
         >
           <FormLabel
             v-if="!props.hideLabel"
@@ -556,7 +556,6 @@ onUnmounted(() => {
           <PButton
             v-if="props.collapsible"
             aria-label="Toggle field"
-            class="ml-0.5"
             icon="lucide:chevron-down"
             :aria-expanded="collapseOpen"
             :class="{

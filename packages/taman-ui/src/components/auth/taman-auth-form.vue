@@ -34,7 +34,7 @@ const slots = defineSlots<{
 </script>
 
 <template>
-  <div class="w-full space-y-6">
+  <div class="flex flex-col gap-6 w-full">
     <div
       v-if="
         !!slots.leading
@@ -104,7 +104,7 @@ const slots = defineSlots<{
 
     <div
       v-if="!!slots.footer"
-      class="text-sm color-text-muted mt-2 text-center"
+      class="text-sm color-text-muted text-center"
     >
       <slot name="footer" />
     </div>

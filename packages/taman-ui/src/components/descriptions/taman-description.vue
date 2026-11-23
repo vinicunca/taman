@@ -50,12 +50,12 @@ const tableClass = computed(() =>
 
 <template>
   <div
-    class="w-full"
+    class="flex flex-col gap-5 w-full"
     :class="[props.class]"
   >
     <div
       v-if="hasHeader"
-      class="mb-5 flex gap-4 items-center justify-between"
+      class="flex gap-4 items-center justify-between"
     >
       <div class="text-base color-text font-600">
         <slot name="title">

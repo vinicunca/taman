@@ -191,11 +191,11 @@ useScrollLock();
     </Transition>
 
     <div
-      class="enter-y text-xl text-center w-full bottom-5 absolute 2xl:text-3xl md:text-2xl xl:text-xl"
+      class="enter-y text-xl text-center flex flex-col gap-2 w-full bottom-5 absolute 2xl:text-3xl md:text-2xl xl:text-xl"
     >
       <div
         v-if="showUnlockForm"
-        class="enter-x text-2xl mb-2 md:text-3xl"
+        class="enter-x text-2xl md:text-3xl"
       >
         {{ hour }}:{{ minute }}
         <span class="text-base md:text-lg">{{ meridiem }}</span>

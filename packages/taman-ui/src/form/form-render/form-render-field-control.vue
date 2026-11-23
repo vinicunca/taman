@@ -15,7 +15,7 @@ const props = defineProps<Props>();
 
 <template>
   <div
-    class="flex w-full items-center relative"
+    class="flex gap-1 w-full items-center relative"
     :class="[props.wrapperClass]"
   >
     <FormControl :class="props.controlClass">
@@ -23,10 +23,7 @@ const props = defineProps<Props>();
     </FormControl>
 
     <!-- Custom suffix -->
-    <div
-      v-if="props.suffix"
-      class="ml-1"
-    >
+    <div v-if="props.suffix">
       <TamanRenderContent :content="props.suffix" />
     </div>
   </div>

@@ -32,7 +32,7 @@ interface AppPageProps {
 
 <template>
   <div
-    class="group/card rounded-xl bg-background flex flex-col ring ring-ring ring-inset shadow-xs overflow-hidden [&_img:first-child]:rounded-t-xl [&_img:last-child]:rounded-b-xl"
+    class="group/card rounded-xl bg-background flex shrink-0 flex-col ring ring-ring ring-inset shadow-xs overflow-hidden [&_img:first-child]:rounded-t-xl [&_img:last-child]:rounded-b-xl"
     data-slot="card"
   >
     <div

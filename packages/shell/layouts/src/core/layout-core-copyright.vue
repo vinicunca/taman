@@ -20,7 +20,7 @@ withDefaults(
 </script>
 
 <template>
-  <div class="text-base flex-center">
+  <div class="text-base flex-center gap-1">
     <!-- Copyright Text -->
     Copyright © {{ date }}
 
@@ -28,7 +28,7 @@ withDefaults(
     <a
       v-if="companyName"
       :href="companySiteLink || 'javascript:void(0)'"
-      class="color-primary mx-1 transition-colors hover:color-primary-400"
+      class="color-primary transition-colors hover:color-primary-400"
       target="_blank"
     >
       {{ companyName }}

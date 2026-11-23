@@ -109,7 +109,7 @@ const cellClass = computed(() => {
 
 const labelClass = computed(() =>
   [
-    'mr-2 shrink-0 color-text-muted',
+    'shrink-0 color-text-muted',
     props.colon && COLON_CLASS,
   ],
 );
@@ -140,7 +140,7 @@ const labelClass = computed(() =>
     <!-- Non-bordered mode: label + content container -->
     <div
       v-else
-      class="flex"
+      class="flex gap-2"
     >
       <span
         v-if="hasLabel"

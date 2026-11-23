@@ -12,17 +12,17 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    PApp: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/App.vue')['default']
-    PButton: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/Button.vue')['default']
-    PCheckbox: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/Checkbox.vue')['default']
-    PDropdownMenu: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/DropdownMenu.vue')['default']
+    PApp: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/App.vue')['default']
+    PButton: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/Button.vue')['default']
+    PCheckbox: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/Checkbox.vue')['default']
+    PDropdownMenu: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/DropdownMenu.vue')['default']
     PFieldGroup: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/FieldGroup.vue')['default']
     PIcon: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/vue/components/Icon.vue')['default']
-    PInput: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/Input.vue')['default']
-    PSelect: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/Select.vue')['default']
+    PInput: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/Input.vue')['default']
+    PSelect: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/Select.vue')['default']
     PSlider: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/Slider.vue')['default']
-    PStepper: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/Stepper.vue')['default']
-    PSwitch: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/Switch.vue')['default']
+    PStepper: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/Stepper.vue')['default']
+    PSwitch: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/Switch.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
@@ -30,17 +30,17 @@ declare module 'vue' {
 
 // For TSX support
 declare global {
-  const PApp: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/App.vue')['default']
-  const PButton: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/Button.vue')['default']
-  const PCheckbox: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/Checkbox.vue')['default']
-  const PDropdownMenu: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/DropdownMenu.vue')['default']
+  const PApp: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/App.vue')['default']
+  const PButton: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/Button.vue')['default']
+  const PCheckbox: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/Checkbox.vue')['default']
+  const PDropdownMenu: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/DropdownMenu.vue')['default']
   const PFieldGroup: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/FieldGroup.vue')['default']
   const PIcon: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/vue/components/Icon.vue')['default']
-  const PInput: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/Input.vue')['default']
-  const PSelect: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/Select.vue')['default']
+  const PInput: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/Input.vue')['default']
+  const PSelect: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/Select.vue')['default']
   const PSlider: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/Slider.vue')['default']
-  const PStepper: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/Stepper.vue')['default']
-  const PSwitch: typeof import('./../../node_modules/.pnpm/pohon-ui@2.7.1_811477ae7055b9db367be27a834e29ff/node_modules/pohon-ui/dist/runtime/components/Switch.vue')['default']
+  const PStepper: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/Stepper.vue')['default']
+  const PSwitch: typeof import('./../../node_modules/.pnpm/pohon-ui@2.8.1_04ae1f932e7ca4536bfa5416d42f6ffd/node_modules/pohon-ui/dist/runtime/components/Switch.vue')['default']
   const RouterLink: typeof import('vue-router')['RouterLink']
   const RouterView: typeof import('vue-router')['RouterView']
 }

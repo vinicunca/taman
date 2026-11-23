@@ -198,7 +198,8 @@ defineExpose({
     <button
       v-if="hasCollapsibleFields"
       type="button"
-      class="form-collapse-trigger text-sm color-primary inline-flex gap-1 cursor-pointer items-center"
+      data-form-collapse="trigger"
+      class="text-sm color-primary inline-flex gap-1 cursor-pointer items-center"
       :aria-controls="props.gridId"
       :aria-expanded="!collapsed"
       @click="collapsed = !collapsed"

@@ -56,11 +56,11 @@ const contentStyle = computed<StyleValue>(() => {
         headerClass,
       ]"
     >
-      <div class="flex-auto min-w-0">
+      <div class="flex flex-auto flex-col gap-2 min-w-0">
         <slot name="title">
           <div
             v-if="props.title"
-            class="text-lg font-600 mb-2"
+            class="text-lg font-600"
           >
             {{ props.title }}
           </div>
