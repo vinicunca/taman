@@ -84,6 +84,52 @@ describe('form schema normalization', () => {
       placeholder: 'Contact name',
     });
   });
+
+  it('passes row and rootValues to child render callbacks', () => {
+    const rootValues = {
+      contacts: [
+        { name: 'a' },
+        { name: 'b' },
+      ],
+    };
+    const rowContext = { row: rootValues.contacts[1]!, rootValues };
+    const help = vi.fn(() => 'help');
+    const renderComponentContent = vi.fn(() => ({}));
+    const suffix = vi.fn(() => 'suffix');
+    const componentProps = vi.fn(() => ({}));
+
+    const schema = createArrayChildSchema(
+      {
+        component: 'Input',
+        componentProps,
+        fieldName: 'name',
+        help,
+        renderComponentContent,
+        suffix,
+      },
+      { arrayField: 'contacts', index: 1, rowContext },
+    );
+    (schema.help as () => unknown)();
+    (schema.renderComponentContent as () => unknown)();
+    (schema.suffix as () => unknown)();
+    (schema.componentProps as () => unknown)();
+
+    const expected = expect.objectContaining({
+      fieldName: 'contacts[1].name',
+      row: { name: 'b' },
+      rootValues,
+      rowIndex: 1,
+      rowPath: 'contacts[1]',
+    });
+    for (const fn of [
+      help,
+      renderComponentContent,
+      suffix,
+      componentProps,
+    ]) {
+      expect(fn).toHaveBeenCalledWith(expected);
+    }
+  });
 });
 
 describe('form group schema', () => {

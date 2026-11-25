@@ -3,6 +3,7 @@ import type { MaybeComputedRef } from '@vinicunca/taman-core/typings';
 import type { ButtonProps } from 'pohon-ui';
 import type { Component, HTMLAttributes, HtmlHTMLAttributes, Ref } from 'vue';
 import type { core, ZodType } from 'zod';
+import type { TamanRenderContentType } from '../components/render-content/render-content.types';
 import type { FormApi } from './form.api';
 import type { BuiltInFormComponentType } from './form.built-ins';
 
@@ -535,7 +536,7 @@ interface FormSchemaBody<TValues extends FormValues = FormValues> extends Omit<
   /** Field rules */
   rules?: FormSchemaRuleType;
   /** Suffix */
-  suffix?: FormCustomRenderType;
+  suffix?: CustomParamsRenderType<TValues>;
 }
 
 type FormSchemaDiscriminated<
@@ -668,6 +669,20 @@ export type FormSchema<
 > = FormFieldSchema<T, P, TValues> | FormGroupSchema<T, P, TValues>;
 
 /**
+ * Context passed to the per-row options of an array field.
+ */
+export interface TamanFormFieldArrayRowContext<
+  TValues extends FormValues = FormValues,
+> {
+  index: number;
+  /** Current values of this row, read lazily */
+  row: Record<string, any>;
+  /** Row path, e.g. `portfolio[2]` */
+  rowPath: string;
+  rootValues: Readonly<TValues>;
+}
+
+/**
  * Component props for the array editor (TamanFormFieldArray)
  */
 export interface TamanFormFieldArrayProps<
@@ -679,6 +694,8 @@ export interface TamanFormFieldArrayProps<
   actionText?: string;
   /** "Add" button text */
   addButtonText?: string;
+  /** Props merged into the "Add" button */
+  addButtonProps?: ButtonProps;
   /** Subfield common configuration */
   commonConfig?: FormCommonConfig<TValues>;
   /** Default data generated when a new row is added; if not specified, an empty object is generated according to the fieldName defined in the column */
@@ -700,6 +717,18 @@ export interface TamanFormFieldArrayProps<
   moveUpText?: string;
   /** Array field path, passed through the outer FormField */
   name?: string;
+  /**
+   * Field on each row whose value identifies the row, e.g. `'id'`. Rows are
+   * keyed by it, so a moved row keeps its row element instead of another
+   * row's. Rows where the value is missing (or a duplicate) are keyed by index.
+   */
+  rowKey?: string;
+  /** Extra content rendered for each row, e.g. in the action column */
+  rowActions?: (ctx: TamanFormFieldArrayRowContext<TValues>) => TamanRenderContentType | null | undefined;
+  /** Extra content rendered below each row */
+  rowExtra?: (ctx: TamanFormFieldArrayRowContext<TValues>) => TamanRenderContentType | null | undefined;
+  /** Whether a row can be removed */
+  rowRemovable?: (ctx: TamanFormFieldArrayRowContext<TValues>) => boolean;
   /** Column definition, each column is a subfield (reuse FormFieldSchema) */
   schema?: Array<FormFieldSchema<T, P, TValues>>;
   /** Whether to display the index column */

@@ -31,6 +31,7 @@ export type {
   TamanFormComponent,
   TamanFormDefaultSlotProps,
   TamanFormFieldArrayProps,
+  TamanFormFieldArrayRowContext,
   FormFieldSchema as TamanFormFieldSchema,
   TamanFormFieldSlotProps,
   FormGroupSchema as TamanFormGroupSchema,

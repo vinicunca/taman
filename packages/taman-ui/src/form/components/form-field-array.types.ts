@@ -1,10 +1,14 @@
-import type { FormCommonConfig, FormFieldSchema } from '../form.types';
+import type { ButtonProps } from 'pohon-ui';
+import type { TamanRenderContentType } from '../../components/render-content/render-content.types';
+import type { FormCommonConfig, FormFieldSchema, TamanFormFieldArrayRowContext } from '../form.types';
 
 export interface TamanFormFieldArrayProps {
   /** Action list header text */
   actionText?: string;
   /** "Add" button text */
   addButtonText?: string;
+  /** Props merged into the "Add" button */
+  addButtonProps?: ButtonProps;
   /** Sub-field common configuration */
   commonConfig?: FormCommonConfig;
   /**
@@ -34,6 +38,12 @@ export interface TamanFormFieldArrayProps {
    * row's. Rows where the value is missing (or a duplicate) are keyed by index.
    */
   rowKey?: string;
+  /** Extra content rendered for each row, e.g. in the action column */
+  rowActions?: (ctx: TamanFormFieldArrayRowContext) => TamanRenderContentType | null | undefined;
+  /** Extra content rendered below each row */
+  rowExtra?: (ctx: TamanFormFieldArrayRowContext) => TamanRenderContentType | null | undefined;
+  /** Whether a row can be removed */
+  rowRemovable?: (ctx: TamanFormFieldArrayRowContext) => boolean;
   /**
    * Column definition, each column is a sub-field (reuse FormFieldSchema)
    */

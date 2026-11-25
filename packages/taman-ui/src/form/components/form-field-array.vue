@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Sortable } from '@vinicunca/taman-core/composables';
+import type { TamanFormFieldArrayRowContext } from '../form.types';
 import type { TamanFormFieldArrayProps } from './form-field-array.types';
 import { useSortable } from '@vinicunca/taman-core/composables';
 import { get, set } from '@vinicunca/taman-core/utils';
@@ -65,6 +66,8 @@ const arrayLength = formActions.useSelector((state) => {
     ? value.length
     : 0;
 });
+const arrayValue = formActions.useSelector((state) => get(state.values, props.name));
+const rootValuesState = formActions.useSelector((state) => state.values);
 const rowKeyValues = formActions.useSelector((state) => {
   if (!props.rowKey) {
     return undefined;
@@ -289,6 +292,27 @@ watch(
 
 onBeforeUnmount(teardownSortable);
 
+function createRowContext(index: number): TamanFormFieldArrayRowContext {
+  // Per row, so a row's dependents only re-run when that row's object changes.
+  const rowValue = computed<Record<string, any>>(
+    () => arrayValue.value?.[index] ?? {},
+  );
+  return {
+    index,
+    get rootValues() {
+      return rootValuesState.value;
+    },
+    get row() {
+      return rowValue.value;
+    },
+    rowPath: `${arrayPath.value}[${index}]`,
+  };
+}
+
+const rowContexts = computed(() =>
+  Array.from({ length: arrayLength.value }, (_, index) => createRowContext(index)),
+);
+
 function rowSchemas(index: number) {
   return props.schema.map((col) =>
     createArrayChildSchema(col as never, {
@@ -297,6 +321,7 @@ function rowSchemas(index: number) {
       disabled: props.disabled,
       globalCommonConfig: props.globalCommonConfig,
       index,
+      rowContext: rowContexts.value[index],
     }),
   );
 }
@@ -349,6 +374,7 @@ const normalizedRowSchemas = computed(() =>
         class="p-3 border-b border-border/60 sm:p-0 last:border-b-0 sm:grid"
         :style="gridStyle"
         :data-array-row="sortable ? instanceId : undefined"
+        :data-array-row-index="index"
       >
         <div
           v-if="sortable"

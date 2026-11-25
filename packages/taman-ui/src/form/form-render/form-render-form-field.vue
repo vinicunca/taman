@@ -339,6 +339,17 @@ const computedHelp = computed(() => {
       : helpContent;
 });
 
+// Custom suffix
+const computedSuffix = computed(() => {
+  const suffix = props.suffix;
+  if (!suffix) {
+    return undefined;
+  }
+  return isFunction(suffix)
+    ? () => suffix({ fieldName: props.fieldName })
+    : suffix;
+});
+
 watch(
   () => computedProps.value?.autofocus,
   (value) => {
@@ -572,7 +583,7 @@ onUnmounted(() => {
           >
             <FormRenderFieldControl
               :control-class="props.controlClass"
-              :suffix="props.suffix"
+              :suffix="computedSuffix"
               :wrapper-class="props.wrapperClass"
             >
               <slot v-bind="createFieldSlotScope(slotProps)">

@@ -10,6 +10,7 @@ import type {
   FormSchemaContext,
   FormValues,
   MaybeComponentProps,
+  TamanFormFieldArrayRowContext,
 } from '../form.types';
 
 import {
@@ -48,6 +49,8 @@ interface CreateFormFieldSchemaOptions {
 interface CreateArrayChildSchemaOptions extends CreateFormFieldSchemaOptions {
   arrayField: string;
   index: number;
+  /** Lazily read row data, added to the context of child render callbacks */
+  rowContext?: Pick<TamanFormFieldArrayRowContext, 'row' | 'rootValues'>;
 }
 
 function createSchemaContext(
@@ -85,20 +88,41 @@ function scopeRowFieldName(rowPath: string, fieldName: string) {
   return `${rowPath}.${fieldName}`;
 }
 
+type RowContext = CreateArrayChildSchemaOptions['rowContext'];
+
 function wrapSchemaContextRender<T>(
   render: T,
   baseContext: FormSchemaContext,
+  rowContext?: RowContext,
 ): T {
   if (!isFunctionType(render)) {
     return render;
   }
 
-  return (() => render(baseContext)) as T;
+  if (!rowContext) {
+    return (() => render(baseContext)) as T;
+  }
+
+  // Getters, so a callback only tracks what it reads.
+  return (() =>
+    render(
+      Object.defineProperties({ ...baseContext }, {
+        rootValues: {
+          enumerable: true,
+          get: () => rowContext.rootValues,
+        },
+        row: {
+          enumerable: true,
+          get: () => rowContext.row,
+        },
+      }),
+    )) as T;
 }
 
 function wrapCommonConfig(
   commonConfig: FormCommonConfig | undefined,
   baseContext: FormSchemaContext,
+  rowContext?: RowContext,
 ) {
   if (!commonConfig || !isFunctionType(commonConfig.componentProps)) {
     return commonConfig;
@@ -109,6 +133,7 @@ function wrapCommonConfig(
     componentProps: wrapSchemaContextRender(
       commonConfig.componentProps,
       baseContext,
+      rowContext,
     ),
   };
 }
@@ -465,22 +490,26 @@ export function createArrayChildSchema(
       componentProps: wrapSchemaContextRender(
         schema.componentProps,
         baseContext,
+        options.rowContext,
       ),
       dependencies: scopeDependencies(schema.dependencies, baseContext),
       fieldName,
-      help: wrapSchemaContextRender(schema.help, baseContext),
+      help: wrapSchemaContextRender(schema.help, baseContext, options.rowContext),
       renderComponentContent: wrapSchemaContextRender(
         schema.renderComponentContent,
         baseContext,
+        options.rowContext,
       ),
+      suffix: wrapSchemaContextRender(schema.suffix, baseContext, options.rowContext),
     },
     {
-      commonConfig: wrapCommonConfig(options.commonConfig, baseContext),
+      commonConfig: wrapCommonConfig(options.commonConfig, baseContext, options.rowContext),
       disabled: options.disabled || schema.disabled,
       forceHideLabel: true,
       globalCommonConfig: wrapCommonConfig(
         options.globalCommonConfig,
         baseContext,
+        options.rowContext,
       ),
     },
   );
