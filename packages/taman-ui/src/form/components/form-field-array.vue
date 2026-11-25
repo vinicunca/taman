@@ -272,6 +272,8 @@ function onSortEnd(event: Sortable.SortableEvent) {
 async function setupSortable(container: HTMLElement) {
   const generation = ++sortableGeneration;
   const { initializeSortable } = useSortable(container, {
+    // Rows are always a vertical list, even when the container is a grid.
+    direction: 'vertical',
     disabled: props.disabled,
     draggable: `[data-array-row="${instanceId}"]`,
     ghostClass: 'opacity-50',

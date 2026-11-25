@@ -1,5 +1,6 @@
 import type { VueWrapper } from '@vue/test-utils';
 
+import { useSortable } from '@vinicunca/taman-core/composables';
 import { flushPromises, mount } from '@vue/test-utils';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { defineComponent, h } from 'vue';
@@ -301,6 +302,18 @@ describe('array row extensions', () => {
       expect(el.style.gridColumn).toBe('1 / -1');
       expect(el.style.gridTemplateColumns).toBe('subgrid');
     }
+  });
+
+  it('keeps Sortable vertical when rowActions turns the container into a grid', async () => {
+    vi.mocked(useSortable).mockClear();
+    await mountPortfolio({
+      arrayProps: {
+        rowActions: () => 'x',
+        sortable: true,
+      },
+    });
+    expect(useSortable).toHaveBeenCalled();
+    expect(vi.mocked(useSortable).mock.calls[0]![1]).toMatchObject({ direction: 'vertical' });
   });
 
   it('hides the remove button where rowRemovable returns false', async () => {
