@@ -177,3 +177,169 @@ describe('array child callbacks', () => {
     expect(wrapper.text()).toContain('kg');
   });
 });
+
+function rowExtraTexts(wrapper: VueWrapper) {
+  return wrapper.findAll('[data-array-row-extra]').map((el) => el.text());
+}
+
+function removePresence(wrapper: VueWrapper) {
+  return getRows(wrapper).map((row) => row.find('[data-array-remove]').exists());
+}
+
+function findAddButton(wrapper: VueWrapper) {
+  const button = wrapper.findAll('button').find((b) => b.text().includes('Add a row'));
+  if (!button) {
+    throw new Error('add button not found');
+  }
+  return button;
+}
+
+describe('array row extensions', () => {
+  const preview = ({ row }: any) => `Preview ${row.title}`;
+
+  it('renders as before when no row options are set', async () => {
+    const { wrapper } = await mountPortfolio();
+    const grids = wrapper.findAll('[style*="grid-template-columns"]');
+    expect(grids).toHaveLength(4);
+    for (const grid of grids) {
+      expect((grid.element as HTMLElement).style.gridTemplateColumns)
+        .toBe('3rem minmax(0, 1fr) 4rem');
+    }
+    expect(wrapper.find('[data-array-row-extra]').exists()).toBe(false);
+    expect(wrapper.find('[data-array-row-actions]').exists()).toBe(false);
+    expect(wrapper.findAll('[data-array-remove]')).toHaveLength(3);
+  });
+
+  it('renders rowExtra per row and updates it with the row', async () => {
+    const { formApi, wrapper } = await mountPortfolio({
+      arrayProps: { rowExtra: preview },
+    });
+    expect(rowExtraTexts(wrapper)).toEqual(['Preview a', 'Preview b', 'Preview c']);
+    const rows = getRows(wrapper);
+    wrapper.findAll('[data-array-row-extra]').forEach((extra, index) => {
+      expect(rows[index]!.element.contains(extra.element)).toBe(true);
+      expect((extra.element as HTMLElement).style.gridColumn).toBe('1 / -1');
+    });
+
+    formApi.form.setFieldValue('portfolio[1].title', 'z');
+    await flushPromises();
+    expect(rowExtraTexts(wrapper)).toEqual(['Preview a', 'Preview z', 'Preview c']);
+  });
+
+  it('renders nothing extra when rowExtra returns null', async () => {
+    const { wrapper } = await mountPortfolio({
+      arrayProps: {
+        rowExtra: ({ row }: any) => (row.title === 'b'
+          ? 'Importing from Drive…'
+          : null),
+      },
+    });
+    const extras = wrapper.findAll('[data-array-row-extra]');
+    expect(extras).toHaveLength(1);
+    expect(getRows(wrapper)[1]!.element.contains(extras[0]!.element)).toBe(true);
+  });
+
+  it('re-runs rowExtra only for the changed row', async () => {
+    const rowExtra = vi.fn(({ row }: any) => row.title);
+    const { formApi } = await mountPortfolio({
+      arrayProps: { rowExtra },
+    });
+    rowExtra.mockClear();
+    formApi.form.setFieldValue('portfolio[1].title', 'z');
+    await flushPromises();
+    expect(rowExtra.mock.calls.length).toBeGreaterThan(0);
+    for (const [ctx] of rowExtra.mock.calls) {
+      expect(ctx.index).toBe(1);
+    }
+  });
+
+  it('keeps row extras with their rows after a remove', async () => {
+    const { wrapper } = await mountPortfolio({
+      arrayProps: { rowExtra: preview },
+    });
+    await wrapper.find('[data-array-remove]').trigger('click');
+    await flushPromises();
+    expect(rowExtraTexts(wrapper)).toEqual(['Preview b', 'Preview c']);
+  });
+
+  it('renders rowActions before the row buttons, with that row', async () => {
+    const retry = vi.fn();
+    const rowActions = (ctx: any) =>
+      h('button', {
+        'data-test': 'retry',
+        'onClick': () => retry(ctx.index, ctx.row.title),
+      }, 'Retry');
+    const { wrapper } = await mountPortfolio({
+      arrayProps: { rowActions, sortable: true },
+    });
+    await wrapper.findAll('[data-test="retry"]')[1]!.trigger('click');
+    expect(retry).toHaveBeenCalledWith(1, 'b');
+
+    for (const row of getRows(wrapper)) {
+      const actions = row.find('[data-array-row-actions]').element;
+      const move = row.find('[data-array-move]').element;
+      const remove = row.find('[data-array-remove]').element;
+      expect(actions.compareDocumentPosition(move) & Node.DOCUMENT_POSITION_FOLLOWING)
+        .toBeTruthy();
+      expect(actions.compareDocumentPosition(remove) & Node.DOCUMENT_POSITION_FOLLOWING)
+        .toBeTruthy();
+    }
+  });
+
+  it('shares one auto action column when rowActions is set', async () => {
+    const { wrapper } = await mountPortfolio({
+      arrayProps: {
+        rowActions: () => 'x',
+      },
+    });
+    const container = wrapper.find('[style*="display: grid"]').element as HTMLElement;
+    expect(container.style.display).toBe('grid');
+    expect(container.style.gridTemplateColumns).toBe('3rem minmax(0, 1fr) auto');
+    const header = container.children[0] as HTMLElement;
+    const rows = getRows(wrapper).map((row) => row.element as HTMLElement);
+    for (const el of [header, ...rows]) {
+      expect(el.style.gridColumn).toBe('1 / -1');
+      expect(el.style.gridTemplateColumns).toBe('subgrid');
+    }
+  });
+
+  it('hides the remove button where rowRemovable returns false', async () => {
+    const { formApi, wrapper } = await mountPortfolio({
+      arrayProps: {
+        rowRemovable: ({ row }: any) => row.title !== 'b',
+      },
+    });
+    expect(removePresence(wrapper)).toEqual([true, false, true]);
+    formApi.form.setFieldValue('portfolio[0].title', 'b');
+    await flushPromises();
+    expect(removePresence(wrapper)).toEqual([false, false, true]);
+  });
+
+  it('passes addButtonProps to the add button', async () => {
+    const { wrapper } = await mountPortfolio({
+      arrayProps: {
+        addButtonProps: { class: 'self-end', variant: 'solid' },
+      },
+    });
+    const classes = findAddButton(wrapper).classes();
+    expect(classes).toContain('self-end');
+    expect(classes).toContain('border-dashed');
+  });
+
+  it('keeps the add button disabled at max despite addButtonProps', async () => {
+    const atMax = await mountPortfolio({
+      arrayProps: {
+        addButtonProps: { disabled: false },
+        max: 3,
+      },
+    });
+    expect(findAddButton(atMax.wrapper).attributes('disabled')).toBeDefined();
+
+    const forced = await mountPortfolio({
+      arrayProps: {
+        addButtonProps: { disabled: true },
+      },
+    });
+    expect(findAddButton(forced.wrapper).attributes('disabled')).toBeDefined();
+  });
+});

@@ -18,6 +18,7 @@ import { TamanButtonIcon, TamanRenderContent } from '../..';
 import FormRenderFormField from '../form-render/form-render-form-field.vue';
 import { injectRenderFormProps } from '../form-render/form-render.context';
 import { createArrayChildSchema } from '../form-render/form-render.schema';
+import FormFieldArrayRowContent from './form-field-array-row-content.vue';
 
 defineOptions({
   name: 'TamanFormFieldArray',
@@ -29,6 +30,7 @@ const props = withDefaults(
   {
     // TODO: implement i18n
     actionText: 'Action',
+    addButtonProps: undefined,
     // TODO: implement i18n
     addButtonText: 'Add a row',
     createRow: undefined,
@@ -46,7 +48,10 @@ const props = withDefaults(
     // TODO: implement i18n
     moveUpText: 'Move up',
     name: '',
+    rowActions: undefined,
+    rowExtra: undefined,
     rowKey: undefined,
+    rowRemovable: undefined,
     schema: () => [],
     showIndex: true,
     sortable: false,
@@ -107,6 +112,15 @@ const rowKeys = computed<Array<string>>((previous) => {
 const canAdd = computed(() => arrayLength.value < props.max);
 const canRemove = computed(() => arrayLength.value > props.min);
 const canReorder = computed(() => props.sortable && !props.disabled);
+function actionColumnWidth() {
+  if (props.rowActions) {
+    return 'auto';
+  }
+  // Room for "Move up", "Move down" and remove.
+  return props.sortable
+    ? '7.5rem'
+    : '4rem';
+}
 const gridStyle = computed(() => {
   const columns = [
     ...(props.sortable
@@ -116,15 +130,24 @@ const gridStyle = computed(() => {
       ? ['3rem']
       : []),
     ...props.schema.map(() => 'minmax(0, 1fr)'),
-    // Room for "Move up", "Move down" and remove.
-    props.sortable
-      ? '7.5rem'
-      : '4rem',
+    actionColumnWidth(),
   ];
   return {
     gridTemplateColumns: columns.join(' '),
   };
 });
+// With `rowActions` the action column is `auto`; the rows share it through
+// subgrid so every row gets the width of the widest one.
+const rowsContainerStyle = computed(() => props.rowActions
+  ? { display: 'grid', ...gridStyle.value }
+  : undefined);
+const headerStyle = computed(() => props.rowActions
+  ? { gridColumn: '1 / -1', gridTemplateColumns: 'subgrid' }
+  : gridStyle.value);
+const rowStyle = headerStyle;
+const emptyStyle = computed(() => props.rowActions
+  ? { gridColumn: '1 / -1' }
+  : undefined);
 
 function buildDefaultRow(): Record<string, any> {
   if (props.createRow) {
@@ -313,6 +336,11 @@ const rowContexts = computed(() =>
   Array.from({ length: arrayLength.value }, (_, index) => createRowContext(index)),
 );
 
+// One computed per row, so `rowRemovable` re-runs only for the row that changed.
+const removableRows = computed(() =>
+  rowContexts.value.map((context) => computed(() => props.rowRemovable?.(context) ?? true)),
+);
+
 function rowSchemas(index: number) {
   return props.schema.map((col) =>
     createArrayChildSchema(col as never, {
@@ -342,10 +370,11 @@ const normalizedRowSchemas = computed(() =>
     <div
       ref="rowsContainer"
       class="border border-border/70 rounded-md overflow-hidden"
+      :style="rowsContainerStyle"
     >
       <div
         class="px-2 border-b border-border bg-background-muted/30 hidden sm:grid"
-        :style="gridStyle"
+        :style="headerStyle"
       >
         <div v-if="sortable" />
         <div
@@ -372,7 +401,7 @@ const normalizedRowSchemas = computed(() =>
         v-for="(rowKeyValue, index) in rowKeys"
         :key="rowKeyValue"
         class="p-3 border-b border-border/60 sm:p-0 last:border-b-0 sm:grid"
-        :style="gridStyle"
+        :style="rowStyle"
         :data-array-row="sortable ? instanceId : undefined"
         :data-array-row-index="index"
       >
@@ -423,6 +452,13 @@ const normalizedRowSchemas = computed(() =>
           v-if="sortable"
           class="pt-1 flex gap-1 justify-end sm:px-2 sm:py-3 sm:justify-start"
         >
+          <FormFieldArrayRowContent
+            v-if="rowActions"
+            class="flex gap-1 items-center"
+            data-array-row-actions
+            :context="rowContexts[index]!"
+            :render="rowActions"
+          />
           <template v-if="canReorder">
             <TamanButtonIcon
               :aria-label="moveUpText"
@@ -440,6 +476,8 @@ const normalizedRowSchemas = computed(() =>
             />
           </template>
           <TamanButtonIcon
+            v-if="removableRows[index]?.value ?? true"
+            data-array-remove
             :disabled="disabled || !canRemove"
             icon="lucide:x"
             @click="removeRow(index)"
@@ -447,19 +485,39 @@ const normalizedRowSchemas = computed(() =>
         </div>
         <div
           v-else
-          class="pt-1 flex justify-end sm:px-2 sm:py-3 sm:block"
+          class="pt-1 flex justify-end sm:px-2 sm:py-3"
+          :class="rowActions ? 'gap-1 sm:justify-start' : 'sm:block'"
         >
+          <FormFieldArrayRowContent
+            v-if="rowActions"
+            class="flex gap-1 items-center"
+            data-array-row-actions
+            :context="rowContexts[index]!"
+            :render="rowActions"
+          />
           <TamanButtonIcon
+            v-if="removableRows[index]?.value ?? true"
+            data-array-remove
             :disabled="disabled || !canRemove"
             icon="lucide:x"
             @click="removeRow(index)"
           />
         </div>
+
+        <FormFieldArrayRowContent
+          v-if="rowExtra"
+          class="pb-3 sm:px-2"
+          style="grid-column: 1 / -1"
+          data-array-row-extra
+          :context="rowContexts[index]!"
+          :render="rowExtra"
+        />
       </div>
 
       <div
         v-if="arrayLength === 0"
         class="text-sm color-text-muted py-6 text-center"
+        :style="emptyStyle"
       >
         {{ emptyText }}
       </div>
@@ -468,9 +526,10 @@ const normalizedRowSchemas = computed(() =>
     <PButton
       variant="outline"
       size="sm"
-      :disabled="disabled || !canAdd"
       class="border-dashed w-full"
       icon="lucide:plus"
+      v-bind="addButtonProps"
+      :disabled="disabled || !canAdd || Boolean(addButtonProps?.disabled)"
       @click="addRow"
     >
       {{ addButtonText }}
