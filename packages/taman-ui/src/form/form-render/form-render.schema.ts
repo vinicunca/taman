@@ -122,7 +122,6 @@ function wrapSchemaContextRender<T>(
 function wrapCommonConfig(
   commonConfig: FormCommonConfig | undefined,
   baseContext: FormSchemaContext,
-  rowContext?: RowContext,
 ) {
   if (!commonConfig || !isFunctionType(commonConfig.componentProps)) {
     return commonConfig;
@@ -133,7 +132,6 @@ function wrapCommonConfig(
     componentProps: wrapSchemaContextRender(
       commonConfig.componentProps,
       baseContext,
-      rowContext,
     ),
   };
 }
@@ -503,13 +501,12 @@ export function createArrayChildSchema(
       suffix: wrapSchemaContextRender(schema.suffix, baseContext, options.rowContext),
     },
     {
-      commonConfig: wrapCommonConfig(options.commonConfig, baseContext, options.rowContext),
+      commonConfig: wrapCommonConfig(options.commonConfig, baseContext),
       disabled: options.disabled || schema.disabled,
       forceHideLabel: true,
       globalCommonConfig: wrapCommonConfig(
         options.globalCommonConfig,
         baseContext,
-        options.rowContext,
       ),
     },
   );

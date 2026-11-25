@@ -52,10 +52,12 @@ async function mountPortfolio(
   options: {
     arrayProps?: Record<string, unknown>;
     children?: Array<Record<string, any>>;
+    commonConfig?: Record<string, any>;
     portfolio?: Array<PortfolioItem>;
   } = {},
 ) {
   const [Form, formApi] = useTamanForm({
+    commonConfig: options.commonConfig,
     schema: [
       {
         arrayProps: { ...options.arrayProps },
@@ -121,6 +123,39 @@ describe('array child callbacks', () => {
     componentProps.mockClear();
     formApi.form.setFieldValue('portfolio[1].title', 'z');
     await flushPromises();
+    const indexes = componentProps.mock.calls.map(([ctx]) => ctx.rowIndex);
+    expect(indexes).not.toContain(0);
+    expect(indexes).not.toContain(2);
+  });
+
+  it('keeps common config out of the row context', async () => {
+    const commonComponentProps = vi.fn((ctx: any) => ({
+      title: `${ctx.row?.title}/${ctx.rootValues?.portfolio?.length}`,
+    }));
+    const componentProps = vi.fn(({ row }: any) => ({ placeholder: row?.title }));
+    const { formApi } = await mountPortfolio({
+      children: [
+        {
+          component: TestInput,
+          componentProps,
+          fieldName: 'title',
+          label: 'Title',
+        },
+      ],
+      commonConfig: { componentProps: commonComponentProps },
+    });
+    expect(commonComponentProps).toHaveBeenCalled();
+    for (const [ctx] of commonComponentProps.mock.calls) {
+      expect(ctx.row).toBeUndefined();
+      expect(ctx.rootValues).toBeUndefined();
+    }
+    commonComponentProps.mockClear();
+    componentProps.mockClear();
+
+    formApi.form.setFieldValue('portfolio[1].title', 'z');
+    await flushPromises();
+
+    expect(commonComponentProps).not.toHaveBeenCalled();
     const indexes = componentProps.mock.calls.map(([ctx]) => ctx.rowIndex);
     expect(indexes).not.toContain(0);
     expect(indexes).not.toContain(2);
