@@ -168,6 +168,11 @@ export interface FormActions<TValues extends FormValues = FormValues> {
   ) => (event?: Event) => Promise<void>;
   isFieldValid: (fieldName: string) => boolean;
   readonly meta: FormMeta;
+  /**
+   * Moves the array item at `from` to `to`. Field meta (errors, touched)
+   * moves with the item. Out-of-range or equal indexes do nothing.
+   */
+  moveFieldValue: (fieldName: string, from: number, to: number) => Promise<void>;
   pushFieldValue: (fieldName: string, value: any) => void;
   removeFieldValue: (fieldName: string, index: number) => Promise<void>;
   reset: (
@@ -627,6 +632,12 @@ export interface FormGroupSchema<
   hide?: boolean;
   /** Group identifier, used for stable keys during rendering, defaulting to index */
   name?: string;
+  /**
+   * Field on each row whose value identifies the row, e.g. `'id'`. Rows are
+   * keyed by it, so a moved row keeps its row element instead of another
+   * row's. Rows where the value is missing (or a duplicate) are keyed by index.
+   */
+  rowKey?: string;
   /** Group title */
   title?: FormCustomRenderType;
   /** Group type */
@@ -673,6 +684,8 @@ export interface TamanFormFieldArrayProps<
   /** Default data generated when a new row is added; if not specified, an empty object is generated according to the fieldName defined in the column */
   createRow?: () => Record<string, any>;
   disabled?: boolean;
+  /** Tooltip on the drag handle, shown when `sortable` is on */
+  dragHandleText?: string;
   /** Empty data text */
   emptyText?: string;
   /** Subfield global common configuration */
@@ -681,12 +694,22 @@ export interface TamanFormFieldArrayProps<
   max?: number;
   /** Minimum number of rows */
   min?: number;
+  /** Accessible label of the "Move down" button, shown when `sortable` is on */
+  moveDownText?: string;
+  /** Accessible label of the "Move up" button, shown when `sortable` is on */
+  moveUpText?: string;
   /** Array field path, passed through the outer FormField */
   name?: string;
   /** Column definition, each column is a subfield (reuse FormFieldSchema) */
   schema?: Array<FormFieldSchema<T, P, TValues>>;
   /** Whether to display the index column */
   showIndex?: boolean;
+  /**
+   * Let users reorder rows: by dragging the handle at the start of a row, or
+   * with the "Move up" / "Move down" buttons.
+   * @default false
+   */
+  sortable?: boolean;
 }
 
 export type FormHandleSubmitFn<

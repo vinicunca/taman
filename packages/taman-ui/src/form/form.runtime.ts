@@ -17,7 +17,7 @@ import {
   useForm,
 } from '@tanstack/vue-form';
 import { mergeWithArrayOverride } from '@vinicunca/taman-core/utils';
-import { computed, shallowRef } from 'vue';
+import { computed, nextTick, shallowRef } from 'vue';
 
 import { createRuntimeFieldComponent } from './form.runtime-field';
 
@@ -44,6 +44,46 @@ function normalizeFieldMetaError(meta: unknown) {
   return normalizeError(Array.isArray(errors)
     ? errors[0]
     : undefined);
+}
+
+function isArrayIndex(index: number, length: number) {
+  return Number.isInteger(index) && index >= 0 && index < length;
+}
+
+/**
+ * Splits `contacts[2].name` into the item index (`2`) and the rest of the
+ * path (`.name`), for paths inside the array field `contacts`.
+ */
+function parseArrayItemPath(arrayField: string, path: string) {
+  const prefix = `${arrayField}[`;
+  if (!path.startsWith(prefix)) {
+    return undefined;
+  }
+  const match = /^(\d+)\](.*)$/s.exec(path.slice(prefix.length));
+  return match
+    ? {
+        index: Number(match[1]),
+        rest: match[2] ?? '',
+      }
+    : undefined;
+}
+
+/** The index an item at `index` ends up at after moving `from` to `to`. */
+function getMovedIndex(index: number, from: number, to: number) {
+  if (index === from) {
+    return to;
+  }
+  if (from < to && index > from && index <= to) {
+    return index - 1;
+  }
+  if (from > to && index >= to && index < from) {
+    return index + 1;
+  }
+  return index;
+}
+
+function hasErrors(errorMap: Record<string, unknown> | undefined) {
+  return Object.values(errorMap ?? {}).some((error) => error !== undefined);
 }
 
 function createProgressiveValidationLogic(
@@ -300,6 +340,107 @@ export function useFormRuntime<TValues extends FormValues>(
     }
   }
 
+  /**
+   * TanStack moves the value, but its meta shift is not enough on its own:
+   * - it rewrites the first `[n]` in each path, which is the wrong index for
+   *   an array nested in another array;
+   * - fields rendered under a new path remount (rows keyed by `rowKey`), and
+   *   TanStack clears a field's errors when its old instance unmounts;
+   * - the progressive-validation reveal state here is keyed by path.
+   * So the meta of every moved item is snapshotted and written back under the
+   * item's new index.
+   */
+  async function moveFieldValue(fieldName: string, from: number, to: number) {
+    const items = rawForm.getFieldValue(fieldName as never) as unknown;
+    if (
+      !Array.isArray(items)
+      || from === to
+      || !isArrayIndex(from, items.length)
+      || !isArrayIndex(to, items.length)
+    ) {
+      return;
+    }
+
+    const low = Math.min(from, to);
+    const high = Math.max(from, to);
+    function getMovedPath(path: string) {
+      const itemPath = parseArrayItemPath(fieldName, path);
+      if (!itemPath || itemPath.index < low || itemPath.index > high) {
+        return undefined;
+      }
+      return `${fieldName}[${getMovedIndex(itemPath.index, from, to)}]${itemPath.rest}`;
+    }
+
+    type FieldMeta = NonNullable<ReturnType<typeof rawForm.getFieldMeta>>;
+    const movedMeta = new Map<string, FieldMeta>();
+    const affectedPaths: Array<string> = [];
+    for (const path of Object.keys(rawForm.state.fieldMeta)) {
+      const movedPath = getMovedPath(path);
+      const meta = rawForm.getFieldMeta(path as never);
+      if (movedPath === undefined) {
+        continue;
+      }
+      affectedPaths.push(path);
+      if (meta) {
+        movedMeta.set(movedPath, meta);
+      }
+    }
+
+    const revealedPaths = [...revealedFields];
+    revealedFields.clear();
+    for (const path of revealedPaths) {
+      revealedFields.add(getMovedPath(path) ?? path);
+    }
+
+    // An async result started before the move would land on whichever item
+    // has that path now.
+    for (const path of [
+      ...validationInvalidators.keys(),
+    ]) {
+      if (getMovedPath(path) !== undefined) {
+        invalidateFieldValidation(path);
+      }
+    }
+
+    batch(() => {
+      rawForm.moveFieldValues(fieldName as never, from, to);
+      for (const [path, meta] of movedMeta) {
+        rawForm.setFieldMeta(path as never, meta);
+      }
+      for (const path of affectedPaths) {
+        if (!movedMeta.has(path)) {
+          rawForm.setFieldMeta(path as never, (meta) => ({
+            ...meta,
+            errorMap: {},
+            errorSourceMap: {},
+            isBlurred: false,
+            isDirty: false,
+            isTouched: false,
+            isValidating: false,
+          }));
+        }
+      }
+    });
+
+    // Remounted fields render on the next flush, clearing their errors as the
+    // old instances unmount. Restore what the move put there.
+    await nextTick();
+    for (const [path, meta] of movedMeta) {
+      const currentMeta = rawForm.getFieldMeta(path as never);
+      if (
+        currentMeta
+        && hasErrors(meta.errorMap)
+        && !hasErrors(currentMeta.errorMap)
+      ) {
+        rawForm.setFieldMeta(path as never, (current) => ({
+          ...current,
+          errorMap: meta.errorMap,
+          errorSourceMap: meta.errorSourceMap,
+        }));
+      }
+    }
+  }
+
   async function reset(
     resetState?: { values?: Partial<TValues> },
     options?: FormResetOptions,
@@ -359,6 +500,7 @@ export function useFormRuntime<TValues extends FormValues>(
     isFieldValid(fieldName) {
       return !getFieldError(fieldName);
     },
+    moveFieldValue,
     pushFieldValue(fieldName, value) {
       rawForm.pushFieldValue(fieldName as never, value as never);
     },

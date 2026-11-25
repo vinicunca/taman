@@ -276,8 +276,8 @@
     "semantic_hash": ""
   },
   "packages/shell/app-ui/package.json": {
-    "mtime": 1795413254.9776564,
-    "seen": 1795413458.641162,
+    "mtime": 1795529015.853162,
+    "seen": 1795529088.645581,
     "ast_hash": "5500751cbf6382d8cd4dba79bedcfe1e",
     "semantic_hash": ""
   },
@@ -390,8 +390,8 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/package.json": {
-    "mtime": 1795413254.978728,
-    "seen": 1795413458.6412532,
+    "mtime": 1795529015.8535047,
+    "seen": 1795529088.645663,
     "ast_hash": "2a6fa7deb3077296bd14357094bb45bd",
     "semantic_hash": ""
   },
@@ -1746,9 +1746,9 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/package.json": {
-    "mtime": 1795426039.9780498,
-    "seen": 1795426485.588415,
-    "ast_hash": "10126bdc6ee12e658d595a59d2be44ae",
+    "mtime": 1795529015.8490665,
+    "seen": 1795529088.645791,
+    "ast_hash": "9ee98ea62b1543d284747e8937db7f82",
     "semantic_hash": ""
   },
   "packages/taman-ui/src/components/auth/index.ts": {
@@ -2130,15 +2130,15 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/components/form-field-array.types.ts": {
-    "mtime": 1791192985.566492,
-    "seen": 1791691378.178357,
-    "ast_hash": "92a135a69361c34373b868f9331ae147",
+    "mtime": 1795528922.362646,
+    "seen": 1795529088.645837,
+    "ast_hash": "eec5408a4cf111d8a86b5fd4c4afbd0a",
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/components/form-field-array.vue": {
-    "mtime": 1795417626.9993868,
-    "seen": 1795426485.588463,
-    "ast_hash": "00fbf6f7e1a41bf8f5bad289f2433930",
+    "mtime": 1795528997.6033847,
+    "seen": 1795529088.645838,
+    "ast_hash": "78a99b9956390ccd9de9a2e54e222d2c",
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/form-render/form-render-field-collapsible.vue": {
@@ -2256,9 +2256,9 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/form.runtime.ts": {
-    "mtime": 1793602579.0566154,
-    "seen": 1793671433.7731972,
-    "ast_hash": "85d79fe1808de759598dd10ba220359c",
+    "mtime": 1795528922.3631191,
+    "seen": 1795529088.6458502,
+    "ast_hash": "b4abc66205fb8b829e56deded8aacfe9",
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/form.schema-defaults.ts": {
@@ -2268,9 +2268,9 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/form.types.ts": {
-    "mtime": 1794832182.0712051,
-    "seen": 1795413137.491183,
-    "ast_hash": "97df259ef7d835c435b6d3e66566eeef",
+    "mtime": 1795528922.3633022,
+    "seen": 1795529088.645851,
+    "ast_hash": "d9c78b767b5611b776770a459fb04a18",
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/form.use-delayed-flag.ts": {
@@ -3156,9 +3156,9 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/README.md": {
-    "mtime": 1794308754.7883596,
-    "seen": 1794801022.674293,
-    "ast_hash": "8c3f356e17617dacaf11359e03222234",
+    "mtime": 1795529031.9504478,
+    "seen": 1795529088.645971,
+    "ast_hash": "9d28d5d40cae5eb957aa86705f97820f",
     "semantic_hash": ""
   },
   "packages/shell/app-ui/src/components/fallback/icons/icon-403.vue": {
@@ -3636,14 +3636,14 @@
     "semantic_hash": ""
   },
   "apps/web/components.d.ts": {
-    "mtime": 1795426040.0084214,
-    "seen": 1795426485.5879009,
+    "mtime": 1795476735.4044592,
+    "seen": 1795529088.645374,
     "ast_hash": "222645821284ac289b1c6a85ab191766",
     "semantic_hash": ""
   },
   "apps/web/package.json": {
-    "mtime": 1795413254.9722116,
-    "seen": 1795413458.640942,
+    "mtime": 1795529015.8525133,
+    "seen": 1795529088.645375,
     "ast_hash": "78fd6dfb7b8d3cafce174078e7ddb075",
     "semantic_hash": ""
   },
@@ -6228,9 +6228,9 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/CHANGELOG.md": {
-    "mtime": 1795426039.9779637,
-    "seen": 1795426485.588602,
-    "ast_hash": "31407d02a2155f02aa1f56497e015a23",
+    "mtime": 1795529015.8498118,
+    "seen": 1795529088.6459699,
+    "ast_hash": "cdb3d434b204b7025e6fa1337257f31a",
     "semantic_hash": ""
   },
   "packages/taman-core/CHANGELOG.md": {
@@ -6389,10 +6389,16 @@
     "ast_hash": "74482f5f1fb294dc17c5ab0e37149ec7",
     "semantic_hash": ""
   },
-  ".changeset/form-field-description-spacing.md": {
-    "mtime": 1795426470.9918797,
-    "seen": 1795426485.588578,
-    "ast_hash": "f55ebdbce77903cc8f5d67d7a7dea738",
+  "packages/taman-ui/src/form/__tests__/form-field-array-sortable.test.ts": {
+    "mtime": 1795528982.1096444,
+    "seen": 1795529088.645826,
+    "ast_hash": "5ca5af0252716aba21181cdc8108ee18",
+    "semantic_hash": ""
+  },
+  "packages/taman-ui/src/form/__tests__/form-runtime-move.test.ts": {
+    "mtime": 1795528909.2126,
+    "seen": 1795529088.6458309,
+    "ast_hash": "790c8b1c8d100c616f3665bf7b1f9b00",
     "semantic_hash": ""
   }
 }

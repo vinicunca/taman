@@ -12,6 +12,8 @@ export interface TamanFormFieldArrayProps {
    */
   createRow?: () => Record<string, any>;
   disabled?: boolean;
+  /** Tooltip on the drag handle, shown when `sortable` is on */
+  dragHandleText?: string;
   /** Empty data text */
   emptyText?: string;
   /** Sub-field global common configuration */
@@ -20,12 +22,28 @@ export interface TamanFormFieldArrayProps {
   max?: number;
   /** Minimum number of rows */
   min?: number;
+  /** Accessible label of the "Move down" button, shown when `sortable` is on */
+  moveDownText?: string;
+  /** Accessible label of the "Move up" button, shown when `sortable` is on */
+  moveUpText?: string;
   /** Field path, passed through componentField by the outer FormField */
   name?: string;
+  /**
+   * Field on each row whose value identifies the row, e.g. `'id'`. Rows are
+   * keyed by it, so a moved row keeps its row element instead of another
+   * row's. Rows where the value is missing (or a duplicate) are keyed by index.
+   */
+  rowKey?: string;
   /**
    * Column definition, each column is a sub-field (reuse FormFieldSchema)
    */
   schema?: Array<FormFieldSchema>;
   /** Whether to display the index column */
   showIndex?: boolean;
+  /**
+   * Let users reorder rows: by dragging the handle at the start of a row, or
+   * with the "Move up" / "Move down" buttons.
+   * @default false
+   */
+  sortable?: boolean;
 }

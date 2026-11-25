@@ -1,5 +1,13 @@
 # @vinicunca/taman-ui
 
+## 0.5.0
+
+### Minor Changes
+
+- Add drag-to-reorder rows to `TamanFormFieldArray`, opt-in with `arrayProps: { sortable: true }`. Users drag a row by its handle, or use the new "Move up" / "Move down" buttons from the keyboard or a screen reader. A disabled field turns reordering off. New props: `sortable`, `rowKey` (a row field to key rows by, e.g. `'id'`, so a moved row keeps its row element), and the labels `dragHandleText`, `moveUpText` and `moveDownText`. Forms without `sortable` render as before.
+  
+  Add `moveFieldValue(name, from, to)` to the form runtime (`formApi.form`). It moves an array item, and the item's errors and touched state move with it. That also holds for arrays nested in other arrays and for rows that remount under their new index.
+
 ## 0.4.2
 
 ### Patch Changes

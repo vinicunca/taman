@@ -333,6 +333,61 @@ Group options are `children`, `name`, `title`, `extra`, `hide`, `collapsed`,
 Array child callbacks receive `row`, `rowIndex`, `rowPath`, `arrayField`, the
 resolved `fieldName`, and `rootValues` through `FormSchemaContext`.
 
+`arrayProps` options:
+
+| Option | Default | Purpose |
+| --- | --- | --- |
+| `min` / `max` | `0` / `Infinity` | Row count limits for the remove and add buttons. |
+| `createRow` | Empty row from `children` | Builds the row the add button appends. |
+| `showIndex` | `true` | Shows the row number column. |
+| `sortable` | `false` | Lets users reorder rows. See below. |
+| `rowKey` | None | A field on each row that identifies it, e.g. `'id'`. See below. |
+| `actionText` | `'Action'` | Header of the actions column. |
+| `addButtonText` | `'Add a row'` | Label of the add button. |
+| `emptyText` | `'No data'` | Text shown when there are no rows. |
+| `dragHandleText` | `'Drag to reorder'` | Tooltip of the drag handle. |
+| `moveUpText` / `moveDownText` | `'Move up'` / `'Move down'` | Accessible labels of the move buttons. |
+
+#### Reordering rows
+
+Set `sortable: true` to let users put rows in order. The array value is saved
+in the new order.
+
+```ts
+{
+  type: 'array',
+  fieldName: 'portfolio',
+  defaultValue: [],
+  arrayProps: {
+    sortable: true,
+    rowKey: 'id',
+    createRow: () => ({ id: crypto.randomUUID(), title: '', url: '' }),
+  },
+  children: [
+    { component: 'Input', fieldName: 'title', label: 'Title' },
+    { component: 'Input', fieldName: 'url', label: 'URL' },
+  ],
+}
+```
+
+- Each row starts with a drag handle. A drag starts only from the handle, so
+  inputs and selects in the row work as usual. On touch screens, hold the
+  handle briefly before you drag.
+- Each row also gets "Move up" and "Move down" buttons for keyboard and
+  screen-reader users. They are disabled at the ends of the list. After a
+  move, focus stays on the moved row.
+- When the field is disabled, the handle and the move buttons are hidden and
+  dragging is off.
+- A row's validation errors and touched state move with the row.
+
+Without `rowKey`, rows are keyed by their index. A moved row's data then
+renders in the row element that was at its new index. Set `rowKey` to a field
+whose value is unique per row, so the row element moves with its row. Field
+components in a moved row remount under their new path, so state kept inside a
+field component (for example, an open dropdown) resets instead of showing up
+on another row. Rows where the `rowKey` value is missing or repeated are keyed
+by index. Give new rows a value in `createRow`.
+
 ### Built-in components
 
 The package includes:
@@ -696,6 +751,7 @@ selectors or array mutation.
 | `handleSubmit(callback?)` | Creates an event handler that validates, then calls `callback(rawValues)` when valid. |
 | `pushFieldValue(name, value)` | Appends an item to an array field. |
 | `removeFieldValue(name, index)` | Removes an item from an array field. |
+| `moveFieldValue(name, from, to)` | Moves an item of an array field. The item's errors and touched state move with it. |
 | `useFieldValue(name)` | Selects one field as a readonly ref. |
 | `useFieldValues(names)` | Selects several fields as a readonly ref. |
 | `useValues()` | Selects all raw values as a readonly ref. |
@@ -734,6 +790,8 @@ onMounted(() => {
 ```ts
 formApi.form.pushFieldValue('contacts', { name: '', email: '' });
 await formApi.form.removeFieldValue('contacts', 0);
+// Move the item at index 2 to index 0. Out-of-range or equal indexes do nothing.
+await formApi.form.moveFieldValue('contacts', 2, 0);
 ```
 
 ### Synchronous state
