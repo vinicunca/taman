@@ -208,7 +208,7 @@ handleValuesChange(rawValues, changedFields, getFormattedValues) {
 | `label` | Label text or render function. |
 | `description` | Secondary field description. |
 | `help` | Help text or a function receiving schema context. |
-| `suffix` | Content rendered after the field, or a function returning it. At the top level the function receives `{ fieldName }`. In array children it receives the row context. |
+| `suffix` | Content rendered after the field, or a function returning it. At the top level the function receives `{ fieldName }`. In array children it receives the schema context (`row`, `rowIndex`, `rowPath`, `rootValues`, ...), like `help`. |
 | `componentProps` | Props object or a function receiving schema context. |
 | `formFieldProps` | Validation triggers, native validators, and async debounce. |
 | `rules` | Named rule, Zod schema, `null`, or another registered rule name. |
@@ -407,7 +407,9 @@ by index. Give new rows a value in `createRow`.
 | `rowPath` | Path of the row, such as `portfolio[2]`. |
 | `rootValues` | Current values of the whole form. |
 
-A row's callbacks run again only when the values they read change.
+A row's callbacks run again only when the values they read change, or when rows are added or removed.
+
+`row` and `rootValues` are read-only (Vue readonly proxies). Do not mutate them; change values through the form API. Copy them (for example `{ ...row }`, or `toRaw` from `vue`) before passing them to `structuredClone`, `postMessage` or similar.
 
 - `rowExtra` renders under the row's fields. If it returns nothing, no space
   is used.

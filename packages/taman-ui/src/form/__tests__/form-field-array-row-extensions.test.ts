@@ -111,7 +111,7 @@ describe('array child callbacks', () => {
 
   it('re-runs child callbacks only for the changed row', async () => {
     const componentProps = vi.fn(({ row }: any) => ({ placeholder: row?.title }));
-    const { formApi } = await mountPortfolio({
+    const { formApi, wrapper } = await mountPortfolio({
       children: [
         {
           component: TestInput,
@@ -125,8 +125,10 @@ describe('array child callbacks', () => {
     formApi.form.setFieldValue('portfolio[1].title', 'z');
     await flushPromises();
     const indexes = componentProps.mock.calls.map(([ctx]) => ctx.rowIndex);
+    expect(indexes).toContain(1);
     expect(indexes).not.toContain(0);
     expect(indexes).not.toContain(2);
+    expect(wrapper.findAll('input')[1]!.attributes('placeholder')).toBe('z');
   });
 
   it('keeps common config out of the row context', async () => {
