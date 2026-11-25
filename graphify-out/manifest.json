@@ -276,8 +276,8 @@
     "semantic_hash": ""
   },
   "packages/shell/app-ui/package.json": {
-    "mtime": 1795607241.4020128,
-    "seen": 1795625374.120497,
+    "mtime": 1795627315.3788414,
+    "seen": 1795627382.450309,
     "ast_hash": "5500751cbf6382d8cd4dba79bedcfe1e",
     "semantic_hash": ""
   },
@@ -390,8 +390,8 @@
     "semantic_hash": ""
   },
   "packages/shell/layouts/package.json": {
-    "mtime": 1795607241.4022129,
-    "seen": 1795625374.1205618,
+    "mtime": 1795627315.3792808,
+    "seen": 1795627382.450366,
     "ast_hash": "2a6fa7deb3077296bd14357094bb45bd",
     "semantic_hash": ""
   },
@@ -1746,9 +1746,9 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/package.json": {
-    "mtime": 1795607241.3991895,
-    "seen": 1795625374.120667,
-    "ast_hash": "606535e91ce53e7ac6d0929c43ff4dfa",
+    "mtime": 1795627315.374737,
+    "seen": 1795627382.450458,
+    "ast_hash": "830581b1b27e24512be6cfa1ff1212f9",
     "semantic_hash": ""
   },
   "packages/taman-ui/src/components/auth/index.ts": {
@@ -2082,8 +2082,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/__tests__/form-schema.test.ts": {
-    "mtime": 1795616383.5616567,
-    "seen": 1795625374.120697,
+    "mtime": 1795627306.4517748,
+    "seen": 1795627382.450488,
     "ast_hash": "821f5d211bd9bd9e7e9e725eeec5e02d",
     "semantic_hash": ""
   },
@@ -2130,14 +2130,14 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/components/form-field-array.types.ts": {
-    "mtime": 1795616346.0408487,
-    "seen": 1795625374.120702,
+    "mtime": 1795627306.4527798,
+    "seen": 1795627382.450492,
     "ast_hash": "1ba239e60a272d45a7e7e6e9e0435eb5",
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/components/form-field-array.vue": {
-    "mtime": 1795625527.9436443,
-    "seen": 1795625540.303403,
+    "mtime": 1795627306.4530556,
+    "seen": 1795627382.4504929,
     "ast_hash": "ae734b32f6f5ff1852d081a3cab5ae88",
     "semantic_hash": ""
   },
@@ -2154,8 +2154,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/form-render/form-render-form-field.vue": {
-    "mtime": 1795616346.0421576,
-    "seen": 1795625374.120704,
+    "mtime": 1795627306.453295,
+    "seen": 1795627382.450494,
     "ast_hash": "f90413cff63a71276020742d732690a9",
     "semantic_hash": ""
   },
@@ -2196,8 +2196,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/form-render/form-render.schema.ts": {
-    "mtime": 1795624970.8747673,
-    "seen": 1795625374.120707,
+    "mtime": 1795627306.4535556,
+    "seen": 1795627382.450497,
     "ast_hash": "09992433d1e55ec48f914a0c5223f607",
     "semantic_hash": ""
   },
@@ -2268,8 +2268,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/form.types.ts": {
-    "mtime": 1795616346.040536,
-    "seen": 1795625374.120712,
+    "mtime": 1795627306.4538078,
+    "seen": 1795627382.450502,
     "ast_hash": "45ea39a0187b1873e6737c3d0e476b4b",
     "semantic_hash": ""
   },
@@ -2292,8 +2292,8 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/index.ts": {
-    "mtime": 1795616346.0413246,
-    "seen": 1795625374.120714,
+    "mtime": 1795627306.454032,
+    "seen": 1795627382.4505038,
     "ast_hash": "10c6c084003ba92085fb053f053d9d7f",
     "semantic_hash": ""
   },
@@ -3156,9 +3156,9 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/README.md": {
-    "mtime": 1795626093.9342709,
-    "seen": 1795626104.815288,
-    "ast_hash": "172b1882955ebf9a15b7debd3308e6d3",
+    "mtime": 1795627370.9994893,
+    "seen": 1795627382.4505868,
+    "ast_hash": "db2ab87ab43c41790b0d819921966b30",
     "semantic_hash": ""
   },
   "packages/shell/app-ui/src/components/fallback/icons/icon-403.vue": {
@@ -3642,8 +3642,8 @@
     "semantic_hash": ""
   },
   "apps/web/package.json": {
-    "mtime": 1795607241.4018013,
-    "seen": 1795625374.120337,
+    "mtime": 1795627315.3784223,
+    "seen": 1795627382.4501681,
     "ast_hash": "78fd6dfb7b8d3cafce174078e7ddb075",
     "semantic_hash": ""
   },
@@ -6228,9 +6228,9 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/CHANGELOG.md": {
-    "mtime": 1795607241.3998737,
-    "seen": 1795625374.120803,
-    "ast_hash": "6e02cbcdf6972555db1ab307be7ca09d",
+    "mtime": 1795627315.3763676,
+    "seen": 1795627382.4505868,
+    "ast_hash": "c70d7cc44113334e0745565b3632c748",
     "semantic_hash": ""
   },
   "packages/taman-core/CHANGELOG.md": {
@@ -6402,32 +6402,26 @@
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/__tests__/form-field-array-row-extensions.test.ts": {
-    "mtime": 1795626093.934149,
-    "seen": 1795626104.815176,
+    "mtime": 1795627306.451418,
+    "seen": 1795627382.4504828,
     "ast_hash": "0d6a77550f7ac5359fe78a2b8f21355f",
     "semantic_hash": ""
   },
   "packages/taman-ui/src/form/components/form-field-array-row-content.vue": {
-    "mtime": 1795625095.1529722,
-    "seen": 1795625374.1207008,
+    "mtime": 1795627306.4525232,
+    "seen": 1795627382.450492,
     "ast_hash": "7ed9511b52aecd487a6d860b706a218c",
     "semantic_hash": ""
   },
-  ".changeset/form-array-row-extensions.md": {
-    "mtime": 1795625355.785811,
-    "seen": 1795625374.120786,
-    "ast_hash": "56710c6cbcd56071e7ee773cd11cdad4",
-    "semantic_hash": ""
-  },
   "docs/superpowers/plans/2026-11-25-form-array-row-extensions.md": {
-    "mtime": 1795616285.6026635,
-    "seen": 1795625374.120791,
+    "mtime": 1795627306.4420257,
+    "seen": 1795627382.450575,
     "ast_hash": "d7e22c7fafe2f52b3bbf715b3da3d2cb",
     "semantic_hash": ""
   },
   "docs/superpowers/specs/2026-11-25-form-array-row-extensions-design.md": {
-    "mtime": 1795615902.0688205,
-    "seen": 1795625374.120793,
+    "mtime": 1795627306.4422417,
+    "seen": 1795627382.4505768,
     "ast_hash": "1782a82e184e7f52f6000ec52fce9867",
     "semantic_hash": ""
   }

@@ -1,5 +1,11 @@
 # @vinicunca/taman-ui
 
+## 0.6.1
+
+### Patch Changes
+
+- 8530b91: Array fields: add `rowExtra`, `rowActions`, `rowRemovable` and `addButtonProps`, make child `suffix` row-aware, and pass `row` and `rootValues` to array child render callbacks.
+
 ## 0.6.0
 
 ### Minor Changes

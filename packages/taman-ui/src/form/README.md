@@ -407,9 +407,14 @@ by index. Give new rows a value in `createRow`.
 | `rowPath` | Path of the row, such as `portfolio[2]`. |
 | `rootValues` | Current values of the whole form. |
 
-A row's callbacks run again only when the values they read change, or when rows are added or removed.
+A row's callbacks run again only when the values they read change, or when
+rows are added or removed.
 
-`row` and `rootValues` are read-only (Vue readonly proxies). Do not mutate them; change values through the form API. Copy them (for example `{ ...row }`, or `toRaw` from `vue`) before passing them to `structuredClone`, `postMessage` or similar.
+`row` and `rootValues` are read-only (Vue readonly proxies, nested values
+included). Do not mutate them; change values through the form API. Before you
+pass them to `structuredClone`, `postMessage` or similar, unwrap them with
+`toRaw` from `vue`, for example `structuredClone(toRaw(row))`. A spread such as
+`{ ...row }` is not enough, because nested objects and arrays stay proxies.
 
 - `rowExtra` renders under the row's fields. If it returns nothing, no space
   is used.
