@@ -1,5 +1,11 @@
 # @vinicunca/taman-ui
 
+## 0.6.0
+
+### Minor Changes
+
+- 7ff5125: sort field array
+
 ## 0.5.0
 
 ### Minor Changes
