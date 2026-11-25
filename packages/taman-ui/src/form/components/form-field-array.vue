@@ -528,7 +528,8 @@ const normalizedRowSchemas = computed(() =>
     <PButton
       variant="outline"
       size="sm"
-      class="border-dashed w-full"
+      class="border-dashed"
+      :class="[addButtonProps?.block !== false && 'w-full']"
       icon="lucide:plus"
       v-bind="addButtonProps"
       :disabled="disabled || !canAdd || Boolean(addButtonProps?.disabled)"

@@ -337,6 +337,26 @@ describe('array row extensions', () => {
     const classes = findAddButton(wrapper).classes();
     expect(classes).toContain('self-end');
     expect(classes).toContain('border-dashed');
+    expect(classes).toContain('w-full');
+  });
+
+  it('keeps the default add button full width', async () => {
+    const { wrapper } = await mountPortfolio({});
+    const classes = findAddButton(wrapper).classes();
+    expect(classes).toContain('border-dashed');
+    expect(classes).toContain('w-full');
+  });
+
+  it('drops the full width when addButtonProps.block is false', async () => {
+    const { wrapper } = await mountPortfolio({
+      arrayProps: {
+        addButtonProps: { block: false, class: 'self-end' },
+      },
+    });
+    const classes = findAddButton(wrapper).classes();
+    expect(classes).toContain('self-end');
+    expect(classes).toContain('border-dashed');
+    expect(classes).not.toContain('w-full');
   });
 
   it('keeps the add button disabled at max despite addButtonProps', async () => {

@@ -348,7 +348,7 @@ set in `commonConfig` or `globalCommonConfig` get only the base context, not
 | `rowExtra` | None | Content under a row's fields, full width. Shown only when it returns something. |
 | `rowActions` | None | Content before the row's move and remove buttons. The action column then sizes to fit. |
 | `rowRemovable` | None | Return `false` to hide that row's remove button. `min` and `disabled` still apply. |
-| `addButtonProps` | None | Props for the add button, such as `class`, `variant`, `block`. |
+| `addButtonProps` | None | Props for the add button, such as `class`, `variant`, `block`. `block: false` drops the default full width. |
 | `actionText` | `'Action'` | Header of the actions column. |
 | `addButtonText` | `'Add a row'` | Label of the add button. |
 | `emptyText` | `'No data'` | Text shown when there are no rows. |
@@ -416,7 +416,8 @@ A row's callbacks run again only when the values they read change.
 - `rowRemovable` returning `false` hides the remove button of that row. `min`
   and `disabled` still disable the buttons that remain.
 - `addButtonProps` can set `variant`, `size`, and `icon`, and adds to `class`.
-  It cannot enable the button past `max` or when the field is disabled.
+  The button is full width by default. Set `block: false` to drop that. It
+  cannot enable the button past `max` or when the field is disabled.
 
 ```ts
 import { h } from 'vue';
