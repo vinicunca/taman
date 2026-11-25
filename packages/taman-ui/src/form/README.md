@@ -208,7 +208,7 @@ handleValuesChange(rawValues, changedFields, getFormattedValues) {
 | `label` | Label text or render function. |
 | `description` | Secondary field description. |
 | `help` | Help text or a function receiving schema context. |
-| `suffix` | Content rendered after the field. |
+| `suffix` | Content rendered after the field, or a function returning it. At the top level the function receives `{ fieldName }`. In array children it receives the row context. |
 | `componentProps` | Props object or a function receiving schema context. |
 | `formFieldProps` | Validation triggers, native validators, and async debounce. |
 | `rules` | Named rule, Zod schema, `null`, or another registered rule name. |
@@ -330,8 +330,11 @@ Group options are `children`, `name`, `title`, `extra`, `hide`, `collapsed`,
 }
 ```
 
-Array child callbacks receive `row`, `rowIndex`, `rowPath`, `arrayField`, the
-resolved `fieldName`, and `rootValues` through `FormSchemaContext`.
+Array child `componentProps`, `help`, `renderComponentContent`, and `suffix`
+callbacks receive `row`, `rowIndex`, `rowPath`, `arrayField`, the resolved
+`fieldName`, and `rootValues` through `FormSchemaContext`. `componentProps`
+set in `commonConfig` or `globalCommonConfig` get only the base context, not
+`row` or `rootValues`.
 
 `arrayProps` options:
 
@@ -342,6 +345,10 @@ resolved `fieldName`, and `rootValues` through `FormSchemaContext`.
 | `showIndex` | `true` | Shows the row number column. |
 | `sortable` | `false` | Lets users reorder rows. See below. |
 | `rowKey` | None | A field on each row that identifies it, e.g. `'id'`. See below. |
+| `rowExtra` | None | Content under a row's fields, full width. Shown only when it returns something. |
+| `rowActions` | None | Content before the row's move and remove buttons. The action column then sizes to fit. |
+| `rowRemovable` | None | Return `false` to hide that row's remove button. `min` and `disabled` still apply. |
+| `addButtonProps` | None | Props for the add button, such as `class`, `variant`, `block`. |
 | `actionText` | `'Action'` | Header of the actions column. |
 | `addButtonText` | `'Add a row'` | Label of the add button. |
 | `emptyText` | `'No data'` | Text shown when there are no rows. |
@@ -387,6 +394,58 @@ components in a moved row remount under their new path, so state kept inside a
 field component (for example, an open dropdown) resets instead of showing up
 on another row. Rows where the `rowKey` value is missing or repeated are keyed
 by index. Give new rows a value in `createRow`.
+
+#### Row extras and actions
+
+`rowExtra`, `rowActions`, and `rowRemovable` receive a
+`TamanFormFieldArrayRowContext`:
+
+| Property | Purpose |
+| --- | --- |
+| `index` | Position of the row. |
+| `row` | Current values of the row. |
+| `rowPath` | Path of the row, such as `portfolio[2]`. |
+| `rootValues` | Current values of the whole form. |
+
+A row's callbacks run again only when the values they read change.
+
+- `rowExtra` renders under the row's fields. If it returns nothing, no space
+  is used.
+- `rowActions` renders before the move and remove buttons. All rows share one
+  action column, which sizes to fit the widest content.
+- `rowRemovable` returning `false` hides the remove button of that row. `min`
+  and `disabled` still disable the buttons that remain.
+- `addButtonProps` can set `variant`, `size`, and `icon`, and adds to `class`.
+  It cannot enable the button past `max` or when the field is disabled.
+
+```ts
+import { h } from 'vue';
+
+{
+  type: 'array',
+  fieldName: 'portfolio',
+  defaultValue: [],
+  arrayProps: {
+    createRow: () => ({ title: '', url: '', status: 'idle' }),
+    rowExtra: ({ row }) =>
+      row.status === 'importing'
+        ? h('p', 'Importing from Drive...')
+        : row.url
+          ? h('p', `Preview: ${row.url}`)
+          : null,
+    rowActions: ({ row }) =>
+      row.status === 'failed'
+        ? h('button', { type: 'button', onClick: () => retryImport(row) }, 'Retry')
+        : null,
+    rowRemovable: ({ row }) => row.status !== 'importing',
+    addButtonProps: { class: 'self-end', block: false },
+  },
+  children: [
+    { component: 'Input', fieldName: 'title', label: 'Title' },
+    { component: 'Input', fieldName: 'url', label: 'URL' },
+  ],
+}
+```
 
 ### Built-in components
 
@@ -964,6 +1023,7 @@ Key type exports:
 
 - `ExtendedFormApi`, `FormActions`, `FormValues`, `FormValueSnapshot`.
 - `FormCodec`, `FormCodecPhase`, `CalendarDateCodecOptions`.
+- `TamanFormFieldArrayProps`, `TamanFormFieldArrayRowContext`.
 - `TamanFormProps`, `TamanFormSchema`, `TamanFormFieldSchema`,
   `TamanFormGroupSchema`.
 - `TamanFormComponent`, `TamanFormSlots`, `TamanFormFieldSlotProps`,
